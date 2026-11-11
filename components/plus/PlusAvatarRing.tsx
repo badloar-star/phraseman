@@ -76,7 +76,10 @@ const RingGraphic = memo(function RingGraphic({ size, kind, tier }: { size: numb
     traceRing('layout', traceKey, { size, outerExpected: outer, insetExpected: -inset, x, y, width, height, matches: Math.abs(width - outer) < 0.6 && Math.abs(height - outer) < 0.6 });
   };
   return (
-    <Svg width={outer} height={outer} onLayout={onRingLayout} style={{ position: 'absolute', left: -inset, top: -inset }}>
+    // зачем (владелец 11.11: «кольцо поломано» — видны только левая и верхняя дуги): замер по снимку эмулятора показал, что кольцо рисовалось
+    // в ~1,4 раза крупнее своей области и обрезалось её правым и нижним краем. viewBox заставляет рисунок вписываться ровно в область,
+    // какой бы масштаб ни взяла нативная часть; при верном масштабе это тождественное преобразование — вид не меняется.
+    <Svg width={outer} height={outer} viewBox={`0 0 ${outer} ${outer}`} onLayout={onRingLayout} style={{ position: 'absolute', left: -inset, top: -inset }}>
       {spec.flatColor ? (
         <Circle cx={center} cy={center} r={outer / 2 - ring / 2} stroke={spec.flatColor} strokeWidth={ring} fill="none" />
       ) : (

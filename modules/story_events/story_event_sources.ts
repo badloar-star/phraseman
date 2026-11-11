@@ -10,6 +10,8 @@ import { isCurrentAccountGeneration, type AccountGenerationToken } from '../../a
 type SpireWeekFact = Readonly<{
   weekId: string; lang: string; promoted: boolean; demoted: boolean; prevTier: number; newTier: number; roomRank: number; roomTotal: number;
   weekCoins?: number; promotionCoins?: number; rankBy?: 'steps' | 'coins';
+  /** Награда за место (U36). В итоге недели она уже 0, пока сервер не подтвердил выплату. */
+  placeCoins?: number;
 }>;
 
 /** Итог недели Шпиля: вверх / вниз / удержался + этаж. Тот же документ, что прочитал загрузчик, — новых чтений нет. */
@@ -21,6 +23,9 @@ function spireWeekPayload(result: SpireWeekFact): Readonly<Record<string, string
     // зачем (координатор 14.10): слайд «N место из M · X монет за неделю» — монеты недели решают переход (D162/D190);
     // promotionCoins — настоящая награда сервера за повышение (config/spire_v1.coins.promotionBonus, по умолчанию 100), 0 если нет.
     weekCoins: result.weekCoins ?? 0, promotionCoins: result.promotionCoins ?? 0, rankBy: result.rankBy ?? 'steps',
+    // зачем (владелец 11.11, U36 «За что дали награду»): кадр истории показывает сумму и её причины — «за N место» и «за повышение».
+    // Новых чтений нет: число уже лежит в итоге недели и равно 0, пока монеты не дошли до кошелька.
+    placeCoins: result.placeCoins ?? 0,
   };
 }
 

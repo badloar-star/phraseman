@@ -5,24 +5,25 @@
 // свет, отражение, длинная анимация (активная фаза ≈ 5 с). Макет: docs/work/mockups/reward-reasons-2026-11-11/reward_story_premium.html.
 // Решения владельца 11.11: оба вида кадра недели живут вместе и выбираются случайно (story_reward_variant); сцена — в цветах темы.
 //
-// Первый шаг переноса работает на тех данных, что история уже знает: лига, исход, место, монеты недели, бонус за повышение.
-// Разбивки «за место / за повышение», признака «монеты дошли» и изменения энергии в событии пока нет — их добавляет отдельный шаг
-// (файлы сборки события 11.11 редактировались в другой сессии). Поэтому большой суммы на кадре нет: показывать «+100», когда человек
-// получил больше, было бы неправдой. Слова — прежние строки итога недели, новых переводов этот шаг не требует.
-//
-// Кадры пока НЕ подключены в StoryTemplateSlide: подключение — после проверки типов и тестов (решение владельца 11.11).
+// Сумма на кадре (шаг 3, владелец 11.11: «делай»): награда за место и за повышение приходят в событии истории и равны 0, пока сервер
+// не подтвердил выплату, — поэтому кадр показывает сумму только когда монеты дошли. Причины под суммой — прежние строки окна итога
+// («+N за K место», «+N за повышение», 9 языков), новых переводов нет. Чего на кадре пока нет: «в пути», энергия, «сколько не хватило
+// до пятёрки» — этих данных у события нет.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useMemo } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { achievementConditionForLang, achievementDescForLang, achievementNameForLang, ALL_ACHIEVEMENTS } from '../../../app/achievements';
 import { DebugLogger } from '../../../app/debug-logger';
 import { spireTierName } from '../../../modules/spire/tier_names';
 import AchievementArt from '../../AchievementArt';
+import SpireRankCoin from '../../spire/SpireRankCoin';
 import { momentLeagueIn, momentText } from '../../spire/moments/moments_strings';
 import { streakDayWord } from '../../streak/moments/streak_moments_strings';
 import { storyText, storyThousands } from '../story_strings';
-import { Art, Confetti, FrameRoot, H1, Ov, P } from './story_template_kit';
-import { Enter } from './story_template_motion';
+import { EASE_FALL, frameMs, phase, useStoryFrameClock } from './story_frame_clock';
+import { Art, Confetti, FrameRoot, H1, Ov, P, k } from './story_template_kit';
+import { CountUp, Enter } from './story_template_motion';
 import { Sheen } from './story_template_parts';
 import { mix, useStoryTemplatePalette } from './story_template_palette';
 import type { StoryFrameProps } from './story_template_registry';
@@ -38,9 +39,50 @@ function statueSize(windowWidth: number): number {
   return Math.max(180, Math.min(300, Math.round(windowWidth - 56)));
 }
 
+// ── сумма награды: своя монета, счёт от нуля и пять монет, падающих в неё из луча ─────────────────────────────────────────────
+
+/** Сторона монеты у суммы и падающих монет, dp. */
+const SUM_COIN = 40;
+const FALL_COIN = 26;
+/** Падение монет: первая стартует через 620 мс после того, как статуэтка встала; шаг 125 мс, полёт 860 мс (макет). */
+const FALL_AT = REWARD_LAND_MS + 620;
+const FALL_STEP = 125;
+const FALL_MS = 860;
+const FALL_COUNT = 5;
+
+const FallingCoin = memo(function FallingCoin({ index, rank, fromY }: Readonly<{ index: number; rank: number | null; fromY: number }>) {
+  const { progress, durationMs, final } = useStoryFrameClock();
+  const spread = (index - (FALL_COUNT - 1) / 2) * 34;
+  const animated = useAnimatedStyle(() => {
+    const raw = phase(frameMs(progress.value, durationMs, final), FALL_AT + index * FALL_STEP, FALL_MS);
+    const p = EASE_FALL(raw);
+    // до старта и после приземления монеты нет: в покое (и при «меньше движения») видна только монета у суммы
+    const opacity = raw <= 0 || raw >= 1 ? 0 : Math.min(1, raw * 8);
+    return { opacity, transform: [{ translateX: spread * (1 - p) }, { translateY: -fromY * (1 - p) }, { rotateY: `${900 * p}deg` }, { scale: 0.7 + 0.3 * p }] };
+  });
+  return <Animated.View pointerEvents="none" style={[f.fall, animated]}><SpireRankCoin rank={rank} size={FALL_COIN} /></Animated.View>;
+});
+
+/** Строка суммы: монета человека и «+N», которое досчитывается, пока монеты приземляются. */
+const RewardSum = memo(function RewardSum({ total, rank }: Readonly<{ total: number; rank: number | null }>) {
+  const pal = useStoryTemplatePalette();
+  const { height } = useWindowDimensions();
+  const { final } = useStoryFrameClock();
+  const drops = useMemo(() => Array.from({ length: FALL_COUNT }, (_, i) => i), []);
+  return (
+    <Enter d={REWARD_LAND_MS + 420} style={f.sum}>
+      <View style={f.sumCoin}>
+        <SpireRankCoin rank={rank} size={SUM_COIN} />
+        {final ? null : drops.map((i) => <FallingCoin key={i} index={i} rank={rank} fromY={height * 0.42} />)}
+      </View>
+      <CountUp to={total} d={FALL_AT + FALL_MS - 80} dur={FALL_COUNT * FALL_STEP + 260} prefix="+" style={[k.bigS, { color: pal.tx }]} testID="story-tpl-peakweek-sum" />
+    </Enter>
+  );
+});
+
 // ── 8 · Пик · итог недели — статуэтка лиги ───────────────────────────────────────────────────────────────────────────
 
-export const PeakWeekRewardFrame = memo(function PeakWeekRewardFrame({ tpl, lang }: StoryFrameProps<'peakweek'>) {
+export const PeakWeekRewardFrame = memo(function PeakWeekRewardFrame({ tpl, lang, myRank }: StoryFrameProps<'peakweek'>) {
   const { width } = useWindowDimensions();
   const size = statueSize(width);
   const variant = useMemo(() => storyRewardVariant(peakWeekSeed(tpl)), [tpl]);
@@ -50,20 +92,29 @@ export const PeakWeekRewardFrame = memo(function PeakWeekRewardFrame({ tpl, lang
   const changed = dir !== 0 && prevTier !== tpl.tier;
   const league = spireTierName(tpl.tier, lang);
 
+  // зачем (Ядро 14.10, прежний кадр): «+N за повышение» — только из promotionCoins сервера и только при подъёме
+  const promotionCoins = tpl.outcome === 'up' ? Math.max(0, tpl.promotionCoins) : 0;
+  // старое событие без поля → 0; оба числа уже нулевые, пока сервер не подтвердил выплату
+  const placeCoins = Math.max(0, tpl.placeCoins ?? 0);
+  const total = placeCoins + promotionCoins;
+
   useEffect(() => {
     DebugLogger.info(LOG, `итог недели: вид=${variant} исход=${tpl.outcome} лига=${tpl.tier} прежняя=${prevTier} смена=${changed} место=${tpl.place}/${tpl.total} `
-      + `монетНедели=${tpl.weekCoins} заПовышение=${tpl.promotionCoins} статуэтка=${size}dp`);
-  }, [variant, tpl, prevTier, changed, size]);
+      + `монетНедели=${tpl.weekCoins} заМесто=${placeCoins}(в событии ${tpl.placeCoins === undefined ? 'нет поля' : tpl.placeCoins}) заПовышение=${promotionCoins} `
+      + `сумма=${total}${total > 0 ? '' : ' → строки суммы нет'} статуэтка=${size}dp`);
+  }, [variant, tpl, prevTier, changed, size, placeCoins, promotionCoins, total]);
 
   const outcome = tpl.outcome === 'up' ? storyText(lang, 'weekUp', { league })
     : tpl.outcome === 'down' ? storyText(lang, 'weekDown', { league })
       : momentText(lang, 'stayTitle', { league: momentLeagueIn(lang, tpl.tier, league) });
-  // зачем (Ядро 14.10, прежний кадр): «+N за повышение» — только из promotionCoins сервера и только при подъёме
-  const reason = [
+  // Есть сумма — под ней её причины («за N место», «за повышение»). Нет суммы — исход недели и монеты недели, как раньше.
+  const reason = (total > 0 ? [
+    placeCoins > 0 ? momentText(lang, tpl.place > 0 ? 'placeBonus' : 'placeBonusNoRank', { n: placeCoins, place: tpl.place }) : null,
+    promotionCoins > 0 ? momentText(lang, 'promoBonus', { n: promotionCoins }) : null,
+  ] : [
     outcome,
     tpl.weekCoins > 0 ? storyText(lang, 'weekCoins', { coins: storyThousands(tpl.weekCoins) }) : null,
-    tpl.outcome === 'up' && tpl.promotionCoins > 0 ? momentText(lang, 'promoBonus', { n: tpl.promotionCoins }) : null,
-  ].filter((part): part is string => part !== null).join(' · ');
+  ]).filter((part): part is string => part !== null).join(' · ');
 
   return (
     <FrameRoot
@@ -83,7 +134,8 @@ export const PeakWeekRewardFrame = memo(function PeakWeekRewardFrame({ tpl, lang
       <Ov text={storyText(lang, 'weekResult')} d={REWARD_LAND_MS - 350} />
       <H1 text={league} d0={REWARD_LAND_MS - 250} />
       {tpl.place > 0 && tpl.total > 0 ? <P text={storyText(lang, 'weekPlace', { place: tpl.place, total: tpl.total })} d={REWARD_LAND_MS + 150} /> : null}
-      <P text={reason} d={REWARD_LAND_MS + 600} />
+      {total > 0 ? <RewardSum total={total} rank={myRank} /> : null}
+      <P text={reason} d={REWARD_LAND_MS + (total > 0 ? 1550 : 600)} />
     </FrameRoot>
   );
 });
@@ -134,6 +186,10 @@ export const AchRewardFrame = memo(function AchRewardFrame({ tpl, lang }: StoryF
 const f = StyleSheet.create({
   // у статуэтки под основанием отражение — оставляем ему место до текста
   art: { marginBottom: 34 },
+  // строка суммы: монета и число в ряд по центру; падающие монеты лежат поверх монеты и не занимают места в вёрстке
+  sum: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, marginTop: 14 },
+  sumCoin: { width: SUM_COIN, height: SUM_COIN },
+  fall: { position: 'absolute', left: (SUM_COIN - FALL_COIN) / 2, top: (SUM_COIN - FALL_COIN) / 2, width: FALL_COIN, height: FALL_COIN },
   ach: { width: ACH_SIZE, height: ACH_SIZE, borderRadius: ACH_RADIUS },
   achClip: { width: ACH_SIZE, height: ACH_SIZE, borderRadius: ACH_RADIUS, overflow: 'hidden' },
 });

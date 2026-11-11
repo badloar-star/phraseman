@@ -79,7 +79,9 @@ export type StoryTemplate =
   | T<'lesson', { lessonNo: number; correct: number; total: number; coins: number; minutes: number; noHints: boolean }>
   | T<'exam', { chapter: number; correct: number; total: number; nextChapter: number | null; firstTry: boolean }>
   | T<'summit', { tier: number; floor: number; floors: number; weekCoins: number }>
-  | T<'peakweek', { tier: number; outcome: 'up' | 'stay' | 'down'; place: number; total: number; weekCoins: number; promotionCoins: number; podium: readonly StoryPodiumEntry[] | null }>
+  | T<'peakweek', { tier: number; outcome: 'up' | 'stay' | 'down'; place: number; total: number; weekCoins: number; promotionCoins: number; podium: readonly StoryPodiumEntry[] | null;
+    /** U36: награда за место (0 — нет или ещё не выплачена). Необязательное: старые события и прежние места сборки кадра его не знают. */
+    placeCoins?: number }>
   | T<'duel', { friend: StoryPerson; myScore: number; theirScore: number; rounds: number; seconds: number }>
   | T<'overtaken', { friend: StoryPerson; friendCoins: number; myCoins: number; daysLeft: number }>
   | T<'friend', { friend: StoryPerson }>

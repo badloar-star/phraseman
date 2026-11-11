@@ -92,7 +92,7 @@ export function storyTemplateFromEvent(event: StoryEventLike, studio = false): S
     case 'spire_week': {
       const outcome = p.outcome === 'up' || p.outcome === 'down' ? p.outcome : 'stay';
       // зачем: в payload итога недели поле floor хранит лигу (tier 0…11) — так его читает и прежний кадр
-      return { id: 'peakweek', tier: int(p.floor), outcome, place: int(p.place), total: int(p.total), weekCoins: int(p.weekCoins), promotionCoins: int(p.promotionCoins), podium: podiumOf(p) };
+      return { id: 'peakweek', tier: int(p.floor), outcome, place: int(p.place), total: int(p.total), weekCoins: int(p.weekCoins), promotionCoins: int(p.promotionCoins), podium: podiumOf(p), placeCoins: int(p.placeCoins) };
     }
     case 'coin_rank_up': {
       // Денежная история принимает только настоящий сырой ранг: общий int()

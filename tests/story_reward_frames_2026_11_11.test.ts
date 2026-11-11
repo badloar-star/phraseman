@@ -70,6 +70,16 @@ describe('истории наград U36 — статуэтки и стиль',
     }
   });
 
+  it('награда за место доходит от итога недели до кадра, а сумма видна только когда она больше нуля', () => {
+    // зачем (владелец 11.11, шаг 3): сумму нельзя показывать, пока монеты не дошли, — число в итоге недели уже 0 до выплаты,
+    // и кадр обязан прятать строку суммы при нуле, а не рисовать «+0»
+    expect(read('modules/story_events/story_event_sources.ts')).toContain('placeCoins: result.placeCoins ?? 0');
+    expect(read('components/stories/templates/story_template_from_event.ts')).toContain('placeCoins: int(p.placeCoins)');
+    const frame = read('components/stories/templates/frames_reward.tsx');
+    expect(frame).toContain('{total > 0 ? <RewardSum total={total} rank={myRank} /> : null}');
+    expect(frame).toContain("const promotionCoins = tpl.outcome === 'up' ? Math.max(0, tpl.promotionCoins) : 0;");
+  });
+
   it('движение сцены идёт от часов кадра, а не от своих таймеров', () => {
     const stage = read('components/stories/templates/story_reward_stage.tsx');
     expect(stage).toMatch(/useStoryFrameClock/);

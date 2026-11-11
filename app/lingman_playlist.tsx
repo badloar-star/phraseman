@@ -42,9 +42,9 @@ export default function LingmanPlaylistScreen() {
     void favorites.toggle(videoId).then((outcome) => {
       if (outcome === 'ok') return;
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось изменить отметку, попробуй ещё раз', uk: 'Не вдалося змінити позначку, спробуй ще раз', en: 'Couldn’t change the like, please try again',
-        es: 'No se pudo cambiar Me gusta, inténtalo de nuevo', 'pt-BR': 'Não foi possível alterar o gostei, tente de novo', vi: 'Không thể thay đổi lượt thích, hãy thử lại',
-        id: 'Gagal mengubah tanda suka, coba lagi', tr: 'Beğeni değiştirilemedi, tekrar dene', pl: 'Nie udało się zmienić polubienia, spróbuj ponownie',
+        ru: 'Не удалось изменить отметку, попробуй ещё раз', uk: 'Не вдалося змінити позначку, спробуй ще раз', en: 'Couldn’t update favorites, please try again',
+        es: 'No se pudieron actualizar los favoritos, inténtalo de nuevo', 'pt-BR': 'Não foi possível atualizar os favoritos, tente de novo', vi: 'Không thể cập nhật mục yêu thích, hãy thử lại',
+        id: 'Gagal memperbarui favorit, coba lagi', tr: 'Favoriler güncellenemedi, tekrar dene', pl: 'Nie udało się zaktualizować ulubionych, spróbuj ponownie',
       }));
     });
   };

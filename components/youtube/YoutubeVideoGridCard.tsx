@@ -19,7 +19,7 @@ import { useScaledTextStyles } from '../../hooks/useLineScale';
 import { feedThumbUrl } from './YoutubeVideoCard';
 import { noteSkeletonGeom } from '../../app/skeleton_geom_log';
 
-/** Отметка «Нравится» остаётся на карточке; общий стор синхронизирует её между экранами. */
+/** Звезда «Избранное» остаётся на карточке (владелец 11.11); общий стор синхронизирует её между экранами. */
 function YoutubeVideoGridCardBase({ video, onWatch, saved, onToggleSave, highlighted = false }: {
   video: YoutubeVideoSnapshot;
   onWatch: () => void;
@@ -41,8 +41,8 @@ function YoutubeVideoGridCardBase({ video, onWatch, saved, onToggleSave, highlig
       ? triLang(lang, { ru: 'Ожидается премьера', uk: 'Очікується прем’єра', en: 'Premiere upcoming', es: 'Próximo estreno', 'pt-BR': 'Estreia em breve', vi: 'Sắp công chiếu', id: 'Segera tayang perdana', tr: 'Prömiyer yakında', pl: 'Wkrótce premiera' })
       : '';
   const saveLabel = saved
-    ? triLang(lang, { ru: 'Убрать отметку «Нравится»', uk: 'Прибрати позначку «Подобається»', en: 'Remove like', es: 'Quitar Me gusta', 'pt-BR': 'Remover gostei', vi: 'Bỏ thích', id: 'Batal suka', tr: 'Beğeniyi kaldır', pl: 'Usuń polubienie' })
-    : triLang(lang, { ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' });
+    ? triLang(lang, { ru: 'Убрать из избранного', uk: 'Прибрати з обраного', en: 'Remove from favorites', es: 'Quitar de favoritos', 'pt-BR': 'Remover dos favoritos', vi: 'Bỏ khỏi yêu thích', id: 'Hapus dari favorit', tr: 'Favorilerden çıkar', pl: 'Usuń z ulubionych' })
+    : triLang(lang, { ru: 'В избранное', uk: 'В обране', en: 'Add to favorites', es: 'Añadir a favoritos', 'pt-BR': 'Adicionar aos favoritos', vi: 'Thêm vào yêu thích', id: 'Tambah ke favorit', tr: 'Favorilere ekle', pl: 'Dodaj do ulubionych' });
   const duration = formatVideoDuration(video.durationSec);
   const metaParts = stateLabel
     ? [stateLabel]

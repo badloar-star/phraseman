@@ -48,6 +48,8 @@ import { V2 } from '../constants/v2Style';
 import { DebugLogger } from './debug-logger';
 import { useVideoFavorites } from '../hooks/use_video_favorites';
 import { useVideoFullRewarded } from '../hooks/use_video_full_rewarded';
+import { useVideoContinue } from '../hooks/use_video_continue';
+import { VideoContinueCard } from '../components/video/VideoContinueCard'; // зачем (владелец 11.11): карточка «Продолжить» в шапке ленты
 import { VideoFeedChips, VideoFeedFilterEmpty } from '../components/video/VideoFeedFilter';
 import { filterVideoFeed, type VideoFeedFilter as VideoFeedFilterKey, type VideoFeedView } from './video_feed_filter'; // зачем (владелец 11.11): ряд «Все · Не смотрел · Избранное · Плейлисты» вместо вкладок
 import { actionToastTri, emitAppEvent } from './events';
@@ -513,6 +515,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   // зачем (владелец 11.11, макет video-hub-2026-11-11, экран 1): фильтр ленты считается на телефоне — избранное и список досмотренных роликов уже лежат локально, сети нет.
   const [feedFilter, setFeedFilter] = useState<VideoFeedFilterKey>('all');
   const watchedVideoIds = useVideoFullRewarded();
+  const continueRecord = useVideoContinue();
   // зачем (координатор 15.10, консистентность): вкладка «Видео» не сообщала прокрутку таб-оболочке — капсула таббара не сжималась, а на остальных четырёх вкладках сжимается (макет tabbar-variants, 24.09).
   // Теперь прокрутка списков во вкладке идёт в TopFadeScrollContext, как у Главной/Обучения/Сообщества/Настроек (верхняя маска и сжатие капсулы).
   const topFadeScroll = useTopFadeScroll();
@@ -524,13 +527,13 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     void favorites.toggle(videoId).then((outcome) => {
       if (outcome === 'ok') return;
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось изменить отметку, попробуй ещё раз', uk: 'Не вдалося змінити позначку, спробуй ще раз', en: 'Couldn’t change the like, please try again',
-        es: 'No se pudo cambiar Me gusta, inténtalo de nuevo', 'pt-BR': 'Não foi possível alterar o gostei, tente de novo', vi: 'Không thể thay đổi lượt thích, hãy thử lại',
-        id: 'Gagal mengubah tanda suka, coba lagi', tr: 'Beğeni değiştirilemedi, tekrar dene', pl: 'Nie udało się zmienić polubienia, spróbuj ponownie',
+        ru: 'Не удалось изменить отметку, попробуй ещё раз', uk: 'Не вдалося змінити позначку, спробуй ще раз', en: 'Couldn’t update favorites, please try again',
+        es: 'No se pudieron actualizar los favoritos, inténtalo de nuevo', 'pt-BR': 'Não foi possível atualizar os favoritos, tente de novo', vi: 'Không thể cập nhật mục yêu thích, hãy thử lại',
+        id: 'Gagal memperbarui favorit, coba lagi', tr: 'Favoriler güncellenemedi, tekrar dene', pl: 'Nie udało się zaktualizować ulubionych, spróbuj ponownie',
       }));
     });
   }, [favorites]);
-  const openVideo = (video: YoutubeVideoSnapshot) => {
+  const openVideo = (video: YoutubeVideoSnapshot, startSec?: number) => {
     // зачем (правило владельца): хаптик только на управляющих кнопках — тап по плитке/строке без вибрации.
     if (!catalog && snapshot) {
       const videoIndex = allVideos.findIndex((item) => item.id === video.id);
@@ -552,9 +555,9 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     const activeEvent = catalog?.activeEvent;
     const isHeroVideo = !!activeEvent && activeEvent.id === video.id && (activeEvent.state === 'upcoming' || activeEvent.state === 'live');
     if (!isHeroVideo) {
-      console.warn('[VIDEO-SCREEN] navigate', JSON.stringify({ source: 'home_grid', videoId: video.id })); // guard-ok: вход на экран ролика логируется
+      console.warn('[VIDEO-SCREEN] navigate', JSON.stringify({ source: 'home_grid', videoId: video.id, startSec: startSec ?? null })); // guard-ok: вход на экран ролика логируется (startSec — вход из «Продолжить»)
       videoOpenTraceStart('home_grid_tap');
-      router.push({ pathname: '/lingman_video_watch', params: { videoId: video.id, channelId: catalog?.channel.id ?? channel.channelId, title: video.title, source: 'home_grid' } } as never);
+      router.push({ pathname: '/lingman_video_watch', params: { videoId: video.id, channelId: catalog?.channel.id ?? channel.channelId, title: video.title, source: 'home_grid', ...(typeof startSec === 'number' ? { startSec: String(startSec) } : {}) } } as never);
       videoOpenMark('router.push called');
       return;
     }
@@ -669,6 +672,12 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   }, [catalog, hero, inTab, studyTarget]);
   // Данные виртуального списка «Главной» вкладки: сохранённые или все ролики без премьеры (она в шапке).
   const homeListUnfiltered = useMemo(() => allVideos.filter((video) => video.id !== hero?.id), [allVideos, hero?.id]);
+  // зачем (владелец 11.11): «Продолжить» — не долг на показ. Карточка есть, только если запись свежая (это решает peekVideoContinue), ролик
+  // ещё не досмотрен до награды и он есть в текущем каталоге (у другого языка раздела его нет — карточки тоже нет).
+  const continueVideo = useMemo(() => (continueRecord && !watchedVideoIds.has(continueRecord.videoId) ? homeListUnfiltered.find((video) => video.id === continueRecord.videoId) ?? null : null), [continueRecord, homeListUnfiltered, watchedVideoIds]);
+  useEffect(() => {
+    console.log('[VIDEO-CONTINUE] feed', JSON.stringify({ record: continueRecord ? { videoId: continueRecord.videoId, positionSec: continueRecord.positionSec, durationSec: continueRecord.durationSec ?? null } : null, watched: continueRecord ? watchedVideoIds.has(continueRecord.videoId) : null, inCatalog: !!continueVideo, shown: !!continueVideo })); // guard-ok: почему карточка «Продолжить» показана или нет
+  }, [continueRecord, continueVideo, watchedVideoIds]);
   // eslint-disable-next-line react-hooks/exhaustive-deps -- favorites.savedIds меняется вместе с isSaved: по нему список пересобирается сразу после касания звезды
   const homeListAll = useMemo(() => filterVideoFeed(homeListUnfiltered, feedFilter, { isSaved: favorites.isSaved, watchedIds: watchedVideoIds }), [homeListUnfiltered, feedFilter, favorites.savedIds, watchedVideoIds]);
   // зачем: одно касание ряда решает сразу и список (ролики или плейлисты), и фильтр роликов.
@@ -852,6 +861,8 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             refreshControl={<HybridRefreshControl refreshing={refreshing || allChannel.refreshing} onRefresh={() => { void loadCatalog(undefined, true); allChannel.refresh(); }} />}
             contentContainerStyle={inTab ? { ...styles.gridList, paddingBottom: tabContentBottomPad } : styles.gridList}
             ListHeaderComponent={<>
+            {/* зачем (владелец 11.11): нет премьеры — на её месте «Продолжить» (та же геометрия 16:9); в «Избранном» карточки нет, там только отмеченные ролики. */}
+            {!hero && continueVideo && continueRecord && feedFilter !== 'favorites' ? <VideoContinueCard video={continueVideo} record={continueRecord} onPress={() => openVideoRef.current(continueVideo, continueRecord.positionSec)} /> : null}
             {hero ? hero.id === activeVideoId ? (
               <View style={styles.heroPlayer}>
                 <YoutubeInlinePlayer

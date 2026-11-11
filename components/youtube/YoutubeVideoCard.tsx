@@ -37,7 +37,7 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
   inlinePlayer?: React.ReactNode;
   belowPlayer?: React.ReactNode;
   compact?: boolean;
-  /** Личная отметка «Нравится»: звезда справа от названия. Нет колбэка — нет кнопки. */
+  /** Звезда «Избранное» справа от названия (владелец 11.11: оценок роликов нет, звезда — избранное). Нет колбэка — нет кнопки. */
   saved?: boolean;
   onToggleSave?: () => void;
 }) {
@@ -55,8 +55,8 @@ export default function YoutubeVideoCard({ video, onWatch, highlighted = false, 
       : '';
   const views = formatViewCount(video.viewCount, lang);
   const saveLabel = saved
-    ? triLang(lang, { ru: 'Убрать отметку «Нравится»', uk: 'Прибрати позначку «Подобається»', en: 'Remove like', es: 'Quitar Me gusta', 'pt-BR': 'Remover gostei', vi: 'Bỏ thích', id: 'Batal suka', tr: 'Beğeniyi kaldır', pl: 'Usuń polubienie' })
-    : triLang(lang, { ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' });
+    ? triLang(lang, { ru: 'Убрать из избранного', uk: 'Прибрати з обраного', en: 'Remove from favorites', es: 'Quitar de favoritos', 'pt-BR': 'Remover dos favoritos', vi: 'Bỏ khỏi yêu thích', id: 'Hapus dari favorit', tr: 'Favorilerden çıkar', pl: 'Usuń z ulubionych' })
+    : triLang(lang, { ru: 'В избранное', uk: 'В обране', en: 'Add to favorites', es: 'Añadir a favoritos', 'pt-BR': 'Adicionar aos favoritos', vi: 'Thêm vào yêu thích', id: 'Tambah ke favorit', tr: 'Favorilere ekle', pl: 'Dodaj do ulubionych' });
   // зачем (Сверка video-009, макет «2 дня назад»): дата относительная, по языку интерфейса.
   const duration = formatVideoDuration(video.durationSec);
   const metaParts = [formatRelativeVideoDate(video.publishedAt, lang), views].filter(Boolean);

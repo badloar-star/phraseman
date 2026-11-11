@@ -54,6 +54,7 @@ import { videoRewardRowVisible } from './video_reward_progress';
 import { useVideoFullRewarded } from '../hooks/use_video_full_rewarded';
 import { V2Button } from '../components/v2/V2Kit';
 import { peekCachedVideoPhrases } from './video_phrases_client';
+import { rememberVideoContinue } from './video_continue'; // зачем (владелец 11.11): место остановки для карточки «Продолжить» в ленте
 import { canBuildVideoQuiz } from './video_quiz_core'; // зачем (владелец 11.11): «Проверь себя» после ролика — три вопроса из фраз этого ролика
 
 const LOG = '[VIDEO-SCREEN]';
@@ -171,11 +172,11 @@ export default function LingmanVideoWatchScreen() {
 
   const copy = {
     back: triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' }),
-    save: triLang(lang, { ru: 'Нравится', uk: 'Подобається', en: 'Like', es: 'Me gusta', 'pt-BR': 'Gostei', vi: 'Thích', id: 'Suka', tr: 'Beğen', pl: 'Lubię to' }),
+    save: triLang(lang, { ru: 'В избранное', uk: 'В обране', en: 'Add to favorites', es: 'Añadir a favoritos', 'pt-BR': 'Adicionar aos favoritos', vi: 'Thêm vào yêu thích', id: 'Tambah ke favorit', tr: 'Favorilere ekle', pl: 'Dodaj do ulubionych' }),
     quiz: triLang(lang, { ru: 'Проверить себя', uk: 'Перевірити себе', en: 'Test yourself', es: 'Ponte a prueba', 'pt-BR': 'Teste-se', vi: 'Tự kiểm tra', id: 'Uji dirimu', tr: 'Kendini sına', pl: 'Sprawdź się' }),
     rewardDone: triLang(lang, { ru: 'Засчитано', uk: 'Зараховано', en: 'Counted', es: 'Contado', 'pt-BR': 'Contado', vi: 'Đã tính', id: 'Tercatat', tr: 'Sayıldı', pl: 'Zaliczone' }),
     rewardLabel: triLang(lang, { ru: 'Награда за просмотр', uk: 'Нагорода за перегляд', en: 'Watch reward', es: 'Recompensa por ver', 'pt-BR': 'Recompensa por assistir', vi: 'Phần thưởng xem video', id: 'Hadiah menonton', tr: 'İzleme ödülü', pl: 'Nagroda za oglądanie' }),
-    unsave: triLang(lang, { ru: 'Убрать отметку «Нравится»', uk: 'Прибрати позначку «Подобається»', en: 'Remove like', es: 'Quitar Me gusta', 'pt-BR': 'Remover gostei', vi: 'Bỏ thích', id: 'Batal suka', tr: 'Beğeniyi kaldır', pl: 'Usuń polubienie' }),
+    unsave: triLang(lang, { ru: 'Убрать из избранного', uk: 'Прибрати з обраного', en: 'Remove from favorites', es: 'Quitar de favoritos', 'pt-BR': 'Remover dos favoritos', vi: 'Bỏ khỏi yêu thích', id: 'Hapus dari favorit', tr: 'Favorilerden çıkar', pl: 'Usuń z ulubionych' }),
   };
   const meta = [channelName, formatRelativeVideoDate(video?.publishedAt, lang), formatViewCount(video?.viewCount, lang)].filter(Boolean).join(' · ');
   // зачем (макет video-redesign #c1, экран 3): закладка ролика сверху справа — то же избранное, что на карточке в сетке;
@@ -186,9 +187,9 @@ export default function LingmanVideoWatchScreen() {
       if (outcome === 'ok') return;
       console.warn(LOG, 'save:rollback', JSON.stringify({ videoId, outcome })); // guard-ok: откат закладки логируется
       emitAppEvent('action_toast', actionToastTri('error', {
-        ru: 'Не удалось изменить отметку, попробуй ещё раз', uk: 'Не вдалося змінити позначку, спробуй ще раз', en: 'Couldn’t change the like, please try again',
-        es: 'No se pudo cambiar Me gusta, inténtalo de nuevo', 'pt-BR': 'Não foi possível alterar o gostei, tente de novo', vi: 'Không thể thay đổi lượt thích, hãy thử lại',
-        id: 'Gagal mengubah tanda suka, coba lagi', tr: 'Beğeni değiştirilemedi, tekrar dene', pl: 'Nie udało się zmienić polubienia, spróbuj ponownie',
+        ru: 'Не удалось изменить отметку, попробуй ещё раз', uk: 'Не вдалося змінити позначку, спробуй ще раз', en: 'Couldn’t update favorites, please try again',
+        es: 'No se pudieron actualizar los favoritos, inténtalo de nuevo', 'pt-BR': 'Não foi possível atualizar os favoritos, tente de novo', vi: 'Không thể cập nhật mục yêu thích, hãy thử lại',
+        id: 'Gagal memperbarui favorit, coba lagi', tr: 'Favoriler güncellenemedi, tekrar dene', pl: 'Nie udało się zaktualizować ulubionych, spróbuj ponownie',
       }));
     });
   }, [favorites, videoId]);
@@ -233,6 +234,9 @@ export default function LingmanVideoWatchScreen() {
   }, [channelName, packLanguage, router, title, videoId]);
 
   // зачем ([NAV-PAINT-TRACE], 15.10): когда экран ролика теряет фокус и когда размонтируется — отдельные отметки цепочки «Тренировать → первый кадр хаба»
+  // зачем: обработчик ухода с экрана создаётся один раз (пустые зависимости) — свежие id и длительность ролика он читает из этой ссылки.
+  const continueMetaRef = useRef<{ videoId: string; durationSec?: number }>({ videoId, durationSec: video?.durationSec });
+  continueMetaRef.current = { videoId, durationSec: video?.durationSec };
   const releaseHandleRef = useRef<{ cancel: () => void } | null>(null);
   useFocusEffect(useCallback(() => {
     // зачем (Ревизор 2.77 🟡): «Назад» до конца interactions — запоздавшая задача выгрузки не должна выключить уже включённый плеер (пустой плеер)
@@ -246,6 +250,8 @@ export default function LingmanVideoWatchScreen() {
       trainNavMark('video screen blur');
       // зачем (Макеты c1_video2): тяжёлую выгрузку WebView не ставим на путь первого кадра следующего экрана — после перехода (idle); позицию запоминаем, «Назад» вернёт на ту же секунду
       const position = Math.floor(lastPositionRef.current);
+      // зачем (владелец 11.11): уходя с ролика, запоминаем секунду на телефоне — лента покажет «Продолжить». Досмотренный или едва начатый ролик модуль сам не запомнит; сбой записи журналируется внутри.
+      void rememberVideoContinue({ videoId: continueMetaRef.current.videoId, positionSec: position, durationSec: continueMetaRef.current.durationSec });
       releaseHandleRef.current = InteractionManager.runAfterInteractions(() => {
         releaseHandleRef.current = null;
         setResumeSec(position > 0 ? position : null);

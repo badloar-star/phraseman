@@ -35,6 +35,7 @@ initLiteMode();
 import { TabBarVisibilityProvider, useTabBarVisibility } from '../../components/TabBarVisibilityContext';
 import V2TabBar, { V2_TAB_BAR_HEIGHT, type V2TabBarItem } from '../../components/v2/V2TabBar';
 import { useCommunityTabDot } from '../../hooks/use_community_tab_dot';
+import { primeCommunityLastSection } from '../community_last_section';
 import { SPIRE_SCENE_V2_ENABLED } from '../../components/spire/scene/spire_scene_flag';
 import { FLOATING_PILL_BOTTOM_GAP, TAB_DOCK_MIN_BOTTOM_PAD } from '../../components/v2/tab_bar_geometry';
 import { emitAppEvent, onAppEvent } from '../events';
@@ -131,6 +132,10 @@ function loadVideoScreen(): TabScreenComponent {
   deferredVideoScreen ??= (require('./video') as DeferredTabModule).default;
   return deferredVideoScreen;
 }
+
+// зачем (владелец 11.11: «Сообщество» открывается на разделе прошлого раза): одно чтение строки с диска при старте оболочки —
+// к первому открытию вкладки значение уже в памяти, раздел встаёт с первого кадра без «мигания» через «Друзей».
+void primeCommunityLastSection();
 
 function loadCommunityScreen(): TabScreenComponent {
   deferredCommunityScreen ??= (require('./community') as DeferredTabModule).default;

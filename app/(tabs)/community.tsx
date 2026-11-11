@@ -22,6 +22,7 @@ import { useTabTopBleedInset } from '../../components/tab_top_bleed';
 import SpireEnergyPill from '../../components/spire/SpireEnergyPill';
 import ScreenBackButton, { SCREEN_BACK_RESERVED } from '../../components/v2/ScreenBackButton';
 import { tabEnteredByMenu } from '../tab_entry_source';
+import { peekCommunityLastSection, primeCommunityLastSection, rememberCommunityLastSection, resolveCommunityEntrySection } from '../community_last_section';
 import { SPIRE_SCENE_V2_ENABLED } from '../../components/spire/scene/spire_scene_flag';
 import { useIsFocused } from '@react-navigation/native';
 import { useSceneStatusBar } from '../../hooks/use_scene_status_bar';
@@ -72,7 +73,15 @@ export default function CommunityTabRoute() {
   // зачем (владелец 30.10; макет Entry08): «Пик» новичку до ранга 2 — сегмент скрыт, а прямая ссылка ?section=spire показывает «Откроется с ранга 2» + «К занятиям»
   const peakAccess = useRankAccess('peak');
   const peakLocked = isSurfaceLocked(peakAccess);
-  const [section, setSection] = useState<Section>(() => sectionFromParam(sectionParam) ?? sectionFromPath(pathname) ?? 'friends');
+  // зачем (владелец 11.11: «последний раз был открыт Пик — при входе должен быть Пик, или Наборы, если были Наборы»): без ссылки
+  // вкладка открывается на разделе прошлого раза (память прогрета оболочкой вкладок при старте — раздел встаёт с первого кадра).
+  // sectionDecidedRef: раздел уже выбран ссылкой или тапом — запомненное значение его больше не трогает.
+  const sectionDecidedRef = useRef(false);
+  const [section, setSection] = useState<Section>(() => {
+    const link = sectionFromParam(sectionParam) ?? sectionFromPath(pathname);
+    if (link) sectionDecidedRef.current = true;
+    return resolveCommunityEntrySection({ link, saved: peekCommunityLastSection(), spireOpen: isSpireTabEnabled() });
+  });
   const [visited, setVisited] = useState<ReadonlySet<Section>>(() => new Set([section]));
   // зачем: кнопки справа (лупа, язык) и раскрытый поиск отдаёт сам раздел «Наборы» — их состояние живёт там.
   const [packsSlot, setPacksSlot] = useState<CommunityHeaderSlot | null>(null);
@@ -98,8 +107,23 @@ export default function CommunityTabRoute() {
     const fromParam = sectionFromParam(sectionParam);
     if (sectionParam !== undefined && !fromParam) console.warn('[COMMUNITY] section param ignored', { sectionParam });
     const next = fromParam ?? sectionFromPath(pathname);
-    if (next) setSection(next);
+    if (next) { sectionDecidedRef.current = true; rememberCommunityLastSection(next); setSection(next); }
   }, [pathname, sectionParam]);
+
+  // зачем: запомненный раздел применяется ещё раз, когда он стал доступен позже первого кадра — память дочиталась после
+  // открытия вкладки или замок Пика открылся уже на экране (флаг Пика читается из кэша асинхронно, до этого вкладка
+  // стоит на «Друзьях»). Срабатывает один раз и только пока человек сам ничего не выбрал.
+  useEffect(() => {
+    if (sectionDecidedRef.current) return undefined;
+    let alive = true;
+    void primeCommunityLastSection().then((saved) => {
+      if (!alive || sectionDecidedRef.current || !saved) return;
+      if (saved === 'spire' && (!spireVisible || peakLocked)) return; // Пик пока закрыт — ждём, эффект перезапустится
+      sectionDecidedRef.current = true;
+      setSection(saved);
+    });
+    return () => { alive = false; };
+  }, [spireVisible, peakLocked]);
 
   useEffect(() => {
     setVisited((prev) => (prev.has(section) ? prev : new Set([...prev, section])));
@@ -205,7 +229,7 @@ export default function CommunityTabRoute() {
                 accessibilityState={{ selected: on }}
                 // зачем: как у прежнего переключателя — отклик на нажатие только при смене вкладки.
                 onPressIn={() => { if (!on) hapticTap(); }}
-                onPress={() => setSection(seg.key)}
+                onPress={() => { sectionDecidedRef.current = true; rememberCommunityLastSection(seg.key); setSection(seg.key); }}
                 onLayout={(e) => traceSpireTabLayout(seg.key, e.nativeEvent.layout)}
                 // зачем (координатор 22.10: «тап при x≈93 dp не попадает»): зазор между вкладками 22 перекрыт целиком (11 + 11), высота зоны ≥ 44
                 hitSlop={{ top: 8, bottom: 8, left: 11, right: 11 }}

@@ -41,7 +41,11 @@ describe('PM-214: Карточки и Сообщество — первый ка
 
   it('Сообщество: раздел из ссылки/пути выбирается синхронно и монтируется в первом кадре; без спиннеров', () => {
     const src = read('app/(tabs)/community.tsx');
-    expect(src).toContain('useState<Section>(() => sectionFromParam(sectionParam) ?? sectionFromPath(pathname) ?? \'friends\')');
+    // зачем (владелец 11.11: «Сообщество» открывается на разделе прошлого раза): начальный раздел по-прежнему выбирается синхронно —
+    // ссылка/путь, а без них запомненный раздел из памяти процесса (не ожидание диска); умолчание «Друзья» живёт в resolveCommunityEntrySection.
+    expect(src).toContain('const link = sectionFromParam(sectionParam) ?? sectionFromPath(pathname);');
+    expect(src).toContain('return resolveCommunityEntrySection({ link, saved: peekCommunityLastSection(), spireOpen: isSpireTabEnabled() });');
+    expect(src).not.toMatch(/useState<Section>\([^)]*await/);
     expect(src).toContain('useState<ReadonlySet<Section>>(() => new Set([section]))');
     expect(src).not.toContain('ActivityIndicator');
   });

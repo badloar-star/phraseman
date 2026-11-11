@@ -3,13 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Главная: три варианта</title>
+<title>Аврора: все разделы</title>
 <style>
-/* ───────── PhraseMan · Главная, три варианта оформления (макет 11.11, круг 2) ─────────
-   зачем (слово владельца 11.11, круг 2: «сделано как-то не очень, у плиток какая-то белая тень, хочу градиенты красивее, больше креатива, покажи пару вариантов»):
-   светлая кромка и белый блик у карточек убраны совсем; вместо одного осторожного вида — три разных характера: «Аврора», «Титан», «Самоцветы».
-   Цвета по-прежнему НЕ придуманы для макета: pm_theme.js — настоящие модули темы приложения (собраны esbuild из pm_entry.ts), а всё, что добавлено
-   сверху, считается из оттенка и насыщенности той же темы в OKLCH. Раскладка и размеры блоков — по коду компонентов Главной. */
+/* ───────── PhraseMan · «Аврора» на всех разделах (макет 11.11, круг 3) ─────────
+   зачем (слово владельца 11.11, круг 3: «мне нравится Аврора; плитки полупрозрачные с ненастоящим блюром; более красивый блок кружочков с днями;
+   чтобы это отобразилось на всех разделах; когда насыщенность опущена, оно не должно становиться жёлтым и зелёным»):
+   — «Аврора» показана на пяти вкладках: Главная, Уроки, Видео, Сообщество, Настройки; шестой экран — Главная как сейчас, для сравнения;
+   — плитки — матовое стекло БЕЗ настоящего размытия: внутри плитки нарисована уже «размытая» копия того, что под ней (два мягких градиента), поэтому в приложении это дёшево;
+   — блок дней — стеклянная капсула: пройденные дни связаны светящейся цепочкой, сегодня — кольцо с мягким пульсом;
+   — цветность «Авроры» считается ПРЯМО из ползунка насыщенности (0 % = чистый серый) и оттенка ползунка, а не из акцента темы: у серого акцента оттенок не определён
+     (в приложении сцена при 0 % берёт случайный оттенок 90° и нижний порог цветности 0,07 — отсюда жёлто-зелёный; это видно на экране «Сейчас»).
+   Базовые цвета (фон, карточки, текст, акцент, тени) — настоящий код темы приложения: pm_theme.js собран esbuild из pm_entry.ts. */
 @font-face { font-family: Inter; src: url(fonts/Inter-Regular.ttf); font-weight: 400 500; }
 @font-face { font-family: Inter; src: url(fonts/Inter-SemiBold.ttf); font-weight: 600; }
 @font-face { font-family: Inter; src: url(fonts/Inter-Bold.ttf); font-weight: 700; }
@@ -70,12 +74,12 @@ h1 { font-size: 24px; line-height: 30px; margin: 0 0 6px; font-weight: 700; lett
 .scene .stars { width: 100%; height: 100%; }
 .hdr { position: relative; z-index: 2; padding: 40px 20px 0; display: flex; align-items: center; gap: 8px; }
 .hdr .stats { flex: 1; display: flex; gap: 8px; min-width: 0; }
-.pill { min-height: 36px; border-radius: 18px; padding: 0 12px; display: flex; align-items: center; gap: 4px; background: rgba(255, 255, 255, .16); color: #fff; font-size: 13px; line-height: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pill { min-height: 36px; border-radius: 18px; padding: 0 12px; display: flex; align-items: center; gap: 4px; background: rgba(255, 255, 255, .16); color: #fff; font-size: 13px; line-height: 17px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .pill .io { font-size: 20px; width: 20px; text-align: center; } .pill img { width: 20px; height: 20px; }
 .pill .dv { width: 1px; height: 18px; background: #fff; opacity: .22; margin: 0 4px; } .pill .io.sm { font-size: 16px; width: 16px; }
 .hdr .act { display: flex; align-items: center; gap: 7px; }
-.bell { width: 44px; height: 44px; border-radius: 22px; background: rgba(255, 255, 255, .16); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; }
-.ava { position: relative; width: 56px; height: 56px; border-radius: 28px; padding: 3px; background: conic-gradient(from 200deg, var(--g1), var(--g3), var(--g2), var(--g1)); }
+.bell { width: 44px; height: 44px; border-radius: 22px; background: rgba(255, 255, 255, .16); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; flex: none; }
+.ava { position: relative; width: 56px; height: 56px; border-radius: 28px; padding: 3px; background: conic-gradient(from 200deg, var(--g1), var(--g3), var(--g2), var(--g1)); flex: none; }
 .ava i { display: block; width: 100%; height: 100%; border-radius: 50%; background: var(--avaGap, var(--scNow)); padding: 2px; }
 .ava i b { display: flex; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(160deg, var(--g1), var(--g3)); align-items: center; justify-content: center; color: var(--ctaInk); font-size: 19px; font-weight: 800; }
 .body { position: relative; z-index: 2; padding: 24px 20px 44px; }
@@ -96,22 +100,23 @@ h1 { font-size: 24px; line-height: 30px; margin: 0 0 6px; font-weight: 700; lett
 .tile .art { position: relative; width: 100%; height: 58px; } .tile .art canvas { position: absolute; left: 50%; top: 0; height: 58px; width: 58px; transform: translateX(-50%); }
 .tile b { position: relative; font-size: 13px; line-height: 17px; font-weight: 700; text-align: center; }
 
-/* ── «Сегодня» (HomeV2TodayCard, вид со сценой) ── */
-.today { position: relative; z-index: 3; border-radius: 28px; padding: 14px 16px 6px; background: var(--card); box-shadow: var(--shP); }
-.today .th { position: relative; display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
-.today .th b { flex: 1; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; } .today .th span { font-size: 13px; line-height: 17px; color: var(--sec); }
+/* ── «Сегодня» (HomeV2TodayCard, вид со сценой) и общий вид строк списка ── */
+.today, .card { position: relative; z-index: 3; border-radius: 28px; padding: 14px 16px 6px; background: var(--card); box-shadow: var(--shP); }
+.th { position: relative; display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+.th b { flex: 1; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; } .th span { font-size: 13px; line-height: 17px; color: var(--sec); }
 .row { position: relative; min-height: 52px; padding: 8px 0; display: flex; align-items: center; gap: 12px; }
 .row + .row { border-top: 1px solid var(--hair); }
-.row .ri { width: 36px; height: 36px; border-radius: 12px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--tx); flex: none; }
+.row .ri { width: 36px; height: 36px; border-radius: 12px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--tx); flex: none; font-weight: 700; }
 .row .rt { flex: 1; min-width: 0; } .row .rt b { display: block; font-size: 16px; line-height: 20px; font-weight: 700; } .row .rt i { display: block; font-style: normal; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 1px; }
 .row .rc { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.row .rc .io { font-size: 16px; }
 .row .tick { font-size: 18px; color: var(--acc); }
 
 /* ── Видео (HomeV2VideoRail): 246 × 138, шаг 9 ── */
 .vid > b { display: block; font-size: 16px; line-height: 20px; font-weight: 700; min-height: 26px; margin-bottom: 2px; padding-top: 3px; }
 .rail { display: flex; gap: 9px; overflow-x: auto; margin-right: -12px; padding-right: 20px; padding-bottom: 2px; scrollbar-width: none; } .rail::-webkit-scrollbar { display: none; }
 .vc { position: relative; flex: none; width: 246px; height: 138px; overflow: hidden; background: var(--plate50); display: flex; align-items: flex-end; padding: 8px; color: #fff; }
-.vc .poster { position: absolute; inset: 0; }
+.poster { position: absolute; inset: 0; }
 .vc .io { position: relative; font-size: 26px; } .vc span { position: absolute; left: 12px; right: 12px; top: 12px; font-size: 16px; line-height: 20px; font-weight: 700; text-shadow: 0 1px 10px rgba(0, 0, 0, .4); }
 
 /* ── «Фраза дня» (DailyPhraseCard homeV2 со сценой) ── */
@@ -127,82 +132,80 @@ h1 { font-size: 24px; line-height: 30px; margin: 0 0 6px; font-weight: 700; lett
 .now .vc .poster { background: linear-gradient(150deg, var(--ctl), var(--card)); }
 .now .vc { color: var(--tx); } .now .vc span { text-shadow: none; }
 
-/* ═════════════════ общее у трёх вариантов ═════════════════ */
-/* зачем (владелец: «у плиток какая-то тень белая»): ни одной светлой кромки и ни одного белого блика на карточках — только тёмная или цветная тень снизу */
-.v .vc { border-radius: 18px; } .v .pod { border-radius: 22px; }
-.v .tile, .v .today, .v .pod, .v .tabbar, .v .vc { box-shadow: var(--shV); }
-
-/* ═════════ A · «АВРОРА»: живое цветное сияние, глубокое стекло, цветная главная кнопка ═════════ */
+/* ═════════════════ «АВРОРА» — общий материал всех разделов ═════════════════ */
 .vA .scr { background: radial-gradient(70% 26% at 0% 44%, var(--aBg1), transparent 72%), radial-gradient(80% 30% at 100% 74%, var(--aBg2), transparent 72%), linear-gradient(180deg, var(--bgTop) 0%, var(--bg) 60%, var(--bgBottom) 100%); }
 .vA .scene { background: var(--aBot); box-shadow: 0 26px 46px -24px var(--aShadow); }
-.vA .scene .sky { background: radial-gradient(74% 58% at 10% 6%, var(--a1), transparent 70%), radial-gradient(62% 52% at 98% -4%, var(--a2), transparent 70%), radial-gradient(80% 56% at 74% 104%, var(--a3), transparent 72%), radial-gradient(62% 50% at -4% 100%, var(--a4), transparent 70%), linear-gradient(180deg, var(--aTop), var(--aBot)); }
+.vA .scene .sky, .vA .aur { background: radial-gradient(74% 58% at 10% 6%, var(--a1), transparent 70%), radial-gradient(62% 52% at 98% -4%, var(--a2), transparent 70%), radial-gradient(80% 56% at 74% 104%, var(--a3), transparent 72%), radial-gradient(62% 50% at -4% 100%, var(--a4), transparent 70%), linear-gradient(180deg, var(--aTop), var(--aBot)); }
 .vA .scene .fx::before, .vA .scene .fx::after { content: ''; position: absolute; left: -20%; right: -20%; height: 84px; filter: blur(26px); border-radius: 50%; }
 .vA .scene .fx::before { top: 54px; background: linear-gradient(96deg, transparent 12%, var(--r1) 38%, var(--r2) 58%, transparent 82%); transform: rotate(-9deg); animation: drift 16s ease-in-out infinite alternate; }
 .vA .scene .fx::after { top: 150px; height: 60px; background: linear-gradient(96deg, transparent 24%, var(--r2) 46%, var(--r3) 66%, transparent 88%); transform: rotate(7deg); animation: drift 21s ease-in-out -6s infinite alternate-reverse; }
 @keyframes drift { from { translate: -22px 0; } to { translate: 22px 6px; } }
-.vA .pill, .vA .bell { background: rgba(255, 255, 255, .13); -webkit-backdrop-filter: blur(14px) saturate(160%); backdrop-filter: blur(14px) saturate(160%); }
-.vA .lrow .pb i { background: linear-gradient(90deg, var(--cta1), var(--cta2)); }
-.vA .week .on i { background: linear-gradient(150deg, var(--cta1), var(--cta2)); border-color: transparent; }
-.vA .cta { background: linear-gradient(98deg, var(--cta1) 0%, var(--cta2) 100%); color: var(--ctaInkV); box-shadow: 0 16px 30px -12px var(--ctaGlow); }
-.vA .tile, .vA .today, .vA .pod, .vA .tabbar { background: linear-gradient(148deg, var(--cA1) 0%, var(--cA2) 62%); }
-.vA .tile .art::before { content: ''; position: absolute; left: 6%; right: 6%; top: 8px; bottom: 0; border-radius: 50%; background: radial-gradient(closest-side, var(--halo), transparent); }
+.vA .pill, .vA .bell, .vA .chip { background: rgba(255, 255, 255, .13); }
+.vA .lrow .pb i, .vA .bar i { background: linear-gradient(90deg, var(--cta1), var(--cta2)); }
+.vA .cta, .vA .btn { background: linear-gradient(98deg, var(--cta1) 0%, var(--cta2) 100%); color: var(--ctaInkV); box-shadow: 0 16px 30px -12px var(--ctaGlow); }
+.vA .today, .vA .card, .vA .pod, .vA .tabbar { background: linear-gradient(148deg, var(--cA1) 0%, var(--cA2) 62%); box-shadow: var(--shV); }
+.vA .vc { border-radius: 18px; box-shadow: var(--shV); } .vA .pod { border-radius: 22px; }
 .vA .row .ri { background: linear-gradient(150deg, var(--ch1), var(--ch2)); color: #fff; box-shadow: 0 8px 14px -8px var(--ch2); }
+.vA .row .ri.off { background: var(--ctl); color: var(--sec); box-shadow: none; }
 .vA .row .tick { width: 26px; height: 26px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 15px; color: var(--ctaInkV); background: linear-gradient(150deg, var(--cta1), var(--cta2)); }
-.vA .vc .poster { background: radial-gradient(80% 90% at 10% 0%, var(--a1), transparent 70%), radial-gradient(70% 90% at 100% 100%, var(--a3), transparent 70%), linear-gradient(180deg, var(--aTop), var(--aBot)); }
-.vA .vc:nth-child(2) .poster { background: radial-gradient(80% 90% at 100% 0%, var(--a2), transparent 70%), radial-gradient(70% 90% at 0% 100%, var(--a4), transparent 70%), linear-gradient(180deg, var(--aTop), var(--aBot)); }
+.vA .poster.p1 { background: radial-gradient(80% 90% at 10% 0%, var(--a1), transparent 70%), radial-gradient(70% 90% at 100% 100%, var(--a3), transparent 70%), linear-gradient(180deg, var(--aTop), var(--aBot)); }
+.vA .poster.p2 { background: radial-gradient(80% 90% at 100% 0%, var(--a2), transparent 70%), radial-gradient(70% 90% at 0% 100%, var(--a4), transparent 70%), linear-gradient(180deg, var(--aTop), var(--aBot)); }
+.vA .poster.p3 { background: radial-gradient(90% 90% at 50% 110%, var(--a1), transparent 70%), radial-gradient(60% 80% at 0% 0%, var(--a2), transparent 70%), linear-gradient(180deg, var(--aTop), var(--aBot)); }
 .vA .tabbar .tb.on { background: linear-gradient(98deg, var(--cta1), var(--cta2)); color: var(--ctaInkV); }
 
-/* ═════════ B · «ТИТАН»: анодированный металл, гравировка, хромированная кнопка ═════════ */
-.vB .scr { background: linear-gradient(180deg, var(--bgTop) 0%, var(--bg) 60%, var(--bgBottom) 100%); }
-.vB .scene { background: var(--m3); box-shadow: 0 26px 44px -24px rgba(0, 0, 0, .8); }
-.vB .scene .sky { background: linear-gradient(116deg, transparent 32%, rgba(255, 255, 255, .11) 46%, rgba(255, 255, 255, .03) 53%, transparent 66%), repeating-linear-gradient(90deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 3px), linear-gradient(180deg, var(--m0) 0%, var(--m1) 40%, var(--m2) 66%, var(--m3) 100%); }
-/* гравировка: концентрические кольца из правого верхнего угла, одно — цветом темы */
-.vB .scene .fx { background: radial-gradient(circle at 88% 22%, transparent 0 63px, var(--ring) 64px 65px, transparent 66px 107px, var(--ringAcc) 108px 110px, transparent 111px 159px, var(--ring) 160px 161px, transparent 162px 219px, var(--ring2) 220px 221px, transparent 222px); }
-.vB .scene::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--ringAcc) 30%, var(--ringAcc) 70%, transparent); z-index: 2; }
-.vB .pill, .vB .bell { background: linear-gradient(180deg, rgba(255, 255, 255, .17), rgba(255, 255, 255, .05)); box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .25), 0 6px 12px -8px rgba(0, 0, 0, .6); }
-.vB .lrow .pb i { background: var(--accLine); }
-.vB .week .on i { background: linear-gradient(180deg, #fff, var(--chromeLo)); border-color: transparent; }
-.vB .cta { background: linear-gradient(180deg, var(--chrome0) 0%, var(--chrome1) 46%, var(--chromeLo) 52%, var(--chrome2) 100%); box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .18), 0 14px 26px -12px rgba(0, 0, 0, .75); }
-.vB .cta::after { content: ''; position: absolute; top: 0; bottom: 0; left: -40%; width: 30%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .9), transparent); transform: skewX(-18deg); animation: sweep 8s var(--ease-out) 1.4s infinite; }
-@keyframes sweep { 0% { left: -40%; } 14%, 100% { left: 120%; } }
-.vB .tile, .vB .today, .vB .pod, .vB .tabbar { background: repeating-linear-gradient(90deg, var(--brush) 0 1px, transparent 1px 3px), linear-gradient(180deg, var(--mt0) 0%, var(--mt1) 44%, var(--mt2) 100%); }
-.vB .row .ri { background: var(--well); box-shadow: inset 0 2px 5px var(--wellSh); color: var(--acc); }
-.vB .row .tick { width: 26px; height: 26px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 15px; color: #121318; background: linear-gradient(180deg, var(--chrome0), var(--chromeLo)); }
-.vB .tile .art { margin: 0 4px; width: calc(100% - 8px); border-radius: 14px; background: var(--well); box-shadow: inset 0 2px 5px var(--wellSh); margin-bottom: 4px; }
-.vB .vc .poster { background: radial-gradient(circle at 86% 20%, transparent 0 39px, var(--ring) 40px 41px, transparent 42px 73px, var(--ringAcc) 74px 75px, transparent 76px), repeating-linear-gradient(90deg, rgba(255, 255, 255, .03) 0 1px, transparent 1px 3px), linear-gradient(180deg, var(--m1), var(--m3)); }
-.vB .tabbar .tb.on { background: var(--well); box-shadow: inset 0 2px 5px var(--wellSh); color: var(--acc); }
+/* ── матовое стекло БЕЗ размытия: «размытая копия» того, что под плиткой, нарисована двумя градиентами внутри неё ──
+   зачем (владелец: «плитки прозрачные или полупрозрачные с ненастоящим блюром за ними»): настоящий backdrop-blur на Android дорогой и ломает первый кадр;
+   здесь верх плитки повторяет размытый низ сцены, низ — размытый фон экрана, поверх лёгкая дымка. Один статичный слой, без шейдера. */
+.vA .tile, .vA .frost { background: radial-gradient(90% 80% at 14% -10%, var(--fGlow1), transparent 70%), radial-gradient(90% 80% at 100% 110%, var(--fGlow2), transparent 70%), linear-gradient(180deg, var(--fr1) 0%, var(--fr1) 26%, var(--fr2) 62%, var(--fr2) 100%); box-shadow: var(--shF); color: var(--fTx); }
+.vA .tile b { text-shadow: var(--fTxSh); }
 
-/* ═════════ C · «САМОЦВЕТЫ»: двухтоновая сцена с планетой, цветные плитки-камни ═════════ */
-.vC .scr { background: radial-gradient(80% 28% at 100% 42%, var(--cBg1), transparent 72%), radial-gradient(70% 26% at 0% 78%, var(--cBg2), transparent 72%), linear-gradient(180deg, var(--bgTop) 0%, var(--bg) 60%, var(--bgBottom) 100%); }
-.vC .scene { background: var(--c1); box-shadow: 0 26px 46px -24px var(--cShadow); }
-.vC .scene .sky { background: linear-gradient(152deg, var(--c0) 0%, var(--c1) 50%, var(--c2) 100%); }
-/* планета из-за правого края: диск, ореол и две орбиты; яркость диска ограничена стражем, чтобы белый текст поверх читался */
-.vC .scene .fx { background: radial-gradient(circle at 106% 44%, var(--orbHi) 0 60px, var(--orb) 118px, transparent 119px), radial-gradient(circle at 106% 44%, transparent 0 149px, var(--orbit) 150px 151px, transparent 152px 199px, var(--orbit2) 200px 201px, transparent 202px), radial-gradient(circle at 106% 44%, var(--orbHalo), transparent 260px); }
-.vC .pill, .vC .bell { background: rgba(0, 0, 0, .22); }
-.vC .lrow .pb i { background: var(--gemLight); }
-.vC .week .on i { background: var(--gemLight); border-color: transparent; }
-.vC .cta { background: linear-gradient(98deg, #fff 0%, var(--gemLight) 100%); box-shadow: 0 16px 30px -12px var(--cShadow); }
-.vC .today, .vC .tabbar { background: linear-gradient(160deg, var(--cC1) 0%, var(--cC2) 60%); }
-.vC .tile { color: #fff; background: linear-gradient(158deg, var(--ja) 0%, var(--jb) 100%); box-shadow: 0 16px 24px -14px var(--jb); }
-.vC .tile::before { content: ''; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(90% 70% at 16% 0%, var(--jhi), transparent 70%); }
-.vC .tile:nth-child(1), .vC .row:nth-child(2) .ri { --ja: var(--j1a); --jb: var(--j1b); --jhi: var(--j1h); }
-.vC .tile:nth-child(2), .vC .row:nth-child(3) .ri { --ja: var(--j2a); --jb: var(--j2b); --jhi: var(--j2h); }
-.vC .tile:nth-child(3), .vC .row:nth-child(4) .ri { --ja: var(--j3a); --jb: var(--j3b); --jhi: var(--j3h); }
-.vC .tile:nth-child(4) { --ja: var(--j4a); --jb: var(--j4b); --jhi: var(--j4h); }
-.vC .row .ri { background: linear-gradient(158deg, var(--ja), var(--jb)); color: #fff; box-shadow: 0 8px 14px -8px var(--jb); }
-.vC .row .tick { width: 26px; height: 26px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 15px; color: #fff; background: linear-gradient(158deg, var(--j1a), var(--j1b)); }
-.vC .vc:nth-child(1) .poster { background: linear-gradient(152deg, var(--j1a), var(--j2b)); } .vC .vc:nth-child(2) .poster { background: linear-gradient(152deg, var(--j3a), var(--j2b)); } .vC .vc:nth-child(3) .poster { background: linear-gradient(152deg, var(--j4a), var(--j3b)); }
-.vC .pod { background: linear-gradient(120deg, var(--j2b) 0%, var(--j3b) 100%); color: #fff; box-shadow: 0 16px 24px -14px var(--j3b); } .vC .pod small, .vC .pod em, .vC .pod > .io { color: rgba(255, 255, 255, .86); }
-.vC .tabbar .tb.on { background: linear-gradient(158deg, var(--j2a), var(--j2b)); color: #fff; }
+/* ── блок дней: стеклянная капсула, цепочка серии, пульс «сегодня» ── */
+.wk { position: relative; margin-top: 14px; padding: 10px 4px 12px; border-radius: 22px; background: linear-gradient(180deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .06)); display: grid; grid-template-columns: repeat(7, 1fr); }
+.wk .chain { position: absolute; left: calc(4px + (100% - 8px) / 14); width: calc((100% - 8px) / 7 * 3); bottom: 26px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--cta1) 0%, var(--cta2) 66%, transparent 100%); opacity: .85; }
+.wk .d { position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; line-height: 17px; color: rgba(255, 255, 255, .74); }
+.wk .d i { position: relative; width: 32px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-family: IoniconsApp; font-style: normal; font-weight: 400; font-size: 16px; background: rgba(255, 255, 255, .08); color: transparent; }
+.wk .d.done i { background: linear-gradient(150deg, var(--cta1), var(--cta2)); color: var(--ctaInkV); box-shadow: 0 6px 14px -4px var(--ctaGlow); }
+.wk .d.cur { color: #fff; font-weight: 700; }
+.wk .d.cur i { background: var(--aTop); box-shadow: 0 0 0 2px #fff; }
+.wk .d.cur i::before { content: ''; width: 10px; height: 10px; border-radius: 5px; background: linear-gradient(150deg, var(--cta1), var(--cta2)); }
+.wk .d.cur i::after { content: ''; position: absolute; inset: -2px; border-radius: 50%; box-shadow: 0 0 0 2px rgba(255, 255, 255, .7); animation: ring 2.4s var(--ease-out) infinite; }
+@keyframes ring { 0% { transform: scale(1); opacity: .9; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
 
-@media (prefers-reduced-motion: reduce) { .vA .scene .fx::before, .vA .scene .fx::after { animation: none; } .vB .cta::after { animation: none; display: none; } .press, .seg i.th, .trk .kn, .reset { transition: none; } }
+/* ── части остальных разделов ── */
+.shead { position: relative; z-index: 2; padding: 44px 20px 52px; }
+.shead h2 { margin: 0; color: #fff; font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.6px; text-shadow: 0 1px 10px rgba(0, 0, 0, .38); }
+.chips { display: flex; gap: 8px; margin-top: 14px; }
+.chip { min-height: 36px; padding: 0 14px; border-radius: 18px; display: flex; align-items: center; gap: 6px; color: #fff; font-size: 16px; line-height: 21px; font-weight: 700; }
+.vA .chip.on { background: linear-gradient(98deg, var(--cta1), var(--cta2)); color: var(--ctaInkV); }
+.sline { display: flex; align-items: center; gap: 10px; margin-top: 14px; color: rgba(255, 255, 255, .88); font-size: 13px; line-height: 17px; font-variant-numeric: tabular-nums; }
+.bar { flex: 1; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .22); overflow: hidden; } .bar i { display: block; height: 100%; border-radius: 3px; }
+.bar.on-card { background: var(--hair2); }
+.hero { position: relative; z-index: 3; border-radius: 24px; padding: 16px; display: flex; align-items: center; gap: 14px; }
+.hero .rt { flex: 1; min-width: 0; } .hero small { display: block; font-size: 13px; line-height: 17px; opacity: .8; } .hero b { display: block; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; margin: 2px 0 10px; }
+.btn { min-height: 44px; padding: 0 18px; border-radius: 22px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; line-height: 21px; font-weight: 700; white-space: nowrap; }
+.big { position: relative; z-index: 3; height: 214px; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; color: #fff; box-shadow: var(--shV); }
+.big b { position: relative; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; text-shadow: 0 1px 10px rgba(0, 0, 0, .4); } .big small { position: relative; font-size: 13px; line-height: 17px; opacity: .88; margin-top: 2px; }
+.big .play { position: absolute; left: 50%; top: 42%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 32px; display: flex; align-items: center; justify-content: center; font-size: 26px; padding-left: 4px; }
+.big .tag { position: absolute; top: 12px; left: 12px; }
+.thumb { position: relative; width: 112px; height: 64px; border-radius: 14px; overflow: hidden; flex: none; }
+.you { margin: 0 -8px; padding: 8px !important; border-radius: 16px; border-top: 0 !important; }
+.you + .row { border-top: 0; }
+.mini { width: 36px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; color: #fff; flex: none; background: linear-gradient(150deg, var(--ch1), var(--ch2)); }
+.rank { width: 22px; text-align: center; font-size: 16px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.tg { width: 51px; height: 31px; border-radius: 16px; background: linear-gradient(98deg, var(--cta1), var(--cta2)); padding: 2px; display: flex; justify-content: flex-end; flex: none; } .tg::after { content: ''; width: 27px; height: 27px; border-radius: 14px; background: #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .3); }
+.prof { position: relative; z-index: 2; display: flex; align-items: center; gap: 14px; margin-top: 16px; color: #fff; }
+.prof b { display: block; font-size: 20px; line-height: 26px; font-weight: 700; } .prof small { display: block; font-size: 13px; line-height: 17px; opacity: .86; }
+.spire { width: 92px; height: 92px; flex: none; }
+.steps { display: flex; gap: 6px; margin-top: 2px; } .steps i { flex: 1; height: 6px; border-radius: 3px; background: var(--hair2); } .steps i.on { background: linear-gradient(90deg, var(--cta1), var(--cta2)); }
+
+@media (prefers-reduced-motion: reduce) { .vA .scene .fx::before, .vA .scene .fx::after, .wk .d.cur i::after { animation: none; } .press, .seg i.th, .trk .kn, .reset { transition: none; } }
 @media (max-width: 900px) { .panel { grid-template-columns: 1fr; position: static; } .sls { grid-template-columns: 1fr; gap: 8px; } }
 </style>
 </head>
 <body>
 <div class="page">
-  <h1>Главная: три варианта оформления</h1>
-  <p class="lead">Три разных характера на одной раскладке и для сравнения Главная как сейчас. Все четыре экрана красятся кодом темы приложения: двигайте ползунки, как на экране «Оформление».</p>
+  <h1>«Аврора» на всех разделах</h1>
+  <p class="lead">Пять вкладок приложения в одном материале и для сравнения Главная как сейчас. Двигайте ползунки, как на экране «Оформление»: при насыщенности 0 % «Аврора» становится чисто серой.</p>
   <div class="panel">
     <div class="seg" id="seg" data-v="dark"><i class="th"></i><button data-ap="light" aria-pressed="false"><i class="io" data-io="sunny"></i>Светлая</button><button data-ap="dark" aria-pressed="true"><i class="io" data-io="moon"></i>Тёмная</button></div>
     <div class="sls">
@@ -212,10 +215,12 @@ h1 { font-size: 24px; line-height: 30px; margin: 0 0 6px; font-weight: 700; lett
     <button class="reset" id="reset"><i class="io" data-io="refresh"></i>Вернуть стандартный</button>
   </div>
   <div class="wrap">
-    <div class="cell"><div class="cap">A · Аврора <span>живое сияние</span></div><div class="zw"><div class="ph v vA" id="phA"></div></div></div>
-    <div class="cell"><div class="cap">B · Титан <span>металл и гравировка</span></div><div class="zw"><div class="ph v vB" id="phB"></div></div></div>
-    <div class="cell"><div class="cap">C · Самоцветы <span>цветные плитки</span></div><div class="zw"><div class="ph v vC" id="phC"></div></div></div>
-    <div class="cell"><div class="cap">Сейчас <span>по коду приложения</span></div><div class="zw"><div class="ph now" id="phNow"></div></div></div>
+    <div class="cell"><div class="cap">Главная</div><div class="zw"><div class="ph vA" id="phHome"></div></div></div>
+    <div class="cell"><div class="cap">Уроки</div><div class="zw"><div class="ph vA" id="phLessons"></div></div></div>
+    <div class="cell"><div class="cap">Видео</div><div class="zw"><div class="ph vA" id="phVideo"></div></div></div>
+    <div class="cell"><div class="cap">Сообщество</div><div class="zw"><div class="ph vA" id="phCommunity"></div></div></div>
+    <div class="cell"><div class="cap">Настройки</div><div class="zw"><div class="ph vA" id="phSettings"></div></div></div>
+    <div class="cell"><div class="cap">Главная сейчас <span>по коду приложения</span></div><div class="zw"><div class="ph now" id="phNow"></div></div></div>
   </div>
   <p class="note" id="note"></p>
 </div>
@@ -225,14 +230,13 @@ h1 { font-size: 24px; line-height: 30px; margin: 0 0 6px; font-weight: 700; lett
 'use strict';
 const LOG = '[HOME-LUXE]';
 /* значки Ionicons — коды из glyphmap приложения (@expo/vector-icons) */
-const CODE = { book: 61861, 'book-outline': 61862, 'chat': 61971, check: 61981, next: 62011, copy: 62096, flame: 62227, flash: 62230, home: 62338, moon: 62560, bell: 62591, people: 62623, play: 62662, 'play-circle': 62669, refresh: 62740, settings: 62827, sunny: 62893, trend: 62972, videocam: 62989 };
+const CODE = { book: 61861, 'book-outline': 61862, chat: 61971, check: 61981, next: 62011, copy: 62096, diamond: 62113, flame: 62227, flash: 62230, home: 62338, lock: 62407, moon: 62560, bell: 62591, people: 62623, play: 62662, 'play-circle': 62669, refresh: 62740, settings: 62827, sparkles: 62860, sunny: 62893, trend: 62972, videocam: 62989 };
 const io = (n, cls = '') => `<i class="io ${cls}">${String.fromCharCode(CODE[n])}</i>`;
 document.querySelectorAll('[data-io]').forEach((e) => { e.textContent = String.fromCharCode(CODE[e.dataset.io]); });
 
 const STD = PM.THEME_TUNE_STANDARD; // { H: 250, S: 35 } — «Стандартный» приложения
 const st = { ap: 'dark', H: STD.H, S: STD.S };
-/* размер сцены в dp: ширина экрана × фактическая высота блока (шапка 52 + текст + неделя + кнопка), как меряет HomeSceneStage */
-const SCENE_W = 411; const SCENE_H = 354; const DP = 2.625;
+const SCENE_W = 411; const SCENE_H = 354; const DP = 2.625; // размер сцены Главной в dp — для расчёта «как сейчас»
 
 /* ───────── цвет: помощники ───────── */
 const ok = (L, C, H) => PM.oklchToHex(L, Math.max(0, C), ((H % 360) + 360) % 360);
@@ -240,103 +244,118 @@ const rgbOf = (hex) => { const n = parseInt(hex.slice(1, 7), 16); return [(n >> 
 const hexA = (hex, a) => { const [r, g, b] = rgbOf(hex); return `rgba(${r},${g},${b},${a})`; };
 const lum = (c) => { const s = c.map((v) => { const x = v / 255; return x <= .03928 ? x / 12.92 : Math.pow((x + .055) / 1.055, 2.4); }); return .2126 * s[0] + .7152 * s[1] + .0722 * s[2]; };
 const whiteOn = (hex) => 1.05 / (lum(rgbOf(hex)) + .05);
+const ratio = (a, b) => { const x = lum(rgbOf(a)); const y = lum(rgbOf(b)); return (Math.max(x, y) + .05) / (Math.min(x, y) + .05); };
 const mix = (a, b, k) => { const x = rgbOf(a); const y = rgbOf(b); return '#' + x.map((v, i) => Math.round(v + (y[i] - v) * k).toString(16).padStart(2, '0')).join(''); };
 const shadowCss = (layers) => layers.length ? layers.map((l) => `${l.offsetX}px ${l.offsetY}px ${l.blurRadius}px ${l.spreadDistance}px ${l.color}`).join(',') : 'none';
-/* страж контраста: цвет оттенка h темнеет, пока белый текст на нём не даст нужное отношение (как deepenForWhite у сцены приложения) */
-const deepen = (L, C, h, need) => { let l = L; let c = ok(l, C, h); while (whiteOn(c) < need && l > .12) { l -= .01; c = ok(l, C, h); } return c; };
 
 /* ───────── все цвета из (оформление, оттенок, насыщенность) ───────── */
 function compute() {
   const id = PM.themeTuneId({ H: st.H, S: st.S });
   const g = PM.liquidGlassTokens(id, { appearance: st.ap, intensity: 1 }); // насыщенность поверхностей 1 — значение по умолчанию приложения (theme_first_run_default)
-  const gMax = PM.liquidGlassTokens(id, { level: 'max', appearance: st.ap }); // сцена всегда считается от уровня «Максимум» (HOME_SCENE_THEME_LEVEL)
+  const gMax = PM.liquidGlassTokens(id, { level: 'max', appearance: st.ap }); // сцена приложения считается от уровня «Максимум»
   const sc = PM.approvedScene(gMax, st.ap, 'home', Math.round(SCENE_W * DP), Math.round(SCENE_H * DP), { dp: DP });
   const dark = st.ap === 'dark';
-  const P = sc.palette; const Ct = P.Ct; const SH = P.H; // насыщенность и оттенок сцены — те же, что считает scene_palette
   const hx = (c) => '#' + c.map((v) => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, '0')).join('');
-  // «Сейчас»: тёмное — один тон неба (SceneBackdrop), светлое — градиент верх → середина и два света
+  // «Сейчас»: ровно расчёт приложения (со всеми его особенностями, в том числе при насыщенности 0)
   let scNow; let skyNow;
   if (PM.isSkyPalette(sc)) { scNow = PM.skyToneHex(sc); skyNow = `linear-gradient(145deg, rgba(255,255,255,.07), transparent 70%), ${scNow}`; }
   else { const s = sc.spec; const top = hx(s.top); const mid = mix(top, hx(s.bot), .5); scNow = top;
     skyNow = s.lights.map((l) => `radial-gradient(${l.rx * 100 * l.fade}% ${l.ry * 100 * l.fade}% at ${l.cx * 100}% ${l.cy * 100}%, ${hexA(hx(l.color), l.a)}, transparent)`).join(',') + `, linear-gradient(158deg, ${top} 0%, ${mid} 50%, ${mid} 100%)`; }
   const grad = g.accentGradient.length >= 3 ? g.accentGradient : [g.accentGradient[0], g.accent, g.accentGradient[g.accentGradient.length - 1]];
-  const Cv = Math.min(.21, Ct * 1.45); // «сочная» насыщенность украшений: растёт с ползунком, при S = 0 остаётся почти серой
-  const shadeDeep = hexA(ok(.10, Ct * .5, SH), .9);
-  const base = {
-    bg: g.bg, bgTop: g.bgTop, bgBottom: g.bgBottom, card: g.opaqueCard, ctl: g.opaqueControl, tx: g.text, sec: g.secondary, hair: g.text.slice(0, 7) + '12',
+
+  /* зачем (владелец: «когда насыщенность опущена, оно не должно становиться жёлтым и зелёным»): цветность «Авроры» — функция ТОЛЬКО ползунка насыщенности,
+     без нижнего порога (0 % → 0, чистый серый), а оттенок — число ползунка, а не оттенок, измеренный у акцента (у серого акцента он случайный). */
+  const SH = st.H; const sat = st.S / 100;
+  const Cv = .21 * (1 - Math.pow(1 - sat, 1.6)); // сочные пятна: 0 при 0 %, ≈ 0,105 при стандартных 35 %, 0,21 при 100 %
+  const Cb = Cv / 1.45; // спокойная основа сцены
+  const aTop = ok(dark ? .15 : .24, Cb * .7, SH - 22); const aBot = ok(dark ? .25 : .33, Cb * .9, SH + 4);
+  const a1c = ok(.64, Cv, SH + 52); const a3c = ok(.62, Cv, SH + 18);
+  let a3a = .5; while (whiteOn(mix(aBot, a3c, a3a)) < 4.8 && a3a > .1) a3a -= .04; // страж зоны текста
+  const cta1 = ok(.88, Math.min(.10, Cv * .6), SH - 24); const cta2 = ok(.93, Math.min(.09, Cv * .5), SH + 44);
+  // матовое стекло: верх — «размытый» низ сцены, низ — «размытый» фон экрана
+  const frTop = dark ? mix(aBot, a3c, .30) : mix('#ffffff', ok(.80, Cv * .7, SH + 18), .30);
+  const frBot = dark ? mix(g.bg, ok(.36, Cv, SH + 30), .30) : mix('#ffffff', ok(.90, Cv * .4, SH - 20), .22);
+  const fTx = dark ? '#FFFFFF' : g.text;
+  const v = {
+    bg: g.bg, bgTop: g.bgTop, bgBottom: g.bgBottom, card: g.opaqueCard, ctl: g.opaqueControl, tx: g.text, sec: g.secondary, hair: g.text.slice(0, 7) + '12', hair2: g.text.slice(0, 7) + '1F',
     acc: g.accentGraphic, accB: g.accentBright, ctaInk: g.accentInk, g1: grad[0], g2: grad[1], g3: grad[2],
     shP: shadowCss(PM.plateShadowStyle(g)), plate50: hexA(g.plateFillFrom, .5), tabNow: hexA(g.opaqueControl, .9), capNow: hexA(g.accentCap.slice(0, 7), .32), scNow,
-    // общая тень вариантов: тёмная в тёмном оформлении, тень темы в светлом — без светлых слоёв
-    shV: dark ? `0 18px 30px -16px ${shadeDeep}` : shadowCss(PM.plateShadowStyle(g)),
-  };
-
-  /* ── A · Аврора ── */
-  const aTop = ok(dark ? .15 : .24, Ct * .7, SH - 22); const aBot = ok(dark ? .25 : .33, Ct * .9, SH + 4);
-  const a3c = ok(.62, Cv, SH + 18); let a3a = .5; while (whiteOn(mix(aBot, a3c, a3a)) < 4.8 && a3a > .1) a3a -= .04; // страж зоны текста
-  const cta1 = ok(.88, Math.min(.10, Cv * .6), SH - 24); const cta2 = ok(.93, Math.min(.09, Cv * .5), SH + 44);
-  const A = {
-    aTop, aBot, avaGap: aTop, a1: hexA(ok(.64, Cv, SH + 52), .58), a2: hexA(ok(.56, Cv, SH - 46), .55), a3: hexA(a3c, a3a), a4: hexA(ok(.46, Cv * .9, SH - 26), .5),
+    shV: dark ? `0 18px 30px -16px ${hexA(ok(.10, Cb * .5, SH), .9)}` : shadowCss(PM.plateShadowStyle(g)),
+    aTop, aBot, avaGap: aTop, a1: hexA(a1c, .58), a2: hexA(ok(.56, Cv, SH - 46), .55), a3: hexA(a3c, a3a), a4: hexA(ok(.46, Cv * .9, SH - 26), .5),
     r1: hexA(ok(.78, Cv * .9, SH + 60), .38), r2: hexA(ok(.74, Cv * .9, SH + 10), .34), r3: hexA(ok(.70, Cv * .9, SH - 40), .30), aShadow: hexA(aTop, dark ? .95 : .55),
     aBg1: hexA(ok(dark ? .42 : .86, Cv * .8, SH + 50), dark ? .30 : .55), aBg2: hexA(ok(dark ? .38 : .86, Cv * .8, SH - 40), dark ? .28 : .5),
-    cta1, cta2, ctaInkV: ok(.20, Ct * .6, SH), ctaGlow: hexA(ok(.70, Cv, SH + 10), .55),
-    cA1: dark ? mix(g.plateFillFrom, ok(.42, Cv, SH + 40), .26) : ok(.995, .004, SH), cA2: dark ? g.plateFillTo : ok(.955, Math.min(.03, Cv * .2), SH + 30),
-    halo: hexA(ok(.70, Cv, SH + 30), dark ? .22 : .16), ch1: ok(.52, Cv, SH - 24), ch2: ok(.42, Cv, SH + 34),
+    cta1, cta2, ctaInkV: ok(.20, Cb * .6, SH), ctaGlow: hexA(ok(.70, Cv, SH + 10), .55),
+    cA1: dark ? mix(g.plateFillFrom, ok(.42, Cv, SH + 40), .26) : ok(.995, Math.min(.004, Cv), SH), cA2: dark ? g.plateFillTo : ok(.955, Math.min(.03, Cv * .2), SH + 30),
+    ch1: ok(.52, Cv, SH - 24), ch2: ok(.42, Cv, SH + 34),
+    fr1: hexA(frTop, dark ? .80 : .84), fr2: hexA(frBot, dark ? .66 : .74), fGlow1: hexA(a1c, dark ? .26 : .22), fGlow2: hexA(ok(.56, Cv, SH - 46), dark ? .22 : .16),
+    fTx, fTxSh: dark ? '0 1px 8px rgba(0,0,0,.45)' : 'none', shF: dark ? `0 16px 26px -16px ${hexA(ok(.08, Cb * .5, SH), .9)}` : shadowCss(PM.plateShadowStyle(g)),
   };
-
-  /* ── B · Титан ── */
-  const Cm = Ct * .45; const mL = dark ? [.22, .36, .28, .38] : [.36, .48, .41, .47];
-  const B = {
-    m0: ok(mL[0], Cm, SH), m1: ok(mL[1], Cm, SH), m2: ok(mL[2], Cm, SH), m3: deepen(mL[3], Cm, SH, 4.8), avaGap: ok(mL[0], Cm, SH),
-    ring: 'rgba(255,255,255,.10)', ring2: 'rgba(255,255,255,.06)', ringAcc: hexA(ok(.82, Math.min(.14, Cv), SH), .75), accLine: ok(.86, Math.min(.12, Cv), SH),
-    chrome0: ok(.995, .003, SH), chrome1: ok(.90, .012, SH), chromeLo: ok(.80, .018, SH), chrome2: ok(.94, .010, SH),
-    mt0: dark ? ok(.27, Cm * .7, SH) : ok(.995, .003, SH), mt1: dark ? ok(.20, Cm * .7, SH) : ok(.955, .008, SH), mt2: dark ? ok(.155, Cm * .7, SH) : ok(.905, .013, SH),
-    brush: dark ? 'rgba(255,255,255,.022)' : 'rgba(0,0,0,.022)', well: dark ? ok(.12, Cm * .6, SH) : ok(.885, .014, SH), wellSh: dark ? 'rgba(0,0,0,.75)' : 'rgba(40,50,70,.28)',
-  };
-
-  /* ── C · Самоцветы ── */
-  const c0 = ok(dark ? .40 : .44, Cv, SH - 32); const c1 = ok(dark ? .29 : .34, Cv * .9, SH + 16); const c2 = deepen(dark ? .37 : .41, Cv, SH + 72, 4.8);
-  const orb = deepen(.56, Cv, SH + 72, 3.2); // на диск заходит только крупный заголовок 26/700 — ему достаточно 3:1
-  const gem = (i) => { const h = SH + [-36, 0, 36, 72][i]; return [ok(.55, Cv, h), deepen(.36, Cv, h + 14, 5), hexA(ok(.74, Cv * .8, h), .55)]; };
-  const C = { c0, c1, c2, avaGap: c0, cShadow: hexA(ok(.14, Cv * .6, SH + 16), dark ? .95 : .5),
-    orbHi: ok(.64, Cv, SH + 82), orb, orbit: 'rgba(255,255,255,.16)', orbit2: 'rgba(255,255,255,.08)', orbHalo: hexA(ok(.62, Cv, SH + 72), .30), gemLight: ok(.90, Math.min(.09, Cv * .5), SH + 72),
-    cBg1: hexA(ok(dark ? .40 : .86, Cv * .8, SH + 72), dark ? .28 : .5), cBg2: hexA(ok(dark ? .38 : .86, Cv * .8, SH - 32), dark ? .26 : .5),
-    cC1: dark ? mix(g.plateFillFrom, ok(.40, Cv, SH + 50), .22) : ok(.995, .004, SH), cC2: dark ? g.plateFillTo : ok(.96, Math.min(.025, Cv * .15), SH + 40) };
-  [0, 1, 2, 3].forEach((i) => { const [a, b, h] = gem(i); C[`j${i + 1}a`] = a; C[`j${i + 1}b`] = b; C[`j${i + 1}h`] = h; });
-
-  const checks = { aurora: +whiteOn(mix(aBot, a3c, a3a)).toFixed(2), titan: +whiteOn(B.m3).toFixed(2), gems: +whiteOn(c2).toFixed(2), gemTile: +whiteOn(C.j1b).toFixed(2), now: +whiteOn(scNow).toFixed(2) };
-  return { id, g, sc, base, skyNow, vars: { phA: A, phB: B, phC: C, phNow: {} }, checks };
+  const checks = { aurora: +whiteOn(mix(aBot, a3c, a3a)).toFixed(2), tile: +ratio(fTx, mix(frTop, a1c, dark ? .26 : .22)).toFixed(2), now: +whiteOn(scNow).toFixed(2), nowHue: Math.round(sc.palette.H), nowChroma: +sc.palette.Ct.toFixed(3) };
+  return { id, g, sc, v, skyNow, checks };
 }
 
-/* ───────── звёзды сцены: те же точки, что считает scene_palette (сид 3, 70 шт., верхние 40 %) + нижние как в SceneBackdrop ───────── */
-function starsSvg(sc) {
-  if (!PM.isSkyPalette(sc)) return '';
-  let s2 = 0x9e3779b9; const rnd = () => { s2 ^= s2 << 13; s2 >>>= 0; s2 ^= s2 >>> 17; s2 ^= s2 << 5; s2 >>>= 0; return s2 / 4294967296; };
-  const low = []; for (let i = 0; i < 102; i += 1) low.push({ x: rnd(), y: .4 + rnd() * .58, r: .9 + rnd() * .9, a: .3 + rnd() * .35 });
-  const W = sc.size.W; const H = sc.size.H;
-  return `<svg class="stars" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${[...sc.stars.list, ...low].map((s) => `<circle cx="${(s.x * W).toFixed(1)}" cy="${(s.y * H).toFixed(1)}" r="${s.r.toFixed(2)}" fill="#fff" fill-opacity="${s.a.toFixed(2)}"/>`).join('')}</svg>`;
-}
+/* ───────── звёзды: «Сейчас» — точки scene_palette + нижние как в SceneBackdrop; «Аврора» — свои, одинаковые в обоих оформлениях ───────── */
+function rndStars(n, seed) { let s2 = seed; const rnd = () => { s2 ^= s2 << 13; s2 >>>= 0; s2 ^= s2 >>> 17; s2 ^= s2 << 5; s2 >>>= 0; return s2 / 4294967296; }; const out = []; for (let i = 0; i < n; i += 1) out.push({ x: rnd(), y: rnd(), r: .9 + rnd() * .9, a: .3 + rnd() * .35 }); return out; }
+const svgStars = (list, W, H) => `<svg class="stars" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${list.map((s) => `<circle cx="${(s.x * W).toFixed(1)}" cy="${(s.y * H).toFixed(1)}" r="${s.r.toFixed(2)}" fill="#fff" fill-opacity="${s.a.toFixed(2)}"/>`).join('')}</svg>`;
+const AURORA_STARS = svgStars(rndStars(90, 0x9e3779b9), 1079, 929);
+function nowStars(sc) { if (!PM.isSkyPalette(sc)) return ''; const low = rndStars(102, 0x9e3779b9).map((s) => ({ ...s, y: .4 + s.y * .58 })); return svgStars([...sc.stars.list, ...low], sc.size.W, sc.size.H); }
 
-/* ───────── разметка Главной: порядок блоков как в renderHomeV2 (сцена → плитки → «Сегодня» → видео → «Фраза дня») ───────── */
+/* ───────── разметка ───────── */
 const WEEK = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
 const TASKS = [['book-outline', 'Пройди урок', 'Один шаг в обычном курсе', 'done'], ['chat', 'Потренировать диалог', '', '0/1'], ['copy', 'Повторить карточки', 'Не менее 10 слов', '4/10']];
 const TILES = [['lessons', 'Уроки'], ['cards', 'Карточки'], ['dialogs', 'Диалоги'], ['spire_tile', 'Пик']];
 const VIDEOS = ['Как звучит живой английский', '10 фраз для кафе', 'Small talk без пауз'];
-function homeHTML() {
-  return `<div class="scr"><div class="feed">
-    <div class="scene"><div class="sky" data-sky></div><div data-stars></div><div class="fx"></div>
-      <div class="hdr"><div class="stats"><div class="pill press">${io('flame')}5 дней</div><div class="pill press"><img src="art/coin.webp" alt="">690<i class="dv"></i>${io('flash', 'sm')}∞</div></div>
-        <div class="act"><div class="bell press">${io('bell')}</div><div class="ava press"><i><b>A</b></i></div></div></div>
+const shell = (inner, tab) => `<div class="scr"><div class="feed">${inner}</div></div>
+  <div class="tabbar">${['home', 'book', 'videocam', 'people', 'settings'].map((n, i) => `<div class="tb${i === tab ? ' on' : ''}">${io(n)}</div>`).join('')}</div>
+  <div class="sbar"><span>9:41</span><span class="r">${io('flash')}<span class="bat"></span></span></div><div class="gest"></div>`;
+const sceneOpen = `<div class="scene"><div class="sky" data-sky></div><div data-stars></div><div class="fx"></div>`;
+const headerRow = `<div class="hdr"><div class="stats"><div class="pill press">${io('flame')}5 дней</div><div class="pill press"><img src="art/coin.webp" alt="">690<i class="dv"></i>${io('flash', 'sm')}∞</div></div>
+  <div class="act"><div class="bell press">${io('bell')}</div><div class="ava press"><i><b>A</b></i></div></div></div>`;
+/* блок дней: «Сейчас» — кружки по коду HomeWeekDots; «Аврора» — капсула с цепочкой серии */
+const weekNow = `<div class="week">${WEEK.map((d, i) => `<div class="${i < 3 ? 'on' : ''}${i === 3 ? ' now' : ''}"><i></i>${d}</div>`).join('')}</div>`;
+const weekAurora = `<div class="wk press"><div class="chain"></div>${WEEK.map((d, i) => `<div class="d${i < 3 ? ' done' : ''}${i === 3 ? ' cur' : ''}">${d}<i>${i < 3 ? String.fromCharCode(CODE.check) : ''}</i></div>`).join('')}</div>`;
+function homeHTML(aurora) {
+  return shell(`${sceneOpen}${headerRow}
       <div class="body"><div class="kick">Урок 1</div><div class="ttl">Местоимения и глагол To Be</div>
         <div class="lrow"><div class="pb"><i></i></div>12 из 50</div>
-        <div class="week">${WEEK.map((d, i) => `<div class="${i < 3 ? 'on' : ''}${i === 3 ? ' now' : ''}"><i></i>${d}</div>`).join('')}</div>
+        ${aurora ? weekAurora : weekNow}
         <div class="cta press">${io('play')}Продолжить</div></div></div>
     <div class="tiles">${TILES.map(([k, n]) => `<div class="tile press"><div class="art"><canvas data-tile="${k}"></canvas></div><b>${n}</b></div>`).join('')}</div>
     <div class="today"><div class="th"><b>Сегодня</b><span>Все задания</span></div>${TASKS.map(([ic, t, s, c]) => `<div class="row press"><div class="ri">${io(ic)}</div><div class="rt"><b>${t}</b>${s ? `<i>${s}</i>` : ''}</div>${c === 'done' ? `<div class="tick">${io('check')}</div>` : `<div class="rc">${c}</div>`}</div>`).join('')}</div>
-    <div class="vid"><b>Видео</b><div class="rail">${VIDEOS.map((t) => `<div class="vc press"><div class="poster"></div><span>${t}</span>${io('play-circle')}</div>`).join('')}</div></div>
-    <div class="pod press"><canvas data-tile="phrase_of_day"></canvas><div class="pt"><small>Фраза дня</small><b>Break the ice</b><em>Растопить лёд</em></div>${io('next')}</div>
-  </div></div>
-  <div class="tabbar">${['home', 'book', 'videocam', 'people', 'settings'].map((n, i) => `<div class="tb${i === 0 ? ' on' : ''}">${io(n)}</div>`).join('')}</div>
-  <div class="sbar"><span>9:41</span><span class="r">${io('flash')}<span class="bat"></span></span></div><div class="gest"></div>`;
+    <div class="vid"><b>Видео</b><div class="rail">${VIDEOS.map((t, i) => `<div class="vc press"><div class="poster p${i + 1}"></div><span>${t}</span>${io('play-circle')}</div>`).join('')}</div></div>
+    <div class="pod press"><canvas data-tile="phrase_of_day"></canvas><div class="pt"><small>Фраза дня</small><b>Break the ice</b><em>Растопить лёд</em></div>${io('next')}</div>`, 0);
+}
+/* остальные разделы: состав блоков условный (показывают материал), тексты — примеры */
+const LESSONS = [['1', 'Местоимения и глагол To Be', '12 из 50', 24], ['2', 'To Be: вопросы и отрицания', '0 из 50', 0], ['3', 'Present Simple', '', -1], ['4', 'Артикли a, an, the', '', -1], ['5', 'Have и have got', '', -1]];
+function lessonsHTML() {
+  return shell(`${sceneOpen}<div class="shead"><h2>Уроки</h2>
+      <div class="chips">${['A1', 'A2', 'B1', 'B2'].map((l, i) => `<div class="chip press${i === 0 ? ' on' : ''}">${l}</div>`).join('')}</div>
+      <div class="sline"><div class="bar"><i style="width:9%"></i></div>3 из 32</div></div></div>
+    <div class="hero frost press"><div class="rt"><small>Продолжить</small><b>Местоимения и глагол To Be</b><div class="btn">${io('play')}Урок 1</div></div><canvas class="spire" data-tile="lessons"></canvas></div>
+    <div class="card"><div class="th"><b>Уровень A1</b><span>32 урока</span></div>${LESSONS.map(([n, t, s, p]) => `<div class="row press"><div class="ri${p < 0 ? ' off' : ''}">${p < 0 ? io('lock') : n}</div><div class="rt"><b>${t}</b>${s ? `<i>${s}</i>` : ''}${p > 0 ? `<div class="bar on-card" style="margin-top:6px"><i style="width:${p}%"></i></div>` : ''}</div><div class="rc">${io('next')}</div></div>`).join('')}</div>`, 1);
+}
+const VLIST = [['10 фраз для кафе', '6 мин', 2], ['Small talk без пауз', '9 мин', 3], ['Как не бояться ошибок', '4 мин', 1], ['Фразы для аэропорта', '7 мин', 2]];
+function videoHTML() {
+  return shell(`${sceneOpen}<div class="shead"><h2>Видео</h2>
+      <div class="chips">${['Все', 'Новое', 'Для начала'].map((l, i) => `<div class="chip press${i === 0 ? ' on' : ''}">${l}</div>`).join('')}</div></div></div>
+    <div class="big press"><div class="poster p1"></div><div class="pill tag"><img src="art/coin.webp" alt="">+10</div><div class="play btn">${io('play')}</div><b>Как звучит живой английский</b><small>12 мин</small></div>
+    <div class="card"><div class="th"><b>Дальше</b><span>8 видео</span></div>${VLIST.map(([t, d, p]) => `<div class="row press"><div class="thumb"><div class="poster p${p}"></div></div><div class="rt"><b>${t}</b><i>${d}</i></div><div class="rc">${io('next')}</div></div>`).join('')}</div>`, 2);
+}
+const LEAGUE = [['1', 'М', 'Марина', '1 240'], ['2', 'Д', 'Давид', '980'], ['3', 'A', 'Алекс', '690', true], ['4', 'С', 'Соня', '655'], ['5', 'Т', 'Тимур', '610']];
+function communityHTML() {
+  return shell(`${sceneOpen}<div class="shead"><h2>Сообщество</h2>
+      <div class="chips">${['Пик', 'Друзья', 'Наборы'].map((l, i) => `<div class="chip press${i === 0 ? ' on' : ''}">${l}</div>`).join('')}</div></div></div>
+    <div class="hero frost press"><canvas class="spire" data-tile="spire_tile"></canvas><div class="rt"><small>Ступень 4 из 10</small><b>3 место в лиге</b><div class="steps">${Array.from({ length: 10 }, (_, i) => `<i class="${i < 4 ? 'on' : ''}"></i>`).join('')}</div></div></div>
+    <div class="cta press" style="margin-top:0">${io('trend')}Пройти ступень</div>
+    <div class="card"><div class="th"><b>Лига недели</b><span>осталось 3 дня</span></div>${LEAGUE.map(([r, l, n, c, me]) => `<div class="row press${me ? ' you frost' : ''}"><div class="rank">${r}</div><div class="mini">${l}</div><div class="rt"><b>${n}</b></div><div class="rc">${c}</div></div>`).join('')}</div>`, 3);
+}
+const SETTINGS = [['sunny', 'Оформление', 'next'], ['book', 'Язык обучения', 'next'], ['bell', 'Напоминания', 'tg'], ['flash', 'Звуки и вибрация', 'tg'], ['people', 'Аккаунт', 'next']];
+function settingsHTML() {
+  return shell(`${sceneOpen}<div class="shead"><h2>Настройки</h2>
+      <div class="prof"><div class="ava"><i><b>A</b></i></div><div><b>Алекс</b><small>Серия 5 дней</small></div></div></div></div>
+    <div class="hero frost press"><div class="rt"><small>Plus</small><b>Цвет приложения под себя</b><div class="btn">${io('diamond')}Открыть Plus</div></div></div>
+    <div class="card">${SETTINGS.map(([ic, t, r]) => `<div class="row press"><div class="ri">${io(ic)}</div><div class="rt"><b>${t}</b></div>${r === 'tg' ? '<div class="tg"></div>' : `<div class="rc">${io('next')}</div>`}</div>`).join('')}</div>
+    <div class="card"><div class="row press"><div class="ri off">${io('refresh')}</div><div class="rt"><b>Восстановить покупки</b></div><div class="rc">${io('next')}</div></div><div class="row press"><div class="ri off">${io('chat')}</div><div class="rt"><b>Написать в поддержку</b></div><div class="rc">${io('next')}</div></div></div>`, 4);
 }
 
 /* ───────── картинки плиток: основа + слой .accent в цвет темы (как ThemedArtLayers) ───────── */
@@ -352,24 +371,20 @@ async function drawTile(cv, ap, tint) {
 }
 
 /* ───────── отрисовка ───────── */
-const phones = ['phA', 'phB', 'phC', 'phNow'].map((id) => document.getElementById(id));
-phones.forEach((ph) => { ph.innerHTML = homeHTML(); });
+const SCREENS = { phHome: () => homeHTML(true), phLessons: lessonsHTML, phVideo: videoHTML, phCommunity: communityHTML, phSettings: settingsHTML, phNow: () => homeHTML(false) };
+const phones = Object.keys(SCREENS).map((id) => { const ph = document.getElementById(id); ph.innerHTML = SCREENS[id](); return ph; });
+phones.forEach((ph) => { if (ph.id !== 'phNow') ph.querySelectorAll('[data-stars]').forEach((e) => { e.innerHTML = AURORA_STARS; }); });
 let lastStarsKey = '';
 function render() {
   let r; try { r = compute(); } catch (err) { console.error(LOG, 'расчёт палитры упал', { H: st.H, S: st.S, ap: st.ap, err: String(err) }); return; }
-  const { base, g, sc, checks } = r;
+  const { v, g, sc, checks } = r;
   document.documentElement.dataset.ap = st.ap;
   for (const ph of phones) {
-    const own = r.vars[ph.id];
-    for (const k in base) ph.style.setProperty('--' + k, base[k]);
-    for (const k in own) ph.style.setProperty('--' + k, own[k]);
+    for (const k in v) ph.style.setProperty('--' + k, v[k]);
     if (ph.id === 'phNow') ph.querySelector('[data-sky]').style.background = r.skyNow;
-    // зачем: в «Самоцветах» плитки цветные, картинкам нужен светлый тёмный вариант независимо от оформления
-    const artAp = ph.id === 'phC' ? 'dark' : st.ap;
-    ph.querySelectorAll('[data-tile]').forEach((cv) => { drawTile(cv, cv.dataset.tile === 'phrase_of_day' && ph.id !== 'phC' ? st.ap : artAp, ph.id === 'phC' ? '#FFFFFF' : g.accentGraphic); });
+    ph.querySelectorAll('[data-tile]').forEach((cv) => { drawTile(cv, st.ap, g.accentGraphic); });
   }
-  // звёзды: в «Сейчас» и в «Авроре» (в тёмном оформлении); «Титан» и «Самоцветы» без звёзд
-  if (st.ap !== lastStarsKey) { lastStarsKey = st.ap; const svg = starsSvg(sc); phones.forEach((ph) => { ph.querySelector('[data-stars]').innerHTML = ph.id === 'phNow' || ph.id === 'phA' ? svg : ''; }); }
+  if (st.ap !== lastStarsKey) { lastStarsKey = st.ap; document.querySelector('#phNow [data-stars]').innerHTML = nowStars(sc); }
   // панель
   const hueL = st.ap === 'dark' ? .7 : .62; const satL = st.ap === 'dark' ? .7 : .6;
   document.getElementById('hueB').style.background = `linear-gradient(90deg,${Array.from({ length: 13 }, (_, i) => ok(hueL, .14, i * 30)).join(',')})`;
@@ -381,8 +396,8 @@ function render() {
   document.getElementById('hueT').setAttribute('aria-valuenow', st.H); document.getElementById('satT').setAttribute('aria-valuenow', st.S);
   document.getElementById('reset').disabled = st.H === STD.H && st.S === STD.S;
   const seg = document.getElementById('seg'); seg.dataset.v = st.ap; seg.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.ap === st.ap)));
-  document.getElementById('note').innerHTML = `Тема приложения <b>${r.id}</b>. Белый текст на сцене (нужно от 4,5): Аврора <b>${checks.aurora}:1</b>, Титан <b>${checks.titan}:1</b>, Самоцветы <b>${checks.gems}:1</b>, сейчас <b>${checks.now}:1</b>. Белая подпись на цветной плитке: <b>${checks.gemTile}:1</b>.`;
-  console.log(LOG, JSON.stringify({ id: r.id, ap: st.ap, mode: sc.mode, accent: g.accentGraphic, checks }));
+  document.getElementById('note').innerHTML = `Тема приложения <b>${r.id}</b>. Белый текст на сцене «Авроры»: <b>${checks.aurora}:1</b>, подпись на стеклянной плитке: <b>${checks.tile}:1</b> (нужно от 4,5). Сцена приложения сейчас считает оттенок <b>${checks.nowHue}°</b> и цветность <b>${checks.nowChroma}</b> при ползунках ${st.H}° и ${st.S} %.`;
+  console.log(LOG, JSON.stringify({ id: r.id, ap: st.ap, H: st.H, S: st.S, accent: g.accentGraphic, checks }));
 }
 let raf = 0; const schedule = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; render(); }); };
 
@@ -399,8 +414,8 @@ slider('hueT', 359, (x) => { st.H = x; }, () => st.H); slider('satT', 100, (x) =
 document.querySelectorAll('#seg button').forEach((b) => b.addEventListener('click', () => { st.ap = b.dataset.ap; schedule(); }));
 document.getElementById('reset').addEventListener('click', () => { st.H = STD.H; st.S = STD.S; schedule(); });
 
-/* три варианта в один ряд на любом экране: масштаб вместо горизонтальной прокрутки; на телефоне — по одному */
-function fit() { const w = Math.min(window.innerWidth, 1760) - 32; const perRow = w >= 900 ? (w >= 1500 ? 4 : 3) : w >= 620 ? 2 : 1; const z = Math.max(.45, Math.min(1, (w - 26 * (perRow - 1) - 16 * perRow) / (411 * perRow)));
+/* по три экрана в ряд на широком окне: масштаб вместо горизонтальной прокрутки; на телефоне — по одному */
+function fit() { const w = Math.min(window.innerWidth, 1760) - 32; const perRow = w >= 900 ? 3 : w >= 620 ? 2 : 1; const z = Math.max(.45, Math.min(1, (w - 26 * (perRow - 1) - 16 * perRow) / (411 * perRow)));
   document.querySelectorAll('.zw').forEach((el) => { el.style.width = `${411 * z}px`; el.style.height = `${914 * z}px`; el.firstElementChild.style.transform = z < 1 ? `scale(${z})` : ''; }); }
 window.addEventListener('resize', fit); fit();
 const q = new URLSearchParams(location.search); if (q.get('H')) st.H = Math.max(0, Math.min(359, +q.get('H') | 0)); if (q.get('S')) st.S = Math.max(0, Math.min(100, +q.get('S') | 0)); if (q.get('ap') === 'light' || q.get('ap') === 'dark') st.ap = q.get('ap');

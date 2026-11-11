@@ -173,19 +173,9 @@ import { useLessonHardModeSwitch } from './lesson_hardmode_switch';
 import { traceLessonExit } from './lesson_exit_trace';
 import { useMomentsV3Enabled } from '../components/streak/moments/use_moments_v3_flag';
 // зачем (m15, владелец 14.10, за флагом moments_v3): шторка «Выйти из урока?» грузится лениво и только когда флаг включён и человек нажал «назад»
+// зачем (владелец 11.11): подсказка «артикли встречаются здесь раньше урока 20» убрана целиком — в уроках она больше не всплывает.
+// Ключ grammar_hint_articles в cloud_sync оставлен намеренно: старая отметка «уже видел» у людей безвредна и чистится как раньше.
 const GRAMMAR_HINTS = [
-  {
-    key: 'grammar_hint_articles',
-    lessonTeaches: 20,
-    detect: (en: string) => /\b(a|an|the)\b/i.test(en),
-    textRu: 'Артикли a, an, the встречаются здесь раньше урока 20, где мы изучим их подробно. Пока просто используй как показано — без них предложение не построить.',
-    textUk: 'Артиклі a, an, the зустрічаються тут раніше уроку 20, де ми вивчимо їх докладно. Поки просто використовуй як показано — без них речення не побудувати.',
-    textEs:
-      'Los artículos a, an y the aparecen aquí antes de la lección 20, donde los veremos en detalle. Por ahora úsalos como en el ejemplo; sin ellos la frase no encaja.',
-    // зачем (владелец 12.10, реестр п.76: английский интерфейс в R1): en раньше читал textRu — английский интерфейс видел русский.
-    textEn:
-      'The articles a, an and the show up here before lesson 20, where we cover them in detail. For now, just use them as shown — the sentence doesn’t work without them.',
-  },
   {
     key: 'grammar_hint_some_any',
     lessonTeaches: 21,

@@ -428,11 +428,11 @@ const TPL = [
   { id: 'welcome_back', name: 'С возвращением', group: 'Запуск', kind: 'new', ev: 'welcome_back (есть сигнал, кадра нет)', when: 'взамен окна «С возвращением» · перерыв 7 дней и больше', data: 'daysAway, dueCards, lessonsDone', motion: 'монета появляется, числа досчитываются',
     cta: { label: 'Повторить карточки', icon: 'layers' },
     render: () => `<div class="art"><div class="pop" style="--d:120ms">${coin(6, 112, 'breathe')}</div></div><div class="ov a" style="--d:380ms">9 дней перерыва</div><div class="h1">${words('С возвращением', 460)}</div><div class="p a" style="--d:640ms">Серия начнётся заново с сегодняшнего занятия.</div>
-      <div class="stats"><div class="stt a" style="--d:800ms">${cnt(24, 900, 800)}<span>карточки ждут</span></div><div class="stt a" style="--d:880ms">${cnt(12, 980, 800)}<span>уроков пройдено</span></div></div>` },
+      <div class="stats"><div class="stt a" style="--d:800ms">${cnt(24, 900, 800)}<span>карточки на повтор</span></div><div class="stt a" style="--d:880ms">${cnt(12, 980, 800)}<span>уроков позади</span></div></div>` },
 
   { id: 'legacy_coins', name: 'Бонусы стали монетами', group: 'Запуск', kind: 'new', ev: 'legacy_bonus_converted (новое)', when: 'взамен окна «Встречайте PhraseMan 2.0» · один раз после пересчёта старых бонусов', data: 'coins, shardsBefore, pearlsBefore', motion: 'монеты падают сверху, сумма досчитывается',
     render: () => `${coinRain(9)}<div class="big m a" style="--d:300ms">${cnt(1240, 500, 1100)}</div><div class="ov a" style="--d:700ms">PhraseMan 2.0</div><div class="h1 s">${words('Бонусы стали монетами', 780)}</div><div class="p a" style="--d:1100ms">Осколки и жемчуг пересчитаны. Ничего не потеряно.</div>
-      <div class="stats"><div class="stt a" style="--d:1250ms"><b>310</b><span>осколков было</span></div><div class="stt a" style="--d:1330ms"><b>4</b><span>жемчужины было</span></div></div>` },
+      <div class="stats"><div class="stt a" style="--d:1250ms"><b>310</b><span>осколков было</span></div><div class="stt a" style="--d:1330ms"><b>4</b><span>жемчуга было</span></div></div>` },
 
   { id: 'rank_enough', name: 'Хватает на ранг', group: 'Монета', kind: 'new', ev: 'coin_rank_enough (новое)', when: 'взамен окна «Хватает на ранг N» · монет стало достаточно для следующего ранга', data: 'rank, nextRank, balance, price', motion: 'монета переворачивается на новый ранг, вокруг расходится свечение',
     cta: { label: 'Улучшить монету', icon: 'trend' },
@@ -456,11 +456,11 @@ const TPL = [
 
   { id: 'ref_welcome', name: 'Подарок по приглашению', group: 'Друзья', kind: 'new', ev: 'referral_welcome (новое)', when: 'взамен реферального окна-приветствия · вход по ссылке друга', data: 'friendName, friendRank, giftDays', motion: 'две монеты сходятся, между ними встаёт отметка',
     cta: { label: 'Ввести код', icon: 'key' },
-    render: () => `<div class="art"><div class="pair">${coin(7, 96, 'c1')}${coin(1, 96, 'c2')}<span class="ok pop" style="--d:800ms">${io('check', 22)}</span></div></div><div class="ov a" style="--d:500ms">Приглашение от Анны</div><div class="h1">${words('7 дней Plus в подарок', 580)}</div><div class="p a" style="--d:900ms">Введи код друга, и Plus включится сразу. Анна тоже получит награду.</div>` },
+    render: () => `<div class="art"><div class="pair">${coin(7, 96, 'c1')}${coin(1, 96, 'c2')}<span class="ok pop" style="--d:800ms">${io('check', 22)}</span></div></div><div class="ov a" style="--d:500ms">Анна приглашает</div><div class="h1">${words('7 дней Plus в подарок', 580)}</div><div class="p a" style="--d:900ms">Введи код друга, и Plus включится сразу. Анна тоже получит награду.</div>` },
 
   { id: 'ref_ended', name: 'Подарок закончился', group: 'Друзья', kind: 'new', ev: 'referral_access_ended (новое)', when: 'взамен окна «Реферальный доступ закончился» на вкладке «Друзья»', data: 'friendName, endedAt', motion: 'знак появляется, текст встаёт по словам',
     cta: { label: 'Пригласить друга', icon: 'personAdd' },
-    render: () => `<div class="art">${icn('hourglass')}</div><div class="ov a" style="--d:380ms">Подарок от Анны</div><div class="h1 s">${words('7 дней Plus закончились', 460)}</div><div class="p a" style="--d:800ms">Доступ действовал до 10 ноября. Уроки и прогресс остались с тобой.</div>` },
+    render: () => `<div class="art">${icn('hourglass')}</div><div class="ov a" style="--d:380ms">Подарок по приглашению</div><div class="h1 s">${words('Подарочный Plus закончился', 460)}</div><div class="p a" style="--d:800ms">Доступ действовал до 10 ноября. Уроки и прогресс остались с тобой.</div>` },
 
   { id: 'perfect_lesson', name: 'Идеальный урок', group: 'Уроки', kind: 'new', ev: 'lesson_perfect (новое)', when: 'взамен окна «Идеальный урок» на итоге · урок пройден без ошибок', data: 'lessonId, total, coins', motion: 'звёзды встают по одной, конфетти один раз',
     render: () => `${confetti(18, 700)}<div class="art"><div class="stars">${[0, 1, 2].map((i) => `<span class="pop" style="--d:${160 + i * 120}ms">${io('star', i === 1 ? 74 : 54, i === 1 ? 'margin-top:-10px' : '')}</span>`).join('')}</div></div><div class="big s a" style="--d:520ms">45<span style="color:var(--sec)">/45</span></div><div class="ov a" style="--d:680ms">Урок 12</div><div class="h1">${words('Без единой ошибки', 760)}</div><div class="chip a" style="--d:1050ms">${coin(5, 20)}+120 монет</div>` },
@@ -475,7 +475,7 @@ const TPL = [
 
   { id: 'pack_prize', name: 'Приз за набор месяца', group: 'Карточки', kind: 'new', ev: 'community_month_reward (новое)', when: 'взамен окна «Награда сообщества», которое возвращалось при каждом заходе на вкладку', data: 'place, month, coins, top[3]', motion: 'три столбика растут, твой подсвечен',
     cta: { label: 'Забрать 500 монет', icon: 'wallet' },
-    render: () => `<div class="art"><div class="podium" style="height:190px">${[[2, 3, 'Ты', 96, true], [1, 8, 'Лена', 130, false], [3, 2, 'Олег', 70, false]].map(([pl, rk, nm, h, me], i) => `<div class="pc ${me ? 'me' : ''}">${coin(rk, 40)}<div class="nm">${nm}</div><div class="bar" style="height:${h}px;--d:${200 + i * 120}ms">${pl}</div></div>`).join('')}</div></div><div class="ov a" style="--d:700ms">Набор месяца · октябрь</div><div class="h1 s">${words('Твой набор на 2-м месте', 780)}</div><div class="p a" style="--d:1100ms">«Фразы для кафе» сохранили 214 человек.</div>` },
+    render: () => `<div class="art"><div class="podium" style="height:190px">${[[2, 3, 'Ты', 96, true], [1, 8, 'Лена', 130, false], [3, 2, 'Олег', 70, false]].map(([pl, rk, nm, h, me], i) => `<div class="pc ${me ? 'me' : ''}">${coin(rk, 40)}<div class="nm">${nm}</div><div class="bar" style="height:${h}px;--d:${200 + i * 120}ms">${pl}</div></div>`).join('')}</div></div><div class="ov a" style="--d:700ms">Набор месяца за октябрь</div><div class="h1 s">${words('Твой набор на 2-м месте', 780)}</div><div class="p a" style="--d:1100ms">«Фразы для кафе» · сохранений: 214</div>` },
 
   { id: 'first_dialog', name: 'Первый разговор', group: 'Диалоги', kind: 'new', ev: 'first_dialog_done (новое)', when: 'взамен окна «Первый разговор» в конце первого диалога с ИИ', data: 'replies, minutes', motion: 'реплики всплывают по очереди, числа досчитываются',
     render: () => `<div class="bubs"><div class="b a" style="--d:200ms">What would you like to drink?</div><div class="b me a" style="--d:560ms">A coffee, please.</div><div class="b a" style="--d:920ms">Sure. Anything else?</div></div><div class="ov a" style="--d:1200ms">Диалоги с ИИ</div><div class="h1 s">${words('Первый разговор состоялся', 1280)}</div>
@@ -486,7 +486,7 @@ const TPL = [
 
   { id: 'peak_overtake', name: 'Пик · тебя обошли', group: 'Пик', kind: 'new', ev: 'spire_position_change (новое)', when: 'взамен окон позиции Пика (поднялся, обошли, последний шанс) · до трёх окон подряд', data: 'league, floor, rival, gap, endsAt', motion: 'две полосы растут, полоса соперника длиннее',
     cta: { label: 'Играть на Пике', icon: 'flash' },
-    render: () => `<div class="race" style="margin-bottom:24px"><div class="r her"><span class="nm">Марк</span>${coin(8, 36)}<div class="tr"><i style="--p:.86;--d:200ms"></i></div><span class="v">1 240</span></div><div class="r"><span class="nm">Ты</span>${coin(5, 36)}<div class="tr"><i style="--p:.82;--d:320ms"></i></div><span class="v">1 200</span></div></div><div class="ov a" style="--d:900ms">Пик · Гранит · 6-я ступень</div><div class="h1">${words('Марк обошёл тебя', 980)}</div><div class="p a" style="--d:1240ms">До него 40 очков. Неделя закрывается в воскресенье.</div>` },
+    render: () => `<div class="race" style="margin-bottom:24px"><div class="r her"><span class="nm">Марк</span>${coin(8, 36)}<div class="tr"><i style="--p:.86;--d:200ms"></i></div><span class="v">1 240</span></div><div class="r"><span class="nm">Ты</span>${coin(5, 36)}<div class="tr"><i style="--p:.82;--d:320ms"></i></div><span class="v">1 200</span></div></div><div class="ov a" style="--d:900ms">Пик · Гранит</div><div class="h1">${words('Марк обходит тебя', 980)}</div><div class="p a" style="--d:1240ms">Разрыв 40 монет · до конца недели 3 дня</div>` },
 ];
 
 /* ── плеер = просмотр сторис ── */

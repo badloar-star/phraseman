@@ -147,9 +147,24 @@ function norm(value: string): string {
   return stripped || raw;
 }
 
-function optionKey(value: string): string {
-  return norm(value).replace(/[’`]/g, "'");
+// зачем (владелец 11.11, микрофризы при сборке фразы): подбор плиток идёт прямо в тапе по слову и оценивает ~600 слов из пулов.
+// Раньше для КАЖДОГО слова на КАЖДЫЙ тап заново гонялись регулярки и перебор всех групп. Слова в пулах одни и те же от тапа к тапу,
+// поэтому разбор слова (ключ, лемма, группа, смысловые метки) считаем один раз и помним. Результат ранжирования не меняется.
+const MEMO_LIMIT = 6000;
+function memoizeByWord<T>(compute: (value: string) => T): (value: string) => T {
+  const cache = new Map<string, T>();
+  return (value: string): T => {
+    const hit = cache.get(value);
+    if (hit !== undefined) return hit;
+    const result = compute(value);
+    // Словарь курса конечен; предел — страховка от роста памяти на пользовательском вводе.
+    if (cache.size >= MEMO_LIMIT) cache.clear();
+    cache.set(value, result);
+    return result;
+  };
 }
+
+const optionKey = memoizeByWord((value: string): string => norm(value).replace(/[’`]/g, "'"));
 
 function isSingleOrthographicWord(value: string): boolean {
   return !/\s/.test(String(value ?? '').trim());
@@ -181,7 +196,9 @@ function layoutOptionShuffle(values: string[], random: () => number = Math.rando
   return result;
 }
 
-function simpleLemma(value: string): string {
+const simpleLemma = memoizeByWord((value: string): string => simpleLemmaUncached(value));
+
+function simpleLemmaUncached(value: string): string {
   const key = optionKey(value);
   if (key.endsWith('ies') && key.length > 4) return `${key.slice(0, -3)}y`;
   if (key.endsWith('ied') && key.length > 4) return `${key.slice(0, -3)}y`;
@@ -200,12 +217,17 @@ function simpleLemma(value: string): string {
   return key;
 }
 
-function closedGroupFor(value: string): string | null {
-  const key = optionKey(value);
+// Слово → первая по порядку закрытая группа (her есть и в possessives, и в pronouns — побеждает первая, как и при переборе).
+const CLOSED_GROUP_BY_WORD: ReadonlyMap<string, string> = (() => {
+  const index = new Map<string, string>();
   for (const [group, words] of Object.entries(CLOSED_GROUPS)) {
-    if (words.includes(key)) return group;
+    for (const word of words) if (!index.has(word)) index.set(word, group);
   }
-  return null;
+  return index;
+})();
+
+function closedGroupFor(value: string): string | null {
+  return CLOSED_GROUP_BY_WORD.get(optionKey(value)) ?? null;
 }
 
 function normalizePos(value?: string): string | null {
@@ -225,7 +247,9 @@ function normalizePos(value?: string): string | null {
   return x;
 }
 
-function inferPos(value: string): string | null {
+const inferPos = memoizeByWord((value: string): string | null => inferPosUncached(value));
+
+function inferPosUncached(value: string): string | null {
   const closed = closedGroupFor(value);
   if (closed === 'toBe') return 'verbs';
   if (closed === 'articles') return 'articles';
@@ -259,15 +283,28 @@ function candidatePos(candidate: SmartDistractorCandidate): string | null {
   return normalizePos(candidate.pos) ?? normalizePos(candidate.category) ?? inferPos(candidate.value);
 }
 
-function semanticTags(value: string): Set<string> {
+// Слово → все смысловые группы, где оно есть (book — и commerce_request, и documents_messages, и devices_objects).
+const SEMANTIC_TAGS_BY_WORD: ReadonlyMap<string, readonly string[]> = (() => {
+  const index = new Map<string, string[]>();
+  for (const [tag, words] of Object.entries(SEMANTIC_GROUPS)) {
+    for (const word of words) {
+      const tags = index.get(word);
+      if (!tags) index.set(word, [tag]);
+      else if (!tags.includes(tag)) tags.push(tag);
+    }
+  }
+  return index;
+})();
+
+// Набор общий для всех вызовов (из памяти) — только читать, не менять.
+const semanticTags = memoizeByWord((value: string): ReadonlySet<string> => {
   const key = optionKey(value);
   const lemma = simpleLemma(key);
   const tags = new Set<string>();
-  for (const [tag, words] of Object.entries(SEMANTIC_GROUPS)) {
-    if (words.includes(key) || words.includes(lemma)) tags.add(tag);
-  }
+  for (const tag of SEMANTIC_TAGS_BY_WORD.get(key) ?? []) tags.add(tag);
+  for (const tag of SEMANTIC_TAGS_BY_WORD.get(lemma) ?? []) tags.add(tag);
   return tags;
-}
+});
 
 function isInflectionalNeighbor(a: string, b: string): boolean {
   const ak = optionKey(a);
@@ -278,7 +315,7 @@ function isInflectionalNeighbor(a: string, b: string): boolean {
     || ak === `${bk}s` || ak === `${bk}es` || ak === `${bk}ed` || ak === `${bk}ing`;
 }
 
-function sharedCount(a: Set<string>, b: Set<string>): number {
+function sharedCount(a: ReadonlySet<string>, b: ReadonlySet<string>): number {
   let count = 0;
   for (const tag of a) if (b.has(tag)) count += 1;
   return count;
@@ -304,21 +341,46 @@ function lexicalSimilarityScore(a: string, b: string): number {
   return Math.max(0, prefix * 3 - lengthDelta);
 }
 
+// Всё, что зависит только от ПРАВИЛЬНОГО слова, — считаем один раз на подбор, а не на каждого из ~600 кандидатов.
+interface CorrectWordProfile {
+  value: string;
+  key: string;
+  mode: 'vocabulary' | 'phrase';
+  pos: string | null;
+  closed: string | null;
+  neighbors: readonly string[];
+  tags: ReadonlySet<string>;
+  isGenericVerb: boolean;
+}
+
+function buildCorrectWordProfile(correct: SmartDistractorCandidate, context: SmartDistractorRankContext): CorrectWordProfile {
+  const key = optionKey(correct.value);
+  return {
+    value: correct.value,
+    key,
+    mode: context.mode ?? 'phrase',
+    pos: normalizePos(context.pos) ?? normalizePos(context.category) ?? candidatePos(correct),
+    closed: closedGroupFor(correct.value),
+    neighbors: SMART_NEIGHBORS[key] ?? SMART_NEIGHBORS[simpleLemma(key)] ?? [],
+    tags: semanticTags(correct.value),
+    isGenericVerb: GENERIC_VERBS.has(key),
+  };
+}
+
 function scoreCandidate(
-  correct: SmartDistractorCandidate,
+  profile: CorrectWordProfile,
   candidate: SmartDistractorCandidate,
-  context: SmartDistractorRankContext,
 ): RankedSmartDistractor | null {
-  const correctValue = correct.value;
+  const correctValue = profile.value;
   const candidateValue = candidate.value;
-  const correctKey = optionKey(correctValue);
+  const correctKey = profile.key;
   const candidateKey = optionKey(candidateValue);
   if (!correctKey || !candidateKey || correctKey === candidateKey) return null;
 
-  const mode = context.mode ?? 'phrase';
-  const correctPos = normalizePos(context.pos) ?? normalizePos(context.category) ?? candidatePos(correct);
+  const mode = profile.mode;
+  const correctPos = profile.pos;
   const candPos = candidatePos(candidate);
-  const correctClosed = closedGroupFor(correctValue);
+  const correctClosed = profile.closed;
   const candClosed = closedGroupFor(candidateValue);
   const reasons: string[] = [];
   let score = sourceScore(candidate.source);
@@ -352,13 +414,13 @@ function scoreCandidate(
     reasons.push('inflection-trap');
   }
 
-  const neighborList = SMART_NEIGHBORS[correctKey] ?? SMART_NEIGHBORS[simpleLemma(correctKey)] ?? [];
+  const neighborList = profile.neighbors;
   if (neighborList.includes(candidateKey) || neighborList.includes(simpleLemma(candidateKey))) {
     score += 120;
     reasons.push('curated-neighbor');
   }
 
-  const correctTags = semanticTags(correctValue);
+  const correctTags = profile.tags;
   const candTags = semanticTags(candidateValue);
   const overlaps = sharedCount(correctTags, candTags);
   if (overlaps > 0) {
@@ -369,7 +431,7 @@ function scoreCandidate(
     reasons.push('same-pos-no-semantic');
   }
 
-  if (correctPos === 'verbs' && GENERIC_VERBS.has(candidateKey) && !GENERIC_VERBS.has(correctKey)) {
+  if (correctPos === 'verbs' && GENERIC_VERBS.has(candidateKey) && !profile.isGenericVerb) {
     score -= 50;
     reasons.push('generic-verb');
   }
@@ -400,13 +462,18 @@ export function rankSmartDistractors(
   context: SmartDistractorRankContext = {},
 ): RankedSmartDistractor[] {
   const correctCandidate = typeof correct === 'string' ? { value: correct } : correct;
-  return uniqueCandidates(candidates, true)
-    .map((candidate) => scoreCandidate(correctCandidate, candidate, context))
-    .filter((candidate): candidate is RankedSmartDistractor => candidate !== null)
-    .sort((a, b) => {
-      if (b.score !== a.score) return b.score - a.score;
-      return stableHash(`${correctCandidate.value}:${a.value}`) - stableHash(`${correctCandidate.value}:${b.value}`);
-    });
+  const profile = buildCorrectWordProfile(correctCandidate, context);
+  // Хэш для развязки равных очков считаем один раз на кандидата: в сравнении сортировки он раньше пересчитывался на каждую пару.
+  const scored: { ranked: RankedSmartDistractor; tieBreak: number }[] = [];
+  for (const candidate of uniqueCandidates(candidates, true)) {
+    const ranked = scoreCandidate(profile, candidate);
+    if (ranked !== null) scored.push({ ranked, tieBreak: stableHash(`${correctCandidate.value}:${ranked.value}`) });
+  }
+  scored.sort((a, b) => {
+    if (b.ranked.score !== a.ranked.score) return b.ranked.score - a.ranked.score;
+    return a.tieBreak - b.tieBreak;
+  });
+  return scored.map((entry) => entry.ranked);
 }
 
 function buildSmartOptions(

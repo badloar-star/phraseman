@@ -65,9 +65,6 @@ jest.mock('../components/dialogs/DialogueV2BriefingScreen', () => ({
   DialogueV2BriefingScreen: (props: unknown) => mockScreen(props),
 }));
 jest.mock('../components/feedback/PressableScale', () => ({ PressableScale: 'PressableScale' }));
-// зачем (m16, владелец 15.10): «Входящий звонок» поверх брифинга — свой тест tests/dialogue_incoming_call_m16.test.tsx; здесь проверяется старт диалога
-const mockIncomingCall = jest.fn();
-jest.mock('../components/dialogs/DialogueIncomingCall', () => ({ __esModule: true, default: (props: unknown) => { mockIncomingCall(props); return null; } }));
 // По умолчанию тариф ещё не известен → запрет по месячному остатку не действует (прежние проверки не меняются).
 const mockUsePremium = jest.fn(() => ({ accessResolved: false, hasPremiumAccess: false }));
 jest.mock('../components/PremiumContext', () => ({ usePremium: () => mockUsePremium() }));
@@ -122,12 +119,16 @@ describe('Dialogue V2 briefing route', () => {
     expect(mockFetchCatalogue).toHaveBeenCalledWith('de');
     expect(mockBuildModel).toHaveBeenCalledWith({
       packets: envelope.packets, studyTarget: 'de', scenarioId: 'work_01', localCoinRank: 3,
+      // зачем (владелец 11.11, D204): маршрут передаёт в модель признак Plus (открывает сценарий без ранга); тест отставал от этой правки
+      hasPremiumAccess: false,
       // зачем (владелец 01.10): служебный текст сцены — на языке интерфейса.
       uiLang: 'ru',
     });
     expect(mockScreen).toHaveBeenCalledWith(expect.objectContaining({
       ...unlockedModel,
       labels: expect.objectContaining({ start: 'Начать диалог' }),
+      // зачем (владелец 11.11: «экран "звонит" лишний — объедини с брифингом»): звонок — шапка самого брифинга, имя — первый собеседник пакета
+      call: { kicker: 'Входящий · диалог\u00A0A1', title: 'Анна звонит', answer: 'Ответить' },
     }));
   });
 
@@ -157,6 +158,8 @@ describe('Dialogue V2 briefing route', () => {
 
     const props = mockScreen.mock.calls[0][0];
     expect(props.unlocked).toBe(false);
+    // у закрытой по рангу сцены звонка нет
+    expect(props.call).toBeNull();
     props.onStart();
     expect(mockBack).not.toHaveBeenCalled();
     expect(mockScreen).toHaveBeenCalledTimes(1);

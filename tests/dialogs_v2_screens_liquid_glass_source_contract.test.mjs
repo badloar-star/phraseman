@@ -103,7 +103,9 @@ test('briefing B1/B2: medallion, CEFR badge, «Задания» card, pinned CTA
   assert.match(briefing, /testID="dialogue-v2-briefing-tasks"/);
   assert.match(briefing, /<DialogueGlassCta/);
   assert.match(briefing, /trailingArrow/);
-  assert.ok(briefing.includes("icon={unlocked ? undefined : 'lock-closed'}"), 'rank lock CTA shows a lock');
+  // владелец 11.11: звонок объединён с брифингом — у открытой сцены кнопка «Ответить» с трубкой; замок ранга как был.
+  assert.ok(briefing.includes("icon={call ? 'call' : unlocked ? undefined : 'lock-closed'}"), 'rank lock CTA shows a lock, call CTA shows a handset');
+  assert.ok(briefing.includes('const call = unlocked ? callProp : null;'), 'no call on a rank-locked scene');
   assert.match(briefing, /currentRank != null/);
   assert.match(briefingRoute, /currentRank=\{localCoinRank\}/);
   assert.match(briefingRoute, /ru: 'Задания'/);

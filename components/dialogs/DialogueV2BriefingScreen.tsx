@@ -16,7 +16,8 @@ import { DialogueGlassCta, dialogueGlassCardStyle, useDialogueGlass } from './gl
 import { ScreenBackSlot, SafeTopBackButton } from '../v2/ScreenBackButton';
 import { glassTone } from './glass/glassTone';
 import { formatDialogObjectiveLabel } from './dialog_objective_label';
-import { BriefingRevealRow } from './DialogueIncomingCall';
+import { BriefingCallRings, BriefingRevealRow } from './DialogueBriefingCall';
+import type { DialogueBriefingCall } from './dialogue_briefing_call_copy';
 
 // зачем (владелец 2026-09-30): брифинг «1 в 1» по макету dialogs.html B1/B2 (Liquid Glass):
 // медальон сцены 88, бейдж уровня, крупное название, карточка брифинга, карточка «Задания»
@@ -47,8 +48,12 @@ export type DialogueV2BriefingScreenProps = Readonly<{
   }>;
   onBack: () => void;
   onStart: () => void;
-  /** m16: после «Ответить» на звонок строки заданий всплывают по очереди; false — сразу на месте. */
-  revealRows?: boolean;
+  /**
+   * m16 (владелец 11.11: «экран "звонит" лишний — объедини с брифингом»): шапка-звонок открытой сцены — «Входящий · диалог A1», кольца вокруг плитки,
+   * «{Имя} звонит», под ним название сцены; кнопка внизу — «Ответить» с трубкой и сразу начинает диалог; задания всплывают по очереди.
+   * null / не передан (сцена закрыта по рангу, витрина) — обычная шапка с плашкой уровня и «Начать диалог».
+   */
+  call?: DialogueBriefingCall | null;
   /** R52: старт идёт (согласие, списание энергии, переход) — кнопка занята. */
   starting?: boolean;
 }>;
@@ -64,7 +69,7 @@ export function DialogueV2BriefingScreen({
   briefing,
   objectives,
   rankRequired,
-  revealRows = false,
+  call: callProp = null,
   showEnergy = false,
   unlocked,
   currentRank,
@@ -77,7 +82,9 @@ export function DialogueV2BriefingScreen({
   // зачем (Сверка 22.10: «назад» и «⚡5» наезжали на часы; правило владельца «верхняя сейф-зона — часть общей композиции»): отступ под часы — устойчивый inset (первый кадр уже финальный), а не SafeAreaView, который в первом кадре мог отдать 0;
   // фон (V2Backdrop и glass.bg корня) идёт под строку статуса без полосы
   const insets = useStableSafeAreaInsets();
-  const startLabel = unlocked ? labels.start : labels.locked(rankRequired);
+  // зачем: у закрытой по рангу сцены звонка нет (как и раньше) — даже если текст звонка передан
+  const call = unlocked ? callProp : null;
+  const startLabel = call ? call.answer : unlocked ? labels.start : labels.locked(rankRequired);
   const card = dialogueGlassCardStyle(glass);
 
   return (
@@ -95,13 +102,27 @@ export function DialogueV2BriefingScreen({
 
         <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false} decelerationRate="fast">
           <View testID="dialogue-v2-briefing-scene" style={styles.hero}>
-            <View style={{ width: 88, height: 88, borderRadius: 28, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
-              <Ionicons name="chatbubbles-outline" size={40} color={glass.text} />
+            {call ? <Text testID="dialogue-v2-briefing-call-kicker" maxFontSizeMultiplier={1.3} style={[styles.callKicker, { color: glass.secondary }]}>{call.kicker}</Text> : null}
+            <View style={call ? styles.callTile : styles.tile}>
+              {call ? <BriefingCallRings glass={glass} /> : null}
+              <View style={{ width: 88, height: 88, borderRadius: 28, backgroundColor: glass.opaqueControl, alignItems: 'center', justifyContent: 'center' }}>
+                <Ionicons name="chatbubbles-outline" size={40} color={glass.text} />
+              </View>
             </View>
-            <View style={[styles.level, { backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass) }]}>{/* зачем (стиль «Тень»): плашка уровня `.lvl` — вложенная, без кромки */}
-              <Text maxFontSizeMultiplier={1.3} style={[styles.levelText, { color: glass.text }]}>{cefr}</Text>
-            </View>
-            <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, { color: glass.text }]}>{title}</Text>
+            {call ? (
+              <>
+                {/* зачем: уровень уже стоит в строке «Входящий · диалог A1» — плашку уровня не дублируем; название сцены — под «{Имя} звонит», как было на экране звонка */}
+                <Text testID="dialogue-v2-briefing-call-title" accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, styles.callTitle, { color: glass.text }]}>{call.title}</Text>
+                <Text maxFontSizeMultiplier={1.3} style={[styles.callScene, { color: glass.secondary }]}>{title}</Text>
+              </>
+            ) : (
+              <>
+                <View style={[styles.level, { backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass) }]}>{/* зачем (стиль «Тень»): плашка уровня `.lvl` — вложенная, без кромки */}
+                  <Text maxFontSizeMultiplier={1.3} style={[styles.levelText, { color: glass.text }]}>{cefr}</Text>
+                </View>
+                <Text accessibilityRole="header" maxFontSizeMultiplier={1.3} style={[styles.title, { color: glass.text }]}>{title}</Text>
+              </>
+            )}
           </View>
 
           <View style={[card, styles.briefCard]}>
@@ -111,7 +132,7 @@ export function DialogueV2BriefingScreen({
           <View testID="dialogue-v2-briefing-tasks" style={[card, styles.listCard]}>
             <Text maxFontSizeMultiplier={1.3} style={[styles.kicker, { color: glass.secondary }]}>{labels.tasks}</Text>
             {objectives.map((objective, index) => (
-              <BriefingRevealRow key={objective.id} index={index} active={revealRows}>
+              <BriefingRevealRow key={objective.id} index={index} active={call != null}>
               <View
                 style={styles.obj}
               >
@@ -136,8 +157,9 @@ export function DialogueV2BriefingScreen({
           onPress={onStart}
           disabled={!unlocked}
           busy={unlocked && starting}
-          trailingArrow={unlocked}
-          icon={unlocked ? undefined : 'lock-closed'}
+          trailingArrow={unlocked && !call}
+          // зачем (владелец 11.11, макет объединённого экрана): у звонка кнопка — трубка «Ответить» (она же старт диалога); замок ранга как был
+          icon={call ? 'call' : unlocked ? undefined : 'lock-closed'}
         />
         {!unlocked && currentRank != null ? (
           <View style={styles.rankNow} accessible accessibilityLabel={labels.currentRank(currentRank)}>
@@ -156,6 +178,13 @@ const styles = StyleSheet.create({
   top: { paddingHorizontal: 16, paddingTop: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   scroll: { paddingHorizontal: 16, paddingBottom: 28 },
   hero: { alignItems: 'center', marginTop: 18 },
+  tile: { width: 88, height: 88 },
+  // m16: вокруг плитки расходятся кольца (до ×2,2) — запас сверху и снизу, чтобы они не ложились на текст
+  callTile: { width: 88, height: 88, marginTop: 30, marginBottom: 18 },
+  // эталон `.ov` экрана звонка
+  callKicker: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 1.4, textTransform: 'uppercase', textAlign: 'center' },
+  callTitle: { fontSize: 28, lineHeight: 34 },
+  callScene: { marginTop: 4, fontSize: 16, lineHeight: 22, textAlign: 'center' },
   // dialogs.html B `.lvl`: 38×26, радиус 8, поля 0·9; без кромки (стиль «Тень»).
   level: { marginTop: 14, minWidth: 38, height: 26, borderRadius: 8, paddingHorizontal: 9, alignItems: 'center', justifyContent: 'center' },
   levelText: { fontSize: 13, lineHeight: 17, fontWeight: '700' },

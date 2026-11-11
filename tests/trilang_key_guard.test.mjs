@@ -64,7 +64,7 @@ test('fr/de законны только в файлах «Диалогов»; в
   const src = "triLang(lang, { ru: 'а', uk: 'б', en: 'c', es: 'd', 'pt-BR': 'e', vi: 'f', id: 'g', tr: 'h', pl: 'i', fr: 'j', de: 'k' })";
   assert.deepEqual(findTriLangKeyIssues(src, 'app/settings_screen.tsx')[0].bad, ['fr', 'de']);
   assert.deepEqual(findTriLangKeyIssues(src, 'app/dialogue_v2_session.tsx'), []);
-  assert.deepEqual(findTriLangKeyIssues(src, 'components/dialogs/DialogueIncomingCall.tsx'), []);
+  assert.deepEqual(findTriLangKeyIssues(src, 'components/dialogs/dialogue_briefing_call_copy.ts'), []);
   assert.deepEqual(findTriLangKeyIssues(src)[0].bad, ['fr', 'de']); // без пути — только языки интерфейса
 });
 

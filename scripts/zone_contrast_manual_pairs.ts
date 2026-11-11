@@ -34,8 +34,6 @@ const P2: [string, number, (g: G, id: string, level: string, app: string) => [st
   ['  замена: semanticInk(g).badText на control', 4.5, (g) => [semanticInk(g).badText, [flattenOver(g.opaqueControl, scr(g))]]],
   ['Диалоги memory:296 «Очистить» и Пик SpireResultPanel:107 «перебор»: V2 wrong на фоне и карточке', 4.5, (g, id, level, app) => [(getV2Palette(makeLiquidGlassTheme(id as never, {} as never, { level, appearance: app } as never) as never, (app === 'light' ? 'sagePorcelain' : 'dark') as never) as unknown as { wrong: string }).wrong, [scr(g), card(g)]]],
   ['  замена: semanticInk(g).badText на фоне и карточке', 4.5, (g) => [semanticInk(g).badText, [scr(g), card(g)]]],
-  ['Диалоги DialogueIncomingCall:176 трубка: bg на заливке good', 3, (g) => [g.bg, [g.good]]],
-  ['  замена: лучший из bg / белого на good (как inkOn)', 3, (g) => { const k = (a: string) => contrastRatio(a, g.good); return [k(g.bg) >= k('#FFFFFF') ? g.bg : '#FFFFFF', [g.good]]; }],
 ];
 for (const [name, thr, fn] of P2) {
   let min = 99, bad = 0, w = '';

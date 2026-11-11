@@ -37,6 +37,7 @@ import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHu
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { noteSkillAction } from '../modules/skills/skill_store';
 import { practiceCoinsAllowedForDeckKeys } from './flashcards/dictionary_training_deck';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
@@ -1018,6 +1019,10 @@ export default function FlashcardsBlitzSession() {
       // копилка отклонит повтор сама (already-credited).
       if (isOk) {
         const awarded = practiceRunes.onCorrectAnswer(question.card.id);
+        // зачем (D207, владелец 11.11): очки навыков — по таблице modules/skills; от монет не зависят, экран не меняют
+        noteSkillAction({ action: 'blitz_correct', itemKey: question.card.id });
+        // «Скорость» — только за верный ответ быстрее трёх секунд; порог проверяет сама таблица
+        noteSkillAction({ action: 'blitz_fast', itemKey: question.card.id, answerMs: Date.now() - shownAtRef.current });
         setLastAward(awarded > 0 ? awarded : 0);
         if (awarded > 0) runeFlight.fly(awarded);
       } else {

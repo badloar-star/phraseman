@@ -32,6 +32,10 @@
   .tag.df { background: rgba(240,185,90,.16); color: var(--warn); }
   /* зачем (владелец 11.11: «тут ничего нет»): у нового экрана колонки «было» нет вовсе — пустая плашка ничего не сообщала */
   .cols.two { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 820px; }
+  .states { margin-top: 16px; background: var(--panel); border-radius: 20px; padding: 14px; }
+  .states h3 { margin: 0 0 10px; font-size: 13px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink2); font-weight: 700; }
+  .strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .strip img { display: block; width: 100%; height: auto; border-radius: 12px; }
   @media (max-width: 760px) { .cols, .cols.two { grid-template-columns: 1fr; } }
 </style>
 </head>
@@ -40,7 +44,7 @@
   <h1>Сверка: было — одобренный макет — снято с приложения</h1>
   <p class="lead">Готовые экраны, снятые с телефона 11 ноября после ваших правок. Слева — приложение до переноса, по центру — макет, который вы одобрили, справа — настоящий кадр с эмулятора. Под каждым экраном перечислено, чем приложение сейчас отличается от макета. Тема на эмуляторе зелёная, на макете — светлая стандартная: цвета фона отличаются из-за темы, а не из-за переноса.</p>
   <div class="sum">
-    <div><b>14</b><span>экранов снято с приложения</span></div>
+    <div><b>46</b><span>кадров приложения: каждый экран и его состояния</span></div>
     <div><b>немецкий</b><span>язык аккаунта на эмуляторе — задания игр идут из немецкого банка</span></div>
     <div><b>0</b><span>очков на кадрах: аккаунт до этого не играл</span></div>
   </div>
@@ -125,6 +129,7 @@
         </div>
       </div>
     </div>
+    <div class="states"><h3>Все состояния в приложении: отсчёт, слово, варианты, вердикт, итог</h3><div class="strip"><img src="assets/elevate-app/state_flow_a.jpg" alt="Игра «Поток»: состояние в приложении"><img src="assets/elevate-app/state_flow_b.jpg" alt="Игра «Поток»: состояние в приложении"><img src="assets/elevate-app/state_flow_d.jpg" alt="Игра «Поток»: состояние в приложении"><img src="assets/elevate-app/state_flow_e.jpg" alt="Игра «Поток»: состояние в приложении"><img src="assets/elevate-app/state_flow_f.jpg" alt="Игра «Поток»: состояние в приложении"></div></div>
     <ul class="diff">
       <li><span class="tag ok">совпало</span>Шапка с темпом и счётчиком, полоса раундов, слова по одному, полоса под фразой, вопрос «Что было сказано?», три варианта, после ответа — фраза целиком и перевод.</li>
       <li><span class="tag df">отличие</span>Слова проявляются без размытия.</li>
@@ -141,6 +146,7 @@
       <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_game_odd.jpg" alt="Макет игры «Лишнее слово»"></div>
       <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_game_odd.jpg" alt="Игра «Лишнее слово» в приложении"></div>
     </div>
+    <div class="states"><h3>Все состояния в приложении: фраза, лишнее слово убрано, итог</h3><div class="strip"><img src="assets/elevate-app/state_odd_a.jpg" alt="Игра «Лишнее слово»: состояние в приложении"><img src="assets/elevate-app/state_odd_b.jpg" alt="Игра «Лишнее слово»: состояние в приложении"><img src="assets/elevate-app/state_odd_c.jpg" alt="Игра «Лишнее слово»: состояние в приложении"></div></div>
     <ul class="diff">
       <li><span class="tag ok">совпало</span>Фраза словами-плитками, подпись «Убери лишнее слово», тропа с точками и монетой, счётчик серии и время.</li>
       <li><span class="tag df">отличие</span>Монета — ваша текущая по рангу, а не условная из макета.</li>
@@ -155,6 +161,7 @@
       <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_game_sort.jpg" alt="Макет игры «Сортировка»"></div>
       <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_game_sort.jpg" alt="Игра «Сортировка» в приложении"></div>
     </div>
+    <div class="states"><h3>Все состояния в приложении: первая карта, после двух карт</h3><div class="strip"><img src="assets/elevate-app/state_sort_a.jpg" alt="Игра «Сортировка»: состояние в приложении"><img src="assets/elevate-app/state_sort_b.jpg" alt="Игра «Сортировка»: состояние в приложении"></div></div>
     <ul class="diff">
       <li><span class="tag ok">совпало</span>Шапка с полосой прогресса, подпись «Смахни фразу в свою сторону», карта по центру, две корзины со счётчиками.</li>
       <li><span class="tag df">отличие</span>Под верхней картой видна одна следующая, а не стопка из трёх.</li>
@@ -170,6 +177,7 @@
       <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_game_listen.jpg" alt="Макет игры «На слух»"></div>
       <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_game_listen.jpg" alt="Игра «На слух» в приложении"></div>
     </div>
+    <div class="states"><h3>Все состояния в приложении: вопрос, вердикт, итог</h3><div class="strip"><img src="assets/elevate-app/state_listen_a.jpg" alt="Игра «На слух»: состояние в приложении"><img src="assets/elevate-app/state_listen_b.jpg" alt="Игра «На слух»: состояние в приложении"><img src="assets/elevate-app/state_listen_c.jpg" alt="Игра «На слух»: состояние в приложении"></div></div>
     <ul class="diff">
       <li><span class="tag ok">совпало</span>Плашка звука с волной, вопрос «Что прозвучало?», три варианта.</li>
       <li><span class="tag df">отличие</span>Волна неподвижна; в макете она движется, пока звучит фраза.</li>
@@ -184,6 +192,7 @@
       <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_game_memory.jpg" alt="Макет игры «Память»"></div>
       <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_game_memory.jpg" alt="Игра «Память» в приложении"></div>
     </div>
+    <div class="states"><h3>Все состояния в приложении: пары, вердикт, итог</h3><div class="strip"><img src="assets/elevate-app/state_memory_a.jpg" alt="Игра «Память»: состояние в приложении"><img src="assets/elevate-app/state_memory_b.jpg" alt="Игра «Память»: состояние в приложении"><img src="assets/elevate-app/state_memory_c.jpg" alt="Игра «Память»: состояние в приложении"></div></div>
     <ul class="diff">
       <li><span class="tag ok">совпало</span>Четыре карточки-пары, после показа открыта только спрашиваемая, три варианта перевода.</li>
       <li><span class="tag df">отличие</span>Скрытые пары остаются бледными, а не исчезают совсем.</li>
@@ -197,6 +206,7 @@
       <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_game_exact.jpg" alt="Макет игры «Точное слово»"></div>
       <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_game_exact.jpg" alt="Игра «Точное слово» в приложении"></div>
     </div>
+    <div class="states"><h3>Все состояния в приложении: вопрос, вердикт, итог</h3><div class="strip"><img src="assets/elevate-app/state_exact_a.jpg" alt="Игра «Точное слово»: состояние в приложении"><img src="assets/elevate-app/state_exact_b.jpg" alt="Игра «Точное слово»: состояние в приложении"><img src="assets/elevate-app/state_exact_c.jpg" alt="Игра «Точное слово»: состояние в приложении"></div></div>
     <ul class="diff">
       <li><span class="tag ok">совпало</span>Фраза с пропуском по центру, вопрос «Какое слово сюда?», варианты ниже; после ответа слово встаёт в пропуск и окрашивается.</li>
       <li><span class="tag df">отличие</span>Вариантов три, в макете два.</li>
@@ -210,6 +220,7 @@
       <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_game_forms.jpg" alt="Макет игры «Три формы»"></div>
       <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_game_forms.jpg" alt="Игра «Три формы» в приложении"></div>
     </div>
+    <div class="states"><h3>Все состояния в приложении: вопрос, вердикт, итог</h3><div class="strip"><img src="assets/elevate-app/state_forms_a.jpg" alt="Игра «Три формы»: состояние в приложении"><img src="assets/elevate-app/state_forms_b.jpg" alt="Игра «Три формы»: состояние в приложении"><img src="assets/elevate-app/state_forms_c.jpg" alt="Игра «Три формы»: состояние в приложении"></div></div>
     <ul class="diff">
       <li><span class="tag ok">совпало</span>Три ячейки в ряд, третья пустая до ответа, вопрос «Третья форма?», три варианта.</li>
       <li><span class="tag df">отличие</span>Глаголы немецкие (essen — aß — gegessen): у каждого языка свой список.</li>
@@ -223,6 +234,7 @@
       <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_game_hunt.jpg" alt="Макет игры «Охота на ошибку»"></div>
       <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_game_hunt.jpg" alt="Игра «Охота на ошибку» в приложении"></div>
     </div>
+    <div class="states"><h3>Все состояния в приложении: диалог, ошибка найдена и исправлена, второй диалог</h3><div class="strip"><img src="assets/elevate-app/state_hunt_a.jpg" alt="Игра «Охота на ошибку»: состояние в приложении"><img src="assets/elevate-app/state_hunt_b.jpg" alt="Игра «Охота на ошибку»: состояние в приложении"><img src="assets/elevate-app/state_hunt_c.jpg" alt="Игра «Охота на ошибку»: состояние в приложении"></div></div>
     <ul class="diff">
       <li><span class="tag ok">совпало</span>Подпись задания, диалог из трёх реплик слева и справа, нажимаемые слова выделены.</li>
       <li><span class="tag df">отличие</span>Нет бегущей полосы-«сканера» поверх диалога.</li>
@@ -238,10 +250,17 @@
       <div class="col"><h3>Одобренный макет</h3><img src="assets/elevate-app/mock_game_order.jpg" alt="Макет игры «Собери диалог»"></div>
       <div class="col"><h3>Снято с приложения</h3><img src="assets/elevate-app/app_game_order.jpg" alt="Игра «Собери диалог» в приложении"></div>
     </div>
+    <div class="states"><h3>Все состояния в приложении: первая реплика на месте, продолжение</h3><div class="strip"><img src="assets/elevate-app/state_order_a.jpg" alt="Игра «Собери диалог»: состояние в приложении"><img src="assets/elevate-app/state_order_b.jpg" alt="Игра «Собери диалог»: состояние в приложении"></div></div>
     <ul class="diff">
       <li><span class="tag ok">совпало</span>Четыре места под реплики, четыре кнопки вперемешку, счёт «0 / 4».</li>
       <li><span class="tag df">отличие</span>Реплика появляется на месте, а не перелетает из кнопки в ленту.</li>
     </ul>
+  </section>
+
+  <section>
+    <h2>После игр: что изменилось на остальных экранах</h2>
+    <p class="note">Кадры сняты сразу после прохода всех девяти игр: разминка отмечена пройденной, строка на «Сегодня» показывает 3/3, на «Навыках» появились индекс, очки и прирост за неделю, в статистике полоски сдвинулись.</p>
+    <div class="states"><div class="strip"><img src="assets/elevate-app/state_warmup_done.jpg" alt="Разминка пройдена"><img src="assets/elevate-app/state_today_done.jpg" alt="«Сегодня»: 3/3"><img src="assets/elevate-app/state_skills_done.jpg" alt="«Навыки» с очками"><img src="assets/elevate-app/state_stats_done.jpg" alt="Статистика с навыками"></div></div>
   </section>
   <section>
     <h2>Визитка с навыками: семь стилей</h2>

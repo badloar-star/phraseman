@@ -1,3 +1,4 @@
+/* eslint-env node */
 /**
  * Выгрузка записей озвучки курса в хранилище: output/course-voice/publish/course-v1/<язык>/<ключ>.mp3
  * → phrase-audio/course-v1/<язык>/<ключ>.mp3 (папка phrase-audio открыта только на чтение, storage.rules).

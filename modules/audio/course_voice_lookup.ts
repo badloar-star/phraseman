@@ -16,7 +16,6 @@ const INDEX_KEY_LENGTH = 8;
 
 type IndexFile = Readonly<{ schema: string; lang: string; count: number; keys: string }>;
 
-/* eslint-disable @typescript-eslint/no-require-imports */
 const INDEX_LOADERS: Readonly<Record<CourseVoiceLang, () => IndexFile>> = {
   en: lazyContent('course-voice-index:en', () => require('./course-voice-index/en.json') as IndexFile),
   es: lazyContent('course-voice-index:es', () => require('./course-voice-index/es.json') as IndexFile),
@@ -24,7 +23,6 @@ const INDEX_LOADERS: Readonly<Record<CourseVoiceLang, () => IndexFile>> = {
   fr: lazyContent('course-voice-index:fr', () => require('./course-voice-index/fr.json') as IndexFile),
   it: lazyContent('course-voice-index:it', () => require('./course-voice-index/it.json') as IndexFile),
 };
-/* eslint-enable @typescript-eslint/no-require-imports */
 
 const brokenIndexLogged = new Set<string>();
 

@@ -11,6 +11,7 @@ import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaid
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
+import { Buffer } from 'node:buffer';
 
 const TAG = '[COURSE-VOICE]';
 const OUT_DIR = path.resolve('output/course-voice');

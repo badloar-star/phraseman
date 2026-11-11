@@ -10,6 +10,7 @@
 import { requireAllowPaidAudio } from './paid_audio_guard.mjs'; requireAllowPaidAudio('generate_voice_audition_elevenlabs.mjs'); // зачем: платная озвучка запрещена без ALLOW_PAID_AUDIO=1 (владелец 05.11)
 import fs from 'node:fs';
 import path from 'node:path';
+import { Buffer } from 'node:buffer';
 
 const TAG = '[VOICE-AUDITION]';
 const DRY_RUN = process.argv.includes('--dry-run');

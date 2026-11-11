@@ -302,5 +302,5 @@
     K.init();
   }
   window.ELP1 = SCREENS; // зачем: общий макет берёт эти же экраны, не копируя их
-  if (document.body.dataset.page !== 'all') { window.__elevate = { run, SCREENS }; document.addEventListener('DOMContentLoaded', build); }
+  if (!document.body.dataset.page) { /* зачем: страница собирает себя сама только когда она первая; на остальных её экраны берут через ELP1 */ window.__elevate = { run, SCREENS }; document.addEventListener('DOMContentLoaded', build); }
 })();

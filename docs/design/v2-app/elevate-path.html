@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhraseMan — пройти путь</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="elevate-mechanics.css">
+<link rel="stylesheet" href="elevate-extra.css">
+<link rel="stylesheet" href="elevate-sections.css">
+<link rel="stylesheet" href="elevate-light.css">
+<link rel="stylesheet" href="elevate-path.css">
+</head>
+<body data-theme="ink" data-page="path">
+<div class="page">
+  <h1 class="page-h1">Пройти путь: где новое и как оно играется</h1>
+  <p class="page-lead">Предложение, не эталон. Выбери маршрут и иди по шагам на телефоне слева: жёлтая рамка показывает, куда нажать, игры играются по-настоящему. К каждому шагу можно поставить оценку и написать комментарий; кнопка внизу копирует всё одним текстом. Код приложения не менялся.</p>
+  <div id="nav"></div>
+  <div class="switch"><span class="k">Тема</span>
+    <button class="on" data-theme-set="ink">Сумерки</button>
+    <button data-theme-set="marine">Океан</button>
+    <button data-theme-set="graphite">Затмение</button>
+    <button data-theme-set="amethyst">Аметист</button>
+  </div>
+  <div class="pathw">
+    <div class="phw">
+      <div class="ph sky" id="pph" data-ph="path"><div class="sb"><span>9:41</span><span class="sys"><svg width="18" height="12" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><span class="bat"></span></span></div><div class="sun"></div><div class="haze"></div><div class="stars"></div><div class="vig"></div><div class="lay"></div><div id="hot"></div><div class="hi"></div></div>
+    </div>
+    <div class="side">
+      <div class="lblc" style="margin-top:0">Маршрут</div>
+      <div class="rts" id="rts"></div>
+      <div class="stp" id="stp"></div>
+      <div class="sttl" id="ttl"></div>
+      <div class="box new"><b>Что здесь нового</b><span id="new"></span></div>
+      <div class="box hint"><b>Что сделать</b><span id="hint"></span></div>
+      <div class="navb"><button id="pv">← Назад</button><button id="rs">Сначала экран</button><button id="nx">Дальше →</button></div>
+      <div class="lblc">Твоя оценка и комментарий к этому шагу</div>
+      <div class="mk" id="mk"></div>
+      <textarea id="txt" placeholder="Что не так, что поменять, что нравится"></textarea>
+      <div class="lblc">Шаги маршрута</div>
+      <div class="lst" id="lst"></div>
+      <div class="cpw">
+        <div class="lblc" style="margin-top:0">Общий комментарий ко всему</div>
+        <textarea id="general" placeholder="Всё, что не относится к одному шагу" style="margin-top:0;background:#0C0C0D"></textarea>
+        <div class="row2" style="margin-top:14px"><button id="cp">Скопировать все комментарии</button><span id="cnt"></span><button id="clr">Стереть всё</button></div>
+        <div class="row2" style="margin-top:10px"><span id="cpm"></span></div>
+        <textarea id="out" readonly style="background:#0C0C0D"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="kit.js"></script>
+<script src="elevate-core.js"></script>
+<script src="elevate-mechanics.app.js"></script>
+<script src="elevate-flow.js"></script>
+<script src="elevate-modes.js"></script>
+<script src="elevate-games.js"></script>
+<script src="elevate-skills.js"></script>
+<script src="elevate-peak.js"></script>
+<script src="elevate-learn.js"></script>
+<script src="elevate-social.js"></script>
+<script src="elevate-real.js"></script>
+<script src="elevate-real2.js"></script>
+<script src="elevate-real3.js"></script>
+<script src="elevate-path.js"></script>
+<script>document.getElementById('nav').innerHTML = EL.nav('elevate-path.html');</script>
+</body>
+</html>

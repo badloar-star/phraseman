@@ -1,0 +1,37 @@
+/* Макет-прохождение: один телефон слева, справа — маршрут, подсказка, оценка, комментарий (elevate-path.js). */
+.pathw { display: flex; gap: 34px; align-items: flex-start; margin-top: 26px; }
+.pathw .phw { position: sticky; top: 16px; flex: none; }
+.side { flex: 1; min-width: 0; max-width: 620px; }
+.rts { display: flex; flex-wrap: wrap; gap: 8px; }
+.rts button, .mk button { font: 600 14px 'Inter', sans-serif; height: 36px; padding: 0 14px; border-radius: 18px; border: 0; background: #161618; color: #C8C8CC; cursor: pointer; }
+.rts button.on { background: #F2F1F6; color: #0B0C0E; }
+.stp { font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 26px; }
+.sttl { font-size: 26px; line-height: 32px; font-weight: 800; letter-spacing: -.4px; margin-top: 6px; }
+.box { border-radius: 18px; padding: 16px 18px; margin-top: 14px; font-size: 16px; line-height: 23px; }
+.box b { display: block; font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; margin-bottom: 4px; }
+.box.new { background: #15161A; color: #D6D6D8; } .box.new b { color: var(--muted); }
+.box.hint { background: #F2F1F6; color: #0B0C0E; font-weight: 600; } .box.hint b { color: #5A5C66; }
+.navb { display: flex; gap: 12px; margin-top: 14px; }
+.navb button { font: 700 16px 'Inter', sans-serif; height: 50px; padding: 0 22px; border-radius: 25px; border: 0; cursor: pointer; background: #1C1C1F; color: #E4E4E6; }
+.navb button:disabled { opacity: .35; cursor: default; }
+.navb #nx { flex: 1; background: #26262A; } .navb #nx.glow { background: #F2F1F6; color: #0B0C0E; animation: glowb 1.6s ease-in-out infinite; }
+@keyframes glowb { 50% { box-shadow: 0 0 0 6px rgba(242,241,246,.18); } }
+.lblc { font-size: 13px; font-weight: 700; color: var(--muted); margin: 24px 0 8px; letter-spacing: .4px; }
+.mk { display: flex; gap: 8px; } .mk button.on { background: #F2F1F6; color: #0B0C0E; }
+.side textarea { width: 100%; min-height: 96px; margin-top: 10px; border-radius: 16px; border: 0; background: #15161A; color: #fff; font: 500 16px/23px 'Inter', sans-serif; padding: 14px 16px; resize: vertical; outline: none; }
+.side textarea:focus { box-shadow: 0 0 0 2px #4A4C56; }
+.lst { margin-top: 8px; }
+.lst > div { display: grid; grid-template-columns: 26px 1fr auto; gap: 10px; align-items: center; height: 40px; padding: 0 12px; border-radius: 12px; cursor: pointer; font-size: 15px; color: #A6A6A8; }
+.lst > div.on { background: #1C1C1F; color: #fff; } .lst b { font-weight: 700; } .lst span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lst i { font-style: normal; font-size: 12px; font-weight: 700; color: #0B0C0E; background: #F2F1F6; border-radius: 9px; padding: 2px 8px; } .lst i:empty { display: none; }
+.cpw { margin-top: 26px; padding: 18px; border-radius: 20px; background: #15161A; }
+.cpw .row2 { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.cpw #cp { font: 700 16px 'Inter', sans-serif; height: 52px; padding: 0 24px; border-radius: 26px; border: 0; background: #F2F1F6; color: #0B0C0E; cursor: pointer; }
+.cpw #clr { font: 600 14px 'Inter', sans-serif; height: 36px; padding: 0 14px; border-radius: 18px; border: 0; background: #1C1C1F; color: #A6A6A8; cursor: pointer; margin-left: auto; }
+.cpw span { font-size: 14px; color: #A6A6A8; } .cpw #out { display: none; min-height: 150px; font-size: 14px; line-height: 20px; }
+/* подсветка цели */
+#hot { position: absolute; z-index: 20; display: none; pointer-events: none; box-shadow: 0 0 0 3px #FFD25E, 0 0 0 9px rgba(255,210,94,.28); animation: hotp 1.2s ease-in-out infinite; }
+#hot::after { content: "Нажми сюда"; position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translateX(-50%); white-space: nowrap; background: #FFD25E; color: #1A1400; font: 800 13px 'Inter', sans-serif; padding: 6px 12px; border-radius: 12px; }
+#hot[data-below="1"]::after { bottom: auto; top: calc(100% + 12px); }
+@keyframes hotp { 50% { box-shadow: 0 0 0 3px #FFD25E, 0 0 0 16px rgba(255,210,94,.12); } }
+@media (max-width: 1080px) { .pathw { flex-direction: column; } .pathw .phw { position: static; } }

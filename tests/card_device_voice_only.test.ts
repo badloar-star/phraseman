@@ -15,26 +15,11 @@ const ROOT = path.resolve(__dirname, '..');
 describe('голос карточки — только устройство', () => {
   beforeEach(() => client.__resetCardTtsAudioForTests());
 
-  it.each([
-    ['en', 'Nice to meet you'],
-    ['es', '¿Dónde está el baño?'],
-    ['fr', "Je n'ai pas compris"],
-    ['de', 'Das Haus ist groß'],
-    ['it', 'Piacere di conoscerti'],
-  ] as const)('клипа нет ни для одного языка (%s)', async (language, text) => {
-    await expect(client.resolveCardTtsTarget(language, text)).resolves.toBeNull();
-  });
-
   it('модуль карточек не знает адресов хранилища и не считает хэши клипов', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'flashcards', 'card_tts_audio.ts'), 'utf8');
     expect(source).not.toContain('firebasestorage');
     expect(source).not.toContain('expo-crypto');
     expect(source).not.toContain('.mp3');
-  });
-
-  it('промахи клипов не запоминаются — запоминать нечего', () => {
-    client.markCardTtsMissing('k', 1_000);
-    expect(client.isCardTtsKnownMissing('k', 2_000)).toBe(false);
   });
 
   it('сопоставляет локаль речи с языком карточки; перевод и «без языка» — не язык озвучки', () => {
@@ -63,9 +48,13 @@ describe('голос карточки — только устройство', ()
     warn.mockRestore();
   });
 
-  it('use-audio без клипа уходит в голос устройства точного языка', () => {
+  it('use-audio ведёт карточку сразу в голос устройства точного языка, без захода за клипом', () => {
     const audio = fs.readFileSync(path.join(ROOT, 'hooks', 'use-audio.ts'), 'utf8');
-    expect(audio).toContain('await speakCardWithDevice(cardLang);');
+    expect(audio).toContain('void speakCardWithDevice(cardLanguage);');
+    expect(audio).not.toContain('playCardClipUrl');
+    expect(audio).not.toContain('resolveCardTtsTarget');
+    const player = fs.readFileSync(path.join(ROOT, 'hooks', 'phrase_audio_player.ts'), 'utf8');
+    expect(player).not.toContain('playCardClipUrl');
     expect(audio).toContain('resolveCardDeviceVoice(cardLang, voices)');
     expect(audio).toContain("opts?.onError?.(new Error('card_voice_unavailable'))");
   });

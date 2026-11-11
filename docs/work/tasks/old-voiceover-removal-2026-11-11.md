@@ -3,6 +3,7 @@
 Governance-ID: TG-33B8B41E0D6B
 Governance-ID: TG-042218AEACE9
 Governance-ID: TG-41710A2257A8
+Governance-ID: TG-B30CA40C0E63
 Status: In progress
 Owner: сессия Claude «удали всю озвучку» (владелец 11.11.2026)
 Related epic/enabler: none

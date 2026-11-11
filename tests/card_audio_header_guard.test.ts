@@ -22,8 +22,12 @@ describe('аудио карточек: заголовок mp3 и журнал [C
     expect(player).toMatch(/\[CARD-AUDIO\] file:invalid/);
     expect(player).toMatch(/file\.delete\(\)/);
   });
-  it('нажатие и результат клипа карточки логируются', () => {
-    expect(useAudio).toMatch(/\[CARD-AUDIO\] tap/);
-    expect(useAudio).toMatch(/\[CARD-AUDIO\] clip:result/);
+  // зачем (владелец 11.11.2026, «удали всю озвучку» → «дочисти что надо»): клипов карточек больше нет, журнал
+  // нажатия/результата клипа ушёл вместе с веткой клипа. Сторожим обратное — шипящему клипу неоткуда взяться:
+  // карточка идёт сразу в голос устройства, а маршрут пишется в [PACK-AUDIO] speak:route.
+  it('карточка не играет клип: сразу голос устройства, маршрут в журнале', () => {
+    expect(useAudio).not.toMatch(/playCardClipUrl/);
+    expect(useAudio).toMatch(/void speakCardWithDevice\(cardLanguage\)/);
+    expect(useAudio).toMatch(/\[PACK-AUDIO\] speak:route/);
   });
 });

@@ -462,24 +462,6 @@ export async function playPhraseByText(
   return playResolvedClip(normalizePhraseAudioKey(text), url, cb, false);
 }
 
-/**
- * D128: клип OpenAI для карточки по готовой ссылке (app/flashcards/card_tts_audio.ts).
- *
- * зачем requireCached: у карточки клипа может НЕ быть (набор ещё не озвучен).
- * Стримить такой URL нельзя — плеер упал бы по watchdog через секунды тишины.
- * Поэтому играем только то, что реально скачалось (404 → false сразу), и
- * вызывающая сторона мгновенно уходит в голос устройства нужного языка.
- * Кэш общий с фразами: повторный тап — с диска, без сети.
- */
-export async function playCardClipUrl(
-  cacheKey: string,
-  url: string,
-  cb?: PlayCallbacks,
-): Promise<boolean> {
-  if (!cacheKey || !url) return false;
-  return playResolvedClip(cacheKey, url, cb, true);
-}
-
 async function playResolvedClip(
   key: string,
   url: string,

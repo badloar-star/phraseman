@@ -15,15 +15,11 @@ import { getManagedAudioModeSnapshot } from '../app/audio_session_coordinator';
 import { peekEnVoiceId, peekVoiceIdForLocale } from '../app/flashcards/voice_prefs';
 import {
   cardTtsLanguageFromSpeechLocale,
-  isCardTtsKnownMissing,
-  markCardTtsMissing,
   notifyCardVoiceUnavailable,
   resolveCardDeviceVoice,
-  resolveCardTtsTarget,
   type CardTtsLanguage,
 } from '../app/flashcards/card_tts_audio';
 import { getVoicesOnce } from '../app/flashcards/tts_voices';
-import { getNetStatus } from '../app/net_status';
 import { SLOW_REPEAT_RATE, emitSlowRepeatToast, isSlowRepeat } from '../app/slow_repeat'; // зачем (удобство №2, 04.11): повтор той же фразы за ~3 с — медленнее 0,7×
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -62,9 +58,9 @@ export type SpeakOpts = {
    */
   strictVoice?: boolean;
   /**
-   * D128: это текст карточки. Сначала клип OpenAI на языке карточки
-   * (app/flashcards/card_tts_audio.ts); без клипа — голос устройства ТОЛЬКО
-   * точного языка, иначе «Голос недоступен» и onError('card_voice_unavailable').
+   * Это текст карточки: голос устройства ТОЛЬКО точного языка карточки
+   * (app/flashcards/card_tts_audio.ts), иначе «Голос недоступен» и
+   * onError('card_voice_unavailable'). Готовых клипов карточек нет (владелец 11.11.2026).
    */
   cardAudio?: boolean;
   /** Skip every prerecorded/corpus route and speak through the device engine. */
@@ -296,73 +292,22 @@ export function useAudio() {
     }
     const isEnglish = language.toLowerCase().startsWith('en');
     const canUseClip = isEnglish && !requestedVoice;
-    // зачем: D128 — карточка звучит клипом OpenAI своего языка. Английская
-    // карточка с явно выбранным системным голосом уважает выбор пользователя.
+    // зачем (владелец 11.11.2026, «удали всю озвучку»): клипов карточек нет — карточка сразу идёт в голос
+    // устройства своего языка. Английская карточка с явно выбранным голосом уважает выбор пользователя.
     const cardLanguage: CardTtsLanguage | null = opts?.cardAudio ? cardTtsLanguageFromSpeechLocale(language) : null;
     if (opts?.cardAudio) {
-      console.log('[PACK-AUDIO] speak:route', JSON.stringify({ language, cardLanguage, requestedVoice: requestedVoice || null, path: cardLanguage && !(cardLanguage === 'en' && requestedVoice) ? 'card_clip' : 'default_voice' }));
+      console.log('[PACK-AUDIO] speak:route', JSON.stringify({ language, cardLanguage, requestedVoice: requestedVoice || null, path: cardLanguage && !(cardLanguage === 'en' && requestedVoice) ? 'card_device_voice' : 'default_voice' }));
       // Ревизор 15.10: чем реально звучит карточка — клип, выбранный голос языка или системный (одна строка на озвучку)
-      console.log('[FC-TTS]', JSON.stringify({ lang: language, voice: requestedVoice || null, source: cardLanguage && !(cardLanguage === 'en' && requestedVoice) ? 'card_clip' : requestedVoice ? (hasVoiceOverride ? 'caller' : 'chosen') : 'system' })); // guard-ok: одна строка на озвучку карточки
+      console.log('[FC-TTS]', JSON.stringify({ lang: language, voice: requestedVoice || null, source: cardLanguage && !(cardLanguage === 'en' && requestedVoice) ? 'card_device_voice' : requestedVoice ? (hasVoiceOverride ? 'caller' : 'chosen') : 'system' })); // guard-ok: одна строка на озвучку карточки
     }
     if (cardLanguage && !(cardLanguage === 'en' && requestedVoice)) {
-      void playCardAudio(cardLanguage);
+      void speakCardWithDevice(cardLanguage);
       return;
     }
     runDefaultVoicePath();
 
     function isStale(): boolean {
       return speechGenerationRef.current !== generation || !voicePlaybackPolicy.canStart(voicePolicyToken);
-    }
-
-    async function playCardAudio(cardLang: CardTtsLanguage): Promise<void> {
-      let target: Awaited<ReturnType<typeof resolveCardTtsTarget>> = null;
-      try {
-        target = await resolveCardTtsTarget(cardLang, spokenText);
-      } catch (e: unknown) {
-        console.warn('[CARD-TTS] target:hash_failed', JSON.stringify({ cardLang, error: e instanceof Error ? e.message : String(e) })); // guard-ok: проглоченная ошибка пишет причину
-      }
-      if (isStale()) return;
-      // зачем (владелец 06.11, «шипящая озвучка карточек»): на КАЖДОЕ нажатие — слово, язык, ключ клипа; по журналу видно, какие карточки шипят.
-      console.log('[CARD-AUDIO] tap', JSON.stringify({ cardLang, text: spokenText.slice(0, 60), chars: spokenText.length, key: target?.key ?? null, cacheKey: target?.cacheKey ?? null }));
-      if (!target) {
-        console.log('[CARD-TTS] clip:skip no_target', JSON.stringify({ cardLang, chars: spokenText.length }));
-      } else if (isCardTtsKnownMissing(target.key)) {
-        console.log('[CARD-TTS] clip:skip known_missing', JSON.stringify({ cardLang, key: target.key }));
-      } else {
-        let fellBack = false;
-        const fallback = (why: string) => {
-          if (fellBack || isStale()) return;
-          fellBack = true;
-          console.log('[CARD-TTS] clip:fallback', JSON.stringify({ cardLang, key: target?.key, why }));
-          void speakCardWithDevice(cardLang);
-        };
-        try {
-          const { playCardClipUrl, hasPhraseAudio } = await loadPhraseAudioPlayer();
-          if (isStale()) return;
-          // Английская карточка, уже озвученная корпусом фраз (тот же голос echo):
-          // играем его сразу, без лишнего запроса в Storage.
-          if (cardLang === 'en' && hasPhraseAudio(normalized)) {
-            console.log('[CARD-TTS] clip:use_phrase_corpus', JSON.stringify({ chars: normalized.length }));
-            runDefaultVoicePath();
-            return;
-          }
-          const played = await playCardClipUrl(target.cacheKey, target.url, {
-            onStart: opts?.onStart,
-            onDone: opts?.onDone,
-            onError: () => fallback('player_error'),
-          });
-          console.log('[CARD-AUDIO] clip:result', JSON.stringify({ cardLang, key: target.key, cacheKey: target.cacheKey, played }));
-          if (played) return;
-          // Промах запоминаем только при живой сети: офлайн клип мог просто не скачаться.
-          if (getNetStatus() !== 'offline') markCardTtsMissing(target.key);
-        } catch (e: unknown) {
-          console.warn('[CARD-TTS] clip:play_failed', JSON.stringify({ cardLang, error: e instanceof Error ? e.message : String(e) })); // guard-ok: проглоченная ошибка пишет причину
-        }
-        if (isStale()) return;
-        fallback('clip_missing');
-        return;
-      }
-      await speakCardWithDevice(cardLang);
     }
 
     async function speakCardWithDevice(cardLang: CardTtsLanguage): Promise<void> {

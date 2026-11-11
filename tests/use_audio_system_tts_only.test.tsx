@@ -2,7 +2,6 @@ import { act, cleanup, renderHook } from '@testing-library/react-native';
 import * as Speech from 'expo-speech';
 
 const mockRelease = jest.fn();
-const mockCardTarget = jest.fn();
 
 jest.mock('../modules/audio/audio_runtime_arbiter', () => ({
   claimSpokenAudio: jest.fn(() => ({ isCurrent: () => true, release: mockRelease })),
@@ -29,11 +28,8 @@ jest.mock('../app/flashcards/voice_prefs', () => ({
 
 jest.mock('../app/flashcards/card_tts_audio', () => ({
   cardTtsLanguageFromSpeechLocale: jest.fn(() => 'en'),
-  isCardTtsKnownMissing: jest.fn(() => false),
-  markCardTtsMissing: jest.fn(),
   notifyCardVoiceUnavailable: jest.fn(),
   resolveCardDeviceVoice: jest.fn(),
-  resolveCardTtsTarget: mockCardTarget,
 }));
 
 jest.mock('../app/flashcards/tts_voices', () => ({ getVoicesOnce: jest.fn() }));
@@ -75,6 +71,5 @@ describe('useAudio systemTtsOnly', () => {
       language: 'en-US',
       onStart,
     }));
-    expect(mockCardTarget).not.toHaveBeenCalled();
   });
 });

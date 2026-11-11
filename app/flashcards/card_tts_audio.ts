@@ -5,10 +5,6 @@
  * (D128, OpenAI TTS, папка card-audio в хранилище) больше нет. Карточку читает встроенный голос
  * телефона, но ТОЛЬКО голос ровно этого языка; иначе — спокойное «Голос недоступен»
  * (паттерн app/dialogue_voice_capability.ts), никогда не чужой язык.
- *
- * resolveCardTtsTarget и память промахов оставлены пустыми заглушками: их вызывает
- * hooks/use-audio.ts, который сейчас правит другая сессия. «Клипа нет» → use-audio сразу
- * идёт в speakCardWithDevice. Убрать заглушки вместе с веткой клипа в use-audio.
  */
 export type CardTtsLanguage = 'en' | 'es' | 'fr' | 'de' | 'it';
 
@@ -18,30 +14,6 @@ export function cardTtsLanguageFromSpeechLocale(locale: string | null | undefine
   const base = x.split('-')[0];
   return base === 'en' || base === 'es' || base === 'fr' || base === 'de' || base === 'it' ? base : null;
 }
-
-export type CardTtsTarget = Readonly<{
-  language: CardTtsLanguage;
-  text: string;
-  key: string;
-  objectPath: string;
-  url: string;
-  cacheKey: string;
-}>;
-
-/** Клипов нет: всегда null → вызывающий говорит голосом устройства. */
-export async function resolveCardTtsTarget(
-  _language: CardTtsLanguage,
-  _rawText: string,
-): Promise<CardTtsTarget | null> {
-  return null;
-}
-
-/** Клипов нет — помнить промахи незачем. */
-export function isCardTtsKnownMissing(_key: string, _nowMs: number = Date.now()): boolean {
-  return false;
-}
-
-export function markCardTtsMissing(_key: string, _nowMs: number = Date.now()): void {}
 
 // ── Голос устройства: только точное совпадение языка ─────────────────────────
 

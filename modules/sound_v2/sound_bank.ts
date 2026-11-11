@@ -20,7 +20,7 @@
 // лениво — только когда флаг включён и событие прошло проверки.
 
 import { isCorrectAnswerSoundSilenced } from '../audio/correct_answer_silence';
-import { isProductionSfxMusicAllowed } from '../audio/sfx_music_policy';
+import { isProductionSoundV2Allowed } from '../audio/sfx_music_policy';
 import {
   SOUND_V2_CATALOG,
   SOUND_V2_RESET_ON_ERROR_EVENT,
@@ -32,6 +32,12 @@ import {
   type SoundV2EventId,
 } from './catalog';
 import { NoRepeatDeck, StreakBook, type RandomSource } from './deck';
+import { MUTED_SOUND_V2_EVENTS } from './legacy_bridge';
+
+/** Звук не длиннее этого доигрывает, когда начинается озвучка фразы (вердикт ответа: «верно» 850 мс, «неверно» 800 мс). */
+export const SHORT_EFFECT_KEEP_MS = 1000;
+/** Идёт запись голоса — подготовку следующего клипа откладываем на это время и пробуем снова. */
+const PREWARM_RETRY_WHEN_QUIET_MS = 1500;
 import { isSoundV2Enabled, isSoundV2FlagHydrated, primeSoundV2Flag } from './sound_v2_flag';
 
 const LOG = '[SOUND-V2]';
@@ -59,7 +65,9 @@ export type SoundV2SkipReason =
   | 'voice_active'
   | 'player_unavailable'
   /** ЗАМОК ВЛАДЕЛЬЦА 25.10: звук верного ответа не играет ни в одном режиме (modules/audio/correct_answer_silence.ts). */
-  | 'correct_answer_silenced';
+  | 'correct_answer_silenced'
+  /** Место вне набора, выбранного владельцем 11.11 (список MUTED_SOUND_V2_EVENTS в legacy_bridge.ts). */
+  | 'event_muted';
 
 export type SoundV2PlayResult = Readonly<{
   event: string;
@@ -187,7 +195,7 @@ export class SoundBank {
     }
     const step = this.streaks.advance(event);
     this.deps.log(`${LOG} streak advance event=${event} step=${step}`);
-    if (this.canPlayNow()) this.queuePrewarm(event);
+    this.queuePrewarm(event); // можно ли готовить плеер прямо сейчас, решает prewarmStep
     return step;
   }
 
@@ -215,9 +223,17 @@ export class SoundBank {
   /** Гасит всё, что играет сейчас. Плееры остаются в пуле. */
   stopAll(reason: string): void {
     let stopped = 0;
+    let kept = 0;
     for (const entry of [...this.pool]) {
       const playback = entry.active;
       if (!playback) continue;
+      // зачем (владелец 11.11: «звуков нет ни одного»; журнал 22:36:36 play event=wrong → 22:36:37 stopAll reason=voice_active stopped=1):
+      // урок произносит фразу сразу после ответа, и начало речи обрывало звук вердикта раньше, чем его слышно. Короткий звук
+      // (до SHORT_EFFECT_KEEP_MS) доигрывает под началом речи; длинные по-прежнему гасятся, новые при речи не запускаются.
+      if (reason === 'voice_active' && entry.clip.ms <= SHORT_EFFECT_KEEP_MS) {
+        kept += 1;
+        continue;
+      }
       try {
         entry.player.pause();
       } catch (error) {
@@ -226,7 +242,7 @@ export class SoundBank {
       this.finish(entry, playback);
       stopped += 1;
     }
-    this.deps.log(`${LOG} stopAll reason=${reason} stopped=${stopped} pool=${this.pool.size}`);
+    this.deps.log(`${LOG} stopAll reason=${reason} stopped=${stopped} keptShort=${kept} pool=${this.pool.size}`);
   }
 
   /** Освободить всё: плееры, таймеры, подписки. После dispose банк больше не играет. */
@@ -426,10 +442,21 @@ export class SoundBank {
     let began = false;
     let retried = false;
     let beganAt = this.deps.now();
+    // зачем (владелец 11.11, телефон: «действие случилось, я закрыл окно, а звук только потом»): СПЕРВА ЛОГИ. В журнале не было ни одной
+    // цифры о том, через сколько звук реально зазвучал. Замеряем от запроса до первого статуса «играет» и пишем, был ли плеер загружен.
+    // ВРЕМЕННАЯ трассировка [SOUND-LAT]: убрать после того, как причина задержки найдена и исправлена.
+    const requestedAt = this.deps.now();
+    const loadedAtRequest = (player as { isLoaded?: boolean }).isLoaded === true;
 
     try {
       playback.subscription = player.addListener('playbackStatusUpdate', (status) => {
         if (entry.active !== playback) return;
+        if (status.playing === true && !sawPlaying) {
+          this.deps.log(
+            `[SOUND-LAT] v2 event=${event} file=${clip.file} доЗвукаМс=${this.deps.now() - requestedAt} плеерНовый=${String(fresh)}`
+            + ` загруженПриЗапросе=${String(loadedAtRequest)} повторПослеЗагрузки=${String(retried)} плееровВПуле=${this.pool.size}`,
+          );
+        }
         if (status.playing === true) sawPlaying = true;
         const withinRetryWindow = !began || this.deps.now() - beganAt < RETRY_WINDOW_MS;
         // Ложный ENDED переиспользуемого плеера в первые мгновения после play() не считаем концом (см. expo_sfx_backend).
@@ -587,7 +614,17 @@ export class SoundBank {
   private prewarmStep(): void {
     this.prewarmTimer = null;
     const next = this.prewarmQueue.shift();
-    if (next && this.canPlayNow()) {
+    // зачем (владелец 11.11, «разобрать опоздание»; журнал 22:47:49 — «верно» второй ступени: загруженПриЗапросе=false, 354 мс):
+    // урок произносит фразу сразу после ответа, и подготовка клипа следующей ступени попадала на речь — клип молча выбрасывался из
+    // очереди, и следующий ответ снова создавал плеер на ходу. Подготовка плеера ничего не играет, поэтому речь ей не мешает;
+    // во время записи голоса плеер не создаём, но клип возвращаем в очередь, а не теряем.
+    const canPrepare = !this.disposed && this.deps.isFlagEnabled() && this.deps.isEffectsEnabled();
+    if (next && canPrepare && this.deps.isQuiet()) {
+      this.prewarmQueue.push(next);
+      this.prewarmTimer = this.deps.setTimer(() => this.prewarmStep(), PREWARM_RETRY_WHEN_QUIET_MS);
+      return;
+    }
+    if (next && canPrepare) {
       const exists = [...this.pool].some((entry) => entry.clip.file === next.file);
       if (!exists) {
         const entry = this.createEntry(next);
@@ -644,9 +681,15 @@ function getBank(): SoundBank {
 export function playEvent(event: SoundV2EventId, options?: PlayEventOptions): SoundV2PlayResult {
   // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «удалить звук … при правильных ответах в любых режимах»): единая точка для всех прямых вызовов банка
   if (isCorrectAnswerSoundSilenced(String(event), 'sound_bank')) return { event: String(event), played: false, reason: 'correct_answer_silenced' };
-  if (!isProductionSfxMusicAllowed()) {
+  if (!isProductionSoundV2Allowed()) {
     if (event === SOUND_V2_RESET_ON_ERROR_EVENT) streakBook.resetMany(SOUND_V2_STREAKS_RESET_BY_ERROR);
     return { event: String(event), played: false, reason: 'flag_off' };
+  }
+  // зачем (владелец 11.11, набор «Тёплые палочки»; журнал 22:16 — «тап» и «шторка» прозвучали в окне ранга монеты): моменты Пика и
+  // ранга зовут банк напрямую, мимо моста, и обходили список мест без звука. Теперь список один на оба входа.
+  if (isSoundV2Enabled() && MUTED_SOUND_V2_EVENTS.has(event)) {
+    console.log(`${LOG} skip event=${String(event)} reason=event_muted (место вне набора владельца)`); // guard-ok: причина тишины
+    return { event: String(event), played: false, reason: 'event_muted' };
   }
   try {
     const result = getBank().playEvent(event, options);
@@ -685,7 +728,7 @@ export function getStreakStep(event: SoundV2EventId): number {
 
 /** Прогреть плееры событий заранее (по одному, с паузой). Ничего не делает при выключенном флаге. */
 export function prewarmSoundV2(events: readonly SoundV2EventId[]): void {
-  if (!isProductionSfxMusicAllowed()) {
+  if (!isProductionSoundV2Allowed()) {
     for (const event of events) console.log(`${LOG} skip event=${String(event)} reason=flag_off`);
     return;
   }

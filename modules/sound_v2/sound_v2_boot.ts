@@ -4,14 +4,17 @@
 // и — лишь если флаг ВКЛЮЧЁН — поставить в очередь прогрев плееров самых частых событий (по одному с паузой, это умеет сам банк). Выключен — ничего не грузим и не импортируем.
 // Журнал одной строкой: [SOUND-V2] prime ms=… flag=… events=… files≈… Каждая ошибка загрузки пишется движком с причиной.
 import { SOUND_V2_CATALOG, type SoundV2EventId } from './catalog';
-import { isProductionSfxMusicAllowed } from '../audio/sfx_music_policy';
+import { isProductionSoundV2Allowed } from '../audio/sfx_music_policy';
 import { tryPlayV2Event } from './legacy_bridge';
 import { isSoundV2Enabled, primeSoundV2Flag } from './sound_v2_flag';
 
 const LOG = '[SOUND-V2]';
 
 /** Самые частые события: тап, верный/неверный ответ, монета, конец урока. Остальные плееры создаются лениво при первом запуске. */
-export const SOUND_V2_BOOT_EVENTS: readonly SoundV2EventId[] = ['tap', 'correct', 'wrong', 'coin', 'lesson_done'];
+// 11.11, владелец («открыл историю, посмотрел, закрыл — и тут звук заиграл»): сторис, шторки и «много монет» тоже грузятся заранее,
+// иначе первый запуск опаздывает на полсекунды (замер [SOUND-LAT]). Девять плееров — в пределах пула из двенадцати.
+// 11.11, поздний вечер: нажатие, монета, шторки и сторис в наборе «Тёплые палочки» молчат — заранее грузятся только звучащие частые места.
+export const SOUND_V2_BOOT_EVENTS: readonly SoundV2EventId[] = ['correct', 'wrong', 'lesson_done', 'coins_many', 'step', 'ring'];
 
 // зачем (координатор 14.10): звук ачивки V2 — по событию приложения 'achievement_unlocked' (его шлёт выдача достижений); подписка одна на процесс, поздно (после первого кадра),
 // проверка флага — в самом мосте: выключен → тишина. Пачка достижений подряд не трещит: не чаще раза в 800 мс.
@@ -39,7 +42,7 @@ export function subscribeAchievementSound(now: () => number = Date.now): void {
 export type SoundV2BootResult = Readonly<{ ms: number; enabled: boolean; events: number; files: number }>;
 
 export async function bootSoundV2(now: () => number = Date.now): Promise<SoundV2BootResult> {
-  if (!isProductionSfxMusicAllowed()) return { ms: 0, enabled: false, events: 0, files: 0 };
+  if (!isProductionSoundV2Allowed()) return { ms: 0, enabled: false, events: 0, files: 0 };
   const startedAt = now();
   subscribeAchievementSound();
   try {

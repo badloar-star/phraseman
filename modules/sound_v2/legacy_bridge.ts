@@ -34,10 +34,25 @@ export function resetRecentSoundEventsForTests(): void {
 type Plan = Readonly<{ event: SoundV2EventId; advance?: boolean; step?: number }>;
 
 /** События, которые пользователь явно оставил без звука; true от моста также блокирует legacy fallback. */
-export const MUTED_SOUND_V2_EVENTS: ReadonlySet<SoundV2EventId> = new Set(['tap', 'correct', 'lightning']); // lightning — серия верных ответов (ЗАМОК ВЛАДЕЛЬЦА 25.10)
+// зачем (владелец 11.11): он выбрал звук для нажатия («Шёпот») и для верного ответа («Дерево») — замки 18.10 и 25.10 на них сняты;
+// оба переключателя он оставил без звука; «молния» молчит, пока не удалена из приложения целиком.
+// 11.11, поздний вечер (владелец выбрал набор «Тёплые палочки» по 38 местам): звучат только эти места. Остальные события каталога
+// молчат — нажатие, шторки, сторис, подсказка, монета за ответ и возврат энергии убраны из набора по исследованию («чем чаще
+// действие, тем незаметнее отклик»), у «достижения» и «идеального урока» нет экрана, «Учить» и «молния» идут под удаление.
+export const MUTED_SOUND_V2_EVENTS: ReadonlySet<SoundV2EventId> = new Set(['lightning', 'toggle_on', 'toggle_off', 'tap', 'sheet_open', 'sheet_close', 'story', 'hint', 'coin', 'energy_back', 'swipe_learn', 'achievement', 'lesson_perfect']); // lightning — серия верных ответов (ЗАМОК ВЛАДЕЛЬЦА 25.10)
 
 function isMutedSoundV2Event(event: SoundV2EventId): boolean {
   return MUTED_SOUND_V2_EVENTS.has(event);
+}
+
+/** Есть ли у старого события директора пара в наборе V2 (тогда оно играет, хотя старые эффекты убраны). */
+export function hasV2PlanForDirector(eventId: string): boolean {
+  return Object.prototype.hasOwnProperty.call(DIRECTOR_TO_V2, eventId);
+}
+
+/** Есть ли у звука карточек пара в наборе V2. */
+export function hasV2PlanForFc(name: string): boolean {
+  return Object.prototype.hasOwnProperty.call(FC_TO_V2, name);
 }
 
 /** Старое событие SoundDirector → событие V2. */
@@ -48,10 +63,12 @@ export const DIRECTOR_TO_V2: Readonly<Record<string, Plan>> = {
   'pm.complete.perfect': { event: 'lesson_perfect' },
   'pm.complete.star_3_perfect': { event: 'lesson_perfect' },
   'pm.complete.exam_pass': { event: 'lesson_perfect' },
-  'pm.dialog.victory': { event: 'lesson_done' },
+  // зачем (владелец 11.11): для «Диалог удался» он выбрал свой звук, не совпадающий с «Урок пройден» — событие ушло из моста
+  // и играет выбранным файлом в старом слоте (см. isOwnerChosenLegacySound).
   'pm.reward.small': { event: 'coin', advance: true },
-  'pm.coin.flight_start': { event: 'coin', advance: true },
-  'pm.reward.rune_count_done': { event: 'coins_many' },
+  // зачем (владелец 11.11, «на верный ответ — только „верно“»): полёт монеты и досчёт счётчика срабатывают на КАЖДЫЙ верный ответ в уроке
+  // и давали три звука разом. Оба события убраны из моста и молчат (старые эффекты выключены политикой). Монеты звучат там, где они
+  // итог: тост награды (pm.reward.small) и финал итогов (pm.complete.rewards_finale).
   'pm.complete.rewards_finale': { event: 'coins_many' },
   'pm.streak.saved': { event: 'streak_small' },
   'pm.energy.empty': { event: 'energy_out' },

@@ -1,146 +1,22 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// ComboMomentLayer.tsx — m08 «Молния» поверх экрана урока: монета выглядывает на 5 подряд, на 10 — молния через экран, вспышка и монета радуется («!»),
-// при ошибке после серии — холодная виньетка и монета дрожит («пот»). Эталон engagement-moments-v3-all.html `comboInit` + engagement-moments-v2.js `zap`.
+// ComboMomentLayer.tsx — бывший слой m08 «Молния» поверх экрана урока. Теперь ничего не рисует и не звучит.
 //
-// зачем (владелец 15.10: «ДА ДЕЛАЙ», монета — «НЕ УБИРАЕМ А ОСТАВЛЯЕМ»): серия ответов держит внимание до конца урока. Слой не ловит касаний (pointerEvents none),
-// монета видна 1,8 с после своего удара и уходит — вопрос урока не закрывает. Грузится require'ом только при moments_v3. Звук порога уже играет ComboRing (lightning);
-// здесь — только звук обрыва swipe_learn. reduced-motion — без молнии, вспышки и виньетки (монета — сразу в итоговой позе). Журнал [MOMENT-m08].
+// зачем (владелец 11.11: «молния удалить вообще (не только звук но и анимацию и состояние)», затем «Удалить сейчас»):
+// монета на 5 подряд, молния и вспышка на 10, холодная виньетка и звук обрыва серии — убраны. Кольцо серии и плашку
+// «N подряд» владелец убрал ещё 05.11.
+//
+// Почему файл остался пустой оболочкой, а не удалён: его подключает app/lesson1.tsx, а этот экран 11.11 редактируется
+// в другой сессии (чужие незакоммиченные правки) — трогать его нельзя. Оболочка сохраняет прежний вид подключения,
+// чтобы экран урока собирался без правки. Когда lesson1.tsx освободится: убрать из него подключение этого слоя,
+// ComboHeatSlot, ComboRing и combo_moment_gate, затем удалить эти файлы, combo_engine и звук lightning из каталога.
+// Достижения за серию верных ответов (correctStreakRef, checkAchievements type 'combo') к этому слою не относятся и живут.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useEffect, useRef, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import Reanimated, { useAnimatedProps, useAnimatedStyle, useReducedMotion, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
-import Svg, { Defs, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
-
-import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
-import { useStreakColors } from '../streak/moments/use_streak_colors';
-import { useShadowGlass } from '../v2/ShadowSurface';
-import { COMBO_MOMENT_LOG, COMBO_MOMENT_TIMELINE as T, COMBO_TRACE, MOMENT_QUEUE_LOG, deriveComboBeat, comboCoinStayMs, markComboMomentBusy, publishComboCoin, type ComboBeat, type ComboCoinShow } from './combo_moment_gate';
-
-const AnimatedPath = Reanimated.createAnimatedComponent(Path);
-// эталон `zap`: путь в кадре 390 × 844, растягивается на экран
-const ZAP_D = 'M60 0 L170 240 L120 250 L250 520 L200 530 L330 844';
-const ZAP_LEN = 1200;
-// зачем (закон владельца 22.10 «цвета — строго цвета и оттенки текущей темы»): вспышка эталона `.flash` — «чернила поверх картинок» темы (mediaInk), не зашитый белый.
-
-function playBreakSound(): void {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { isSoundV2Enabled } = require('../../modules/sound_v2/sound_v2_flag') as typeof import('../../modules/sound_v2/sound_v2_flag');
-    if (!isSoundV2Enabled()) { console.log(`${COMBO_MOMENT_LOG} звук обрыва пропущен: sound_v2 выключен`); return; } // guard-ok: ветка без звука
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { playEvent } = require('../../modules/sound_v2/sound_bank') as typeof import('../../modules/sound_v2/sound_bank');
-    const result = playEvent('swipe_learn');
-    if (!result.played) console.log(`${COMBO_MOMENT_LOG} звук swipe_learn не сыграл: ${String(result.reason)}`); // guard-ok: причина отказа движка
-  } catch (error) {
-    console.warn(`${COMBO_MOMENT_LOG} звук обрыва не сыграл (${error instanceof Error ? error.message : String(error)})`); // guard-ok: причина отказа
-  }
-}
-
-type CoinState = Omit<ComboCoinShow, 'rank'>;
-
-const COIN_FOR: Readonly<Record<Exclude<ComboBeat, 'spark'>, Omit<ComboCoinShow, 'key' | 'rank'>>> = {
-  lightning: { mood: 'peek' },
-  storm: { mood: 'cheer', emote: 'bang' },
-  break: { mood: 'shiver', emote: 'sweat' },
-};
+import { memo } from 'react';
 
 export type ComboMomentLayerProps = Readonly<{ comboCount: number }>;
 
-function ComboMomentLayer({ comboCount }: ComboMomentLayerProps) {
-  const reduced = useReducedMotion();
-  const coinRank = useMyCoinRank();
-  const colors = useStreakColors();
-  const prevRef = useRef(comboCount);
-  const [coin, setCoin] = useState<CoinState | null>(null);
-  // зачем (Ревизор 15.10, баг «монета залипает»): таймер скрытия живёт в ref, а не в cleanup эффекта — иначе следующий ответ без удара
-  // (5 → 6) отменял таймер и выходил рано, монета оставалась на уроке навсегда. Сбрасывает таймер только новый удар или размонтирование.
-  const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  // зачем (координатор 18.10, вариант «а»): монету рисует полоса плашки «N подряд» в шапке (ComboHeatSlot); слой лишь сообщает, какую и сколько держать
-  useEffect(() => {
-    publishComboCoin(coin ? { ...coin, rank: coinRank } : null);
-    console.log(`${COMBO_TRACE} слой: монета → шапка ${coin ? `${coin.mood}${coin.emote ? `+${coin.emote}` : ''} #${coin.key}` : 'скрыта'}`); // guard-ok: строка на смену монеты
-  }, [coin, coinRank]);
-  useEffect(() => () => {
-    publishComboCoin(null);
-    if (hideTimerRef.current === null) return;
-    clearTimeout(hideTimerRef.current);
-    hideTimerRef.current = null;
-    console.log(`${COMBO_TRACE} слой: таймер скрытия монеты отменён — урок закрыт (размонтирование)`); // guard-ok: журнал отмены таймера
-  }, []);
-  const zap = useSharedValue(ZAP_LEN);
-  const zapOpacity = useSharedValue(0);
-  const flash = useSharedValue(0);
-  const cold = useSharedValue(0);
-
-  useEffect(() => {
-    const prev = prevRef.current;
-    prevRef.current = comboCount;
-    const beat = deriveComboBeat(prev, comboCount);
-    if (!beat || beat === 'spark') {
-      if (prev !== comboCount) console.log(`${COMBO_TRACE} слой: ${prev} → ${comboCount} без удара (${beat ?? 'нет порога'}) — монета ${hideTimerRef.current ? 'дожидается своего таймера' : 'не показана'}`); // guard-ok: ранний выход логируется
-      return;
-    }
-    console.log(`${COMBO_MOMENT_LOG} слой: удар «${beat}» (${prev} → ${comboCount}), монета=${COIN_FOR[beat].mood} ранг=${String(coinRank)}`); // guard-ok: журнал удара
-    setCoin((c) => ({ ...COIN_FOR[beat], key: (c?.key ?? 0) + 1 }));
-    const stayMs = comboCoinStayMs(); // эталонные 1,8 с; в отладке — × dev_state?m08hold
-    markComboMomentBusy(Date.now(), stayMs);
-    console.log(`${MOMENT_QUEUE_LOG} m08 занят ${stayMs} мс (удар «${beat}») — тосты урока ждут`); // guard-ok: строка на отметку занятости
-    if (beat === 'break') playBreakSound();
-    if (!reduced && beat === 'storm') {
-      zap.value = withSequence(withTiming(ZAP_LEN, { duration: 0 }), withTiming(0, { duration: T.zapDraw }));
-      zapOpacity.value = withSequence(withTiming(1, { duration: 0 }), withDelay(T.zapFadeAt, withTiming(0, { duration: T.zapFade })));
-      // emFlash: 0 → пик на 15 % → 0
-      flash.value = withSequence(withTiming(T.flashPeak, { duration: T.flash * 0.15 }), withTiming(0, { duration: T.flash * 0.85 }));
-    }
-    if (!reduced && beat === 'break') {
-      cold.value = withSequence(withTiming(1, { duration: 0 }), withDelay(T.coldHold, withTiming(0, { duration: T.coldFade })));
-    }
-    if (hideTimerRef.current !== null) {
-      clearTimeout(hideTimerRef.current);
-      console.log(`${COMBO_TRACE} слой: прежний таймер скрытия отменён — новый удар «${beat}» перезапускает показ`); // guard-ok: журнал отмены таймера
-    }
-    hideTimerRef.current = setTimeout(() => {
-      hideTimerRef.current = null;
-      setCoin(null);
-      console.log(`${COMBO_TRACE} слой: монета скрыта по таймеру ${stayMs} мс (удар «${beat}»)`); // guard-ok: журнал скрытия
-    }, stayMs);
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: удар решается только сменой серии
-  }, [comboCount]);
-
-  const zapProps = useAnimatedProps(() => ({ strokeDashoffset: zap.value }));
-  const zapStyle = useAnimatedStyle(() => ({ opacity: zapOpacity.value }));
-  const flashStyle = useAnimatedStyle(() => ({ opacity: flash.value }));
-  const coldStyle = useAnimatedStyle(() => ({ opacity: cold.value }));
-  const flashColor = useShadowGlass().mediaInk;
-
-  return (
-    <View pointerEvents="none" style={StyleSheet.absoluteFill} testID="lesson1-combo-layer">
-      {/* `.vignette.cold`: прозрачный центр → второй цвет темы 35 % по краям */}
-      <Reanimated.View style={[StyleSheet.absoluteFill, coldStyle]}>
-        <Svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 100 100">
-          <Defs>
-            <RadialGradient id="m08cold" cx="50" cy="50" r="71" gradientUnits="userSpaceOnUse">
-              <Stop offset="0.55" stopColor={colors.second} stopOpacity="0" />
-              <Stop offset="1" stopColor={colors.second} stopOpacity="0.35" />
-            </RadialGradient>
-          </Defs>
-          <Rect x="0" y="0" width="100" height="100" fill="url(#m08cold)" />
-        </Svg>
-      </Reanimated.View>
-      <Reanimated.View style={[StyleSheet.absoluteFill, { backgroundColor: flashColor }, flashStyle]} />
-      <Reanimated.View style={[StyleSheet.absoluteFill, zapStyle]}>
-        <Svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 390 844">
-          {/* зачем (Макеты 8a2a2bccf: «в эталоне мятная, в приложении золотая»): эталон 2.0 перекрашивает молнию в акцент темы —
-              engagement-moments-app.css:193 `svg.zap path { stroke: var(--acc); filter: drop-shadow(0 0 10px var(--acc)) }`; свечение — тот же цвет шире и прозрачнее */}
-          {/* зачем (Макеты 18.10, m08_t3: «зигзаг перечёркивает текст вопроса»): свечение было статичной полосой 14 px × 45 %, видной целиком
-              с первого кадра. В эталоне — drop-shadow 10 px: мягкий ореол, который рисуется вместе с линией. Теперь ореол тоньше и прозрачнее
-              и идёт по тому же штриху (strokeDasharray), поверх текста остаётся только тонкая линия на 1,3 с. */}
-          <AnimatedPath d={ZAP_D} stroke={colors.accentGraphic} strokeOpacity={0.22} strokeWidth={10} fill="none" strokeLinejoin="round" strokeLinecap="round" strokeDasharray={ZAP_LEN} animatedProps={zapProps} />
-          <AnimatedPath d={ZAP_D} stroke={colors.accentGraphic} strokeWidth={4} fill="none" strokeLinejoin="round" strokeLinecap="round" strokeDasharray={ZAP_LEN} animatedProps={zapProps} />
-        </Svg>
-      </Reanimated.View>
-    </View>
-  );
+function ComboMomentLayer(_props: ComboMomentLayerProps): null {
+  return null;
 }
 
 export default memo(ComboMomentLayer);

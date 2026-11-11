@@ -1,5 +1,7 @@
 // зачем: владелец 14.10 одобрил звуки лаборатории; несколько вариантов на событие, без повторов подряд.
-// Каталог V2: у каждого события не меньше 4 вариантов, каждый файл существует, нет файлов-сирот,
+// 11.11, владелец: «звуки должны быть точно закреплены за событием и воспроизводиться мгновенно» — у события, для которого он выбрал звук,
+// вариант ровно один (замер: каждый лишний файл — это +530 мс холодного запуска). Четыре варианта — у событий без выбора.
+// Каталог V2: у каждого события 1 или не меньше 4 вариантов, каждый файл существует, нет файлов-сирот,
 // размер набора укладывается в бюджет стор-сборки (≤ 2,5 МБ).
 import * as fs from 'fs';
 import * as path from 'path';
@@ -25,15 +27,24 @@ function listFilesOnDisk(): string[] {
 }
 
 describe('sound_v2 catalog', () => {
-  it('содержит 36 событий в 6 группах', () => {
-    expect(SOUND_V2_EVENT_IDS).toHaveLength(36);
+  // 11.11: +6 событий — отсчёт Пика, приглашение и три исхода дуэли, выигрыш рулетки (владелец выбрал им звук, слота не было)
+  it('содержит 42 события в 6 группах', () => {
+    expect(SOUND_V2_EVENT_IDS).toHaveLength(42);
     const groups = new Set(SOUND_V2_EVENT_IDS.map((id) => SOUND_V2_CATALOG[id].group));
     expect([...groups].sort()).toEqual(['day', 'learn', 'peak', 'plus', 'reward', 'touch']);
   });
 
-  it.each(SOUND_V2_EVENT_IDS.map((id) => [id]))('у события %s не меньше 4 вариантов и все шаги на месте', (id) => {
+  // события без выбора владельца: молния и «Учить» (под удаление), переключатели (без звука), идеальный урок и достижение (нет экрана)
+  const MULTI_VARIANT_EVENTS = ['achievement', 'lesson_perfect', 'lightning', 'swipe_learn', 'toggle_off', 'toggle_on'];
+
+  it('один вариант — ровно у событий с выбором владельца, у остальных не меньше четырёх', () => {
+    const multi = SOUND_V2_EVENT_IDS.filter((id) => SOUND_V2_CATALOG[id].variants.length !== 1).sort();
+    expect(multi).toEqual(MULTI_VARIANT_EVENTS);
+  });
+
+  it.each(SOUND_V2_EVENT_IDS.map((id) => [id]))('у события %s один вариант или не меньше 4, и все шаги на месте', (id) => {
     const entry = SOUND_V2_CATALOG[id as SoundV2EventId];
-    expect(entry.variants.length).toBeGreaterThanOrEqual(4);
+    if (entry.variants.length !== 1) expect(entry.variants.length).toBeGreaterThanOrEqual(4);
     for (const clips of entry.variants) expect(clips).toHaveLength(entry.steps);
   });
 
@@ -76,8 +87,8 @@ describe('sound_v2 catalog', () => {
 
   it('getSoundV2Clip: за пределами шагов серия держится на последнем, кольцо идёт по кругу', () => {
     expect(getSoundV2Clip('correct', 0, 99).file).toBe('correct/v1_s7.m4a');
-    expect(getSoundV2Clip('correct', 2, -5).file).toBe('correct/v3_s0.m4a');
-    expect(getSoundV2Clip('ring', 1, 4).file).toBe('ring/v2_s1.m4a');
-    expect(getSoundV2Clip('tap', 3, 7).file).toBe('tap/v4.m4a');
+    expect(getSoundV2Clip('lightning', 2, -5).file).toBe('lightning/v3_s0.m4a');
+    expect(getSoundV2Clip('ring', 0, 4).file).toBe('ring/v1_s1.m4a');
+    expect(getSoundV2Clip('toggle_on', 3, 7).file).toBe('toggle_on/v4.m4a');
   });
 });

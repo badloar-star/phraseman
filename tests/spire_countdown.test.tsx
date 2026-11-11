@@ -65,7 +65,7 @@ describe('отсчёт 3 → 2 → 1 перед ступенью Пика', () =
     for (let i = 0; i < SPIRE_COUNTDOWN_FROM; i += 1) await advance(SPIRE_COUNTDOWN_STEP_MS); // по одной цифре, как на устройстве
     expect(mockHaptic).toHaveBeenCalledTimes(SPIRE_COUNTDOWN_FROM);
     expect(mockSound).toHaveBeenCalledTimes(SPIRE_COUNTDOWN_FROM);
-    expect(mockSound).toHaveBeenCalledWith('tap', 'spire.countdown');
+    expect(mockSound).toHaveBeenCalledWith('countdown', 'spire.countdown'); // владелец 11.11: у отсчёта свой выбранный звук
   });
 
   it('свернули приложение во время отсчёта — пауза, раунд в фоне не стартует; вернулись — заново с 3', async () => {

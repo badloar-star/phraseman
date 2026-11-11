@@ -21,6 +21,7 @@
 import * as haptics from './haptics';
 import { soundDirector } from '../../modules/audio/sound_director';
 import type { SoundRequestOptions } from '../../modules/audio/sound_arbiter';
+import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 
 export type MilestoneKind = 'star1' | 'star2' | 'star3' | 'medal' | 'chord';
 export type ResultsRewardSoundKind = 'activeRewardReveal' | 'activeGiftUnlock' | 'multiplierReveal' | 'multiplierUpgrade';
@@ -43,6 +44,23 @@ export interface VerdictOptions {
   dedupeKey?: string;
 }
 
+// зачем (владелец 11.11: «звуки должны быть точно закреплены за событием и воспроизводится мгновенно»; журнал 22:36:36 — плеер
+// «неверно» создавался в момент ответа, warm=false, это ~0,4 с опоздания): плееры «верно/неверно» готовятся при первом касании
+// в уроке, до первого ответа. Прогрев на старте приложения убран из корня чужим решением и сторожем холодного старта — туда не лезем.
+let verdictSoundsWarmed = false;
+function warmVerdictSoundsOnce(): void {
+  if (verdictSoundsWarmed) return;
+  verdictSoundsWarmed = true;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { prewarmSoundV2 } = require('../../modules/sound_v2/sound_bank') as typeof import('../../modules/sound_v2/sound_bank');
+    prewarmSoundV2(['correct', 'wrong']);
+  } catch (error) {
+    verdictSoundsWarmed = false;
+    console.warn(`[SOUND-V2] прогрев звуков вердикта не удался (${error instanceof Error ? error.message : String(error)}) — первый звук может опоздать`);
+  }
+}
+
 export const fk = {
   /**
    * Лёгкий клик касания (onPressIn интерактивов). По просьбе пользователя
@@ -50,6 +68,7 @@ export const fk = {
    * отклик (вибрация уважает свой тумблер).
    */
   tap(): void {
+    warmVerdictSoundsOnce();
     haptics.tap();
   },
 
@@ -78,7 +97,7 @@ export const fk = {
     haptics.wrong();
   },
 
-  /** A unit-completion sound may play; ordinary answer verdicts stay silent. */
+  /** Вердикт ответа в уроках: выбранный владельцем звук «верно» / «неверно» и вибрация. */
   verdict({ correct, completesUnit, completionEvent, dedupeKey }: VerdictOptions): void {
     if (completesUnit) {
       soundDirector.request(completionEvent ?? 'pm.complete.micro', {
@@ -86,6 +105,12 @@ export const fk = {
         scope: 'learning-verdict',
       });
     }
+    // зачем (владелец 11.11: «Звуки не добавлены в приложение… исправляй»): он выбрал звук для «верно» (вариант C) и «неверно» и снял
+    // замок 25.10, но вердикт урока оставался немым — за 25 минут урока в журнале не было ни одного события correct/wrong.
+    // «Верно» идёт серией (каждый следующий подряд — на ступень выше), ошибка серию сбрасывает; это делает сам банк.
+    // Мост сам молчит, если звуки выключены в настройках или идёт запись голоса; отказ плеера он пишет в журнал.
+    const played = correct ? tryPlayV2Event('correct', 'learning_verdict', true) : tryPlayV2Event('wrong', 'learning_verdict');
+    if (!played) console.warn(`[SOUND-V2] вердикт урока без звука: ${correct ? 'correct' : 'wrong'} (флаг выключен или плеер недоступен)`);
     if (correct) haptics.correct();
     else haptics.wrong();
   },

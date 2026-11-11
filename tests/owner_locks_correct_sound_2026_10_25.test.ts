@@ -3,6 +3,8 @@
  * Ни один обработчик верного ответа не звучит: звук «верно», «молния» серии верных ответов, Арена (верно / первым / комбо /
  * пары), звон «золотого задания» и возврат сердца за серию в Пике. Вибрация и анимация остаются, звук ошибки не тронут.
  * Сработал — верни заглушку, а не ослабляй сторож (ослабить — только по новому слову владельца).
+ * НОВОЕ СЛОВО ВЛАДЕЛЬЦА 11.11: в лаборатории звуков он выбрал звук для события «верно» и снял замок с него одного
+ * («…сняв замки на нажатие и верный ответ?» — «Да, подключай»). Остальное под замком: «молния», Арена, золотое задание, сердце в Пике.
  */
 import * as fs from 'fs';
 import * as path from 'path';
@@ -26,12 +28,13 @@ function walk(dir: string, out: string[]): void {
 
 describe('ЗАМОК ВЛАДЕЛЬЦА 25.10: нет звука на верный ответ ни в одном режиме', () => {
   it('заглушка знает все звуки верного ответа и не трогает звук ошибки', () => {
-    for (const e of ['correct', 'lightning']) expect(isCorrectAnswerSoundSilenced(e, 'test')).toBe(true);
+    expect(isCorrectAnswerSoundSilenced('lightning', 'test')).toBe(true);
+    expect(isCorrectAnswerSoundSilenced('correct', 'test')).toBe(false); // владелец 11.11: «верно» звучит выбранным вариантом
     for (const e of ['pm.arena.answer_correct', 'pm.arena.answer_first', 'pm.arena.combo_start', 'pm.arena.combo_up', 'pm.arena.pair_match', 'pm.arena.pair_clear']) {
       expect(CORRECT_ANSWER_DIRECTOR_EVENTS.has(e)).toBe(true);
     }
     for (const e of ['wrong', 'pm.arena.answer_wrong', 'pm.arena.pair_miss', 'tap', 'lesson_done']) expect(isCorrectAnswerSoundSilenced(e, 'test')).toBe(false);
-    expect([...CORRECT_ANSWER_V2_EVENTS].sort()).toEqual(['correct', 'lightning']);
+    expect([...CORRECT_ANSWER_V2_EVENTS].sort()).toEqual(['lightning']);
   });
 
   it('единые входы глушат раньше всего: банк V2, директор, мост старых звуков', () => {
@@ -40,7 +43,8 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 25.10: нет звука на верны
     const director = read('modules/audio/sound_director.ts');
     expect(director).toMatch(/request\(eventId: SoundEventId, options: SoundRequestOptions = \{\}\): SoundDecision \{\n[^\n]*\n    if \(isCorrectAnswerSoundSilenced\(eventId/);
     const bridge = read('modules/sound_v2/legacy_bridge.ts');
-    expect(bridge).toMatch(/MUTED_SOUND_V2_EVENTS[^\n]*'correct'[^\n]*'lightning'/);
+    expect(bridge).toMatch(/MUTED_SOUND_V2_EVENTS[^\n]*new Set\(\['lightning'/);
+    expect(bridge).not.toMatch(/MUTED_SOUND_V2_EVENTS[^\n]*'correct'/);
     expect(bridge).toContain("'correct_answer_silenced'");
   });
 
@@ -49,7 +53,7 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 25.10: нет звука на верны
     for (const dir of ['app', 'components', 'hooks', 'modules']) walk(dir, files);
     const offenders = files
       .filter((f) => f !== 'modules/audio/correct_answer_silence.ts')
-      .filter((f) => /(?:tryPlayV2Event|playUnlessRecentlyPlayed)\(\s*'(?:correct|lightning)'/.test(read(f)));
+      .filter((f) => /(?:tryPlayV2Event|playUnlessRecentlyPlayed)\(\s*'lightning'/.test(read(f)));
     // ComboRing зовёт lightning — мост глушит его (MUTED_SOUND_V2_EVENTS), прямой банк — тоже (playEvent); список чистых обходов пуст
     expect(offenders.filter((f) => f !== 'components/feedback/ComboRing.tsx')).toEqual([]);
   });

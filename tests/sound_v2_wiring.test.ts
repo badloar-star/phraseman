@@ -13,7 +13,7 @@ const mockHandlers: Array<() => void> = [];
 jest.mock('../app/events', () => ({ onAppEvent: (_name: string, cb: () => void) => { mockHandlers.push(cb); return { remove: () => undefined }; } }));
 
 import { SOUND_V2_CATALOG } from '../modules/sound_v2/catalog';
-jest.mock('../modules/audio/sfx_music_policy', () => ({ isProductionSfxMusicAllowed: () => true }));
+jest.mock('../modules/audio/sfx_music_policy', () => ({ isProductionSfxMusicAllowed: () => true, isProductionSoundV2Allowed: () => true }));
 import { SoundBank, playEvent, prewarmSoundV2, type SoundBankDeps, type SoundV2Player } from '../modules/sound_v2/sound_bank';
 import { setSoundV2FlagForTests } from '../modules/sound_v2/sound_v2_flag';
 import { DIRECTOR_TO_V2, FC_TO_V2, tryPlayV2Event, tryPlayV2ForDirector, tryPlayV2ForFc } from '../modules/sound_v2/legacy_bridge';
@@ -35,34 +35,54 @@ describe('мост старых звуков к V2', () => {
     for (const plan of [...Object.values(DIRECTOR_TO_V2), ...Object.values(FC_TO_V2)]) expect(SOUND_V2_CATALOG[plan.event]).toBeDefined();
   });
 
-  it('флаг выключен: немые tap/correct погашены до legacy fallback, остальные входы остаются прежними', () => {
+  // владелец 11.11: в лаборатории звуков он выбрал звук для нажатия и верного ответа — замки 18.10/25.10 с них сняты;
+  // без звука оставлены оба переключателя, «молния» молчит до удаления.
+  it('флаг выключен: немые события погашены до legacy fallback, остальные входы остаются прежними', () => {
     setSoundV2FlagForTests(false);
-    expect(tryPlayV2ForDirector('pm.ui.tap_primary')).toBe(true);
-    expect(tryPlayV2ForFc('correct')).toBe(true);
+    expect(tryPlayV2Event('toggle_on', 'custom_switch')).toBe(true);
+    expect(tryPlayV2Event('lightning', 'combo_ring')).toBe(true);
+    expect(tryPlayV2ForDirector('pm.ui.tap_primary')).toBe(true); // 11.11, набор «Тёплые палочки»: нажатие снова без звука
+    expect(tryPlayV2ForFc('correct')).toBe(false);
     expect(tryPlayV2Event('league_up', 'x')).toBe(false);
     expect(playMock).not.toHaveBeenCalled();
   });
 
-  it.each([false, true])('tap и correct погашены централизованно при sound_v2=%s без запуска V2 или legacy fallback', (enabled) => {
+  it.each([false, true])('переключатели и молния погашены централизованно при sound_v2=%s без запуска V2 или legacy fallback', (enabled) => {
     setSoundV2FlagForTests(enabled);
 
-    expect(tryPlayV2ForDirector('pm.ui.tap_primary')).toBe(true);
-    expect(tryPlayV2ForDirector('pm.ui.tap_soft')).toBe(true);
-    expect(tryPlayV2ForFc('correct')).toBe(true);
-    expect(tryPlayV2Event('tap', 'spire.countdown')).toBe(true);
-    expect(tryPlayV2Event('correct', 'direct')).toBe(true);
+    expect(tryPlayV2Event('toggle_on', 'custom_switch')).toBe(true);
+    expect(tryPlayV2Event('toggle_off', 'custom_switch')).toBe(true);
+    expect(tryPlayV2Event('lightning', 'combo_ring')).toBe(true);
     expect(playMock).not.toHaveBeenCalled();
   });
 
-  it('флаг включён: завершение, награда и неверный ответ играют V2, а верный ответ остаётся немым', () => {
+  // 11.11, поздний вечер — владелец выбрал набор «Тёплые палочки» по 38 местам: «верно» звучит, а нажатие, шторки, сторис,
+  // подсказка и монета за ответ из набора убраны и молчат (мост отвечает true, старый звук их не подменяет).
+  it('флаг включён: верный ответ играет выбранный звук, а места вне набора молчат', () => {
+    setSoundV2FlagForTests(true);
+    playMock.mockReturnValue({ event: 'x', played: true });
+    expect(tryPlayV2ForDirector('pm.ui.tap_primary')).toBe(true);
+    expect(tryPlayV2ForDirector('pm.ui.tap_soft')).toBe(true);
+    expect(tryPlayV2Event('tap', 'any.tap')).toBe(true);
+    for (const muted of ['sheet_open', 'sheet_close', 'story', 'hint', 'coin', 'energy_back', 'achievement', 'lesson_perfect'] as const) {
+      expect(tryPlayV2Event(muted, 'x')).toBe(true);
+    }
+    expect(tryPlayV2ForDirector('pm.reward.small')).toBe(true);
+    expect(playMock).not.toHaveBeenCalled();
+    expect(tryPlayV2ForFc('correct')).toBe(true);
+    expect(playMock).toHaveBeenLastCalledWith('correct', { advance: true });
+    expect(playMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('флаг включён: завершение, итог наград, верный и неверный ответ играют V2', () => {
     setSoundV2FlagForTests(true);
     playMock.mockReturnValue({ event: 'x', played: true });
     expect(tryPlayV2ForDirector('pm.complete.session')).toBe(true);
     expect(playMock).toHaveBeenLastCalledWith('lesson_done', undefined);
-    expect(tryPlayV2ForDirector('pm.reward.small')).toBe(true);
-    expect(playMock).toHaveBeenLastCalledWith('coin', { advance: true });
+    expect(tryPlayV2ForDirector('pm.complete.rewards_finale')).toBe(true);
+    expect(playMock).toHaveBeenLastCalledWith('coins_many', undefined);
     expect(tryPlayV2ForFc('correct')).toBe(true);
-    expect(playMock).toHaveBeenCalledTimes(2);
+    expect(playMock).toHaveBeenCalledTimes(3);
     expect(tryPlayV2ForFc('incorrect')).toBe(true);
     expect(playMock).toHaveBeenLastCalledWith('wrong', undefined);
   });
@@ -217,23 +237,20 @@ describe('остальные события V2 — места подключен
     expect(read(file)).toContain(needle);
   });
 
-  it('ачивка: событие achievement_unlocked играет V2, пачка в течение 800 мс — один звук; флаг выключен — тишина', () => {
+  // 11.11, поздний вечер: в наборе «Тёплые палочки» у достижения звука нет (экрана для него в приложении нет) — подписка жива, но молчит.
+  it('ачивка: подписка на achievement_unlocked есть, но событие вне набора владельца — без звука', () => {
     subscribeAchievementSound(); // подписка одна на процесс: её уже сделал запуск в тестах выше
     expect(mockHandlers.length).toBeGreaterThanOrEqual(1);
     const handler = mockHandlers[0]!;
     let clock = 10_000_000;
     const nowSpy = jest.spyOn(Date, 'now').mockImplementation(() => clock);
     setSoundV2FlagForTests(true);
+    playMock.mockClear();
     playMock.mockReturnValue({ event: 'achievement', played: true });
     handler();
-    clock += 100;
+    clock += SOUND_V2_ACHIEVEMENT_THROTTLE_MS + 100;
     handler();
-    expect(playMock).toHaveBeenCalledTimes(1);
-    expect(playMock.mock.calls[0]![0]).toBe('achievement');
-    clock += SOUND_V2_ACHIEVEMENT_THROTTLE_MS;
-    setSoundV2FlagForTests(false);
-    handler();
-    expect(playMock).toHaveBeenCalledTimes(1);
+    expect(playMock).not.toHaveBeenCalled();
     nowSpy.mockRestore();
   });
 

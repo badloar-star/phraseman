@@ -7,9 +7,11 @@
  * «Ход сохранён на телефоне». Итог: счёт и время у обоих, что решило, таблица фраз, «Реванш» и «Разобрать ошибки».
  * Поражение — без упрёка. Только вид: данные и действия — у экрана app/friends_duel.tsx.
  */
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+
+import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 
 import { FlowText } from '../text-integrity';
 import { useLang } from '../LangContext';
@@ -61,6 +63,12 @@ function FriendDuelResultView({ mode, me, friend, outcome, outcomeLine, rows, on
   const body = isResult ? (outcomeLine ?? '') : duelCopy(lang, mode === 'offline' ? 'offlineBody' : 'sentBody');
   const mistakes = rows.filter((r) => !r.mine).length;
   const markLabel = (who: string, value: boolean | null) => `${who}: ${value === null ? '…' : value ? '✓' : '✗'}`;
+  // зачем (владелец 11.11, «подключить пять оставшихся мест»): для победы, поражения и ничьей он выбрал свои звуки — они звучат
+  // один раз, когда итог показан. «Ход отправлен» и «ход без сети» остаются без звука: для них он звук не выбирал.
+  useEffect(() => {
+    if (!isResult || !outcome) return;
+    tryPlayV2Event(outcome === 'win' ? 'duel_win' : outcome === 'loss' ? 'duel_lose' : 'duel_draw', 'duel_result');
+  }, [isResult, outcome]);
 
   return (
     <View testID="friend-duel-result" style={styles.root}>

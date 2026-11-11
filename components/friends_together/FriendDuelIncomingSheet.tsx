@@ -5,9 +5,10 @@
  * закрыт («?») до своего хода, факты «5 фраз · N ч осталось · 0 энергии», «Принять» / «Отказаться». Отказ тихий — вызвавший
  * увидит строку в «Сообщениях». Шторка закрывается сразу (Optimistic UI), запрос к серверу — у экрана.
  */
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import HybridSheetShell from '../modal_fx/HybridSheetShell';
 import { FlowText } from '../text-integrity';
 import { useLang } from '../LangContext';
@@ -33,6 +34,11 @@ function FriendDuelIncomingSheet({ visible, me, friend, hoursLeft, onAccept, onD
   const { glass, textScale } = useFriendsGlass();
   const { lang } = useLang();
   const closeLabel = triLang(lang, { ru: 'Закрыть', uk: 'Закрити', en: 'Close', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' });
+  // зачем (владелец 11.11, «подключить пять оставшихся мест»): выбранный им звук приглашения звучит в момент появления шторки.
+  // Мост сам молчит при выключенных звуках и записи голоса; отказ плеера пишет в журнал.
+  useEffect(() => {
+    if (visible) tryPlayV2Event('duel_invite', 'duel_incoming_sheet');
+  }, [visible]);
   return (
     <HybridSheetShell visible={visible} onClose={onClose} onDismissed={onDismissed} closeLabel={closeLabel} backdropAccessible={false} testID="friend-duel-incoming-sheet" material="liquid-glass-opaque" glowColor={glass.cta}>
       {({ requestDismiss }) => (

@@ -78,21 +78,21 @@ export const SOUND_EVENTS = Object.freeze({
   // и глотал каждый второй тик — 5-3-1 вместо 5-4-3-2-1 в турнире, «3…1» без
   // «2» в арене. 700 мс: секундная каденция проходит целиком, а дребезг
   // повторных запросов внутри одной секунды по-прежнему схлопывается.
-  'pm.learn.timer_warning': event(require('../../assets/audio/sfx/v1/learning/pm_learn_timer_warning_v1.m4a'), 0.34, 62, 700, 240, 'learning'),
-  'pm.learn.timer_expired': event(require('../../assets/audio/sfx/v1/learning/pm_learn_timer_expired_v1.m4a'), 0.32, 66, 700, 420, 'learning'),
+  'pm.learn.timer_warning': event(require('../../assets/audio/sfx/v1/learning/pm_learn_timer_warning_v1.m4a'), 0.34, 62, 700, 450, 'learning'),
+  'pm.learn.timer_expired': event(require('../../assets/audio/sfx/v1/learning/pm_learn_timer_expired_v1.m4a'), 0.32, 66, 700, 950, 'learning'),
   // зачем: собранный «вдох» на старте теста/экзамена — до первого вопроса,
   // приоритет ниже обычных learning-сигналов (это атмосфера, не вердикт).
   // Однократность на попытку держит вызывающий код (mount-once), cooldown —
   // только защита от гонки/двойного mount, не суррогат персистентности.
-  'pm.exam.begin': event(require('../../assets/audio/sfx/v1/learning/pm_exam_begin_v1.m4a'), 0.20, 30, 4000, 1000, 'learning'),
+  'pm.exam.begin': event(require('../../assets/audio/sfx/v1/learning/pm_exam_begin_v1.m4a'), 0.20, 30, 4000, 1200, 'learning'),
   // зачем: тихая атмосферная подложка под уже существующий header-fade интро
   // урока (app/lesson_intro_screens.tsx). Однократность на lessonId держит
   // dedupeKey в вызове; cooldown — только защита от двойного mount подряд.
   // зачем 2026-08-30: файл заменён на выбор раунда 5 (арфа, вариант B).
-  'pm.lesson.begin': event(require('../../assets/audio/sfx/v1/learning/pm_lesson_begin_v1.m4a'), 0.18, 20, 4000, 2960, 'learning'),
+  'pm.lesson.begin': event(require('../../assets/audio/sfx/v1/learning/pm_lesson_begin_v1.m4a'), 0.18, 20, 4000, 1421, 'learning'),
 
-  'pm.voice.record_ready': event(require('../../assets/audio/sfx/v1/voice/pm_voice_record_ready_v1.m4a'), 0.40, 95, 450, 220, 'voice', { platform: 'ios' }),
-  'pm.voice.no_speech': event(require('../../assets/audio/sfx/v1/voice/pm_voice_no_speech_v1.m4a'), 0.27, 78, 800, 380, 'voice'),
+  'pm.voice.record_ready': event(require('../../assets/audio/sfx/v1/voice/pm_voice_record_ready_v1.m4a'), 0.40, 95, 450, 600, 'voice', { platform: 'ios' }),
+  'pm.voice.no_speech': event(require('../../assets/audio/sfx/v1/voice/pm_voice_no_speech_v1.m4a'), 0.27, 78, 800, 835, 'voice'),
 
   'pm.complete.micro': event(require('../../assets/audio/sfx/v1/completion/pm_complete_micro_v1.m4a'), 0.46, 74, 1800, 780, 'completion'),
   'pm.complete.session': event(require('../../assets/audio/sfx/v1/completion/pm_complete_session_v1.m4a'), 0.52, 80, 3000, 1100, 'completion'),
@@ -110,10 +110,10 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.complete.multiplier_upgrade': event(require('../../assets/audio/sfx/v1/completion/pm_complete_multiplier_upgrade_v1.m4a'), 0.44, 82, 1200, 1500, 'completion'),
   'pm.complete.rewards_finale': event(require('../../assets/audio/sfx/v1/completion/pm_complete_rewards_finale_v1.m4a'), 0.46, 84, 1500, 1800, 'completion'),
 
-  'pm.system.success': event(require('../../assets/audio/sfx/v1/system/pm_system_success_v1.m4a'), 0.34, 58, 1600, 520, 'system', { deferAfterVoice: true }),
-  'pm.system.info': event(require('../../assets/audio/sfx/v1/system/pm_system_info_v1.m4a'), 0.28, 44, 1800, 420, 'system', { deferAfterVoice: true }),
-  'pm.system.warning': event(require('../../assets/audio/sfx/v1/system/pm_system_warning_v1.m4a'), 0.34, 72, 2200, 560, 'system'),
-  'pm.system.error_recoverable': event(require('../../assets/audio/sfx/v1/system/pm_system_error_recoverable_v1.m4a'), 0.30, 76, 1800, 480, 'system'),
+  'pm.system.success': event(require('../../assets/audio/sfx/v1/system/pm_system_success_v1.m4a'), 0.34, 58, 1600, 836, 'system', { deferAfterVoice: true }),
+  'pm.system.info': event(require('../../assets/audio/sfx/v1/system/pm_system_info_v1.m4a'), 0.28, 44, 1800, 1109, 'system', { deferAfterVoice: true }),
+  'pm.system.warning': event(require('../../assets/audio/sfx/v1/system/pm_system_warning_v1.m4a'), 0.34, 72, 2200, 800, 'system'),
+  'pm.system.error_recoverable': event(require('../../assets/audio/sfx/v1/system/pm_system_error_recoverable_v1.m4a'), 0.30, 76, 1800, 900, 'system'),
   'pm.system.destructive_done': event(require('../../assets/audio/sfx/v1/system/pm_system_destructive_done_v1.m4a'), 0.34, 84, 2500, 580, 'system'),
 
   'pm.energy.empty': event(require('../../assets/audio/sfx/v1/energy/pm_energy_empty_v1.m4a'), 0.32, 73, 5000, 620, 'energy'),
@@ -170,7 +170,7 @@ export const SOUND_EVENTS = Object.freeze({
 
   // зачем: лёгкий сигнал «теперь вы друзья» на стороне того, кто принял
   // заявку — не путать с friend_request (входящая заявка).
-  'pm.social.friend_added': event(require('../../assets/audio/sfx/v1/social/pm_social_friend_added_v1.m4a'), 0.30, 55, 2000, 1000, 'social', { deferAfterVoice: true }),
+  'pm.social.friend_added': event(require('../../assets/audio/sfx/v1/social/pm_social_friend_added_v1.m4a'), 0.30, 55, 2000, 1200, 'social', { deferAfterVoice: true }),
   /**
    * Звуки Арены.
    *
@@ -223,7 +223,7 @@ export const SOUND_EVENTS = Object.freeze({
   // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).
   'pm.cards.editor_delete': event(require('../../assets/audio/sfx/v1/cards/pm_cards_editor_delete_v1.m4a'), 0.30, 58, 800, 600, 'cards'),
   'pm.cards.editor_save': event(require('../../assets/audio/sfx/v1/cards/pm_cards_editor_save_v1.m4a'), 0.34, 60, 800, 800, 'cards'),
-  'pm.cards.flip': event(require('../../assets/audio/sfx/v1/cards/pm_cards_flip_v1.m4a'), 0.26, 34, 90, 280, 'cards'),
+  'pm.cards.flip': event(require('../../assets/audio/sfx/v1/cards/pm_cards_flip_v1.m4a'), 0.26, 34, 90, 300, 'cards'),
   'pm.cards.pack_created': event(require('../../assets/audio/sfx/v1/cards/pm_cards_pack_created_v1.m4a'), 0.44, 78, 3000, 1200, 'cards'),
   'pm.cards.pack_open': event(require('../../assets/audio/sfx/v1/cards/pm_cards_pack_open_v1.m4a'), 0.28, 56, 800, 700, 'cards'),
 
@@ -233,8 +233,8 @@ export const SOUND_EVENTS = Object.freeze({
 
   // Диалоги с ИИ. Файлы сгенерированы владельцем через Firefly
   // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).
-  'pm.dialog.retry': event(require('../../assets/audio/sfx/v1/dialog/pm_dialog_retry_v1.m4a'), 0.32, 66, 800, 900, 'dialog', { deferAfterVoice: true }),
-  'pm.dialog.victory': event(require('../../assets/audio/sfx/v1/dialog/pm_dialog_victory_v1.m4a'), 0.54, 88, 5000, 1800, 'dialog'),
+  'pm.dialog.retry': event(require('../../assets/audio/sfx/v1/dialog/pm_dialog_retry_v1.m4a'), 0.32, 66, 800, 950, 'dialog', { deferAfterVoice: true }),
+  'pm.dialog.victory': event(require('../../assets/audio/sfx/v1/dialog/pm_dialog_victory_v1.m4a'), 0.54, 88, 5000, 2200, 'dialog'),
 
   // Магазин и валюты. Файлы сгенерированы владельцем через Firefly
   // по промптам docs/sound/SOUND_PROMPTS_FULL.md (редакция 3).
@@ -287,7 +287,7 @@ export const SOUND_EVENTS = Object.freeze({
   // Файлы одобрены владельцем на слух (choices_final: оба «a»), вызовы живут в
   // components/session_attempts/SessionAttemptsHud.tsx — одна точка покрывает
   // все экраны (потеря = remaining упал, восстановление = вырос).
-  'pm.hearts.lost': event(require('../../assets/audio/sfx/v1/hearts/pm_heart_lost_v1.m4a'), 0.30, 64, 400, 500, 'hearts'),
+  'pm.hearts.lost': event(require('../../assets/audio/sfx/v1/hearts/pm_heart_lost_v1.m4a'), 0.30, 64, 400, 1348, 'hearts'),
   'pm.hearts.restored': event(require('../../assets/audio/sfx/v1/hearts/pm_hearts_restored_v1.m4a'), 0.48, 78, 2000, 1200, 'hearts'),
 
 

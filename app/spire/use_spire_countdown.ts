@@ -18,7 +18,8 @@ const LOG = `${SPIRE}[SPIRE-COUNTDOWN]`;
 
 /** Общий банк соблюдает настройку звука, запись микрофона и отсутствие повторов. */
 export function playSpireCountdownSound(digit: number): void {
-  const handled = tryPlayV2Event('tap', 'spire.countdown');
+  // зачем (владелец 11.11): для цифр отсчёта он выбрал свой звук; раньше тут стояло «нажатие», которое в новом наборе молчит.
+  const handled = tryPlayV2Event('countdown', 'spire.countdown');
   console.log(`${LOG} sound digit=${digit} handled=${handled}`); // guard-ok: итог события отсчёта
 }
 

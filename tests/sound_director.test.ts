@@ -9,6 +9,7 @@ import { ExpoSfxBackend, type SfxPlayerLike } from '@/modules/audio/expo_sfx_bac
 import { SoundArbiter } from '@/modules/audio/sound_arbiter';
 import type { SoundClock } from '@/modules/audio/sound_clock';
 import { SoundDirector, type SfxPlaybackBackend } from '@/modules/audio/sound_director';
+import { SOUND_EVENTS } from '@/modules/audio/sound_events';
 
 class FakeClock implements SoundClock {
   nowMs = 0;
@@ -250,9 +251,11 @@ describe('SoundDirector', () => {
         expect(director.request('pm.complete.star_1', { queueIfBusy: true }))
           .toMatchObject({ kind: 'drop', reason: 'priority' });
 
-        // durationMs('pm.system.error_recoverable') = 480ms — до этого момента слот занят.
-        clock.advance(479);
-        jest.advanceTimersByTime(479);
+        // слот занят, пока звучит pm.system.error_recoverable; длительность берём из каталога, а не числом —
+        // 11.11 файл заменён звуком, выбранным владельцем, и число 480 мс перестало быть верным.
+        const busyMs = SOUND_EVENTS['pm.system.error_recoverable'].durationMs;
+        clock.advance(busyMs - 1);
+        jest.advanceTimersByTime(busyMs - 1);
         expect(backend.plays.map((p) => p.eventId)).toEqual(['pm.system.error_recoverable']);
 
         clock.advance(1);

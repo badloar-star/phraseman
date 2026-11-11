@@ -34,7 +34,8 @@ export const SOUND_MOTION: Readonly<Partial<Record<SoundEventId, SoundMotionProf
   'pm.learn.timer_warning': { audibleMs: 63, attackMs: 47, hits: [16], shape: 'perc', bright: 0.73 },
   'pm.learn.timer_expired': { audibleMs: 563, attackMs: 47, hits: [47, 109, 266, 328], shape: 'multi', bright: 0.40 },
   'pm.exam.begin': { audibleMs: 578, attackMs: 16, hits: [16, 109, 188, 250, 297, 359], shape: 'multi', bright: 0.0592 },
-  'pm.lesson.begin': { audibleMs: 1509, attackMs: 180, hits: [180, 288, 431, 575, 683, 755, 898, 1006], shape: 'multi', bright: 0.432 },
+  // 11.11: файл заменён звуком, выбранным владельцем (1421 мс); отметки ударов ниже сняты со старого файла и ждут пересъёмки
+  'pm.lesson.begin': { audibleMs: 1421, attackMs: 180, hits: [180, 288, 431, 575, 683, 755, 898, 1006], shape: 'multi', bright: 0.432 },
   'pm.voice.record_ready': { audibleMs: 125, attackMs: 109, hits: [109], shape: 'perc', bright: 0.89 },
   'pm.voice.no_speech': { audibleMs: 109, attackMs: 0, hits: [], shape: 'perc', bright: 0.41 },
   'pm.complete.micro': { audibleMs: 531, attackMs: 0, hits: [78, 125, 203, 281, 328], shape: 'multi', bright: 0.96 },

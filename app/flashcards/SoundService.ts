@@ -23,7 +23,7 @@
  * Звуки — продакшн-семейство E9 («мягкая маримба», −16 LUFS, пики −6 dBFS),
  * производство: scripts/audio_pipeline.sh (ffmpeg-синтез + pitch-shift комбо).
  */
-import { tryPlayV2ForFc } from '../../modules/sound_v2/legacy_bridge';
+import { hasV2PlanForFc, tryPlayV2ForFc } from '../../modules/sound_v2/legacy_bridge';
 import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createAudioPlayer, type AudioPlayer } from 'expo-audio';
@@ -37,7 +37,7 @@ import {
 import { FC_SFX_TTS_GAP_MS } from '../../constants/flashcards_motion';
 import { claimSpokenAudio } from '../../modules/audio/audio_runtime_arbiter';
 import { getSoundSettingsSnapshot } from '../../modules/audio/sound_settings';
-import { isProductionSfxMusicAllowed } from '../../modules/audio/sfx_music_policy';
+import { isProductionSfxMusicAllowed, isProductionSoundV2Allowed } from '../../modules/audio/sfx_music_policy';
 import { soundAudit } from '../../modules/audio/sound_audit';
 import { DebugLogger } from '../debug-logger';
 import { noteSwallowed, noteSwallowedHandler } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -173,7 +173,8 @@ export async function setFcAutoSpeakEnabled(on: boolean): Promise<void> {
 
 /** Воспроизвести короткий SFX из пула. Синхронный fire-and-forget, ошибки глотаем. */
 export function playSfx(name: FcSfxName): void {
-  if (!isProductionSfxMusicAllowed()) return;
+  // зачем (владелец 11.11): старые звуки карточек убраны, но звук с парой в наборе V2 (верно, ошибка, «знаю», итог) проходит
+  if (!isProductionSfxMusicAllowed() && !(isProductionSoundV2Allowed() && hasV2PlanForFc(name))) return;
   // зачем 2026-08-30 (§R7): общий тумблер «Звуки» приложения обязан глушить и
   // карточки — раньше они слушали только свой fc_sfx_on и звенели при
   // выключенных звуках. Локальный тумблер остаётся дополнительным фильтром.
@@ -182,6 +183,8 @@ export function playSfx(name: FcSfxName): void {
   if (!isFcSfxEnabled()) { soundAudit('fc', { sfx: name, played: false, reason: 'fc_sfx_off' }); return; }
   // зачем (координатор 14.10, п.4): sound_v2 включён и у звука карточек есть пара в V2 — играет V2; выключен — прежний путь
   if (tryPlayV2ForFc(name)) { soundAudit('fc', { sfx: name, played: true, path: 'v2' }); return; }
+  // V2 не сыграл — старый файл его не подменяет, пока старые эффекты убраны политикой
+  if (!isProductionSfxMusicAllowed()) { soundAudit('fc', { sfx: name, played: false, reason: 'legacy_removed' }); return; }
   soundAudit('fc', { sfx: name, path: 'legacy', poolSize: pool.get(name)?.players.length ?? 0 });
   try {
     const p = getPlayer(name);
@@ -307,7 +310,7 @@ export function speakAfterSfx(text: string, opts?: FcSpeakOpts): void {
     pendingTtsTimer = null;
   }
   const sfxName = opts?.sfx === undefined ? null : opts.sfx;
-  const willPlaySfx = sfxName != null && isFcSfxEnabled() && isProductionSfxMusicAllowed();
+  const willPlaySfx = sfxName != null && isFcSfxEnabled() && (isProductionSfxMusicAllowed() || (isProductionSoundV2Allowed() && hasV2PlanForFc(sfxName)));
   if (!willPlaySfx) {
     speakNow(normalized, opts);
     return;

@@ -203,12 +203,14 @@ describe('NoRepeatDeck', () => {
 });
 
 describe('SoundBank: колода «не повторять»', () => {
+  // 11.11, владелец («звуки должны быть точно закреплены за событием и воспроизводиться мгновенно»): у событий с его выбором вариант один,
+  // поэтому колоду «не повторять» проверяем на событиях, где вариантов по-прежнему четыре (toggle_on и другие без выбора).
   it('1000 вызовов одного события — ни одного повтора подряд, все 4 варианта встречаются', () => {
     const h = makeHarness();
     const seen = new Set<string>();
     let prev = '';
     for (let i = 0; i < 1000; i += 1) {
-      const r = h.bank.playEvent('tap');
+      const r = h.bank.playEvent('toggle_on');
       expect(r.played).toBe(true);
       expect(r.file).not.toBe(prev);
       seen.add(r.file as string);
@@ -230,7 +232,8 @@ describe('SoundBank: колода «не повторять»', () => {
         for (let i = 0; i < 120; i += 1) {
           const r = h.bank.playEvent(id);
           expect(r.played).toBe(true);
-          expect(r.variant).not.toBe(prev);
+          // у события с одним файлом повтор — это и есть задуманное поведение
+          if (SOUND_V2_CATALOG[id].variants.length > 1) expect(r.variant).not.toBe(prev);
           seen.add(r.variant as number);
           prev = r.variant as number;
           h.finishAll();
@@ -243,7 +246,7 @@ describe('SoundBank: колода «не повторять»', () => {
   it('колоды у событий независимы: соседнее событие не ломает чередование', () => {
     const h = makeHarness();
     const lastByEvent = new Map<string, number>();
-    const ids: SoundV2EventId[] = ['tap', 'correct', 'tap', 'wrong', 'tap', 'coin', 'tap'];
+    const ids: SoundV2EventId[] = ['toggle_on', 'lightning', 'toggle_on', 'toggle_off', 'toggle_on', 'achievement', 'toggle_on'];
     for (let i = 0; i < 700; i += 1) {
       const id = ids[i % ids.length];
       const r = h.bank.playEvent(id);
@@ -385,6 +388,18 @@ describe('SoundBank: флаг, переключатель звука, тихий
     expect(pause).toHaveBeenCalledTimes(1);
   });
 
+  // 11.11, владелец: «звуков нет ни одного» — журнал показал play event=wrong и через секунду stopAll reason=voice_active:
+  // урок произносит фразу сразу после ответа и обрывал звук вердикта. Короткий звук доигрывает, запись голоса гасит всё.
+  it('начало речи НЕ обрывает короткий звук вердикта; запись голоса гасит и его', () => {
+    const h = makeHarness();
+    h.bank.playEvent('wrong');
+    const pause = jest.spyOn(h.players[0], 'pause');
+    h.silence?.('voice_active');
+    expect(pause).not.toHaveBeenCalled();
+    h.silence?.('quiet_recording');
+    expect(pause).toHaveBeenCalledTimes(1);
+  });
+
   it('сигнал «замолчать» гасит играющее (pause + освобождение слота), плееры остаются в пуле', () => {
     const h = makeHarness();
     h.bank.playEvent('lesson_done');
@@ -479,14 +494,24 @@ describe('SoundBank: пул плееров и ленивая подгрузка'
 
   it('прогрев: следующий вариант колоды создаётся заранее и именно он потом звучит', () => {
     const h = makeHarness(mulberry32(8));
-    h.bank.playEvent('tap');
+    h.bank.playEvent('toggle_on');
     h.finishAll();
     h.advanceTime(300); // сработал отложенный прогрев
     const warmedFiles = h.players.map((p) => p.clip.file);
     expect(warmedFiles).toHaveLength(2);
-    const next = h.bank.playEvent('tap');
+    const next = h.bank.playEvent('toggle_on');
     expect(next.file).toBe(warmedFiles[1]);
     expect(h.players).toHaveLength(2); // новый плеер не создавался
+  });
+
+  it('событие с одним файлом: второй запуск играет тот же готовый плеер, новый не создаётся', () => {
+    const h = makeHarness(mulberry32(8));
+    const first = h.bank.playEvent('tap');
+    h.finishAll();
+    h.advanceTime(300);
+    const second = h.bank.playEvent('tap');
+    expect(second.file).toBe(first.file);
+    expect(h.players).toHaveLength(1);
   });
 });
 

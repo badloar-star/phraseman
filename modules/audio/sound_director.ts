@@ -1,8 +1,8 @@
 import { isCorrectAnswerSoundSilenced } from './correct_answer_silence';
 import { ExpoSfxBackend } from './expo_sfx_backend';
 import { soundAudit } from './sound_audit';
-import { tryPlayV2ForDirector } from '../sound_v2/legacy_bridge';
-import { isProductionSfxMusicAllowed } from './sfx_music_policy';
+import { hasV2PlanForDirector, tryPlayV2ForDirector } from '../sound_v2/legacy_bridge';
+import { isOwnerChosenLegacySound, isProductionSfxMusicAllowed, isProductionSoundV2Allowed } from './sfx_music_policy';
 import {
   SoundArbiter,
   type SoundDecision,
@@ -56,9 +56,10 @@ export class SoundDirector {
   ) {}
 
   request(eventId: SoundEventId, options: SoundRequestOptions = {}): SoundDecision {
-    if (!this.allowSfxMusic()) return { kind: 'drop', reason: 'disabled' };
     // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10): звук верного ответа (Арена и любой будущий) не доходит до арбитра — как выключенный звук
     if (isCorrectAnswerSoundSilenced(eventId, options.scope ?? 'director')) return { kind: 'drop', reason: 'disabled' };
+    // зачем (владелец 11.11): старые эффекты убраны, но проходят событие с парой в наборе V2 и 15 событий, для которых он выбрал звук в старом слоте
+    if (!this.allowSfxMusic() && !(isProductionSoundV2Allowed() && hasV2PlanForDirector(eventId)) && !isOwnerChosenLegacySound(eventId)) return { kind: 'drop', reason: 'disabled' };
     const decision = this.arbiter.request(eventId, options);
     // зачем (координатор 18.10, владелец: «в приложении ни одного звука»): СПЕРВА ЛОГИ — каждое решение диспетчера с причиной и флагами,
     // которые глушат звук (эффекты выкл / идёт речь / идёт запись), плюс общий тумблер «Звуки» и путь V2. Один grep по [SOUND-AUDIT].
@@ -260,6 +261,13 @@ export class SoundDirector {
     }
     // зачем (координатор 14.10, п.4): флаг sound_v2 включён и у события есть пара в V2 — играет V2, старый плеер не трогаем; выключен — прежний путь без изменений
     if (tryPlayV2ForDirector(decision.eventId)) {
+      this.arbiter.finishActive(decision.requestId);
+      return;
+    }
+    // зачем (владелец 11.11): открыт только набор V2. Если V2 не сыграл (платформа, плеер), старый файл его НЕ подменяет —
+    // иначе вернулись бы убранные эффекты. Причина тишины — в журнале.
+    if (!this.allowSfxMusic() && !isOwnerChosenLegacySound(decision.eventId)) {
+      console.log(`[SOUND-AUDIT] director ${decision.eventId}: V2 не сыграл, старый звук убран политикой — тишина`); // guard-ok: причина тишины
       this.arbiter.finishActive(decision.requestId);
       return;
     }

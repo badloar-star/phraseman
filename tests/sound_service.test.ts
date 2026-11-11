@@ -80,7 +80,7 @@ const { Platform } = require('react-native');
 // а этот файл проверяет прежний пул expo-audio и карту §5 — мост к V2 здесь выключен; путь V2 и заглушки tap/correct покрывает tests/sound_v2_wiring.test.ts
 jest.mock('../modules/sound_v2/legacy_bridge', () => ({ tryPlayV2ForFc: () => false }));
 // Generic legacy-engine coverage: production policy is exercised separately.
-jest.mock('../modules/audio/sfx_music_policy', () => ({ isProductionSfxMusicAllowed: () => true }));
+jest.mock('../modules/audio/sfx_music_policy', () => ({ isProductionSfxMusicAllowed: () => true, isProductionSoundV2Allowed: () => true }));
 
 jest.mock('../hooks/use-haptics', () => ({
   hapticSuccess: jest.fn(async () => {}),

@@ -68,10 +68,10 @@ describe('sound motion timings', () => {
   // может пустить следующий поверх. Тест фиксирует известное расхождение:
   // список может только сокращаться. Как только `durationMs` поправят —
   // событие уйдёт отсюда, и тест потребует убрать его из исключений.
+  // 11.11: у pm.learn.timer_expired и pm.system.info файл заменён звуком, выбранным владельцем, и durationMs выставлен по самому файлу —
+  // они ушли из списка, как и требует правило «список может только сокращаться».
   const KNOWN_SHORT_DURATIONS: readonly SoundEventId[] = [
-    'pm.learn.timer_expired',
     'pm.complete.star_3',
-    'pm.system.info',
     'pm.energy.empty',
   ];
 

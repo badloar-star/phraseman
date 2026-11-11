@@ -21,6 +21,7 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import { tryPlayV2Event } from '../modules/sound_v2/legacy_bridge';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { ThemedArt } from './theme/ThemedArt';
@@ -117,6 +118,13 @@ export default function RouletteWinModal({ data, onClose, motionVariant = 'class
     impactSoundId: 'pm.reward.chest_open',
     scope: 'roulette-win-hybrid',
   });
+
+  // зачем (владелец 11.11, «подключить пять оставшихся мест»): выбранный им звук выигрыша звучит, когда окно приза появилось, в обоих
+  // видах окна. Прежний звук сундука (pm.reward.chest_open) убран политикой и не играет, двойного звука нет.
+  const hasPrize = !!data;
+  useEffect(() => {
+    if (hasPrize) tryPlayV2Event('roulette_win', 'roulette_win_modal');
+  }, [hasPrize]);
 
   useEffect(() => {
     if (!data || isHybrid) return;

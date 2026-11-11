@@ -17,6 +17,8 @@ describe('[MOMENT-QUEUE] m08 и тост медали', () => {
   it('урок спрашивает очередь перед тостом медали, слой отмечает занятость на ударе', () => {
     const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
     expect(read('app/lesson1.tsx')).toContain('const waitMs = comboMomentBusyLeftMs(Date.now());');
-    expect(read('components/feedback/ComboMomentLayer.tsx')).toContain('markComboMomentBusy(Date.now(), stayMs);');
+    // 11.11, владелец удалил «Молнию»: слой больше ничего не показывает, поэтому и занятость не отмечает —
+    // очередь перед тостом медали всегда свободна
+    expect(read('components/feedback/ComboMomentLayer.tsx')).not.toContain('markComboMomentBusy(');
   });
 });

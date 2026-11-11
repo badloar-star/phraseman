@@ -82,6 +82,7 @@ import { onAccountOwnerChanged } from './account_owner_change';
 import { useGuardedNav } from '../hooks/use-guarded-nav';
 import { SafeTopBackButton, ScreenBackZone } from '../components/v2/ScreenBackButton';
 import { quietEmptyDetail, quietEmptyTitle } from '../components/cards-grid/quiet_empty_copy';
+import SkillsStatsCard from '../components/skills/SkillsStatsCard';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 // зачем (results.html «Серия и статистика»): акцент карточек — тон стекла активной темы (t.accent = токен cta),
@@ -2543,6 +2544,12 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 />
                 </Reanimated.View>
                 ) : null}
+
+                {/* зачем (владелец 11.11, макет elevate-real2 «Навыки»): блок навыков доступен всем, поэтому стоит
+                    до аналитики Plus; он самодостаточный — сам читает очки с устройства и сам ведёт на экран «Навыки». */}
+                <Reanimated.View entering={FadeInDown.duration(420).delay(260)}>
+                  <SkillsStatsCard />
+                </Reanimated.View>
 
                 {/* Ниже — аналитика Plus. У обычного аккаунта каждый блок целиком под
                     существующим замком StatsPremiumBlur (lock + gold CTA), без PlusBadge

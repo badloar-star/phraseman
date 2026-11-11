@@ -9,6 +9,7 @@ Governance-ID: TG-3FA9ADA16A59
 Governance-ID: TG-5F3C48C34530
 Governance-ID: TG-3C113C4D8C68
 Governance-ID: TG-8DD969ABB1F1
+Governance-ID: TG-8DF5BD348FA7
 Status: In progress
 Owner: сессия Claude 2026-11-11 (по слову владельца)
 Related epic/enabler: none

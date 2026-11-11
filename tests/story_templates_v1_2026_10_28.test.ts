@@ -52,12 +52,18 @@ describe('шаблоны историй v1 — реестр', () => {
     expect(studioStartIndex('0')).toBe(0);
     expect(studioStartIndex(undefined)).toBe(0);
     const events = studioEvents(1);
-    expect(events).toHaveLength(31);
+    // 31 прежний кадр + 17 кадров «истории вместо окон» (11.11) — новые строго в конце, номера прежних не сдвигаются
+    expect(events).toHaveLength(48);
     expect(events[8]).toMatchObject({ id: 'studio-duel', type: 'achievement', payload: { studioTemplate: 'duel' } });
     expect(events[23]).toMatchObject({ id: 'studio-contest_start', payload: { studioTemplate: 'contest_start' } });
     expect(events[27]).toMatchObject({ id: 'studio-contest_winner', payload: { studioTemplate: 'contest_winner' } });
     // история лесенки приглашений (29.10): кадры 29–31
-    expect(events.slice(28).map((e) => e.payload.studioTemplate)).toEqual(['ladder_friend', 'ladder_plus', 'ladder_invited']);
+    expect(events.slice(28, 31).map((e) => e.payload.studioTemplate)).toEqual(['ladder_friend', 'ladder_plus', 'ladder_invited']);
+    // истории вместо окон (11.11): кадры 32–48
+    expect(events[31]).toMatchObject({ id: 'studio-instead_hello', payload: { studioTemplate: 'instead_hello' } });
+    expect(events[47]).toMatchObject({ id: 'studio-instead_peak_overtake', payload: { studioTemplate: 'instead_peak_overtake' } });
+    expect(studioStartIndex('32')).toBe(31);
+    expect(studioStartIndex('instead_rate')).toBe(43);
   });
 });
 

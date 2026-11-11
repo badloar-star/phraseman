@@ -31,6 +31,7 @@ import StoryTemplateSlide from './templates/StoryTemplateSlide';
 import { StoryFrameClockProvider, type StoryFrameClock } from './templates/story_frame_clock';
 import { storyTemplateFromEvent } from './templates/story_template_from_event';
 import { STORY_TEMPLATE_CTA } from './templates/story_template_registry';
+import { isStoryInsteadTemplate, storyInsteadCta } from './templates/story_instead_registry';
 import { STORY_CTA_HEIGHT, STORY_SLIDE_BOTTOM_CTA, StoryBackdrop, StoryCta, StoryPauseBadge, storyCtaBottom } from './templates/story_viewer_chrome';
 import { useStoryCtaAction } from './templates/use_story_cta_action';
 import { isAnnouncementV2Design } from './announcements_v2/AnnouncementV2Slide';
@@ -296,7 +297,11 @@ function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: even
     }
     return announcement;
   }, [event, nowMs]);
-  const cta = tpl ? STORY_TEMPLATE_CTA[tpl.id] ?? null : annV2 ? announcementCta(annV2) : null;
+  // зачем (истории вместо окон, 11.11): у этих кадров кнопка собирается из данных кадра (в подписи номер урока, сумма приза) — useMemo, чтобы объект кнопки не пересоздавался на каждый кадр
+  const cta = useMemo(() => {
+    if (tpl) return STORY_TEMPLATE_CTA[tpl.id] ?? (isStoryInsteadTemplate(tpl) ? storyInsteadCta(tpl, lang) : null);
+    return annV2 ? announcementCta(annV2) : null;
+  }, [annV2, lang, tpl]);
   const ctaBottom = storyCtaBottom(insets.bottom);
   ctaZoneRef.current = cta ? winH - ctaBottom - STORY_CTA_HEIGHT - 6 : null;
   // зачем (Сайт 28.10): часы кадра идут столько же, сколько полоса (runBar): у объявления 12/15 с кадр иначе шёл бы медленнее макета

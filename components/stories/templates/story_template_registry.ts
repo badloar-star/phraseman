@@ -10,6 +10,8 @@ import type React from 'react';
 import type { Lang } from '../../../constants/i18n';
 import type { StoryEventList } from '../../../modules/story_events/story_events_core';
 import type { StoryTemplateStringKey } from './story_template_strings';
+// зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): 17 кадров «вместо окон» — отдельным списком в своём файле
+import { STORY_INSTEAD_TEMPLATE_IDS, STORY_INSTEAD_TEMPLATE_SAMPLES, type StoryInsteadCtaAction, type StoryInsteadTemplate } from './story_instead_registry';
 
 export const STORY_TEMPLATE_IDS = [
   'streak7', 'streak100', 'ach', 'level', 'lesson', 'exam', 'summit', 'peakweek', 'duel', 'overtaken', 'friend', 'pack',
@@ -36,8 +38,11 @@ export const STORY_CONTEST_WINNER_TEMPLATE_IDS = ['contest_winner'] as const;
  * зачем отдельными кадрами: у каждого случая свой текст и своё число на диске; Сверка снимает каждый по номеру.
  */
 export const STORY_LADDER_TEMPLATE_IDS = ['ladder_friend', 'ladder_plus', 'ladder_invited'] as const;
-/** Все шаблоны: 23 кадра макета + анонс конкурса + история победителю + история лесенки. */
-export const STORY_ALL_TEMPLATE_IDS = [...STORY_TEMPLATE_IDS, ...STORY_CONTEST_TEMPLATE_IDS, ...STORY_CONTEST_WINNER_TEMPLATE_IDS, ...STORY_LADDER_TEMPLATE_IDS] as const;
+/**
+ * Все шаблоны: 23 кадра макета + анонс конкурса + история победителю + история лесенки + 17 кадров «истории вместо окон»
+ * (макет stories-instead-of-modals.html; в фотостудии — 32…48). Новые списки добавлять только В КОНЕЦ: номера прежних кадров не сдвигаются.
+ */
+export const STORY_ALL_TEMPLATE_IDS = [...STORY_TEMPLATE_IDS, ...STORY_CONTEST_TEMPLATE_IDS, ...STORY_CONTEST_WINNER_TEMPLATE_IDS, ...STORY_LADDER_TEMPLATE_IDS, ...STORY_INSTEAD_TEMPLATE_IDS] as const;
 export type StoryTemplateId = (typeof STORY_ALL_TEMPLATE_IDS)[number];
 
 export function isStoryTemplateId(value: unknown): value is StoryTemplateId {
@@ -45,9 +50,14 @@ export function isStoryTemplateId(value: unknown): value is StoryTemplateId {
 }
 
 export type StoryIconName = React.ComponentProps<typeof Ionicons>['name'];
-export type StoryTemplateCtaAction = 'catch_up' | 'duel' | 'open_pack' | 'add_cards' | 'share_link' | 'use_theme' | 'open_plus' | 'open_packs';
+export type StoryTemplateCtaAction = 'catch_up' | 'duel' | 'open_pack' | 'add_cards' | 'share_link' | 'use_theme' | 'open_plus' | 'open_packs' | StoryInsteadCtaAction;
 /** `fine` — мелкая строка под кнопкой (анонс конкурса: «Apple и Google не спонсоры конкурса», владелец 29.10). */
-export type StoryTemplateCta = Readonly<{ action: StoryTemplateCtaAction; label: StoryTemplateStringKey; icon: StoryIconName; fine?: StoryTemplateStringKey }>;
+/**
+ * Подпись кнопки — либо ключ общего файла строк (`label`), либо готовая строка (`text`): у кадров «вместо окон» в подписи бывают числа события
+ * (номер урока, сумма приза), и лежат они в своём файле строк.
+ */
+export type StoryTemplateCta = Readonly<{ action: StoryTemplateCtaAction; icon: StoryIconName; fine?: StoryTemplateStringKey }
+  & ({ label: StoryTemplateStringKey; text?: undefined } | { text: string; label?: undefined })>;
 
 /** Кнопки действия макета (`cta`): подпись и глиф Ionicons — те же, что в макете (arrowR, flash, layers, bookmark, share, palette). */
 export const STORY_TEMPLATE_CTA: Readonly<Partial<Record<StoryTemplateId, StoryTemplateCta>>> = {
@@ -108,7 +118,9 @@ export type StoryTemplate =
   // ── история лесенки: friendsLeft — сколько друзей до следующего Plus (null — фразы нет: бессрочный Plus или ступень только что взята) ──
   | T<'ladder_friend', { coins: number; friendsLeft: number | null; plusDays: number }>
   | T<'ladder_plus', { coins: number; friends: number; plusDays: number }>
-  | T<'ladder_invited', { coins: number }>;
+  | T<'ladder_invited', { coins: number }>
+  // ── истории вместо окон (17 кадров): данные и примеры — story_instead_registry ──
+  | StoryInsteadTemplate;
 
 /**
  * Числа, которые показывает анонс (владелец 29.10): призы — Plus на 3, 2 и 1 месяц за 1, 2 и 3 место; за друга с первым уроком — 500 монет
@@ -182,6 +194,7 @@ export const STORY_TEMPLATE_SAMPLES: Readonly<{ [I in StoryTemplateId]: StoryTem
   ladder_friend: { id: 'ladder_friend', coins: STORY_LADDER_RULES.coinsPerFriend, friendsLeft: 2, plusDays: STORY_LADDER_RULES.plusDays },
   ladder_plus: { id: 'ladder_plus', coins: STORY_LADDER_RULES.coinsPerFriend, friends: 3, plusDays: STORY_LADDER_RULES.plusDays },
   ladder_invited: { id: 'ladder_invited', coins: STORY_LADDER_RULES.coinsPerFriend },
+  ...STORY_INSTEAD_TEMPLATE_SAMPLES,
 };
 
 // ── фотостудия (dev-маршрут) ─────────────────────────────────────────────────────────────────────────────────────────

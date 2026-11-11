@@ -18,6 +18,9 @@ import { DialogFrame, MistakesFrame, PackFrame, PackPopFrame, PhraseFrame } from
 import { CoinsFrame, HolidayFrame, MonthFrame, RankFrame, ThemeFrame, WeekFrame } from './frames_recap';
 import { ContestInviteFrame, ContestPrizesFrame, ContestStartFrame, ContestVoteFrame, ContestWinnerFrame } from './frames_contest';
 import { LadderFriendFrame, LadderInvitedFrame, LadderPlusFrame } from './frames_ladder';
+// зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): 17 кадров взамен всплывающих окон — макет stories-instead-of-modals.html
+import { AppUpdateFrame, HelloNewFrame, LegacyCoinsFrame, NotifNudgeFrame, PlusExpiredFrame, PlusOnFrame, RankEnoughFrame, TeamMessageFrame, WelcomeBackFrame } from './frames_instead_a';
+import { FirstDialogFrame, LessonOpenFrame, PackPrizeFrame, PeakOvertakeFrame, PerfectLessonFrame, RateAppFrame, ReferralEndedFrame, ReferralWelcomeFrame } from './frames_instead_b';
 import type { StoryTemplate } from './story_template_registry';
 
 const LOG = '[STORY-TPL]';
@@ -69,6 +72,23 @@ function StoryTemplateSlide({ tpl, lang, myRank }: Props) {
     case 'ladder_friend': return <LadderFriendFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'ladder_plus': return <LadderPlusFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'ladder_invited': return <LadderInvitedFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'instead_hello': return <HelloNewFrame tpl={tpl} lang={lang} />;
+    case 'instead_back': return <WelcomeBackFrame tpl={tpl} lang={lang} />;
+    case 'instead_legacy': return <LegacyCoinsFrame tpl={tpl} lang={lang} />;
+    case 'instead_rank': return <RankEnoughFrame tpl={tpl} lang={lang} />;
+    case 'instead_update': return <AppUpdateFrame tpl={tpl} lang={lang} />;
+    case 'instead_message': return <TeamMessageFrame tpl={tpl} lang={lang} />;
+    case 'instead_nudge': return <NotifNudgeFrame tpl={tpl} lang={lang} />;
+    case 'instead_plus_expired': return <PlusExpiredFrame tpl={tpl} lang={lang} />;
+    case 'instead_ref_welcome': return <ReferralWelcomeFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'instead_ref_ended': return <ReferralEndedFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'instead_perfect': return <PerfectLessonFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'instead_lesson_open': return <LessonOpenFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'instead_rate': return <RateAppFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'instead_pack_prize': return <PackPrizeFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'instead_first_dialog': return <FirstDialogFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'instead_plus_on': return <PlusOnFrame tpl={tpl} lang={lang} />;
+    case 'instead_peak_overtake': return <PeakOvertakeFrame tpl={tpl} lang={lang} myRank={myRank} />;
     default: {
       const never: never = tpl;
       DebugLogger.info(LOG, `неизвестный шаблон ${String((never as { id?: unknown }).id)} — кадра нет`);

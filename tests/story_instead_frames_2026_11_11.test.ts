@@ -121,10 +121,22 @@ describe('кадры «истории вместо окон» — разметк
     for (const banned of ['borderWidth', 'borderColor', 'adjustsFontSizeToFit']) expect(all).not.toContain(banned);
   });
 
-  it('кадры пока никем не подключены — раздел историй правит другая сессия', () => {
-    // зачем: когда кадры подключат, этот тест обязан уступить место проверке событий-источников и снятия окон
+  it('шаг 1: все 17 кадров подключены к просмотру и стоят в конце общего списка', () => {
     const slide = read('components/stories/templates/StoryTemplateSlide.tsx');
-    expect(slide).not.toContain('frames_instead');
+    const registry = read('components/stories/templates/story_template_registry.ts');
+    const own = read('components/stories/templates/story_instead_registry.ts');
+    const unique = [...new Set([...own.matchAll(/'(instead_[a-z_]+)'/g)].map((m) => m[1]))];
+    expect(unique).toHaveLength(17);
+    for (const id of unique) expect(slide).toContain(`case '${id}':`);
+    // новые кадры — строго в конце общего списка: номера прежних 31 в фотостудии не сдвигаются
+    expect(registry).toContain('...STORY_LADDER_TEMPLATE_IDS, ...STORY_INSTEAD_TEMPLATE_IDS] as const;');
+    expect(registry).toContain('...STORY_INSTEAD_TEMPLATE_SAMPLES,');
+  });
+
+  it('шаг 2 ещё не сделан: событий-источников у кадров нет, игрок их не видит', () => {
+    // зачем: когда появятся события и снимутся окна, этот тест обязан уступить место проверке показа и действий кнопок
+    const fromEvent = read('components/stories/templates/story_template_from_event.ts');
+    expect(fromEvent).not.toContain('instead_');
   });
 });
 

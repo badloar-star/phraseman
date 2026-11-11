@@ -111,7 +111,8 @@ export const StoryCta = memo(function StoryCta({ cta, lang, bottom, onPress, tes
   const onPressOut = useCallback(() => { pressed.value = withTiming(0, { duration: 160, easing: EASE_OUT }); }, [pressed]);
   // зачем (анонс конкурса, владелец 29.10): мелкая строка под кнопкой — «Apple и Google не спонсоры конкурса»; появляется после кнопки (1200 мс)
   const fineIn = useAnimatedStyle(() => ({ opacity: EASE_OUT(phase(frameMs(progress.value, durationMs, final), 1200, 420)) }));
-  const label = tplText(lang, cta.label);
+  // зачем (истории вместо окон, 11.11): у кнопки бывает готовая подпись с числами события — тогда ключ общего файла строк не нужен
+  const label = cta.text !== undefined ? cta.text : tplText(lang, cta.label);
   return (
     <>
       <Animated.View style={[c.wrap, { bottom }, enter]}>

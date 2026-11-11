@@ -32,7 +32,7 @@ export type PerfectLessonStory = Readonly<{ lessonNo: number; correct: number; t
 export type LessonOpenStory = Readonly<{ lessonNo: number; nextLessonNo: number; topic: string | null }>;
 export type RateAppStory = Readonly<{ lessonsDone: number }>;
 /** `month` — 1…12; `podium` — тройка месяца, своя строка помечена `me`. */
-export type PackPrizeStory = Readonly<{ place: 1 | 2 | 3; month: number; packName: string; saves: number; podium: readonly StoryPodiumEntry[] }>;
+export type PackPrizeStory = Readonly<{ place: 1 | 2 | 3; month: number; packName: string; saves: number; coins: number; podium: readonly StoryPodiumEntry[] }>;
 export type FirstDialogStory = Readonly<{ turns: number; minutes: number; bubbles: readonly StoryBubble[] }>;
 export type PeakOvertakeStory = Readonly<{ tier: number; rivalName: string; rivalRank: number | null; rivalScore: number; myScore: number; daysLeft: number }>;
 

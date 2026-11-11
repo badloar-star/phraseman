@@ -16,7 +16,6 @@ const plain = (s: string): string => s.replace(/ /g, ' ');
 
 describe('тексты кадров-предложений Plus', () => {
   it('русские тексты — слово в слово те, что одобрил владелец', () => {
-    expect(plain(plusOfferText('ru', 'ctaSeePlus'))).toBe('Посмотреть Plus');
     expect(plain(plusOfferText('ru', 'streakText'))).toBe('С Plus серия не сгорит, если пропустишь день: три защиты в месяц.');
     expect(plain(plusOfferText('ru', 'weekTitle'))).toBe('Итог недели на одной странице');
     expect(plain(plusOfferText('ru', 'weekText'))).toBe('Что укрепилось, где проседает и с чего начать новую неделю.');
@@ -62,7 +61,9 @@ describe('кадры-предложения Plus — разметка по ма�
     for (const name of ['PlusStreakFrame', 'PlusWeekFrame', 'PlusDialogFrame', 'PlusMark']) expect(frames).toContain(`export const ${name} = memo(`);
     // шестиугольник макета .pmark и градиент уровня из пейвола «Два пути»
     expect(frames).toContain("const HEX_POINTS = '50,0 93,25 93,75 50,100 7,75 7,25';");
-    expect(frames).toContain("const PLUS_GRADIENT = ['#FF7A59', '#FF5F8F', '#FF4FD0'] as const;");
+    // цвета знака — из одного источника с окном покупки; жёстких цветов в файле кадров нет (сторож шаблонов историй)
+    expect(frames).toContain('const PLUS_GRADIENT = DUO_TIER_COLORS.ultra;');
+    expect(frames).not.toMatch(/['"`]#[0-9a-fA-F]{3,8}['"`]/u);
   });
 
   it('задержки появления — как в макете', () => {
@@ -90,9 +91,21 @@ describe('кадры-предложения Plus — разметка по ма�
     expect(frames).not.toContain('adjustsFontSizeToFit');
   });
 
-  it('файл пока никем не подключён — раздел историй правит другая сессия', () => {
-    // зачем: если кадры подключат, этот тест обязан уступить место проверке показа «только бесплатному аккаунту»
+  it('шаг 1: кадры записаны в реестр в КОНЕЦ списка, выбираются по id и получают кнопку «Посмотреть Plus»', () => {
+    const registry = read('components/stories/templates/story_template_registry.ts');
     const slide = read('components/stories/templates/StoryTemplateSlide.tsx');
-    expect(slide).not.toContain('frames_plus');
+    expect(registry).toContain('...STORY_INSTEAD_TEMPLATE_IDS, ...STORY_PLUS_OFFER_TEMPLATE_IDS] as const;');
+    expect(registry).toContain('...STORY_PLUS_OFFER_TEMPLATE_SAMPLES,');
+    for (const id of ['plus_streak', 'plus_week', 'plus_dialog']) {
+      expect(registry).toContain(`  ${id}: { action: 'open_plus', label: 'ctaSeePlus', icon: 'sparkles' },`);
+      expect(slide).toContain(`case '${id}': return <`);
+    }
+    expect(read('components/stories/templates/story_plus_offer_registry.ts')).toContain("export const STORY_PLUS_OFFER_TEMPLATE_IDS = ['plus_streak', 'plus_week', 'plus_dialog'] as const;");
+  });
+
+  it('шаг 2 ещё не сделан: событий-источников нет, к игроку кадры не попадают', () => {
+    // зачем: когда появится показ игроку, этот тест обязан уступить место проверке «только бесплатному аккаунту»
+    const fromEvent = read('components/stories/templates/story_template_from_event.ts');
+    expect(fromEvent).not.toMatch(/plus_streak|plus_week|plus_dialog/u);
   });
 });

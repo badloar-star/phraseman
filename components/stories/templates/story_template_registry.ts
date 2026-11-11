@@ -12,6 +12,8 @@ import type { StoryEventList } from '../../../modules/story_events/story_events_
 import type { StoryTemplateStringKey } from './story_template_strings';
 // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): 17 кадров «вместо окон» — отдельным списком в своём файле
 import { STORY_INSTEAD_TEMPLATE_IDS, STORY_INSTEAD_TEMPLATE_SAMPLES, type StoryInsteadCtaAction, type StoryInsteadTemplate } from './story_instead_registry';
+// зачем (владелец 11.11: «карточки предложения переместить в истории»): три кадра-предложения Plus — отдельным списком в своём файле, сюда только подключение
+import { STORY_PLUS_OFFER_TEMPLATE_IDS, STORY_PLUS_OFFER_TEMPLATE_SAMPLES, type StoryPlusOfferTemplate } from './story_plus_offer_registry';
 
 export const STORY_TEMPLATE_IDS = [
   'streak7', 'streak100', 'ach', 'level', 'lesson', 'exam', 'summit', 'peakweek', 'duel', 'overtaken', 'friend', 'pack',
@@ -40,9 +42,10 @@ export const STORY_CONTEST_WINNER_TEMPLATE_IDS = ['contest_winner'] as const;
 export const STORY_LADDER_TEMPLATE_IDS = ['ladder_friend', 'ladder_plus', 'ladder_invited'] as const;
 /**
  * Все шаблоны: 23 кадра макета + анонс конкурса + история победителю + история лесенки + 17 кадров «истории вместо окон»
- * (макет stories-instead-of-modals.html; в фотостудии — 32…48). Новые списки добавлять только В КОНЕЦ: номера прежних кадров не сдвигаются.
+ * (макет stories-instead-of-modals.html; в фотостудии — 32…48) + 3 кадра-предложения Plus (макет stories-plus-offers.html; в фотостудии — 49…51).
+ * Новые списки добавлять только В КОНЕЦ: номера прежних кадров не сдвигаются.
  */
-export const STORY_ALL_TEMPLATE_IDS = [...STORY_TEMPLATE_IDS, ...STORY_CONTEST_TEMPLATE_IDS, ...STORY_CONTEST_WINNER_TEMPLATE_IDS, ...STORY_LADDER_TEMPLATE_IDS, ...STORY_INSTEAD_TEMPLATE_IDS] as const;
+export const STORY_ALL_TEMPLATE_IDS = [...STORY_TEMPLATE_IDS, ...STORY_CONTEST_TEMPLATE_IDS, ...STORY_CONTEST_WINNER_TEMPLATE_IDS, ...STORY_LADDER_TEMPLATE_IDS, ...STORY_INSTEAD_TEMPLATE_IDS, ...STORY_PLUS_OFFER_TEMPLATE_IDS] as const;
 export type StoryTemplateId = (typeof STORY_ALL_TEMPLATE_IDS)[number];
 
 export function isStoryTemplateId(value: unknown): value is StoryTemplateId {
@@ -69,6 +72,10 @@ export const STORY_TEMPLATE_CTA: Readonly<Partial<Record<StoryTemplateId, StoryT
   theme: { action: 'use_theme', label: 'ctaUseTheme', icon: 'color-palette' },
   // зачем (владелец 29.10): кнопка «Открыть наборы» — на последнем кадре анонса, под ней мелко про спонсоров
   contest_invite: { action: 'open_packs', label: 'ctaOpenPacks', icon: 'layers', fine: 'contestSponsors' },
+  // зачем (владелец 11.11, макет stories-plus-offers): кнопка трёх кадров-предложений — «Посмотреть Plus», готовое действие open_plus
+  plus_streak: { action: 'open_plus', label: 'ctaSeePlus', icon: 'sparkles' },
+  plus_week: { action: 'open_plus', label: 'ctaSeePlus', icon: 'sparkles' },
+  plus_dialog: { action: 'open_plus', label: 'ctaSeePlus', icon: 'sparkles' },
 };
 
 /** Человек в кадре: имя и ранг монеты (монета = аватар). */
@@ -120,7 +127,9 @@ export type StoryTemplate =
   | T<'ladder_plus', { coins: number; friends: number; plusDays: number }>
   | T<'ladder_invited', { coins: number }>
   // ── истории вместо окон (17 кадров): данные и примеры — story_instead_registry ──
-  | StoryInsteadTemplate;
+  | StoryInsteadTemplate
+  // ── предложения Plus (3 кадра): данные и примеры — story_plus_offer_registry ──
+  | StoryPlusOfferTemplate;
 
 /**
  * Числа, которые показывает анонс (владелец 29.10): призы — Plus на 3, 2 и 1 месяц за 1, 2 и 3 место; за друга с первым уроком — 500 монет
@@ -195,6 +204,7 @@ export const STORY_TEMPLATE_SAMPLES: Readonly<{ [I in StoryTemplateId]: StoryTem
   ladder_plus: { id: 'ladder_plus', coins: STORY_LADDER_RULES.coinsPerFriend, friends: 3, plusDays: STORY_LADDER_RULES.plusDays },
   ladder_invited: { id: 'ladder_invited', coins: STORY_LADDER_RULES.coinsPerFriend },
   ...STORY_INSTEAD_TEMPLATE_SAMPLES,
+  ...STORY_PLUS_OFFER_TEMPLATE_SAMPLES,
 };
 
 // ── фотостудия (dev-маршрут) ─────────────────────────────────────────────────────────────────────────────────────────

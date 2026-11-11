@@ -40,7 +40,8 @@ describe('шаблоны историй v1 — реестр', () => {
 
   it('шесть кнопок действия макета — у «друг обогнал», «новый друг», «набор добавляют», «фраза дня», «пригласи», «новая тема»; седьмая — у анонса конкурса', () => {
     // зачем (владелец 29.10): кнопка «Открыть наборы» на последнем кадре анонса «Набор месяца» — сверх шести кнопок макета историй
-    expect(Object.keys(STORY_TEMPLATE_CTA).sort()).toEqual(['contest_invite', 'friend', 'invite', 'overtaken', 'packpop', 'phrase', 'theme']);
+    // зачем (владелец 11.11, макет stories-plus-offers): три кадра-предложения Plus несут кнопку «Посмотреть Plus» — сверх шести кнопок макета историй
+    expect(Object.keys(STORY_TEMPLATE_CTA).sort()).toEqual(['contest_invite', 'friend', 'invite', 'overtaken', 'packpop', 'phrase', 'plus_dialog', 'plus_streak', 'plus_week', 'theme']);
     expect(STORY_TEMPLATE_CTA.theme).toEqual({ action: 'use_theme', label: 'ctaUseTheme', icon: 'color-palette' });
     expect(tplText('ru', 'ctaCatchUp')).toBe('Догнать');
     expect(tplText('ru', 'ctaShareLink')).toBe('Поделиться ссылкой');
@@ -53,7 +54,7 @@ describe('шаблоны историй v1 — реестр', () => {
     expect(studioStartIndex(undefined)).toBe(0);
     const events = studioEvents(1);
     // 31 прежний кадр + 17 кадров «истории вместо окон» (11.11) — новые строго в конце, номера прежних не сдвигаются
-    expect(events).toHaveLength(48);
+    expect(events).toHaveLength(51);
     expect(events[8]).toMatchObject({ id: 'studio-duel', type: 'achievement', payload: { studioTemplate: 'duel' } });
     expect(events[23]).toMatchObject({ id: 'studio-contest_start', payload: { studioTemplate: 'contest_start' } });
     expect(events[27]).toMatchObject({ id: 'studio-contest_winner', payload: { studioTemplate: 'contest_winner' } });

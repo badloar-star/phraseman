@@ -26,6 +26,8 @@ const S = {
   ctaUseTheme: ['Включить тему', 'Увімкнути тему', 'Turn on theme', 'Activar tema', 'Ativar tema', 'Bật chủ đề', 'Aktifkan tema', 'Temayı aç', 'Włącz motyw'],
   // кнопка объявления «Plus» (макет stories-announcements-v1): те же слова, что у кнопки диалогов (app/dialogue_v2_freeform.tsx openPlus)
   ctaOpenPlus: ['Открыть Plus', 'Відкрити Plus', 'Open Plus', 'Abrir Plus', 'Abrir Plus', 'Mở Plus', 'Buka Plus', 'Plus’ı aç', 'Otwórz Plus'],
+  // кнопка трёх кадров-предложений Plus (макет stories-plus-offers, владелец 11.11): те же слова, что у мягкого предложения на итоге урока (app/lesson_complete.tsx)
+  ctaSeePlus: ['Посмотреть Plus', 'Переглянути Plus', 'See Plus', 'Ver Plus', 'Ver Plus', 'Xem Plus', 'Lihat Plus', 'Plus’ı gör', 'Zobacz Plus'],
   // опрос объявления: те же слова, что у «Опроса дня» (components/friends/DailyPollCard.tsx) — не новый перевод
   pollVoteFailed: ['Не получилось отправить голос. Попробуй ещё раз.', 'Не вдалося надіслати голос. Спробуй ще раз.', 'Couldn’t send your vote. Try again.', 'No se pudo enviar tu voto. Inténtalo de nuevo.', 'Não foi possível enviar seu voto. Tente de novo.', 'Không gửi được phiếu. Thử lại nhé.', 'Suaramu gagal terkirim. Coba lagi.', 'Oy gönderilemedi. Tekrar dene.', 'Nie udało się wysłać głosu. Spróbuj ponownie.'],
   // ── общее ──

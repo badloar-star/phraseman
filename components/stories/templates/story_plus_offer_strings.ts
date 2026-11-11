@@ -14,8 +14,7 @@ type Nine = readonly [string, string, string, string, string, string, string, st
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
 
 const S = {
-  // кнопка всех трёх кадров — те же слова, что у мягкого предложения на итоге урока (app/lesson_complete.tsx, ctaLabel)
-  ctaSeePlus: ['Посмотреть Plus', 'Переглянути Plus', 'See Plus', 'Ver Plus', 'Ver Plus', 'Xem Plus', 'Lihat Plus', 'Plus’ı gör', 'Zobacz Plus'],
+  // подпись кнопки («Посмотреть Plus») лежит в общем story_template_strings.ts под ключом ctaSeePlus — её читает реестр кнопок
   // 1 · защита серии. Число защит написано словом/цифрой прямо в тексте (одобренная владельцем фраза «три защиты в месяц»);
   // сторож tests/story_plus_offer_frames_2026_11_11.test.ts ломается, если PREMIUM_FREE_FREEZES_PER_MONTH перестанет быть 3.
   streakText: [

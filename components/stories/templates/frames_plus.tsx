@@ -6,15 +6,16 @@
 // кадры собраны из тех же блоков, что «Серия · 7 дней» (frames_streak), «Твоя неделя» (frames_recap) и «Диалог пройден» (frames_cards).
 // Знак Plus — шестиугольник ✦ в градиенте уровня из пейвола «Два пути» (история и окно покупки выглядят одной вещью).
 //
-// ФАЙЛ ПОКА НИКЕМ НЕ ИМПОРТИРУЕТСЯ: раздел историй 11.11 правит другая сессия. Подключение (id в story_template_registry,
-// ветки в StoryTemplateSlide, событие-источник, показ только бесплатному аккаунту) — отдельным шагом после её коммита;
-// тогда типы пропсов ниже переезжают в реестр. Пакет: docs/work/tasks/plus-offer-story-frames-standalone-2026-11-11.md
+// Шаг 1 (11.11): кадры записаны в реестр (story_plus_offer_registry → story_template_registry) и видны в фотостудии под номерами 49…51.
+// К игроку они попадут на шаге 2: событие-источник, показ следом за личным кадром и только бесплатному аккаунту.
+// Пакет: docs/work/tasks/plus-offer-stories-wiring-step1-2026-11-11.md
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Defs, LinearGradient, Polygon, Stop } from 'react-native-svg';
 import type { Lang } from '../../../constants/i18n';
+import { DUO_TIER_COLORS, DUO_TIER_INK } from '../../paywall/duo/PaywallDuoHero';
 import { streakPlateFill } from '../../streak/moments/StreakMomentFlame';
 import { weekRange } from './story_template_dates';
 import { Art, FrameRoot, H1, Ov, P } from './story_template_kit';
@@ -27,17 +28,18 @@ import type { StoryBubble } from './story_template_registry';
 import { tplNumber, tplText } from './story_template_strings';
 import { plusOfferText } from './story_plus_offer_strings';
 
-/** Данные кадров — только то, что событие уже знает. При подключении переезжают в story_template_registry. */
+/** Данные кадров — только то, что событие уже знает. Список id и примеры — story_plus_offer_registry. */
 export type PlusStreakOffer = Readonly<{ days: number; endMs: number }>;
 export type PlusWeekOffer = Readonly<{ startMs: number; endMs: number; dailyMinutes: readonly number[] }>;
 export type PlusDialogOffer = Readonly<{ repliesLimit: number; bubbles: readonly StoryBubble[] }>;
 
 type FrameProps<D> = Readonly<{ tpl: D; lang: Lang }>;
 
-// theme-exempt: цвета знака Plus — градиент и чернила уровня из пейвола «Два пути» (смысловой цвет подписки, темой не красится).
-const PLUS_GRADIENT = ['#FF7A59', '#FF5F8F', '#FF4FD0'] as const;
-const PLUS_INK = '#2B0717';
-const PLUS_GLOW = '#FF5F8F';
+// зачем: цвета знака Plus берём из пейвола «Два пути» (DUO_TIER_COLORS / DUO_TIER_INK, уровень Ultra) — один источник на окно покупки и истории.
+// Своих цветов в кадрах нет: сторож шаблонов историй запрещает жёсткие цвета в файлах кадров.
+const PLUS_GRADIENT = DUO_TIER_COLORS.ultra;
+const PLUS_INK = DUO_TIER_INK.ultra;
+const PLUS_GLOW = DUO_TIER_COLORS.ultra[1];
 /** Шестиугольник макета (.pmark i: clip-path 50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%) в поле 100 × 100. */
 const HEX_POINTS = '50,0 93,25 93,75 50,100 7,75 7,25';
 /** Какой день недели серии показан «закрытым защитой» — пятый, как в макете. */

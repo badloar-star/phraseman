@@ -21,6 +21,8 @@ import { LadderFriendFrame, LadderInvitedFrame, LadderPlusFrame } from './frames
 // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): 17 кадров взамен всплывающих окон — макет stories-instead-of-modals.html
 import { AppUpdateFrame, HelloNewFrame, LegacyCoinsFrame, NotifNudgeFrame, PlusExpiredFrame, PlusOnFrame, RankEnoughFrame, TeamMessageFrame, WelcomeBackFrame } from './frames_instead_a';
 import { FirstDialogFrame, LessonOpenFrame, PackPrizeFrame, PeakOvertakeFrame, PerfectLessonFrame, RateAppFrame, ReferralEndedFrame, ReferralWelcomeFrame } from './frames_instead_b';
+// зачем (владелец 11.11: «карточки предложения переместить в истории»): три кадра-предложения Plus (макет stories-plus-offers.html)
+import { PlusDialogFrame, PlusStreakFrame, PlusWeekFrame } from './frames_plus';
 import type { StoryTemplate } from './story_template_registry';
 
 const LOG = '[STORY-TPL]';
@@ -89,6 +91,9 @@ function StoryTemplateSlide({ tpl, lang, myRank }: Props) {
     case 'instead_first_dialog': return <FirstDialogFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'instead_plus_on': return <PlusOnFrame tpl={tpl} lang={lang} />;
     case 'instead_peak_overtake': return <PeakOvertakeFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'plus_streak': return <PlusStreakFrame tpl={tpl} lang={lang} />;
+    case 'plus_week': return <PlusWeekFrame tpl={tpl} lang={lang} />;
+    case 'plus_dialog': return <PlusDialogFrame tpl={tpl} lang={lang} />;
     default: {
       const never: never = tpl;
       DebugLogger.info(LOG, `неизвестный шаблон ${String((never as { id?: unknown }).id)} — кадра нет`);

@@ -94,17 +94,43 @@ describe('MistakeBreakdownView', () => {
     expect(JSON.stringify(view.toJSON())).not.toContain('line-through');
   });
 
-  it('shows what the learner actually said and the other differences when present', async () => {
+  it('lists the other differences when present', async () => {
     const view = await render(
       <MistakeBreakdownView
         lang={'ru' as never}
-        breakdown={{ ...base, verdict: 'several', youSaid: 'У меня нет немного денег', also: [{ wrong: 'dont', right: "don't" }] }}
+        breakdown={{ ...base, verdict: 'several', also: [{ wrong: 'dont', right: "don't" }] }}
         {...sentences}
       />,
     );
 
-    expect(view.getByTestId('mistake-breakdown-you-said')).toHaveTextContent('У тебя получилось: У меня нет немного денег');
     expect(view.getByTestId('mistake-breakdown-also')).toHaveTextContent("Ещё: dont → don't");
+  });
+
+  // Владелец 11.11: «разбор не должен показывать ошибки… юзеры поверят и будут думать что там правильно».
+  it('never translates the wrong sentence and never lists it among the examples', async () => {
+    const view = await render(
+      <MistakeBreakdownView
+        lang={'ru' as never}
+        breakdown={{
+          ...base,
+          wrong: 'earns',
+          right: 'early',
+          rule: '"early" — это про время',
+          why: '"earns" значит зарабатывает. А тебе нужно "early".',
+          youSaid: 'Мы зарабатываем.',
+          pair: ['We are earns', 'We are early'],
+        }}
+        userAnswer="We are earns"
+        targetAnswer="We are early"
+      />,
+    );
+
+    expect(view.queryByTestId('mistake-breakdown-you-said')).toBeNull();
+    expect(view.queryByTestId('mistake-breakdown-pair')).toBeNull();
+    expect(JSON.stringify(view.toJSON())).not.toContain('Мы зарабатываем');
+    // Сама фраза остаётся: неверное слово зачёркнуто, рядом верное.
+    const sentence = within(view.getByTestId('mistake-breakdown-sentence'));
+    expect(flat(sentence.getByText('earns', { exact: true }))).toMatchObject({ textDecorationLine: 'line-through' });
   });
 });
 

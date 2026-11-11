@@ -72,7 +72,6 @@ export interface StructuredMistakePromptInput {
 const MAX_FRAGMENT = 80;
 const MAX_RULE = 90;
 const MAX_WHY = 400;
-const MAX_YOU_SAID = 200;
 const MAX_PAIR_ITEMS = 2;
 const MAX_PAIR_ITEM = 120;
 const MAX_ALSO = 4;
@@ -193,10 +192,13 @@ export function buildStructuredMistakeMessages(input: StructuredMistakePromptInp
     '- rule: the deciding difference in ONE line of at most 8 words. No full stop at the end.\n' +
     `- why: 1–2 short sentences about THIS sentence: what the wrong word means or does, and why the other one ` +
     `is needed here.${articleNote}\n` +
-    `- you_said: a plain ${interfaceLangName} translation of what LEARNER_ANSWER actually says — ONLY when its ` +
-    'meaning really differs from the expected one. Otherwise an empty string.\n' +
-    '- pair: two mini-examples that show the contrast, built ONLY from words of the two sentences. Give an ' +
-    'empty array unless both are certainly correct.\n' +
+    // зачем (владелец 11.11, живой экран «We are earns» → «Мы зарабатываем»): «разбор не должен показывать ошибки…
+    // юзеры поверят и будут думать что там правильно». Перевод ответа ученика больше не просим вовсе,
+    // а в примеры неверная фраза попасть не может.
+    '- you_said: always an empty string.\n' +
+    `- pair: two mini-examples that show the contrast. BOTH must be fully correct, natural ${targetName} ` +
+    'sentences built ONLY from words of the two sentences. NEVER put LEARNER_ANSWER or any other incorrect ' +
+    'sentence into pair. Give an empty array unless both are certainly correct.\n' +
     '- also: every OTHER real difference as {wrong, right}, with no explanation. Empty array when there is none.\n' +
     'For "no_mistake": wrong and right are empty strings, pair and also are empty arrays, and rule and why ' +
     'warmly confirm from the first words that the answer is already right. Never invent a mistake.\n\n' +
@@ -207,7 +209,11 @@ export function buildStructuredMistakeMessages(input: StructuredMistakePromptInp
     '- A spelling slip: just point at the correct spelling, no rule.\n\n' +
     'TRUTH FLOOR (overrides everything): every statement must be true for these exact words. If unsure, give ' +
     'the simpler certain fact. Never invent a rule, a contrast or a context. Never guess WHY the learner made ' +
-    'the slip ("you translated literally", "you did not think"). No comfort-water ("the language just likes it").\n\n' +
+    'the slip ("you translated literally", "you did not think"). No comfort-water ("the language just likes it").\n' +
+    `NEVER TREAT THE WRONG SENTENCE AS REAL ${targetName}: do not translate LEARNER_ANSWER as a whole, do not ` +
+    'say what it "means" or what the learner "ended up saying", and do not show it as an example. A sentence ' +
+    'with a mistake has no meaning to translate. You may say what the single wrong WORD means on its own. ' +
+    'A joke must never leave the impression that the learner\'s version is acceptable.\n\n' +
     'STYLE: plain text inside the fields — no markdown, no lists, no line breaks. Almost no grammar jargon; if ' +
     'one term is unavoidable, explain it in the same breath. Never call it a "mistake" harshly. A light wink is ' +
     'welcome only when it makes the point land faster and adds no length. Wrap every ' +
@@ -273,11 +279,26 @@ function swapsFrom(value: unknown): MistakeSwap[] {
   return swaps;
 }
 
-function pairFrom(value: unknown): string[] {
+/** Sentence compared as a whole: case, apostrophes, spaces and edge punctuation do not matter. */
+function comparableSentence(value: string): string {
+  return comparable(value).replace(/^[\s"'«»¿¡.,!?;:…-]+|[\s"'«»¿¡.,!?;:…-]+$/g, '');
+}
+
+function pairFrom(value: unknown, sentences: { userAnswer: string; targetAnswer: string }): string[] {
   if (!Array.isArray(value)) invalid();
   const items = (value as unknown[]).map((item) => field(item, MAX_PAIR_ITEM)).filter(Boolean);
   // Пара осмысленна только целиком: одиночный пример контраста не показывает.
-  return items.length >= MAX_PAIR_ITEMS ? items.slice(0, MAX_PAIR_ITEMS) : [];
+  if (items.length < MAX_PAIR_ITEMS) return [];
+  const pair = items.slice(0, MAX_PAIR_ITEMS);
+  // зачем (владелец 11.11: «юзеры поверят и будут думать что там правильно»): неверный ответ ученика не может
+  // стоять в примерах наравне с верным. Модель поставила его туда — пары нет совсем.
+  const learner = comparableSentence(sentences.userAnswer);
+  if (learner && learner !== comparableSentence(sentences.targetAnswer)
+    && pair.some((item) => comparableSentence(item) === learner)) {
+    console.warn('[EXPLAIN-MISTAKE] pair_dropped', JSON.stringify({ reason: 'contains_learner_answer' }));
+    return [];
+  }
+  return pair;
 }
 
 export interface ParsedBreakdown {
@@ -343,8 +364,9 @@ export function parseMistakeBreakdown(
       right,
       rule,
       why,
-      youSaid: field(json.you_said, MAX_YOU_SAID),
-      pair: pairFrom(json.pair),
+      // Перевод ответа ученика не отдаём никогда (см. промпт), что бы модель туда ни написала.
+      youSaid: '',
+      pair: pairFrom(json.pair, sentences),
       also,
     },
   };
@@ -371,7 +393,8 @@ export function coerceStoredBreakdown(value: unknown): MistakeBreakdown | undefi
     right: text(stored.right),
     rule: text(stored.rule),
     why,
-    youSaid: text(stored.youSaid),
+    // Старые записи кэша могли сохранить перевод неверной фразы — наружу он больше не уходит.
+    youSaid: '',
     pair: Array.isArray(stored.pair) ? stored.pair.map(text).filter(Boolean).slice(0, MAX_PAIR_ITEMS) : [],
     also: Array.isArray(stored.also)
       ? stored.also

@@ -86,6 +86,29 @@ describe('structured mistake breakdown: parsing', () => {
     expect(breakdown.also).toEqual([{ wrong: "don't", right: "don't" }]);
   });
 
+  // Владелец 11.11, живой экран: «We are earns» перевели как «Мы зарабатываем» и поставили в примеры рядом с верной фразой.
+  it('never passes on a translation of the wrong sentence, nor the wrong sentence as an example', () => {
+    const sentences = { userAnswer: 'We are earns', targetAnswer: 'We are early' };
+    const { breakdown } = parseMistakeBreakdown(answer({
+      wrong: 'earns',
+      right: 'early',
+      you_said: 'Мы зарабатываем.',
+      pair: ['we are earns.', 'We are early'],
+    }), sentences);
+
+    expect(breakdown.youSaid).toBe('');
+    expect(breakdown.pair).toEqual([]);
+    expect(coerceStoredBreakdown({ verdict: 'one', why: 'текст', youSaid: 'Мы зарабатываем.' })?.youSaid).toBe('');
+  });
+
+  it('tells the model not to translate the wrong sentence or use it as an example', () => {
+    const system = buildStructuredMistakeMessages(promptInput())[0].content;
+
+    expect(system).toContain('- you_said: always an empty string.');
+    expect(system).toContain('NEVER put LEARNER_ANSWER or any other incorrect sentence into pair');
+    expect(system).toContain('do not translate LEARNER_ANSWER as a whole');
+  });
+
   it('clears every pointer when there is no mistake', () => {
     const { breakdown } = parseMistakeBreakdown(answer({
       verdict: 'no_mistake',

@@ -67,6 +67,33 @@ export function coerceMistakeBreakdown(value: unknown): MistakeBreakdown | null 
   };
 }
 
+function comparableSentence(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[‘’ʼ`]/g, "'")
+    .replace(/\s+/g, ' ')
+    .replace(/^[\s"'«»¿¡.,!?;:…-]+|[\s"'«»¿¡.,!?;:…-]+$/g, '');
+}
+
+/**
+ * Пара примеров, которую можно показать: только когда в ней НЕТ ответа ученика.
+ *
+ * зачем (владелец 11.11, экран «We are earns» рядом с «We are early»): «разбор не должен показывать ошибки…
+ * юзеры поверят и будут думать что там правильно». Сервер тоже это отсекает, но в общем кэше и на телефоне
+ * уже лежат разборы с такой парой — поэтому защита стоит и здесь.
+ */
+export function safeBreakdownPair(input: {
+  breakdown: MistakeBreakdown;
+  userAnswer: string;
+  targetAnswer: string;
+}): string[] {
+  const { pair } = input.breakdown;
+  if (pair.length !== MAX_PAIR_ITEMS) return [];
+  const learner = comparableSentence(input.userAnswer);
+  if (!learner || learner === comparableSentence(input.targetAnswer)) return pair;
+  return pair.some((item) => comparableSentence(item) === learner) ? [] : pair;
+}
+
 export function serializeMistakeBreakdown(breakdown: MistakeBreakdown): string {
   return JSON.stringify(breakdown);
 }

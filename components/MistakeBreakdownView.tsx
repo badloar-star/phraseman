@@ -5,6 +5,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import {
   buildBreakdownSentence,
+  safeBreakdownPair,
   splitQuotedText,
   type MistakeBreakdown,
 } from '../app/mistake_breakdown_model';
@@ -33,6 +34,11 @@ export default function MistakeBreakdownView({ lang, breakdown, userAnswer, targ
   const noMistake = breakdown.verdict === 'no_mistake';
   const segments = React.useMemo(
     () => buildBreakdownSentence({ userAnswer: user, targetAnswer: target, breakdown }),
+    [user, target, breakdown],
+  );
+  // Примеры показываем, только если среди них нет ответа ученика: неверная фраза не стоит рядом с верной.
+  const pair = React.useMemo(
+    () => safeBreakdownPair({ breakdown, userAnswer: user, targetAnswer: target }),
     [user, target, breakdown],
   );
 
@@ -103,17 +109,13 @@ export default function MistakeBreakdownView({ lang, breakdown, userAnswer, targ
         <Text testID="mistake-breakdown-why" style={[styles.why, { color: glass.text }]}>
           {renderQuoted(breakdown.why)}
         </Text>
-        {breakdown.youSaid ? (
-          <Text testID="mistake-breakdown-you-said" style={[styles.aside, { color: glass.secondary }]}>
-            {youSaidLabel(lang)}
-            <Text style={[styles.asideStrong, { color: glass.text }]}>{breakdown.youSaid}</Text>
-          </Text>
-        ) : null}
+        {/* зачем (владелец 11.11: «разбор не должен показывать ошибки… юзеры поверят»): строки «У тебя получилось: …»
+            нет — она переводила ломаную фразу («We are earns» → «Мы зарабатываем») как осмысленную. */}
       </View>
 
-      {breakdown.pair.length === 2 ? (
+      {pair.length === 2 ? (
         <View testID="mistake-breakdown-pair" style={styles.pair}>
-          {breakdown.pair.map((example, index) => (
+          {pair.map((example, index) => (
             <View key={`e${index}:${example}`} style={styles.pairRow}>
               <View style={[styles.pairDot, { backgroundColor: glass.secondary }]} />
               <Text style={[styles.pairText, { color: glass.text }]}>{example}</Text>
@@ -137,20 +139,6 @@ export default function MistakeBreakdownView({ lang, breakdown, userAnswer, targ
       ) : null}
     </View>
   );
-}
-
-function youSaidLabel(lang: Lang): string {
-  return triLang(lang, {
-    ru: 'У тебя получилось: ',
-    uk: 'У тебе вийшло: ',
-    en: 'Your version says: ',
-    es: 'Tu versión dice: ',
-    'pt-BR': 'Sua versão diz: ',
-    vi: 'Câu của bạn nghĩa là: ',
-    id: 'Versimu berarti: ',
-    tr: 'Senin cümlen şunu diyor: ',
-    pl: 'Twoja wersja znaczy: ',
-  });
 }
 
 function alsoLabel(lang: Lang): string {

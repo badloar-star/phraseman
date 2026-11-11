@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Окно Plus — магазин недоступен</title>
+<!-- зачем: владелец 11.11 — «Если магазин недоступен, человек видит тупик. Предложение? Макет».
+     Стили и компоненты — дословно из утверждённого варианта A «Два пути» (../paywall-sell-2026-11-11/variant-a.html), новых нет.
+     Заголовок и подпись входа — из app/paywall_context_texts.ts (ru, no_energy). Цены — справочные из app/paywall_reference_prices.ts. -->
+<style>
+@font-face{font-family:Inter;font-weight:400;src:url(../home-luxe-2026-11-11/fonts/Inter-Regular.ttf)}
+@font-face{font-family:Inter;font-weight:600;src:url(../home-luxe-2026-11-11/fonts/Inter-SemiBold.ttf)}
+@font-face{font-family:Inter;font-weight:700;src:url(../home-luxe-2026-11-11/fonts/Inter-Bold.ttf)}
+@font-face{font-family:Inter;font-weight:900;src:url(../home-luxe-2026-11-11/fonts/Inter-Black.ttf)}
+:root{--page:#08070c;--bg:#0c0b12;--sheet:#15131d;--tile:#1c1926;--fg:#f5f1f9;--mut:#aca4ba;--line:rgba(255,255,255,.08);--ease:cubic-bezier(.23,1,.32,1)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--page);color:var(--fg);font:400 15px/1.45 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:40px 24px 80px}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;text-align:left}
+h1{font-size:34px;line-height:1.12;font-weight:900;letter-spacing:-.025em;text-wrap:balance}
+.wrap{max-width:1250px;margin:0 auto}
+.lead{color:var(--mut);margin-top:12px;max-width:68ch;text-wrap:pretty}
+.row{display:flex;flex-wrap:wrap;gap:36px 28px;margin-top:40px;align-items:flex-start}
+.cell{width:375px;max-width:100%}
+.cell h2{font-size:20px;font-weight:700;letter-spacing:-.015em}
+.cell p{color:var(--mut);font-size:14px;margin:6px 0 16px;min-height:60px;text-wrap:pretty}
+
+.phone{--c1:#ff7a59;--c2:#ff5f8f;--c3:#ff4fd0;--ink:#2b0717;position:relative;width:375px;max-width:100%;height:780px;border-radius:44px;overflow:hidden;background:var(--bg);box-shadow:0 0 0 1px rgba(255,255,255,.07),0 30px 80px -20px #000}
+.x{position:absolute;z-index:5;top:18px;right:18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.09);display:grid;place-items:center;font-size:15px}
+.first{min-height:780px;display:flex;flex-direction:column;padding:76px 22px 16px;background:radial-gradient(120% 60% at 50% 0,color-mix(in srgb,var(--c2) 26%,transparent),transparent 70%),var(--bg)}
+.grow{flex:1}
+.hero{position:relative;width:84px;height:84px;margin-bottom:26px}
+.mark{position:absolute;inset:0;display:grid;place-items:center;font-size:40px;color:var(--ink);background:linear-gradient(135deg,var(--c1),var(--c2),var(--c3));filter:drop-shadow(0 12px 30px color-mix(in srgb,var(--c2) 55%,transparent));clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+.chip{position:absolute;right:-12px;bottom:-8px;width:38px;height:38px;border-radius:13px;background:var(--tile);display:grid;place-items:center;font-size:19px;box-shadow:0 0 0 3px var(--bg)}
+.hl{font-size:33px;line-height:1.1;font-weight:900;letter-spacing:-.03em;text-wrap:balance}
+.sub{color:var(--mut);font-size:15px;margin-top:10px;text-wrap:pretty}
+.buys{display:grid;gap:10px}
+.buy{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:74px;padding:14px 18px;border-radius:22px;overflow:hidden;background:var(--tile);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);transition:transform .15s var(--ease)}
+.buy:active{transform:scale(.97)}
+.buy b{display:block;font-weight:700;font-size:17px;letter-spacing:-.01em}
+.buy i{display:block;font-style:normal;font-size:13px;opacity:.86;margin-top:2px}
+.buy .r{text-align:right;flex:none;font-variant-numeric:tabular-nums}
+.buy .r b{font-size:21px;font-weight:900}
+.buy[data-p=ultra]:not(.sel) .n{color:#ffb3c8}.buy[data-p=plus]:not(.sel) .n{color:#cfc7ff}
+.buy.sel{color:var(--ink);background:linear-gradient(120deg,var(--c1),var(--c2) 48%,var(--c3));box-shadow:0 14px 34px -12px color-mix(in srgb,var(--c2) 70%,transparent),inset 0 1px 0 rgba(255,255,255,.35)}
+.buy.sel::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);transform:translateX(-120%);animation:sheen 4.5s var(--ease) 1.2s infinite}
+@keyframes sheen{0%{transform:translateX(-120%)}28%,100%{transform:translateX(120%)}}
+.save{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:99px;background:var(--ink);color:#ffd9e4;font-size:12px;font-weight:700;vertical-align:2px}
+
+.go{font-size:20px;font-weight:700}
+.fine{color:var(--mut);font-size:13px;text-align:center;margin-top:12px;min-height:19px}
+.foot{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 18px;margin-top:6px;color:var(--mut);font-size:13px}
+.foot span{padding:10px 0}
+.notes{margin-top:56px;max-width:68ch}
+.notes h2{font-size:22px;font-weight:700;letter-spacing:-.015em;margin-bottom:6px}
+.notes li{padding:13px 0;border-top:1px solid var(--line);list-style:none}
+.notes ul{padding:0}
+.notes li b{display:block;font-weight:700}.notes li span{color:var(--mut);font-size:14px}
+@media (prefers-reduced-motion:reduce){*,*::after,*::before{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Окно Plus, когда магазин недоступен</h1>
+  <p class="lead">Вход — «Энергия закончилась». Раскладка, цвета и кнопки те же, что в варианте A «Два пути»: меняются только две кнопки и строка под ними.</p>
+
+  <div class="row">
+    <div class="cell">
+      <h2>Сейчас</h2>
+      <p>Кнопки с примерной ценой на месте, но нажатие кончается строкой «Попробуй через минуту». Человек закрывает окно.</p>
+      <div class="phone"><button class="x" aria-label="Закрыть">✕</button>
+        <div class="first"><div class="grow"></div>
+          <div class="hero"><div class="mark">✦</div><div class="chip">⚡</div></div>
+          <div class="hl">Энергия закончилась</div><div class="sub">С Ultra она не тратится — занимайся дальше сразу.</div><div class="grow"></div>
+          <div class="buys">
+            <button class="buy sel" data-p="ultra"><span><b class="n">✦ Ultra · год <span class="save">−58%</span></b><i>&nbsp;</i></span><span class="r"><b>≈ €39,99</b><i>в год</i></span></button>
+            <button class="buy" data-p="plus"><span><b class="n">◆ Plus · месяц</b><i>без пробного</i></span><span class="r"><b>≈ €7,99</b><i>в месяц</i></span></button>
+          </div>
+          <div class="fine">Магазин недоступен на этом устройстве</div>
+          <div class="foot"><span>Восстановить</span><span>Условия</span><span>Конфиденциальность</span></div>
+        </div></div>
+    </div>
+
+    <div class="cell">
+      <h2>Предложение — Android</h2>
+      <p>Яркая кнопка открывает @PhrasemanPremiumBot. Вторая ведёт на ввод кода, который пришлёт бот.</p>
+      <div class="phone"><button class="x" aria-label="Закрыть">✕</button>
+        <div class="first"><div class="grow"></div>
+          <div class="hero"><div class="mark">✦</div><div class="chip">⚡</div></div>
+          <div class="hl">Энергия закончилась</div><div class="sub">С Plus она не тратится — занимайся дальше сразу.</div><div class="grow"></div>
+          <div class="buys">
+            <button class="buy sel"><span><b>Оплатить через Telegram</b><i>Способы оплаты и код — в боте</i></span><span class="r go">→</span></button>
+            <button class="buy"><span><b>У меня есть код</b><i>Plus включится сразу</i></span><span class="r go">→</span></button>
+          </div>
+          <div class="fine">Магазин на этом устройстве недоступен</div>
+          <div class="foot"><span>Восстановить</span><span>Условия</span><span>Конфиденциальность</span></div>
+        </div></div>
+    </div>
+
+    <div class="cell">
+      <h2>Предложение — iPhone</h2>
+      <p>Бота в окне нет: Apple это запрещает. Человек пишет в поддержку, и про бота ему отвечают уже там.</p>
+      <div class="phone"><button class="x" aria-label="Закрыть">✕</button>
+        <div class="first"><div class="grow"></div>
+          <div class="hero"><div class="mark">✦</div><div class="chip">⚡</div></div>
+          <div class="hl">Энергия закончилась</div><div class="sub">С Plus она не тратится — занимайся дальше сразу.</div><div class="grow"></div>
+          <div class="buys">
+            <button class="buy sel"><span><b>Написать в поддержку</b><i>Подскажем, как оформить Plus</i></span><span class="r go">→</span></button>
+            <button class="buy"><span><b>У меня есть код</b><i>Plus включится сразу</i></span><span class="r go">→</span></button>
+          </div>
+          <div class="fine">Магазин на этом устройстве недоступен</div>
+          <div class="foot"><span>Восстановить</span><span>Условия</span><span>Конфиденциальность</span></div>
+        </div></div>
+    </div>
+  </div>
+
+  <div class="notes">
+    <h2>Что нужно решить</h2>
+    <ul>
+      <li><b>Когда показывать это окно</b><span>Только когда магазин сам ответил «недоступен». Всем остальным — обычное окно с ценами.</span></li>
+      <li><b>Цены в окне нет</b><span>Цену называет бот. В окне её не пишем, чтобы она не разошлась с ботом.</span></li>
+      <li><b>Кнопка «У меня есть код» видна при включённых промокодах</b><span>Переключатель «Промокоды в настройках» в Пульте админки. Выключен — второй кнопки нет.</span></li>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

@@ -76,6 +76,8 @@ module.exports = {
     '<rootDir>/tests/voice_allowance_d194_contract.test.tsx',
     '<rootDir>/tests/paywall_admin_controls_render.test.tsx',
     '<rootDir>/tests/paywall_c_native_render.test.tsx',
+    // зачем (владелец 11.11, разбор промаха по полям): отрисовка карточки — зачёркнуто одно слово, «ошибки нет» не зачёркивается
+    '<rootDir>/tests/mistake_breakdown_view.test.tsx',
   ],
   // Официальная настройка gesture-handler для jest (без неё — «RNGestureHandlerModule could not be found»).
   setupFiles: ['react-native-gesture-handler/jestSetup'],

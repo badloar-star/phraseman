@@ -1375,6 +1375,7 @@ const LessonContent = React.memo(function LessonContent({
                     lang={lang}
                     state={aiMistakeState}
                     explanation={aiMistakeText}
+                    breakdown={mistakeExplain.aiMistakeBreakdown}
                     remaining={aiMistakeRemaining}
                     waitLine={mistakeExplain.aiMistakeWaitLine}
                     fallback={mistakeExplain.aiMistakeFallback}

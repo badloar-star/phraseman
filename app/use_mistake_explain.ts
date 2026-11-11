@@ -53,6 +53,7 @@ import { AI_EXPLAIN_AUTO_RETRIES, AI_EXPLAIN_RETRY_PAUSE_MS } from './load_gate_
 import { buildMistakeExplainFallbackText } from './mistake_explain_fallback';
 import { getDevAiExplainDemoText, isDevAiExplainLimit } from './dev_paywall_state';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import type { MistakeBreakdown } from './mistake_breakdown_model';
 /**
  * Shared orchestration for the AI mistake breakdown (inline `AiMistakeCard`).
  *
@@ -97,6 +98,11 @@ export interface UseMistakeExplainResult {
   /** Props for the inline <AiMistakeCard>. */
   aiMistakeState: AiMistakeCardState;
   aiMistakeText: string | null;
+  /**
+   * зачем (владелец 11.11, аудит разбора): поля разбора — слово-промах, нужное слово, правило, пояснение.
+   * null = полей нет (старая запись кэша, локальный шаблон, dev-подмена) — экран показывает aiMistakeText.
+   */
+  aiMistakeBreakdown: MistakeBreakdown | null;
   aiMistakeRemaining: number | null;
   /**
    * Подпись под скелетоном на время ожидания. Меняется по мере ожидания, чтобы
@@ -191,6 +197,9 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
   );
   const [aiMistakeText, setAiMistakeText] = useState<string | null>(null);
   const [aiMistakeRemaining, setAiMistakeRemaining] = useState<number | null>(null);
+  // зачем: поля привязаны к ТЕКСТУ, с которым пришли. Любой сброс или подмена текста (смена фразы, шаблон D158,
+  // повтор, смена аккаунта) автоматически снимает поля — чужие поля под другим текстом показать невозможно.
+  const [breakdownForText, setBreakdownForText] = useState<{ text: string; breakdown: MistakeBreakdown } | null>(null);
 
   // зачем: D158 - признак «в тексте локальный шаблон, не ИИ» (см. UseMistakeExplainResult).
   const [aiMistakeFallback, setAiMistakeFallback] = useState(false);
@@ -553,6 +562,8 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         });
         if (!isCurrentRequest()) return;
         setAiMistakeText(res.text);
+        setBreakdownForText(res.breakdown ? { text: res.text, breakdown: res.breakdown } : null);
+        if (!res.breakdown) console.log(`[AI-EXPLAIN] mistake:no_fields fromCache=${res.fromCache === true} phrase=${phraseId} — карточка покажет сплошной текст`); // guard-ok: ветка старой записи кэша
         setAiMistakeRemaining(typeof res.remainingQuota === 'number' ? res.remainingQuota : null);
         setAiMistakeState('ready');
         console.log(`[AI-EXPLAIN] mistake:success afterFailures=${mistakeRetryAttemptRef.current} fromCache=${res.fromCache === true} phrase=${phraseId}`); // guard-ok
@@ -762,6 +773,10 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
         ? 'hidden'
         : active ? aiMistakeState : 'hidden',
     aiMistakeText,
+    aiMistakeBreakdown: active && aiMistakeState === 'ready' && !aiMistakeFallback && breakdownForText !== null
+      && breakdownForText.text === aiMistakeText
+      ? breakdownForText.breakdown
+      : null,
     aiMistakeRemaining,
     aiMistakeWaitLine: aiMistakeWaitLine(asLang(interfaceLang), waitStage),
     aiMistakeFallback,

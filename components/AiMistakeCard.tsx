@@ -12,6 +12,8 @@ import { buildMistakeExplanationBlocks } from '../app/explanation_presentation';
 import AiBadge from './AiBadge';
 import { FlowText } from './text-integrity/FlowText';
 import { aiExplainLaterNote, aiExplainRefreshLabel } from '../app/mistake_explain_fallback';
+import MistakeBreakdownView from './MistakeBreakdownView';
+import type { MistakeBreakdown } from '../app/mistake_breakdown_model';
 
 export type AiMistakeCardState = 'hidden' | 'idle' | 'loading' | 'ready' | 'limit';
 
@@ -19,6 +21,12 @@ type AiMistakeCardProps = {
   lang: Lang;
   state: AiMistakeCardState;
   explanation?: string | null;
+  /**
+   * зачем (владелец 11.11, «Да, делай карточку»): поля разбора от ИИ. Есть — рисуем новую раскладку
+   * (промах одним словом во фразе, правило, пояснение). Нет (старая запись кэша, локальный шаблон D158) —
+   * прежние три строки «Твой выбор / Почему / Правильно» из сплошного текста.
+   */
+  breakdown?: MistakeBreakdown | null;
   /** Kept for back-compat; no longer rendered (no daily cap). */
   remaining?: number | null;
   onExplain: () => void;
@@ -47,6 +55,7 @@ export default function AiMistakeCard({
   lang,
   state,
   explanation,
+  breakdown,
   onExplain,
   targetAnswer,
   userAnswer,
@@ -139,6 +148,13 @@ export default function AiMistakeCard({
             ) : null}
           </View>
         </View>
+      ) : isReadyExplanation && breakdown && !fallback ? (
+        <MistakeBreakdownView
+          lang={lang}
+          breakdown={breakdown}
+          userAnswer={userAnswer}
+          targetAnswer={targetAnswer}
+        />
       ) : isReadyExplanation && readyBlocks.length ? (
         <View style={styles.semanticBlocks}>
           {/* зачем (redesign-round-2 «Разбор промаха» A): одна карточка с тремя строками вместо стопки плиток. */}

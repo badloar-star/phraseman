@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Разбор промаха — карточка по полям (2026-11-11)</title>
+<style>
+  /* Значения 1:1 с components/MistakeBreakdownView.tsx (тема graphite: opaqueControl #222429, text #FFFFFF, secondary #B8B9BD). */
+  :root { --bg:#0B0C0E; --card:#151517; --control:#222429; --text:#FFFFFF; --secondary:#B8B9BD;
+          --wrong:#F05454; --wrong-bg:rgba(240,84,84,.12); --correct:#47C870; --correct-bg:rgba(71,200,112,.16); --accent:#47C870; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:-apple-system,"SF Pro Text",Roboto,"Segoe UI",sans-serif; padding:24px; }
+  h1 { font-size:18px; font-weight:800; margin:0 0 4px; }
+  .note { color:var(--secondary); font-size:14px; margin:0 0 20px; max-width:70ch; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:20px; }
+  .state { font-size:13px; color:var(--secondary); margin:0 0 8px; }
+  .phone { background:var(--card); border-radius:20px; padding:16px; width:100%; max-width:360px; }
+  .card { display:flex; flex-direction:column; gap:10px; }
+  .head { display:flex; align-items:center; gap:10px; }
+  .ico { width:34px; height:34px; border-radius:8px; background:rgba(71,200,112,.09); display:grid; place-items:center; color:var(--accent); font-size:18px; }
+  .title { font-size:16px; font-weight:800; }
+  .ai { font-size:11px; font-weight:800; color:var(--accent); background:rgba(71,200,112,.14); border-radius:6px; padding:2px 6px; }
+  .view { display:flex; flex-direction:column; gap:12px; }
+  .surface { background:var(--control); border-radius:12px; padding:14px; }
+  .sentence { font-size:18px; font-weight:700; line-height:28px; margin:0; }
+  .w { color:var(--wrong); background:var(--wrong-bg); text-decoration:line-through; }
+  .r { color:var(--correct); background:var(--correct-bg); font-weight:800; }
+  .explain { display:flex; flex-direction:column; gap:4px; padding:0 2px; }
+  .rule { font-size:17px; font-weight:800; line-height:24px; margin:0; }
+  .why { font-size:16px; font-weight:500; line-height:23px; margin:0; }
+  .q { font-weight:800; color:var(--accent); } .q.w2 { color:var(--wrong); } .q.r2 { color:var(--correct); }
+  .aside { font-size:15px; font-weight:500; line-height:22px; color:var(--secondary); margin:0; padding:0 2px; }
+  .aside b { color:var(--text); font-weight:700; }
+  .pair { display:flex; flex-direction:column; gap:4px; padding:0 2px; }
+  .pair div { display:flex; gap:10px; font-size:16px; font-weight:600; line-height:23px; }
+  .pair div::before { content:""; width:6px; height:6px; border-radius:3px; background:var(--secondary); opacity:.6; margin-top:9px; flex:none; }
+  .report { align-self:flex-start; margin-top:12px; background:var(--control); border-radius:8px; padding:8px 12px; font-size:13px; font-weight:700; color:var(--secondary); }
+  .plain-user { font-size:16px; font-weight:500; line-height:23px; color:var(--secondary); margin:0 0 4px; }
+  .ok { display:flex; gap:8px; align-items:flex-start; } .ok span { color:var(--correct); font-size:18px; line-height:28px; }
+</style>
+</head>
+<body>
+<h1>Разбор промаха — карточка по полям</h1>
+<p class="note">Рабочий макет к задаче docs/work/tasks/mistake-breakdown-structured-2026-11-11.md. Не утверждён и не входит в закрытый набор docs/design/v2-app: переносится туда после одобрения владельца. Кнопки «Объяснить проще» нет (решение владельца 11.11).</p>
+<div class="grid">
+
+  <div><p class="state">1. Одна ошибка — основное состояние</p>
+    <div class="phone"><div class="card">
+      <div class="head"><div class="ico">💡</div><span class="title">Разбор промаха</span><span class="ai">ИИ</span></div>
+      <div class="view">
+        <div class="surface"><p class="sentence">I don't have <span class="w">some</span> <span class="r">any</span> money.</p></div>
+        <div class="explain">
+          <p class="rule">Когда чего-то нет — <span class="q r2">any</span></p>
+          <p class="why">Почти! <span class="q w2">some</span> говорят, когда что-то есть. А у тебя денег нет — тут нужно <span class="q r2">any</span>.</p>
+        </div>
+        <div class="pair"><div>I have some money</div><div>I don't have any money</div></div>
+      </div>
+      <div class="report">Непонятно объяснили</div>
+    </div></div>
+  </div>
+
+  <div><p class="state">2. Несколько ошибок, смысл изменился</p>
+    <div class="phone"><div class="card">
+      <div class="head"><div class="ico">💡</div><span class="title">Разбор промаха</span><span class="ai">ИИ</span></div>
+      <div class="view">
+        <div class="surface"><p class="sentence">She <span class="w">go</span> <span class="r">goes</span> to work by bus.</p></div>
+        <div class="explain">
+          <p class="rule">Про неё — <span class="q r2">goes</span></p>
+          <p class="why">Почти! Когда речь про него или неё, к слову добавляется хвостик: <span class="q r2">goes</span>, а не <span class="q w2">go</span>.</p>
+          <p class="aside">У тебя получилось: <b>Она идти на работу на автобус</b></p>
+        </div>
+        <p class="aside">Ещё: <span style="color:var(--wrong);text-decoration:line-through">on</span> → <b style="color:var(--correct)">by</b></p>
+      </div>
+      <div class="report">Непонятно объяснили</div>
+    </div></div>
+  </div>
+
+  <div><p class="state">3. Ошибки нет — ответ не зачёркивается</p>
+    <div class="phone"><div class="card">
+      <div class="head"><div class="ico">💡</div><span class="title">Разбор промаха</span><span class="ai">ИИ</span></div>
+      <div class="view">
+        <div class="surface"><div class="ok"><span>✓</span><p class="sentence">I do not like it</p></div></div>
+        <div class="explain">
+          <p class="rule" style="color:var(--correct)">Всё верно</p>
+          <p class="why">У тебя всё правильно: <span class="q">do not</span> и <span class="q">don't</span> — одно и то же.</p>
+        </div>
+      </div>
+      <div class="report">Непонятно объяснили</div>
+    </div></div>
+  </div>
+
+  <div><p class="state">4. ИИ не указал слово — две фразы целиком, без подсветки</p>
+    <div class="phone"><div class="card">
+      <div class="head"><div class="ico">💡</div><span class="title">Разбор промаха</span><span class="ai">ИИ</span></div>
+      <div class="view">
+        <div class="surface"><p class="plain-user">Where you are from</p><p class="sentence">Where are you from?</p></div>
+        <div class="explain">
+          <p class="rule">В вопросе <span class="q">are</span> идёт раньше</p>
+          <p class="why">Почти! Слова верные, но в вопросе <span class="q">are</span> встаёт перед <span class="q">you</span>.</p>
+        </div>
+      </div>
+      <div class="report">Непонятно объяснили</div>
+    </div></div>
+  </div>
+
+</div>
+</body>
+</html>

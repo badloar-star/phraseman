@@ -75,6 +75,7 @@ import { readRevenueCatCustomerInfoForGeneration } from './revenuecat_account_id
 import { readRealPremiumSnapshotForGeneration } from './premium_real_storage';
 import { isDevRestorePurchaseEmpty } from './dev_paywall_state';
 import { DebugLogger } from './debug-logger';
+import { LOAD_GATE_TOTAL_MS } from './load_gate_config';
 import { peekPaywallPriceCache } from './paywall_price_cache';
 import { resolvePaywallReferencePrices } from './paywall_reference_prices';
 import { withPurchaseFlow } from './purchase_flow_activity';
@@ -338,6 +339,15 @@ export default function ManageSubscription() {
       && !!generation.stableId
       && isCurrentAccountGeneration(generation, generation.stableId)
     );
+    // зачем (аудит загрузок 11.11; D158 «тихо — не значит бесконечно»): если локального плана нет, заготовка держалась до
+    // конца всей цепочки магазина, а у неё потолка не было. Общий потолок снимает заготовку — экран показывает минимум,
+    // а запросы продолжаются и при успехе тихо подставят данные.
+    const loadCeilingTimer = setTimeout(() => {
+      // dev `manage=loading` намеренно держит заготовку для съёмки — потолок её не снимает
+      if (!isBootstrapCurrent() || isDevManageLoadingHold()) return;
+      console.warn('[MANAGE-SUB] load_ceiling', JSON.stringify({ ms: LOAD_GATE_TOTAL_MS })); // guard-ok: потолок сработал — причина снятия заготовки
+      setLoading(false);
+    }, LOAD_GATE_TOTAL_MS);
     void (async () => {
       // зачем (Авторизация 12.10, paywalls-020 = profile-019): dev `manage=loading` — загрузку не начинаем, скелетон остаётся
       // (ранний выход стоит ДО try, чтобы finally не погасил его). В стор-сборке геттер всегда false.
@@ -366,12 +376,22 @@ export default function ManageSubscription() {
         await initRevenueCat(isBootstrapCurrent);
         if (!isBootstrapCurrent()) return;
         if (!await syncRevenueCatIdentity(isBootstrapCurrent)) return;
-        const ci = await readRevenueCatCustomerInfoForGeneration(generation);
+        // зачем (аудит загрузок 11.11, владелец «управление подпиской»): данные покупателя и витрина магазина шли строго по
+        // очереди — дата списания и цена годового доезжали поздно. Теперь оба запроса стартуют вместе. Витрина ловит свой сбой
+        // сама (с причиной в журнале), чтобы он не отнял уже полученные данные покупателя.
+        const storeStartedAt = Date.now();
+        const [ci, o] = await Promise.all([
+          readRevenueCatCustomerInfoForGeneration(generation),
+          Purchases.getOfferings().catch((error: unknown) => {
+            DebugLogger.error('manage_subscription:offerings', error instanceof Error ? error : new Error(String(error)), 'warning');
+            return null;
+          }),
+        ]);
+        console.log('[MANAGE-SUB] store_read', JSON.stringify({ ms: Date.now() - storeStartedAt, hasCustomerInfo: !!ci, hasOfferings: !!o, current: isBootstrapCurrent() })); // guard-ok: одна строка на открытие экрана
         if (!ci || !isBootstrapCurrent()) return;
         setInfo(ci);
 
-        const o = await Purchases.getOfferings();
-        const pkgs = resolvePremiumPackages(o.current?.availablePackages ?? []);
+        const pkgs = resolvePremiumPackages(o?.current?.availablePackages ?? []);
         if (isBootstrapCurrent() && pkgs.yearly) {
           setYearlyPkg(pkgs.yearly);
           setYearlyPriceStr(storePriceTrim(pkgs.yearly.product?.priceString));
@@ -380,9 +400,9 @@ export default function ManageSubscription() {
       // данных нет — покажем минимум
       DebugLogger.error('manage_subscription:pkgs', e instanceof Error ? e : new Error(String(e)), 'warning');
     }
-      finally { if (isBootstrapCurrent()) setLoading(false); }
+      finally { clearTimeout(loadCeilingTimer); if (isBootstrapCurrent()) setLoading(false); }
     })();
-    return () => { dead = true; };
+    return () => { dead = true; clearTimeout(loadCeilingTimer); };
   }, [screenAccount]);
 
   const devPlanForMetadata = getDevPlanOverride();
@@ -721,6 +741,7 @@ export default function ManageSubscription() {
               lang={L}
               g={glass}
               tier={manageTier}
+              scale={scaled}
               period={isLifetime ? 'lifetime' : currentPlan === 'yearly' ? 'year' : isMonthly ? 'month' : null}
               passNameOverride={isLifetime ? planLabel : undefined}
               title={LP('Подписка Plus', 'Підписка Plus', 'Plus subscription', 'Suscripción Plus', 'Assinatura Plus', 'Gói Plus', 'Langganan Plus', 'Plus aboneliği', 'Subskrypcja Plus')}

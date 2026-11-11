@@ -106,7 +106,7 @@
       },
       "text": {
         "ru": "Теперь «у нас», «у вас» и «у них».\nNous avons un plan. — «У нас есть план.»\nЧитается: ну заво́н ён пла́н.\nСлово plan значит «план».\nVous avez un plan. — «У вас есть план.»\nЧитается: ву заве́ ён пла́н.\nIls ont un billet. — «У них есть билет.»\nЧитается: иль зон ён бийэ́.\nLéa a une carte. — «У Леа есть карта.»\nЧитается: леа́ а юн карт.\nКогда речь о нас, говорят avons. О вас — avez. О них — ont.\nПро Леа говорят a, как про «она».\nВ «ну заво́н», «ву заве́», «иль зон» слышится лёгкое «з».",
-        "uk": "Тепер «у нас», «у вас» і «у них».\nNous avons un plan. — «У нас є план.»\nЧитається: ну заво́н ен пла́н.\nСлово plan означає «план».\nVous avez un plan. — «У вас є план.»\nЧитається: ву заве́ ен пла́н.\nIls ont un billet. — «Вони мають квиток.»\nЧитається: іль зон ен бійе́.\nLéa a une carte. — «Леа має мапу.»\nЧитається: леа́ а юн карт.\nКоли йдеться про нас, кажуть avons. Про вас — avez. Про них — ont.\nПро Леа кажуть a, як про «вона».\nУ «ну заво́н», «ву заве́», «іль зон» чути легке «з».",
+        "uk": "Тепер «у нас», «у вас» і «у них».\nNous avons un plan. — «У нас є план.»\nЧитається: ну заво́н ен пла́н.\nСлово plan означає «план».\nVous avez un plan. — «У вас є план.»\nЧитається: ву заве́ ен пла́н.\nIls ont un billet. — «У них є квиток.»\nЧитається: іль зон ен бійе́.\nLéa a une carte. — «Леа має мапу.»\nЧитається: леа́ а юн карт.\nКоли йдеться про нас, кажуть avons. Про вас — avez. Про них — ont.\nПро Леа кажуть a, як про «вона».\nУ «ну заво́н», «ву заве́», «іль зон» чути легке «з».",
         "en": "Now “we have”, “you have” and “they have”.\nNous avons un plan. — “We have a plan.”\nplan means “plan”.\nVous avez un plan. — “You have a plan.”\nIls ont un billet. — “They have a ticket.”\nLéa a une carte. — “Léa has a card.”\nFor “we” we say avons. For “you” — avez. For “they” — ont.\nFor Léa we say a, as for “she”.\nIn “nou zavon”, “vou zavé”, “il zon” you hear a light “z”."
       },
       "examples": [
@@ -173,7 +173,7 @@
         {
           "command": {
             "ru": "Нажмите на нужный вариант: как сказать «У них есть билет»?",
-            "uk": "Натисніть потрібний варіант: як сказати «Вони мають квиток»?",
+            "uk": "Натисніть потрібний варіант: як сказати «У них є квиток»?",
             "en": "Tap the right answer: how do you say “They have a ticket”?"
           },
           "sample": false,
@@ -196,7 +196,7 @@
       },
       "text": {
         "ru": "Про состояние по-французски говорят «у меня голод».\nJ’ai faim. — «Я голоден.»\nЧитается: жэ фэн.\nСлово faim значит «голод».\nJ’ai soif. — «Мне хочется пить.»\nЧитается: жэ суаф.\nСлово soif значит «жажда».\nNous avons froid. — «Нам холодно.»\nЧитается: ну заво́н фруа́.\nСлово froid значит «холод».\nVous avez chaud. — «Вам жарко.»\nЧитается: ву заве́ шо́.\nСлово chaud значит «жара».\nPaul a peur. — «Поль боится.»\nЧитается: поль а пёр.\nСлово peur значит «страх».\nIls ont sommeil. — «Они хотят спать.»\nЧитается: иль зон сомэ́й.\nСлово sommeil значит «сонливость».",
-        "uk": "Про стан французькою кажуть «у мене голод».\nJ’ai faim. — «Я голодний.»\nЧитається: же фен.\nСлово faim означає «голод».\nJ’ai soif. — «Я хочу пити.»\nЧитається: же суаф.\nСлово soif означає «спрага».\nNous avons froid. — «Нам холодно.»\nЧитається: ну заво́н фруа́.\nСлово froid означає «холод».\nVous avez chaud. — «Вам спекотно.»\nЧитається: ву заве́ шо́.\nСлово chaud означає «спека».\nPaul a peur. — «Пол боїться.»\nЧитається: поль а пьор.\nСлово peur означає «страх».\nIls ont sommeil. — «Вони хочуть спати.»\nЧитається: іль зон соме́й.\nСлово sommeil означає «сонливість».",
+        "uk": "Про стан французькою кажуть «у мене голод».\nJ’ai faim. — «Я голодний.»\nЧитається: же фен.\nСлово faim означає «голод».\nJ’ai soif. — «Я хочу пити.»\nЧитається: же суаф.\nСлово soif означає «спрага».\nNous avons froid. — «Нам холодно.»\nЧитається: ну заво́н фруа́.\nСлово froid означає «холод».\nVous avez chaud. — «Вам спекотно.»\nЧитається: ву заве́ шо́.\nСлово chaud означає «спека».\nPaul a peur. — «Поль боїться.»\nЧитається: поль а пьор.\nСлово peur означає «страх».\nIls ont sommeil. — «Вони хочуть спати.»\nЧитається: іль зон соме́й.\nСлово sommeil означає «сонливість».",
         "en": "For feelings, French says “I have hunger”.\nJ’ai faim. — “I am hungry.”\nfaim means “hunger”.\nJ’ai soif. — “I am thirsty.”\nsoif means “thirst”.\nNous avons froid. — “We are cold.”\nfroid means “cold”.\nVous avez chaud. — “You are hot.”\nchaud means “heat”.\nPaul a peur. — “Paul is afraid.”\npeur means “fear”.\nIls ont sommeil. — “They are sleepy.”\nsommeil means “sleepiness”."
       },
       "examples": [

@@ -203,7 +203,7 @@
       },
       "text": {
         "ru": "Смотрите: перед Tasche слова ihr и sein тоже меняются.\nAnna holt ihre Tasche. — «Анна берёт свою сумку.»\nЧитается: А́нна холт и́ре та́ше\nСлово ihre значит «её». Слово holt — «берёт».\nTom holt seine Tasche. — «Том берёт свою сумку.»\nЧитается: том холт за́йне та́ше\nСлово seine значит «его». Было seinen, стало seine.\nAnna schreibt ihre Adresse. — «Анна пишет свой адрес.»\nЧитается: А́нна шрайпт и́ре адре́се\nСлово schreibt значит «пишет». Слово Adresse — «адрес».\nСлово schreiben значит «писать».",
-        "uk": "Дивіться: перед Tasche слова ihr і sein теж змінюються.\nAnna holt ihre Tasche. — «Ганна бере свою сумку.»\nЧитається: А́нна холт і́ре та́ше\nСлово ihre означає «її». Слово holt — «бере».\nTom holt seine Tasche. — «Том бере свою сумку.»\nЧитається: том холт за́йне та́ше\nСлово seine означає «його». Було seinen, стало seine.\nAnna schreibt ihre Adresse. — «Ганна пише свою адресу.»\nЧитається: А́нна шрайпт і́ре адре́се\nСлово schreibt означає «пише». Слово Adresse — «адреса».\nСлово schreiben означає «писати».",
+        "uk": "Дивіться: перед Tasche слова ihr і sein теж змінюються.\nAnna holt ihre Tasche. — «Анна бере свою сумку.»\nЧитається: А́нна холт і́ре та́ше\nСлово ihre означає «її». Слово holt — «бере».\nTom holt seine Tasche. — «Том бере свою сумку.»\nЧитається: том холт за́йне та́ше\nСлово seine означає «його». Було seinen, стало seine.\nAnna schreibt ihre Adresse. — «Анна пише свою адресу.»\nЧитається: А́нна шрайпт і́ре адре́се\nСлово schreibt означає «пише». Слово Adresse — «адреса».\nСлово schreiben означає «писати».",
         "en": "Look: before Tasche the words for “her” and “his” change too.\nAnna holt ihre Tasche. — “Anna picks up her bag.”\nSounds like: Anna kholt EEre tAshe\nThe word ihre means “her”. The word holt means “picks up”.\nTom holt seine Tasche. — “Tom picks up his bag.”\nSounds like: tom kholt zAyne tAshe\nThe word seine means “his”. It was seinen, now it is seine.\nAnna schreibt ihre Adresse. — “Anna writes her address.”\nSounds like: Anna shraypt EEre adrEse\nThe word schreibt means “writes”. The word Adresse means “address”.\nThe word schreiben means “to write”."
       },
       "examples": [
@@ -233,7 +233,7 @@
         {
           "command": {
             "ru": "Выберите, как сказать: «Анна берёт свою сумку»",
-            "uk": "Виберіть, як сказати: «Ганна бере свою сумку»",
+            "uk": "Виберіть, як сказати: «Анна бере свою сумку»",
             "en": "Choose how to say: “Anna picks up her bag”"
           },
           "sample": true,
@@ -263,7 +263,7 @@
         {
           "command": {
             "ru": "Выберите, как сказать: «Анна пишет свой адрес»",
-            "uk": "Виберіть, як сказати: «Ганна пише свою адресу»",
+            "uk": "Виберіть, як сказати: «Анна пише свою адресу»",
             "en": "Choose how to say: “Anna writes her address”"
           },
           "sample": false,

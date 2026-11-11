@@ -16,7 +16,7 @@
       },
       "text": {
         "ru": "Смотрите, как спросить, где что-то находится.\nOù est Paul ? — «Где Поль?»\nЧитается: у э поль.\nСлово où значит «где».\nOù sont les clés ? — «Где ключи?»\nЧитается: у сон лэ кле́.\nКогда вещей несколько, вместо est говорят sont.\nOù est la sortie ? — «Где выход?»\nЧитается: у э ла сорти́.\nOù es-tu ? — «Где ты?»\nЧитается: у э тю.\nСлова tu и vous ставят в конец и соединяют чёрточкой.\nOù travaillez-vous ? — «Где вы работаете?»\nЧитается: у травайе́ ву.",
-        "uk": "Дивіться, як запитати, де щось розташоване.\nOù est Paul ? — «Де Пол?»\nЧитається: у е поль.\nСлово où означає «де».\nOù sont les clés ? — «Де ключі?»\nЧитається: у сон ле кле́.\nКоли речей кілька, замість est кажуть sont.\nOù est la sortie ? — «Де вихід?»\nЧитається: у е ла сорті́.\nOù es-tu ? — «Де ти?»\nЧитається: у е тю.\nСлова tu і vous ставлять в кінець і з’єднують рискою.\nOù travaillez-vous ? — «Де ви працюєте?»\nЧитається: у травайе́ ву.",
+        "uk": "Дивіться, як запитати, де щось розташоване.\nOù est Paul ? — «Де Поль?»\nЧитається: у е поль.\nСлово où означає «де».\nOù sont les clés ? — «Де ключі?»\nЧитається: у сон ле кле́.\nКоли речей кілька, замість est кажуть sont.\nOù est la sortie ? — «Де вихід?»\nЧитається: у е ла сорті́.\nOù es-tu ? — «Де ти?»\nЧитається: у е тю.\nСлова tu і vous ставлять в кінець і з’єднують рискою.\nOù travaillez-vous ? — «Де ви працюєте?»\nЧитається: у травайе́ ву.",
         "en": "Look at how to ask where something is.\nOù est Paul ? — “Where is Paul?”\noù means “where”.\nOù sont les clés ? — “Where are the keys?”\nWhen there are several things, we say sont instead of est.\nOù est la sortie ? — “Where is the exit?”\nOù es-tu ? — “Where are you?”\nThe words tu and vous go at the end, joined by a dash.\nOù travaillez-vous ? — “Where do you work?”"
       },
       "examples": [
@@ -60,7 +60,7 @@
         {
           "command": {
             "ru": "Образец. Нажмите на нужный вариант: как сказать «Где Поль»?",
-            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Де Пол»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Де Поль»?",
             "en": "Sample. Tap the right answer: how do you say “Where is Paul”?"
           },
           "sample": true,

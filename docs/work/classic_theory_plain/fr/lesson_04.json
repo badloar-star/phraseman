@@ -16,7 +16,7 @@
       },
       "text": {
         "ru": "Смотрите, как сказать «Это Поль».\nC’est Paul. — «Это Поль.»\nЧитается: сэ поль.\nСлово c’est значит «это».\nC’est Léa. — «Это Леа.»\nЧитается: сэ леа́.\nОдно слово c’est — и вы показываете на человека.\nТак же про брата.\nC’est mon frère. — «Это мой брат.»\nЧитается: сэ мон фрэр.\nСлово mon значит «мой».\nСлово frère значит «брат».\nВ mon звук носовой, как в sont.",
-        "uk": "Дивіться, як сказати «Це Поль».\nC’est Paul. — «Це Пол.»\nЧитається: се поль.\nСлово c’est означає «це».\nC’est Léa. — «Це Леа.»\nЧитається: се леа́.\nОдне слово c’est — і ви показуєте на людину.\nТак само про брата.\nC’est mon frère. — «Це мій брат.»\nЧитається: се мон фрер.\nСлово mon означає «мій».\nСлово frère означає «брат».\nУ mon звук носовий, як у sont.",
+        "uk": "Дивіться, як сказати «Це Поль».\nC’est Paul. — «Це Поль.»\nЧитається: се поль.\nСлово c’est означає «це».\nC’est Léa. — «Це Леа.»\nЧитається: се леа́.\nОдне слово c’est — і ви показуєте на людину.\nТак само про брата.\nC’est mon frère. — «Це мій брат.»\nЧитається: се мон фрер.\nСлово mon означає «мій».\nСлово frère означає «брат».\nУ mon звук носовий, як у sont.",
         "en": "Look at how to say “This is Paul”.\nC’est Paul. — “This is Paul.”\nc’est means “this is”.\nC’est Léa. — “This is Léa.”\nOne word, c’est, and you point at a person.\nSame for a brother.\nC’est mon frère. — “This is my brother.”\nmon means “my”.\nfrère means “brother”.\nIn mon the sound goes through the nose, as in sont."
       },
       "examples": [
@@ -46,7 +46,7 @@
         {
           "command": {
             "ru": "Образец. Нажмите на нужный вариант: как сказать «Это Поль»?",
-            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Це Пол»?",
+            "uk": "Зразок. Натисніть потрібний варіант: як сказати «Це Поль»?",
             "en": "Sample. Tap the right answer: how do you say “This is Paul”?"
           },
           "sample": true,

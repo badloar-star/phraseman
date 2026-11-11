@@ -466,7 +466,7 @@
       },
       "text": {
         "ru": "Смотрите, как сказать «Я готовлю ужин».\nJe prépare le dîner. — «Я готовлю ужин.»\nЧитается: жё препа́р лё дине́.\nСлово préparer значит «готовить». Слово dîner значит «ужин».\nNous préparons les valises. — «Мы собираем чемоданы.»\nЧитается: ну препаро́н лэ вали́з.\nСлова les valises значат «чемоданы». С чемоданами préparer значит «собирать».\nPaul prépare du café. — «Поль варит кофе.»\nЧитается: поль препа́р дю кафе́.\nСлово café значит «кофе».\nСлово меняется: «я» — prépare, «ты» — prépares, «мы» — préparons.",
-        "uk": "Дивіться, як сказати «Я готую вечерю».\nJe prépare le dîner. — «Я готую вечерю.»\nЧитається: же препа́р льо діне́.\nСлово préparer означає «готувати». Слово dîner означає «вечеря».\nNous préparons les valises. — «Ми пакуємо валізи.»\nЧитається: ну препаро́н ле валі́з.\nСлова les valises означають «валізи». З валізами préparer означає «пакувати».\nPaul prépare du café. — «Пол варить каву.»\nЧитається: поль препа́р дю кафе́.\nСлово café означає «кава».\nСлово змінюється: «я» — prépare, «ти» — prépares, «ми» — préparons.",
+        "uk": "Дивіться, як сказати «Я готую вечерю».\nJe prépare le dîner. — «Я готую вечерю.»\nЧитається: же препа́р льо діне́.\nСлово préparer означає «готувати». Слово dîner означає «вечеря».\nNous préparons les valises. — «Ми пакуємо валізи.»\nЧитається: ну препаро́н ле валі́з.\nСлова les valises означають «валізи». З валізами préparer означає «пакувати».\nPaul prépare du café. — «Поль варить каву.»\nЧитається: поль препа́р дю кафе́.\nСлово café означає «кава».\nСлово змінюється: «я» — prépare, «ти» — prépares, «ми» — préparons.",
         "en": "Look at how to say “I am making dinner”.\nJe prépare le dîner. — “I am making dinner.”\npréparer means “to prepare”. dîner means “dinner”.\nNous préparons les valises. — “We are packing the suitcases.”\nles valises means “the suitcases”. With suitcases, préparer means “to pack”.\nPaul prépare du café. — “Paul is making coffee.”\ncafé means “coffee”.\nThe word changes: “I” — prépare, “you” — prépares, “we” — préparons."
       },
       "examples": [
@@ -518,7 +518,7 @@
         {
           "command": {
             "ru": "Нажмите на нужный вариант: как сказать «Поль варит кофе»?",
-            "uk": "Натисніть потрібний варіант: як сказати «Пол варить каву»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Поль варить каву»?",
             "en": "Tap the right answer: how do you say “Paul is making coffee”?"
           },
           "sample": false,

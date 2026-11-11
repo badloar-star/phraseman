@@ -299,7 +299,7 @@
       },
       "text": {
         "ru": "Смотрите, как сказать «Мне нравится кофе».\nJ’aime le café. — «Мне нравится кофе.»\nЧитается: жэм лё кафэ́.\nСлово aime значит «люблю, нравится».\nJ’aime le thé. — «Мне нравится чай.»\nЧитается: жэм лё тэ.\nElle aime la musique. — «Ей нравится музыка.»\nЧитается: эль эм ла мюзи́к.\nNous aimons les livres. — «Мы любим книги.»\nЧитается: ну зэмо́н лэ ливр.\nVous aimez la soupe ? — «Вам нравится суп?»\nЧитается: ву зэме́ ла суп.\nСлово меняется, смотря о ком речь: j’aime, elle aime, nous aimons, vous aimez.\nДля «мы» говорят aimons, для «вы» — aimez.\nJ’aime l’odeur du pain. — «Мне нравится запах хлеба.»\nЧитается: жэм лодёр дю пэн.\nСлова l’odeur du pain значат «запах хлеба».\nСлово pain значит «хлеб».",
-        "uk": "Дивіться, як сказати «Мені подобається кава».\nJ’aime le café. — «Я люблю каву.»\nЧитається: жем льо кафе́.\nСлово aime означає «люблю, подобається».\nJ’aime le thé. — «Я люблю чай.»\nЧитається: жем льо те.\nElle aime la musique. — «Їй подобається музика.»\nЧитається: ель ем ла мюзі́к.\nNous aimons les livres. — «Нам подобаються книги.»\nЧитається: ну земо́н ле лівр.\nVous aimez la soupe ? — «Ви любите суп?»\nЧитається: ву земе́ ла суп.\nСлово змінюється залежно від того, про кого йдеться.\nДля «ми» кажуть aimons, для «ви» — aimez.\nJ’aime l’odeur du pain. — «Мені подобається запах хліба.»\nЧитається: жем лодьор дю пен.\nСлова l’odeur du pain означають «запах хліба».\nСлово pain означає «хліб».",
+        "uk": "Дивіться, як сказати «Мені подобається кава».\nJ’aime le café. — «Я люблю каву.»\nЧитається: жем льо кафе́.\nСлово aime означає «люблю, подобається».\nJ’aime le thé. — «Я люблю чай.»\nЧитається: жем льо те.\nElle aime la musique. — «Їй подобається музика.»\nЧитається: ель ем ла мюзі́к.\nNous aimons les livres. — «Нам подобаються книги.»\nЧитається: ну земо́н ле лівр.\nVous aimez la soupe ? — «Вам подобається суп?»\nЧитається: ву земе́ ла суп.\nСлово змінюється залежно від того, про кого йдеться.\nДля «ми» кажуть aimons, для «ви» — aimez.\nJ’aime l’odeur du pain. — «Мені подобається запах хліба.»\nЧитається: жем лодьор дю пен.\nСлова l’odeur du pain означають «запах хліба».\nСлово pain означає «хліб».",
         "en": "Look at how to say “I like coffee”.\nJ’aime le café. — “I like coffee.”\naime means “like”.\nJ’aime le thé. — “I like tea.”\nElle aime la musique. — “She likes music.”\nNous aimons les livres. — “We love books.”\nVous aimez la soupe ? — “Do you like soup.”\nThe word changes with who it is about.\nFor “we” we say aimons, for “you” — aimez.\nJ’aime l’odeur du pain. — “I like the smell of bread.”\nl’odeur du pain means “the smell of bread”.\npain means “bread”."
       },
       "examples": [
@@ -380,7 +380,7 @@
         {
           "command": {
             "ru": "Нажмите на нужный вариант: как сказать «Вам нравится суп»?",
-            "uk": "Натисніть потрібний варіант: як сказати «Ви любите суп»?",
+            "uk": "Натисніть потрібний варіант: як сказати «Вам подобається суп»?",
             "en": "Tap the right answer: how do you say “Do you like soup”?"
           },
           "sample": false,

@@ -3,16 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Видео: смотри и играй</title>
+<title>Видео: просто</title>
 <style>
-/* ───────── PhraseMan · раздел «Видео» заново (макет 11.11) ─────────
-   зачем (слово владельца 11.11: «раздел видео фул переделай, хай-енд, чтобы юзерам нравился раздел и им было чем заняться кроме смотреть видео»):
-   — сейчас в разделе только лента роликов, плеер, список фраз и +500 монет за просмотр; заняться после ролика нечем;
-   — пять экранов: хаб, просмотр, «Проверь себя», «Моменты», «Сериал»; все занятия строятся из того, что уже есть в данных
-     (фразы ролика с таймкодом, переводом и объяснением, плейлисты, отметка «Нравится», награда за просмотр, наборы из видео);
-   — материал «Аврора» (одобрен владельцем 11.11 в home-luxe): тёмная сцена с сиянием, матовые плитки без настоящего размытия.
-   Шрифты и значки берутся из соседнего макета home-luxe-2026-11-11, чтобы не плодить копии в репозитории.
-   Цвета заданы числами (в home-luxe они считаются из темы приложения) — при переносе в приложение берутся токены темы. */
+/* ───────── PhraseMan · раздел «Видео», круг 3: просто (макет 11.11) ─────────
+   зачем (слово владельца 11.11, круг 3: «слишком много всего и наляписто, надо сделать красиво, удобно, юзер-френдли и супер просто,
+   всё что можно скомпоновать, упростить»):
+   — три экрана вместо пяти: лента, просмотр, проверка. На каждом одно главное действие;
+   — один тон поверхности, белая главная кнопка, цвет только у двух вещей: монета (золото) и «готово» (зелёный);
+   — убрано: сцена с сиянием, ряд игр, «Момент дня», цель недели, отдельный блок «Сейчас звучит», полоса награды, ряд кнопок плеера,
+     экраны «Моменты» и «Сериал». Плейлисты стали одним из фильтров ленты; занятие после ролика одно — «Проверить себя»;
+   — фраза, награда и отметки собраны в то, что уже есть на экране: фразы — один список (текущая раскрыта), награда — кольцо на плеере,
+     «Нравится» — звезда в шапке, длительность — в строке под названием.
+   Шрифты и значки берутся из соседнего макета home-luxe-2026-11-11. Цвета заданы числами — при переносе берутся токены темы. */
 @font-face { font-family: Inter; src: url(../home-luxe-2026-11-11/fonts/Inter-Regular.ttf); font-weight: 400 500; }
 @font-face { font-family: Inter; src: url(../home-luxe-2026-11-11/fonts/Inter-SemiBold.ttf); font-weight: 600; }
 @font-face { font-family: Inter; src: url(../home-luxe-2026-11-11/fonts/Inter-Bold.ttf); font-weight: 700; }
@@ -20,362 +22,169 @@
 @font-face { font-family: IoniconsApp; src: url(../home-luxe-2026-11-11/Ionicons.ttf); }
 :root {
   --ease-out: cubic-bezier(.23, 1, .32, 1);
-  --pg: #0A0B0E; --pgx: #EEF1F6; --pgs: #A4ABB8; --pgc: #15171C;
-  --bg: #0C0D10; --tx: #FFFFFF; --sec: #B8B9BD; --hair: rgba(255, 255, 255, .08);
-  --ctl: rgba(255, 255, 255, .09); --ctl2: rgba(255, 255, 255, .15);
-  --c1: oklch(.28 .05 300); --c2: oklch(.19 .013 270);
-  --aTop: oklch(.15 .05 243); --aBot: oklch(.25 .065 269);
-  --a1: oklch(.64 .15 317 / .58); --a2: oklch(.56 .15 219 / .55); --a3: oklch(.62 .15 283 / .42); --a4: oklch(.46 .13 239 / .5);
-  --cta1: oklch(.88 .07 241); --cta2: oklch(.93 .06 309); --ink: oklch(.2 .04 265);
-  --acc: oklch(.84 .1 292); --gold: oklch(.87 .12 86); --ok: oklch(.76 .16 155); --bad: oklch(.72 .17 22);
-  --sh: 0 18px 30px -16px oklch(.08 .03 265 / .9);
-  --edge: inset 0 0 0 1px rgba(255, 255, 255, .06);
+  --pg: #08090B; --pgx: #EEF1F6; --pgs: #A4ABB8;
+  --bg: #0C0D10; --card: #17181D; --ctl: rgba(255, 255, 255, .08); --hair: rgba(255, 255, 255, .07);
+  --tx: #FFFFFF; --sec: #A9ABB3; --dim: rgba(255, 255, 255, .42);
+  --gold: oklch(.87 .12 86); --ok: oklch(.78 .15 155); --bad: oklch(.72 .16 22);
 }
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 html, body { margin: 0; background: var(--pg); color: var(--pgx); font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-button { font: inherit; color: inherit; border: 0; background: none; padding: 0; cursor: pointer; }
+button { font: inherit; color: inherit; border: 0; background: none; padding: 0; cursor: pointer; text-align: left; }
 .io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
-.page { max-width: 1840px; margin: 0 auto; padding: 28px 16px 72px; }
-h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; letter-spacing: -.5px; text-wrap: balance; }
-.lead { font-size: 16px; line-height: 24px; color: var(--pgs); margin: 0 0 28px; max-width: 68ch; text-wrap: pretty; }
-.wrap { display: flex; flex-wrap: wrap; gap: 34px 28px; align-items: flex-start; justify-content: center; }
+.page { max-width: 1400px; margin: 0 auto; padding: 28px 16px 72px; }
+h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; letter-spacing: -.5px; }
+.lead { font-size: 16px; line-height: 24px; color: var(--pgs); margin: 0 0 28px; max-width: 64ch; text-wrap: pretty; }
+.wrap { display: flex; flex-wrap: wrap; gap: 34px 32px; align-items: flex-start; justify-content: center; }
 .cell { display: flex; flex-direction: column; gap: 12px; align-items: center; }
-.cap { font-size: 16px; font-weight: 700; height: 22px; white-space: nowrap; }
+.cap { font-size: 16px; font-weight: 700; height: 22px; }
 .why { width: 411px; max-width: 100%; font-size: 14px; line-height: 20px; color: var(--pgs); margin: 0; text-wrap: pretty; }
-.why b { color: var(--pgx); font-weight: 600; }
+.notes { max-width: 720px; margin: 52px auto 0; }
+.notes h2 { font-size: 20px; line-height: 26px; font-weight: 800; letter-spacing: -.3px; margin: 0 0 10px; }
+.notes ul { margin: 0 0 32px; padding-left: 20px; font-size: 15px; line-height: 24px; color: var(--pgs); }
+.notes li + li { margin-top: 4px; }
+.notes b { color: var(--pgx); font-weight: 600; }
 
-/* ═════ телефон 411 × 914 dp (как в home-luxe) ═════ */
+/* ═════ телефон 411 × 914 dp ═════ */
 .ph { position: relative; width: 411px; height: 914px; border-radius: 36px; overflow: hidden; background: var(--bg); color: var(--tx); box-shadow: 0 0 0 7px #000, 0 0 0 8px #2b2d33, 0 30px 70px -20px rgba(0, 0, 0, .6); }
-.scr { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none;
-  background: radial-gradient(70% 26% at 0% 44%, oklch(.42 .12 315 / .3), transparent 72%), radial-gradient(80% 30% at 100% 74%, oklch(.38 .12 225 / .28), transparent 72%), linear-gradient(180deg, #181A1F 0%, var(--bg) 60%, #16181D 100%); }
+.scr { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; background: radial-gradient(120% 34% at 50% -8%, oklch(.36 .06 280 / .5), transparent 70%), var(--bg); }
 .scr::-webkit-scrollbar { display: none; }
-.sbar { position: absolute; left: 0; right: 0; top: 0; height: 28px; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 0 22px 0 28px; font-size: 14px; font-weight: 600; color: #fff; pointer-events: none; }
+.sbar { position: absolute; left: 0; right: 0; top: 0; height: 28px; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 0 22px 0 28px; font-size: 14px; font-weight: 600; pointer-events: none; }
 .sbar .bat { width: 20px; height: 10px; border-radius: 2.5px; background: currentColor; }
 .gest { position: absolute; left: 50%; bottom: 8px; width: 108px; height: 4px; border-radius: 2px; background: #fff; opacity: .8; transform: translateX(-50%); z-index: 40; pointer-events: none; }
-.press { transition: transform 160ms var(--ease-out); cursor: pointer; }
+.press { transition: transform 160ms var(--ease-out); }
 .press:active { transform: scale(.97); }
-.gl { background: linear-gradient(148deg, var(--c1) 0%, var(--c2) 62%); box-shadow: var(--sh), var(--edge); }
-.aur { background: radial-gradient(74% 58% at 10% 6%, var(--a1), transparent 70%), radial-gradient(62% 52% at 98% -4%, var(--a2), transparent 70%), radial-gradient(80% 56% at 74% 104%, var(--a3), transparent 72%), radial-gradient(62% 50% at -4% 100%, var(--a4), transparent 70%), linear-gradient(180deg, var(--aTop), var(--aBot)); }
-.cta { min-height: 52px; border-radius: 26px; padding: 0 22px; background: linear-gradient(98deg, var(--cta1), var(--cta2)); color: var(--ink); font-size: 16px; line-height: 21px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 16px 30px -12px oklch(.7 .15 275 / .55); }
-.cta .io { font-size: 18px; }
-.ghost { min-height: 52px; border-radius: 26px; padding: 0 22px; background: var(--ctl); font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; }
-.ib { width: 44px; height: 44px; border-radius: 22px; background: rgba(255, 255, 255, .13); display: flex; align-items: center; justify-content: center; font-size: 20px; flex: none; }
-.coin { display: inline-flex; align-items: center; gap: 4px; font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; }
-.coin img { width: 16px; height: 16px; }
+.cta { width: 100%; min-height: 54px; border-radius: 27px; background: #F2F1F6; color: #111216; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.ghost { width: 100%; min-height: 54px; border-radius: 27px; font-size: 17px; font-weight: 700; color: var(--sec); display: flex; align-items: center; justify-content: center; }
+.ib { width: 44px; height: 44px; border-radius: 22px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 20px; flex: none; transition: transform 160ms var(--ease-out), color 160ms ease; }
+.ib:active { transform: scale(.92); }
 .poster { position: absolute; inset: 0; }
-.p1 { background: radial-gradient(90% 90% at 18% 12%, oklch(.66 .17 320), transparent 62%), linear-gradient(150deg, oklch(.36 .13 285), oklch(.2 .07 250)); }
-.p2 { background: radial-gradient(90% 90% at 86% 10%, oklch(.72 .14 200), transparent 60%), linear-gradient(150deg, oklch(.36 .1 230), oklch(.2 .06 262)); }
-.p3 { background: radial-gradient(90% 90% at 20% 90%, oklch(.72 .15 60), transparent 60%), linear-gradient(150deg, oklch(.36 .1 20), oklch(.2 .06 310)); }
-.p4 { background: radial-gradient(90% 90% at 80% 86%, oklch(.7 .15 160), transparent 60%), linear-gradient(150deg, oklch(.33 .08 200), oklch(.2 .05 250)); }
-.p5 { background: radial-gradient(90% 90% at 14% 14%, oklch(.68 .16 265), transparent 60%), linear-gradient(150deg, oklch(.34 .12 300), oklch(.2 .07 280)); }
-.p6 { background: radial-gradient(90% 90% at 84% 18%, oklch(.72 .15 350), transparent 60%), linear-gradient(150deg, oklch(.36 .11 330), oklch(.2 .06 280)); }
-.dur { position: absolute; right: 8px; bottom: 8px; height: 22px; padding: 0 7px; border-radius: 7px; background: rgba(8, 10, 14, .66); font-size: 13px; line-height: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
-.sec { font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; margin: 0; display: flex; align-items: baseline; gap: 8px; }
-.sec span { margin-left: auto; font-size: 14px; font-weight: 600; color: var(--acc); letter-spacing: 0; }
-.tabbar { position: absolute; left: 12px; right: 12px; bottom: 30px; height: 66px; border-radius: 33px; z-index: 20; display: flex; align-items: center; padding: 0 9px; }
+.p1 { background: radial-gradient(90% 90% at 20% 15%, oklch(.5 .09 300), transparent 65%), linear-gradient(150deg, oklch(.3 .06 285), oklch(.18 .03 260)); }
+.p2 { background: radial-gradient(90% 90% at 82% 14%, oklch(.52 .08 215), transparent 62%), linear-gradient(150deg, oklch(.3 .05 235), oklch(.18 .03 260)); }
+.p3 { background: radial-gradient(90% 90% at 22% 88%, oklch(.54 .09 55), transparent 62%), linear-gradient(150deg, oklch(.3 .06 25), oklch(.18 .03 300)); }
+.p4 { background: radial-gradient(90% 90% at 80% 84%, oklch(.52 .08 165), transparent 62%), linear-gradient(150deg, oklch(.29 .05 200), oklch(.18 .03 250)); }
+.p5 { background: radial-gradient(90% 90% at 16% 16%, oklch(.5 .09 265), transparent 62%), linear-gradient(150deg, oklch(.29 .06 290), oklch(.18 .03 270)); }
+.p6 { background: radial-gradient(90% 90% at 84% 18%, oklch(.52 .09 350), transparent 62%), linear-gradient(150deg, oklch(.3 .06 330), oklch(.18 .03 280)); }
+.tabbar { position: absolute; left: 12px; right: 12px; bottom: 30px; height: 66px; border-radius: 33px; z-index: 20; display: flex; align-items: center; padding: 0 9px; background: #1D1F25; box-shadow: 0 18px 30px -14px rgba(0, 0, 0, .8); }
 .tabbar .tb { flex: 1; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--sec); }
-.tabbar .tb.on { background: oklch(.8 .1 292 / .26); color: #fff; }
+.tabbar .tb.on { background: rgba(255, 255, 255, .12); color: #fff; }
 
-/* ═════ 1. Хаб ═════ */
-.hub { padding: 0 12px 118px; display: flex; flex-direction: column; gap: 22px; }
-.scene { position: relative; margin: 0 -12px; padding: 44px 20px 22px; border-radius: 0 0 28px 28px; overflow: hidden; box-shadow: 0 26px 46px -24px oklch(.15 .05 243 / .95); }
-.scene::before, .scene::after { content: ''; position: absolute; left: -20%; right: -20%; height: 84px; filter: blur(26px); border-radius: 50%; pointer-events: none; }
-.scene::before { top: 40px; background: linear-gradient(96deg, transparent 12%, oklch(.78 .13 325 / .38) 38%, oklch(.74 .13 275 / .34) 58%, transparent 82%); transform: rotate(-9deg); animation: drift 16s ease-in-out infinite alternate; }
-.scene::after { top: 170px; height: 60px; background: linear-gradient(96deg, transparent 24%, oklch(.74 .13 275 / .34) 46%, oklch(.7 .13 225 / .3) 66%, transparent 88%); transform: rotate(7deg); animation: drift 21s ease-in-out -6s infinite alternate-reverse; }
-@keyframes drift { from { translate: -22px 0; } to { translate: 22px 6px; } }
-.scene > * { position: relative; z-index: 1; }
-.top { display: flex; align-items: center; gap: 8px; }
+/* ═════ 1. Лента ═════ */
+.feed { padding: 44px 20px 120px; }
+.top { display: flex; align-items: center; }
 .top h2 { flex: 1; margin: 0; font-size: 34px; line-height: 40px; font-weight: 800; letter-spacing: -.6px; }
-.pill { height: 36px; border-radius: 18px; padding: 0 12px; background: rgba(255, 255, 255, .13); display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; }
-.pill .io { font-size: 14px; opacity: .8; }
-.cont { margin-top: 18px; }
-.cont .cv { position: relative; aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden; box-shadow: 0 22px 34px -18px rgba(0, 0, 0, .7); }
-.cont .cv::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .0) 34%, rgba(4, 6, 12, .78) 100%); }
-.cont .lbl { position: absolute; left: 14px; top: 12px; z-index: 2; font-size: 13px; font-weight: 700; padding: 0 10px; height: 26px; line-height: 26px; border-radius: 13px; background: rgba(8, 10, 14, .5); }
-.cont .tt { position: absolute; left: 16px; right: 84px; bottom: 26px; z-index: 2; }
-.cont .tt b { display: block; font-size: 20px; line-height: 25px; font-weight: 700; letter-spacing: -.2px; text-wrap: balance; }
-.cont .tt i { display: block; font-style: normal; font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .82); margin-top: 3px; }
-.cont .go { position: absolute; right: 14px; bottom: 22px; z-index: 2; width: 56px; height: 56px; min-height: 0; padding: 0 0 0 3px; border-radius: 28px; font-size: 24px; }
-.cont .go .io { font-size: 24px; }
-.cont .ln { position: absolute; left: 0; right: 0; bottom: 0; height: 5px; z-index: 2; background: rgba(255, 255, 255, .22); }
-.cont .ln i { display: block; height: 100%; width: 46%; background: linear-gradient(90deg, var(--cta1), var(--cta2)); border-radius: 0 3px 3px 0; }
-.goal { margin-top: 14px; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 20px; background: rgba(255, 255, 255, .1); box-shadow: var(--edge); }
-.goal .gt { flex: 1; min-width: 0; }
-.goal b { display: block; font-size: 15px; line-height: 20px; font-weight: 700; }
-.frames { display: flex; gap: 5px; margin-top: 7px; }
-.frames i { flex: 1; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .2); }
-.frames i.on { background: linear-gradient(90deg, var(--cta1), var(--cta2)); }
-.goal .coin { font-size: 15px; }
-.games { display: flex; gap: 10px; overflow-x: auto; margin: 12px -12px 0; padding: 0 12px 4px; scrollbar-width: none; }
-.games::-webkit-scrollbar { display: none; }
-.game { position: relative; flex: none; width: 164px; height: 190px; border-radius: 22px; padding: 14px; overflow: hidden; display: flex; flex-direction: column; text-align: left; }
-.game .art { position: absolute; right: -18px; top: -18px; width: 112px; height: 112px; border-radius: 56px; display: flex; align-items: center; justify-content: center; padding: 14px 14px 0 0; font-size: 50px; color: rgba(255, 255, 255, .95); box-shadow: 0 16px 26px -14px rgba(0, 0, 0, .6); }
-.game.g1 .art { background: radial-gradient(circle at 34% 30%, oklch(.74 .16 320), oklch(.42 .15 295)); }
-.game.g2 .art { background: radial-gradient(circle at 34% 30%, oklch(.78 .13 205), oklch(.42 .12 245)); }
-.game.g3 .art { background: radial-gradient(circle at 34% 30%, oklch(.8 .14 75), oklch(.48 .14 35)); }
-.game b { margin-top: auto; font-size: 17px; line-height: 21px; font-weight: 700; letter-spacing: -.1px; }
-.game i { font-style: normal; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 3px; }
-.mom { position: relative; border-radius: 24px; padding: 16px; overflow: hidden; }
-.mom small { font-size: 13px; line-height: 17px; color: var(--acc); font-weight: 700; }
-.mom q { display: block; quotes: none; font-size: 24px; line-height: 30px; font-weight: 700; letter-spacing: -.3px; margin-top: 6px; text-wrap: balance; }
-.mom em { display: block; font-style: normal; font-size: 15px; line-height: 21px; color: var(--sec); margin-top: 4px; }
-.mom .ma { display: flex; align-items: center; gap: 8px; margin-top: 14px; }
-.mom .src { flex: 1; min-width: 0; height: 44px; border-radius: 22px; background: var(--ctl); display: flex; align-items: center; gap: 8px; padding: 0 14px 0 6px; font-size: 14px; font-weight: 700; }
-.mom .src span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.mom .src .pl { width: 32px; height: 32px; border-radius: 16px; background: linear-gradient(98deg, var(--cta1), var(--cta2)); color: var(--ink); display: flex; align-items: center; justify-content: center; font-size: 14px; padding-left: 2px; flex: none; }
-.mom .ib { background: var(--ctl); }
-.chips { display: flex; gap: 8px; overflow-x: auto; margin: 12px -12px 0; padding: 0 12px; scrollbar-width: none; }
+.pill { height: 36px; border-radius: 18px; padding: 0 12px; background: var(--ctl); display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; }
+.pill .io { font-size: 14px; color: var(--sec); }
+.hero { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; margin-top: 18px; border-radius: 24px; overflow: hidden; box-shadow: 0 24px 36px -22px rgba(0, 0, 0, .9); }
+.hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 36%, rgba(6, 7, 10, .82) 100%); }
+.hero .tt { position: absolute; left: 16px; right: 84px; bottom: 20px; z-index: 2; }
+.hero .tt b { display: block; font-size: 20px; line-height: 25px; font-weight: 700; letter-spacing: -.2px; text-wrap: balance; }
+.hero .tt i { display: block; font-style: normal; font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .8); margin-top: 2px; }
+.hero .go { position: absolute; right: 16px; bottom: 18px; z-index: 2; width: 52px; height: 52px; border-radius: 26px; background: #F2F1F6; color: #111216; display: flex; align-items: center; justify-content: center; font-size: 22px; padding-left: 3px; }
+.hero .ln { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; z-index: 2; background: rgba(255, 255, 255, .2); }
+.hero .ln i { display: block; height: 100%; width: 46%; background: #fff; }
+.chips { display: flex; gap: 8px; overflow-x: auto; margin: 24px -20px 0; padding: 0 20px; scrollbar-width: none; }
 .chips::-webkit-scrollbar { display: none; }
 .chip { flex: none; height: 38px; padding: 0 16px; border-radius: 19px; background: var(--ctl); font-size: 15px; font-weight: 700; color: var(--sec); transition: background-color 180ms ease, color 180ms ease, transform 160ms var(--ease-out); }
-.chip[aria-pressed="true"] { background: #fff; color: #121318; }
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 12px; margin-top: 14px; }
-.vcard { text-align: left; min-width: 0; transition: opacity 200ms ease, transform 160ms var(--ease-out); }
-.vcard[hidden] { display: none; }
-.vcard .cv { position: relative; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; box-shadow: var(--sh); }
-.vcard .bdg { position: absolute; left: 8px; top: 8px; height: 24px; padding: 0 8px 0 6px; border-radius: 12px; background: rgba(8, 10, 14, .66); font-size: 13px; display: flex; align-items: center; }
-.vcard .bdg.done { color: var(--ok); gap: 4px; font-weight: 700; }
-.vcard .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255, 255, 255, .22); }
-.vcard .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--cta1), var(--cta2)); }
-.vcard b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 15px; line-height: 19px; font-weight: 700; margin-top: 8px; }
-.vcard .mt { display: flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 13px; line-height: 17px; color: var(--sec); }
-.vcard .mt .io { font-size: 13px; color: var(--acc); }
-.rail { display: flex; gap: 12px; overflow-x: auto; margin: 12px -12px 0; padding: 0 12px 4px; scrollbar-width: none; }
-.rail::-webkit-scrollbar { display: none; }
-.ser { flex: none; width: 236px; text-align: left; }
-.ser .cv { position: relative; height: 132px; border-radius: 18px; overflow: hidden; box-shadow: 0 -7px 0 -3px rgba(255, 255, 255, .16), 0 -13px 0 -7px rgba(255, 255, 255, .08), var(--sh); margin-top: 12px; }
-.ser .cv .n { position: absolute; left: 10px; bottom: 10px; height: 26px; padding: 0 10px; border-radius: 13px; background: rgba(8, 10, 14, .6); font-size: 13px; line-height: 26px; font-weight: 700; }
-.ser b { display: block; font-size: 16px; line-height: 20px; font-weight: 700; margin-top: 10px; }
-.ser .pb { height: 5px; border-radius: 3px; background: var(--ctl2); margin-top: 8px; overflow: hidden; }
-.ser .pb i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--cta1), var(--cta2)); }
+.chip:active { transform: scale(.96); }
+.chip[aria-pressed="true"] { background: #F2F1F6; color: #111216; }
+.list { margin-top: 8px; }
+.vr { display: flex; align-items: center; gap: 14px; width: 100%; padding: 10px 0; }
+.vr[hidden] { display: none; }
+.vr .th { position: relative; flex: none; width: 136px; height: 76px; border-radius: 14px; overflow: hidden; }
+.vr .th .d { position: absolute; right: 6px; bottom: 6px; height: 20px; padding: 0 6px; border-radius: 6px; background: rgba(8, 10, 14, .7); font-size: 12px; line-height: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.vr .th .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255, 255, 255, .25); }
+.vr .th .bar i { display: block; height: 100%; background: #fff; }
+.vr.pl .th { box-shadow: 0 -6px 0 -3px rgba(255, 255, 255, .16), 0 -11px 0 -6px rgba(255, 255, 255, .08); margin-top: 8px; }
+.vr .x { flex: 1; min-width: 0; }
+.vr .x b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 16px; line-height: 21px; font-weight: 700; }
+.vr .x i { display: flex; align-items: center; gap: 5px; font-style: normal; font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 4px; font-variant-numeric: tabular-nums; }
+.vr .x i.done { color: var(--ok); }
+.vr .x i img { width: 15px; height: 15px; }
+.vr .x i .io { font-size: 15px; }
 
 /* ═════ 2. Просмотр ═════ */
-.watch { padding: 36px 12px 110px; }
-.wtop { display: flex; justify-content: space-between; padding: 0 0 8px; }
-.wtop .ib { background: var(--ctl); }
+.watch { padding: 36px 16px 112px; }
+.wtop { display: flex; justify-content: space-between; padding-bottom: 10px; }
 .wtop .ib.on { color: var(--gold); }
-.player { position: relative; aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden; box-shadow: 0 26px 40px -22px rgba(0, 0, 0, .8); }
-.player::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(4, 6, 12, .72) 100%); pointer-events: none; }
-.player .pp { position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 2; width: 64px; height: 64px; border-radius: 32px; background: rgba(8, 10, 14, .45); font-size: 28px; display: flex; align-items: center; justify-content: center; transition: transform 160ms var(--ease-out), opacity 220ms ease; }
+.player { position: relative; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; box-shadow: 0 24px 36px -22px rgba(0, 0, 0, .9); }
+.player::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 55%, rgba(6, 7, 10, .7) 100%); pointer-events: none; }
+.player .pp { position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 2; width: 60px; height: 60px; border-radius: 30px; background: rgba(8, 10, 14, .5); font-size: 26px; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 200ms ease, transform 160ms var(--ease-out); }
 .player .pp:active { transform: scale(.94); }
-.player[data-play="1"] .pp { opacity: .0; }
-.player[data-play="1"]:hover .pp { opacity: 1; }
-.player .sub { position: absolute; left: 14px; right: 14px; bottom: 30px; z-index: 2; text-align: center; font-size: 18px; line-height: 23px; font-weight: 700; text-shadow: 0 1px 10px rgba(0, 0, 0, .6); text-wrap: balance; transition: opacity 200ms ease, filter 200ms ease; }
-.player .sub.sw { opacity: 0; filter: blur(3px); }
-.player .tm { position: absolute; left: 14px; bottom: 10px; z-index: 2; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; color: rgba(255, 255, 255, .85); }
-.player .ln { position: absolute; left: 0; right: 0; bottom: 0; height: 5px; z-index: 2; background: rgba(255, 255, 255, .22); }
-.player .ln i { display: block; height: 100%; background: #fff; transition: width 500ms linear; }
-.rw { position: absolute; right: 10px; top: 10px; z-index: 3; height: 36px; padding: 0 12px 0 5px; border-radius: 18px; background: rgba(8, 10, 14, .66); display: flex; align-items: center; gap: 7px; font-size: 14px; }
-.ring { position: relative; width: 26px; height: 26px; border-radius: 13px; background: conic-gradient(var(--gold) calc(var(--p) * 1%), rgba(255, 255, 255, .2) 0); display: flex; align-items: center; justify-content: center; }
-.ring::before { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: #14161b; }
+.player[data-play="0"] .pp { opacity: 1; }
+.player .tm { position: absolute; left: 12px; bottom: 12px; z-index: 2; font-size: 13px; font-weight: 600; font-variant-numeric: tabular-nums; color: rgba(255, 255, 255, .9); }
+.player .ln { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; z-index: 2; background: rgba(255, 255, 255, .2); }
+.player .ln i { display: block; height: 100%; background: #fff; transition: width 300ms linear; }
+.rw { position: absolute; right: 10px; top: 10px; z-index: 3; height: 34px; padding: 0 12px 0 4px; border-radius: 17px; background: rgba(8, 10, 14, .7); display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; }
+.ring { position: relative; width: 26px; height: 26px; border-radius: 13px; background: conic-gradient(var(--gold) calc(var(--p) * 1%), rgba(255, 255, 255, .22) 0); display: flex; align-items: center; justify-content: center; }
+.ring::before { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: #121318; }
 .ring img { position: relative; width: 14px; height: 14px; }
-.rw.done { color: var(--ok); font-weight: 700; }
+.rw.done { color: var(--ok); animation: pop 420ms var(--ease-out); }
 .rw.done .ring { background: var(--ok); }
-.rw.pop { animation: pop 420ms var(--ease-out); }
 @keyframes pop { 0% { transform: scale(.94); } 55% { transform: scale(1.06); } 100% { transform: scale(1); } }
-.tools { display: flex; gap: 8px; margin-top: 12px; }
-.tool { flex: 1; height: 44px; border-radius: 22px; background: var(--ctl); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 6px; transition: background-color 180ms ease, color 180ms ease, transform 160ms var(--ease-out); }
-.tool .io { font-size: 16px; }
-.tool[aria-pressed="true"] { background: oklch(.8 .1 292 / .3); color: #fff; }
-.wt { margin: 16px 4px 0; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; }
-.wm { margin: 3px 4px 0; font-size: 14px; line-height: 19px; color: var(--sec); }
-.phr { margin-top: 16px; border-radius: 24px; padding: 14px 8px 8px; }
-.phr .hd { display: flex; align-items: center; gap: 10px; padding: 0 8px 10px; }
-.phr .hd b { font-size: 17px; line-height: 22px; font-weight: 700; flex: 1; }
-.phr .hd span { font-size: 14px; color: var(--sec); font-variant-numeric: tabular-nums; }
-.pl { position: relative; display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px; border-radius: 16px; text-align: left; width: 100%; transition: background-color 220ms ease, opacity 220ms ease; }
-.pl .t { flex: none; width: 46px; font-size: 13px; font-weight: 700; color: var(--acc); font-variant-numeric: tabular-nums; }
-.pl .x { flex: 1; min-width: 0; }
-.pl .x b { display: block; font-size: 16px; line-height: 21px; font-weight: 700; }
-.pl .x i { display: block; font-style: normal; font-size: 14px; line-height: 19px; color: var(--sec); max-height: 0; opacity: 0; overflow: hidden; transition: max-height 240ms var(--ease-out), opacity 200ms ease; }
-.pl .sv { flex: none; width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--sec); transition: transform 160ms var(--ease-out), color 160ms ease; }
-.pl .sv:active { transform: scale(.88); }
+.wt { margin: 16px 4px 0; font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -.3px; }
+.wm { margin: 2px 4px 0; font-size: 14px; line-height: 20px; color: var(--sec); font-variant-numeric: tabular-nums; }
+.phr { margin-top: 18px; border-radius: 24px; background: var(--card); padding: 6px; }
+/* зачем: строка фразы — одна и та же для всех; текущая просто крупнее и с переводом. Высота растёт плавно, соседние строки не прыгают рывком */
+.pl { display: flex; align-items: center; gap: 4px; width: 100%; padding: 4px 4px 4px 14px; border-radius: 18px; min-height: 52px; transition: background-color 240ms ease; cursor: pointer; }
+.pl .x { flex: 1; min-width: 0; padding: 8px 0; }
+.pl .x b { display: block; font-size: 16px; line-height: 22px; font-weight: 600; color: var(--sec); transition: color 240ms ease, font-size 240ms var(--ease-out); }
+.pl .x i { display: block; font-style: normal; font-size: 15px; line-height: 20px; color: var(--sec); max-height: 0; opacity: 0; overflow: hidden; transition: max-height 260ms var(--ease-out), opacity 220ms ease; }
+.pl.past .x b { color: var(--dim); }
+.pl.cur { background: rgba(255, 255, 255, .07); }
+.pl.cur .x b { font-size: 20px; line-height: 26px; font-weight: 700; color: #fff; }
+.pl.cur .x b span { color: var(--dim); transition: color 240ms ease; }
+.pl.cur .x b span.lit { color: #fff; }
+.pl.cur .x i { max-height: 44px; opacity: 1; margin-top: 2px; }
+.pl .sv { flex: none; width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--dim); transition: transform 160ms var(--ease-out), color 160ms ease; }
+.pl .sv:active { transform: scale(.86); }
 .pl .sv.on { color: var(--gold); }
-.pl.past { opacity: .5; }
-.pl.cur { background: rgba(255, 255, 255, .1); }
-.pl.cur .x i { max-height: 40px; opacity: 1; }
-.dock { position: absolute; left: 12px; right: 12px; bottom: 26px; z-index: 20; display: flex; gap: 8px; }
-.dock .cta { flex: 1; }
-/* зачем (владелец 11.11, круг 2: «добавь на макете… во время просмотра видео» — бегущие фразы, правило «70% — 500 монет», длительность/просмотрено/«Нравится»):
-   три блока прямо под плеером. Высоты строк зарезервированы, чтобы при смене фразы экран не прыгал. */
-.now { position: relative; margin-top: 12px; border-radius: 24px; padding: 14px 16px 12px; overflow: hidden; box-shadow: var(--sh), var(--edge); }
-.now .nh { display: flex; align-items: center; gap: 8px; font-size: 13px; line-height: 17px; font-weight: 700; color: rgba(255, 255, 255, .86); font-variant-numeric: tabular-nums; }
-.eq { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
-.eq i { width: 3px; height: 40%; border-radius: 1.5px; background: #fff; animation: wave 520ms ease-in-out infinite alternate; }
-.eq i:nth-child(2) { animation-delay: -180ms; } .eq i:nth-child(3) { animation-delay: -340ms; }
-.now.paused .eq i { animation-play-state: paused; }
-.now .dots { margin-left: auto; display: flex; gap: 4px; align-items: center; }
-.now .dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .3); transition: width 240ms var(--ease-out), background-color 200ms ease; }
-.now .dots i.on { background: rgba(255, 255, 255, .75); } .now .dots i.cur { width: 18px; background: #fff; }
-.now .nb { transition: opacity 180ms ease, filter 180ms ease, transform 220ms var(--ease-out); }
-.now .nb.sw { opacity: 0; filter: blur(3px); transform: translateY(4px); }
-.now .w { font-size: 26px; line-height: 32px; font-weight: 800; letter-spacing: -.4px; margin-top: 8px; text-wrap: balance; }
-.now .nb { min-height: 132px; }
-.now .w span { color: rgba(255, 255, 255, .4); transition: color 240ms ease; }
-.now .w span.lit { color: #fff; }
-.now .tr1 { font-size: 16px; line-height: 22px; font-weight: 600; margin-top: 4px; }
-.now .ex1 { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .8); margin-top: 3px; min-height: 38px; text-wrap: pretty; }
-.now .na { display: flex; gap: 8px; margin-top: 10px; }
-.now .na button { height: 44px; padding: 0 16px; border-radius: 22px; background: rgba(255, 255, 255, .15); font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; transition: transform 160ms var(--ease-out), background-color 180ms ease, color 180ms ease; }
-.now .na button .io { font-size: 18px; }
-.now .na button[aria-pressed="true"] { background: #fff; color: #121318; }
-.rwd { margin-top: 12px; border-radius: 22px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; }
-.rwd .ring { width: 48px; height: 48px; border-radius: 24px; flex: none; }
-.rwd .ring::before { inset: 4px; background: #1b1c23; }
-.rwd .ring img { width: 24px; height: 24px; }
-.rwd .rt { flex: 1; min-width: 0; display: block; }
-.rwd .bar { display: block; }
-.rwd b { display: block; font-size: 15px; line-height: 20px; font-weight: 700; }
-.rwd .bar { height: 6px; border-radius: 3px; background: var(--ctl2); margin-top: 8px; overflow: hidden; }
-.rwd .bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, oklch(.8 .13 70), var(--gold)); transition: width 300ms linear; }
-.rwd.done b { color: var(--ok); } .rwd.done .ring { background: var(--ok); } .rwd.done .bar i { background: var(--ok); }
-.rwd.done { animation: pop 420ms var(--ease-out); }
-.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
-.mc { height: 36px; padding: 0 12px; border-radius: 18px; background: var(--ctl); font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; transition: transform 160ms var(--ease-out), background-color 180ms ease, color 180ms ease; }
-.mc .io { font-size: 16px; color: var(--acc); transition: color 180ms ease; }
-.mc.seen, .mc.seen .io { color: var(--ok); }
-button.mc[aria-pressed="true"] { background: oklch(.87 .12 86 / .2); color: var(--gold); }
-button.mc[aria-pressed="true"] .io { color: var(--gold); }
+.dock { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; padding: 28px 16px 26px; background: linear-gradient(180deg, rgba(12, 13, 16, 0), var(--bg) 46%); pointer-events: none; }
+.dock .cta { pointer-events: auto; }
 
 /* ═════ 3. Проверь себя ═════ */
-.quiz { position: absolute; inset: 0; padding: 40px 16px 30px; display: flex; flex-direction: column; }
-.qtop { display: flex; align-items: center; gap: 12px; }
-.qtop .ib { background: var(--ctl); }
-.segs { flex: 1; display: flex; gap: 5px; }
-.segs i { flex: 1; height: 6px; border-radius: 3px; background: var(--ctl2); overflow: hidden; }
-.segs i::after { content: ''; display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--cta1), var(--cta2)); transform: scaleX(0); transform-origin: left; transition: transform 420ms var(--ease-out); }
+.quiz { position: absolute; inset: 0; padding: 40px 16px 26px; display: flex; flex-direction: column; background: radial-gradient(120% 34% at 50% -8%, oklch(.36 .06 280 / .5), transparent 70%), var(--bg); }
+.qtop { display: flex; align-items: center; gap: 14px; }
+.segs { flex: 1; display: flex; gap: 6px; }
+.segs i { flex: 1; height: 5px; border-radius: 3px; background: rgba(255, 255, 255, .14); overflow: hidden; }
+.segs i::after { content: ''; display: block; height: 100%; background: #fff; transform: scaleX(0); transform-origin: left; transition: transform 420ms var(--ease-out); }
 .segs i.on::after { transform: scaleX(1); }
-.qbody { flex: 1; display: flex; flex-direction: column; margin-top: 22px; transition: opacity 180ms ease, transform 220ms var(--ease-out), filter 180ms ease; }
-.qbody.out { opacity: 0; transform: translateY(8px); filter: blur(2px); }
-.qk { font-size: 14px; line-height: 19px; font-weight: 700; color: var(--acc); }
-.qq { font-size: 26px; line-height: 32px; font-weight: 800; letter-spacing: -.4px; margin: 6px 0 0; text-wrap: balance; }
-.clip { position: relative; margin-top: 16px; height: 150px; border-radius: 22px; overflow: hidden; display: flex; align-items: center; justify-content: center; width: 100%; box-shadow: var(--sh); }
-.clip .pb { position: relative; width: 60px; height: 60px; border-radius: 30px; background: rgba(8, 10, 14, .5); display: flex; align-items: center; justify-content: center; font-size: 26px; padding-left: 3px; }
-.clip .wv { position: absolute; left: 16px; right: 16px; bottom: 14px; height: 22px; display: flex; align-items: center; gap: 3px; }
-.clip .wv i { flex: 1; border-radius: 2px; background: rgba(255, 255, 255, .5); height: 30%; }
-.clip.playing .wv i { animation: wave 700ms ease-in-out infinite alternate; }
+.qbody, .res { flex: 1; display: flex; flex-direction: column; margin-top: 28px; transition: opacity 180ms ease, transform 220ms var(--ease-out), filter 180ms ease; }
+.qbody.out, .res.out { opacity: 0; transform: translateY(8px); filter: blur(2px); }
+.qk { font-size: 15px; line-height: 20px; font-weight: 600; color: var(--sec); padding: 0 4px; }
+.qq { font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.5px; margin: 6px 4px 0; text-wrap: balance; }
+.qq u { text-decoration: none; display: inline-block; min-width: 92px; text-align: center; border-bottom: 2px solid rgba(255, 255, 255, .4); }
+.listen { margin-top: 18px; height: 64px; border-radius: 20px; background: var(--card); display: flex; align-items: center; gap: 14px; padding: 0 16px 0 10px; width: 100%; font-size: 16px; font-weight: 700; }
+.listen .pb { width: 44px; height: 44px; border-radius: 22px; background: #F2F1F6; color: #111216; display: flex; align-items: center; justify-content: center; font-size: 18px; padding-left: 2px; flex: none; }
+.listen .wv { flex: 1; height: 22px; display: flex; align-items: center; gap: 3px; }
+.listen .wv i { flex: 1; border-radius: 2px; background: rgba(255, 255, 255, .34); height: 30%; }
+.listen.playing .wv i { animation: wave 600ms ease-in-out infinite alternate; }
 @keyframes wave { to { height: 100%; } }
-.gap { margin-top: 16px; padding: 18px 16px; border-radius: 22px; font-size: 22px; line-height: 30px; font-weight: 700; }
-.gap u { text-decoration: none; display: inline-block; min-width: 96px; text-align: center; border-bottom: 2px solid rgba(255, 255, 255, .45); padding: 0 6px; color: var(--acc); }
-.gap em { display: block; font-style: normal; font-size: 15px; line-height: 21px; font-weight: 400; color: var(--sec); margin-top: 6px; }
-.opts { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
-.opt { min-height: 58px; border-radius: 18px; padding: 10px 16px; text-align: left; font-size: 17px; line-height: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; transition: transform 160ms var(--ease-out), background-color 200ms ease, opacity 200ms ease, box-shadow 200ms ease; }
+.opts { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; }
+.opt { min-height: 60px; border-radius: 20px; padding: 10px 14px 10px 18px; background: var(--card); font-size: 17px; line-height: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; transition: transform 160ms var(--ease-out), background-color 200ms ease, opacity 200ms ease; }
 .opt:active { transform: scale(.98); }
 .opt span { flex: 1; }
 .opt .io { font-size: 22px; opacity: 0; transition: opacity 160ms ease; }
 .quiz.locked .opt { pointer-events: none; }
-.quiz.locked .opt:not(.ok):not(.no) { opacity: .45; }
-.opt.ok { background: oklch(.42 .11 155); box-shadow: 0 14px 26px -14px oklch(.6 .16 155 / .7); }
-.opt.no { background: oklch(.4 .12 22); }
-.opt.ok .io, .opt.no .io { opacity: 1; }
-.opt.no { animation: nope 300ms ease; }
+.quiz.locked .opt:not(.ok):not(.no) { opacity: .4; }
+.opt.ok { background: oklch(.36 .08 155); } .opt.ok .io { opacity: 1; color: var(--ok); }
+.opt.no { background: oklch(.33 .08 22); animation: nope 300ms ease; } .opt.no .io { opacity: 1; color: var(--bad); }
 @keyframes nope { 25% { translate: -5px 0; } 75% { translate: 5px 0; } }
-.fb { margin-top: auto; padding-top: 14px; display: flex; flex-direction: column; gap: 12px; opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity 220ms ease, transform 260ms var(--ease-out); }
+.fb { margin-top: auto; display: flex; flex-direction: column; gap: 14px; opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity 220ms ease, transform 260ms var(--ease-out); }
 .quiz.locked .fb { opacity: 1; transform: none; pointer-events: auto; }
-.fb p { margin: 0; font-size: 15px; line-height: 21px; color: var(--sec); display: flex; gap: 10px; align-items: flex-start; }
-.fb p .io { font-size: 20px; flex: none; margin-top: 1px; }
-.fb p b { color: #fff; font-weight: 700; }
-.res { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 40px; }
-.res .big { width: 168px; height: 168px; border-radius: 84px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 30px 50px -24px oklch(.6 .15 290 / .8); }
-.res .big b { font-size: 54px; line-height: 58px; font-weight: 800; letter-spacing: -1.5px; font-variant-numeric: tabular-nums; }
-.res .big span { font-size: 15px; color: rgba(255, 255, 255, .85); font-weight: 600; }
-.res h3 { font-size: 26px; line-height: 32px; font-weight: 800; letter-spacing: -.4px; margin: 26px 0 0; }
-.res ul { list-style: none; padding: 6px 16px; margin: 20px 0 0; width: 100%; border-radius: 22px; text-align: left; }
-.res li { min-height: 52px; display: flex; align-items: center; gap: 12px; font-size: 16px; font-weight: 700; }
-.res li + li { border-top: 1px solid var(--hair); }
-.res li .io { font-size: 20px; color: var(--acc); }
-.res li span { margin-left: auto; color: var(--sec); font-weight: 600; font-size: 15px; }
-.res .acts { margin-top: auto; width: 100%; display: flex; flex-direction: column; gap: 10px; }
-
-/* ═════ 4. Моменты ═════ */
-.mo { position: absolute; inset: 0; overflow: hidden; }
-.mo .bgp { position: absolute; inset: 0; transition: opacity 320ms ease; }
-.mo .bgp::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4, 6, 12, .5) 0%, rgba(4, 6, 12, .05) 28%, rgba(4, 6, 12, .2) 52%, rgba(4, 6, 12, .9) 100%); }
-.motop { position: absolute; left: 12px; right: 12px; top: 40px; z-index: 3; display: flex; align-items: center; gap: 10px; }
-.mseg { flex: 1; display: flex; justify-content: center; gap: 4px; }
-.mseg button { height: 36px; padding: 0 14px; border-radius: 18px; font-size: 16px; font-weight: 700; color: rgba(255, 255, 255, .7); }
-.mseg button[aria-pressed="true"] { background: rgba(255, 255, 255, .18); color: #fff; }
-.mprog { position: absolute; left: 16px; right: 16px; top: 88px; z-index: 3; display: flex; gap: 4px; }
-.mprog i { flex: 1; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
-.mprog i.on { background: #fff; }
-.mprog i.cur::after { content: ''; display: block; height: 100%; background: #fff; animation: fill 6s linear forwards; }
-@keyframes fill { from { width: 0; } to { width: 100%; } }
-.side { position: absolute; right: 12px; bottom: 214px; z-index: 3; display: flex; flex-direction: column; gap: 14px; align-items: center; }
-.side button { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; }
-.side .ib { width: 48px; height: 48px; border-radius: 24px; background: rgba(8, 10, 14, .45); font-size: 22px; transition: transform 160ms var(--ease-out), color 160ms ease, background-color 160ms ease; }
-.side button:active .ib { transform: scale(.9); }
-.side button[aria-pressed="true"] .ib { color: var(--gold); }
-.side button.tog[aria-pressed="true"] .ib { background: #fff; color: #121318; }
-.mtxt { position: absolute; left: 16px; right: 76px; bottom: 122px; z-index: 3; transition: opacity 200ms ease, transform 260ms var(--ease-out), filter 200ms ease; }
-.mtxt.out { opacity: 0; transform: translateY(14px); filter: blur(3px); }
-.mtxt q { display: block; quotes: none; font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -.5px; text-wrap: balance; text-shadow: 0 2px 16px rgba(0, 0, 0, .5); }
-.rev { margin-top: 12px; height: 44px; padding: 0 16px; border-radius: 22px; background: rgba(255, 255, 255, .16); font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; }
-.tr { margin-top: 10px; display: none; }
-.tr b { display: block; font-size: 18px; line-height: 24px; font-weight: 700; }
-.tr i { display: block; font-style: normal; font-size: 14px; line-height: 20px; color: rgba(255, 255, 255, .8); margin-top: 4px; text-wrap: pretty; }
-.mtxt.open .rev { display: none; }
-.mtxt.open .tr { display: block; animation: rise 260ms var(--ease-out); }
-@keyframes rise { from { opacity: 0; transform: translateY(6px); } }
-.msrc { position: absolute; left: 12px; right: 12px; bottom: 30px; z-index: 3; height: 68px; border-radius: 22px; padding: 0 8px 0 10px; display: flex; align-items: center; gap: 12px; text-align: left; }
-.msrc .th { position: relative; width: 78px; height: 44px; border-radius: 10px; overflow: hidden; flex: none; }
-.msrc .mx { flex: 1; min-width: 0; }
-.msrc b { display: block; font-size: 15px; line-height: 19px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.msrc i { display: block; font-style: normal; font-size: 13px; line-height: 17px; color: var(--sec); }
-.msrc .cta { min-height: 44px; border-radius: 22px; padding: 0 16px; font-size: 15px; box-shadow: none; }
-.nxt { position: absolute; left: 0; right: 70px; top: 110px; bottom: 300px; z-index: 2; }
-
-/* ═════ 5. Сериал ═════ */
-.sr { padding: 0 12px 110px; }
-.shero { position: relative; margin: 0 -12px; height: 318px; border-radius: 0 0 28px 28px; overflow: hidden; padding: 40px 20px 20px; display: flex; flex-direction: column; box-shadow: 0 26px 46px -24px rgba(0, 0, 0, .9); }
-.shero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(4, 6, 12, .2) 0%, rgba(4, 6, 12, .1) 30%, rgba(4, 6, 12, .86) 100%); }
-.shero > *:not(.poster) { position: relative; z-index: 1; }
-.shero .ib { background: rgba(8, 10, 14, .4); }
-.shero h2 { margin: auto 0 0; font-size: 30px; line-height: 35px; font-weight: 800; letter-spacing: -.5px; text-wrap: balance; }
-.shero .sm { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .85); margin-top: 4px; }
-.shero .pb { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .24); margin-top: 14px; overflow: hidden; }
-.shero .pb i { display: block; width: 37.5%; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--cta1), var(--cta2)); }
-.sr > .cta { margin-top: 16px; }
-.eps { margin-top: 16px; border-radius: 24px; padding: 6px 12px; }
-.ep { display: flex; align-items: center; gap: 12px; min-height: 76px; padding: 10px 0; text-align: left; width: 100%; }
-.ep + .ep { border-top: 1px solid var(--hair); }
-.ep .no { flex: none; width: 28px; height: 28px; border-radius: 14px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--sec); }
-.ep.done .no { background: oklch(.42 .11 155); color: #fff; font-size: 16px; }
-.ep.cur .no { background: linear-gradient(98deg, var(--cta1), var(--cta2)); color: var(--ink); }
-.ep .th { position: relative; flex: none; width: 96px; height: 54px; border-radius: 12px; overflow: hidden; }
-.ep .th .bar { position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(255, 255, 255, .25); }
-.ep .th .bar i { display: block; height: 100%; width: 46%; background: #fff; }
-.ep .ex { flex: 1; min-width: 0; }
-.ep .ex b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-size: 15px; line-height: 19px; font-weight: 700; }
-.ep .ex i { display: block; font-style: normal; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 3px; }
-.ep.done .ex b { color: var(--sec); }
-.fin { margin-top: 12px; border-radius: 24px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; }
-.fin .tr0 { flex: none; width: 52px; height: 52px; border-radius: 26px; background: radial-gradient(circle at 34% 30%, oklch(.86 .13 90), oklch(.56 .14 55)); display: flex; align-items: center; justify-content: center; font-size: 24px; color: oklch(.25 .06 60); }
-.fin b { display: block; font-size: 16px; line-height: 21px; font-weight: 700; }
-.fin i { display: block; font-style: normal; font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 2px; }
-
-/* ═════ пояснения под макетом ═════ */
-.notes { max-width: 1100px; margin: 56px auto 0; }
-.notes h2 { font-size: 22px; line-height: 28px; font-weight: 800; letter-spacing: -.3px; margin: 0 0 14px; }
-.tbl { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 22px; }
-.tbl th { text-align: left; font-weight: 600; color: var(--pgs); padding: 8px 12px 8px 0; font-size: 14px; }
-.tbl td { padding: 12px 12px 12px 0; border-top: 1px solid rgba(255, 255, 255, .09); vertical-align: top; }
-.tbl td:first-child { font-weight: 700; white-space: nowrap; }
-.tbl td:last-child { color: var(--pgs); }
-.tg { display: inline-block; height: 24px; line-height: 24px; padding: 0 10px; border-radius: 12px; font-size: 13px; font-weight: 700; white-space: nowrap; }
-.tg.y { background: oklch(.42 .11 155 / .4); color: oklch(.88 .12 155); }
-.tg.n { background: oklch(.5 .13 70 / .35); color: oklch(.9 .11 85); }
-.scrollx { overflow-x: auto; }
-.notes h2 + .scrollx + h2, .notes ul + h2, .notes .scrollx + h2 { margin-top: 44px; }
-.notes ul { margin: 0; padding-left: 20px; font-size: 15px; line-height: 24px; color: var(--pgs); max-width: 78ch; }
-.notes li + li { margin-top: 6px; }
-.notes li b { color: var(--pgx); font-weight: 600; }
+.fb p { margin: 0; padding: 0 4px; font-size: 16px; line-height: 22px; font-weight: 600; min-height: 22px; }
+.res { align-items: center; text-align: center; padding-top: 72px; }
+.res .n { font-size: 88px; line-height: 92px; font-weight: 800; letter-spacing: -3px; font-variant-numeric: tabular-nums; }
+.res .n small { font-size: 40px; font-weight: 700; color: var(--dim); letter-spacing: -1px; }
+.res h3 { font-size: 24px; line-height: 30px; font-weight: 800; letter-spacing: -.4px; margin: 10px 0 0; }
+.res p { margin: 8px 0 0; font-size: 16px; line-height: 22px; color: var(--sec); max-width: 28ch; text-wrap: balance; }
+.res .acts { margin-top: auto; width: 100%; display: flex; flex-direction: column; gap: 4px; }
 
 @media (hover: hover) and (pointer: fine) {
-  .chip:hover, .tool:hover { background: var(--ctl2); }
-  .chip[aria-pressed="true"]:hover { background: #fff; }
-  .opt:hover { background: linear-gradient(148deg, oklch(.33 .06 300) 0%, oklch(.23 .02 270) 62%); }
-  .opt.ok:hover { background: oklch(.42 .11 155); } .opt.no:hover { background: oklch(.4 .12 22); }
+  .chip:hover { background: rgba(255, 255, 255, .13); } .chip[aria-pressed="true"]:hover { background: #F2F1F6; }
+  .opt:hover { background: #1E2026; } .opt.ok:hover { background: oklch(.36 .08 155); } .opt.no:hover { background: oklch(.33 .08 22); }
+  .player:hover .pp { opacity: 1; }
 }
-:focus-visible { outline: 2px solid var(--cta1); outline-offset: 2px; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
@@ -383,42 +192,27 @@ button.mc[aria-pressed="true"] .io { color: var(--gold); }
 </head>
 <body>
 <div class="page">
-  <h1>«Видео»: смотри и играй</h1>
-  <p class="lead">Сейчас в разделе можно только смотреть ролики и читать список фраз. В новом разделе каждая фраза из ролика становится занятием: её ловят во время просмотра, проверяют мини-тестом, листают короткими моментами и собирают сериями. Все пять экранов живые: нажимайте кнопки, экраны внутри телефонов прокручиваются.</p>
+  <h1>«Видео»: три экрана</h1>
+  <p class="lead">Всё лишнее убрано. Человек открывает раздел, продолжает или выбирает ролик, во время просмотра ловит фразы закладкой, а после ролика отвечает на три вопроса. Экраны живые: нажимайте, содержимое телефонов прокручивается.</p>
   <div class="wrap">
-    <div class="cell"><div class="cap">1. Хаб</div><div class="zw"><div class="ph" id="phHub"></div></div>
-      <p class="why"><b>Зачем:</b> с порога видно, что делать — досмотреть начатое, сыграть по уже просмотренному или взять новое. Цель недели возвращает в раздел.</p></div>
+    <div class="cell"><div class="cap">1. Лента</div><div class="zw"><div class="ph" id="phFeed"></div></div>
+      <p class="why">Сверху — то, что не досмотрел. Ниже один список. Плейлисты — просто ещё один фильтр.</p></div>
     <div class="cell"><div class="cap">2. Просмотр</div><div class="zw"><div class="ph" id="phWatch"></div></div>
-      <p class="why"><b>Зачем:</b> фразы идут вслед за роликом, текущая подсвечена и переведена. Закладка ловит фразу в карточки одним касанием, кольцо показывает путь до награды.</p></div>
+      <p class="why">Один список фраз: та, что звучит, раскрыта и переведена. Касание по фразе — перейти к ней, закладка — в карточки. Награда — кольцо на плеере.</p></div>
     <div class="cell"><div class="cap">3. Проверь себя</div><div class="zw"><div class="ph" id="phQuiz"></div></div>
-      <p class="why"><b>Зачем:</b> три коротких вопроса сразу после ролика. Ошибся — фраза сама уходит в карточки на повтор, и можно вернуться к этому месту в ролике.</p></div>
-    <div class="cell"><div class="cap">4. Моменты</div><div class="zw"><div class="ph" id="phMoments"></div></div>
-      <p class="why"><b>Зачем:</b> занятие на две минуты. Короткие отрывки по одной фразе листаются как лента; перевод открывается по касанию, чтобы сначала попробовать понять самому.</p></div>
-    <div class="cell"><div class="cap">5. Сериал</div><div class="zw"><div class="ph" id="phSeries"></div></div>
-      <p class="why"><b>Зачем:</b> плейлист превращается в сериал с сериями по порядку и финалом. Появляется причина досмотреть до конца, а не бросить после первого ролика.</p></div>
+      <p class="why">Три вопроса по фразам ролика. Ошибка сама отправляет фразу в карточки.</p></div>
   </div>
-
   <div class="notes">
-    <h2>Что уже есть в приложении, а что нужно сделать</h2>
-    <div class="scrollx"><table class="tbl">
-      <tr><th>Что на макете</th><th>Данные</th><th>Откуда берётся</th></tr>
-      <tr><td>«Продолжить» на хабе</td><td><span class="tg y">есть</span></td><td>Приложение уже помнит место остановки ролика, но показывает его только внутри плеера.</td></tr>
-      <tr><td>Бегущие фразы при просмотре</td><td><span class="tg y">есть</span></td><td>У фраз есть время в ролике, перевод и объяснение. Нужна только подсветка текущей фразы по времени плеера.</td></tr>
-      <tr><td>Кольцо награды</td><td><span class="tg y">есть</span></td><td>Правило «70% ролика — 500 монет» работает сейчас; кольцо показывает тот же счётчик нагляднее.</td></tr>
-      <tr><td>«Проверь себя»</td><td><span class="tg y">есть</span></td><td>Вопросы собираются на телефоне из фраз ролика: неверные варианты — фразы того же ролика. Серверу ничего не нужно.</td></tr>
-      <tr><td>«Моменты»</td><td><span class="tg y">есть</span></td><td>Отрывок — тот же ролик, запущенный с времени фразы. Работает только для фраз, у которых время проставлено.</td></tr>
-      <tr><td>«Сериалы»</td><td><span class="tg y">есть</span></td><td>Это нынешние плейлисты; прогресс считается из уже сохранённых отметок о просмотре.</td></tr>
-      <tr><td>Фильтры «Не смотрел», «До 10 минут», «Нравится»</td><td><span class="tg y">есть</span></td><td>Длительность, отметка просмотра и «Нравится» уже хранятся на телефоне.</td></tr>
-      <tr><td>Цель недели и её награда</td><td><span class="tg n">новое</span></td><td>Нужен счётчик роликов за неделю и решение о размере награды.</td></tr>
-      <tr><td>Финал сериала</td><td><span class="tg n">новое</span></td><td>Нужна отметка «сериал пройден» и решение, что дарим: значок, монеты или набор фраз.</td></tr>
-      <tr><td>Игра «Собери фразу»</td><td><span class="tg n">новое</span></td><td>Плитки слов в уроках уже есть; их нужно подключить к фразам из роликов.</td></tr>
-    </table></div>
-    <h2>Что нужно решить вам</h2>
+    <h2>Что убрано</h2>
     <ul>
-      <li><b>Награды за игры.</b> На макете монеты дают только за просмотр (как сейчас) и за цель недели. Давать ли монеты за «Проверь себя» и за финал сериала — решение по экономике.</li>
-      <li><b>Вкладки.</b> «Новое / Плейлисты / Наборы» заменены одной лентой с фильтрами. «Наборы» остаются в «Карточках»; из ролика в набор ведёт кнопка после теста.</li>
-      <li><b>«Повторяй вслух».</b> В макет не включено: нужен микрофон, а это новое разрешение и правка политики конфиденциальности.</li>
-      <li><b>Цифры на макете условные</b> — названия роликов, количество фраз и серий показаны для примера.</li>
+      <li>Цветная сцена с сиянием, ряд игр, «Момент дня», цель недели.</li>
+      <li>Отдельный блок «Сейчас звучит», полоса награды и ряд кнопок под плеером — их работу делают список фраз и кольцо на плеере.</li>
+      <li>Экраны «Моменты» и «Сериал». Плейлисты остались как фильтр в ленте.</li>
+    </ul>
+    <h2>Что нужно сделать в приложении</h2>
+    <ul>
+      <li><b>Данные уже есть для всего, что на макете:</b> место остановки, длительность, отметки просмотра и «Нравится», фразы с временем и переводом, награда за 70% ролика.</li>
+      <li><b>Новое только поведение:</b> подсветка текущей фразы по времени плеера и экран из трёх вопросов, который собирается на телефоне из фраз ролика.</li>
     </ul>
   </div>
 </div>
@@ -427,182 +221,104 @@ button.mc[aria-pressed="true"] .io { color: var(--gold); }
 <script>
 /* зачем: значки берутся по тем же именам, что и в коде приложения (@expo/vector-icons), из общей карты макета home-luxe */
 const MAP = window.IONMAP || {};
-const io = (n, cls = '') => { if (!MAP[n]) console.warn('[VIDEO-HUB] нет значка в карте:', n); return `<i class="io ${cls}">${MAP[n] ? String.fromCharCode(MAP[n]) : ''}</i>`; };
+const glyph = (n) => { if (!MAP[n]) console.warn('[VIDEO-HUB] нет значка в карте:', n); return MAP[n] ? String.fromCharCode(MAP[n]) : ''; };
+const io = (n) => `<i class="io">${glyph(n)}</i>`;
 const COIN = '<img src="../home-luxe-2026-11-11/art/coin.webp" alt="">';
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const sbar = '<div class="sbar"><span>9:41</span><span class="bat"></span></div>';
-const tabbar = `<div class="tabbar gl">${['home', 'book', 'videocam', 'people', 'settings'].map((n, i) => `<div class="tb${i === 2 ? ' on' : ''}">${io(n)}</div>`).join('')}</div><div class="gest"></div>`;
 const fmt = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
-/* ───── 1. Хаб ───── */
+/* ───── 1. Лента ───── */
 const VIDEOS = [
-  { t: '10 фраз для кафе', d: '9:40', min: 9, p: 2, ph: 10, st: 'new' },
-  { t: 'Small talk без пауз', d: '12:05', min: 12, p: 3, ph: 14, st: 'part', pr: 46, fav: true },
-  { t: 'Как звучит живой английский', d: '11:20', min: 11, p: 1, ph: 12, st: 'done', fav: true },
-  { t: 'В аэропорту: от стойки до выхода', d: '14:32', min: 14, p: 4, ph: 16, st: 'new' },
-  { t: 'Вежливый отказ за минуту', d: '6:15', min: 6, p: 6, ph: 8, st: 'new' },
-  { t: 'Разговор у врача', d: '10:48', min: 10, p: 5, ph: 11, st: 'done' },
+  { t: '10 фраз для кафе', d: '9:40', p: 2, ph: 10, st: 'new' },
+  { t: 'В аэропорту: от стойки до выхода', d: '14:32', p: 4, ph: 16, st: 'new' },
+  { t: 'Как звучит живой английский', d: '11:20', p: 1, ph: 12, st: 'done', fav: true },
+  { t: 'Вежливый отказ за минуту', d: '6:15', p: 6, ph: 8, st: 'new', fav: true },
+  { t: 'Разговор у врача', d: '10:48', p: 5, ph: 11, st: 'done' },
 ];
-const FILTERS = [['Все', () => true], ['Не смотрел', (v) => v.st !== 'done'], ['До 10 минут', (v) => v.min < 10], ['Нравится', (v) => v.fav]];
-function hubHTML() {
-  const card = (v, i) => `<button class="vcard press" data-i="${i}"><div class="cv"><div class="poster p${v.p}"></div>
-      ${v.st === 'done' ? `<span class="bdg done">${io('checkmark-circle')}Засчитано</span>` : `<span class="bdg coin">${COIN}+500</span>`}
-      <span class="dur">${v.d}</span>${v.st === 'part' ? `<div class="bar"><i style="width:${v.pr}%"></i></div>` : ''}</div>
-      <b>${v.t}</b><div class="mt">${io('chatbubbles')}${v.ph} фраз${v.fav ? ` · ${io('star')}` : ''}</div></button>`;
-  return `${sbar}<div class="scr"><div class="hub">
-    <div class="scene aur">
-      <div class="top"><h2>Видео</h2><button class="pill press">EN ${io('chevron-down')}</button></div>
-      <div class="cont"><button class="cv press" style="display:block;width:100%" aria-label="Продолжить ролик Small talk без пауз">
-        <div class="poster p3"></div><span class="lbl">Продолжить</span>
-        <div class="tt"><b>Small talk без пауз</b><i>Осталось 6 минут · до награды 24%</i></div>
-        <span class="cta go">${io('play')}</span><div class="ln"><i></i></div></button></div>
-      <div class="goal"><div class="gt"><b>Цель недели: 2 из 3 роликов</b><div class="frames"><i class="on"></i><i class="on"></i><i></i></div></div><span class="coin">${COIN}+300</span></div>
-    </div>
-    <section><h3 class="sec">Игры по твоим роликам</h3>
-      <div class="games">
-        <button class="game gl press g1"><span class="art">${io('ear')}</span><b>Поймай фразу</b><i>На слух, 2 минуты</i></button>
-        <button class="game gl press g2"><span class="art">${io('help')}</span><b>Проверь себя</b><i>3 вопроса по ролику</i></button>
-        <button class="game gl press g3"><span class="art">${io('grid')}</span><b>Собери фразу</b><i>Слова по порядку</i></button>
-      </div></section>
-    <section class="mom gl"><small>Момент дня</small><q>I'm just looking, thanks.</q><em>Я просто смотрю, спасибо.</em>
-      <div class="ma"><button class="src press"><span class="pl">${io('play')}</span><span>10 фраз для кафе · 2:14</span></button>
-      <button class="ib press" id="momSave" aria-pressed="false" aria-label="Сохранить фразу">${io('bookmark-outline')}</button></div></section>
-    <section><h3 class="sec">Ролики</h3>
-      <div class="chips" id="chips">${FILTERS.map(([l], i) => `<button class="chip press" aria-pressed="${i === 0}">${l}</button>`).join('')}</div>
-      <div class="grid" id="grid">${VIDEOS.map(card).join('')}</div></section>
-    <section><h3 class="sec">Сериалы</h3>
-      <div class="rail">
-        <button class="ser press"><div class="cv"><div class="poster p4"></div><span class="n">3 из 8 серий</span></div><b>Английский в путешествии</b><div class="pb"><i style="width:37.5%"></i></div></button>
-        <button class="ser press"><div class="cv"><div class="poster p6"></div><span class="n">6 серий</span></div><b>Вежливый английский</b><div class="pb"><i style="width:0"></i></div></button>
-        <button class="ser press"><div class="cv"><div class="poster p5"></div><span class="n">5 из 5 серий</span></div><b>Первые разговоры</b><div class="pb"><i style="width:100%"></i></div></button>
-      </div></section>
-  </div></div>${tabbar}`;
+const LISTS = [{ t: 'Английский в путешествии', p: 4, n: '3 из 8 роликов' }, { t: 'Вежливый английский', p: 6, n: '6 роликов' }, { t: 'Первые разговоры', p: 5, n: '5 из 5 роликов', done: true }];
+const FILTERS = [['Все', (v) => !v.list], ['Не смотрел', (v) => !v.list && v.st !== 'done'], ['Нравится', (v) => !v.list && v.fav], ['Плейлисты', (v) => v.list]];
+function feedHTML() {
+  const row = (v) => `<button class="vr press"><span class="th"><span class="poster p${v.p}"></span><span class="d">${v.d}</span></span>
+    <span class="x"><b>${v.t}</b>${v.st === 'done' ? `<i class="done">${io('checkmark-circle')}Просмотрено</i>` : `<i class="coin">${COIN}500 за просмотр</i>`}</span></button>`;
+  const list = (l) => `<button class="vr pl press" hidden><span class="th"><span class="poster p${l.p}"></span></span>
+    <span class="x"><b>${l.t}</b><i class="${l.done ? 'done' : ''}">${l.done ? io('checkmark-circle') : ''}${l.n}</i></span></button>`;
+  return `${sbar}<div class="scr"><div class="feed">
+    <div class="top"><h2>Видео</h2><button class="pill press">EN ${io('chevron-down')}</button></div>
+    <button class="hero press" aria-label="Продолжить: Small talk без пауз"><span class="poster p3"></span>
+      <span class="tt"><b>Small talk без пауз</b><i>Продолжить · осталось 6 мин</i></span><span class="go">${io('play')}</span><span class="ln"><i></i></span></button>
+    <div class="chips">${FILTERS.map(([l], i) => `<button class="chip" aria-pressed="${i === 0}">${l}</button>`).join('')}</div>
+    <div class="list">${VIDEOS.map(row).join('')}${LISTS.map(list).join('')}</div>
+  </div></div>
+  <div class="tabbar">${['home', 'book', 'videocam', 'people', 'settings'].map((n, i) => `<div class="tb${i === 2 ? ' on' : ''}">${io(n)}</div>`).join('')}</div><div class="gest"></div>`;
 }
-function hubInit(ph) {
-  const chips = $$('.chip', ph); const cards = $$('.vcard', ph);
+function feedInit(ph) {
+  const items = [...VIDEOS, ...LISTS.map((l) => ({ ...l, list: true }))]; const rows = $$('.vr', ph); const chips = $$('.chip', ph);
   chips.forEach((c, i) => c.addEventListener('click', () => {
     chips.forEach((x, j) => x.setAttribute('aria-pressed', String(i === j)));
-    cards.forEach((el, k) => { el.hidden = !FILTERS[i][1](VIDEOS[k]); });
+    rows.forEach((el, k) => { el.hidden = !FILTERS[i][1](items[k]); });
   }));
-  bookmark($('#momSave', ph));
-}
-/* зачем: закладка отвечает мгновенно (в приложении — запись в карточки фоном, откат при отказе) */
-function bookmark(btn) {
-  btn.addEventListener('click', () => {
-    const on = btn.getAttribute('aria-pressed') !== 'true';
-    btn.setAttribute('aria-pressed', String(on)); btn.classList.toggle('on', on);
-    const icon = $('.io', btn); if (icon) icon.textContent = String.fromCharCode(MAP[on ? 'bookmark' : 'bookmark-outline']);
-    if (btn.classList.contains('ib')) btn.style.color = on ? 'var(--gold)' : '';
-  });
 }
 
 /* ───── 2. Просмотр ───── */
-/* фраза: [секунда в ролике, фраза, перевод, объяснение] — ровно те поля, что уже есть у фраз роликов в приложении */
+/* фраза: [секунда в ролике, фраза, перевод] — эти поля уже есть у фраз роликов в приложении */
 const PHRASES = [
-  [312, 'How’s it going?', 'Как дела?', 'Обычное приветствие; подробного ответа не ждут.'],
-  [326, 'Not too bad.', 'Неплохо.', 'Спокойный ответ, когда всё в порядке.'],
-  [339, 'Long time no see!', 'Давно не виделись!', 'Тёплое приветствие для знакомых.'],
-  [351, 'What have you been up to?', 'Чем занимался всё это время?', 'Так спрашивают о новостях после перерыва.'],
-  [364, 'Same old, same old.', 'Всё по-старому.', 'Когда нового ничего не случилось.'],
-  [378, 'That sounds great.', 'Звучит здорово.', 'Короткая поддержка в ответ на чужую новость.'],
-  [391, 'I’d better get going.', 'Мне пора идти.', 'Вежливый способ закончить разговор.'],
+  [312, 'How’s it going?', 'Как дела?'], [326, 'Not too bad.', 'Неплохо.'], [339, 'Long time no see!', 'Давно не виделись!'],
+  [351, 'What have you been up to?', 'Чем занимался всё это время?'], [364, 'Same old, same old.', 'Всё по-старому.'],
+  [378, 'That sounds great.', 'Звучит здорово.'], [391, 'I’d better get going.', 'Мне пора идти.'],
 ];
 const DUR = 725;
 function watchHTML() {
   return `${sbar}<div class="scr"><div class="watch">
-    <div class="wtop"><button class="ib press" aria-label="Назад">${io('chevron-back')}</button></div>
+    <div class="wtop"><button class="ib" aria-label="Назад">${io('chevron-back')}</button><button class="ib on" id="like" aria-pressed="true" aria-label="Нравится">${io('star')}</button></div>
     <div class="player" id="player" data-play="1"><div class="poster p3"></div>
-      <div class="rw" id="rw" style="--p:46"><span class="ring">${COIN}</span><span id="rwt">+500</span></div>
-      <button class="pp" id="pp" aria-label="Пауза">${io('pause')}</button>
-      <div class="sub" id="sub"></div><span class="tm" id="tm"></span><div class="ln"><i id="ln"></i></div></div>
-    <section class="now aur" id="now">
-      <div class="nh"><span class="eq"><i></i><i></i><i></i></span><span id="nowAt"></span><span class="dots" id="dots">${PHRASES.map(() => '<i></i>').join('')}</span></div>
-      <div class="nb" id="nb"><div class="w" id="nowW"></div><div class="tr1" id="nowTr"></div><div class="ex1" id="nowEx"></div></div>
-      <div class="na"><button class="press" id="nowSave" aria-pressed="false">${io('bookmark-outline')}<span>В карточки</span></button><button class="press" id="nowAgain">${io('refresh')}Ещё раз</button></div>
-    </section>
-    <div class="tools">
-      <button class="tool press">${io('play-back')}10 с</button>
-      <button class="tool press" aria-pressed="false">${io('hourglass')}Медленнее</button>
-      <button class="tool press" aria-pressed="false">${io('repeat')}Повтор фразы</button>
-    </div>
-    <div class="rwd gl" id="rwd" style="--p:46"><span class="ring">${COIN}</span><span class="rt"><b id="rwdT"></b><span class="bar"><i id="rwdB"></i></span></span></div>
-    <h3 class="wt">Small talk без пауз</h3><div class="wm">Professor Lingman · 3 дня назад</div>
-    <div class="meta"><span class="mc">${io('time')}${fmt(DUR)}</span><span class="mc" id="seen">${io('eye')}<span></span></span>
-      <button class="mc press" id="like" aria-pressed="true">${io('star')}Нравится</button></div>
-    <div class="phr gl"><div class="hd"><b>Все фразы ролика</b><span id="got"></span></div>
-      <div id="plist">${PHRASES.map(([t, e, r], i) => `<div class="pl" data-i="${i}"><span class="t">${fmt(t)}</span><span class="x"><b>${e}</b><i>${r}</i></span><button class="sv" aria-pressed="false" aria-label="Сохранить фразу">${io('bookmark-outline')}</button></div>`).join('')}</div></div>
+      <div class="rw" id="rw" style="--p:66"><span class="ring">${COIN}</span><span id="rwt">500</span></div>
+      <button class="pp" id="pp" aria-label="Пауза">${io('play')}</button>
+      <span class="tm" id="tm"></span><div class="ln"><i id="ln"></i></div></div>
+    <h3 class="wt">Small talk без пауз</h3><div class="wm">Professor Lingman · ${fmt(DUR)}</div>
+    <div class="phr">${PHRASES.map(([, e, r]) => `<div class="pl" role="button" tabindex="0"><span class="x"><b>${e.split(' ').map((w) => `<span>${w}</span>`).join(' ')}</b><i>${r}</i></span><button class="sv" aria-pressed="false" aria-label="Сохранить фразу в карточки">${io('bookmark-outline')}</button></div>`).join('')}</div>
   </div></div>
-  <div class="dock"><button class="cta press">${io('help')}Проверить себя · 3 вопроса</button></div><div class="gest"></div>`;
+  <div class="dock"><button class="cta press">Проверить себя</button></div><div class="gest"></div>`;
 }
 function watchInit(ph) {
-  const st = { t: 339, play: true, watched: 46, loop: false, slow: false, cur: -1, done: false, saved: new Set() };
-  const rows = $$('.pl', ph); const sub = $('#sub', ph); const rw = $('#rw', ph); const rwd = $('#rwd', ph);
-  const tools = $$('.tool', ph); const dots = $$('#dots i', ph); const nb = $('#nb', ph); const nowSave = $('#nowSave', ph);
-  const glyph = (name) => String.fromCharCode(MAP[name]);
+  const st = { t: 339, play: true, watched: 46, cur: -1, done: false, saved: new Set() };
+  const rows = $$('.pl', ph); const rw = $('#rw', ph);
   const endOf = (i) => (i + 1 < PHRASES.length ? PHRASES[i + 1][0] : PHRASES[i][0] + 12);
-  /* зачем: закладка в блоке «сейчас» и в общем списке — одно состояние; обе отвечают сразу (в приложении запись в карточки идёт фоном, при отказе — откат) */
-  const paintSaved = () => {
-    rows.forEach((r, i) => { const on = st.saved.has(i); const b = $('.sv', r); b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); $('.io', b).textContent = glyph(on ? 'bookmark' : 'bookmark-outline'); });
-    const on = st.saved.has(st.cur); nowSave.setAttribute('aria-pressed', String(on));
-    $('.io', nowSave).textContent = glyph(on ? 'bookmark' : 'bookmark-outline'); $('span', nowSave).textContent = on ? 'В карточках' : 'В карточки';
-    $('#got', ph).textContent = `${st.saved.size} из ${PHRASES.length} сохранено`;
-  };
-  const toggleSave = (i) => { if (i < 0) return; if (st.saved.has(i)) st.saved.delete(i); else st.saved.add(i); paintSaved(); };
-  /* зачем: слова фразы загораются по мере звучания — глаз идёт за голосом. Времени отдельных слов в данных нет, поэтому время фразы делится между словами поровну */
+  /* зачем: слова загораются по мере звучания. Времени отдельных слов в данных нет, поэтому время фразы делится между словами поровну */
   const lit = () => {
-    const p = PHRASES[st.cur]; if (!p) return; const words = $$('#nowW span', ph); if (!words.length) return;
+    if (st.cur < 0) return; const p = PHRASES[st.cur]; const words = $$('b span', rows[st.cur]);
     const span = Math.min((endOf(st.cur) - p[0]) * 0.45, words.length * 1.1); const n = Math.ceil(Math.min(1, (st.t - p[0] + 0.01) / span) * words.length);
     words.forEach((w, i) => w.classList.toggle('lit', i < n));
   };
   const paint = () => {
     $('#tm', ph).textContent = `${fmt(st.t)} / ${fmt(DUR)}`; $('#ln', ph).style.width = `${(st.t / DUR) * 100}%`;
     let cur = -1; PHRASES.forEach(([t], i) => { if (st.t >= t) cur = i; });
-    if (cur !== st.cur) {
-      st.cur = cur;
-      rows.forEach((r, i) => { r.classList.toggle('past', i < cur); r.classList.toggle('cur', i === cur); });
-      dots.forEach((d, i) => { d.className = i < cur ? 'on' : i === cur ? 'cur' : ''; });
-      sub.classList.add('sw'); nb.classList.add('sw');
-      setTimeout(() => {
-        const p = PHRASES[st.cur]; if (!p) return;
-        sub.textContent = p[1]; sub.classList.remove('sw');
-        $('#nowW', ph).innerHTML = p[1].split(' ').map((w) => `<span>${w}</span>`).join(' ');
-        $('#nowTr', ph).textContent = p[2]; $('#nowEx', ph).textContent = p[3]; $('#nowAt', ph).textContent = `Сейчас звучит · ${fmt(p[0])}`;
-        nb.classList.remove('sw'); lit();
-      }, 180);
-      paintSaved();
-    }
+    if (cur !== st.cur) { st.cur = cur; rows.forEach((r, i) => { r.classList.toggle('past', i < cur); r.classList.toggle('cur', i === cur); }); }
     lit();
     if (!st.done) {
-      const pct = Math.min(100, (st.watched / 70) * 100);
-      rw.style.setProperty('--p', String(pct)); rwd.style.setProperty('--p', String(pct)); $('#rwdB', ph).style.width = `${pct}%`;
-      const mins = Math.max(1, Math.ceil(((70 - st.watched) / 100) * DUR / 60));
-      $('#rwdT', ph).textContent = `Ещё ${mins} мин просмотра — и 500 монет твои`;
-      $('#seen span', ph).textContent = `Смотрю · ${Math.floor((st.t / DUR) * 100)}%`;
-      if (st.watched >= 70) {
-        st.done = true; rw.classList.add('done', 'pop'); rwd.classList.add('done'); $('#rwt', ph).textContent = 'Засчитано';
-        $('#rwdT', ph).textContent = '500 монет получены'; $('#rwdB', ph).style.width = '100%';
-        const seen = $('#seen', ph); seen.classList.add('seen'); $('.io', seen).textContent = glyph('checkmark-circle'); $('span', seen).textContent = 'Просмотрено';
-      }
+      rw.style.setProperty('--p', String(Math.min(100, (st.watched / 70) * 100)));
+      if (st.watched >= 70) { st.done = true; rw.classList.add('done'); $('#rwt', ph).textContent = '+500 получено'; }
     }
   };
   setInterval(() => {
     if (!st.play) return;
-    const step = st.slow ? 0.75 : 1.5; let next = st.t + step;
-    if (st.loop && st.cur >= 0) { if (next >= endOf(st.cur)) next = PHRASES[st.cur][0]; }
-    else st.watched += step / DUR * 100 * 2; // макет: награда растёт вдвое быстрее настоящего, чтобы дойти до «Засчитано» примерно за полминуты
+    let next = st.t + 1.5; st.watched += 1.5 / DUR * 100 * 2; // макет: награда растёт вдвое быстрее настоящего, чтобы «получено» было видно примерно за полминуты
     if (next >= 403) next = 312; // макет крутит один отрывок по кругу
     st.t = next; paint();
   }, 300);
-  $('#pp', ph).addEventListener('click', () => { st.play = !st.play; $('#player', ph).dataset.play = st.play ? '1' : '0'; $('#now', ph).classList.toggle('paused', !st.play); $('#pp .io', ph).textContent = glyph(st.play ? 'pause' : 'play'); });
-  tools[0].addEventListener('click', () => { st.t = Math.max(312, st.t - 10); paint(); });
-  tools[1].addEventListener('click', () => { st.slow = !st.slow; tools[1].setAttribute('aria-pressed', String(st.slow)); });
-  tools[2].addEventListener('click', () => { st.loop = !st.loop; tools[2].setAttribute('aria-pressed', String(st.loop)); });
-  nowSave.addEventListener('click', () => toggleSave(st.cur));
-  $('#nowAgain', ph).addEventListener('click', () => { if (st.cur >= 0) { st.t = PHRASES[st.cur][0]; paint(); } });
-  const like = $('#like', ph); like.addEventListener('click', () => { const on = like.getAttribute('aria-pressed') !== 'true'; like.setAttribute('aria-pressed', String(on)); $('.io', like).textContent = glyph(on ? 'star' : 'star-outline'); });
+  const toggle = () => { st.play = !st.play; $('#player', ph).dataset.play = st.play ? '1' : '0'; };
+  $('#pp', ph).addEventListener('click', (e) => { e.stopPropagation(); toggle(); });
+  $('#player', ph).addEventListener('click', toggle);
+  const like = $('#like', ph);
+  like.addEventListener('click', () => { const on = like.getAttribute('aria-pressed') !== 'true'; like.setAttribute('aria-pressed', String(on)); like.classList.toggle('on', on); $('.io', like).textContent = glyph(on ? 'star' : 'star-outline'); });
   rows.forEach((r, i) => {
-    $('.sv', r).addEventListener('click', (e) => { e.stopPropagation(); toggleSave(i); });
+    /* зачем: закладка отвечает сразу; в приложении запись в карточки идёт фоном, при отказе — откат и сообщение */
+    const sv = $('.sv', r);
+    sv.addEventListener('click', (e) => {
+      e.stopPropagation(); const on = !st.saved.has(i); if (on) st.saved.add(i); else st.saved.delete(i);
+      sv.classList.toggle('on', on); sv.setAttribute('aria-pressed', String(on)); $('.io', sv).textContent = glyph(on ? 'bookmark' : 'bookmark-outline');
+    });
     r.addEventListener('click', () => { st.t = PHRASES[i][0]; paint(); });
   });
   paint();
@@ -610,14 +326,14 @@ function watchInit(ph) {
 
 /* ───── 3. Проверь себя ───── */
 const QUIZ = [
-  { k: 'Как сказал профессор', q: '«Давно не виделись!»', opts: ['Long time no see!', 'Long ago not seen!', 'Much time no look!', 'Late time not see!'], ok: 0, at: '5:39' },
-  { k: 'Вставь слово', gap: ['I’d better get ', '.'], tr: 'Мне пора идти.', opts: ['going', 'gone', 'to go', 'went'], ok: 0, at: '6:31' },
-  { k: 'Послушай момент', q: 'Что сказал профессор?', clip: true, opts: ['Same old, same old.', 'Some gold, some gold.', 'Same hold, same hold.'], ok: 0, at: '6:04' },
+  { k: 'Как это по-английски?', q: 'Давно не виделись!', opts: ['Long time no see!', 'Long ago not seen!', 'Much time no look!'], ok: 0 },
+  { k: 'Вставь слово', gap: ['I’d better get ', '.'], opts: ['going', 'gone', 'went'], ok: 0 },
+  { k: 'Что сказал профессор?', listen: true, opts: ['Same old, same old.', 'Some gold, some gold.', 'Same hold, same hold.'], ok: 0 },
 ];
 function quizHTML() { return `${sbar}<div class="quiz" id="quiz"></div><div class="gest"></div>`; }
 function quizInit(ph) {
-  const root = $('#quiz', ph); const st = { i: 0, right: 0, missed: [] };
-  const top = () => `<div class="qtop"><button class="ib press" aria-label="Закрыть">${io('close')}</button><div class="segs">${QUIZ.map((_, j) => `<i class="${j < st.i ? 'on' : ''}"></i>`).join('')}</div></div>`;
+  const root = $('#quiz', ph); const st = { i: 0, right: 0 };
+  const top = () => `<div class="qtop"><button class="ib" aria-label="Закрыть">${io('close')}</button><div class="segs">${QUIZ.map((_, j) => `<i class="${j < st.i ? 'on' : ''}"></i>`).join('')}</div></div>`;
   const swap = (html, after) => {
     const body = $('.qbody, .res', root);
     if (!body) { root.innerHTML = html; after(); return; }
@@ -625,98 +341,38 @@ function quizInit(ph) {
   };
   const ask = () => {
     const q = QUIZ[st.i];
-    const mid = q.clip ? `<button class="clip press" id="clip"><div class="poster p3"></div><span class="pb">${io('play')}</span><span class="wv">${Array.from({ length: 28 }, (_, n) => `<i style="animation-delay:${-(n * 53) % 700}ms"></i>`).join('')}</span></button>`
-      : q.gap ? `<div class="gap gl">${q.gap[0]}<u id="slot">&nbsp;</u>${q.gap[1]}<em>${q.tr}</em></div>` : '';
-    swap(`${top()}<div class="qbody"><div class="qk">${q.k}</div>${q.q ? `<h3 class="qq">${q.q}</h3>` : ''}${mid}
-      <div class="opts">${q.opts.map((o) => `<button class="opt gl"><span>${o}</span>${io('checkmark-circle')}</button>`).join('')}</div>
-      <div class="fb"><p id="fbt"></p><button class="cta press" id="next">${st.i + 1 < QUIZ.length ? 'Дальше' : 'К результату'}</button></div></div>`, () => {
-      const clip = $('#clip', root); if (clip) clip.addEventListener('click', () => { clip.classList.add('playing'); setTimeout(() => clip.classList.remove('playing'), 2600); });
+    const head = q.gap ? `<h3 class="qq">${q.gap[0]}<u id="slot">&nbsp;</u>${q.gap[1]}</h3>` : q.listen
+      ? `<button class="listen press" id="listen"><span class="pb">${io('play')}</span><span class="wv">${Array.from({ length: 30 }, (_, n) => `<i style="animation-delay:${-(n * 53) % 600}ms"></i>`).join('')}</span></button>`
+      : `<h3 class="qq">${q.q}</h3>`;
+    swap(`${top()}<div class="qbody"><div class="qk">${q.k}</div>${head}
+      <div class="opts">${q.opts.map((o) => `<button class="opt"><span>${o}</span>${io('checkmark-circle')}</button>`).join('')}</div>
+      <div class="fb"><p id="fbt"></p><button class="cta press" id="next">${st.i + 1 < QUIZ.length ? 'Дальше' : 'Готово'}</button></div></div>`, () => {
+      const listen = $('#listen', root); if (listen) listen.addEventListener('click', () => { listen.classList.add('playing'); setTimeout(() => listen.classList.remove('playing'), 2400); });
       $$('.opt', root).forEach((b, n) => b.addEventListener('click', () => {
         if (root.classList.contains('locked')) return; // защита от двойного касания
-        const good = n === q.ok; root.classList.add('locked');
-        $$('.opt', root)[q.ok].classList.add('ok');
-        if (!good) { b.classList.add('no'); $('.io', b).textContent = String.fromCharCode(MAP.close); st.missed.push(q.opts[q.ok]); } else st.right += 1;
+        const good = n === q.ok; root.classList.add('locked'); $$('.opt', root)[q.ok].classList.add('ok');
+        if (!good) { b.classList.add('no'); $('.io', b).textContent = glyph('close-circle') || glyph('close'); } else st.right += 1;
         const slot = $('#slot', root); if (slot) slot.textContent = q.opts[q.ok];
         $$('.segs i', root)[st.i].classList.add('on');
-        $('#fbt', root).innerHTML = good ? `${io('checkmark-circle')}<span><b>Верно.</b> Это место в ролике — ${q.at}.</span>`
-          : `${io('bookmark')}<span><b>Фраза ушла в карточки на повтор.</b> Послушать в ролике — ${q.at}.</span>`;
-        $('#fbt .io', root).style.color = good ? 'var(--ok)' : 'var(--gold)';
+        $('#fbt', root).textContent = good ? 'Верно' : 'Фраза добавлена в карточки на повтор';
       }));
       $('#next', root).addEventListener('click', () => { st.i += 1; if (st.i < QUIZ.length) ask(); else result(); });
     });
   };
   const result = () => {
-    const title = st.right === QUIZ.length ? 'Всё поймано' : st.right === 0 ? 'Фразы ждут повтора' : 'Почти всё поймано';
-    swap(`${top()}<div class="res"><div class="big aur"><b>${st.right}/${QUIZ.length}</b><span>верных ответов</span></div><h3>${title}</h3>
-      <ul class="gl"><li>${io('bookmark')}В карточки на повтор<span>${st.missed.length}</span></li><li>${io('chatbubbles')}Фраз в этом ролике<span>14</span></li></ul>
-      <div class="acts"><button class="cta press">${io('play')}Следующий ролик</button><button class="ghost press" id="again">Пройти ещё раз</button></div></div>`, () => {
+    const miss = QUIZ.length - st.right;
+    const title = miss === 0 ? 'Всё верно' : st.right === 0 ? 'Стоит пересмотреть' : 'Хорошо';
+    const note = miss === 0 ? 'Все фразы ролика с тобой.' : `${miss === 1 ? 'Одна фраза ждёт' : `${miss} фразы ждут`} в карточках на повтор.`;
+    swap(`${top()}<div class="res"><div class="n">${st.right}<small> из ${QUIZ.length}</small></div><h3>${title}</h3><p>${note}</p>
+      <div class="acts"><button class="cta press">Следующий ролик</button><button class="ghost" id="again">Пройти ещё раз</button></div></div>`, () => {
       $$('.segs i', root).forEach((s) => s.classList.add('on'));
-      $('#again', root).addEventListener('click', () => { st.i = 0; st.right = 0; st.missed = []; ask(); });
+      $('#again', root).addEventListener('click', () => { st.i = 0; st.right = 0; ask(); });
     });
   };
   ask();
 }
 
-/* ───── 4. Моменты ───── */
-const MOMENTS = [
-  { e: 'I’m just looking, thanks.', r: 'Я просто смотрю, спасибо.', x: 'Так отвечают продавцу, когда помощь не нужна.', v: '10 фраз для кафе', at: '2:14', p: 2 },
-  { e: 'Could I have the bill, please?', r: 'Можно счёт, пожалуйста?', x: 'В Британии — bill, в США чаще check.', v: '10 фраз для кафе', at: '7:02', p: 2 },
-  { e: 'Long time no see!', r: 'Давно не виделись!', x: 'Тёплое приветствие для знакомых, не для деловой встречи.', v: 'Small talk без пауз', at: '5:39', p: 3 },
-  { e: 'Where is the gate?', r: 'Где выход на посадку?', x: 'Gate — именно выход к самолёту, не любая дверь.', v: 'В аэропорту: от стойки до выхода', at: '4:20', p: 4 },
-];
-function momentsHTML() {
-  return `${sbar}<div class="mo"><div class="bgp" id="mbg"></div>
-    <div class="motop"><button class="ib press" aria-label="Назад" style="background:rgba(8,10,14,.4)">${io('chevron-back')}</button>
-      <div class="mseg"><button aria-pressed="true">Для тебя</button><button aria-pressed="false">Сохранённые</button></div><span style="width:44px"></span></div>
-    <div class="mprog" id="mprog"></div>
-    <button class="nxt" id="mnext" aria-label="Следующий момент"></button>
-    <div class="side">
-      <button id="msave" aria-pressed="false"><span class="ib">${io('bookmark-outline')}</span>В карточки</button>
-      <button class="tog" id="mloop" aria-pressed="true"><span class="ib">${io('repeat')}</span>Повтор</button>
-      <button class="tog" id="mslow" aria-pressed="false"><span class="ib">${io('hourglass')}</span>Медленнее</button>
-    </div>
-    <div class="mtxt" id="mtxt"></div>
-    <div class="msrc gl" id="msrc"></div></div><div class="gest"></div>`;
-}
-function momentsInit(ph) {
-  let i = 0; const saved = new Set();
-  const txt = $('#mtxt', ph); const save = $('#msave', ph);
-  const paint = () => {
-    const m = MOMENTS[i];
-    $('#mbg', ph).className = `bgp p${m.p}`;
-    $('#mprog', ph).innerHTML = MOMENTS.map((_, j) => `<i class="${j < i ? 'on' : j === i ? 'cur' : ''}"></i>`).join('');
-    txt.classList.remove('open');
-    txt.innerHTML = `<q>${m.e}</q><button class="rev press">${io('eye')}Показать перевод</button><div class="tr"><b>${m.r}</b><i>${m.x}</i></div>`;
-    $('.rev', txt).addEventListener('click', () => txt.classList.add('open'));
-    $('#msrc', ph).innerHTML = `<span class="th"><span class="poster p${m.p}"></span></span><span class="mx"><b>${m.v}</b><i>с ${m.at}</i></span><button class="cta press">Смотреть</button>`;
-    const on = saved.has(i); save.setAttribute('aria-pressed', String(on)); $('.io', save).textContent = String.fromCharCode(MAP[on ? 'bookmark' : 'bookmark-outline']);
-  };
-  $('#mnext', ph).addEventListener('click', () => { txt.classList.add('out'); setTimeout(() => { i = (i + 1) % MOMENTS.length; paint(); txt.classList.remove('out'); }, 200); });
-  save.addEventListener('click', () => { const wasOpen = txt.classList.contains('open'); if (saved.has(i)) saved.delete(i); else saved.add(i); paint(); if (wasOpen) txt.classList.add('open'); });
-  [$('#mloop', ph), $('#mslow', ph)].forEach((b) => b.addEventListener('click', () => b.setAttribute('aria-pressed', String(b.getAttribute('aria-pressed') !== 'true'))));
-  $$('.mseg button', ph).forEach((b, n, all) => b.addEventListener('click', () => all.forEach((x, k) => x.setAttribute('aria-pressed', String(k === n)))));
-  paint();
-}
-
-/* ───── 5. Сериал ───── */
-const EPS = [
-  ['Собираем чемодан', '8:12', 9, 'done', 1], ['Такси до аэропорта', '7:45', 8, 'done', 5], ['В аэропорту: от стойки до выхода', '14:32', 16, 'done', 4],
-  ['В самолёте', '9:05', 10, 'cur', 2], ['Заселяемся в отель', '11:40', 12, '', 6], ['10 фраз для кафе', '9:40', 10, '', 3], ['Спросить дорогу', '6:58', 8, '', 1], ['Если что-то пошло не так', '12:20', 13, '', 5],
-];
-function seriesHTML() {
-  return `${sbar}<div class="scr"><div class="sr">
-    <div class="shero"><div class="poster p4"></div><button class="ib press" aria-label="Назад">${io('chevron-back')}</button>
-      <h2>Английский в путешествии</h2><div class="sm">3 из 8 серий · осталось 50 минут</div><div class="pb"><i></i></div></div>
-    <button class="cta press" style="width:100%">${io('play')}Продолжить: серия 4</button>
-    <div class="eps gl">${EPS.map(([t, d, n, s, p], i) => `<button class="ep press ${s}"><span class="no">${s === 'done' ? io('checkmark') : i + 1}</span>
-      <span class="th"><span class="poster p${p}"></span>${s === 'cur' ? '<span class="bar"><i></i></span>' : ''}</span>
-      <span class="ex"><b>${t}</b><i>${d} · ${n} фраз</i></span></button>`).join('')}</div>
-    <div class="fin gl"><span class="tr0">${io('trophy')}</span><span><b>Финал сериала</b><i>Значок «Путешественник» и набор из 86 фраз</i></span></div>
-  </div></div><div class="gest"></div>`;
-}
-
-const SCREENS = { phHub: [hubHTML, hubInit], phWatch: [watchHTML, watchInit], phQuiz: [quizHTML, quizInit], phMoments: [momentsHTML, momentsInit], phSeries: [seriesHTML, null] };
-Object.entries(SCREENS).forEach(([id, [html, init]]) => { const ph = document.getElementById(id); ph.innerHTML = html(); if (init) init(ph); });
+[['phFeed', feedHTML, feedInit], ['phWatch', watchHTML, watchInit], ['phQuiz', quizHTML, quizInit]].forEach(([id, html, init]) => { const ph = document.getElementById(id); ph.innerHTML = html(); init(ph); });
 /* зачем: на узком экране телефон макета целиком помещается по ширине, без горизонтальной прокрутки страницы */
 const fit = () => { const z = Math.min(1, (document.documentElement.clientWidth - 48) / 411); $$('.zw').forEach((e) => { e.style.zoom = z; }); };
 fit(); addEventListener('resize', fit);

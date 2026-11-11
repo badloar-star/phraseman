@@ -79,14 +79,17 @@ const LEGAL_FILES = [
   // с 14 днями, дата October 25, 2026) и 13ea0d2ca («Where available in the app,» до выхода варианта Б) — текст сменили, пин не обновили.
   // 28.10 (владелец кнопкой через координатора «внести оба абзаца»): §6 «Content reports» (жалобы на контент: что уходит, до 12 реплик
   // диалога, error_reports 30 дней + удаление с аккаунтом), §13 «Audio delivery (Cloudflare)», §16 строка Cloudflare; дата October 28, 2026.
-  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', '2403c7722cccc0e8dc83c7af9b7e3396facf191285bbeccb754e6b0d643318f0'],
-  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '5880a85693d049023ab5a20f1661b3d4307bf1e712eaa40d5ecdf09bc878bf14'],
+  ['legal/privacy_policy_en.json', 'app/legal/privacy_policy_en.json', 'bed7a4606e3c491e55d24d1cb01531edab5584717713c9c539867f2e67f411c9'],
+  ['legal/privacy_policy_en_ios.json', 'app/legal/privacy_policy_en_ios.json', '7e38712968d94622bc314c49b284633b5d1223e13f837abf350472f11f751712'],
   // 12.10 (решение советника п.60(2)): условия §4 — одна строка о компьютерных участниках в комнатах Шпиля; дата 12 октября.
   // 14.10 (Ядро): пин догнан под 5680a4608 (13.10, №32 «Spire» → «Peak» в условиях) — текст сменили, пин не обновили.
   ['legal/terms_of_use_en.json', 'app/legal/terms_of_use_en.json', 'c32bf3c62fc17f20140089cce445a88f552f9ae272f4c8c4b0eb1697c53150a3'],
   ['legal/terms_of_use_en_ios.json', 'app/legal/terms_of_use_en_ios.json', '2f9471c0d85d199ad13f2cfcf17e8df1c377762e7c394008fb8f66840cbec51c'],
 ];
 
+// 11.11 (владелец: «Да, включить» ИИ-разбор ошибок и «Да, поправить» политику): §11/§16/§18 — оговорка «только в версиях
+// до 2.0.0» снята, разбор ошибок снова описан как действующая функция с отдельным согласием; честная пометка, что в
+// версиях 2.0.0–2.1.1 его нет; дата «Last updated: November 11, 2026». На сайт — отдельной выкладкой по слову владельца.
 const sha256 = value => crypto.createHash('sha256').update(value).digest('hex');
 const transpile = (source, filename) => ts.transpileModule(source, {
   compilerOptions: { jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, esModuleInterop: true, target: ts.ScriptTarget.ES2022 },

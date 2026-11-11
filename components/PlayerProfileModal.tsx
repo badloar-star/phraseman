@@ -42,7 +42,7 @@ import { resolvePlayerProfileVisibleRank } from '../app/player_profile_v2_state'
 import { DebugLogger } from '../app/debug-logger';
 import { fetchPublicProfileCard, loadPublicProfileCardDisk, peekPublicProfileCardOrStale, type PublicProfileCard } from '../app/profile_card_public';
 import { PROFILE_CARD_PRO_PRICE_COINS } from '../app/profile_card_pro_v1';
-import { resolveProfileCardLook } from '../app/profile_card_styles';
+import { resolveProfileCardLook, type ProfileCardLook } from '../app/profile_card_styles';
 import InGameToast from './InGameToast';
 import ThemedConfirmModal from './ThemedConfirmModal';
 import ProfileCardBackdrop from './profile-card/ProfileCardBackdrop';
@@ -144,6 +144,11 @@ const COMPACT_PAD_TOP = 20;
 // макет: звезда 190 на визитке «Про» (cardPro) и 170 на обычной (cardFree)
 const COMPACT_STAR_PRO = 190;
 const COMPACT_STAR_NORMAL = 170;
+// зачем (владелец 11.11.2026 «уменьшить под монету»): у этих видов кольца и лучи фона — жёсткие окружности шире монеты; над монетой
+// всего 58 pt до края карточки, и они обрезались. Число — наибольший жёсткий диаметр вида при k = 1 (ProfileCardBackdrop);
+// фон сжимается так, чтобы он уместился в COMPACT_ART_FIT. Остальные виды — мягкие пятна, им обрезка не видна.
+const COMPACT_ART_FIT = 110;
+const COMPACT_ART_HARD_SIZE: Partial<Record<ProfileCardLook, number>> = { normal: 256, space: 290, obs: 340 };
 
 type BodyProps = {
   player: PlayerInfo;
@@ -330,7 +335,9 @@ function PlayerProfileModalBody({
   const cy = compact ? COMPACT_PAD_TOP + COMPACT_COIN / 2 : stage.height * CARD_CY;
   // Свет и кольца фона идут за монетой: центр — у монеты 76, масштаб — в её долю от прежней монеты вида.
   const backdropCy = compact && stage.height > 0 ? cy / stage.height : CARD_CY;
-  const backdropK = compact ? (k * COMPACT_COIN) / tokens.coin : k;
+  const artHardSize = COMPACT_ART_HARD_SIZE[look];
+  const coinShareK = (k * COMPACT_COIN) / tokens.coin;
+  const backdropK = !compact ? k : artHardSize ? Math.min(coinShareK, COMPACT_ART_FIT / artHardSize) : coinShareK;
   const animate = !reduceMotion && sheet === 'none';
 
   const cardEnter = useMemo(() => ({

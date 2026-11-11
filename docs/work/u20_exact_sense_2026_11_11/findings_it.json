@@ -465,7 +465,7 @@
   "fix": "Estou perto da porta.",
   "confidence": "low",
   "chunk": 0,
-  "applied": null
+  "applied": "Estou perto da porta."
  },
  {
   "id": "01.50",
@@ -477,7 +477,7 @@
   "fix": "Tôi đang ở gần cửa.",
   "confidence": "low",
   "chunk": 0,
-  "applied": null
+  "applied": "Tôi đang ở gần cửa."
  },
  {
   "id": "01.50",
@@ -489,7 +489,7 @@
   "fix": "Saya dekat pintu.",
   "confidence": "low",
   "chunk": 0,
-  "applied": null
+  "applied": "Saya dekat pintu."
  },
  {
   "id": "01.50",
@@ -501,7 +501,7 @@
   "fix": "Kapının yanındayım.",
   "confidence": "low",
   "chunk": 0,
-  "applied": null
+  "applied": "Kapının yanındayım."
  },
  {
   "id": "02.21",
@@ -645,7 +645,7 @@
   "fix": "As crianças não estão na sala.",
   "confidence": "low",
   "chunk": 0,
-  "applied": null
+  "applied": "As crianças não estão na sala."
  },
  {
   "id": "03.14",
@@ -657,7 +657,7 @@
   "fix": "A sala está livre?",
   "confidence": "low",
   "chunk": 0,
-  "applied": null
+  "applied": "A sala está livre?"
  },
  {
   "id": "02.40",
@@ -681,7 +681,7 @@
   "fix": "Eu ainda não estou em casa.",
   "confidence": "low",
   "chunk": 0,
-  "applied": null
+  "applied": "Eu ainda não estou em casa."
  },
  {
   "id": "02.41",
@@ -693,7 +693,7 @@
   "fix": "Jeszcze nie jestem w domu.",
   "confidence": "low",
   "chunk": 0,
-  "applied": null
+  "applied": "Jeszcze nie jestem w domu."
  },
  {
   "id": "03.30",
@@ -1257,7 +1257,7 @@
   "fix": "Mamy mapkę.",
   "confidence": "low",
   "chunk": 1,
-  "applied": null
+  "applied": "Mamy mapkę."
  },
  {
   "id": "05.06",
@@ -1317,7 +1317,7 @@
   "fix": "Masz mapkę.",
   "confidence": "low",
   "chunk": 1,
-  "applied": null
+  "applied": "Masz mapkę."
  },
  {
   "id": "05.07",
@@ -1461,7 +1461,7 @@
   "fix": "Tôi đang tìm chìa khóa của tôi.",
   "confidence": "low",
   "chunk": 1,
-  "applied": null
+  "applied": "Tôi đang tìm chìa khóa của tôi."
  },
  {
   "id": "07.21",
@@ -1473,7 +1473,7 @@
   "fix": "Szukam moich kluczy.",
   "confidence": "low",
   "chunk": 1,
-  "applied": null
+  "applied": "Szukam moich kluczy."
  },
  {
   "id": "07.22",
@@ -1557,7 +1557,7 @@
   "fix": "Kaç kişi gelecek?",
   "confidence": "low",
   "chunk": 1,
-  "applied": null
+  "applied": "Kaç kişi gelecek?"
  },
  {
   "id": "08.48",
@@ -1581,7 +1581,7 @@
   "fix": "Bạn đang tìm áo khoác của bạn.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Bạn đang tìm áo khoác của bạn."
  },
  {
   "id": "09.25",
@@ -1593,7 +1593,7 @@
   "fix": "Chúng tôi đang tìm những chỗ ngồi của mình.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Chúng tôi đang tìm những chỗ ngồi của mình."
  },
  {
   "id": "09.26",
@@ -1629,7 +1629,7 @@
   "fix": "Bạn đang lấy mũ bảo hiểm của mình.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Bạn đang lấy mũ bảo hiểm của mình."
  },
  {
   "id": "09.29",
@@ -1665,7 +1665,7 @@
   "fix": "Cô ấy đang chuẩn bị vali của mình.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Cô ấy đang chuẩn bị vali của mình."
  },
  {
   "id": "09.12",
@@ -1737,7 +1737,7 @@
   "fix": "Anh trai tôi quên chìa khóa của anh ấy.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Anh trai tôi quên chìa khóa của anh ấy."
  },
  {
   "id": "09.50",
@@ -1773,7 +1773,7 @@
   "fix": "Con gái chúng tôi đang thu xếp đồ đạc của cô ấy.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Con gái chúng tôi đang thu xếp đồ đạc của cô ấy."
  },
  {
   "id": "09.50",
@@ -1833,7 +1833,7 @@
   "fix": "Есть ли туалеты?",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Есть ли туалеты?"
  },
  {
   "id": "10.24",
@@ -1845,7 +1845,7 @@
   "fix": "Чи є туалети?",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Чи є туалети?"
  },
  {
   "id": "10.24",
@@ -1857,7 +1857,7 @@
   "fix": "Are there restrooms?",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Are there restrooms?"
  },
  {
   "id": "10.24",
@@ -1869,7 +1869,7 @@
   "fix": "Há banheiros?",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Há banheiros?"
  },
  {
   "id": "10.24",
@@ -1881,7 +1881,7 @@
   "fix": "Có nhà vệ sinh không?",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Có nhà vệ sinh không?"
  },
  {
   "id": "10.24",
@@ -1893,7 +1893,7 @@
   "fix": "Apakah ada toilet?",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Apakah ada toilet?"
  },
  {
   "id": "10.24",
@@ -1905,7 +1905,7 @@
   "fix": "Tuvalet var mı?",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Tuvalet var mı?"
  },
  {
   "id": "10.24",
@@ -1917,7 +1917,7 @@
   "fix": "Czy są toalety?",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Czy są toalety?"
  },
  {
   "id": "10.37",
@@ -1989,7 +1989,7 @@
   "fix": "Có một vài chỗ trống trên sân ga.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Có một vài chỗ trống trên sân ga."
  },
  {
   "id": "10.45",
@@ -2001,7 +2001,7 @@
   "fix": "Na peronie są wolne miejsca.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Na peronie są wolne miejsca."
  },
  {
   "id": "10.50",
@@ -2085,7 +2085,7 @@
   "fix": "Anh ấy đang đi đến xưởng sửa xe.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Anh ấy đang đi đến xưởng sửa xe."
  },
  {
   "id": "11.20",
@@ -2097,7 +2097,7 @@
   "fix": "Dia akan pergi ke bengkel.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Dia akan pergi ke bengkel."
  },
  {
   "id": "11.20",
@@ -2109,7 +2109,7 @@
   "fix": "Tamirhaneye gidiyor.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Tamirhaneye gidiyor."
  },
  {
   "id": "11.20",
@@ -2121,7 +2121,7 @@
   "fix": "On idzie do warsztatu samochodowego.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "On idzie do warsztatu samochodowego."
  },
  {
   "id": "11.26",
@@ -2529,7 +2529,7 @@
   "fix": "Мы делим одну тарелку картошки фри.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Мы делим одну тарелку картошки фри."
  },
  {
   "id": "12.49",
@@ -2541,7 +2541,7 @@
   "fix": "Ми ділимо одну тарілку картоплі фрі.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Ми ділимо одну тарілку картоплі фрі."
  },
  {
   "id": "12.49",
@@ -2745,7 +2745,7 @@
   "fix": "Cô ấy có thể đến.",
   "confidence": "low",
   "chunk": 3,
-  "applied": null
+  "applied": "Cô ấy có thể đến."
  },
  {
   "id": "14.05",
@@ -3261,7 +3261,7 @@
   "fix": "Kalian saat ini sedang membaca pesan.",
   "confidence": "low",
   "chunk": 3,
-  "applied": null
+  "applied": "Kalian saat ini sedang membaca pesan."
  },
  {
   "id": "15.22",
@@ -3297,7 +3297,7 @@
   "fix": "Kalian saat ini sedang makan di dapur.",
   "confidence": "low",
   "chunk": 3,
-  "applied": null
+  "applied": "Kalian saat ini sedang makan di dapur."
  },
  {
   "id": "15.30",
@@ -3633,7 +3633,7 @@
   "fix": "Nos encontramos delante del museo.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Nos encontramos delante del museo."
  },
  {
   "id": "17.43",
@@ -3645,7 +3645,7 @@
   "fix": "Nós nos encontramos em frente ao museu.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Nós nos encontramos em frente ao museu."
  },
  {
   "id": "17.43",
@@ -3657,7 +3657,7 @@
   "fix": "Chúng tôi gặp nhau trước bảo tàng.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Chúng tôi gặp nhau trước bảo tàng."
  },
  {
   "id": "17.43",
@@ -3669,7 +3669,7 @@
   "fix": "Kami bertemu di depan museum.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Kami bertemu di depan museum."
  },
  {
   "id": "17.43",
@@ -3681,7 +3681,7 @@
   "fix": "Müzenin önünde buluşuyoruz.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Müzenin önünde buluşuyoruz."
  },
  {
   "id": "17.45",
@@ -3969,7 +3969,7 @@
   "fix": "Kami selesai bekerja pada tengah hari.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Kami selesai bekerja pada tengah hari."
  },
  {
   "id": "19.15",
@@ -4185,7 +4185,7 @@
   "fix": "Paolo partiu de novo depois do almoço.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Paolo partiu de novo depois do almoço."
  },
  {
   "id": "19.49",
@@ -4197,7 +4197,7 @@
   "fix": "Paolo znów wyjechał po obiedzie.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Paolo znów wyjechał po obiedzie."
  },
  {
   "id": "19.49",
@@ -4209,7 +4209,7 @@
   "fix": "Paolo lại rời đi sau bữa trưa.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Paolo lại rời đi sau bữa trưa."
  },
  {
   "id": "19.49",
@@ -4221,7 +4221,7 @@
   "fix": "Paolo pergi lagi setelah makan siang.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Paolo pergi lagi setelah makan siang."
  },
  {
   "id": "19.49",
@@ -4233,7 +4233,7 @@
   "fix": "Paolo öğle yemeğinden sonra yine ayrıldı.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Paolo öğle yemeğinden sonra yine ayrıldı."
  },
  {
   "id": "20.05",
@@ -4269,7 +4269,7 @@
   "fix": "Hava zaten karanlıktı.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Hava zaten karanlıktı."
  },
  {
   "id": "20.35",
@@ -5061,7 +5061,7 @@
   "fix": "Anahtarımı onun için resepsiyona bırakıyorum.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Anahtarımı onun için resepsiyona bırakıyorum."
  },
  {
   "id": "23.26",
@@ -5085,7 +5085,7 @@
   "fix": "Saya sudah mengirimkan tagihan kepadanya.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Saya sudah mengirimkan tagihan kepadanya."
  },
  {
   "id": "23.42",
@@ -5241,7 +5241,7 @@
   "fix": "Bengkelnya tutup awal, dan saya harus pergi ke sana sekarang.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Bengkelnya tutup awal, dan saya harus pergi ke sana sekarang."
  },
  {
   "id": "25.03",
@@ -5397,7 +5397,7 @@
   "fix": "Bende yeterince var.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Bende yeterince var."
  },
  {
   "id": "25.11",
@@ -5409,7 +5409,7 @@
   "fix": "Saya akan mengambil sedikit roti.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Saya akan mengambil sedikit roti."
  },
  {
   "id": "25.17",
@@ -5418,7 +5418,7 @@
   "current": "Люба, я додам ложку.",
   "category": "meaning",
   "problem": "«Люба» вместо «мёд» (miele): слово ошибочно переведено как обращение.",
-  "fix": "Меду я додаю ложку.",
+  "fix": "Меду я додам ложку.",
   "confidence": "high",
   "chunk": 6,
   "applied": "Меду я додаю ложку."
@@ -5445,7 +5445,7 @@
   "fix": "Bizde artık hiç yok.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Bizde artık hiç yok."
  },
  {
   "id": "25.25",
@@ -5553,7 +5553,7 @@
   "fix": "Anh ấy chỉ giữ một cái cho riêng mình.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Anh ấy chỉ giữ một cái cho riêng mình."
  },
  {
   "id": "25.31",
@@ -5565,7 +5565,7 @@
   "fix": "Tôi đã mua hai cái.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Tôi đã mua hai cái."
  },
  {
   "id": "25.32",
@@ -5577,7 +5577,7 @@
   "fix": "Cô ấy tìm thấy một cái.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Cô ấy tìm thấy một cái."
  },
  {
   "id": "25.33",
@@ -5601,7 +5601,7 @@
   "fix": "Vou trazer mais.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Vou trazer mais."
  },
  {
   "id": "25.36",
@@ -5613,7 +5613,7 @@
   "fix": "Tôi sẽ mang thêm.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Tôi sẽ mang thêm."
  },
  {
   "id": "25.36",
@@ -5625,7 +5625,7 @@
   "fix": "Saya akan membawa lebih banyak lagi.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Saya akan membawa lebih banyak lagi."
  },
  {
   "id": "25.44",
@@ -5661,7 +5661,7 @@
   "fix": "Lepiej słyszymy przy scenie.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Lepiej słyszymy przy scenie."
  },
  {
   "id": "26.28",
@@ -5973,7 +5973,7 @@
   "fix": "Я спрошу у вас совета по поводу протечки под краном.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Я спрошу у вас совета по поводу протечки под краном."
  },
  {
   "id": "27.43",
@@ -5985,7 +5985,7 @@
   "fix": "Я попрошу вашої поради щодо витоку під краном.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Я попрошу вашої поради щодо витоку під краном."
  },
  {
   "id": "27.43",
@@ -5997,7 +5997,7 @@
   "fix": "Vou pedir conselhos ao senhor sobre o vazamento embaixo da torneira.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Vou pedir conselhos ao senhor sobre o vazamento embaixo da torneira."
  },
  {
   "id": "27.43",
@@ -6009,7 +6009,7 @@
   "fix": "Tôi sẽ hỏi bạn lời khuyên về chỗ rò rỉ dưới vòi nước.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Tôi sẽ hỏi bạn lời khuyên về chỗ rò rỉ dưới vòi nước."
  },
  {
   "id": "27.43",
@@ -6021,7 +6021,7 @@
   "fix": "Musluğun altındaki sızıntı hakkında sizden tavsiye isteyeceğim.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Musluğun altındaki sızıntı hakkında sizden tavsiye isteyeceğim."
  },
  {
   "id": "27.43",
@@ -6033,7 +6033,7 @@
   "fix": "Poproszę pana o radę w sprawie przecieku pod kranem.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Poproszę pana o radę w sprawie przecieku pod kranem."
  },
  {
   "id": "27.45",
@@ -6177,7 +6177,7 @@
   "fix": "Thêm một cái chăn nữa sẽ hữu ích.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Thêm một cái chăn nữa sẽ hữu ích."
  },
  {
   "id": "28.31",
@@ -6225,7 +6225,7 @@
   "fix": "Saya sebaiknya kembali ke kantor pos sebelum makan siang.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Saya sebaiknya kembali ke kantor pos sebelum makan siang."
  },
  {
   "id": "28.38",
@@ -6405,7 +6405,7 @@
   "fix": "Yazılı bir onaya ihtiyacım olurdu.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Yazılı bir onaya ihtiyacım olurdu."
  },
  {
   "id": "28.49",
@@ -6609,7 +6609,7 @@
   "fix": "O vaso que você está procurando está atrás da hortelã.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "O vaso que você está procurando está atrás da hortelã."
  },
  {
   "id": "29.50",
@@ -6621,7 +6621,7 @@
   "fix": "Okno, które nie zamyka się dobrze, wychodzi na ulicę.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Okno, które nie zamyka się dobrze, wychodzi na ulicę."
  },
  {
   "id": "30.05",
@@ -6705,7 +6705,7 @@
   "fix": "Perbaikan harus selesai paling lambat hari Senin.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Perbaikan harus selesai paling lambat hari Senin."
  },
  {
   "id": "31.03",
@@ -6837,7 +6837,7 @@
   "fix": "Eles ainda não tinham preparado a comida.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Eles ainda não tinham preparado a comida."
  },
  {
   "id": "31.43",
@@ -6849,7 +6849,7 @@
   "fix": "Antes de pintar, nós tínhamos colocado folhas de papel no chão.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Antes de pintar, nós tínhamos colocado folhas de papel no chão."
  },
  {
   "id": "31.43",
@@ -6861,7 +6861,7 @@
   "fix": "Boyamadan önce, yere kağıtlar sermiştik.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Boyamadan önce, yere kağıtlar sermiştik."
  },
  {
   "id": "31.44",
@@ -6873,7 +6873,7 @@
   "fix": "Ela tinha feito chá de menta e o meu prato favorito.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Ela tinha feito chá de menta e o meu prato favorito."
  },
  {
   "id": "31.44",
@@ -6885,7 +6885,7 @@
   "fix": "Nane çayı ve en sevdiğim yemeği yapmıştı.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Nane çayı ve en sevdiğim yemeği yapmıştı."
  },
  {
   "id": "31.45",
@@ -6957,7 +6957,7 @@
   "fix": "Gdyby pociąg był tańszy, podróżowalibyśmy więcej.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Gdyby pociąg był tańszy, podróżowalibyśmy więcej."
  },
  {
   "id": "32.17",
@@ -7041,7 +7041,7 @@
   "fix": "Eu levaria a jaqueta se ela fosse mais quente.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Eu levaria a jaqueta se ela fosse mais quente."
  },
  {
   "id": "32.23",
@@ -7077,7 +7077,7 @@
   "fix": "Anahtar dönseydi kapı açılırdı.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Anahtar dönseydi kapı açılırdı."
  },
  {
   "id": "32.31",
@@ -7089,7 +7089,7 @@
   "fix": "Gdyby klucz się przekręcał, drzwi by się otworzyły.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Gdyby klucz się przekręcał, drzwi by się otworzyły."
  },
  {
   "id": "32.33",
@@ -7401,7 +7401,7 @@
   "fix": "Gdyby harmonogram się zmienił, poinformowalibyśmy Cię.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Gdyby harmonogram się zmienił, poinformowalibyśmy Cię."
  },
  {
   "id": "32.50",
@@ -7413,6 +7413,6 @@
   "fix": "Programda bir değişiklik olsaydı sizi bilgilendirirdik.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Programda bir değişiklik olsaydı sizi bilgilendirirdik."
  }
 ]

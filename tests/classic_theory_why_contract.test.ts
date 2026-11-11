@@ -2,7 +2,7 @@
  * «почему?» в заданиях теории (владелец 11.11: «написана просто фраза без объяснения почему»).
  * Контракт: объяснение — это НЕ повтор правильной фразы. Нет объяснения в данных → кнопки «почему?» нет вовсе.
  */
-import { getClassicPlainView } from '../app/classic_theory_plain';
+import { getClassicPlainView, isClassicPlainLesson } from '../app/classic_theory_plain';
 import { getClassicTheoryView } from '../app/classic_theory_view';
 import { classicTheoryWhy } from '../app/classic_theory_why';
 import type { TheoryDrill } from '../components/theory/TheoryLessonView';
@@ -20,10 +20,11 @@ describe('theory «почему?» is a real explanation, never the answer phras
   beforeEach(() => jest.spyOn(console, 'log').mockImplementation(() => undefined));
   afterEach(() => jest.restoreAllMocks());
 
-  it('every English theory task (all 32 lessons) has an explanation in ru/uk/en that differs from the answer', () => {
+  // зачем: в новом формате (plain) объяснение обязано быть у КАЖДОГО задания каждого курса — иначе после правки теории кнопка молча пропадёт
+  it.each([['en', 400], ['es', 90], ['fr', 90], ['de', 140], ['it', 170]] as const)('every new-format theory task of the %s course has an explanation in ru/uk/en that differs from the answer', (target, atLeast) => {
     let total = 0;
     for (let lesson = 1; lesson <= 32; lesson += 1) {
-      for (const drill of drillsOf(getClassicPlainView('en', lesson, 'ru'))) {
+      for (const drill of drillsOf(getClassicPlainView(target, lesson, 'ru'))) {
         total += 1;
         const text = drill.type === 'choice' ? drill.why : drill.type === 'binary' ? drill.explain : undefined;
         const answer = drill.type === 'choice' ? drill.answer : drill.type === 'binary' ? (drill.correct === 'A' ? drill.optionA : drill.optionB) : '';
@@ -38,13 +39,16 @@ describe('theory «почему?» is a real explanation, never the answer phras
         expect(/[А-Яа-яЁё]/.test(text?.en ?? '')).toBe(false);
       }
     }
-    expect(total).toBeGreaterThan(400);
+    expect(total).toBeGreaterThan(atLeast);
   });
 
   it('no explanation in data → the choice task carries no «почему?» at all (button is hidden)', () => {
     expect(classicTheoryWhy('fr', 1, 'c1', 'no-such-phrase')).toBeNull();
+    expect(classicTheoryWhy('xx', 1, 'c1', 'no-such-phrase')).toBeNull();
     for (const target of ['fr', 'es', 'de', 'it'] as const) {
       for (let lesson = 1; lesson <= 32; lesson += 1) {
+        // уроки нового формата проверены выше; здесь — только старый формат, где объяснений простыми словами нет
+        if (isClassicPlainLesson(target, lesson)) continue;
         for (const drill of drillsOf(getClassicTheoryView(target, lesson, 'ru'))) {
           if (drill.type === 'choice') expect(drill.why).toBeUndefined();
         }

@@ -1,0 +1,931 @@
+{
+ "schema": "phraseman.classic.theory_why/1",
+ "lang": "it",
+ "data": {
+  "1:c1:it:01:21": {
+   "ru": "Pronto значит «готов». Lì — это «там», а qui — «здесь»: они про место.",
+   "uk": "Pronto означає «готовий». Lì — це «там», а qui — «тут»: вони про місце.",
+   "en": "Pronto means “ready”. Lì means “there” and qui means “here”: they are about a place."
+  },
+  "1:c1:it:01:04": {
+   "ru": "Lì значит «там». Qui — это «здесь», а pronto — «готов».",
+   "uk": "Lì означає «там». Qui — це «тут», а pronto — «готовий».",
+   "en": "Lì means “there”. Qui means “here”, and pronto means “ready”."
+  },
+  "1:c2:it:01:07": {
+   "ru": "Siamo говорят про «мы». Siete — это «вы», а sei — «ты».",
+   "uk": "Siamo кажуть про «ми». Siete — це «ви», а sei — «ти».",
+   "en": "Siamo is used for “we”. Siete means “you” (several people), and sei means “you” (one person)."
+  },
+  "1:c2:it:01:10": {
+   "ru": "Loro значит «они», и с ним говорят sono. Siete — «вы», siamo — «мы».",
+   "uk": "Loro означає «вони», і з ним кажуть sono. Siete — «ви», siamo — «ми».",
+   "en": "Loro means “they”, and with it you say sono. Siete is “you” and siamo is “we”."
+  },
+  "1:c3:it:01:14": {
+   "ru": "Alla stazione значит «на вокзале». Qui — «здесь», а in ufficio — «в офисе».",
+   "uk": "Alla stazione означає «на вокзалі». Qui — «тут», а in ufficio — «в офісі».",
+   "en": "Alla stazione means “at the station”. Qui means “here”, and in ufficio means “in the office”."
+  },
+  "1:c3:it:01:47": {
+   "ru": "La borsa — «сумка», a casa — «дома». Chiave — это «ключ», а sono — про «я».",
+   "uk": "La borsa — «сумка», a casa — «вдома». Chiave — це «ключ», а sono — про «я».",
+   "en": "La borsa is “the bag” and a casa is “at home”. Chiave is “key”, and sono is about “I”."
+  },
+  "1:c4:it:01:36": {
+   "ru": "Chiuso значит «закрыто», а bar — «кафе». Aperto — «открыт», chiusa — про окно.",
+   "uk": "Chiuso означає «закрито», а bar — «кафе». Aperto — «відкритий», chiusa — про вікно.",
+   "en": "Chiuso means “closed”, and bar is “café”. Aperto means “open”, and chiusa is used for the window."
+  },
+  "1:c4:it:01:31": {
+   "ru": "Porta — «дверь», aperta — «открыта». Chiusa значит «закрыта», а bar — «кафе».",
+   "uk": "Porta — «двері», aperta — «відчинені». Chiusa означає «зачинена», а bar — «кафе».",
+   "en": "Porta is “door” and aperta is “open”. Chiusa means “closed”, and bar is “café”."
+  },
+  "2:c1:it:02:04": {
+   "ru": "Lei значит «она», non — «не», lì — «там». Loro sono — «они», а sei — «ты».",
+   "uk": "Lei означає «вона», non — «не», lì — «там». Loro sono — «вони», а sei — «ти».",
+   "en": "Lei means “she”, non is “not”, lì is “there”. Loro sono is “they”, and sei is “you”."
+  },
+  "2:c1:it:02:10": {
+   "ru": "Loro значит «они», с ним говорят sono. Lei è — про «неё», а non sono — про «я».",
+   "uk": "Loro означає «вони», з ним кажуть sono. Lei è — про «неї», а non sono — про «я».",
+   "en": "Loro means “they”, and with it you say sono. Lei è is about “her”, and non sono is about “I”."
+  },
+  "2:c2:it:02:13": {
+   "ru": "Siamo — «мы», а pronti — «готовы» (о многих). Pronto — «готов», pronta — «готова».",
+   "uk": "Siamo — «ми», а pronti — «готові» (про багатьох). Pronto — «готовий», pronta — «готова».",
+   "en": "Siamo is “we”, and pronti is “ready” for several people. Pronto is for one man, pronta for one woman."
+  },
+  "2:c2:it:02:44": {
+   "ru": "Camera — «номер», к нему подходит libera на -a: «свободна». Libero — про Паоло.",
+   "uk": "Camera — «номер», до нього пасує libera на -a: «вільна». Libero — про Паоло.",
+   "en": "Camera is “room”, and it takes libera, ending in -a: “free”. Libero is for Paolo."
+  },
+  "2:c3:it:02:07": {
+   "ru": "Siamo значит «мы есть», alla stazione — «на станции». Siete — «вы».",
+   "uk": "Siamo означає «ми є», alla stazione — «на станції». Siete — «ви».",
+   "en": "Siamo means “we are”, alla stazione means “at the station”. Siete is “you”."
+  },
+  "2:c3:it:02:41": {
+   "ru": "Sono — «я», ancora — «ещё», после non. Non è — про «неё», non siete — про «вас».",
+   "uk": "Sono — «я», ancora — «ще», після non. Non è — про «неї», non siete — про «вас».",
+   "en": "Sono is “I”, and ancora is “yet”, placed after non. Non è is about “her”, non siete about “you”."
+  },
+  "2:c4:it:02:22": {
+   "ru": "Bar — «кафе», chiuso — «закрыто». Aperta — про дверь, а sono aperti — про несколько магазинов.",
+   "uk": "Bar — «кафе», chiuso — «зачинено». Aperta — про двері, а sono aperti — про кілька магазинів.",
+   "en": "Bar is “café”, chiuso is “closed”. Aperta is for the door, and sono aperti is for several shops."
+  },
+  "2:c4:it:02:27": {
+   "ru": "Chiavi значит «ключи». Их несколько, поэтому sono. Borsa — «сумка», а non sono — «меня нет».",
+   "uk": "Chiavi означає «ключі». Їх кілька, тож sono. Borsa — «сумка», а non sono — «мене немає».",
+   "en": "Chiavi means “keys”. There are several, so you say sono. Borsa is “bag”, and non sono is “I am not”."
+  },
+  "2:c5:it:02:34": {
+   "ru": "Bambini — «дети», их несколько, поэтому sono. Nella — «в», sul tavolo — «на столе».",
+   "uk": "Bambini — «діти», їх кілька, тож sono. Nella — «в», sul tavolo — «на столі».",
+   "en": "Bambini is “children”, several of them, so sono. Nella means “in”, and sul tavolo is “on the table”."
+  },
+  "2:c5:it:02:40": {
+   "ru": "In ritardo — «с опозданием», non — «не». Автобуса ещё нет — это ancora, а corridoio — «коридор».",
+   "uk": "In ritardo — «із запізненням», non — «не». Автобуса ще немає — це ancora, а corridoio — «коридор».",
+   "en": "In ritardo means “late”, non is “not”. Ancora is “not yet” for the bus, and corridoio is “corridor”."
+  },
+  "3:c1:it:03:03": {
+   "ru": "Sei значит «ты есть», pronto — «готов». Lì — «там», а Lei è pronta — про «неё».",
+   "uk": "Sei означає «ти є», pronto — «готовий». Lì — «там», а Lei è pronta — про «неї».",
+   "en": "Sei means “you are”, pronto means “ready”. Lì is “there”, and Lei è pronta is about “her”."
+  },
+  "3:c1:it:03:11": {
+   "ru": "Sei — «ты», alla stazione — «на вокзале». Pronto — «готов», qui — «здесь».",
+   "uk": "Sei — «ти», alla stazione — «на вокзалі». Pronto — «готовий», qui — «тут».",
+   "en": "Sei is “you”, alla stazione is “at the station”. Pronto is “ready”, qui is “here”."
+  },
+  "3:c2:it:03:06": {
+   "ru": "Lea — имя, alla stazione — «на вокзале». Paolo — другой человек, а bar — «кафе».",
+   "uk": "Lea — ім’я, alla stazione — «на вокзалі». Paolo — інша людина, а bar — «кафе».",
+   "en": "Lea is the name, alla stazione is “at the station”. Paolo is someone else, and bar is “café”."
+  },
+  "3:c2:it:03:43": {
+   "ru": "Chiave — «ключ», nella serratura — «в замке». Porta — «дверь», bar — «кафе».",
+   "uk": "Chiave — «ключ», nella serratura — «в замку». Porta — «двері», bar — «кафе».",
+   "en": "Chiave is “key”, nella serratura is “in the lock”. Porta is “door”, bar is “café”."
+  },
+  "3:c3:it:03:49": {
+   "ru": "Con voi значит «с вами», bambini — «дети». Fuori — «на улице», a casa — «дома».",
+   "uk": "Con voi означає «з вами», bambini — «діти». Fuori — «надворі», a casa — «вдома».",
+   "en": "Con voi means “with you”, bambini is “children”. Fuori is “outside”, a casa is “at home”."
+  },
+  "3:c3:it:03:09": {
+   "ru": "Siamo значит «мы есть», in ritardo — «с опозданием». Siete — «вы», loro sono — «они».",
+   "uk": "Siamo означає «ми є», in ritardo — «із запізненням». Siete — «ви», loro sono — «вони».",
+   "en": "Siamo means “we are”, in ritardo means “late”. Siete is “you”, loro sono is “they”."
+  },
+  "3:c4:it:03:34": {
+   "ru": "Tavolo — «стол», к нему подходит libero. È libero? — вопрос к человеку: «Вы свободны?»",
+   "uk": "Tavolo — «стіл», до нього пасує libero. È libero? — питання до людини: «Ви вільні?»",
+   "en": "Tavolo is “table”, and it takes libero. È libero? is a question to a person: “Are you free?”"
+  },
+  "3:c4:it:03:14": {
+   "ru": "К sala подходит libera на -a. Il tavolo — «стол», а È libero? — вопрос к человеку.",
+   "uk": "До sala пасує libera на -a. Il tavolo — «стіл», а È libero? — питання до людини.",
+   "en": "Sala takes libera, ending in -a. Il tavolo is “table”, and È libero? is a question to a person."
+  },
+  "3:c5:it:03:26": {
+   "ru": "A destra значит «справа», parcheggio — «парковка». A sinistra — «слева», l’ingresso — «вход».",
+   "uk": "A destra означає «праворуч», parcheggio — «парковка». A sinistra — «ліворуч», l’ingresso — «вхід».",
+   "en": "A destra means “on the right”, parcheggio is “parking”. A sinistra is “on the left”, l’ingresso is “entrance”."
+  },
+  "3:c5:it:03:21": {
+   "ru": "Biglietteria — «касса», aperta — «открыта». Banchina — «перрон», l’ingresso — «вход».",
+   "uk": "Biglietteria — «каса», aperta — «відчинена». Banchina — «перон», l’ingresso — «вхід».",
+   "en": "Biglietteria is “ticket office”, aperta is “open”. Banchina is “platform”, l’ingresso is “entrance”."
+  },
+  "4:c1:it:04:10": {
+   "ru": "Madre — «мать», о ней говорят questa и mia. Questo и mio — про «него».",
+   "uk": "Madre — «мати», про неї кажуть questa і mia. Questo і mio — про «нього».",
+   "en": "Madre is “mother”, so you say questa and mia. Questo and mio are for “him”."
+  },
+  "4:c1:it:04:09": {
+   "ru": "Padre — «отец», о нём говорят questo и mio. Questa и mia — про «неё».",
+   "uk": "Padre — «батько», про нього кажуть questo і mio. Questa і mia — про «неї».",
+   "en": "Padre is “father”, so you say questo and mio. Questa and mia are for “her”."
+  },
+  "4:c2:it:04:07": {
+   "ru": "Vicino — «сосед», с ним говорят questo и un. Vicina на -a — «соседка», amico — «друг».",
+   "uk": "Vicino — «сусід», з ним кажуть questo і un. Vicina на -a — «сусідка», amico — «друг».",
+   "en": "Vicino is “neighbour (man)”, with questo and un. Vicina, ending in -a, is a woman, and amico is “friend”."
+  },
+  "4:c2:it:04:08": {
+   "ru": "Vicina на -a — «соседка», с ней говорят questa и una. Vicino — «сосед», amica — «подруга».",
+   "uk": "Vicina на -a — «сусідка», з нею кажуть questa і una. Vicino — «сусід», amica — «подруга».",
+   "en": "Vicina, ending in -a, is a woman neighbour, with questa and una. Vicino is “neighbour (man)”, amica is “friend”."
+  },
+  "4:c3:it:04:03": {
+   "ru": "Sorella — «сестра», о ней говорят questa и mia. Madre — «мать», fratello — «брат».",
+   "uk": "Sorella — «сестра», про неї кажуть questa і mia. Madre — «мати», fratello — «брат».",
+   "en": "Sorella is “sister”, so you say questa and mia. Madre is “mother”, fratello is “brother”."
+  },
+  "4:c3:it:04:46": {
+   "ru": "Tuo значит «твой», fratello — «брат». Mio — «мой», а padre — «отец».",
+   "uk": "Tuo означає «твій», fratello — «брат». Mio — «мій», а padre — «батько».",
+   "en": "Tuo means “your”, fratello means “brother”. Mio is “my”, and padre is “father”."
+  },
+  "4:c4:it:04:12": {
+   "ru": "Biglietto — «билет», с ним un и questo. Foto — «фотография», chiave — «ключ».",
+   "uk": "Biglietto — «квиток», з ним un і questo. Foto — «фотографія», chiave — «ключ».",
+   "en": "Biglietto is “ticket”, with un and questo. Foto is “photo”, chiave is “key”."
+  },
+  "4:c4:it:04:19": {
+   "ru": "Ricevuta значит «чек». Regalo — «подарок», fattura — «счёт на оплату».",
+   "uk": "Ricevuta означає «чек». Regalo — «подарунок», fattura — «рахунок на оплату».",
+   "en": "Ricevuta means “receipt”. Regalo is “gift”, fattura is “invoice”."
+  },
+  "4:c4:it:04:20": {
+   "ru": "Fattura значит «счёт на оплату». Foto — «фотография», ricevuta — «чек».",
+   "uk": "Fattura означає «рахунок на оплату». Foto — «фотографія», ricevuta — «чек».",
+   "en": "Fattura means “invoice”. Foto is “photo”, ricevuta is “receipt”."
+  },
+  "4:c5:it:04:22": {
+   "ru": "Amici — «друзья», их несколько: questi, sono, miei. Chiavi — «ключи», posti — «места».",
+   "uk": "Amici — «друзі», їх кілька: questi, sono, miei. Chiavi — «ключі», posti — «місця».",
+   "en": "Amici is “friends”, several of them: questi, sono, miei. Chiavi is “keys”, posti is “places”."
+  },
+  "4:c5:it:04:30": {
+   "ru": "Nostri значит «наши», posti — «места». Miei — «мои», chiavi — «ключи», amici — «друзья».",
+   "uk": "Nostri означає «наші», posti — «місця». Miei — «мої», chiavi — «ключі», amici — «друзі».",
+   "en": "Nostri means “our”, posti means “places”. Miei is “my”, chiavi is “keys”, amici is “friends”."
+  },
+  "4:c6:it:04:42": {
+   "ru": "Tuo — «твой», posto — «место», оно одно: questo и è. Borsa — «сумка», occhiali — «очки».",
+   "uk": "Tuo — «твій», posto — «місце», воно одне: questo і è. Borsa — «сумка», occhiali — «окуляри».",
+   "en": "Tuo is “your”, posto is “seat”, just one: questo and è. Borsa is “bag”, occhiali is “glasses”."
+  },
+  "4:c6:it:04:44": {
+   "ru": "Occhiali — «очки», их несколько, как ключей: questi, sono, miei. Borsa и posto — по одному.",
+   "uk": "Occhiali — «окуляри», їх кілька, як ключів: questi, sono, miei. Borsa і posto — по одному.",
+   "en": "Occhiali is “glasses”, several like keys: questi, sono, miei. Borsa and posto are single things."
+  },
+  "5:c1:it:05:03": {
+   "ru": "Lei значит «она», а ha — «у неё есть». Lui — «он», ho — «у меня есть».",
+   "uk": "Lei означає «вона», а ha — «у неї є». Lui — «він», ho — «у мене є».",
+   "en": "Lei means “she”, and ha means “she has”. Lui is “he”, and ho is “I have”."
+  },
+  "5:c1:it:05:02": {
+   "ru": "Hai значит «у тебя есть». Ho — «у меня есть», а ha — «у неё», «у Леа».",
+   "uk": "Hai означає «у тебе є». Ho — «у мене є», а ha — «у неї», «у Леа».",
+   "en": "Hai means “you have”. Ho is “I have”, and ha is “she has”, as with Lea."
+  },
+  "5:c2:it:05:06": {
+   "ru": "Avete значит «у вас есть», вас несколько. Abbiamo — «у нас», hanno — «у них».",
+   "uk": "Avete означає «у вас є», вас кілька. Abbiamo — «у нас», hanno — «у них».",
+   "en": "Avete means “you have”, for several people. Abbiamo is “we have”, hanno is “they have”."
+  },
+  "5:c2:it:05:07": {
+   "ru": "Loro значит «они», с ним говорят hanno. Le ragazze — «девушки», abbiamo — «у нас».",
+   "uk": "Loro означає «вони», з ним кажуть hanno. Le ragazze — «дівчата», abbiamo — «у нас».",
+   "en": "Loro means “they”, and with it you say hanno. Le ragazze is “the girls”, abbiamo is “we have”."
+  },
+  "5:c3:it:05:13": {
+   "ru": "Sete значит «жажда»: ho sete — «у меня жажда». Fame — «голод», caldo — «жара».",
+   "uk": "Sete означає «спрага»: ho sete — «у мене спрага». Fame — «голод», caldo — «спека».",
+   "en": "Sete means “thirst”: ho sete is “I have thirst”. Fame is “hunger”, caldo is “heat”."
+  },
+  "5:c3:it:05:15": {
+   "ru": "Abbiamo значит «у нас», freddo — «холод». Caldo — «жара», fame — «голод».",
+   "uk": "Abbiamo означає «у нас», freddo — «холод». Caldo — «спека», fame — «голод».",
+   "en": "Abbiamo means “we have”, freddo means “cold”. Caldo is “heat”, fame is “hunger”."
+  },
+  "5:c4:it:05:19": {
+   "ru": "Schiena значит «спина», mal di — «боль в». Gola — «горло», testa — «голова».",
+   "uk": "Schiena означає «спина», mal di — «біль у». Gola — «горло», testa — «голова».",
+   "en": "Schiena means “back”, and mal di means “pain in”. Gola is “throat”, testa is “head”."
+  },
+  "5:c4:it:05:49": {
+   "ru": "Gola значит «горло», mal di — «боль в». Schiena — «спина», sonno — «сон».",
+   "uk": "Gola означає «горло», mal di — «біль у». Schiena — «спина», sonno — «сон».",
+   "en": "Gola means “throat”, and mal di means “pain in”. Schiena is “back”, sonno is “sleep”."
+  },
+  "5:c5:it:05:42": {
+   "ru": "Hai — «у тебя», bisogno di — «нужда в», pausa — «перерыв». Acqua — «вода», aiuto — «помощь».",
+   "uk": "Hai — «у тебе», bisogno di — «потреба в», pausa — «перерва». Acqua — «вода», aiuto — «допомога».",
+   "en": "Hai is “you have”, bisogno di is “need of”, pausa is “break”. Acqua is “water”, aiuto is “help”."
+  },
+  "5:c5:it:05:44": {
+   "ru": "Abbiamo — «у нас», d’acqua — «воды». Aiuto — «помощь», ricetta — «рецепт».",
+   "uk": "Abbiamo — «у нас», d’acqua — «води». Aiuto — «допомога», ricetta — «рецепт».",
+   "en": "Abbiamo is “we have”, d’acqua is “of water”. Aiuto is “help”, ricetta is “prescription”."
+  },
+  "5:c6:it:05:37": {
+   "ru": "Degli spiccioli значит «мелочь», ha вежливо — «у вас есть». Penna — «ручка», passaporto — «паспорт».",
+   "uk": "Degli spiccioli означає «дрібні гроші», ha ввічливо — «у вас є». Penna — «ручка», passaporto — «паспорт».",
+   "en": "Degli spiccioli means “small change”, and ha politely means “you have”. Penna is “pen”, passaporto is “passport”."
+  },
+  "5:c6:it:05:35": {
+   "ru": "Con sé значит «при себе», passaporto — «паспорт». Penna — «ручка», appuntamento — «встреча».",
+   "uk": "Con sé означає «при собі», passaporto — «паспорт». Penna — «ручка», appuntamento — «зустріч».",
+   "en": "Con sé means “with him”, passaporto means “passport”. Penna is “pen”, appuntamento is “appointment”."
+  },
+  "6:c1:it:06:02": {
+   "ru": "Sotto значит «под», borsa — «сумка». In — «в», а sul — «на».",
+   "uk": "Sotto означає «під», borsa — «сумка». In — «в», а sul — «на».",
+   "en": "Sotto means “under”, borsa means “bag”. In is “in”, and sul is “on”."
+  },
+  "6:c1:it:06:03": {
+   "ru": "In tasca значит «в кармане», biglietto — «билет». Sul — «на», sotto — «под».",
+   "uk": "In tasca означає «в кишені», biglietto — «квиток». Sul — «на», sotto — «під».",
+   "en": "In tasca means “in the pocket”, biglietto is “ticket”. Sul is “on”, sotto is “under”."
+  },
+  "6:c2:it:06:35": {
+   "ru": "Nel значит «в», cassetto — «ящик». Sulla — «на», in tasca — «в кармане».",
+   "uk": "Nel означає «в», cassetto — «шухляда». Sulla — «на», in tasca — «в кишені».",
+   "en": "Nel means “in”, cassetto means “drawer”. Sulla is “on”, in tasca is “in the pocket”."
+  },
+  "6:c2:it:06:50": {
+   "ru": "Sulla значит «на», busta — «конверт». Nell’ingresso — «в прихожей», sedia — «стул».",
+   "uk": "Sulla означає «на», busta — «конверт». Nell’ingresso — «в передпокої», sedia — «стілець».",
+   "en": "Sulla means “on”, busta means “envelope”. Nell’ingresso is “in the hall”, sedia is “chair”."
+  },
+  "6:c3:it:06:08": {
+   "ru": "Zuppa — «суп», calda — «горячая». Pane — «хлеб», fredda — «холодная».",
+   "uk": "Zuppa — «суп», calda — «гаряча». Pane — «хліб», fredda — «холодна».",
+   "en": "Zuppa is “soup”, calda is “hot”. Pane is “bread”, fredda is “cold”."
+  },
+  "6:c3:it:06:10": {
+   "ru": "Acqua — «вода», fredda — «холодная». Calda — «горячая», puliti — «чистые».",
+   "uk": "Acqua — «вода», fredda — «холодна». Calda — «гаряча», puliti — «чисті».",
+   "en": "Acqua is “water”, fredda is “cold”. Calda is “hot”, puliti is “clean”."
+  },
+  "6:c4:it:06:12": {
+   "ru": "Tè значит «чай». Caffè — «кофе», а a lei piace — «ей нравится».",
+   "uk": "Tè означає «чай». Caffè — «кава», а a lei piace — «їй подобається».",
+   "en": "Tè means “tea”. Caffè is “coffee”, and a lei piace is “she likes”."
+  },
+  "6:c4:it:06:15": {
+   "ru": "Libri — «книги», их несколько: piacciono, ci — «нам». Mi piace — про одну вещь.",
+   "uk": "Libri — «книги», їх кілька: piacciono, ci — «нам». Mi piace — про одну річ.",
+   "en": "Libri is “books”, several, so piacciono; ci is “us”. Mi piace is for one thing."
+  },
+  "6:c5:it:06:21": {
+   "ru": "Banca — «банк», chiusa — «закрыта». Aperto — «открыт», piccolo — «небольшой».",
+   "uk": "Banca — «банк», chiusa — «зачинено». Aperto — «відчинено», piccolo — «невеликий».",
+   "en": "Banca is “bank”, chiusa is “closed”. Aperto is “open”, piccolo is “small”."
+  },
+  "6:c5:it:06:29": {
+   "ru": "Ascensore — «лифт», a sinistra — «слева». Aperto — «открыт», piccolo — «небольшой».",
+   "uk": "Ascensore — «ліфт», a sinistra — «ліворуч». Aperto — «відчинено», piccolo — «невеликий».",
+   "en": "Ascensore is “lift”, a sinistra is “on the left”. Aperto is “open”, piccolo is “small”."
+  },
+  "6:c6:it:06:45": {
+   "ru": "Di Paolo — «Паоло» (чей брат), al mercato — «на рынке». Chiavi — «ключи», amica — «подруга».",
+   "uk": "Di Paolo — «Паоло» (чий брат), al mercato — «на ринку». Chiavi — «ключі», amica — «подруга».",
+   "en": "Di Paolo shows whose brother, al mercato is “at the market”. Chiavi is “keys”, amica is “friend”."
+  },
+  "6:c6:it:06:39": {
+   "ru": "Caricabatterie — «зарядное устройство», in camera da letto — «в спальне». Cassetto — «ящик».",
+   "uk": "Caricabatterie — «зарядний пристрій», in camera da letto — «в спальні». Cassetto — «шухляда».",
+   "en": "Caricabatterie is “charger”, in camera da letto is “in the bedroom”. Cassetto is “drawer”."
+  },
+  "7:c1:it:07:02": {
+   "ru": "Lavori значит «ты работаешь». Lavoro — «я работаю», lavora — «он, она работает».",
+   "uk": "Lavori означає «ти працюєш». Lavoro — «я працюю», lavora — «він, вона працює».",
+   "en": "Lavori means “you work”. Lavoro is “I work”, lavora is “he or she works”."
+  },
+  "7:c1:it:07:03": {
+   "ru": "Lavora — «он, она работает», а Lea — она. Lavoro — «я», lavori — «ты».",
+   "uk": "Lavora — «він, вона працює», а Lea — вона. Lavoro — «я», lavori — «ти».",
+   "en": "Lavora is “he or she works”, and Lea is a she. Lavoro is “I”, lavori is “you”."
+  },
+  "7:c2:it:07:05": {
+   "ru": "Lavorate значит «вы работаете». Lavoriamo — «мы», lavorano — «они».",
+   "uk": "Lavorate означає «ви працюєте». Lavoriamo — «ми», lavorano — «вони».",
+   "en": "Lavorate means “you work”, for several people. Lavoriamo is “we”, lavorano is “they”."
+  },
+  "7:c2:it:07:06": {
+   "ru": "Lavorano значит «они работают», fuori — «на улице». Lavoriamo — «мы», lavorate — «вы».",
+   "uk": "Lavorano означає «вони працюють», fuori — «надворі». Lavoriamo — «ми», lavorate — «ви».",
+   "en": "Lavorano means “they work”, fuori means “outside”. Lavoriamo is “we”, lavorate is “you”."
+  },
+  "7:c3:it:07:15": {
+   "ru": "Abitate — «вы живёте», in città — «в городе». Abito — «я живу», abitano — «они живут».",
+   "uk": "Abitate — «ви живете», in città — «в місті». Abito — «я живу», abitano — «вони живуть».",
+   "en": "Abitate is “you live”, in città is “in the city”. Abito is “I live”, abitano is “they live”."
+  },
+  "7:c3:it:07:16": {
+   "ru": "Abitano значит «они живут». Abito — «я живу», abitate — «вы живёте».",
+   "uk": "Abitano означає «вони живуть». Abito — «я живу», abitate — «ви живете».",
+   "en": "Abitano means “they live”. Abito is “I live”, abitate is “you live”."
+  },
+  "7:c4:it:07:18": {
+   "ru": "Ascolti значит «ты слушаешь», tu — «ты». Ascolto — «я слушаю», ascolta — «он слушает».",
+   "uk": "Ascolti означає «ти слухаєш», tu — «ти». Ascolto — «я слухаю», ascolta — «він слухає».",
+   "en": "Ascolti means “you listen”, tu is “you”. Ascolto is “I listen”, ascolta is “he listens”."
+  },
+  "7:c4:it:07:19": {
+   "ru": "Lui значит «он», ascolta — «слушает», messaggio — «сообщение». Radio — «радио».",
+   "uk": "Lui означає «він», ascolta — «слухає», messaggio — «повідомлення». Radio — «радіо».",
+   "en": "Lui means “he”, ascolta means “listens”, messaggio means “message”. Radio is “radio”."
+  },
+  "7:c5:it:07:44": {
+   "ru": "Cerchiamo значит «мы ищем», appartamento — «квартира». Cerca — «она», cercano — «они».",
+   "uk": "Cerchiamo означає «ми шукаємо», appartamento — «квартира». Cerca — «вона», cercano — «вони».",
+   "en": "Cerchiamo means “we look for”, appartamento means “flat”. Cerca is “she”, cercano is “they”."
+  },
+  "7:c5:it:07:26": {
+   "ru": "Cercano значит «они ищут», posto — «место». Cerchiamo — «мы», cerca — «она».",
+   "uk": "Cercano означає «вони шукають», posto — «місце». Cerchiamo — «ми», cerca — «вона».",
+   "en": "Cercano means “they look for”, posto means “place”. Cerchiamo is “we”, cerca is “she”."
+  },
+  "7:c6:it:07:33": {
+   "ru": "Prepara — «он готовит», здесь «варит», caffè — «кофе». Preparo — «я», prepariamo — «мы».",
+   "uk": "Prepara — «він готує», тут «варить», caffè — «кава». Preparo — «я», prepariamo — «ми».",
+   "en": "Prepara is “he prepares”, here “makes”, caffè is “coffee”. Preparo is “I”, prepariamo is “we”."
+  },
+  "7:c6:it:07:34": {
+   "ru": "Prepariamo значит «мы готовим», здесь «собираем», valigie — «чемоданы». Preparo — «я», prepara — «он».",
+   "uk": "Prepariamo означає «ми готуємо», тут «збираємо», valigie — «валізи». Preparo — «я», prepara — «він».",
+   "en": "Prepariamo means “we prepare”, here “pack”, valigie is “suitcases”. Preparo is “I”, prepara is “he”."
+  },
+  "8:c1:it:08:02": {
+   "ru": "Dov’è значит «где находится», это про одного: Paolo. Sono — для нескольких, sei — «ты».",
+   "uk": "Dov’è означає «де перебуває», це про одного: Paolo. Sono — для кількох, sei — «ти».",
+   "en": "Dov’è means “where is”, for one person: Paolo. Sono is for several, and sei is “you”."
+  },
+  "8:c1:it:08:03": {
+   "ru": "Chiavi — «ключи», их несколько, поэтому dove sono. Dov’è — про одного, sei — «ты».",
+   "uk": "Chiavi — «ключі», їх кілька, тому dove sono. Dov’è — про одного, sei — «ти».",
+   "en": "Chiavi is “keys”, several, so dove sono. Dov’è is for one, and sei is “you”."
+  },
+  "8:c2:it:08:16": {
+   "ru": "Chi значит «кто», prepara — «готовит», cena — «ужин». Lavora — «работает», ascolta — «слушает».",
+   "uk": "Chi означає «хто», prepara — «готує», cena — «вечеря». Lavora — «працює», ascolta — «слухає».",
+   "en": "Chi means “who”, prepara means “prepares”, cena means “dinner”. Lavora is “works”, ascolta is “listens”."
+  },
+  "8:c2:it:08:17": {
+   "ru": "Ascolta значит «слушает», radio — «радио». Prepara — «готовит», lavora — «работает».",
+   "uk": "Ascolta означає «слухає», radio — «радіо». Prepara — «готує», lavora — «працює».",
+   "en": "Ascolta means “listens”, radio means “radio”. Prepara is “prepares”, lavora is “works”."
+  },
+  "8:c3:it:08:21": {
+   "ru": "Arrivi значит «ты приезжаешь», quando — «когда». Concerto — «концерт», lezione — «занятие».",
+   "uk": "Arrivi означає «ти приїжджаєш», quando — «коли». Concerto — «концерт», lezione — «заняття».",
+   "en": "Arrivi means “you arrive”, quando means “when”. Concerto is “concert”, lezione is “lesson”."
+  },
+  "8:c3:it:08:25": {
+   "ru": "Comincia значит «начинается», lezione — «занятие». Concerto — «концерт», arrivi — «ты приезжаешь».",
+   "uk": "Comincia означає «починається», lezione — «заняття». Concerto — «концерт», arrivi — «ти приїжджаєш».",
+   "en": "Comincia means “begins”, lezione means “lesson”. Concerto is “concert”, arrivi is “you arrive”."
+  },
+  "8:c4:it:08:29": {
+   "ru": "Parte значит «отправляется», treno — «поезд». Apre — «открывается», appuntamento — «встреча».",
+   "uk": "Parte означає «відправляється», treno — «потяг». Apre — «відчиняється», appuntamento — «зустріч».",
+   "en": "Parte means “leaves”, treno means “train”. Apre is “opens”, appuntamento is “appointment”."
+  },
+  "8:c4:it:08:30": {
+   "ru": "L’appuntamento значит «встреча». Apre — «открывается», parte — «отправляется».",
+   "uk": "L’appuntamento означає «зустріч». Apre — «відчиняється», parte — «відправляється».",
+   "en": "L’appuntamento means “appointment”. Apre is “opens”, parte is “leaves”."
+  },
+  "8:c5:it:08:32": {
+   "ru": "Costano значит «стоят», scarpe — «туфли», их несколько. Costa — «стоит», про одну вещь.",
+   "uk": "Costano означає «коштують», scarpe — «туфлі», їх кілька. Costa — «коштує», про одну річ.",
+   "en": "Costano means “cost”, scarpe means “shoes”, several of them. Costa is for one thing."
+  },
+  "8:c5:it:08:33": {
+   "ru": "Costa значит «стоит», consegna — «доставка». Biglietto — «билет», costano — «стоят».",
+   "uk": "Costa означає «коштує», consegna — «доставка». Biglietto — «квиток», costano — «коштують».",
+   "en": "Costa means “costs”, consegna means “delivery”. Biglietto is “ticket”, costano is “cost” for several."
+  },
+  "8:c6:it:08:50": {
+   "ru": "Per chi значит «для кого», regalo — «подарок». Con chi — «с кем», come — «как».",
+   "uk": "Per chi означає «для кого», regalo — «подарунок». Con chi — «з ким», come — «як».",
+   "en": "Per chi means “for whom”, regalo means “gift”. Con chi is “with whom”, come is “how”."
+  },
+  "8:c6:it:08:44": {
+   "ru": "Come si chiama значит «как называется», strada — «улица». Con chi — «с кем», per chi — «для кого».",
+   "uk": "Come si chiama означає «як називається», strada — «вулиця». Con chi — «з ким», per chi — «для кого».",
+   "en": "Come si chiama means “what is it called”, strada means “street”. Con chi is “with whom”, per chi is “for whom”."
+  },
+  "9:c1:it:09:05": {
+   "ru": "Mie значит «мои», chiavi — «ключи», их несколько: sono. Mia — «моя», про одну вещь.",
+   "uk": "Mie означає «мої», chiavi — «ключі», їх кілька: sono. Mia — «моя», про одну річ.",
+   "en": "Mie means “my” for several things, chiavi is “keys”: sono. Mia is “my” for one thing."
+  },
+  "9:c1:it:09:10": {
+   "ru": "Mia — «моя», bicicletta — «велосипед», in garage — «в гараже». Mie — «мои», про несколько вещей.",
+   "uk": "Mia — «моя», bicicletta — «велосипед», in garage — «в гаражі». Mie — «мої», про кілька речей.",
+   "en": "Mia is “my”, bicicletta is “bicycle”, in garage is “in the garage”. Mie is “my” for several things."
+  },
+  "9:c2:it:09:37": {
+   "ru": "Miei значит «мои», colleghi — «коллеги», их несколько. Mio — «мой», про одну вещь.",
+   "uk": "Miei означає «мої», colleghi — «колеги», їх кілька. Mio — «мій», про одну річ.",
+   "en": "Miei means “my” for several, colleghi is “colleagues”. Mio is “my” for one thing."
+  },
+  "9:c2:it:09:28": {
+   "ru": "Prendo — «я беру», ombrello — «зонт». Mio — «мой», по-русски здесь говорят «свой».",
+   "uk": "Prendo — «я беру», ombrello — «парасолька». Mio — «мій», українською тут кажуть «свій».",
+   "en": "Prendo is “I take”, ombrello is “umbrella”. Mio is “my”, even where we might say “own”."
+  },
+  "9:c3:it:09:06": {
+   "ru": "Tue значит «твои», chiavi — «ключи». Tua — «твоя», tuo — «твой»: они про одну вещь.",
+   "uk": "Tue означає «твої», chiavi — «ключі». Tua — «твоя», tuo — «твій»: вони про одну річ.",
+   "en": "Tue means “your” for several, chiavi is “keys”. Tua and tuo are “your” for one thing."
+  },
+  "9:c3:it:09:32": {
+   "ru": "Tuo значит «твой», amico — «друг», arrivato — «приехал». Tue — «твои», tua — «твоя».",
+   "uk": "Tuo означає «твій», amico — «друг», arrivato — «приїхав». Tue — «твої», tua — «твоя».",
+   "en": "Tuo means “your”, amico is “friend”, arrivato is “has arrived”. Tue and tua are other forms."
+  },
+  "9:c4:it:09:24": {
+   "ru": "Sua здесь «её», carta — «карточка», sta cercando — «ищет». Badge — «бейдж», borsa — «сумка».",
+   "uk": "Sua тут «її», carta — «картка», sta cercando — «шукає». Badge — «бейдж», borsa — «сумка».",
+   "en": "Sua here is “her”, carta is “card”, sta cercando is “is looking for”. Badge is “badge”, borsa is “bag”."
+  },
+  "9:c4:it:09:23": {
+   "ru": "Cerca значит «ищет», badge — «бейдж», suo — «его». Borsa — «сумка», carta — «карточка».",
+   "uk": "Cerca означає «шукає», badge — «бейдж», suo — «його». Borsa — «сумка», carta — «картка».",
+   "en": "Cerca means “looks for”, badge is “badge”, suo is “his”. Borsa is “bag”, carta is “card”."
+  },
+  "9:c5:it:09:12": {
+   "ru": "Vostro значит «ваш», treno — «поезд». Nostro — «наш», а state prendendo — «вы берёте».",
+   "uk": "Vostro означає «ваш», treno — «потяг». Nostro — «наш», а state prendendo — «ви берете».",
+   "en": "Vostro means “your” (several people), treno is “train”. Nostro is “our”, state prendendo is “you take”."
+  },
+  "9:c5:it:09:29": {
+   "ru": "State prendendo — «вы берёте», casco — «шлем», vostro — «ваш». Treno — «поезд», nostro — «наш».",
+   "uk": "State prendendo — «ви берете», casco — «шолом», vostro — «ваш». Treno — «потяг», nostro — «наш».",
+   "en": "State prendendo is “you are taking”, casco is “helmet”, vostro is “your”. Treno is “train”, nostro is “our”."
+  },
+  "9:c6:it:09:16": {
+   "ru": "Loro — «их», camere — «комнаты», их несколько, поэтому sono libere. Camera libera — одна комната.",
+   "uk": "Loro — «їхні», camere — «кімнати», їх кілька, тому sono libere. Camera libera — одна кімната.",
+   "en": "Loro is “their”, camere is “rooms”, several, so sono libere. Camera libera is one room."
+  },
+  "9:c6:it:09:27": {
+   "ru": "Bambini — «дети», cercano — «ищут», pallone — «мяч». Camera — «комната», libera — «свободна».",
+   "uk": "Bambini — «діти», cercano — «шукають», pallone — «м’яч». Camera — «кімната», libera — «вільна».",
+   "en": "Bambini is “children”, cercano is “look for”, pallone is “ball”. Camera is “room”, libera is “free”."
+  },
+  "10:c1:it:10:02": {
+   "ru": "Tavolo — «стол», перед ним un. Panchina — «скамейка», pacco — «посылка».",
+   "uk": "Tavolo — «стіл», перед ним un. Panchina — «лавка», pacco — «посилка».",
+   "en": "Tavolo is “table”, with un before it. Panchina is “bench”, pacco is “parcel”."
+  },
+  "10:c1:it:10:43": {
+   "ru": "Pacco — «посылка», alla reception — «на ресепшене». Tavolo — «стол», panchina — «скамейка».",
+   "uk": "Pacco — «посилка», alla reception — «на рецепції». Tavolo — «стіл», panchina — «лавка».",
+   "en": "Pacco is “parcel”, alla reception is “at the reception”. Tavolo is “table”, panchina is “bench”."
+  },
+  "10:c2:it:10:04": {
+   "ru": "Tre значит «три», sedie — «стулья», их несколько: ci sono. Due — «два», pile — «батарейки».",
+   "uk": "Tre означає «три», sedie — «стільці», їх кілька: ci sono. Due — «два», pile — «батарейки».",
+   "en": "Tre means “three”, sedie is “chairs”, several: ci sono. Due is “two”, pile is “batteries”."
+  },
+  "10:c2:it:10:16": {
+   "ru": "Pile — «батарейки», nel cassetto — «в ящике», их несколько: ci sono. Sedie — «стулья».",
+   "uk": "Pile — «батарейки», nel cassetto — «в шухляді», їх кілька: ci sono. Sedie — «стільці».",
+   "en": "Pile is “batteries”, nel cassetto is “in the drawer”, several: ci sono. Sedie is “chairs”."
+  },
+  "10:c3:it:10:15": {
+   "ru": "Orologio — «часы», in cucina — «на кухне». Coperta — «одеяло», mappa — «карта».",
+   "uk": "Orologio — «годинник», in cucina — «на кухні». Coperta — «ковдра», mappa — «карта».",
+   "en": "Orologio is “clock”, in cucina is “in the kitchen”. Coperta is “blanket”, mappa is “map”."
+  },
+  "10:c3:it:10:46": {
+   "ru": "Coperta — «одеяло», nell’armadio — «в шкафу». Orologio — «часы», mappa — «карта».",
+   "uk": "Coperta — «ковдра», nell’armadio — «в шафі». Orologio — «годинник», mappa — «карта».",
+   "en": "Coperta is “blanket”, nell’armadio is “in the wardrobe”. Orologio is “clock”, mappa is “map”."
+  },
+  "10:c4:it:10:27": {
+   "ru": "Camera libera значит «свободная комната». Latte — «молоко», autobus — «автобус».",
+   "uk": "Camera libera означає «вільна кімната». Latte — «молоко», autobus — «автобус».",
+   "en": "Camera libera means “free room”. Latte is “milk”, autobus is “bus”."
+  },
+  "10:c4:it:10:28": {
+   "ru": "Latte — «молоко», in frigorifero — «в холодильнике». Camera — «комната», autobus — «автобус».",
+   "uk": "Latte — «молоко», in frigorifero — «в холодильнику». Camera — «кімната», autobus — «автобус».",
+   "en": "Latte is “milk”, in frigorifero is “in the fridge”. Camera is “room”, autobus is “bus”."
+  },
+  "10:c5:it:10:33": {
+   "ru": "Non c’è значит «нет», acqua calda — «горячая вода». Sapone — «мыло», biglietti — «билеты».",
+   "uk": "Non c’è означає «немає», acqua calda — «гаряча вода». Sapone — «мило», biglietti — «квитки».",
+   "en": "Non c’è means “there is no”, acqua calda is “hot water”. Sapone is “soap”, biglietti is “tickets”."
+  },
+  "10:c5:it:10:36": {
+   "ru": "Biglietti — «билеты», их несколько: non ci sono, più — «больше». Sapone — «мыло».",
+   "uk": "Biglietti — «квитки», їх кілька: non ci sono, più — «більше». Sapone — «мило».",
+   "en": "Biglietti is “tickets”, several: non ci sono, and più is “any more”. Sapone is “soap”."
+  },
+  "11:c1:it:11:02": {
+   "ru": "Vai значит «ты идёшь», in stazione — «на вокзал». Vado — «я иду», va — «он идёт».",
+   "uk": "Vai означає «ти йдеш», in stazione — «на вокзал». Vado — «я йду», va — «він іде».",
+   "en": "Vai means “you go”, in stazione is “to the station”. Vado is “I go”, va is “he goes”."
+  },
+  "11:c1:it:11:09": {
+   "ru": "Io — «я», vado — «я иду», al cinema — «в кино». Vai — «ты идёшь», va — «он идёт».",
+   "uk": "Io — «я», vado — «я йду», al cinema — «в кіно». Vai — «ти йдеш», va — «він іде».",
+   "en": "Io is “I”, vado is “I go”, al cinema is “to the cinema”. Vai is “you go”, va is “he goes”."
+  },
+  "11:c2:it:11:06": {
+   "ru": "Andate значит «вы идёте», a scuola — «в школу». Andiamo — «мы», vanno — «они».",
+   "uk": "Andate означає «ви йдете», a scuola — «до школи». Andiamo — «ми», vanno — «вони».",
+   "en": "Andate means “you go”, a scuola is “to school”. Andiamo is “we go”, vanno is “they go”."
+  },
+  "11:c2:it:11:07": {
+   "ru": "Loro — «они», vanno — «они идут», in ufficio — «в офис». Andiamo — «мы», andate — «вы».",
+   "uk": "Loro — «вони», vanno — «вони йдуть», in ufficio — «в офіс». Andiamo — «ми», andate — «ви».",
+   "en": "Loro is “they”, vanno is “they go”, in ufficio is “to the office”. Andiamo is “we”, andate is “you”."
+  },
+  "11:c3:it:11:12": {
+   "ru": "Dal значит «к», dentista — «стоматолог». Dal medico — «к врачу», a casa di — «к … домой».",
+   "uk": "Dal означає «до», dentista — «стоматолог». Dal medico — «до лікаря», a casa di — «до … додому».",
+   "en": "Dal means “to (a person)”, dentista is “dentist”. Dal medico is “to the doctor”, a casa di is “to someone’s home”."
+  },
+  "11:c3:it:11:13": {
+   "ru": "A casa di значит «к … домой», mia sorella — «моя сестра». Dal dentista и dal medico — к врачу.",
+   "uk": "A casa di означає «до … додому», mia sorella — «моя сестра». Dal dentista і dal medico — до лікаря.",
+   "en": "A casa di means “to someone’s home”, mia sorella is “my sister”. Dal dentista and dal medico are for doctors."
+  },
+  "11:c4:it:11:22": {
+   "ru": "Lei va — «она едет», a Parigi — «в Париж». Lione — другой город, in Francia — «во Францию».",
+   "uk": "Lei va — «вона їде», a Parigi — «до Парижа». Lione — інше місто, in Francia — «до Франції».",
+   "en": "Lei va is “she goes”, a Parigi is “to Paris”. Lione is another city, in Francia is “to France”."
+  },
+  "11:c4:it:11:30": {
+   "ru": "Spagna — страна, поэтому in: «в Испанию». Перед городом говорят a, как в a Parigi.",
+   "uk": "Spagna — країна, тому in: «до Іспанії». Перед містом кажуть a, як у a Parigi.",
+   "en": "Spagna is a country, so in: “to Spain”. Before a city you say a, as in a Parigi."
+  },
+  "11:c5:it:11:32": {
+   "ru": "Lei va — «она едет», al museo — «в музей», in autobus — «на автобусе». A piedi — «пешком».",
+   "uk": "Lei va — «вона їде», al museo — «до музею», in autobus — «автобусом». A piedi — «пішки».",
+   "en": "Lei va is “she goes”, al museo is “to the museum”, in autobus is “by bus”. A piedi is “on foot”."
+  },
+  "11:c5:it:11:36": {
+   "ru": "Lui va — «он едет», allo stadio — «на стадион», in metropolitana — «на метро». In autobus — «на автобусе».",
+   "uk": "Lui va — «він їде», allo stadio — «на стадіон», in metropolitana — «метро». In autobus — «автобусом».",
+   "en": "Lui va is “he goes”, allo stadio is “to the stadium”, in metropolitana is “by metro”. In autobus is “by bus”."
+  },
+  "11:c6:it:11:44": {
+   "ru": "Non va значит «не идёт», alla riunione — «на собрание». Vai — «ты идёшь», andiamo — «мы идём».",
+   "uk": "Non va означає «не йде», alla riunione — «на збори». Vai — «ти йдеш», andiamo — «ми йдемо».",
+   "en": "Non va means “does not go”, alla riunione is “to the meeting”. Vai is “you go”, andiamo is “we go”."
+  },
+  "11:c6:it:11:45": {
+   "ru": "Non andiamo — «мы не едем», in centro — «в центр города». Non va — «он не идёт», vai — «ты идёшь».",
+   "uk": "Non andiamo — «ми не їдемо», in centro — «до центру міста». Non va — «він не йде», vai — «ти йдеш».",
+   "en": "Non andiamo is “we do not go”, in centro is “to the town centre”. Non va is “he does not go”, vai is “you go”."
+  },
+  "12:c1:it:12:03": {
+   "ru": "Zuppa — «суп», перед ним della. Del pane — про хлеб, а prendiamo — «мы берём».",
+   "uk": "Zuppa — «суп», перед ним della. Del pane — про хліб, а prendiamo — «ми беремо».",
+   "en": "Zuppa is “soup”, and della goes before it. Del pane is about bread, and prendiamo is “we take”."
+  },
+  "12:c1:it:12:05": {
+   "ru": "Prendiamo значит «мы берём», dell’acqua — «воду». Prendo — «я беру», del pane — «хлеб».",
+   "uk": "Prendiamo означає «ми беремо», dell’acqua — «воду». Prendo — «я беру», del pane — «хліб».",
+   "en": "Prendiamo means “we take”, dell’acqua means “some water”. Prendo is “I take”, del pane is “some bread”."
+  },
+  "12:c2:it:12:12": {
+   "ru": "Farina — «мука», compro — «я покупаю». Del burro — «масло», compriamo — «мы покупаем».",
+   "uk": "Farina — «борошно», compro — «я купую». Del burro — «масло», compriamo — «ми купуємо».",
+   "en": "Farina is “flour”, compro is “I buy”. Del burro is “butter”, compriamo is “we buy”."
+  },
+  "12:c2:it:12:13": {
+   "ru": "Compriamo — «мы покупаем», pesce — «рыба». Compro — «я покупаю», burro — «масло», farina — «мука».",
+   "uk": "Compriamo — «ми купуємо», pesce — «риба». Compro — «я купую», burro — «масло», farina — «борошно».",
+   "en": "Compriamo is “we buy”, pesce is “fish”. Compro is “I buy”, burro is “butter”, farina is “flour”."
+  },
+  "12:c3:it:12:21": {
+   "ru": "Bevo значит «я пью», tè — «чай». Mangiamo — «мы едим», beve — «она пьёт».",
+   "uk": "Bevo означає «я п’ю», tè — «чай». Mangiamo — «ми їмо», beve — «вона п’є».",
+   "en": "Bevo means “I drink”, tè is “tea”. Mangiamo is “we eat”, beve is “she drinks”."
+  },
+  "12:c3:it:12:22": {
+   "ru": "Lei beve — «она пьёт», dell’acqua — «воду». Bevo — «я пью», mangiamo — «мы едим».",
+   "uk": "Lei beve — «вона п’є», dell’acqua — «воду». Bevo — «я п’ю», mangiamo — «ми їмо».",
+   "en": "Lei beve is “she drinks”, dell’acqua is “some water”. Bevo is “I drink”, mangiamo is “we eat”."
+  },
+  "12:c4:it:12:26": {
+   "ru": "Aggiunge значит «она добавляет», pepe — «перец». Aggiungi — «ты», aggiungo — «я».",
+   "uk": "Aggiunge означає «вона додає», pepe — «перець». Aggiungi — «ти», aggiungo — «я».",
+   "en": "Aggiunge means “she adds”, pepe is “pepper”. Aggiungi is “you add”, aggiungo is “I add”."
+  },
+  "12:c4:it:12:27": {
+   "ru": "Aggiungi значит «ты добавляешь», senape — «горчица». Aggiungo — «я», aggiunge — «она».",
+   "uk": "Aggiungi означає «ти додаєш», senape — «гірчиця». Aggiungo — «я», aggiunge — «вона».",
+   "en": "Aggiungi means “you add”, senape is “mustard”. Aggiungo is “I add”, aggiunge is “she adds”."
+  },
+  "12:c5:it:12:33": {
+   "ru": "Lui — «он», beve — «пьёт», caffè — «кофе»; после non нет del. Bevo — «я пью», aggiungi — «ты добавляешь».",
+   "uk": "Lui — «він», beve — «п’є», caffè — «кава»; після non немає del. Bevo — «я п’ю», aggiungi — «ти додаєш».",
+   "en": "Lui is “he”, beve is “drinks”, caffè is “coffee”; no del after non. Bevo is “I drink”, aggiungi is “you add”."
+  },
+  "12:c5:it:12:35": {
+   "ru": "Aggiungi значит «ты добавляешь», sale — «соль», non — «не». Beve — «он пьёт», bevo — «я пью».",
+   "uk": "Aggiungi означає «ти додаєш», sale — «сіль», non — «не». Beve — «він п’є», bevo — «я п’ю».",
+   "en": "Aggiungi means “you add”, sale is “salt”, non is “not”. Beve is “he drinks”, bevo is “I drink”."
+  },
+  "12:c6:it:12:39": {
+   "ru": "Vorrei значит «я бы хотел», un po’ di — «немного». Vuoi — «ты хочешь», aggiunge — «она добавляет».",
+   "uk": "Vorrei означає «я хотів би», un po’ di — «трохи». Vuoi — «ти хочеш», aggiunge — «вона додає».",
+   "en": "Vorrei means “I would like”, un po’ di means “a little”. Vuoi is “you want”, aggiunge is “she adds”."
+  },
+  "12:c6:it:12:45": {
+   "ru": "Aggiunge — «она добавляет», cucchiaio — «ложка», miele — «мёд». Tazza — «чашка», vorrei — «я бы хотел».",
+   "uk": "Aggiunge — «вона додає», cucchiaio — «ложка», miele — «мед». Tazza — «чашка», vorrei — «я хотів би».",
+   "en": "Aggiunge is “she adds”, cucchiaio is “spoon”, miele is “honey”. Tazza is “cup”, vorrei is “I would like”."
+  },
+  "16:c1:it:16:02": {
+   "ru": "Entri кончается на -i: так говорят на «вы», «заходите». Entra — для близкого, «заходи».",
+   "uk": "Entri закінчується на -i: так кажуть на «ви», «заходьте». Entra — для близького, «заходь».",
+   "en": "Entri ends in -i: this is for “you” (polite), “come in”. Entra is for a close person."
+  },
+  "16:c1:it:16:04": {
+   "ru": "Aspetti кончается на -i: так говорят на «вы». Aspetta — «подожди», resti — «останьтесь».",
+   "uk": "Aspetti закінчується на -i: так кажуть на «ви». Aspetta — «зачекай», resti — «залишайтеся».",
+   "en": "Aspetti ends in -i: this is the polite “you”. Aspetta is “wait” to a close person, resti is “stay”."
+  },
+  "16:c2:it:16:12": {
+   "ru": "Apri значит «открой», finestra — «окно». Chiudi — «закрой», tieni — «сохрани».",
+   "uk": "Apri означає «відчини», finestra — «вікно». Chiudi — «зачини», tieni — «збережи».",
+   "en": "Apri means “open”, finestra means “window”. Chiudi is “close”, tieni is “keep”."
+  },
+  "16:c2:it:16:48": {
+   "ru": "Chiudi значит «закрой», rubinetto — «кран». Porta — «дверь», prendi — «возьми».",
+   "uk": "Chiudi означає «зачини», rubinetto — «кран». Porta — «двері», prendi — «візьми».",
+   "en": "Chiudi means “close”, rubinetto means “tap”. Porta is “door”, prendi is “take”."
+  },
+  "16:c3:it:16:18": {
+   "ru": "Attraversa значит «перейди дорогу», al semaforo — «у светофора». Segui — «следуй», gira — «поверни».",
+   "uk": "Attraversa означає «перейди дорогу», al semaforo — «біля світлофора». Segui — «іди за», gira — «поверни».",
+   "en": "Attraversa means “cross”, al semaforo means “at the traffic light”. Segui is “follow”, gira is “turn”."
+  },
+  "16:c3:it:16:41": {
+   "ru": "Andiamo здесь «пойдём»: зовём пойти вместе. Mercato — «рынок». Gira — «поверни», segui — «следуй».",
+   "uk": "Andiamo тут «ходімо»: кличемо піти разом. Mercato — «ринок». Gira — «поверни», segui — «іди за».",
+   "en": "Andiamo means “let’s go”: we invite someone to go together. Mercato is “market”. Gira is “turn”, segui is “follow”."
+  },
+  "16:c4:it:16:22": {
+   "ru": "Mostri значит «покажите», per favore — «пожалуйста». Firmi — «распишитесь», controlli — «проверьте».",
+   "uk": "Mostri означає «покажіть», per favore — «будь ласка». Firmi — «підпишіть», controlli — «перевірте».",
+   "en": "Mostri means “show”, per favore means “please”. Firmi is “sign”, controlli is “check”."
+  },
+  "16:c4:it:16:29": {
+   "ru": "Controlli значит «проверьте», на «вы»; l’importo — «сумма». Mostri — «покажите», bilancia — «весы».",
+   "uk": "Controlli означає «перевірте», на «ви»; l’importo — «сума». Mostri — «покажіть», bilancia — «ваги».",
+   "en": "Controlli means “check”, polite form; l’importo is “the amount”. Mostri is “show”, bilancia is “scales”."
+  },
+  "16:c5:it:16:33": {
+   "ru": "Non dimenticare — «не забудь», близкому человеку; ombrello — «зонт». Non perda — «не потеряйте», на «вы».",
+   "uk": "Non dimenticare — «не забудь», близькій людині; ombrello — «парасолька». Non perda — «не загубіть», на «ви».",
+   "en": "Non dimenticare is “don’t forget”, to a close person; ombrello is “umbrella”. Non perda is the polite “you”."
+  },
+  "16:c5:it:16:35": {
+   "ru": "Perda значит «потеряйте», так говорят на «вы»; ricevuta — «чек». Dimenticare — «забыть» для близкого.",
+   "uk": "Perda означає «загубіть», так кажуть на «ви»; ricevuta — «чек». Dimenticare — «забути» для близького.",
+   "en": "Perda means “lose”, said to polite “you”; ricevuta is “receipt”. Dimenticare is for a close person."
+  },
+  "17:c1:it:17:02": {
+   "ru": "Ti — о собеседнике на «ты», alzi — «встаёшь». Si alza — «она», mi alzo — «я».",
+   "uk": "Ti — про співрозмовника на «ти», alzi — «встаєш». Si alza — «вона», mi alzo — «я».",
+   "en": "Ti is for the person you call “you”, alzi is “get up”. Si alza is “she”, mi alzo is “I”."
+  },
+  "17:c1:it:17:03": {
+   "ru": "Si — о ней или о нём, alza — «встаёт». Ci alziamo — «мы», mi alzo — «я».",
+   "uk": "Si — про неї чи про нього, alza — «встає». Ci alziamo — «ми», mi alzo — «я».",
+   "en": "Si is for “she” or “he”, alza is “gets up”. Ci alziamo is “we”, mi alzo is “I”."
+  },
+  "17:c2:it:17:12": {
+   "ru": "Ti и svegli — «ты просыпаешься», alle sette — «в семь». Mi sveglio — «я», ti prepari — «ты готовишься».",
+   "uk": "Ti і svegli — «ти прокидаєшся», alle sette — «о сьомій». Mi sveglio — «я», ti prepari — «ти готуєшся».",
+   "en": "Ti and svegli mean “you wake up”, alle sette is “at seven”. Mi sveglio is “I”, ti prepari is “you get ready”."
+  },
+  "17:c2:it:17:09": {
+   "ru": "Si и prepara — о нём: «готовится». Ci svegliamo — «мы просыпаемся», mi preparo — «я».",
+   "uk": "Si і prepara — про нього: «готується». Ci svegliamo — «ми прокидаємося», mi preparo — «я».",
+   "en": "Si and prepara are for “he”: “gets ready”. Ci svegliamo is “we wake up”, mi preparo is “I”."
+  },
+  "17:c3:it:17:21": {
+   "ru": "Mi и vesto — «я одеваюсь», camera mia — «моя комната». Ti vesti — «ты», mi faccio la doccia — «душ».",
+   "uk": "Mi і vesto — «я одягаюся», camera mia — «моя кімната». Ti vesti — «ти», mi faccio la doccia — «душ».",
+   "en": "Mi and vesto mean “I get dressed”, camera mia is “my room”. Ti vesti is “you”, mi faccio la doccia is “shower”."
+  },
+  "17:c3:it:17:22": {
+   "ru": "Si veste — «она одевается», da sola — «сама». Si fa la doccia — «принимает душ», mi vesto — «я».",
+   "uk": "Si veste — «вона одягається», da sola — «сама». Si fa la doccia — «приймає душ», mi vesto — «я».",
+   "en": "Si veste is “she gets dressed”, da sola is “by herself”. Si fa la doccia is “showers”, mi vesto is “I”."
+  },
+  "17:c4:it:17:27": {
+   "ru": "Lava значит «моет», mani — «руки», si — о ней. Mi lavo i denti — «зубы», lavano — «моют» (дети).",
+   "uk": "Lava означає «миє», mani — «руки», si — про неї. Mi lavo i denti — «зуби», lavano — «миють» (діти).",
+   "en": "Lava means “washes”, mani is “hands”, si is for “she”. Mi lavo i denti is “teeth”, lavano is for the children."
+  },
+  "17:c4:it:17:25": {
+   "ru": "Rade значит «бреется», davanti allo specchio — «перед зеркалом». Lava le mani — «руки», ti guardi — «ты смотришь».",
+   "uk": "Rade означає «голиться», davanti allo specchio — «перед дзеркалом». Lava le mani — «руки», ti guardi — «ти дивишся».",
+   "en": "Rade means “shaves”, davanti allo specchio is “in front of the mirror”. Lava le mani is “hands”, ti guardi is “you look”."
+  },
+  "17:c5:it:17:32": {
+   "ru": "Non — «не», corica — «ложится спать», tardi — «поздно», si — о ней. Non mi alzo — «я», non ci affrettiamo — «мы».",
+   "uk": "Non — «не», corica — «лягає спати», tardi — «пізно», si — про неї. Non mi alzo — «я», non ci affrettiamo — «ми».",
+   "en": "Non is “not”, corica is “goes to bed”, tardi is “late”, si is for “she”. Non mi alzo is “I”, non ci affrettiamo is “we”."
+  },
+  "17:c5:it:17:35": {
+   "ru": "Non si rade — «не бреется», la domenica — «по воскресеньям». Paolo si rade — «бреется», без non.",
+   "uk": "Non si rade — «не голиться», la domenica — «по неділях». Paolo si rade — «голиться», без non.",
+   "en": "Non si rade is “doesn’t shave”, la domenica is “on Sundays”. Paolo si rade is “shaves”, with no non."
+  },
+  "18:c1:it:18:02": {
+   "ru": "Hai — «ты», chiuso — «закрыл». Ho — «я», abbiamo — «мы».",
+   "uk": "Hai — «ти», chiuso — «зачинив». Ho — «я», abbiamo — «ми».",
+   "en": "Hai is “you”, chiuso is “closed”. Ho is “I”, abbiamo is “we”."
+  },
+  "18:c1:it:18:03": {
+   "ru": "Ha — о ней, chiuso — «закрыла», finestra — «окно». Ho — «я», hanno — «они».",
+   "uk": "Ha — про неї, chiuso — «зачинила», finestra — «вікно». Ho — «я», hanno — «вони».",
+   "en": "Ha is for “she”, chiuso is “closed”, finestra is “window”. Ho is “I”, hanno is “they”."
+  },
+  "18:c2:it:18:08": {
+   "ru": "Ha — о Паоло, comprato — «купил», caffè — «кофе». Ho — «я», sciarpa — «шарф».",
+   "uk": "Ha — про Паоло, comprato — «купив», caffè — «кава». Ho — «я», sciarpa — «шарф».",
+   "en": "Ha is for Paolo, comprato is “bought”, caffè is “coffee”. Ho is “I”, sciarpa is “scarf”."
+  },
+  "18:c2:it:18:11": {
+   "ru": "Prenotato значит «забронировал», tavolo — «столик». Comprato — «купил», pagato — «оплатил».",
+   "uk": "Prenotato означає «забронював», tavolo — «столик». Comprato — «купив», pagato — «сплатив».",
+   "en": "Prenotato means “booked”, tavolo means “table”. Comprato is “bought”, pagato is “paid”."
+  },
+  "18:c3:it:18:23": {
+   "ru": "Letto значит «прочитала», его просто запомните; messaggio — «сообщение». Preso — «взял», bevuto — «выпили».",
+   "uk": "Letto означає «прочитала», його просто запам’ятайте; messaggio — «повідомлення». Preso — «взяв», bevuto — «випили».",
+   "en": "Letto means “read”, just learn it; messaggio is “message”. Preso is “took”, bevuto is “drank”."
+  },
+  "18:c3:it:18:28": {
+   "ru": "Fatto значит «сделала», copia — «копия». Visto — «посмотрели», ricevuto — «получил».",
+   "uk": "Fatto означає «зробила», copia — «копія». Visto — «подивилися», ricevuto — «отримав».",
+   "en": "Fatto means “made”, copia means “copy”. Visto is “saw”, ricevuto is “received”."
+  },
+  "18:c4:it:18:18": {
+   "ru": "Trovato значит «нашла», chiavi — «ключи». Dimenticato — «забыл», lasciato — «оставил».",
+   "uk": "Trovato означає «знайшла», chiavi — «ключі». Dimenticato — «забув», lasciato — «залишив».",
+   "en": "Trovato means “found”, chiavi means “keys”. Dimenticato is “forgot”, lasciato is “left”."
+  },
+  "18:c4:it:18:41": {
+   "ru": "Ieri значит «вчера», lavato — «постирал». Stamattina — «сегодня утром», dimenticato — «забыл».",
+   "uk": "Ieri означає «вчора», lavato — «виправ». Stamattina — «сьогодні вранці», dimenticato — «забув».",
+   "en": "Ieri means “yesterday”, lavato means “washed”. Stamattina is “this morning”, dimenticato is “forgot”."
+  },
+  "18:c5:it:18:32": {
+   "ru": "Hai — «ты», risposto — «ответил», non — «не». Non ho sentito — «я не слышал», chi — «кто».",
+   "uk": "Hai — «ти», risposto — «відповів», non — «не». Non ho sentito — «я не чув», chi — «хто».",
+   "en": "Hai is “you”, risposto is “answered”, non is “not”. Non ho sentito is “I didn’t hear”, chi is “who”."
+  },
+  "18:c5:it:18:39": {
+   "ru": "Chi — «кто», rotto — «разбил», bicchiere — «стакан». Quando — «когда», non hai — «ты не».",
+   "uk": "Chi — «хто», rotto — «розбив», bicchiere — «склянка». Quando — «коли», non hai — «ти не».",
+   "en": "Chi is “who”, rotto is “broke”, bicchiere is “glass”. Quando is “when”, non hai is “you didn’t”."
+  },
+  "19:c1:it:19:02": {
+   "ru": "Arrivata на -a — о женщине, «приехала». Partita — «уехала», arrivato — о мужчине.",
+   "uk": "Arrivata на -a — про жінку, «приїхала». Partita — «поїхала», arrivato — про чоловіка.",
+   "en": "Arrivata, ending in -a, is for a woman: “arrived”. Partita is “left”, arrivato is for a man."
+  },
+  "19:c1:it:19:03": {
+   "ru": "Partito с -o — о мужчине, «уехал». Partita — о женщине, arrivato — «приехал».",
+   "uk": "Partito з -o — про чоловіка, «поїхав». Partita — про жінку, arrivato — «приїхав».",
+   "en": "Partito, ending in -o, is for a man: “left”. Partita is for a woman, arrivato is “arrived”."
+  },
+  "19:c2:it:19:07": {
+   "ru": "Sono здесь «они есть», partiti — «ушли». Arrivati — «прибыли», è partito — об одном.",
+   "uk": "Sono тут «вони є», partiti — «пішли». Arrivati — «прибули», è partito — про одного.",
+   "en": "Sono here is “they are”, partiti is “left”. Arrivati is “arrived”, è partito is for one person."
+  },
+  "19:c2:it:19:02": {
+   "ru": "È — об одной, arrivata на -a — о женщине, «приехала». Sono arrivati — о нескольких, partita — «уехала».",
+   "uk": "È — про одну, arrivata на -a — про жінку, «приїхала». Sono arrivati — про кількох, partita — «поїхала».",
+   "en": "È is for one person, arrivata is for a woman: “arrived”. Sono arrivati is for several, partita is “left”."
+  },
+  "19:c3:it:19:12": {
+   "ru": "Andata на -a — о женщине, «пошла», in banca — «в банк». Andato — о мужчине, tornato — «вернулся».",
+   "uk": "Andata на -a — про жінку, «пішла», in banca — «до банку». Andato — про чоловіка, tornato — «повернувся».",
+   "en": "Andata, ending in -a, is for a woman: “went”; in banca is “to the bank”. Andato is for a man, tornato is “returned”."
+  },
+  "19:c3:it:19:13": {
+   "ru": "Родители — несколько, поэтому sono andati — «пошли». Rimasti — «остались», è andato — об одном.",
+   "uk": "Батьки — кілька, тому sono andati — «пішли». Rimasti — «залишилися», è andato — про одного.",
+   "en": "Genitori means several people, so sono andati: “went”. Rimasti is “stayed”, è andato is for one person."
+  },
+  "19:c4:it:19:22": {
+   "ru": "Entrato с -o — о мужчине, «вошёл», in garage — «в гараж». Entrata — о Леа, caduta — «упала».",
+   "uk": "Entrato з -o — про чоловіка, «увійшов», in garage — «в гараж». Entrata — про Леа, caduta — «впала».",
+   "en": "Entrato, ending in -o, is for a man: “went in”; in garage is “into the garage”. Entrata is for Lea, caduta is “fell”."
+  },
+  "19:c4:it:19:27": {
+   "ru": "Caduta значит «упала», sotto il tavolo — «под стол». Scesi — «спустились», monete — «монеты».",
+   "uk": "Caduta означає «впала», sotto il tavolo — «під стіл». Scesi — «спустилися», monete — «монети».",
+   "en": "Caduta means “fell”, sotto il tavolo means “under the table”. Scesi is “went down”, monete is “coins”."
+  },
+  "19:c5:it:19:36": {
+   "ru": "Quando значит «когда», arrivata — «приехала». Non è ancora tornato — «ещё не вернулся», dove — «куда».",
+   "uk": "Quando означає «коли», arrivata — «приїхала». Non è ancora tornato — «ще не повернувся», dove — «куди».",
+   "en": "Quando means “when”, arrivata means “arrived”. Non è ancora tornato is “hasn’t returned yet”, dove is “where”."
+  },
+  "19:c5:it:19:40": {
+   "ru": "Già значит «уже», infermiere — «медсёстры», их несколько: sono andate. Sono tornati — «вернулись».",
+   "uk": "Già означає «вже», infermiere — «медсестри», їх кілька: sono andate. Sono tornati — «повернулися».",
+   "en": "Già means “already”, infermiere is “nurses”, several: sono andate. Sono tornati is “returned”."
+  },
+  "20:c1:it:20:02": {
+   "ru": "Abitavi значит «ты раньше жил». Vivevamo — «мы жили», abitavo — «я раньше жил».",
+   "uk": "Abitavi означає «ти раніше жив». Vivevamo — «ми жили», abitavo — «я раніше жив».",
+   "en": "Abitavi means “you used to live”. Vivevamo is “we lived”, abitavo is “I used to live”."
+  },
+  "20:c1:it:20:03": {
+   "ru": "Viveva значит «она жила», про давнее время. Abitavate — «вы жили», vivevano — «они жили».",
+   "uk": "Viveva означає «вона жила», про давній час. Abitavate — «ви жили», vivevano — «вони жили».",
+   "en": "Viveva means “she lived”, about long ago. Abitavate is “you lived”, vivevano is “they lived”."
+  },
+  "20:c2:it:20:08": {
+   "ru": "Era — «она была», sola — «одна», spesso — «часто». Eravamo — «мы были», ero — «я был».",
+   "uk": "Era — «вона була», sola — «сама», spesso — «часто». Eravamo — «ми були», ero — «я був».",
+   "en": "Era is “she was”, sola is “alone”, spesso is “often”. Eravamo is “we were”, ero is “I was”."
+  },
+  "20:c2:it:20:26": {
+   "ru": "Erano значит «были», про несколько вещей; aperte — «открыты». Era — про одну, eravamo — «мы были».",
+   "uk": "Erano означає «були», про кілька речей; aperte — «відчинені». Era — про одну, eravamo — «ми були».",
+   "en": "Erano means “were”, for several things; aperte is “open”. Era is for one, eravamo is “we were”."
+  },
+  "20:c3:it:20:13": {
+   "ru": "Comprava — «покупал», ogni mattina — «каждое утро». Ascoltava — «слушала», mangiavamo — «мы ели».",
+   "uk": "Comprava — «купував», ogni mattina — «щоранку». Ascoltava — «слухала», mangiavamo — «ми їли».",
+   "en": "Comprava is “bought”, ogni mattina is “every morning”. Ascoltava is “listened”, mangiavamo is “we ate”."
+  },
+  "20:c3:it:20:18": {
+   "ru": "Prendeva — «ездил» (от prendo, «беру»), sempre — «всегда». Mangiavamo — «мы ели», tagliava — «резала».",
+   "uk": "Prendeva — «їздив» (від prendo, «беру»), sempre — «завжди». Mangiavamo — «ми їли», tagliava — «різала».",
+   "en": "Prendeva is “took” (a bus), from prendo, sempre is “always”. Mangiavamo is “we ate”, tagliava is “cut”."
+  },
+  "20:c4:it:20:24": {
+   "ru": "Tirava значит «дул», forte — «сильный», vento — «ветер». Pioveva — «шёл дождь», era già buio — «стемнело».",
+   "uk": "Tirava означає «дув», forte — «сильний», vento — «вітер». Pioveva — «йшов дощ», era già buio — «стемніло».",
+   "en": "Tirava means “blew”, forte is “strong”, vento is “wind”. Pioveva is “it rained”, era già buio is “it was dark”."
+  },
+  "20:c4:it:20:29": {
+   "ru": "Avevano значит «у них было», freddo — «холод». Pioveva — «шёл дождь», profumava — «пахло».",
+   "uk": "Avevano означає «у них було», freddo — «холод». Pioveva — «йшов дощ», profumava — «пахло».",
+   "en": "Avevano means “they had”, freddo means “cold”. Pioveva is “it rained”, profumava is “smelled”."
+  },
+  "20:c5:it:20:32": {
+   "ru": "Non c’era значит «не было», ascensore — «лифт». Conoscevo — «я знал», lavorava — «работала».",
+   "uk": "Non c’era означає «не було», ascensore — «ліфт». Conoscevo — «я знав», lavorava — «працювала».",
+   "en": "Non c’era means “there was no”, ascensore means “lift”. Conoscevo is “I knew”, lavorava is “worked”."
+  },
+  "20:c5:it:20:34": {
+   "ru": "Avevamo — «у нас было», fretta — «спешка», non — «не». Passeggiavo — «я гулял», preparava — «готовила».",
+   "uk": "Avevamo — «у нас було», fretta — «поспіх», non — «не». Passeggiavo — «я гуляв», preparava — «готувала».",
+   "en": "Avevamo is “we had”, fretta is “hurry”, non is “not”. Passeggiavo is “I walked”, preparava is “prepared”."
+  }
+ }
+}

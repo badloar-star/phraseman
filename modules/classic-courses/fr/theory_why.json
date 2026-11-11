@@ -1,0 +1,516 @@
+{
+ "schema": "phraseman.classic.theory_why/1",
+ "lang": "fr",
+ "data": {
+  "1:c1:fr:01:02": {
+   "ru": "Tu значит «ты», а с tu говорят es. Ici — «здесь», а là — «там».",
+   "uk": "Tu означає «ти», а з tu кажуть es. Ici — «тут», а là — «там».",
+   "en": "Tu means “you”, and with tu we say es. Ici means “here”, and là means “there”."
+  },
+  "1:c1:fr:01:01": {
+   "ru": "Je значит «я», а с je говорят suis. Ici — «здесь», а là — «там».",
+   "uk": "Je означає «я», а з je кажуть suis. Ici — «тут», а là — «там».",
+   "en": "Je means “I”, and with je we say suis. Ici means “here”, and là means “there”."
+  },
+  "1:c2:fr:01:08": {
+   "ru": "Vous значит «вы», а с vous говорят êtes. Nous — это «мы», tu — «ты».",
+   "uk": "Vous означає «ви», а з vous кажуть êtes. Nous — це «ми», tu — «ти».",
+   "en": "Vous means “you” (formal), and with vous we say êtes. Nous means “we”, tu means “you” (one person)."
+  },
+  "1:c2:fr:01:44": {
+   "ru": "Ensemble значит «вместе», а с nous говорят sommes. Ici — это «здесь».",
+   "uk": "Ensemble означає «разом», а з nous кажуть sommes. Ici — це «тут».",
+   "en": "Ensemble means “together”, and with nous we say sommes. Ici means “here”."
+  },
+  "1:c3:fr:01:10": {
+   "ru": "Elles значит «они», а с ними говорят sont. Léa est — про одну Леа, ils sont là — «они там».",
+   "uk": "Elles означає «вони», а з ними кажуть sont. Léa est — про одну Леа, ils sont là — «вони там».",
+   "en": "Elles means “they”, and with it we say sont. Léa est is about one person, and ils sont là means “they are there”."
+  },
+  "1:c3:fr:01:23": {
+   "ru": "Elle значит «она», а с elle говорят est. Prête — «готова»: в конце лишняя буква.",
+   "uk": "Elle означає «вона», а з elle кажуть est. Prête — «готова»: наприкінці зайва літера.",
+   "en": "Elle means “she”, and with elle we say est. Prête means “ready”, with an extra letter at the end."
+  },
+  "1:c4:fr:01:14": {
+   "ru": "À la gare — «на вокзале», а Léa est — про Леа. À la maison — «дома», au bureau — «в офисе».",
+   "uk": "À la gare — «на вокзалі», а Léa est — про Леа. À la maison — «вдома», au bureau — «в офісі».",
+   "en": "À la gare means “at the station”, and Léa est is about Léa. À la maison means “at home”, au bureau means “at the office”."
+  },
+  "1:c4:fr:01:31": {
+   "ru": "Porte — «дверь», и к женскому слову добавляют букву: ouverte. Magasin — «магазин», fenêtre — «окно».",
+   "uk": "Porte — «двері», і до жіночого слова додають літеру: ouverte. Magasin — «магазин», fenêtre — «вікно».",
+   "en": "Porte means “door”, and a feminine word gets an extra letter: ouverte. Magasin means “shop”, fenêtre means “window”."
+  },
+  "2:c1:fr:02:02": {
+   "ru": "Tu — «ты», ici — «здесь», а ne и pas стоят по бокам от es. С je было бы suis, а là — «там».",
+   "uk": "Tu — «ти», ici — «тут», а ne і pas стоять по боках від es. З je було б suis, а là — «там».",
+   "en": "Tu means “you”, ici means “here”, and ne and pas go on both sides of es. With je it would be suis, and là means “there”."
+  },
+  "2:c1:fr:02:06": {
+   "ru": "Je suis — про себя, au bureau — «в офисе», а ne и pas стоят по бокам от suis. Ici — «здесь».",
+   "uk": "Je suis — про себе, au bureau — «в офісі», а ne і pas стоять по боках від suis. Ici — «тут».",
+   "en": "Je suis is about yourself, au bureau means “at the office”, and ne and pas go on both sides of suis. Ici means “here”."
+  },
+  "2:c2:fr:02:05": {
+   "ru": "Paul n’est — про Поля: ne сокращается до n’, и с Paul говорят est. С je было бы suis, elle — «она».",
+   "uk": "Paul n’est — про Поля: ne скорочується до n’, і з Paul кажуть est. З je було б suis, elle — «вона».",
+   "en": "Paul n’est is about Paul: ne shortens to n’, and with Paul we say est. With je it would be suis; elle means “she”."
+  },
+  "2:c2:fr:02:03": {
+   "ru": "Là значит «там», а ici — «здесь». Tu — «ты», поэтому es, а est — это про «она».",
+   "uk": "Là означає «там», а ici — «тут». Tu — «ти», тому es, а est — це про «вона».",
+   "en": "Là means “there”, and ici means “here”. Tu means “you”, so es; est is for “she”."
+  },
+  "2:c3:fr:02:08": {
+   "ru": "Vous значит «вы», а с vous говорят êtes: ne сокращается до n’. Nous — «мы», tu — «ты».",
+   "uk": "Vous означає «ви», а з vous кажуть êtes: ne скорочується до n’. Nous — «ми», tu — «ти».",
+   "en": "Vous means “you” (formal), and with vous we say êtes: ne shortens to n’. Nous means “we”, tu means “you”."
+  },
+  "2:c3:fr:02:10": {
+   "ru": "Elles — «они» (женщины), с ним sont, а ici — «здесь». Dehors — «на улице», n’est — про «она».",
+   "uk": "Elles — «вони» (жінки), з ним sont, а ici — «тут». Dehors — «надворі», n’est — про «вона».",
+   "en": "Elles means “they” (women), with it sont, and ici means “here”. Dehors means “outside”, n’est is for “she”."
+  },
+  "2:c4:fr:02:11": {
+   "ru": "Je значит «я», с ним suis, а prêt — «готов». Prêts — «готовы» про нескольких, prête — «готова».",
+   "uk": "Je означає «я», з ним suis, а prêt — «готовий». Prêts — «готові» про кількох, prête — «готова».",
+   "en": "Je means “I”, with it suis, and prêt means “ready”. Prêts is for several people, prête is for a woman."
+  },
+  "2:c4:fr:02:13": {
+   "ru": "Nous значит «мы», с ним sommes, а в prêts на конце лишняя буква: «готовы» про нескольких.",
+   "uk": "Nous означає «ми», з ним sommes, а в prêts наприкінці зайва літера: «готові» про кількох.",
+   "en": "Nous means “we”, with it sommes, and prêts has an extra letter at the end: “ready” for several people."
+  },
+  "2:c5:fr:02:38": {
+   "ru": "Pharmacie — «аптека», loin — «далеко», а pas loin — «недалеко». Sombre — «тёмный», ouvert — «открыт».",
+   "uk": "Pharmacie — «аптека», loin — «далеко», а pas loin — «недалеко». Sombre — «темний», ouvert — «відкритий».",
+   "en": "Pharmacie means “pharmacy”, loin means “far”, and pas loin means “not far”. Sombre means “dark”, ouvert means “open”."
+  },
+  "2:c5:fr:02:37": {
+   "ru": "Musée — «музей», ouvert — «открыт», а ne и pas ставят вокруг est. Loin — «далеко», libre — «свободен».",
+   "uk": "Musée — «музей», ouvert — «відкритий», а ne і pas ставлять навколо est. Loin — «далеко», libre — «вільний».",
+   "en": "Musée means “museum”, ouvert means “open”, and ne and pas go around est. Loin means “far”, libre means “free”."
+  },
+  "2:c6:fr:02:35": {
+   "ru": "Vélo — «велосипед», dehors — «на улице», а ne и pas стоят вокруг est. Bus — «автобус», loin — «далеко».",
+   "uk": "Vélo — «велосипед», dehors — «надворі», а ne і pas стоять навколо est. Bus — «автобус», loin — «далеко».",
+   "en": "Vélo means “bicycle”, dehors means “outside”, and ne and pas go around est. Bus means “bus”, loin means “far”."
+  },
+  "2:c6:fr:02:31": {
+   "ru": "Bus — «автобус», pas loin — «недалеко». Train — «поезд», vélo — «велосипед».",
+   "uk": "Bus — «автобус», pas loin — «недалеко». Train — «поїзд», vélo — «велосипед».",
+   "en": "Bus means “bus”, pas loin means “not far”. Train means “train”, vélo means “bicycle”."
+  },
+  "3:c1:fr:03:02": {
+   "ru": "Слова те же, что в «Tu es ici», меняется только голос: в конце он идёт вверх. Là — «там», prêt — «готов».",
+   "uk": "Слова ті самі, що в «Tu es ici», змінюється лише голос: наприкінці він іде вгору. Là — «там», prêt — «готовий».",
+   "en": "The words are the same as in “Tu es ici”, only the voice changes: it goes up at the end. Là means “there”, prêt means “ready”."
+  },
+  "3:c1:fr:03:03": {
+   "ru": "Prêt значит «готов», а голос в конце идёт вверх — так фраза становится вопросом. Ici — «здесь», là — «там».",
+   "uk": "Prêt означає «готовий», а голос наприкінці іде вгору — так фраза стає питанням. Ici — «тут», là — «там».",
+   "en": "Prêt means “ready”, and the voice goes up at the end, which makes it a question. Ici means “here”, là means “there”."
+  },
+  "3:c2:fr:03:05": {
+   "ru": "Paul — Поль, au bureau — «в офисе». Léa est à la gare — про Леа и вокзал, elle est prête — про «она готова».",
+   "uk": "Paul — Поль, au bureau — «в офісі». Léa est à la gare — про Леа і вокзал, elle est prête — про «вона готова».",
+   "en": "Paul is Paul, au bureau means “at the office”. Léa est à la gare is about Léa at the station, elle est prête is about “she is ready”."
+  },
+  "3:c2:fr:03:04": {
+   "ru": "Elle значит «она», prête — «готова», а голос в конце идёт вверх. Tu es prêt — про «ты», Paul — про Поля.",
+   "uk": "Elle означає «вона», prête — «готова», а голос наприкінці іде вгору. Tu es prêt — про «ти», Paul — про Поля.",
+   "en": "Elle means “she”, prête means “ready”, and the voice goes up at the end. Tu es prêt is about “you”, Paul is about Paul."
+  },
+  "3:c3:fr:03:07": {
+   "ru": "Vous значит «вы», êtes идёт с vous, а à la maison — «дома». Libre — «свободны», ils sont dehors — «они на улице».",
+   "uk": "Vous означає «ви», êtes йде з vous, а à la maison — «вдома». Libre — «вільні», ils sont dehors — «вони надворі».",
+   "en": "Vous means “you”, êtes goes with vous, and à la maison means “at home”. Libre means “free”, ils sont dehors means “they are outside”."
+  },
+  "3:c3:fr:03:09": {
+   "ru": "Nous значит «мы», sommes идёт с nous, а en retard — «с опозданием». Libre — «свободны», dehors — «на улице».",
+   "uk": "Nous означає «ми», sommes йде з nous, а en retard — «із запізненням». Libre — «вільні», dehors — «надворі».",
+   "en": "Nous means “we”, sommes goes with nous, and en retard means “late”. Libre means “free”, dehors means “outside”."
+  },
+  "3:c4:fr:03:18": {
+   "ru": "Est-ce que — начало вопроса, Paul — Поль, а fatigué — «устал». Porte — «дверь», gare — «вокзал».",
+   "uk": "Est-ce que — початок питання, Paul — Поль, а fatigué — «втомився». Porte — «двері», gare — «вокзал».",
+   "en": "Est-ce que starts the question, Paul is Paul, and fatigué means “tired”. Porte means “door”, gare means “station”."
+  },
+  "3:c4:fr:03:11": {
+   "ru": "Est-ce que — начало вопроса, tu es — «ты», а à la gare — «на вокзале». Porte — «дверь», fatigué — «устал».",
+   "uk": "Est-ce que — початок питання, tu es — «ти», а à la gare — «на вокзалі». Porte — «двері», fatigué — «втомився».",
+   "en": "Est-ce que starts the question, tu es means “you are”, and à la gare means “at the station”. Porte means “door”, fatigué means “tired”."
+  },
+  "3:c5:fr:03:26": {
+   "ru": "Parking — «парковка», а droite — «справа». Gauche — «слева», quai — «перрон», en face — «напротив».",
+   "uk": "Parking — «парковка», а droite — «праворуч». Gauche — «ліворуч», quai — «перон», en face — «навпроти».",
+   "en": "Parking means “parking lot”, and droite means “right”. Gauche means “left”, quai means “platform”, en face means “opposite”."
+  },
+  "3:c5:fr:03:24": {
+   "ru": "Quai — «перрон», а en face — «напротив». Parking — «парковка», sortie — «выход», droite и gauche — «справа» и «слева».",
+   "uk": "Quai — «перон», а en face — «навпроти». Parking — «парковка», sortie — «вихід», droite і gauche — «праворуч» і «ліворуч».",
+   "en": "Quai means “platform”, and en face means “opposite”. Parking means “parking lot”, sortie means “exit”, droite and gauche mean “right” and “left”."
+  },
+  "3:c6:fr:03:21": {
+   "ru": "Guichet — «касса», ouvert — «открыт». Sortie — «выход», porte — «дверь», а голос в конце идёт вверх.",
+   "uk": "Guichet — «каса», ouvert — «відкритий». Sortie — «вихід», porte — «двері», а голос наприкінці іде вгору.",
+   "en": "Guichet means “ticket office”, ouvert means “open”. Sortie means “exit”, porte means “door”, and the voice goes up at the end."
+  },
+  "3:c6:fr:03:43": {
+   "ru": "Clé — «ключ», serrure — «замок в двери», а dans — «в». Guichet — «касса», l’entrée — «вход».",
+   "uk": "Clé — «ключ», serrure — «замок у дверях», а dans — «в». Guichet — «каса», l’entrée — «вхід».",
+   "en": "Clé means “key”, serrure means “lock”, and dans means “in”. Guichet means “ticket office”, l’entrée means “entrance”."
+  },
+  "4:c1:fr:04:02": {
+   "ru": "C’est значит «это», а Léa — Леа. Paul — Поль, mon frère — «мой брат».",
+   "uk": "C’est означає «це», а Léa — Леа. Paul — Поль, mon frère — «мій брат».",
+   "en": "C’est means “this is”, and Léa is Léa. Paul is Paul, mon frère means “my brother”."
+  },
+  "4:c1:fr:04:04": {
+   "ru": "Mon значит «мой», frère — «брат». Léa и Paul — это имена, а не «брат».",
+   "uk": "Mon означає «мій», frère — «брат». Léa і Paul — це імена, а не «брат».",
+   "en": "Mon means “my”, frère means “brother”. Léa and Paul are names, not “brother”."
+  },
+  "4:c2:fr:04:10": {
+   "ru": "Ma значит «моя», mère — «мать». Mon père — «мой отец», ma sœur — «моя сестра».",
+   "uk": "Ma означає «моя», mère — «мати». Mon père — «мій батько», ma sœur — «моя сестра».",
+   "en": "Ma means “my”, mère means “mother”. Mon père means “my father”, ma sœur means “my sister”."
+  },
+  "4:c2:fr:04:09": {
+   "ru": "Père значит «отец», и перед ним стоит mon. Ma mère — «моя мать», mon frère — «мой брат».",
+   "uk": "Père означає «батько», і перед ним стоїть mon. Ma mère — «моя мати», mon frère — «мій брат».",
+   "en": "Père means “father”, and mon goes before it. Ma mère means “my mother”, mon frère means “my brother”."
+  },
+  "4:c3:fr:04:08": {
+   "ru": "Voisine — «соседка», и перед ним une. Voisin без лишней буквы — «сосед», amie — «подруга».",
+   "uk": "Voisine — «сусідка», і перед ним une. Voisin без зайвої літери — «сусід», amie — «подруга».",
+   "en": "Voisine means a female neighbor, and une goes before it. Voisin without the extra letter is a male neighbor, amie means “girlfriend, friend”."
+  },
+  "4:c3:fr:04:07": {
+   "ru": "Voisin — «сосед», и перед ним un. Voisine с лишней буквой — «соседка», ami — «друг».",
+   "uk": "Voisin — «сусід», і перед ним un. Voisine із зайвою літерою — «сусідка», ami — «друг».",
+   "en": "Voisin means a male neighbor, and un goes before it. Voisine with the extra letter is a female neighbor, ami means “friend”."
+  },
+  "4:c4:fr:04:17": {
+   "ru": "Cadeau значит «подарок», и перед ним un. Reçu — «чек», carte — «карта».",
+   "uk": "Cadeau означає «подарунок», і перед ним un. Reçu — «чек», carte — «карта».",
+   "en": "Cadeau means “gift”, and un goes before it. Reçu means “receipt”, carte means “map, card”."
+  },
+  "4:c4:fr:04:20": {
+   "ru": "Facture значит «счёт», и перед ним une. Reçu — «чек», billet — «билет».",
+   "uk": "Facture означає «рахунок», і перед ним une. Reçu — «чек», billet — «квиток».",
+   "en": "Facture means “invoice”, and une goes before it. Reçu means “receipt”, billet means “ticket”."
+  },
+  "4:c5:fr:04:23": {
+   "ru": "Ce sont — «это» про несколько вещей, nos значит «наши», billets — «билеты». Mes clés — «мои ключи».",
+   "uk": "Ce sont — «це» про кілька речей, nos означає «наші», billets — «квитки». Mes clés — «мої ключі».",
+   "en": "Ce sont means “these are” for several things, nos means “our”, billets means “tickets”. Mes clés means “my keys”."
+  },
+  "4:c5:fr:04:30": {
+   "ru": "Nos значит «наши», place — «место», а несколько — ce sont. Des cadeaux — «подарки», billets — «билеты».",
+   "uk": "Nos означає «наші», place — «місце», а кілька — ce sont. Des cadeaux — «подарунки», billets — «квитки».",
+   "en": "Nos means “our”, place means “seat”, and for several things we say ce sont. Des cadeaux means “gifts”, billets means “tickets”."
+  },
+  "4:c6:fr:04:44": {
+   "ru": "Lunettes — «очки», mes — «мои», а перед sont слово ne остаётся целым. Ta place — «твоё место», mon sac — «моя сумка».",
+   "uk": "Lunettes — «окуляри», mes — «мої», а перед sont слово ne лишається цілим. Ta place — «твоє місце», mon sac — «моя сумка».",
+   "en": "Lunettes means “glasses”, mes means “my”, and before sont the word ne stays whole. Ta place means “your seat”, mon sac means “my bag”."
+  },
+  "4:c6:fr:04:42": {
+   "ru": "Ta значит «твоё», place — «место», а перед est ne сокращается: n’est. Mon sac — «моя сумка», mes lunettes — «мои очки».",
+   "uk": "Ta означає «твоє», place — «місце», а перед est ne скорочується: n’est. Mon sac — «моя сумка», mes lunettes — «мої окуляри».",
+   "en": "Ta means “your”, place means “seat”, and before est ne shortens: n’est. Mon sac means “my bag”, mes lunettes means “my glasses”."
+  },
+  "5:c1:fr:05:03": {
+   "ru": "Elle значит «она», а с elle говорят a. Il — «он», j’ai — «у меня».",
+   "uk": "Elle означає «вона», а з elle кажуть a. Il — «він», j’ai — «у мене».",
+   "en": "Elle means “she”, and with elle we say a. Il means “he”, j’ai means “I have”."
+  },
+  "5:c1:fr:05:02": {
+   "ru": "Tu значит «ты», а с tu говорят as. Il a — про «он», j’ai — про «я».",
+   "uk": "Tu означає «ти», а з tu кажуть as. Il a — про «він», j’ai — про «я».",
+   "en": "Tu means “you”, and with tu we say as. Il a is about “he”, j’ai is about “I”."
+  },
+  "5:c2:fr:05:06": {
+   "ru": "Vous значит «вы», а с vous говорят avez. Avons — про «мы», a — про Леа.",
+   "uk": "Vous означає «ви», а з vous кажуть avez. Avons — про «ми», a — про Леа.",
+   "en": "Vous means “you”, and with vous we say avez. Avons is for “we”, a is for Léa."
+  },
+  "5:c2:fr:05:07": {
+   "ru": "Ils значит «они», а с ils говорят ont. Avons — про «мы», a — про Леа.",
+   "uk": "Ils означає «вони», а з ils кажуть ont. Avons — про «ми», a — про Леа.",
+   "en": "Ils means “they”, and with ils we say ont. Avons is for “we”, a is for Léa."
+  },
+  "5:c3:fr:05:15": {
+   "ru": "Froid значит «холод», а nous avons — «у нас». Chaud — «жара», faim — «голод».",
+   "uk": "Froid означає «холод», а nous avons — «у нас». Chaud — «спека», faim — «голод».",
+   "en": "Froid means “cold”, and nous avons means “we have”. Chaud means “heat”, faim means “hunger”."
+  },
+  "5:c3:fr:05:18": {
+   "ru": "Sommeil значит «сонливость», а ils ont — «у них». Peur — «страх», soif — «жажда».",
+   "uk": "Sommeil означає «сонливість», а ils ont — «у них». Peur — «страх», soif — «спрага».",
+   "en": "Sommeil means “sleepiness”, and ils ont means “they have”. Peur means “fear”, soif means “thirst”."
+  },
+  "5:c4:fr:05:21": {
+   "ru": "Возраст «имеют»: j’ai — «у меня», vingt — «двадцать», ans — «лет». Dix — «десять», mal au dos — «болит спина».",
+   "uk": "Вік «мають»: j’ai — «у мене», vingt — «двадцять», ans — «років». Dix — «десять», mal au dos — «болить спина».",
+   "en": "Age is “had”: j’ai means “I have”, vingt means “twenty”, ans means “years”. Dix means “ten”, mal au dos means “back pain”."
+  },
+  "5:c4:fr:05:20": {
+   "ru": "Tu as — «у тебя», mal à la tête — «болит голова». Mal au dos — «болит спина», cinq minutes — «пять минут».",
+   "uk": "Tu as — «у тебе», mal à la tête — «болить голова». Mal au dos — «болить спина», cinq minutes — «п’ять хвилин».",
+   "en": "Tu as means “you have”, mal à la tête means “headache”. Mal au dos means “back pain”, cinq minutes means “five minutes”."
+  },
+  "5:c5:fr:05:35": {
+   "ru": "Il a — «у него», son — «его», passeport — «паспорт». Stylo — «ручка», monnaie — «мелочь».",
+   "uk": "Il a — «у нього», son — «його», passeport — «паспорт». Stylo — «ручка», monnaie — «дрібні гроші».",
+   "en": "Il a means “he has”, son means “his”, passeport means “passport”. Stylo means “pen”, monnaie means “change”."
+  },
+  "5:c5:fr:05:27": {
+   "ru": "J’ai значит «у меня», а rendez-vous — «назначенная встреча». Stylo — «ручка», passeport — «паспорт».",
+   "uk": "J’ai означає «у мене», а rendez-vous — «призначена зустріч». Stylo — «ручка», passeport — «паспорт».",
+   "en": "J’ai means “I have”, and rendez-vous means “appointment”. Stylo means “pen”, passeport means “passport”."
+  },
+  "5:c6:fr:05:44": {
+   "ru": "Nous avons — «у нас», besoin d’ — «нужда в», а eau — «вода». Aide — «помощь», pause — «перерыв».",
+   "uk": "Nous avons — «у нас», besoin d’ — «потреба в», а eau — «вода». Aide — «допомога», pause — «перерва».",
+   "en": "Nous avons means “we have”, besoin d’ means “need of”, and eau means “water”. Aide means “help”, pause means “break”."
+  },
+  "5:c6:fr:05:50": {
+   "ru": "Elle a — «у неё», besoin de — «нужда в», ordonnance — «рецепт врача». Eau — «вода», pause — «перерыв».",
+   "uk": "Elle a — «у неї», besoin de — «потреба в», ordonnance — «рецепт лікаря». Eau — «вода», pause — «перерва».",
+   "en": "Elle a means “she has”, besoin de means “need of”, ordonnance means “prescription”. Eau means “water”, pause means “break”."
+  },
+  "6:c1:fr:06:03": {
+   "ru": "Dans значит «в», poche — «карман», а billet — «билет». Sur — «на», lunettes — «очки», clé — «ключ».",
+   "uk": "Dans означає «в», poche — «кишеня», а billet — «квиток». Sur — «на», lunettes — «окуляри», clé — «ключ».",
+   "en": "Dans means “in”, poche means “pocket”, and billet means “ticket”. Sur means “on”, lunettes means “glasses”, clé means “key”."
+  },
+  "6:c1:fr:06:02": {
+   "ru": "Sous значит «под», а sac — «сумка». Sur — «на», поэтому sur la table — «на столе», а не «под столом».",
+   "uk": "Sous означає «під», а sac — «сумка». Sur — «на», тому sur la table — «на столі», а не «під столом».",
+   "en": "Sous means “under”, and sac means “bag”. Sur means “on”, so sur la table is “on the table”, not “under the table”."
+  },
+  "6:c2:fr:06:39": {
+   "ru": "Chargeur — «зарядное устройство», chambre — «спальня». Veste — «куртка», photo — «фотография», а tiroir — «ящик».",
+   "uk": "Chargeur — «зарядний пристрій», chambre — «спальня». Veste — «куртка», photo — «фотографія», а tiroir — «шухляда».",
+   "en": "Chargeur means “charger”, chambre means “bedroom”. Veste means “jacket”, photo means “photo”, and tiroir means “drawer”."
+  },
+  "6:c2:fr:06:50": {
+   "ru": "Nom значит «имя», sur — «на», а enveloppe — «конверт». Clés — «ключи», manteau — «пальто», chaise — «стул».",
+   "uk": "Nom означає «ім’я», sur — «на», а enveloppe — «конверт». Clés — «ключі», manteau — «пальто», chaise — «стілець».",
+   "en": "Nom means “name”, sur means “on”, and enveloppe means “envelope”. Clés means “keys”, manteau means “coat”, chaise means “chair”."
+  },
+  "6:c3:fr:06:26": {
+   "ru": "Jardin значит «сад», а petit — «небольшой». Eau froide — «холодная вода», marché ouvert — «рынок открыт».",
+   "uk": "Jardin означає «сад», а petit — «невеликий». Eau froide — «холодна вода», marché ouvert — «ринок відкритий».",
+   "en": "Jardin means “garden”, and petit means “small”. Eau froide means “cold water”, marché ouvert means “market is open”."
+  },
+  "6:c3:fr:06:22": {
+   "ru": "Marché значит «рынок», а ouvert — «открыт». Jardin — «сад», petit — «небольшой», soupe chaude — «горячий суп».",
+   "uk": "Marché означає «ринок», а ouvert — «відкритий». Jardin — «сад», petit — «невеликий», soupe chaude — «гарячий суп».",
+   "en": "Marché means “market”, and ouvert means “open”. Jardin means “garden”, petit means “small”, soupe chaude means “hot soup”."
+  },
+  "6:c4:fr:06:13": {
+   "ru": "Elle значит «она», aime — «нравится», а musique — «музыка». J’aime — про «я», nous aimons — про «мы».",
+   "uk": "Elle означає «вона», aime — «подобається», а musique — «музика». J’aime — про «я», nous aimons — про «ми».",
+   "en": "Elle means “she”, aime means “likes”, and musique means “music”. J’aime is for “I”, nous aimons is for “we”."
+  },
+  "6:c4:fr:06:19": {
+   "ru": "Vous значит «вы», с ним aimez, а soupe — «суп». Nous aimons — про «мы», thé — «чай».",
+   "uk": "Vous означає «ви», з ним aimez, а soupe — «суп». Nous aimons — про «ми», thé — «чай».",
+   "en": "Vous means “you”, with it aimez, and soupe means “soup”. Nous aimons is for “we”, thé means “tea”."
+  },
+  "6:c5:fr:06:27": {
+   "ru": "Près de значит «рядом с», а gare — «вокзал». En face — «напротив», en bas — «внизу».",
+   "uk": "Près de означає «поруч із», а gare — «вокзал». En face — «навпроти», en bas — «внизу».",
+   "en": "Près de means “near”, and gare means “station”. En face means “opposite”, en bas means “downstairs”."
+  },
+  "6:c5:fr:06:30": {
+   "ru": "En bas значит «внизу», а réception — «стойка регистрации». À gauche — «слева», près de — «рядом с».",
+   "uk": "En bas означає «внизу», а réception — «стійка реєстрації». À gauche — «ліворуч», près de — «поруч із».",
+   "en": "En bas means “downstairs”, and réception means “reception”. À gauche means “on the left”, près de means “near”."
+  },
+  "7:c1:fr:07:02": {
+   "ru": "Tu значит «ты», а у слова «работать» с tu на конце добавляется s: travailles. Je и Léa — travaille.",
+   "uk": "Tu означає «ти», а в слова «працювати» з tu наприкінці додається s: travailles. Je і Léa — travaille.",
+   "en": "Tu means “you”, and with tu the working word gets an s at the end: travailles. Je and Léa use travaille."
+  },
+  "7:c1:fr:07:03": {
+   "ru": "Léa — это Леа, а с ней говорят travaille, как с «я». Tu travailles с s на конце — про «ты».",
+   "uk": "Léa — це Леа, а з нею кажуть travaille, як із «я». Tu travailles з s наприкінці — про «ти».",
+   "en": "Léa is Léa, and with her we say travaille, as with “I”. Tu travailles, with s at the end, is for “you”."
+  },
+  "7:c2:fr:07:05": {
+   "ru": "Vous значит «вы», а у «работать» с vous окончание ez: travaillez. Nous — travaillons, ils — travaillent.",
+   "uk": "Vous означає «ви», а в «працювати» з vous закінчення ez: travaillez. Nous — travaillons, ils — travaillent.",
+   "en": "Vous means “you”, and with vous the working word ends in ez: travaillez. Nous uses travaillons, ils uses travaillent."
+  },
+  "7:c2:fr:07:06": {
+   "ru": "Ils значит «они», окончание ent: travaillent. Dehors — «на улице», ensemble — «вместе».",
+   "uk": "Ils означає «вони», закінчення ent: travaillent. Dehors — «надворі», ensemble — «разом».",
+   "en": "Ils means “they”, with the ending ent: travaillent. Dehors means “outside”, ensemble means “together”."
+  },
+  "7:c3:fr:07:14": {
+   "ru": "Nous значит «мы», окончание ons: habitons. À la campagne — «в сельской местности», en ville — «в городе».",
+   "uk": "Nous означає «ми», закінчення ons: habitons. À la campagne — «у сільській місцевості», en ville — «у місті».",
+   "en": "Nous means “we”, with the ending ons: habitons. À la campagne means “in the countryside”, en ville means “in town”."
+  },
+  "7:c3:fr:07:16": {
+   "ru": "Elles значит «они», окончание ent: habitent, а ici — «здесь». Paul habite — про Поля, tu habites — «ты».",
+   "uk": "Elles означає «вони», закінчення ent: habitent, а ici — «тут». Paul habite — про Поля, tu habites — «ти».",
+   "en": "Elles means “they”, with the ending ent: habitent, and ici means “here”. Paul habite is about Paul, tu habites is “you”."
+  },
+  "7:c4:fr:07:19": {
+   "ru": "Il значит «он», écoute — «слушает», а message — «сообщение». J’écoute la radio — про «я» и радио.",
+   "uk": "Il означає «він», écoute — «слухає», а message — «повідомлення». J’écoute la radio — про «я» і радіо.",
+   "en": "Il means “he”, écoute means “listens”, and message means “message”. J’écoute la radio is about “I” and the radio."
+  },
+  "7:c4:fr:07:20": {
+   "ru": "Nous значит «мы», окончание ons: écoutons, а musique — «музыка». Il écoute — про «он», tu écoutes — «ты».",
+   "uk": "Nous означає «ми», закінчення ons: écoutons, а musique — «музика». Il écoute — про «він», tu écoutes — «ти».",
+   "en": "Nous means “we”, with the ending ons: écoutons, and musique means “music”. Il écoute is for “he”, tu écoutes is for “you”."
+  },
+  "7:c5:fr:07:25": {
+   "ru": "Vous значит «вы», окончание ez: cherchez, а hôtel — «отель». Je cherche — «я ищу», nous cherchons — «мы ищем».",
+   "uk": "Vous означає «ви», закінчення ez: cherchez, а hôtel — «готель». Je cherche — «я шукаю», nous cherchons — «ми шукаємо».",
+   "en": "Vous means “you”, with the ending ez: cherchez, and hôtel means “hotel”. Je cherche is “I look for”, nous cherchons is “we look for”."
+  },
+  "7:c5:fr:07:44": {
+   "ru": "Nous значит «мы», окончание ons: cherchons, а appartement — «квартира». Je cherche — про «я», elle — про «она».",
+   "uk": "Nous означає «ми», закінчення ons: cherchons, а appartement — «квартира». Je cherche — про «я», elle — про «вона».",
+   "en": "Nous means “we”, with the ending ons: cherchons, and appartement means “apartment”. Je cherche is for “I”, elle is for “she”."
+  },
+  "7:c6:fr:07:33": {
+   "ru": "Paul — Поль, prépare — «готовит» (про одного), а café — «кофе». Nous préparons — «мы», les valises — «чемоданы».",
+   "uk": "Paul — Поль, prépare — «готує» (про одного), а café — «кава». Nous préparons — «ми», les valises — «валізи».",
+   "en": "Paul is Paul, prépare means “prepares” (one person), and café means “coffee”. Nous préparons is “we”, les valises means “suitcases”."
+  },
+  "7:c6:fr:07:34": {
+   "ru": "Nous значит «мы», окончание ons: préparons, а valises — «чемоданы». С чемоданами это «собираем».",
+   "uk": "Nous означає «ми», закінчення ons: préparons, а valises — «валізи». З валізами це «пакуємо».",
+   "en": "Nous means “we”, with the ending ons: préparons, and valises means “suitcases”. With suitcases it means “packing”."
+  },
+  "8:c1:fr:08:03": {
+   "ru": "Où значит «где», а несколько вещей — sont, не est. Clés — «ключи», Paul и sortie с est — про одного.",
+   "uk": "Où означає «де», а кілька речей — sont, а не est. Clés — «ключі», Paul і sortie з est — про одного.",
+   "en": "Où means “where”, and several things take sont, not est. Clés means “keys”, Paul and sortie take est for one."
+  },
+  "8:c1:fr:08:05": {
+   "ru": "Où значит «где», а vous ставят в конец через чёрточку: travaillez-vous. Es-tu — «ты», est Paul — про Поля.",
+   "uk": "Où означає «де», а vous ставлять у кінець через риску: travaillez-vous. Es-tu — «ти», est Paul — про Поля.",
+   "en": "Où means “where”, and vous goes at the end with a hyphen: travaillez-vous. Es-tu is “you”, est Paul is about Paul."
+  },
+  "8:c2:fr:08:16": {
+   "ru": "Qui значит «кто», а prépare — «готовит»; с qui слово как про «он». Dîner — «ужин», cherche — «ищет».",
+   "uk": "Qui означає «хто», а prépare — «готує»; з qui слово як про «він». Dîner — «вечеря», cherche — «шукає».",
+   "en": "Qui means “who”, and prépare means “prepares”; after qui the word is as for “he”. Dîner means “dinner”, cherche means “looks for”."
+  },
+  "8:c2:fr:08:20": {
+   "ru": "Qui значит «кто», а cherche — «ищет», appartement — «квартира». Qui est là — «кто здесь», prépare — «готовит».",
+   "uk": "Qui означає «хто», а cherche — «шукає», appartement — «квартира». Qui est là — «хто тут», prépare — «готує».",
+   "en": "Qui means “who”, cherche means “looks for”, and appartement means “apartment”. Qui est là means “who is there”, prépare means “prepares”."
+  },
+  "8:c3:fr:08:29": {
+   "ru": "À quelle heure значит «во сколько», part — «отправляется», а train — «поезд». Ouvre le musée — «открывается музей».",
+   "uk": "À quelle heure означає «о котрій», part — «відправляється», а train — «поїзд». Ouvre le musée — «відкривається музей».",
+   "en": "À quelle heure means “what time”, part means “leaves”, and train means “train”. Ouvre le musée means “the museum opens”."
+  },
+  "8:c3:fr:08:27": {
+   "ru": "À quelle heure значит «во сколько», ouvre — «открывается», а musée — «музей». Part le train — «отправляется поезд».",
+   "uk": "À quelle heure означає «о котрій», ouvre — «відкривається», а musée — «музей». Part le train — «відправляється поїзд».",
+   "en": "À quelle heure means “what time”, ouvre means “opens”, and musée means “museum”. Part le train means “the train leaves”."
+  },
+  "8:c4:fr:08:33": {
+   "ru": "Combien coûte значит «сколько стоит», а livraison — «доставка». Billet — «билет», combien de — «сколько» (дальше вещь).",
+   "uk": "Combien coûte означає «скільки коштує», а livraison — «доставка». Billet — «квиток», combien de — «скільки» (далі річ).",
+   "en": "Combien coûte means “how much does it cost”, and livraison means “delivery”. Billet means “ticket”, combien de means “how many”."
+  },
+  "8:c4:fr:08:34": {
+   "ru": "Combien de значит «сколько», дальше вещь: places — «места». Coûte — «стоит», temps — «время».",
+   "uk": "Combien de означає «скільки», далі річ: places — «місця». Coûte — «коштує», temps — «час».",
+   "en": "Combien de means “how many”, followed by the thing: places means “seats”. Coûte means “costs”, temps means “time”."
+  },
+  "8:c5:fr:08:39": {
+   "ru": "Quelle значит «какой» и стоит с chambre, а libre — «свободен». Quel — для bus, est votre numéro — «ваш номер».",
+   "uk": "Quelle означає «який» і стоїть із chambre, а libre — «вільний». Quel — для bus, est votre numéro — «ваш номер».",
+   "en": "Quelle means “which” and goes with chambre, and libre means “free”. Quel goes with bus, and votre numéro means “your number”."
+  },
+  "8:c5:fr:08:40": {
+   "ru": "Quel значит «какой», votre numéro — «ваш номер». Quelle — для chambre, bus — «автобус».",
+   "uk": "Quel означає «який», votre numéro — «ваш номер». Quelle — для chambre, bus — «автобус».",
+   "en": "Quel means “which”, votre numéro means “your number”. Quelle goes with chambre, bus means “bus”."
+  },
+  "8:c6:fr:08:43": {
+   "ru": "Comment значит «как», а allez-vous — «у вас дела». Pourquoi — «почему», comment s’appelle — «как называется».",
+   "uk": "Comment означає «як», а allez-vous — «у вас справи». Pourquoi — «чому», comment s’appelle — «як називається».",
+   "en": "Comment means “how”, and allez-vous refers to “you”. Pourquoi means “why”, comment s’appelle means “what is it called”."
+  },
+  "8:c6:fr:08:46": {
+   "ru": "Qu’est-ce que значит «что», а tu cherches — «ты ищешь». Pourquoi — «почему», comment — «как».",
+   "uk": "Qu’est-ce que означає «що», а tu cherches — «ти шукаєш». Pourquoi — «чому», comment — «як».",
+   "en": "Qu’est-ce que means “what”, and tu cherches means “you look for”. Pourquoi means “why”, comment means “how”."
+  },
+  "9:c1:fr:09:03": {
+   "ru": "Ma значит «мой», а clé — «ключ»: перед clé говорят ma. Mon sac — «моя сумка», mes clés — «мои ключи».",
+   "uk": "Ma означає «мій», а clé — «ключ»: перед clé кажуть ma. Mon sac — «моя сумка», mes clés — «мої ключі».",
+   "en": "Ma means “my”, and clé means “key”: ma goes before clé. Mon sac means “my bag”, mes clés means “my keys”."
+  },
+  "9:c1:fr:09:10": {
+   "ru": "Mon значит «мой», перед vélo говорят mon, а au garage — «в гараже». Ma clé — «мой ключ», sac — «сумка».",
+   "uk": "Mon означає «мій», перед vélo кажуть mon, а au garage — «у гаражі». Ma clé — «мій ключ», sac — «сумка».",
+   "en": "Mon means “my”, mon goes before vélo, and au garage means “in the garage”. Ma clé means “my key”, sac means “bag”."
+  },
+  "9:c2:fr:09:04": {
+   "ru": "Ta значит «твой», и перед clé говорят ta. Ton sac — «твоя сумка», tes clés — «твои ключи».",
+   "uk": "Ta означає «твій», і перед clé кажуть ta. Ton sac — «твоя сумка», tes clés — «твої ключі».",
+   "en": "Ta means “your”, and ta goes before clé. Ton sac means “your bag”, tes clés means “your keys”."
+  },
+  "9:c2:fr:09:06": {
+   "ru": "Tes значит «твои» и стоит перед несколькими вещами: clés — «ключи». Ton sac и ta clé — про одну вещь.",
+   "uk": "Tes означає «твої» і стоїть перед кількома речами: clés — «ключі». Ton sac і ta clé — про одну річ.",
+   "en": "Tes means “your” and goes before several things: clés means “keys”. Ton sac and ta clé are about one thing."
+  },
+  "9:c3:fr:09:08": {
+   "ru": "Sa значит «его» и стоит перед veste — «куртка». Son sac — «его сумка», ses lunettes — «его очки».",
+   "uk": "Sa означає «його» і стоїть перед veste — «куртка». Son sac — «його сумка», ses lunettes — «його окуляри».",
+   "en": "Sa means “his” and goes before veste, “jacket”. Son sac means “his bag”, ses lunettes means “his glasses”."
+  },
+  "9:c3:fr:09:09": {
+   "ru": "Ses значит «его» и стоит перед несколькими вещами: lunettes — «очки». Son sac и sa veste — про одну вещь.",
+   "uk": "Ses означає «його» і стоїть перед кількома речами: lunettes — «окуляри». Son sac і sa veste — про одну річ.",
+   "en": "Ses means “his” and goes before several things: lunettes means “glasses”. Son sac and sa veste are about one thing."
+  },
+  "9:c4:fr:09:14": {
+   "ru": "Vos значит «ваши», а votre — «ваш». Nos — «наши», leurs chambres — «их комнаты», prêts — «готовы».",
+   "uk": "Vos означає «ваші», а votre — «ваш». Nos — «наші», leurs chambres — «їхні кімнати», prêts — «готові».",
+   "en": "Vos means “your” for several things, while votre is for one. Nos means “our”, leurs chambres means “their rooms”, prêts means “ready”."
+  },
+  "9:c4:fr:09:15": {
+   "ru": "Leur значит «их» и стоит перед одной вещью: chambre — «комната». Leurs — «их» про несколько вещей, notre — «наш».",
+   "uk": "Leur означає «їхній» і стоїть перед однією річчю: chambre — «кімната». Leurs — «їхні» про кілька речей, notre — «наш».",
+   "en": "Leur means “their” and goes before one thing: chambre means “room”. Leurs is for several things, notre means “our”."
+  },
+  "9:c5:fr:09:27": {
+   "ru": "Enfants — «дети», и «свой» про них — leur. Mon manteau — «моё пальто», son badge — «его пропуск», ballon — «мяч».",
+   "uk": "Enfants — «діти», і «свій» про них — leur. Mon manteau — «моє пальто», son badge — «його перепустка», ballon — «м’яч».",
+   "en": "Enfants means “children”, and “their own” for them is leur. Mon manteau means “my coat”, son badge means “his badge”, ballon means “ball”."
+  },
+  "9:c5:fr:09:21": {
+   "ru": "По-французски «свой» зависит от того, о ком речь: с «я» говорят mon. Manteau — «пальто», cherche — «ищу».",
+   "uk": "Французькою «свій» залежить від того, про кого мова: з «я» кажуть mon. Manteau — «пальто», cherche — «шукаю».",
+   "en": "In French “my own” depends on who is speaking: with “I” we say mon. Manteau means “coat”, cherche means “look for”."
+  },
+  "9:c6:fr:09:39": {
+   "ru": "Son значит «его» и стоит перед père — «отец»; habite à Lyon — «живёт в Лионе». Sa sœur — «его сестра».",
+   "uk": "Son означає «його» і стоїть перед père — «батько»; habite à Lyon — «живе в Ліоні». Sa sœur — «його сестра».",
+   "en": "Son means “his” and goes before père, “father”; habite à Lyon means “lives in Lyon”. Sa sœur means “his sister”."
+  },
+  "9:c6:fr:09:37": {
+   "ru": "Mes значит «мои», collègues — «коллеги», а au bureau — «в офисе». Son père и sa sœur — про «его».",
+   "uk": "Mes означає «мої», collègues — «колеги», а au bureau — «в офісі». Son père і sa sœur — про «його».",
+   "en": "Mes means “my” for several people, collègues means “colleagues”, and au bureau means “at the office”. Son père and sa sœur are about “his”."
+  }
+ }
+}

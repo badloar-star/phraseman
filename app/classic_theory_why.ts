@@ -13,6 +13,11 @@ type WhyFile = { data?: Record<string, WhyEntry> };
 const filesOf = lazyContent('classic_theory_why_files', (): Readonly<Record<string, WhyFile>> => ({
   /* eslint-disable @typescript-eslint/no-require-imports */
   en: require('../modules/classic-courses/en/theory_why.json') as WhyFile,
+  // es/fr/de/it: объяснения есть только у уроков НОВОГО формата (plain:true); уроки старого формата идут без кнопки «почему?»
+  es: require('../modules/classic-courses/es/theory_why.json') as WhyFile,
+  fr: require('../modules/classic-courses/fr/theory_why.json') as WhyFile,
+  de: require('../modules/classic-courses/de/theory_why.json') as WhyFile,
+  it: require('../modules/classic-courses/it/theory_why.json') as WhyFile,
   /* eslint-enable @typescript-eslint/no-require-imports */
 }));
 

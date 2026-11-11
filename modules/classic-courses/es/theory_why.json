@@ -1,0 +1,516 @@
+{
+ "schema": "phraseman.classic.theory_why/1",
+ "lang": "es",
+ "data": {
+  "1:c1:es:01:05": {
+   "ru": "Lejos значит «далеко». Aquí — это «здесь», а dentro — «внутри».",
+   "uk": "Lejos означає «далеко». Aquí — це «тут», а dentro — «всередині».",
+   "en": "Lejos means “far away”. Aquí means “here”, and dentro means “inside”."
+  },
+  "1:c1:es:01:10": {
+   "ru": "Dentro значит «внутри». Aquí — «здесь», а lejos — «далеко».",
+   "uk": "Dentro означає «всередині». Aquí — «тут», а lejos — «далеко».",
+   "en": "Dentro means “inside”. Aquí means “here”, and lejos means “far away”."
+  },
+  "1:c2:es:01:21": {
+   "ru": "Estamos значит «мы находимся». Estoy — это про себя («я»), а estás — «ты».",
+   "uk": "Estamos означає «ми перебуваємо». Estoy — це про себе («я»), а estás — «ти».",
+   "en": "Estamos means “we are (located)”. Estoy is “I am”, and estás is “you are”."
+  },
+  "1:c2:es:01:04": {
+   "ru": "Cerca значит «рядом», а estás — «ты находишься». Aquí — «здесь», estoy — «я».",
+   "uk": "Cerca означає «поруч», а estás — «ти перебуваєш». Aquí — «тут», estoy — «я».",
+   "en": "Cerca means “nearby”, and estás means “you are”. Aquí means “here”, estoy means “I am”."
+  },
+  "1:c3:es:01:12": {
+   "ru": "Ella значит «она», allí — «вон там». Él — это «он», а aquí — «здесь».",
+   "uk": "Ella означає «вона», allí — «он там». Él — це «він», а aquí — «тут».",
+   "en": "Ella means “she”, and allí means “over there”. Él means “he”, and aquí means “here”."
+  },
+  "1:c3:es:01:17": {
+   "ru": "С именем Ana говорят está, а не estoy («я»). Dentro — «внутри», fuera — «снаружи».",
+   "uk": "З іменем Ana кажуть está, а не estoy («я»). Dentro — «всередині», fuera — «надворі».",
+   "en": "With the name Ana we say está, not estoy (“I am”). Dentro means “inside”, fuera means “outside”."
+  },
+  "1:c4:es:01:24": {
+   "ru": "Ellas значит «они» (женщины), cerca — «рядом». Allí — «вон там», а ella — «она», одна.",
+   "uk": "Ellas означає «вони» (жінки), cerca — «поруч». Allí — «он там», а ella — «вона», одна.",
+   "en": "Ellas means “they” (women), and cerca means “nearby”. Allí is “over there”, and ella is “she”, just one."
+  },
+  "1:c4:es:01:29": {
+   "ru": "Ana и Luis — двое, y значит «и», поэтому están. Él está — про одного человека.",
+   "uk": "Ana і Luis — двоє, y означає «і», тому están. Él está — про одну людину.",
+   "en": "Ana and Luis are two people, y means “and”, so están. Él está is about one person."
+  },
+  "1:c5:es:01:08": {
+   "ru": "En clase значит «на занятии»: en — «в, на», clase — «занятие». Dentro — «внутри», casa — «дом».",
+   "uk": "En clase означає «на занятті»: en — «в, на», clase — «заняття». Dentro — «всередині», casa — «дім».",
+   "en": "En clase means “in class”: en is “in”, clase is “class”. Dentro means “inside”, casa means “home”."
+  },
+  "1:c5:es:01:13": {
+   "ru": "En casa значит «дома», и с Ana говорят está. Dentro — «внутри», а estoy — «я».",
+   "uk": "En casa означає «вдома», і з Ana кажуть está. Dentro — «всередині», а estoy — «я».",
+   "en": "En casa means “at home”, and with Ana we say está. Dentro means “inside”, and estoy means “I am”."
+  },
+  "1:c6:es:01:40": {
+   "ru": "Llave — «ключ», один, поэтому la. Dentro — «внутри». Las llaves — «ключи», их несколько.",
+   "uk": "Llave — «ключ», один, тому la. Dentro — «всередині». Las llaves — «ключі», їх кілька.",
+   "en": "Llave means “key”, just one, so la. Dentro means “inside”. Las llaves means “keys”, several of them."
+  },
+  "1:c6:es:01:41": {
+   "ru": "Estoy значит «я», en la cocina — «на кухне». Estamos — «мы», а casa — «дом».",
+   "uk": "Estoy означає «я», en la cocina — «на кухні». Estamos — «ми», а casa — «дім».",
+   "en": "Estoy means “I am”, and en la cocina means “in the kitchen”. Estamos means “we are”, and casa means “home”."
+  },
+  "2:c1:es:02:04": {
+   "ru": "Estamos — «мы», en clase — «на занятии», а no ставится перед estamos. Estoy — «я».",
+   "uk": "Estamos — «ми», en clase — «на занятті», а no стоїть перед estamos. Estoy — «я».",
+   "en": "Estamos means “we are”, en clase is “in class”, and no goes before estamos. Estoy means “I am”."
+  },
+  "2:c1:es:02:11": {
+   "ru": "Lejos — «далеко», и no перед estoy даёт «не». En clase — «на занятии», en casa — «дома».",
+   "uk": "Lejos — «далеко», а no перед estoy дає «не». En clase — «на занятті», en casa — «вдома».",
+   "en": "Lejos means “far away”, and no before estoy makes it “not”. En clase is “in class”, en casa is “at home”."
+  },
+  "2:c2:es:02:07": {
+   "ru": "Luis — имя одного человека, поэтому no está. Ellos — «они», Ana — другое имя.",
+   "uk": "Luis — ім’я однієї людини, тому no está. Ellos — «вони», Ana — інше ім’я.",
+   "en": "Luis is one person, so no está. Ellos means “they”, and Ana is a different name."
+  },
+  "2:c2:es:02:25": {
+   "ru": "Ellos значит «они», поэтому están, а не está. Luis и Ana — по одному человеку.",
+   "uk": "Ellos означає «вони», тому están, а не está. Luis і Ana — по одній людині.",
+   "en": "Ellos means “they”, so it is están, not está. Luis and Ana are one person each."
+  },
+  "2:c3:es:02:31": {
+   "ru": "Llave — «ключ», один, поэтому la и está. Las llaves — «ключи», а Ana — человек.",
+   "uk": "Llave — «ключ», один, тому la і está. Las llaves — «ключі», а Ana — людина.",
+   "en": "Llave means “key”, just one, so la and está. Las llaves means “keys”, and Ana is a person."
+  },
+  "2:c3:es:02:33": {
+   "ru": "Móvil значит «телефон», aquí — «здесь». Mochila — «рюкзак», llave — «ключ».",
+   "uk": "Móvil означає «телефон», aquí — «тут». Mochila — «рюкзак», llave — «ключ».",
+   "en": "Móvil means “phone”, and aquí means “here”. Mochila means “backpack”, llave means “key”."
+  },
+  "2:c4:es:02:17": {
+   "ru": "Ella значит «она», farmacia — «аптека». Él — «он», oficina — «офис», tienda — «магазин».",
+   "uk": "Ella означає «вона», farmacia — «аптека». Él — «він», oficina — «офіс», tienda — «магазин».",
+   "en": "Ella means “she”, and farmacia means “pharmacy”. Él means “he”, oficina “office”, tienda “shop”."
+  },
+  "2:c4:es:02:18": {
+   "ru": "Él значит «он», oficina — «офис». Ella — «она», farmacia — «аптека», tienda — «магазин».",
+   "uk": "Él означає «він», oficina — «офіс». Ella — «вона», farmacia — «аптека», tienda — «магазин».",
+   "en": "Él means “he”, and oficina means “office”. Ella means “she”, farmacia “pharmacy”, tienda “shop”."
+  },
+  "2:c5:es:02:44": {
+   "ru": "Bolsillo значит «карман», а bolso — «сумка». Coche — это «машина».",
+   "uk": "Bolsillo означає «кишеня», а bolso — «сумка». Coche — це «машина».",
+   "en": "Bolsillo means “pocket”, while bolso means “bag”. Coche means “car”."
+  },
+  "2:c5:es:02:41": {
+   "ru": "Llave — «ключ», bolso — «сумка». Bolsillo — «карман», а móvil — «телефон».",
+   "uk": "Llave — «ключ», bolso — «сумка». Bolsillo — «кишеня», а móvil — «телефон».",
+   "en": "Llave means “key”, and bolso means “bag”. Bolsillo means “pocket”, and móvil means “phone”."
+  },
+  "3:c1:es:03:04": {
+   "ru": "Lejos значит «далеко». Cerca — «рядом», а en clase — «на занятии».",
+   "uk": "Lejos означає «далеко». Cerca — «поруч», а en clase — «на занятті».",
+   "en": "Lejos means “far away”. Cerca means “nearby”, and en clase means “in class”."
+  },
+  "3:c1:es:03:01": {
+   "ru": "En casa значит «дома». Cerca — «рядом», а en clase — «на занятии».",
+   "uk": "En casa означає «вдома». Cerca — «поруч», а en clase — «на занятті».",
+   "en": "En casa means “at home”. Cerca means “nearby”, and en clase means “in class”."
+  },
+  "3:c2:es:03:06": {
+   "ru": "Estamos значит «мы находимся», cerca — «близко». Estoy — «я», estás — «ты».",
+   "uk": "Estamos означає «ми перебуваємо», cerca — «близько». Estoy — «я», estás — «ти».",
+   "en": "Estamos means “we are”, and cerca means “nearby”. Estoy means “I am”, estás means “you are”."
+  },
+  "3:c2:es:03:26": {
+   "ru": "Parada значит «остановка», а estación — «станция». Estamos — «мы».",
+   "uk": "Parada означає «зупинка», а estación — «станція». Estamos — «ми».",
+   "en": "Parada means “bus stop”, and estación means “station”. Estamos means “we are”."
+  },
+  "3:c3:es:03:16": {
+   "ru": "Dentro значит «внутри», а Luis — имя. En casa — «дома», están — для двоих.",
+   "uk": "Dentro означає «всередині», а Luis — ім’я. En casa — «вдома», están — для двох.",
+   "en": "Dentro means “inside”, and Luis is the name. En casa means “at home”, and están is for two people."
+  },
+  "3:c3:es:03:20": {
+   "ru": "Ana y Luis — двое, y значит «и», поэтому están. Для одной Аны было бы está.",
+   "uk": "Ana y Luis — двоє, y означає «і», тому están. Для однієї Ани було б está.",
+   "en": "Ana y Luis are two people, y means “and”, so están. For Ana alone it would be está."
+  },
+  "3:c4:es:03:33": {
+   "ru": "Las llaves — «ключи», их несколько, поэтому las и están. La llave и el móvil — по одному.",
+   "uk": "Las llaves — «ключі», їх кілька, тому las і están. La llave та el móvil — по одному.",
+   "en": "Las llaves means “keys”, several of them, so las and están. La llave and el móvil are single things."
+  },
+  "3:c4:es:03:30": {
+   "ru": "Hotel значит «отель», cerca — «рядом». Parada — «остановка», llave — «ключ».",
+   "uk": "Hotel означає «готель», cerca — «поруч». Parada — «зупинка», llave — «ключ».",
+   "en": "Hotel means “hotel”, and cerca means “nearby”. Parada means “bus stop”, llave means “key”."
+  },
+  "3:c5:es:03:43": {
+   "ru": "Billete значит «билет», bolsillo — «карман». Pasaporte — «паспорт», bolso — «сумка».",
+   "uk": "Billete означає «квиток», bolsillo — «кишеня». Pasaporte — «паспорт», bolso — «сумка».",
+   "en": "Billete means “ticket”, and bolsillo means “pocket”. Pasaporte means “passport”, bolso means “bag”."
+  },
+  "3:c5:es:03:47": {
+   "ru": "Salida значит «выход», allí — «вон там». Parada — «остановка», а Luis — человек.",
+   "uk": "Salida означає «вихід», allí — «он там». Parada — «зупинка», а Luis — людина.",
+   "en": "Salida means “exit”, and allí means “over there”. Parada means “bus stop”, and Luis is a person."
+  },
+  "4:c1:es:04:02": {
+   "ru": "Soy значит «я есть», а Luis — имя. Ana — другое имя, médico — «врач».",
+   "uk": "Soy означає «я є», а Luis — ім’я. Ana — інше ім’я, médico — «лікар».",
+   "en": "Soy means “I am”, and Luis is the name. Ana is another name, and médico means “doctor”."
+  },
+  "4:c1:es:04:07": {
+   "ru": "Estudiante значит «студент». Luis — имя, médico — «врач», а нужно занятие.",
+   "uk": "Estudiante означає «студент». Luis — ім’я, médico — «лікар», а потрібне заняття.",
+   "en": "Estudiante means “student”. Luis is a name, and médico means “doctor”, which is not what you need."
+  },
+  "4:c2:es:04:10": {
+   "ru": "Конец -a показывает женщину: profesora — «преподавательница». Profesor — мужчина.",
+   "uk": "Закінчення -a вказує на жінку: profesora — «викладачка». Profesor — чоловік.",
+   "en": "The ending -a shows a woman: profesora is a female teacher. Profesor is a man."
+  },
+  "4:c2:es:04:42": {
+   "ru": "Enfermera — «медсестра», а enfermero — «медбрат». Profesora — «преподавательница».",
+   "uk": "Enfermera — «медсестра», а enfermero — «медбрат». Profesora — «викладачка».",
+   "en": "Enfermera means “nurse” (a woman), and enfermero is a male nurse. Profesora means “teacher”."
+  },
+  "4:c3:es:04:08": {
+   "ru": "Eres значит «ты есть», а soy — «я есть». Usted es — вежливое «вы».",
+   "uk": "Eres означає «ти є», а soy — «я є». Usted es — ввічливе «ви».",
+   "en": "Eres means “you are”, while soy means “I am”. Usted es is the polite “you”."
+  },
+  "4:c3:es:04:46": {
+   "ru": "Usted — вежливое «вы», после него es. Конец -a в médica — женщина. Eres — «ты».",
+   "uk": "Usted — ввічливе «ви», після нього es. Закінчення -a в médica — жінка. Eres — «ти».",
+   "en": "Usted is the polite “you”, followed by es. The ending -a in médica means a woman. Eres is “you” to a friend."
+  },
+  "4:c4:es:04:16": {
+   "ru": "Él значит «он», поэтому es. Ella — «она», а Luis es médico — «Луис — врач».",
+   "uk": "Él означає «він», тому es. Ella — «вона», а Luis es médico — «Луїс — лікар».",
+   "en": "Él means “he”, so es. Ella means “she”, and Luis es médico means “Luis is a doctor”."
+  },
+  "4:c4:es:04:20": {
+   "ru": "Guía значит «гид». Médico — «врач». Ana es guía — это про Ану, а нужен Luis.",
+   "uk": "Guía означає «гід». Médico — «лікар». Ana es guía — це про Ану, а потрібен Luis.",
+   "en": "Guía means “guide”. Médico means “doctor”. Ana es guía is about Ana, but you need Luis."
+  },
+  "4:c5:es:04:28": {
+   "ru": "Ellos значит «они», поэтому son. Somos — «мы», а estudiantes — «студенты».",
+   "uk": "Ellos означає «вони», тому son. Somos — «ми», а estudiantes — «студенти».",
+   "en": "Ellos means “they”, so son. Somos means “we are”, and estudiantes means “students”."
+  },
+  "4:c5:es:04:50": {
+   "ru": "Somos значит «мы есть», и дальше названы имена Ana y Luis. Son — «они».",
+   "uk": "Somos означає «ми є», і далі названо імена Ana y Luis. Son — «вони».",
+   "en": "Somos means “we are”, followed by the names Ana y Luis. Son means “they are”."
+  },
+  "5:c1:es:05:04": {
+   "ru": "Dónde значит «где», estamos — «мы находимся». Estás — «ты», а está la llave — про ключ.",
+   "uk": "Dónde означає «де», estamos — «ми перебуваємо». Estás — «ти», а está la llave — про ключ.",
+   "en": "Dónde means “where”, and estamos means “we are”. Estás means “you are”, and está la llave is about the key."
+  },
+  "5:c1:es:05:06": {
+   "ru": "La llave — один ключ, поэтому está. Las llaves — «ключи», несколько, а Ana — человек.",
+   "uk": "La llave — один ключ, тому está. Las llaves — «ключі», кілька, а Ana — людина.",
+   "en": "La llave is one key, so está. Las llaves means “keys”, several, and Ana is a person."
+  },
+  "5:c2:es:05:10": {
+   "ru": "Baño значит «туалет». Ascensor — «лифт», aeropuerto — «аэропорт».",
+   "uk": "Baño означає «туалет». Ascensor — «ліфт», aeropuerto — «аеропорт».",
+   "en": "Baño means “bathroom”. Ascensor means “lift”, and aeropuerto means “airport”."
+  },
+  "5:c2:es:05:09": {
+   "ru": "Recepción значит «стойка регистрации». Ascensor — «лифт», baño — «туалет».",
+   "uk": "Recepción означає «стійка реєстрації». Ascensor — «ліфт», baño — «туалет».",
+   "en": "Recepción means “reception”. Ascensor means “lift”, and baño means “bathroom”."
+  },
+  "5:c3:es:05:17": {
+   "ru": "Quién значит «кто», ascensor — «лифт». Baño — «туалет», en casa — «дома».",
+   "uk": "Quién означає «хто», ascensor — «ліфт». Baño — «туалет», en casa — «вдома».",
+   "en": "Quién means “who”, and ascensor means “lift”. Baño means “bathroom”, en casa means “at home”."
+  },
+  "5:c3:es:05:42": {
+   "ru": "Banco значит «банк». Baño — «туалет», aquí — «здесь», а нужен «банк».",
+   "uk": "Banco означає «банк». Baño — «туалет», aquí — «тут», а потрібен «банк».",
+   "en": "Banco means “bank”. Baño means “bathroom”, and aquí means “here”, which is not the place you need."
+  },
+  "5:c4:es:05:22": {
+   "ru": "Quién es — «кто это», ella — «она». Él — «он», eres — «ты».",
+   "uk": "Quién es — «хто це», ella — «вона». Él — «він», eres — «ти».",
+   "en": "Quién es means “who is”, and ella means “she”. Él means “he”, and eres means “you are”."
+  },
+  "5:c4:es:05:24": {
+   "ru": "Usted — вежливое «вы», поэтому es. Eres — «ты», а quiénes son — «кто они».",
+   "uk": "Usted — ввічливе «ви», тому es. Eres — «ти», а quiénes son — «хто вони».",
+   "en": "Usted is the polite “you”, so es. Eres means “you are” to a friend, and quiénes son means “who are they”."
+  },
+  "5:c5:es:05:33": {
+   "ru": "Qué перед libro значит «какая», mesa — «стол». Llave — «ключ», а qué es esto — «что это».",
+   "uk": "Qué перед libro означає «яка», mesa — «стіл». Llave — «ключ», а qué es esto — «що це».",
+   "en": "Qué before libro means “which”, and mesa means “table”. Llave means “key”, and qué es esto means “what is this”."
+  },
+  "5:c5:es:05:35": {
+   "ru": "Qué перед llave значит «какой», bolso — «сумка». Libro — «книга», mesa — «стол».",
+   "uk": "Qué перед llave означає «який», bolso — «сумка». Libro — «книжка», mesa — «стіл».",
+   "en": "Qué before llave means “which”, and bolso means “bag”. Libro means “book”, mesa means “table”."
+  },
+  "5:c6:es:05:43": {
+   "ru": "Pasaporte значит «паспорт». Médico — «врач», enfermera — «медсестра».",
+   "uk": "Pasaporte означає «паспорт». Médico — «лікар», enfermera — «медсестра».",
+   "en": "Pasaporte means “passport”. Médico means “doctor”, and enfermera means “nurse”."
+  },
+  "5:c6:es:05:48": {
+   "ru": "Enfermera значит «медсестра», и la — для женщины. Médico — «врач», cuesta — «стоит».",
+   "uk": "Enfermera означає «медсестра», і la — для жінки. Médico — «лікар», cuesta — «коштує».",
+   "en": "Enfermera means “nurse”, and la is for a woman. Médico means “doctor”, and cuesta means “costs”."
+  },
+  "6:c1:es:06:02": {
+   "ru": "Pasaportes — «паспорта»: los, -es на конце и están. Maletas — «чемоданы», el pasaporte — один.",
+   "uk": "Pasaportes — «паспорти»: los, -es наприкінці й están. Maletas — «валізи», el pasaporte — один.",
+   "en": "Pasaportes means “passports”: los, -es at the end and están. Maletas means “suitcases”, el pasaporte is one."
+  },
+  "6:c1:es:06:04": {
+   "ru": "Maletas — «чемоданы»: las, -s на конце и están. La maleta — один чемодан, pasaportes — «паспорта».",
+   "uk": "Maletas — «валізи»: las, -s наприкінці й están. La maleta — одна валіза, pasaportes — «паспорти».",
+   "en": "Maletas means “suitcases”: las, -s at the end and están. La maleta is one suitcase, pasaportes is “passports”."
+  },
+  "6:c2:es:06:11": {
+   "ru": "Botella значит «бутылка», allí — «вон там». Billete — «билет», abrigos — «пальто».",
+   "uk": "Botella означає «пляшка», allí — «он там». Billete — «квиток», abrigos — «пальта».",
+   "en": "Botella means “bottle”, and allí means “over there”. Billete means “ticket”, abrigos means “coats”."
+  },
+  "6:c2:es:06:17": {
+   "ru": "Fuera значит «снаружи», maleta — «чемодан». Dentro — «внутри», bolso — «сумка».",
+   "uk": "Fuera означає «надворі», maleta — «валіза». Dentro — «всередині», bolso — «сумка».",
+   "en": "Fuera means “outside”, and maleta means “suitcase”. Dentro means “inside”, bolso means “bag”."
+  },
+  "6:c3:es:06:23": {
+   "ru": "Foto значит «фотография», mesa — «стол». Mapa — «карта», mochila — «рюкзак».",
+   "uk": "Foto означає «фотографія», mesa — «стіл». Mapa — «мапа», mochila — «рюкзак».",
+   "en": "Foto means “photo”, and mesa means “table”. Mapa means “map”, mochila means “backpack”."
+  },
+  "6:c3:es:06:25": {
+   "ru": "Mapa значит «карта», mochila — «рюкзак». Mesa — «стол», а los mapas — несколько карт.",
+   "uk": "Mapa означає «мапа», mochila — «рюкзак». Mesa — «стіл», а los mapas — кілька мап.",
+   "en": "Mapa means “map”, and mochila means “backpack”. Mesa means “table”, and los mapas means several maps."
+  },
+  "6:c4:es:06:39": {
+   "ru": "Tren — один поезд, поэтому el и está. En la estación — «на станции». Trenes — несколько.",
+   "uk": "Tren — один потяг, тому el і está. En la estación — «на станції». Trenes — кілька.",
+   "en": "Tren is one train, so el and está. En la estación means “at the station”. Trenes means several."
+  },
+  "6:c4:es:06:40": {
+   "ru": "Trenes — несколько поездов: los и están. Tren — один поезд, а hotel — «отель».",
+   "uk": "Trenes — кілька потягів: los і están. Tren — один потяг, а hotel — «готель».",
+   "en": "Trenes means several trains: los and están. Tren is one train, and hotel means “hotel”."
+  },
+  "6:c5:es:06:42": {
+   "ru": "Médica с -a и la — женщина. El médico — мужчина. Guía — «гид», hotel — «отель».",
+   "uk": "Médica із -a та la — жінка. El médico — чоловік. Guía — «гід», hotel — «готель».",
+   "en": "Médica with -a and la is a woman. El médico is a man. Guía means “guide”, hotel means “hotel”."
+  },
+  "6:c5:es:06:46": {
+   "ru": "Guía — одно слово, la показывает женщину. El guía — мужчина. Médica — «врач», puerta — «дверь».",
+   "uk": "Guía — одне слово, la вказує на жінку. El guía — чоловік. Médica — «лікарка», puerta — «двері».",
+   "en": "Guía is one word, and la shows a woman. El guía is a man. Médica means “doctor”, puerta means “door”."
+  },
+  "6:c6:es:06:47": {
+   "ru": "Las стоит и перед fotos, и перед mochilas: «фотографии» и «рюкзаки». Llaves — «ключи».",
+   "uk": "Las стоїть і перед fotos, і перед mochilas: «фотографії» та «рюкзаки». Llaves — «ключі».",
+   "en": "Las stands before both fotos and mochilas: “photos” and “backpacks”. Llaves means “keys”."
+  },
+  "6:c6:es:06:50": {
+   "ru": "Llaves — «ключи», bolsillos — «карманы»: las, los и -s на концах. Maleta — «чемодан».",
+   "uk": "Llaves — «ключі», bolsillos — «кишені»: las, los і -s наприкінці. Maleta — «валіза».",
+   "en": "Llaves means “keys” and bolsillos means “pockets”: las, los and -s at the ends. Maleta means “suitcase”."
+  },
+  "7:c1:es:07:02": {
+   "ru": "Una llave — «один ключ»: una запоминают вместе с llave. Libro — «книга», mochila — «рюкзак».",
+   "uk": "Una llave — «один ключ»: una запам’ятовують разом із llave. Libro — «книжка», mochila — «рюкзак».",
+   "en": "Una llave means “a key”: remember una together with llave. Libro means “book”, mochila means “backpack”."
+  },
+  "7:c1:es:07:04": {
+   "ru": "Mapa значит «карта», и перед ним un. Libro — «книга», mochila — «рюкзак».",
+   "uk": "Mapa означає «мапа», і перед ним un. Libro — «книжка», mochila — «рюкзак».",
+   "en": "Mapa means “map”, and un goes before it. Libro means “book”, mochila means “backpack”."
+  },
+  "7:c2:es:07:07": {
+   "ru": "Llave значит «ключ», en el bolso — «в сумке». Billete — «билет», mapa — «карта».",
+   "uk": "Llave означає «ключ», en el bolso — «у сумці». Billete — «квиток», mapa — «мапа».",
+   "en": "Llave means “key”, and en el bolso means “in the bag”. Billete means “ticket”, mapa means “map”."
+  },
+  "7:c2:es:07:09": {
+   "ru": "Billete значит «билет», bolsillo — «карман». Llave — «ключ», bolso — «сумка».",
+   "uk": "Billete означає «квиток», bolsillo — «кишеня». Llave — «ключ», bolso — «сумка».",
+   "en": "Billete means “ticket”, and bolsillo means “pocket”. Llave means “key”, bolso means “bag”."
+  },
+  "7:c3:es:07:12": {
+   "ru": "Dos значит «два», а у llaves лишняя -s: несколько ключей. Libros — «книги».",
+   "uk": "Dos означає «два», а в llaves зайва -s: кілька ключів. Libros — «книжки».",
+   "en": "Dos means “two”, and llaves has an extra -s: several keys. Libros means “books”."
+  },
+  "7:c3:es:07:16": {
+   "ru": "Dos значит «два», а у pasaportes на конце -es. Mochila — «рюкзак», llaves — «ключи».",
+   "uk": "Dos означає «два», а в pasaportes наприкінці -es. Mochila — «рюкзак», llaves — «ключі».",
+   "en": "Dos means “two”, and pasaportes ends in -es. Mochila means “backpack”, llaves means “keys”."
+  },
+  "7:c4:es:07:23": {
+   "ru": "Café значит «кофе», cocina — «кухня». Azúcar — «сахар», leche — «молоко».",
+   "uk": "Café означає «кава», cocina — «кухня». Azúcar — «цукор», leche — «молоко».",
+   "en": "Café means “coffee”, and cocina means “kitchen”. Azúcar means “sugar”, leche means “milk”."
+  },
+  "7:c4:es:07:24": {
+   "ru": "Azúcar значит «сахар», oficina — «офис». Leche — «молоко», café — «кофе».",
+   "uk": "Azúcar означає «цукор», oficina — «офіс». Leche — «молоко», café — «кава».",
+   "en": "Azúcar means “sugar”, and oficina means “office”. Leche means “milk”, café means “coffee”."
+  },
+  "7:c5:es:07:32": {
+   "ru": "No hay значит «нет», café — «кофе». Agua — «вода», а hay без no — «есть».",
+   "uk": "No hay означає «немає», café — «кава». Agua — «вода», а hay без no — «є».",
+   "en": "No hay means “there is none”, and café means “coffee”. Agua means “water”, and hay without no means “there is”."
+  },
+  "7:c5:es:07:36": {
+   "ru": "No hay значит «нет», trenes — «поезда», hoy — «сегодня». Azúcar — «сахар», agua — «вода».",
+   "uk": "No hay означає «немає», trenes — «поїзди», hoy — «сьогодні». Azúcar — «цукор», agua — «вода».",
+   "en": "No hay means “there are none”, trenes means “trains”, hoy means “today”. Azúcar is “sugar”, agua is “water”."
+  },
+  "7:c6:es:07:39": {
+   "ru": "Знаки ¿ и ? делают вопрос: tienda — «магазин», cerca — «поблизости». Hay gente dentro — не вопрос.",
+   "uk": "Знаки ¿ та ? роблять питання: tienda — «магазин», cerca — «поблизу». Hay gente dentro — не питання.",
+   "en": "The signs ¿ and ? make a question: tienda means “shop”, cerca means “nearby”. Hay gente dentro is not a question."
+  },
+  "7:c6:es:07:49": {
+   "ru": "Знаки ¿ и ? делают вопрос: gente — «люди», oficina — «офис». Tienda — «магазин».",
+   "uk": "Знаки ¿ та ? роблять питання: gente — «люди», oficina — «офіс». Tienda — «магазин».",
+   "en": "The signs ¿ and ? make a question: gente means “people”, oficina means “office”. Tienda means “shop”."
+  },
+  "8:c1:es:08:03": {
+   "ru": "Mi значит «мой», llave — «ключ». Libro — «книга», mochila — «рюкзак».",
+   "uk": "Mi означає «мій», llave — «ключ». Libro — «книжка», mochila — «рюкзак».",
+   "en": "Mi means “my”, and llave means “key”. Libro means “book”, mochila means “backpack”."
+  },
+  "8:c1:es:08:02": {
+   "ru": "Mis и están — несколько, а у libros на конце -s: «мои книги». Mi libro — одна книга.",
+   "uk": "Mis і están — кілька, а в libros наприкінці -s: «мої книжки». Mi libro — одна книжка.",
+   "en": "Mis and están mean several things, and libros ends in -s: “my books”. Mi libro is just one book."
+  },
+  "8:c2:es:08:09": {
+   "ru": "Reloj значит «часы», bolsillo — «карман». Cargador — «зарядка», coche — «машина».",
+   "uk": "Reloj означає «годинник», bolsillo — «кишеня». Cargador — «зарядка», coche — «машина».",
+   "en": "Reloj means “watch”, and bolsillo means “pocket”. Cargador means “charger”, coche means “car”."
+  },
+  "8:c2:es:08:06": {
+   "ru": "Pasaporte значит «паспорт», en casa — «дома». Cargador — «зарядка», fotos — «фотографии».",
+   "uk": "Pasaporte означає «паспорт», en casa — «вдома». Cargador — «зарядка», fotos — «фотографії».",
+   "en": "Pasaporte means “passport”, and en casa means “at home”. Cargador means “charger”, fotos means “photos”."
+  },
+  "8:c3:es:08:12": {
+   "ru": "Tus значит «твои», и дальше libros с -s и están. Tu libro — одна книга, mis — «мои».",
+   "uk": "Tus означає «твої», і далі libros із -s та están. Tu libro — одна книжка, mis — «мої».",
+   "en": "Tus means “your” for several things, with libros ending in -s and están. Tu libro is one book, mis is “my”."
+  },
+  "8:c3:es:08:19": {
+   "ru": "Tu значит «твой», bicicleta — «велосипед», cerca — «рядом». Llave — «ключ», mesa — «стол».",
+   "uk": "Tu означає «твій», bicicleta — «велосипед», cerca — «поруч». Llave — «ключ», mesa — «стіл».",
+   "en": "Tu means “your”, bicicleta means “bicycle”, cerca means “nearby”. Llave means “key”, mesa means “table”."
+  },
+  "8:c4:es:08:22": {
+   "ru": "Sus значит «их», а у mochilas на конце -s: рюкзаков несколько. Su mochila — один рюкзак.",
+   "uk": "Sus означає «їхні», а в mochilas наприкінці -s: рюкзаків кілька. Su mochila — один рюкзак.",
+   "en": "Sus means “their” for several things, and mochilas ends in -s. Su mochila is one backpack."
+  },
+  "8:c4:es:08:23": {
+   "ru": "Su значит «его», pasaporte — «паспорт», bolso — «сумка». Mi — «мой», casa — «дом».",
+   "uk": "Su означає «його», pasaporte — «паспорт», bolso — «сумка». Mi — «мій», casa — «дім».",
+   "en": "Su means “his”, pasaporte means “passport”, bolso means “bag”. Mi means “my”, casa means “home”."
+  },
+  "8:c5:es:08:36": {
+   "ru": "Mi значит «моя», madre — «мама», es profesora — «преподавательница». Tu — «твоя», hermana — «сестра».",
+   "uk": "Mi означає «моя», madre — «мама», es profesora — «викладачка». Tu — «твоя», hermana — «сестра».",
+   "en": "Mi means “my”, madre means “mother”, and es profesora means “is a teacher”. Tu means “your”, hermana “sister”."
+  },
+  "8:c5:es:08:37": {
+   "ru": "Tu значит «твоя», madre — «мама», en la farmacia — «в аптеке». Mi — «моя», hermana — «сестра».",
+   "uk": "Tu означає «твоя», madre — «мама», en la farmacia — «в аптеці». Mi — «моя», hermana — «сестра».",
+   "en": "Tu means “your”, madre means “mother”, and en la farmacia means “at the pharmacy”. Mi means “my”."
+  },
+  "8:c6:es:08:44": {
+   "ru": "Mis llaves — «мои ключи», их несколько, поэтому mis и están. Mi pasaporte — один, а tu hermana — «твоя сестра».",
+   "uk": "Mis llaves — «мої ключі», їх кілька, тому mis і están. Mi pasaporte — один, а tu hermana — «твоя сестра».",
+   "en": "Mis llaves means “my keys”, several, so mis and están. Mi pasaporte is one, and tu hermana is “your sister”."
+  },
+  "8:c6:es:08:45": {
+   "ru": "Tu hermana — «твоя сестра», en casa — «дома». Знаки ¿ и ? делают вопрос, а dónde — «где».",
+   "uk": "Tu hermana — «твоя сестра», en casa — «вдома». Знаки ¿ та ? роблять питання, а dónde — «де».",
+   "en": "Tu hermana means “your sister”, en casa means “at home”. The signs ¿ and ? make a question, and dónde means “where”."
+  },
+  "9:c1:es:09:02": {
+   "ru": "Конец -as в trabajas — это «ты». Trabajo — «я», а en casa — «дома».",
+   "uk": "Закінчення -as у trabajas — це «ти». Trabajo — «я», а en casa — «вдома».",
+   "en": "The ending -as in trabajas means “you”. Trabajo means “I work”, and en casa means “at home”."
+  },
+  "9:c1:es:09:03": {
+   "ru": "Конец -o в trabajo — это «я», en casa — «дома». Trabajas — «ты», aquí — «здесь».",
+   "uk": "Закінчення -o в trabajo — це «я», en casa — «вдома». Trabajas — «ти», aquí — «тут».",
+   "en": "The ending -o in trabajo means “I”, and en casa means “at home”. Trabajas means “you work”, aquí means “here”."
+  },
+  "9:c2:es:09:05": {
+   "ru": "Estudio значит «я учусь», конец -o — это «я». En casa — «дома». Trabajo — «я работаю».",
+   "uk": "Estudio означає «я навчаюся», закінчення -o — це «я». En casa — «вдома». Trabajo — «я працюю».",
+   "en": "Estudio means “I study”, and the ending -o is “I”. En casa means “at home”. Trabajo means “I work”."
+  },
+  "9:c2:es:09:08": {
+   "ru": "Estudias значит «ты учишь», конец -as — это «ты». Estudio — «я», en casa — «дома».",
+   "uk": "Estudias означає «ти вивчаєш», закінчення -as — це «ти». Estudio — «я», en casa — «вдома».",
+   "en": "Estudias means “you study”, and the ending -as is “you”. Estudio means “I study”, en casa “at home”."
+  },
+  "9:c3:es:09:10": {
+   "ru": "Hablas значит «ты говоришь», конец -as — «ты». Hablo — «я», estudias — «ты учишь».",
+   "uk": "Hablas означає «ти говориш», закінчення -as — «ти». Hablo — «я», estudias — «ти вивчаєш».",
+   "en": "Hablas means “you speak”, and the ending -as is “you”. Hablo means “I speak”, estudias means “you study”."
+  },
+  "9:c3:es:09:17": {
+   "ru": "Estudio значит «я учу», inglés — «английский язык». Español — «испанский».",
+   "uk": "Estudio означає «я вивчаю», inglés — «англійська мова». Español — «іспанська».",
+   "en": "Estudio means “I study”, and inglés means “English”. Español means “Spanish”."
+  },
+  "9:c4:es:09:14": {
+   "ru": "Hermano — «брат», estudia — «учит»: конец -a, а не «я». Habla — «говорит», estudio — «я учу».",
+   "uk": "Hermano — «брат», estudia — «вивчає»: закінчення -a, а не «я». Habla — «говорить», estudio — «я вивчаю».",
+   "en": "Hermano means “brother”, and estudia means “studies”: the ending -a, not “I”. Habla means “speaks”."
+  },
+  "9:c4:es:09:16": {
+   "ru": "Habla значит «говорит» (конец -a), madre — «мама», inglés — «английский». Estudio — «я учу».",
+   "uk": "Habla означає «говорить» (закінчення -a), madre — «мама», inglés — «англійська». Estudio — «я вивчаю».",
+   "en": "Habla means “speaks” (ending -a), madre means “mother”, inglés means “English”. Estudio is “I study”."
+  },
+  "9:c5:es:09:24": {
+   "ru": "Hablamos значит «мы говорим», конец -amos — это «мы». Hablo — «я», trabajamos — «мы работаем».",
+   "uk": "Hablamos означає «ми говоримо», закінчення -amos — це «ми». Hablo — «я», trabajamos — «ми працюємо».",
+   "en": "Hablamos means “we speak”, and the ending -amos is “we”. Hablo means “I speak”, trabajamos is “we work”."
+  },
+  "9:c5:es:09:28": {
+   "ru": "Mis hermanos — «мои братья», их несколько, поэтому trabajan на -n. Ana trabaja — про одну.",
+   "uk": "Mis hermanos — «мої брати», їх кілька, тому trabajan на -n. Ana trabaja — про одну.",
+   "en": "Mis hermanos means “my brothers”, several, so trabajan ends in -n. Ana trabaja is about one person."
+  },
+  "9:c6:es:09:33": {
+   "ru": "Busco значит «я ищу», mis llaves — «свои ключи». Mi móvil — «телефон», а Ana busca — про Ану.",
+   "uk": "Busco означає «я шукаю», mis llaves — «свої ключі». Mi móvil — «телефон», а Ana busca — про Ану.",
+   "en": "Busco means “I look for”, and mis llaves means “my keys”. Mi móvil is “phone”, and Ana busca is about Ana."
+  },
+  "9:c6:es:09:34": {
+   "ru": "Busca значит «ищет», su pasaporte — «свой паспорт». Busco — «я ищу», buscamos — «мы ищем».",
+   "uk": "Busca означає «шукає», su pasaporte — «свій паспорт». Busco — «я шукаю», buscamos — «ми шукаємо».",
+   "en": "Busca means “looks for”, and su pasaporte means “her passport”. Busco is “I look for”, buscamos is “we”."
+  }
+ }
+}

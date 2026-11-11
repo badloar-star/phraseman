@@ -82,6 +82,8 @@ export interface FriendProfileBatchRecord {
   friendWeek?: unknown;
   /** «Фраза дня вдвоём» (идея 8): последний ответ друга из progress.friends_phrase_v1; недоверенное — parseFriendPhraseAnswer. */
   friendPhrase?: unknown;
+  /** Навыки друга (D207): шесть уровней 0…30 из progress.skills_public_v1 — тот же users/{uid}, 0 доп. чтений; недоверенное — parseSkillLevels. */
+  skillLevels?: unknown;
 }
 
 type ProfilesResponse = {

@@ -13,6 +13,7 @@ import { DebugLogger } from './debug-logger';
 import { readCoinRank } from './coin_rank_state_v1';
 import { isValidCoinRank } from './coin_rank_table_v1';
 import { readProfileCardProForProjection } from './profile_card_pro_state_v1';
+import { refreshMySkillPublicLevels } from './skills_public_record_store';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export const PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1';
@@ -226,6 +227,12 @@ async function syncPublicProfileSnapshotUnsafe(
   // не входит: он пишется только profileCardBioSetMine с серверными проверками.
   const profileCardProPayload = await readProfileCardProForProjection(coinRankOwner);
   if (!isCurrentAccountGeneration(accountToken, coinRankOwner)) return;
+  // зачем (владелец 11.11.2026, D207 «посторонние видят навыки только на визитке „Про“»): шесть уровней едут в ЭТОМ ЖЕ вызове —
+  // новой записи нет. Запись уровней обновляется здесь же (друзьям она уходит общим патчем прогресса) не чаще раза в сутки.
+  // Без «Про» уровни в публичный профиль не отправляются вовсе; сервер при этом стирает прежние.
+  const mySkillLevels = await refreshMySkillPublicLevels(() => isCurrentAccountGeneration(accountToken, coinRankOwner));
+  if (!isCurrentAccountGeneration(accountToken, coinRankOwner)) return;
+  const skillLevelsPayload = profileCardProPayload.profileCardPro === true && mySkillLevels ? { skillLevels: [...mySkillLevels] } : {};
   // Блоки статистики уровней II+ («Выучено»/«Путь») — денормализуем в публичный
   // профиль из локального lifetime-кэша, чтобы ЧУЖИЕ карточки могли их показать.
   // Кэш освежается экраном статистики и модалом собственной карточки; если его ещё
@@ -247,6 +254,7 @@ async function syncPublicProfileSnapshotUnsafe(
     aura,
     ...coinRankPayload,
     ...profileCardProPayload,
+    ...skillLevelsPayload,
     ...cardStatsPayload,
   });
 
@@ -293,6 +301,7 @@ async function syncPublicProfileSnapshotUnsafe(
     aura,
     ...coinRankPayload,
     ...profileCardProPayload,
+    ...skillLevelsPayload,
     ...cardStatsPayload,
     displayHash,
   };

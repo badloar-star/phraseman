@@ -13,6 +13,8 @@ import { withCallableTimeout } from './callable_timeout';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { DebugLogger } from './debug-logger';
 import { isProfileCardProStyle, type ProfileCardProStyle } from './profile_card_styles';
+import { SKILL_IDS } from '../modules/skills/skill_points_table';
+import { parseSkillLevels, type SkillLevels } from '../modules/skills/skill_visibility';
 
 const LOG = '[PROFILE-CARD]';
 const REGION = 'us-central1';
@@ -26,6 +28,11 @@ export type PublicProfileCard = Readonly<{
   style: ProfileCardProStyle | null;
   /** Текст показывается только при pro === true. */
   bio: string;
+  /**
+   * Навыки хозяина (D207): шесть уровней 0…30 из ТОГО ЖЕ документа public_profiles — новых чтений нет. Сервер пишет их только
+   * при визитке «Про»; null или отсутствие — уровней нет, блок не рисуется (решает skillsBlockVisible).
+   */
+  skillLevels?: SkillLevels | null;
 }>;
 
 const EMPTY_CARD: PublicProfileCard = Object.freeze({ pro: false, style: null, bio: '' });
@@ -47,6 +54,14 @@ let diskSaveTimer: ReturnType<typeof setTimeout> | null = null;
 // Поколение копии: чистка аккаунта поднимает его, и всё, что стартовало ДО чистки (чтение сети, загрузка с диска, отложенная запись), результат уже не применяет.
 let cacheEpoch = 0;
 
+// Уровни приходят из сети массивом шести чисел, а в дисковой копии лежат уже разобранным объектом — принимаем оба вида, строго.
+function storedSkillLevels(raw: unknown): SkillLevels | null {
+  if (Array.isArray(raw)) return parseSkillLevels(raw);
+  if (!raw || typeof raw !== 'object') return null;
+  const byId = raw as Record<string, unknown>;
+  return parseSkillLevels(SKILL_IDS.map((id) => byId[id]));
+}
+
 export function normalizePublicProfileCard(data: Record<string, unknown> | null | undefined): PublicProfileCard {
   if (!data) return EMPTY_CARD;
   const pro = data.profileCardPro === true;
@@ -54,7 +69,9 @@ export function normalizePublicProfileCard(data: Record<string, unknown> | null 
   const rawBio = typeof data.profileCardBio === 'string' ? data.profileCardBio : '';
   // Сервер уже проверил текст; здесь лишь страховка от старых/чужих записей.
   const bio = pro ? Array.from(rawBio.replace(/\s+/g, ' ').trim()).slice(0, PROFILE_CARD_BIO_MAX_CHARS).join('') : '';
-  return Object.freeze({ pro, style, bio });
+  // зачем: без «Про» посторонний навыков не видит (D207) — даже если в старом документе уровни остались, в копию их не берём
+  const skillLevels = pro ? storedSkillLevels(data.skillLevels) : null;
+  return Object.freeze(skillLevels ? { pro, style, bio, skillLevels } : { pro, style, bio });
 }
 
 export function peekPublicProfileCard(uid: string): PublicProfileCard | null {
@@ -115,7 +132,7 @@ export function loadPublicProfileCardDisk(): Promise<void> {
         let loaded = 0;
         for (const [uid, data] of Object.entries(parsed.items)) {
           // normalizePublicProfileCard принимает поля public_profiles; копия хранит уже нормализованный вид {pro, style, bio}
-          const card = normalizePublicProfileCard({ profileCardPro: data.pro, profileCardStyle: data.style, profileCardBio: data.bio });
+          const card = normalizePublicProfileCard({ profileCardPro: data.pro, profileCardStyle: data.style, profileCardBio: data.bio, skillLevels: data.skillLevels });
           if (!staleCards.has(uid)) { staleCards.set(uid, card); loaded += 1; }
         }
         DebugLogger.info(LOG, `чужая визитка: с диска загружено ${loaded} копий за ${Date.now() - startedAt}мс`);
@@ -182,7 +199,7 @@ export function fetchPublicProfileCard(uid: string): Promise<PublicProfileCard> 
       const data = snap.exists ? (snap.data() as Record<string, unknown> | undefined) ?? null : null;
       const card = normalizePublicProfileCard(data);
       DebugLogger.info(LOG, `чужая визитка: прочитана ${JSON.stringify({
-        uid: id, exists: snap.exists, pro: card.pro, style: card.style, bioLength: card.bio.length, ms: Date.now() - startedAt,
+        uid: id, exists: snap.exists, pro: card.pro, style: card.style, bioLength: card.bio.length, skills: !!card.skillLevels, ms: Date.now() - startedAt,
       })}`);
       if (epochAtStart !== cacheEpoch) {
         DebugLogger.info(LOG, `чужая визитка: ответ ${id} пришёл после смены аккаунта — в копию не кладём`);

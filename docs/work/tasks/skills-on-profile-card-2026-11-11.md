@@ -111,7 +111,7 @@ RU (исходник для согласования):
 > Навыки. Приложение считает шесть уровней навыков (Слух, Речь, Словарь, Грамматика, Скорость, Социальный), каждый от 0
 > до 30, по вашим занятиям. Другим людям показываются только сами уровни — в виде звезды и шести полосок на вашей
 > визитке. Очки, из которых складывается уровень, и история ваших действий остаются на вашем устройстве и никому не
-> показываются. Принятые вами друзья видят ваши уровни всегда. Остальные пользователи видят их, только если у вас
+> показываются. Сами уровни хранятся вместе с вашим синхронизируемым прогрессом. Принятые вами друзья видят ваши уровни всегда. Остальные пользователи видят их, только если у вас
 > визитка «Про» (стиль визитки, который берётся за монеты; это не подписка); без неё уровни посторонним не показываются
 > и в ваш публичный профиль не записываются. Чтобы перестать показывать уровни посторонним, верните обычный вид
 > визитки; чтобы их не видел конкретный человек — удалите его из друзей или заблокируйте. Уровни удаляются вместе с аккаунтом.
@@ -121,7 +121,7 @@ EN (для `legal/privacy_policy_en.json`, раздел 5):
 > Skills. The App calculates six skill levels (Listening, Speaking, Vocabulary, Grammar, Speed, Social), each from 0 to
 > 30, from your study activity. Other people can see only the levels themselves, shown as a star and six bars on your
 > profile card. The points behind each level and the history of your actions stay on your device and are not shown to
-> anyone. Friends you have accepted can always see your levels. Other users can see them only if you have the Pro
+> anyone. The levels themselves are stored with your synced progress. Friends you have accepted can always see your levels. Other users can see them only if you have the Pro
 > profile card (a card style you can get with coins; it is not a subscription); without it your levels are not shown to
 > other users and are not written to your public profile. To stop showing your levels to other users, switch back to
 > the standard card; to hide them from a particular person, remove them from your friends or block them. Your levels
@@ -155,3 +155,35 @@ EN (для `legal/privacy_policy_en.json`, раздел 5):
 
 Новые файлы ничем не импортируются из приложения: откат — `git revert` коммитов этой задачи, поведение приложения не
 меняется. Данных в облаке задача не создаёт.
+
+## Дополнение 11.11.2026: владелец выбрал «закрыто, две правки сервера»
+
+Status: передача написана и проверена тестами; НЕ выложена (выкладка функций — только по команде владельца).
+
+Сделано по пунктам 1–3 раздела «Что упёрлось в сервер»:
+- Сервер, правка 1 — `functions/src/public_profile_projection.ts`: поле `skillLevels` принимается только при
+  `profileCardPro === true`; без «Про» или при битой записи поле стирается из `public_profiles` (`FieldValue.delete()`).
+- Сервер, правка 2 — `functions/src/friends_profiles.ts`: `skillLevels` из `users/{uid}.progress.skills_public_v1` отдаётся
+  в уже существующем ответе `friendsGetProfiles` (он проверяет взаимную дружбу). Новых чтений нет — тест считает чтения.
+- Общий строгий разбор — `functions/src/skill_levels_public.ts` (шесть целых 0..30, иначе запись отбрасывается целиком).
+- Опись ключей прогресса — `functions/src/accounts_v2_migration/inventory.ts` (+ `skills_public_v1`).
+- Клиент, запись — `modules/skills/skill_public_record.ts` (правило «при изменении и не чаще раза в сутки»),
+  `app/skills_public_record_store.ts` (ключ `skills_public_v1`), `app/public_profile_snapshot.ts` (уровни в том же вызове
+  и в том же хэше, только при «Про»), `app/cloud_sync.ts` и `app/guest_clean_classifier.ts` (ключ в списках).
+- Клиент, чтение — `app/profile_card_public.ts` (`PublicProfileCard.skillLevels`, тот же документ и та же дисковая копия),
+  `app/friends_profiles_batch.ts` и `app/friends_together/together_store.ts` (`pair.skills`, тот же ответ и тот же снапшот).
+
+Стоимость: новых чтений Firestore — 0; новых записей — 0 (уровни едут в существующем вызове профиля и в существующем
+патче прогресса). Повод для отправки — существующие вызовы публичного профиля (старт приложения, смена имени, ранга, «Про»).
+
+Порядок выкладки (решает владелец): сначала функции `publicProfileProjectMine` и `friendsGetProfiles`, затем сборка
+приложения. Обратный порядок безопасен: старый сервер просто отбрасывает неизвестное поле. До выкладки — дополнить
+раздел 5 политики абзацем выше (вариант под пункты 1–3 подходит без правок).
+
+Остаётся (прежний долг, без изменений): вставка блока в `PlayerProfileModal.tsx` и профиль друга по `elevate-social.js`
+со сверкой «макет | эмулятор». Данные для них теперь доступны: `otherCard.skillLevels` (посторонний, «Про») и
+`pair.skills` (друг); зритель и «Про» → `skillsBlockVisible`.
+
+Governance-ID: TG-C5E67EE5200E
+Governance-ID: TG-7603CCFBBC12
+Governance-ID: TG-F8E50570EA10

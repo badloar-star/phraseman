@@ -25,6 +25,7 @@ import { pairViewForToday } from './pair_today';
 import { parseStudyLanguagesStarted } from './duel_eligibility';
 import { parseFriendWeekRecord, type FriendWeekRecord } from './friend_week';
 import { parseFriendPhraseAnswer, type FriendPhraseAnswer } from './friend_phrase';
+import { parseSkillLevels, type SkillLevels } from '../../modules/skills/skill_visibility';
 import { isPlusProfile } from '../../components/plus/plus_ring_spec';
 import { DebugLogger } from '../debug-logger';
 import { onAccountOwnerChanged } from '../account_owner_change';
@@ -76,6 +77,8 @@ export type FriendTogetherPairState = Readonly<{
   week?: FriendWeekRecord | null;
   /** «Фраза дня вдвоём» (идея 8): последний ответ друга на фразу дня (тот же профиль, 0 новых чтений); null — нет записи. */
   phrase?: FriendPhraseAnswer | null;
+  /** Навыки друга (D207, «друзья видят навыки всегда»): шесть уровней 0…30 из того же профиля; null — записи нет или старая сборка. */
+  skills?: SkillLevels | null;
 }>;
 
 export type FriendsTogetherSnapshot = Readonly<{
@@ -313,6 +316,8 @@ export async function refreshFriendsTogether(
       week: parseFriendWeekRecord(profile.friendWeek),
       // зачем (идея 8): ответ друга на фразу дня — тем же профилем; карточка «Фраза дня вдвоём» сверяет день и фразу сама
       phrase: parseFriendPhraseAnswer(profile.friendPhrase),
+      // зачем (D207): уровни навыков друга едут тем же профилем — 0 новых чтений; снапшот отдаёт звезду друга с первого кадра
+      skills: parseSkillLevels(profile.skillLevels),
       // зачем (идея 2): статусы «открыт / прошёл / закрыт» в выборе друзей — из того же профиля, 0 новых чтений
     };
   }

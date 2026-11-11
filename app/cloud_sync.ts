@@ -657,6 +657,9 @@ export const SYNC_KEYS = [
   // «Фраза дня вдвоём» (идея 8, app/friends_together/friend_phrase.ts): мой ответ на фразу дня — друзья видят его тем же
   // friendsGetProfiles. Обычный LWW: запись целиком заменяется новым ответом.
   'friends_phrase_v1',
+  // Навыки для друзей (D207, modules/skills/skill_public_record.ts): шесть уровней 0…30 — друзья забирают их тем же
+  // friendsGetProfiles. Обычный LWW: запись целиком пересчитывается из хранилища навыков, не чаще раза в сутки.
+  'skills_public_v1',
   // ── Мультиязычность: начатые языки + ответы мини-онбординга языка ─────────
   // (гейт «1 язык фри»; см. app/study_languages.ts)
   'study_languages_started_v1',

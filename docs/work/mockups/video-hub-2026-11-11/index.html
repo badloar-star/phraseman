@@ -195,6 +195,46 @@ h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; lett
 .pl.cur .x i { max-height: 40px; opacity: 1; }
 .dock { position: absolute; left: 12px; right: 12px; bottom: 26px; z-index: 20; display: flex; gap: 8px; }
 .dock .cta { flex: 1; }
+/* зачем (владелец 11.11, круг 2: «добавь на макете… во время просмотра видео» — бегущие фразы, правило «70% — 500 монет», длительность/просмотрено/«Нравится»):
+   три блока прямо под плеером. Высоты строк зарезервированы, чтобы при смене фразы экран не прыгал. */
+.now { position: relative; margin-top: 12px; border-radius: 24px; padding: 14px 16px 12px; overflow: hidden; box-shadow: var(--sh), var(--edge); }
+.now .nh { display: flex; align-items: center; gap: 8px; font-size: 13px; line-height: 17px; font-weight: 700; color: rgba(255, 255, 255, .86); font-variant-numeric: tabular-nums; }
+.eq { display: flex; align-items: flex-end; gap: 2px; height: 12px; }
+.eq i { width: 3px; height: 40%; border-radius: 1.5px; background: #fff; animation: wave 520ms ease-in-out infinite alternate; }
+.eq i:nth-child(2) { animation-delay: -180ms; } .eq i:nth-child(3) { animation-delay: -340ms; }
+.now.paused .eq i { animation-play-state: paused; }
+.now .dots { margin-left: auto; display: flex; gap: 4px; align-items: center; }
+.now .dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .3); transition: width 240ms var(--ease-out), background-color 200ms ease; }
+.now .dots i.on { background: rgba(255, 255, 255, .75); } .now .dots i.cur { width: 18px; background: #fff; }
+.now .nb { transition: opacity 180ms ease, filter 180ms ease, transform 220ms var(--ease-out); }
+.now .nb.sw { opacity: 0; filter: blur(3px); transform: translateY(4px); }
+.now .w { font-size: 26px; line-height: 32px; font-weight: 800; letter-spacing: -.4px; margin-top: 8px; text-wrap: balance; }
+.now .nb { min-height: 132px; }
+.now .w span { color: rgba(255, 255, 255, .4); transition: color 240ms ease; }
+.now .w span.lit { color: #fff; }
+.now .tr1 { font-size: 16px; line-height: 22px; font-weight: 600; margin-top: 4px; }
+.now .ex1 { font-size: 14px; line-height: 19px; color: rgba(255, 255, 255, .8); margin-top: 3px; min-height: 38px; text-wrap: pretty; }
+.now .na { display: flex; gap: 8px; margin-top: 10px; }
+.now .na button { height: 44px; padding: 0 16px; border-radius: 22px; background: rgba(255, 255, 255, .15); font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; transition: transform 160ms var(--ease-out), background-color 180ms ease, color 180ms ease; }
+.now .na button .io { font-size: 18px; }
+.now .na button[aria-pressed="true"] { background: #fff; color: #121318; }
+.rwd { margin-top: 12px; border-radius: 22px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; }
+.rwd .ring { width: 48px; height: 48px; border-radius: 24px; flex: none; }
+.rwd .ring::before { inset: 4px; background: #1b1c23; }
+.rwd .ring img { width: 24px; height: 24px; }
+.rwd .rt { flex: 1; min-width: 0; display: block; }
+.rwd .bar { display: block; }
+.rwd b { display: block; font-size: 15px; line-height: 20px; font-weight: 700; }
+.rwd .bar { height: 6px; border-radius: 3px; background: var(--ctl2); margin-top: 8px; overflow: hidden; }
+.rwd .bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, oklch(.8 .13 70), var(--gold)); transition: width 300ms linear; }
+.rwd.done b { color: var(--ok); } .rwd.done .ring { background: var(--ok); } .rwd.done .bar i { background: var(--ok); }
+.rwd.done { animation: pop 420ms var(--ease-out); }
+.meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.mc { height: 36px; padding: 0 12px; border-radius: 18px; background: var(--ctl); font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; transition: transform 160ms var(--ease-out), background-color 180ms ease, color 180ms ease; }
+.mc .io { font-size: 16px; color: var(--acc); transition: color 180ms ease; }
+.mc.seen, .mc.seen .io { color: var(--ok); }
+button.mc[aria-pressed="true"] { background: oklch(.87 .12 86 / .2); color: var(--gold); }
+button.mc[aria-pressed="true"] .io { color: var(--gold); }
 
 /* ═════ 3. Проверь себя ═════ */
 .quiz { position: absolute; inset: 0; padding: 40px 16px 30px; display: flex; flex-direction: column; }
@@ -458,63 +498,111 @@ function bookmark(btn) {
 }
 
 /* ───── 2. Просмотр ───── */
+/* фраза: [секунда в ролике, фраза, перевод, объяснение] — ровно те поля, что уже есть у фраз роликов в приложении */
 const PHRASES = [
-  [312, 'How’s it going?', 'Как дела?'], [326, 'Not too bad.', 'Неплохо.'], [339, 'Long time no see!', 'Давно не виделись!'],
-  [351, 'What have you been up to?', 'Чем занимался всё это время?'], [364, 'Same old, same old.', 'Всё по-старому.'],
-  [378, 'That sounds great.', 'Звучит здорово.'], [391, 'I’d better get going.', 'Мне пора идти.'],
+  [312, 'How’s it going?', 'Как дела?', 'Обычное приветствие; подробного ответа не ждут.'],
+  [326, 'Not too bad.', 'Неплохо.', 'Спокойный ответ, когда всё в порядке.'],
+  [339, 'Long time no see!', 'Давно не виделись!', 'Тёплое приветствие для знакомых.'],
+  [351, 'What have you been up to?', 'Чем занимался всё это время?', 'Так спрашивают о новостях после перерыва.'],
+  [364, 'Same old, same old.', 'Всё по-старому.', 'Когда нового ничего не случилось.'],
+  [378, 'That sounds great.', 'Звучит здорово.', 'Короткая поддержка в ответ на чужую новость.'],
+  [391, 'I’d better get going.', 'Мне пора идти.', 'Вежливый способ закончить разговор.'],
 ];
 const DUR = 725;
 function watchHTML() {
   return `${sbar}<div class="scr"><div class="watch">
-    <div class="wtop"><button class="ib press" aria-label="Назад">${io('chevron-back')}</button><button class="ib press on" aria-label="Нравится">${io('star')}</button></div>
+    <div class="wtop"><button class="ib press" aria-label="Назад">${io('chevron-back')}</button></div>
     <div class="player" id="player" data-play="1"><div class="poster p3"></div>
-      <div class="rw" id="rw" style="--p:46"><span class="ring">${COIN}</span><span id="rwt">до +500 · 24%</span></div>
+      <div class="rw" id="rw" style="--p:46"><span class="ring">${COIN}</span><span id="rwt">+500</span></div>
       <button class="pp" id="pp" aria-label="Пауза">${io('pause')}</button>
       <div class="sub" id="sub"></div><span class="tm" id="tm"></span><div class="ln"><i id="ln"></i></div></div>
+    <section class="now aur" id="now">
+      <div class="nh"><span class="eq"><i></i><i></i><i></i></span><span id="nowAt"></span><span class="dots" id="dots">${PHRASES.map(() => '<i></i>').join('')}</span></div>
+      <div class="nb" id="nb"><div class="w" id="nowW"></div><div class="tr1" id="nowTr"></div><div class="ex1" id="nowEx"></div></div>
+      <div class="na"><button class="press" id="nowSave" aria-pressed="false">${io('bookmark-outline')}<span>В карточки</span></button><button class="press" id="nowAgain">${io('refresh')}Ещё раз</button></div>
+    </section>
     <div class="tools">
       <button class="tool press">${io('play-back')}10 с</button>
       <button class="tool press" aria-pressed="false">${io('hourglass')}Медленнее</button>
       <button class="tool press" aria-pressed="false">${io('repeat')}Повтор фразы</button>
     </div>
+    <div class="rwd gl" id="rwd" style="--p:46"><span class="ring">${COIN}</span><span class="rt"><b id="rwdT"></b><span class="bar"><i id="rwdB"></i></span></span></div>
     <h3 class="wt">Small talk без пауз</h3><div class="wm">Professor Lingman · 3 дня назад</div>
-    <div class="phr gl"><div class="hd"><b>Фразы из ролика</b><span id="got"></span></div>
+    <div class="meta"><span class="mc">${io('time')}${fmt(DUR)}</span><span class="mc" id="seen">${io('eye')}<span></span></span>
+      <button class="mc press" id="like" aria-pressed="true">${io('star')}Нравится</button></div>
+    <div class="phr gl"><div class="hd"><b>Все фразы ролика</b><span id="got"></span></div>
       <div id="plist">${PHRASES.map(([t, e, r], i) => `<div class="pl" data-i="${i}"><span class="t">${fmt(t)}</span><span class="x"><b>${e}</b><i>${r}</i></span><button class="sv" aria-pressed="false" aria-label="Сохранить фразу">${io('bookmark-outline')}</button></div>`).join('')}</div></div>
   </div></div>
   <div class="dock"><button class="cta press">${io('help')}Проверить себя · 3 вопроса</button></div><div class="gest"></div>`;
 }
 function watchInit(ph) {
-  const st = { t: 333, play: true, watched: 46, loop: false, slow: false, cur: -1, done: false };
-  const rows = $$('.pl', ph); const sub = $('#sub', ph); const rw = $('#rw', ph);
-  const tools = $$('.tool', ph);
+  const st = { t: 339, play: true, watched: 46, loop: false, slow: false, cur: -1, done: false, saved: new Set() };
+  const rows = $$('.pl', ph); const sub = $('#sub', ph); const rw = $('#rw', ph); const rwd = $('#rwd', ph);
+  const tools = $$('.tool', ph); const dots = $$('#dots i', ph); const nb = $('#nb', ph); const nowSave = $('#nowSave', ph);
+  const glyph = (name) => String.fromCharCode(MAP[name]);
+  const endOf = (i) => (i + 1 < PHRASES.length ? PHRASES[i + 1][0] : PHRASES[i][0] + 12);
+  /* зачем: закладка в блоке «сейчас» и в общем списке — одно состояние; обе отвечают сразу (в приложении запись в карточки идёт фоном, при отказе — откат) */
+  const paintSaved = () => {
+    rows.forEach((r, i) => { const on = st.saved.has(i); const b = $('.sv', r); b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); $('.io', b).textContent = glyph(on ? 'bookmark' : 'bookmark-outline'); });
+    const on = st.saved.has(st.cur); nowSave.setAttribute('aria-pressed', String(on));
+    $('.io', nowSave).textContent = glyph(on ? 'bookmark' : 'bookmark-outline'); $('span', nowSave).textContent = on ? 'В карточках' : 'В карточки';
+    $('#got', ph).textContent = `${st.saved.size} из ${PHRASES.length} сохранено`;
+  };
+  const toggleSave = (i) => { if (i < 0) return; if (st.saved.has(i)) st.saved.delete(i); else st.saved.add(i); paintSaved(); };
+  /* зачем: слова фразы загораются по мере звучания — глаз идёт за голосом. Времени отдельных слов в данных нет, поэтому время фразы делится между словами поровну */
+  const lit = () => {
+    const p = PHRASES[st.cur]; if (!p) return; const words = $$('#nowW span', ph); if (!words.length) return;
+    const span = Math.min((endOf(st.cur) - p[0]) * 0.45, words.length * 1.1); const n = Math.ceil(Math.min(1, (st.t - p[0] + 0.01) / span) * words.length);
+    words.forEach((w, i) => w.classList.toggle('lit', i < n));
+  };
   const paint = () => {
     $('#tm', ph).textContent = `${fmt(st.t)} / ${fmt(DUR)}`; $('#ln', ph).style.width = `${(st.t / DUR) * 100}%`;
     let cur = -1; PHRASES.forEach(([t], i) => { if (st.t >= t) cur = i; });
     if (cur !== st.cur) {
       st.cur = cur;
       rows.forEach((r, i) => { r.classList.toggle('past', i < cur); r.classList.toggle('cur', i === cur); });
-      sub.classList.add('sw'); setTimeout(() => { sub.textContent = cur >= 0 ? PHRASES[cur][1] : ''; sub.classList.remove('sw'); }, 180);
+      dots.forEach((d, i) => { d.className = i < cur ? 'on' : i === cur ? 'cur' : ''; });
+      sub.classList.add('sw'); nb.classList.add('sw');
+      setTimeout(() => {
+        const p = PHRASES[st.cur]; if (!p) return;
+        sub.textContent = p[1]; sub.classList.remove('sw');
+        $('#nowW', ph).innerHTML = p[1].split(' ').map((w) => `<span>${w}</span>`).join(' ');
+        $('#nowTr', ph).textContent = p[2]; $('#nowEx', ph).textContent = p[3]; $('#nowAt', ph).textContent = `Сейчас звучит · ${fmt(p[0])}`;
+        nb.classList.remove('sw'); lit();
+      }, 180);
+      paintSaved();
     }
+    lit();
     if (!st.done) {
-      rw.style.setProperty('--p', String(Math.min(100, (st.watched / 70) * 100)));
-      $('#rwt', ph).textContent = `до +500 · ${Math.max(0, Math.ceil(70 - st.watched))}%`;
-      if (st.watched >= 70) { st.done = true; rw.classList.add('done', 'pop'); $('#rwt', ph).textContent = 'Засчитано +500'; }
+      const pct = Math.min(100, (st.watched / 70) * 100);
+      rw.style.setProperty('--p', String(pct)); rwd.style.setProperty('--p', String(pct)); $('#rwdB', ph).style.width = `${pct}%`;
+      const mins = Math.max(1, Math.ceil(((70 - st.watched) / 100) * DUR / 60));
+      $('#rwdT', ph).textContent = `Ещё ${mins} мин просмотра — и 500 монет твои`;
+      $('#seen span', ph).textContent = `Смотрю · ${Math.floor((st.t / DUR) * 100)}%`;
+      if (st.watched >= 70) {
+        st.done = true; rw.classList.add('done', 'pop'); rwd.classList.add('done'); $('#rwt', ph).textContent = 'Засчитано';
+        $('#rwdT', ph).textContent = '500 монет получены'; $('#rwdB', ph).style.width = '100%';
+        const seen = $('#seen', ph); seen.classList.add('seen'); $('.io', seen).textContent = glyph('checkmark-circle'); $('span', seen).textContent = 'Просмотрено';
+      }
     }
-    $('#got', ph).textContent = `${$$('.sv.on', ph).length} из ${PHRASES.length} сохранено`;
   };
   setInterval(() => {
     if (!st.play) return;
-    const step = st.slow ? 2 : 3; let next = st.t + step;
-    if (st.loop && st.cur >= 0) { const end = st.cur + 1 < PHRASES.length ? PHRASES[st.cur + 1][0] : PHRASES[st.cur][0] + 12; if (next >= end) next = PHRASES[st.cur][0]; }
+    const step = st.slow ? 0.75 : 1.5; let next = st.t + step;
+    if (st.loop && st.cur >= 0) { if (next >= endOf(st.cur)) next = PHRASES[st.cur][0]; }
     else st.watched += step / DUR * 100 * 2; // макет: награда растёт вдвое быстрее настоящего, чтобы дойти до «Засчитано» примерно за полминуты
-    if (next >= 410) next = 312; // макет крутит один отрывок по кругу
+    if (next >= 403) next = 312; // макет крутит один отрывок по кругу
     st.t = next; paint();
-  }, 600);
-  $('#pp', ph).addEventListener('click', () => { st.play = !st.play; $('#player', ph).dataset.play = st.play ? '1' : '0'; $('#pp .io', ph).textContent = String.fromCharCode(MAP[st.play ? 'pause' : 'play']); });
+  }, 300);
+  $('#pp', ph).addEventListener('click', () => { st.play = !st.play; $('#player', ph).dataset.play = st.play ? '1' : '0'; $('#now', ph).classList.toggle('paused', !st.play); $('#pp .io', ph).textContent = glyph(st.play ? 'pause' : 'play'); });
   tools[0].addEventListener('click', () => { st.t = Math.max(312, st.t - 10); paint(); });
   tools[1].addEventListener('click', () => { st.slow = !st.slow; tools[1].setAttribute('aria-pressed', String(st.slow)); });
   tools[2].addEventListener('click', () => { st.loop = !st.loop; tools[2].setAttribute('aria-pressed', String(st.loop)); });
+  nowSave.addEventListener('click', () => toggleSave(st.cur));
+  $('#nowAgain', ph).addEventListener('click', () => { if (st.cur >= 0) { st.t = PHRASES[st.cur][0]; paint(); } });
+  const like = $('#like', ph); like.addEventListener('click', () => { const on = like.getAttribute('aria-pressed') !== 'true'; like.setAttribute('aria-pressed', String(on)); $('.io', like).textContent = glyph(on ? 'star' : 'star-outline'); });
   rows.forEach((r, i) => {
-    const sv = $('.sv', r); bookmark(sv); sv.addEventListener('click', (e) => { e.stopPropagation(); paint(); });
+    $('.sv', r).addEventListener('click', (e) => { e.stopPropagation(); toggleSave(i); });
     r.addEventListener('click', () => { st.t = PHRASES[i][0]; paint(); });
   });
   paint();

@@ -24,6 +24,7 @@ import { stackVipUntilMs, vipUntilFromProgress } from './referral';
 import { resolveRemoteBool } from './remote_gates';
 import { hasClaimedPermission, type AdminPermission } from './admin/permissions';
 import { writeAccessProjectionFromPatch } from './access_projection';
+import { markTelegramOrderActivatedByCode, telegramOrderIdFromPromoCodeDoc } from './promo_code_telegram_order';
 
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
@@ -321,8 +322,32 @@ export const promoCodeRedeem = onCall(CALLABLE_BASE, async (request) => {
       grantAtMs: nowMs,
       // Достаём из УЖЕ прочитанного документа кода — лишних чтений нет.
       webOrderId: webOrderIdFromPromoCodeDoc(codeSnap.exists ? codeSnap.data() : undefined),
+      telegramOrderId: telegramOrderIdFromPromoCodeDoc(codeSnap.exists ? codeSnap.data() : undefined),
     };
   });
+
+  // зачем (владелец 11.11): заказ Telegram-бота после ввода кода тоже обязан перестать числиться «ждёт активации».
+  // Как и для сайта — после транзакции: отметка не имеет права сорвать уже выданный доступ.
+  const telegramOrderId = (outcome as { ok?: boolean }).ok === true
+    ? String((outcome as { telegramOrderId?: string }).telegramOrderId ?? '')
+    : '';
+  if (telegramOrderId) {
+    try {
+      const marked = await markTelegramOrderActivatedByCode(db, {
+        orderId: telegramOrderId,
+        code,
+        stableUid,
+        nowMs,
+        vipUntilMs: Number((outcome as { vipUntilMs?: number }).vipUntilMs) || 0,
+      });
+      console.info(`[PROMO-REDEEM] telegram-заказ после ввода кода: ${marked}`);
+    } catch (e) {
+      console.error(
+        '[PROMO-REDEEM] telegram-заказ НЕ помечен выполненным:'
+        + ` ${String((e as { message?: unknown })?.message ?? e).slice(0, 200)}`,
+      );
+    }
+  }
 
   // зачем ПОСЛЕ транзакции, а не внутри: отметка в заказе — это отчётность,
   // и она не имеет права сорвать уже выданный доступ. Доступ важнее статуса.

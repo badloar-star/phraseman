@@ -17,11 +17,13 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import { V2AnswerOption, V2Button, V2IconButton } from '../components/v2/V2Kit';
+import GameAnswerTile from '../components/games/GameAnswerTile';
+import GameSegments from '../components/games/GameSegments';
+import { V2Button, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
+import { GAME_EASE, GAME_MOTION } from '../constants/gameMotion';
 import { triLang, type Lang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
-import { hapticTap } from '../hooks/use-haptics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import {
   FLOW_DEFAULT_ROUNDS, FLOW_TEMPO, buildFlowRounds, flowRoundTimings, isFlowHighTempo, nextFlowTempoLevel,
@@ -67,34 +69,106 @@ const COPY = {
 
 type WordProps = Readonly<{ text: string; inAt: number; holdMs: number; fadeMs: number; still: boolean; color: string }>;
 
-/** Слово фразы: проявляется по расписанию, уходит вверх; после ответа вся фраза возвращается и стоит. */
+const bezier = (c: readonly number[]) => Easing.bezier(c[0], c[1], c[2], c[3]);
+
+/**
+ * Слово фразы — движение из макета в точности (elevate-mechanics.css:128–131, `.line span`):
+ * появление — opacity 0→1 и размытие 8→0 по ease-out, сдвиг 8→0 по cubic-bezier(.2,1,.3,1), за 0,55 времени слова;
+ * уход — opacity →0, размытие →10, сдвиг →−8 за то же время; после ответа фраза возвращается за 300 мс.
+ */
 const FlowWord = memo(function FlowWord({ text, inAt, holdMs, fadeMs, still, color }: WordProps) {
   const reduceMotion = useReduceMotion();
   const opacity = useSharedValue(0);
-  const shift = useSharedValue(8);
+  const shift = useSharedValue<number>(GAME_MOTION.flowWordShift);
+  const blur = useSharedValue<number>(GAME_MOTION.flowWordBlurIn);
 
   useEffect(() => {
+    const easeOut = bezier(GAME_EASE.easeOut);
+    const out = bezier(GAME_EASE.out);
     if (still) {
-      opacity.value = withTiming(1, { duration: 300 });
-      shift.value = withTiming(0, { duration: 300 });
+      const duration = reduceMotion ? 0 : GAME_MOTION.flowStillMs;
+      opacity.value = withTiming(1, { duration, easing: easeOut });
+      blur.value = withTiming(0, { duration, easing: easeOut });
+      shift.value = withTiming(0, { duration, easing: out });
       return undefined;
     }
-    const ease = Easing.out(Easing.cubic);
     const fade = reduceMotion ? 1 : fadeMs;
+    const wait = Math.max(0, holdMs - fade);
     opacity.value = 0;
-    shift.value = reduceMotion ? 0 : 8;
-    opacity.value = withSequence(withDelay(inAt, withTiming(1, { duration: fade, easing: ease })), withDelay(Math.max(0, holdMs - fade), withTiming(0, { duration: fade, easing: ease })));
+    blur.value = reduceMotion ? 0 : GAME_MOTION.flowWordBlurIn;
+    shift.value = reduceMotion ? 0 : GAME_MOTION.flowWordShift;
+    opacity.value = withSequence(withDelay(inAt, withTiming(1, { duration: fade, easing: easeOut })), withDelay(wait, withTiming(0, { duration: fade, easing: easeOut })));
     if (!reduceMotion) {
-      shift.value = withSequence(withDelay(inAt, withTiming(0, { duration: fade, easing: ease })), withDelay(Math.max(0, holdMs - fade), withTiming(-8, { duration: fade, easing: ease })));
+      blur.value = withSequence(withDelay(inAt, withTiming(0, { duration: fade, easing: easeOut })), withDelay(wait, withTiming(GAME_MOTION.flowWordBlurOut, { duration: fade, easing: easeOut })));
+      shift.value = withSequence(withDelay(inAt, withTiming(0, { duration: fade, easing: out })), withDelay(wait, withTiming(-GAME_MOTION.flowWordShift, { duration: fade, easing: out })));
     }
     return () => {
       cancelAnimation(opacity);
+      cancelAnimation(blur);
       cancelAnimation(shift);
     };
-  }, [fadeMs, holdMs, inAt, opacity, reduceMotion, shift, still]);
+  }, [blur, fadeMs, holdMs, inAt, opacity, reduceMotion, shift, still]);
 
-  const style = useAnimatedStyle(() => ({ opacity: opacity.value, transform: [{ translateY: shift.value }] }));
-  return <Reanimated.Text style={[s.word, { color }, style]}>{text}</Reanimated.Text>;
+  // зачем: размытие задаётся на обёртке-слое — у слоя оно есть в типах стиля, у текста нет; на телефоне результат тот же
+  const style = useAnimatedStyle(() => ({ opacity: opacity.value, transform: [{ translateY: shift.value }], filter: [{ blur: blur.value }] }));
+  return (
+    <Reanimated.View style={style}>
+      <Text style={[s.word, { color }]}>{text}</Text>
+    </Reanimated.View>
+  );
+});
+
+/** Столбик индикатора темпа: смена состояния за 300 мс (elevate-mechanics.css:124, `.tempo i`). */
+const TempoBar = memo(function TempoBar({ index, lit, on, off }: Readonly<{ index: number; lit: boolean; on: string; off: string }>) {
+  const reduceMotion = useReduceMotion();
+  const value = useSharedValue(lit ? 1 : 0);
+  useEffect(() => {
+    value.value = withTiming(lit ? 1 : 0, { duration: reduceMotion ? 0 : GAME_MOTION.tempoBarMs, easing: bezier(GAME_EASE.ease) });
+    return () => cancelAnimation(value);
+  }, [lit, reduceMotion, value]);
+  const style = useAnimatedStyle(() => ({ opacity: value.value }));
+  return (
+    <View style={[s.tempoBar, { height: 8 + index * 1.5, backgroundColor: off }]}>
+      <Reanimated.View style={[StyleSheet.absoluteFill, s.tempoBarOn, { backgroundColor: on }, style]} />
+    </View>
+  );
+});
+
+/** Число темпа подскакивает при смене: 650 мс «пружиной», на 35 % — вверх на 5 и крупнее в 1,22 (kit.css:137, `numup`). */
+const BumpText = memo(function BumpText({ value, color }: Readonly<{ value: string; color: string }>) {
+  const reduceMotion = useReduceMotion();
+  const t = useSharedValue(0);
+  const first = useRef(true);
+  useEffect(() => {
+    if (first.current) {
+      first.current = false;
+      return undefined;
+    }
+    if (reduceMotion) return undefined;
+    const spring = bezier(GAME_EASE.spring);
+    t.value = 0;
+    t.value = withSequence(
+      withTiming(1, { duration: GAME_MOTION.bumpMs * GAME_MOTION.bumpPeakAt, easing: spring }),
+      withTiming(0, { duration: GAME_MOTION.bumpMs * (1 - GAME_MOTION.bumpPeakAt), easing: spring }),
+    );
+    return () => cancelAnimation(t);
+  }, [reduceMotion, t, value]);
+  const style = useAnimatedStyle(() => ({ transform: [{ translateY: GAME_MOTION.bumpShift * t.value }, { scale: 1 + (GAME_MOTION.bumpScale - 1) * t.value }] }));
+  return <Reanimated.Text style={[s.pillText, { color }, style]}>{value}</Reanimated.Text>;
+});
+
+/** Подпись под фразой: проявляется и гаснет за 320 мс (elevate-mechanics.css:119, `.fade`); уходя, держит прежний текст. */
+const FadeCaption = memo(function FadeCaption({ text, color }: Readonly<{ text: string; color: string }>) {
+  const reduceMotion = useReduceMotion();
+  const last = useRef(text);
+  if (text) last.current = text;
+  const opacity = useSharedValue(text ? 1 : 0);
+  useEffect(() => {
+    opacity.value = withTiming(text ? 1 : 0, { duration: reduceMotion ? 0 : GAME_MOTION.fadeMs, easing: bezier(GAME_EASE.ease) });
+    return () => cancelAnimation(opacity);
+  }, [opacity, reduceMotion, text]);
+  const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
+  return <Reanimated.Text style={[s.caption, { color }, style]}>{last.current}</Reanimated.Text>;
 });
 
 function translationOf(phrase: { russian: string; ukrainian: string; sourceLocales?: Record<string, string | undefined> }, lang: Lang): string {
@@ -210,6 +284,13 @@ export default function GameFlowScreen() {
   }, [clearTimers, router]);
 
   const beamStyle = useAnimatedStyle(() => ({ transform: [{ scaleX: beam.value }] }));
+  // полоса под фразой гаснет и проявляется за 300 мс (elevate-mechanics.css:132, `.beam`)
+  const beamShown = useSharedValue(0);
+  useEffect(() => {
+    beamShown.value = withTiming(phase === 'reading' ? 1 : 0, { duration: GAME_MOTION.flowBeamHideMs, easing: bezier(GAME_EASE.ease) });
+  }, [beamShown, phase]);
+  const beamBoxStyle = useAnimatedStyle(() => ({ opacity: beamShown.value }));
+  const segmentIds = useMemo(() => rounds.map((r) => r.item.id), [rounds]);
   const verdictOk = picked !== null && round ? picked === round.correctIndex : false;
   const showPhrase = phase === 'reading' || phase === 'answer' || phase === 'verdict';
 
@@ -241,11 +322,12 @@ export default function GameFlowScreen() {
             <View style={s.tempoWrap}>
               <View style={s.tempoBars}>
                 {Array.from({ length: 10 }, (_, i) => (
-                  <View key={`bar-${i}`} style={[s.tempoBar, { height: 8 + i * 1.5, backgroundColor: i < tempo.bars ? p.text : p.track }]} />
+                  <TempoBar key={`bar-${i}`} index={i} lit={i < tempo.bars} on={p.text} off={p.track} />
                 ))}
               </View>
               <View style={[s.pill, { backgroundColor: p.glass }]}>
-                <Text style={[s.pillText, { color: p.text }]}>{`${triLang(lang, COPY.tempo)} ×${tempo.label}`}</Text>
+                <Text style={[s.pillText, { color: p.text }]}>{`${triLang(lang, COPY.tempo)} ×`}</Text>
+                <BumpText value={tempo.label} color={p.text} />
               </View>
             </View>
             <View style={[s.pill, { backgroundColor: p.glass }]}>
@@ -253,11 +335,7 @@ export default function GameFlowScreen() {
             </View>
           </View>
 
-          <View style={s.segs}>
-            {rounds.map((r, i) => (
-              <View key={r.item.id} style={[s.seg, { backgroundColor: i < doneRounds ? p.text : p.track }]} />
-            ))}
-          </View>
+          <GameSegments ids={segmentIds} done={doneRounds} track={p.track} fill={p.text} style={s.segs} />
 
           <View style={s.stageTop} />
           <View style={s.reader}>
@@ -278,10 +356,10 @@ export default function GameFlowScreen() {
             ) : (
               <Text style={[phase === 'cue' ? s.cue : s.word, { color: p.text }]}>{headline}</Text>
             )}
-            <View style={[s.beam, { backgroundColor: p.track, opacity: phase === 'reading' ? 1 : 0 }]}>
+            <Reanimated.View style={[s.beam, { backgroundColor: p.track }, beamBoxStyle]}>
               <Reanimated.View style={[s.beamFill, { backgroundColor: p.text }, beamStyle]} />
-            </View>
-            <Text style={[s.caption, { color: p.textSecondary }]}>{caption}</Text>
+            </Reanimated.View>
+            <FadeCaption text={caption} color={p.textSecondary} />
           </View>
 
           <View style={s.stageBottom} />
@@ -289,13 +367,14 @@ export default function GameFlowScreen() {
 
           <View style={s.answers}>
             {(phase === 'answer' || phase === 'verdict') && round ? round.options.map((option, i) => (
-              <V2AnswerOption
+              <GameAnswerTile
                 key={`${round.item.id}-o${i}`}
                 testID={`game-flow-option-${i}`}
                 label={option}
+                index={i}
                 disabled={phase !== 'answer'}
-                state={phase === 'answer' ? 'idle' : i === round.correctIndex ? 'correct' : i === picked ? 'wrong' : 'dimmed'}
-                onPress={() => { void hapticTap(); onPick(i); }}
+                state={phase === 'answer' ? 'idle' : i === round.correctIndex ? 'correct' : i === picked ? 'wrong' : 'off'}
+                onPress={() => onPick(i)}
               />
             )) : null}
             {phase === 'intro' ? <V2Button testID="game-flow-start" label={triLang(lang, COPY.start)} icon="play" iconPosition="leading" onPress={onStart} /> : null}
@@ -314,11 +393,11 @@ const s = StyleSheet.create({
   top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: V2.iconButton },
   tempoWrap: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   tempoBars: { flexDirection: 'row', alignItems: 'center', gap: 4, height: 26 },
-  tempoBar: { width: 5, borderRadius: 3 },
-  pill: { height: 36, paddingHorizontal: 12, borderRadius: 18, justifyContent: 'center' },
+  tempoBar: { width: 5, borderRadius: 3, overflow: 'hidden' },
+  tempoBarOn: { borderRadius: 3 },
+  pill: { height: 36, paddingHorizontal: 12, borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
   pillText: { fontSize: 14, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  segs: { flexDirection: 'row', gap: 6, marginTop: 14, height: 4 },
-  seg: { flex: 1, height: 4, borderRadius: 2 },
+  segs: { marginTop: 14 },
   stageTop: { flex: 0.8 },
   stageBottom: { flex: 1 },
   reader: { minHeight: 190, alignItems: 'center', justifyContent: 'center' },

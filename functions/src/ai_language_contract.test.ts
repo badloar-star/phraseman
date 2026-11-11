@@ -34,6 +34,10 @@ describe('ai_language_contract', () => {
     expect(resolveStudyTarget('fr')).toBe('fr');
     expect(resolveStudyTarget('en')).toBe('en');
     expect(resolveStudyTarget('xx')).toBe('en');
+    // зачем (владелец 11.11): курсов пять — испанский, немецкий и итальянский больше не превращаются в английский.
+    expect(resolveStudyTarget('es')).toBe('es');
+    expect(resolveStudyTarget('de')).toBe('de');
+    expect(resolveStudyTarget('IT ')).toBe('it');
   });
 
   it('maps study targets to their human names (single source of truth)', () => {

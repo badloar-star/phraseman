@@ -4,7 +4,11 @@ import { rejectGeneratedLanguageText } from './ai_language_gate';
 export const LANGUAGE_CONTRACT_VERSION = 'ai-language-contract-v1';
 
 export type AiOutputLang = 'ru' | 'uk' | 'es' | 'pt-BR' | 'vi' | 'id' | 'tr' | 'pl' | 'en';
-export type StudyTarget = 'en' | 'fr';
+// зачем (владелец 11.11: «ИИ-объяснение ошибок должно работать для всех языковых курсов, а не только английского»):
+// курсов пять (EN/ES/FR/DE/IT, D202), а здесь было два — испанский, немецкий и итальянский молча превращались в английский,
+// и ИИ объяснял испанскую фразу как «English». Неизвестное значение по-прежнему = английский.
+export type StudyTarget = 'en' | 'es' | 'fr' | 'de' | 'it';
+const STUDY_TARGETS: readonly StudyTarget[] = ['en', 'es', 'fr', 'de', 'it'];
 
 export type AiLanguageFeature =
   | 'explain'
@@ -38,7 +42,7 @@ export function resolveAiOutputLang(value: unknown, feature: AiLanguageFeature):
 
 export function resolveStudyTarget(value: unknown): StudyTarget {
   const normalized = String(value ?? '').trim().toLowerCase();
-  return normalized === 'fr' ? 'fr' : 'en';
+  return STUDY_TARGETS.find((target) => target === normalized) ?? 'en';
 }
 
 /**
@@ -48,7 +52,10 @@ export function resolveStudyTarget(value: unknown): StudyTarget {
  */
 const STUDY_TARGET_NAME: Record<StudyTarget, string> = {
   en: 'English',
+  es: 'Spanish',
   fr: 'French',
+  de: 'German',
+  it: 'Italian',
 };
 
 export function studyTargetName(target: StudyTarget): string {

@@ -4,11 +4,12 @@ import path from 'path';
 import { act, cleanup, renderHook } from '@testing-library/react-native';
 
 import { callExplainMistake } from '../app/ai_mistake_explain_client';
-import { MISTAKE_EXPLAIN_ENABLED } from '../app/mistake_explain_flag';
 import { useMistakeExplain } from '../app/use_mistake_explain';
 
-// зачем (владелец 17.10): «кнопку Объяснить отключаем вообще, её не должно быть». Сторож держит флаг выключенным
-// и доказывает, что при нём хук не показывает карточку, не открывает шторку согласия и не зовёт облако.
+// зачем (владелец 11.11: «Да, включить» ИИ-разбор ошибок; 17.10 он же выключал его целиком). В бою флаг ВКЛЮЧЁН,
+// а этот сторож бережёт АВАРИЙНЫЙ выключатель: при флаге false хук не показывает карточку, не открывает шторку
+// согласия и не зовёт облако. Имя файла прежнее — на него ссылаются заметки и соседние тесты.
+jest.mock('../app/mistake_explain_flag', () => ({ MISTAKE_EXPLAIN_ENABLED: false }));
 jest.mock('../app/ai_mistake_explain_client', () => ({
   callExplainMistake: jest.fn(),
   isMistakeExplainOfflineError: () => false,
@@ -46,16 +47,17 @@ jest.mock('../app/mistake_token_resolver', () => ({
   resolvePhraseMistakeToken: () => undefined,
 }));
 
-describe('ИИ-разбор ошибок выключен (владелец 17.10)', () => {
+describe('ИИ-разбор ошибок: включён в бою, аварийный выключатель работает (владелец 11.11)', () => {
   afterEach(async () => {
     await cleanup();
   });
 
-  it('флаг выключен', () => {
-    expect(MISTAKE_EXPLAIN_ENABLED).toBe(false);
+  it('в бою флаг включён (владелец 11.11)', () => {
+    const real = jest.requireActual('../app/mistake_explain_flag') as { MISTAKE_EXPLAIN_ENABLED: boolean };
+    expect(real.MISTAKE_EXPLAIN_ENABLED).toBe(true);
   });
 
-  it.each([true, false])('автозапуск=%s: карточка скрыта, согласие не спрашивается, облако не зовётся', async (autoStart) => {
+  it.each([true, false])('флаг false, автозапуск=%s: карточка скрыта, согласие не спрашивается, облако не зовётся', async (autoStart) => {
     const hook = await renderHook(() => useMistakeExplain({
       active: true,
       autoStart,

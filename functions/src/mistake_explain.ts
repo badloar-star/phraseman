@@ -235,8 +235,8 @@ function sanitizeLang(value: unknown): string {
 }
 
 function sanitizeStudyTarget(value: unknown): string {
-  const target = resolveStudyTarget(value);
-  return target === 'fr' ? 'fr' : 'en';
+  // зачем (владелец 11.11): здесь стояло «fr или en» — курсы ES/DE/IT уходили в промпт как английский.
+  return resolveStudyTarget(value);
 }
 
 function sanitizeVariant(value: unknown): MistakeExplainVariant {
@@ -366,9 +366,37 @@ const TARGET_MISTAKE_EXAMPLES: Record<StudyTarget, TargetMistakeExamples> = {
       'there is NO mistake — do not say "use the full form"; never bring in other outside words.\n',
     outsideWordsEli5: 'no outside example words',
   },
+  // зачем (владелец 11.11, все пять курсов): у каждого языка свои «слитные формы, которые не ошибка»; чужие примеры не подставляем.
+  es: {
+    shortForms:
+      'A STANDARD CONTRACTION IS NOT A MISTAKE: "al"="a el", "del"="de el". If the only difference is the ' +
+      'normal contracted-vs-full form, there is NO mistake — never say "use the full form". ',
+    shortFormsEli5:
+      'A STANDARD CONTRACTION IS NOT A MISTAKE: "al"="a el", "del"="de el". If that is the only difference, ' +
+      'there is NO mistake — do not say "use the full form"; never bring in other outside words.\n',
+    outsideWordsEli5: 'no outside example words',
+  },
+  de: {
+    shortForms:
+      'A STANDARD CONTRACTION IS NOT A MISTAKE: "im"="in dem", "zum"="zu dem", "ins"="in das". If the only ' +
+      'difference is the normal contracted-vs-full form, there is NO mistake — never say "use the full form". ',
+    shortFormsEli5:
+      'A STANDARD CONTRACTION IS NOT A MISTAKE: "im"="in dem", "zum"="zu dem". If that is the only difference, ' +
+      'there is NO mistake — do not say "use the full form"; never bring in other outside words.\n',
+    outsideWordsEli5: 'no outside example words',
+  },
+  it: {
+    shortForms:
+      'AN ELISION OR CONTRACTION IS NOT A MISTAKE: "l\'amico"="lo amico", "del"="di il", "al"="a il". If the ' +
+      'only difference is the normal elided-vs-full form, there is NO mistake — never say "use the full form". ',
+    shortFormsEli5:
+      'AN ELISION IS NOT A MISTAKE: "l\'amico"="lo amico", "del"="di il". If that is the only difference, ' +
+      'there is NO mistake — do not say "use the full form"; never bring in other outside words.\n',
+    outsideWordsEli5: 'no outside example words',
+  },
 };
 
-/** Study-language example set; unknown target ⇒ English default (payload.studyTarget is pre-resolved to en/fr). */
+/** Study-language example set; unknown target ⇒ English default (payload.studyTarget is pre-resolved to one of the five course languages). */
 function targetMistakeExamples(studyTarget: string): TargetMistakeExamples {
   return TARGET_MISTAKE_EXAMPLES[studyTarget as StudyTarget] ?? TARGET_MISTAKE_EXAMPLES.en;
 }
@@ -553,7 +581,8 @@ function buildEli5Messages(payload: ExplainMistakePayload): Array<{ role: 'syste
         '— never other example words. If the two words are just different/opposite, give one tiny line of ' +
         'what each means and that the other is needed. If it is a small letter/little-word change, show ' +
         'the small before/after of these very words. Speak as "ты", warm. NEVER guess why. No grammar ' +
-        'words, no comfort-water, no blaming. Keep every English word in double quotes. End with the ' +
+        // зачем (владелец 11.11): было жёстко «English» — для других курсов модель получала противоречие с языком фразы.
+        `words, no comfort-water, no blaming. Keep every ${targetName} word in double quotes. End with the ` +
         'whole correct phrase to keep, in quotes. ' +
         writeIn,
     },
@@ -897,6 +926,15 @@ export const explainMistake = onCall({
 
   const langKey = resolvePromptLangKey(payload.interfaceLang);
   const mistakeHash = mistakeHashFor(payload.targetAnswer, payload.userAnswer, langKey, payload.studyTarget);
+  // зачем (владелец 11.11, все языковые курсы): видно, какой язык курса прислал телефон и каким его понял сервер —
+  // расхождение (прислали «es», поняли «en») раньше было немым. Тексты ответов не пишем.
+  console.log('[EXPLAIN-MISTAKE] request', JSON.stringify({
+    studyTargetRaw: text(data.studyTarget, 16),
+    studyTarget: payload.studyTarget,
+    interfaceLang: payload.interfaceLang,
+    variant: payload.variant,
+    lessonId: payload.lessonId,
+  }));
   const RQ = 999; // Legacy response sentinel; miss-only free cap is enforced server-side.
 
   // 1. Cache FIRST — the ≥99% path, $0.

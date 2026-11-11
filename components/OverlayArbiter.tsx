@@ -28,6 +28,8 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { usePathname } from 'expo-router';
+import { filterWantsForQuietZone, isQuietRoute, listQuietDeferredWaiting } from './overlay_quiet_zone';
 import { noteOverlayActiveForProbe } from '../app/nav_freeze_probe'; // зачем: [PAYWALL-CLOSE-FREEZE] — держатель слота в журнал
 import { noteOverlayActiveMirror } from './overlay_active_mirror';
 import {
@@ -77,8 +79,27 @@ export function deriveOverlayOccupied(
 }
 
 export function OverlayArbiterProvider({ children }: { children: React.ReactNode }) {
-  const [wantsMap, setWantsMap] = useState<WantsMap>(EMPTY_OVERLAY_WANTS);
+  // rawWantsMap — кто ПРОСИТ слот (просьбы не теряются); wantsMap — кому слот можно ВЫДАТЬ на текущем экране.
+  const [rawWantsMap, setWantsMap] = useState<WantsMap>(EMPTY_OVERLAY_WANTS);
   const [active, setActive] = useState<OverlayKey | null>(null);
+  // зачем (владелец 11.11, «тишина в уроке»): служебные окна корня (обновление, уведомления, рассылки, сообщения команды…)
+  // всплывали поверх упражнения — очередь не знала, где игрок. На экране занятия они ждут: из списка для ВЫБОРА следующего
+  // их убираем, сама просьба остаётся и исполняется по обычному приоритету, как только игрок вышел. Уже показанное окно не срываем.
+  // Провайдер смонтирован внутри корневого layout expo-router, путь там доступен (его же читает EntitlementExpiredHost).
+  const pathname = usePathname();
+  const quiet = isQuietRoute(pathname);
+  const wantsMap = useMemo(() => filterWantsForQuietZone(rawWantsMap, quiet, active), [rawWantsMap, quiet, active]);
+  // Журнал решения: на каком экране и какие окна отложены; пишем только при смене (вход/выход из занятия, новая просьба).
+  const quietDeferred = useMemo(() => listQuietDeferredWaiting(rawWantsMap, quiet, active).join(','), [rawWantsMap, quiet, active]);
+  const quietLoggedRef = useRef('');
+  useEffect(() => {
+    const signature = `${quiet ? pathname : ''}|${quietDeferred}`;
+    if (quietLoggedRef.current === signature) return;
+    const hadDeferred = quietLoggedRef.current.split('|')[1] ?? '';
+    quietLoggedRef.current = signature;
+    if (!quietDeferred && !hadDeferred) return; // нечего откладывать и нечего отпускать — тишина журналу не интересна
+    console.log('[OVERLAY-QUIET]', quiet ? 'hold' : 'release', JSON.stringify({ pathname, quiet, deferred: quietDeferred ? quietDeferred.split(',') : [], released: quiet ? [] : hadDeferred.split(',').filter(Boolean), holder: active })); // guard-ok: решение «тишины» — кого отложили и когда отпустили
+  }, [pathname, quiet, quietDeferred, active]);
   // зачем (координатор 14.10, [PAYWALL-CLOSE-FREEZE]): держатель слота окон для журнала вне React (только dev).
   useEffect(() => { if (__DEV__) noteOverlayActiveForProbe(active); }, [active]);
   // зачем (координатор 14.10, [PAYWALL-AUTO]): держатель слота для автопереходов вне React (апселл в корневом layout ждёт свободный слот).

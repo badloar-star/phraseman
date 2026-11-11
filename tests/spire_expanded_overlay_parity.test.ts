@@ -126,6 +126,32 @@ describe('Пик: накладка новых механик поверх пак
     expect(builtPack().json).toBe(built.json);
   });
 
+  it('по умолчанию подменяется КАЖДОЕ задание «выбор» набора (владелец 11.11: «Все подходящие места»)', () => {
+    // зачем: при двух на набор владелец не увидел ни одной новой механики; тест падает, если вернуть малое число
+    const built = builtPack();
+    const overlay = overlayFor(built.json, built.pack.packHash);
+    expect(overlay.ok).toBe(true);
+    if (!overlay.ok) return;
+    const replaced = new Set(overlay.overlay.slots.map(([floor, step, setIndex, taskIndex]) => `${floor}:${step}:${setIndex}:${taskIndex}`));
+    const raw = JSON.parse(built.json) as { floors: { floor: number; steps: { step: number; sets: { tasks: { kind: string }[] }[] }[] }[] };
+    const leftAsChoice: string[] = [];
+    let choiceSlots = 0;
+    for (const floor of raw.floors) {
+      if (floor.floor < SPIRE_EXPANDED_OVERLAY_FROM_FLOOR) continue;
+      for (const step of floor.steps) {
+        step.sets.forEach((set, setIndex) => set.tasks.forEach((task, taskIndex) => {
+          if (task.kind !== 'choice') return;
+          choiceSlots += 1;
+          const key = `${floor.floor}:${step.step}:${setIndex}:${taskIndex}`;
+          if (!replaced.has(key)) leftAsChoice.push(key);
+        }));
+      }
+    }
+    expect(choiceSlots).toBeGreaterThan(0);
+    expect(leftAsChoice).toEqual([]);
+    expect(overlay.stats.slots).toBe(choiceSlots);
+  });
+
   it('сервер собирает накладку детерминированно: по заданному числу в наборе, без повторов в ступени', () => {
     const built = builtPack();
     const first = overlayFor(built.json, built.pack.packHash);

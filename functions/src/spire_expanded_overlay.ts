@@ -19,8 +19,12 @@ import { createHash } from 'crypto';
 import { SPIRE_EXPANDED_KIND, spireExpandedPoolTaskProblem, type SpireExpandedPoolTask } from './spire_expanded_task';
 
 export const SPIRE_EXPANDED_OVERLAY_SCHEMA = 'spire-expanded-overlay-v1' as const;
-/** Сколько заданий «выбор» в каждом наборе ступени заменяется новой механикой. 0 — накладка не собирается. */
-export const SPIRE_EXPANDED_OVERLAY_PER_SET = 2;
+/**
+ * Сколько заданий «выбор» в каждом наборе ступени заменяется новой механикой. 0 — накладка не собирается.
+ * зачем «все» (владелец 11.11.2026, на вопрос о плотности: «Все подходящие места»): при двух на набор новые механики
+ * терялись среди прежних заданий — владелец не увидел ни одной. Запрет повтора в ступени и снятие по жалобе остаются.
+ */
+export const SPIRE_EXPANDED_OVERLAY_PER_SET = Number.MAX_SAFE_INTEGER;
 /** С какого этажа. Умолчание сессии 11.11: с первого — владелец должен увидеть новое на любом этаже своей комнаты. */
 export const SPIRE_EXPANDED_OVERLAY_FROM_FLOOR = 1;
 /** Вид задания пакета, который разрешено подменять: «выбор» ближе всего к новым механикам по времени и сложности. */

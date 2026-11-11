@@ -16,6 +16,7 @@ import SpireLastChanceSheet from './SpireLastChanceSheet';
 import SpireOvertakeToast from './SpireOvertakeToast';
 import SpirePositionRiseMoment from './SpirePositionRiseMoment';
 import type { SpirePositionMomentKind, SpirePositionMoments } from './position_moments_contract';
+import { recordPeakLastChanceStory, recordPeakOvertakeStory, recordPeakRiseStory, storiesReplaceWindows } from '../../../modules/story_events/story_instead_sources';
 
 export type SpirePositionMomentsHostProps = Readonly<{
   lang: Lang;
@@ -58,6 +59,25 @@ function SpirePositionMomentsHost({ lang, coinRank, positions, blocked, busy, on
   }, [heldActive, owner]);
   useEffect(() => {
     if (active || !candidate) return;
+    // зачем (владелец 11.11: «никаких модальных окон совсем»; макет stories-peak-position — «Да, в приложение»): при включённых историях
+    // решение Ядра пишется кадром истории, окно над башней не рисуется. consume и отметка «закрыто» — как у показанного и закрытого
+    // окна, поэтому следующее решение идёт той же очередью. Истории выключены (флаг stories_v1) — окно как раньше.
+    if (storiesReplaceWindows()) {
+      const fail = (e: unknown) => console.warn(`[SPIRE-POSITION] история не записана kind=${candidate.kind}: ${e instanceof Error ? e.message : String(e)}`); // guard-ok: catch пишет причину
+      if (candidate.kind === 'rise' && positions.rise) {
+        void recordPeakRiseStory({ key: candidate.key, fromIndex: positions.rise.fromIndex, toIndex: positions.rise.toIndex, coinsGained: positions.rise.coinsGained }).catch(fail);
+      } else if (candidate.kind === 'overtake' && positions.overtake) {
+        const o = positions.overtake;
+        void recordPeakOvertakeStory({ key: candidate.key, rivalName: o.rivalName, rivalCoinRank: o.rivalCoinRank, gapCoins: o.gapCoins, gapSteps: o.gapSteps ?? null }).catch(fail);
+      } else if (candidate.kind === 'lastChance' && positions.lastChance) {
+        const l = positions.lastChance;
+        void recordPeakLastChanceStory({ key: candidate.key, weekEndsAtMs: l.weekEndsAtMs, energyReadyAtMs: l.energyReadyAtMs, gapCoins: l.gapCoins ?? null, gapSteps: l.gapSteps ?? null }).catch(fail);
+      }
+      console.log(`[SPIRE-POSITION] история вместо окна kind=${candidate.kind} key=${candidate.key}`); // guard-ok: единичный журнал решения
+      positions.consume(candidate.kind, candidate.key);
+      setClosed((prev) => [...prev, closedMark(candidate.owner, candidate.kind, candidate.key)]);
+      return;
+    }
     console.log(`[SPIRE-POSITION] показ kind=${candidate.kind} key=${candidate.key} причина=решение Ядра, окно свободно (итог ступени закрыт)`); // guard-ok: единичный журнал показа
     setFrozen(positions);
     setActive(candidate);

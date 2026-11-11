@@ -104,8 +104,35 @@ describe('событие instead → данные кадра', () => {
     expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 })).toBeNull();
   });
 
-  it('список видов с источником — восемнадцать; без источника — приз набора и обгон в Пике', () => {
-    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello', 'message', 'plus_on']);
+  it('список видов с источником — двадцать один; без источника — только приз набора', () => {
+    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello', 'message', 'plus_on', 'peak_rise', 'peak_overtake', 'peak_last']);
+  });
+
+  it('окна позиции Пика: данные решения Ядра → кадр; «последний шанс» прошедшей недели кадра не даёт', () => {
+    expect(insteadTemplateFromPayload({ kind: 'peak_rise', key: 'w1:rise', fromIndex: 6, toIndex: 3, coinsGained: 120 })).toEqual({ id: 'instead_peak_rise', fromIndex: 6, toIndex: 3, coinsGained: 120 });
+    expect(insteadTemplateFromPayload({ kind: 'peak_rise', key: 'w1:rise', fromIndex: 3, toIndex: 3, coinsGained: 120 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'peak_overtake', key: 'w1:o', rivalName: 'Марк', rivalCoinRank: 8, gapCoins: 120, gapSteps: -1 }))
+      .toEqual({ id: 'instead_peak_overtake', rivalName: 'Марк', rivalCoinRank: 8, gapCoins: 120, gapSteps: null });
+    expect(insteadTemplateFromPayload({ kind: 'peak_overtake', key: 'w1:o', rivalName: 'Марк', rivalCoinRank: -1, gapCoins: 0, gapSteps: 2 }))
+      .toEqual({ id: 'instead_peak_overtake', rivalName: 'Марк', rivalCoinRank: null, gapCoins: 0, gapSteps: 2 });
+    expect(insteadTemplateFromPayload({ kind: 'peak_overtake', key: 'w1:o', rivalName: ' ', gapCoins: 120 })).toBeNull();
+    const future = Date.now() + 3_600_000;
+    expect(insteadTemplateFromPayload({ kind: 'peak_last', key: 'w1:l', weekEndsAtMs: future, energyReadyAtMs: 0, gapCoins: 120, gapSteps: -1 }))
+      .toEqual({ id: 'instead_peak_last', weekEndsAtMs: future, energyReadyAtMs: 0, gapCoins: 120, gapSteps: null });
+    expect(insteadTemplateFromPayload({ kind: 'peak_last', key: 'w1:l', weekEndsAtMs: Date.now() - 1000, energyReadyAtMs: 0, gapCoins: 120, gapSteps: -1 })).toBeNull();
+  });
+
+  it('хост Пика: при включённых историях — запись, consume и «закрыто», окно не рисуется; иначе прежний путь окна', () => {
+    const host = read('components/spire/moments/SpirePositionMomentsHost.tsx');
+    const branch = host.indexOf('if (storiesReplaceWindows()) {');
+    expect(branch).toBeGreaterThan(host.indexOf('if (active || !candidate) return;'));
+    const consume = host.indexOf('positions.consume(candidate.kind, candidate.key);', branch);
+    expect(consume).toBeGreaterThan(host.indexOf('void recordPeakRiseStory(', branch));
+    expect(host.indexOf('return;', consume)).toBeLessThan(host.indexOf('setFrozen(positions);', branch));
+    // кнопки: «Играть» — в раздел Пика; Plus — общий экран с поводом «нет энергии», как у окна
+    const cta = read('components/stories/templates/use_story_cta_action.ts');
+    expect(cta).toContain("router.push({ pathname: '/(tabs)/community', params: { section: 'spire', source: 'story' } } as never);");
+    expect(cta).toContain("ctx.source === 'instead_peak_last' ? 'no_energy'");
   });
 
   it('личное сообщение: текст письма → кадр; отметка «окно показано» — только после записи истории', () => {

@@ -57,7 +57,8 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
       // context 'generic' — объявление Plus продаёт Plus целиком, а не упёрлось в лимит (как заставка Plus при запуске).
       // зачем (истории-предложения Plus, 11.11): кадр про защиту серии открывает окно с заголовком про серию, а не общее —
       // человек пришёл за конкретной выгодой. Остальные кадры и объявление Plus — общий вход, как раньше.
-      const plusContext = ctx.source === 'plus_streak' ? 'streak' : 'generic';
+      // кадр «Пик · последний шанс» — тот же повод, что у его окна: энергия кончилась
+      const plusContext = ctx.source === 'plus_streak' ? 'streak' : ctx.source === 'instead_peak_last' ? 'no_energy' : 'generic';
       DebugLogger.info(LOG, `Plus: закрываем просмотр и открываем окно Plus context=${plusContext} source=story_announcement кадр=${ctx.source}`);
       closeViewer('cta_open_plus');
       openPremiumPaywall(router, { context: plusContext, source: 'story_announcement' });
@@ -109,6 +110,14 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
       DebugLogger.info(LOG, `код приглашения: закрываем просмотр и открываем ввод кода (кадр=${ctx.source})`);
       closeViewer('cta_enter_referral_code');
       router.push('/referrals?enter=1' as never);
+      return;
+    }
+    if (cta.action === 'play_peak') {
+      // зачем (истории вместо окон, 11.11): кнопки «Играть» кадров Пика ведут в раздел Пика (вкладка «Друзья», сегмент «Пик») — тот же адрес,
+      // что у уведомлений Пика; просмотр (Modal) закрываем, иначе раздел открылся бы под ним
+      DebugLogger.info(LOG, `Пик: закрываем просмотр и открываем раздел Пика (кадр=${ctx.source})`);
+      closeViewer('cta_play_peak');
+      router.push({ pathname: '/(tabs)/community', params: { section: 'spire', source: 'story' } } as never);
       return;
     }
     if (cta.action === 'enable_reminder') {

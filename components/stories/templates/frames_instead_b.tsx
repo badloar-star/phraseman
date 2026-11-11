@@ -13,7 +13,6 @@ import React, { memo, useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../../constants/i18n';
-import { spireTierName } from '../../../modules/spire/tier_names';
 import SpireRankCoin from '../../spire/SpireRankCoin';
 import { Art, Confetti, FrameRoot, H1, Ov, P, Ring, k } from './story_template_kit';
 import { Enter } from './story_template_motion';
@@ -25,6 +24,7 @@ import { IconDisc } from './story_instead_parts';
 import { firstDialogStats, firstDialogText } from '../../dialog_moments/first_dialog_strings';
 import { studyLanguageWord } from '../../../constants/study_language_words';
 import { insteadText } from './story_instead_strings';
+import { positionMomentText } from '../../spire/moments/position_moment_strings';
 import { reviewVariantFor, type ReviewContext } from '../../../app/review_utils';
 import { reviewKicker, reviewStreakLine } from '../../review_prompt_copy';
 
@@ -41,7 +41,8 @@ export type RateAppStory = Readonly<{ context: ReviewContext; streakDays: 7 | 14
 export type PackPrizeStory = Readonly<{ place: 1 | 2 | 3; month: number; packName: string; saves: number; coins: number; podium: readonly StoryPodiumEntry[] }>;
 /** То, что знает итог диалога: изучаемый язык (для «по-английски»), реплики человека и задания. Минут и текста реплик у окна не было. */
 export type FirstDialogStory = Readonly<{ studyTarget: string; turns: number; goalsDone: number; goalsTotal: number }>;
-export type PeakOvertakeStory = Readonly<{ tier: number; rivalName: string; rivalRank: number | null; rivalScore: number; myScore: number; daysLeft: number }>;
+/** Кто обогнал и на сколько — в ступенях, если комната по ступеням (gapSteps), иначе в монетах недели; очков и лиги окно не знало. */
+export type PeakOvertakeStory = Readonly<{ rivalName: string; rivalCoinRank: number | null; gapCoins: number; gapSteps: number | null }>;
 
 type FrameProps<D> = Readonly<{ tpl: D; lang: Lang; myRank: number | null }>;
 
@@ -194,37 +195,19 @@ export const FirstDialogFrame = memo(function FirstDialogFrame({ tpl, lang }: Fr
   );
 });
 
-// ── 17 · Пик · тебя обошли (взамен окон позиции Пика: до трёх подряд после ступени) ──────────────────
+// ── 19 · Пик · тебя обгоняют (взамен всплывающей плашки «Тебя обогнали» после ступени) ──────────────
+// зачем (владелец 11.11: макет stories-peak-position — «Да, в приложение»): прежний кадр 17 показывал очки и лигу, которых окно не знало;
+// теперь — монета соперника, заголовок и разрыв словами окна (position_moment_strings)
 
-const RaceRow = memo(function RaceRow({ name, rank, share, value, lead, d }: Readonly<{ name: string; rank: number | null; share: number; value: number; lead: boolean; d: number }>) {
-  const pal = useStoryTemplatePalette();
-  return (
-    <View style={f.raceBlock}>
-      {/* зачем (правило владельца: текст не обрезать и не ужимать): имя стоит в потоке над дорожкой — длинное переносится и раздвигает строки, а не налезает на соседнюю */}
-      <Text style={[f.raceName, { color: pal.sec }]}>{name}</Text>
-      <View style={f.raceRow}>
-      <SpireRankCoin rank={rank} size={36} />
-      <View style={[f.track, { backgroundColor: mix(pal.tx, 0.1) }]}>
-        <Grow axis="x" to={share} d={d} dur={1300} style={[f.trackFill, { backgroundColor: lead ? pal.accG : mix(pal.tx, 0.32) }]} />
-      </View>
-      <View style={f.raceValueBox}><Text style={[f.raceValue, { color: pal.tx }]}>{tplNumber(value)}</Text></View>
-      </View>
-    </View>
-  );
-});
-
-export const PeakOvertakeFrame = memo(function PeakOvertakeFrame({ tpl, lang, myRank }: FrameProps<PeakOvertakeStory>) {
-  const top = Math.max(1, tpl.rivalScore, tpl.myScore);
-  const gap = Math.max(0, tpl.rivalScore - tpl.myScore); // guard-ok: разрыв для подписи кадра, очки не меняются
+export const PeakOvertakeFrame = memo(function PeakOvertakeFrame({ tpl, lang }: FrameProps<PeakOvertakeStory>) {
+  const sub = tpl.gapSteps !== null
+    ? positionMomentText(lang, 'overtakeSubSteps', { steps: tpl.gapSteps })
+    : positionMomentText(lang, 'overtakeSub', { n: tpl.gapCoins });
   return (
     <FrameRoot testID="story-tpl-instead-peak-overtake">
-      <View style={f.race}>
-        <RaceRow name={tpl.rivalName} rank={tpl.rivalRank} share={tpl.rivalScore / top} value={tpl.rivalScore} lead d={200} />
-        <RaceRow name={tplText(lang, 'you')} rank={myRank} share={tpl.myScore / top} value={tpl.myScore} lead={false} d={320} />
-      </View>
-      <Ov text={tplText(lang, 'peakOverline', { league: spireTierName(tpl.tier, lang) })} d={900} />
-      <H1 text={tplText(lang, 'overtakenTitle', { name: tpl.rivalName })} d0={980} />
-      <P text={tplText(lang, 'overtakenGap', { gap, daysLeft: tpl.daysLeft })} d={1240} />
+      <Art><Enter kind="pop" d={120}><SpireRankCoin rank={tpl.rivalCoinRank} size={112} /></Enter></Art>
+      <H1 text={positionMomentText(lang, 'overtake', { name: tpl.rivalName })} d0={380} />
+      <P text={sub} d={700} />
     </FrameRoot>
   );
 });
@@ -244,14 +227,5 @@ const f = StyleSheet.create({
   pcName: { fontSize: 13, lineHeight: 17, fontWeight: '700', maxWidth: 88, textAlign: 'center' },
   bar: { width: 88, borderTopLeftRadius: 16, borderTopRightRadius: 16, alignItems: 'center', paddingTop: 10 },
   barN: { fontSize: 20, lineHeight: 21, fontWeight: '800' },
-  // .race: колонка, зазор 14, отступ снизу 24; строка: отступ 10, монета 36, дорожка 28 (радиус 14), число 62 справа 15/700
-  race: { alignSelf: 'stretch', gap: 14, marginBottom: 24 },
-  // имя: макет ставит его на 18 выше строки (left 58, 12/21) — в потоке это отступ слева 58 и нахлёст 3 на строку; блок несёт отступ 10 между строками
-  raceBlock: { marginTop: -8 },
-  raceRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  raceName: { paddingLeft: 58, marginBottom: -3, fontSize: 12, lineHeight: 21, textAlign: 'left' },
-  track: { flex: 1, minWidth: 0, height: 28, borderRadius: 14, overflow: 'hidden' },
-  trackFill: { height: '100%', width: '100%', borderRadius: 14 },
-  raceValueBox: { width: 62 },
-  raceValue: { fontSize: 15, lineHeight: 21, fontWeight: '700', textAlign: 'right' },
+  // кадр «Пик · тебя обгоняют» дорожек больше не рисует — стили гонки убраны
 });

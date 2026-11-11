@@ -22,6 +22,7 @@ import { LadderFriendFrame, LadderInvitedFrame, LadderPlusFrame } from './frames
 import { AppUpdateFrame, HelloNewFrame, LegacyCoinsFrame, NotifNudgeFrame, PlusExpiredFrame, PlusOnFrame, RankEnoughFrame, TeamMessageFrame, WelcomeBackFrame } from './frames_instead_a';
 import { FirstDialogFrame, LessonOpenFrame, PackPrizeFrame, PeakOvertakeFrame, PerfectLessonFrame, RateAppFrame, ReferralEndedFrame, ReferralWelcomeFrame } from './frames_instead_b';
 import { LessonMedalFrame, LevelExamOpenFrame, LingmanExamOpenFrame } from './frames_instead_c';
+import { PeakLastChanceFrame, PeakRiseFrame } from './frames_instead_d';
 // зачем (владелец 11.11: «карточки предложения переместить в истории»): три кадра-предложения Plus (макет stories-plus-offers.html)
 import { PlusDialogFrame, PlusStreakFrame, PlusWeekFrame } from './frames_plus';
 import type { StoryTemplate } from './story_template_registry';
@@ -95,6 +96,8 @@ function StoryTemplateSlide({ tpl, lang, myRank }: Props) {
     case 'instead_medal': return <LessonMedalFrame tpl={tpl} lang={lang} />;
     case 'instead_level_exam': return <LevelExamOpenFrame tpl={tpl} lang={lang} />;
     case 'instead_lingman_exam': return <LingmanExamOpenFrame tpl={tpl} lang={lang} />;
+    case 'instead_peak_rise': return <PeakRiseFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'instead_peak_last': return <PeakLastChanceFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'plus_streak': return <PlusStreakFrame tpl={tpl} lang={lang} />;
     case 'plus_week': return <PlusWeekFrame tpl={tpl} lang={lang} />;
     case 'plus_dialog': return <PlusDialogFrame tpl={tpl} lang={lang} />;

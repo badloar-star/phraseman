@@ -12,6 +12,9 @@ import type { Lang } from '../../../constants/i18n';
 import type { AppUpdateStory, HelloNewStory, LegacyCoinsStory, NotifNudgeStory, PlusStateStory, RankEnoughStory, TeamMessageStory, WelcomeBackStory } from './frames_instead_a';
 import type { FirstDialogStory, LessonOpenStory, PackPrizeStory, PeakOvertakeStory, PerfectLessonStory, RateAppStory, ReferralEndedStory, ReferralWelcomeStory } from './frames_instead_b';
 import type { LessonMedalStory, LevelExamOpenStory, LingmanExamOpenStory } from './frames_instead_c';
+import type { PeakLastChanceStory, PeakRiseStory } from './frames_instead_d';
+import { momentText } from '../../spire/moments/moments_strings';
+import { positionMomentText } from '../../spire/moments/position_moment_strings';
 import { insteadText } from './story_instead_strings';
 import { celebrationShareLabel } from '../../lesson_moments/lesson_notif_copy';
 import { reviewStoreCta } from '../../review_prompt_copy';
@@ -24,6 +27,8 @@ export const STORY_INSTEAD_TEMPLATE_IDS = [
   'instead_plus_on', 'instead_peak_overtake',
   // зачем (владелец 11.11, макет stories-lesson-notifs — «Да, в приложение»): три уведомления итога урока; строго в конце — номера прежних 17 не сдвигаются
   'instead_medal', 'instead_level_exam', 'instead_lingman_exam',
+  // зачем (владелец 11.11, макет stories-peak-position — «Да, в приложение»): ещё два кадра Пика; строго в конце — прежние номера не сдвигаются
+  'instead_peak_rise', 'instead_peak_last',
 ] as const;
 export type StoryInsteadTemplateId = (typeof STORY_INSTEAD_TEMPLATE_IDS)[number];
 
@@ -50,7 +55,9 @@ export type StoryInsteadTemplate =
   | T<'instead_peak_overtake', PeakOvertakeStory>
   | T<'instead_medal', LessonMedalStory>
   | T<'instead_level_exam', LevelExamOpenStory>
-  | T<'instead_lingman_exam', LingmanExamOpenStory>;
+  | T<'instead_lingman_exam', LingmanExamOpenStory>
+  | T<'instead_peak_rise', PeakRiseStory>
+  | T<'instead_peak_last', PeakLastChanceStory>;
 
 // зачем: даты примеров — локальное время устройства, как у событий
 const day = (y: number, m: number, d: number): number => new Date(y, m - 1, d, 12).getTime();
@@ -86,11 +93,15 @@ export const STORY_INSTEAD_TEMPLATE_SAMPLES: Readonly<{ [I in StoryInsteadTempla
   // пример окна «Первый разговор»: «6 реплик · 5 заданий из 5»
   instead_first_dialog: { id: 'instead_first_dialog', studyTarget: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 },
   instead_plus_on: { id: 'instead_plus_on', untilLabel: '11 декабря', freezesPerMonth: 3 },
-  instead_peak_overtake: { id: 'instead_peak_overtake', tier: 0, rivalName: 'Марк', rivalRank: 8, rivalScore: 1240, myScore: 1200, daysLeft: 3 },
+  // макет stories-peak-position: «Марк обгоняет тебя — на 120 монет за неделю»
+  instead_peak_overtake: { id: 'instead_peak_overtake', rivalName: 'Марк', rivalCoinRank: 8, gapCoins: 120, gapSteps: null },
   // макет stories-lesson-notifs: золотая медаль за урок 12, экзамен уровня A1, экзамен Lingman
   instead_medal: { id: 'instead_medal', lessonNo: 12, tier: 'gold', score: 5 },
   instead_level_exam: { id: 'instead_level_exam', cefrLevel: 'A1', lessonNo: 8, score: 4.7 },
   instead_lingman_exam: { id: 'instead_lingman_exam', lessonNo: 32, score: 5 },
+  // макет stories-peak-position: с 7-го места на 4-е, +120 монет; до итога 5:42:10, энергия через 1:20
+  instead_peak_rise: { id: 'instead_peak_rise', fromIndex: 6, toIndex: 3, coinsGained: 120 },
+  instead_peak_last: { id: 'instead_peak_last', weekEndsAtMs: Date.now() + ((5 * 60 + 42) * 60 + 10) * 1000, energyReadyAtMs: Date.now() + 80 * 60 * 1000, gapCoins: 120, gapSteps: null },
 };
 
 export function isStoryInsteadTemplate(tpl: Readonly<{ id: string }>): tpl is StoryInsteadTemplate {
@@ -135,7 +146,10 @@ export function storyInsteadCta(tpl: StoryInsteadTemplate, lang: Lang): StoryIns
     // подпись — та же, что у главной кнопки окна: «Оценить в App Store / Google Play»
     case 'instead_rate': return { action: 'rate_app', text: reviewStoreCta(lang), icon: 'star' };
     case 'instead_pack_prize': return { action: 'claim_pack_prize', text: insteadText(lang, 'ctaClaim', { coins: tpl.coins }), icon: 'wallet' };
-    case 'instead_peak_overtake': return { action: 'play_peak', text: insteadText(lang, 'ctaPlayPeak'), icon: 'flash' };
+    // подписи — те же, что у кнопок окон Пика: «Играть ещё», «Играть», «Играй без ожидания с Plus»
+    case 'instead_peak_rise': return { action: 'play_peak', text: positionMomentText(lang, 'playMore'), icon: 'flash' };
+    case 'instead_peak_overtake': return { action: 'play_peak', text: momentText(lang, 'play'), icon: 'flash' };
+    case 'instead_peak_last': return { action: 'open_plus', text: positionMomentText(lang, 'plusLink'), icon: 'flash' };
     // «Поделиться» — единственная кнопка, как у уведомления
     case 'instead_medal':
     case 'instead_level_exam':

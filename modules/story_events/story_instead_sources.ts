@@ -155,6 +155,25 @@ export function recordPlusOnStory(input: Readonly<{ key: string; freezesPerMonth
   return record('plus_on', input.key, { freezesPerMonth: input.freezesPerMonth });
 }
 
+/** «Пик · позиция выросла» (взамен окна после ступени): место «было → стало» и монеты ступени. Ключ — ключ решения Ядра (в нём неделя). */
+export function recordPeakRiseStory(input: Readonly<{ key: string; fromIndex: number; toIndex: number; coinsGained: number }>): Promise<StoryRecordResult> {
+  return record('peak_rise', input.key, { fromIndex: input.fromIndex, toIndex: input.toIndex, coinsGained: input.coinsGained }); // guard-ok: монеты ступени для подписи кадра, баланс не меняется
+}
+
+/** «Пик · тебя обгоняют» (взамен плашки «Тебя обогнали»): соперник и разрыв; −1 — значения нет (в событии только числа и строки). */
+export function recordPeakOvertakeStory(input: Readonly<{ key: string; rivalName: string; rivalCoinRank: number | null; gapCoins: number; gapSteps: number | null }>): Promise<StoryRecordResult> {
+  return record('peak_overtake', input.key, {
+    rivalName: input.rivalName, rivalCoinRank: input.rivalCoinRank ?? -1, gapCoins: input.gapCoins, gapSteps: input.gapSteps ?? -1, // guard-ok: разрыв для подписи кадра
+  });
+}
+
+/** «Пик · последний шанс» (взамен окна в воскресенье): конец недели, возврат энергии, разрыв до топ-5; −1 — значения нет. */
+export function recordPeakLastChanceStory(input: Readonly<{ key: string; weekEndsAtMs: number; energyReadyAtMs: number; gapCoins: number | null; gapSteps: number | null }>): Promise<StoryRecordResult> {
+  return record('peak_last', input.key, {
+    weekEndsAtMs: input.weekEndsAtMs, energyReadyAtMs: input.energyReadyAtMs, gapCoins: input.gapCoins ?? -1, gapSteps: input.gapSteps ?? -1, // guard-ok: разрыв для подписи кадра
+  });
+}
+
 /** «Хватает на ранг N»: ключ — номер следующего ранга, один раз на ранг (как у окна). */
 export function recordRankEnoughStory(input: Readonly<{ rank: number; nextRank: number; balance: number; price: number }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
   return record('rank_enough', String(input.nextRank), { rank: input.rank, nextRank: input.nextRank, balance: input.balance, price: input.price }, accountToken);

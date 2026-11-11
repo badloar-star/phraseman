@@ -55,7 +55,8 @@ describe('шаблоны историй v1 — реестр', () => {
     const events = studioEvents(1);
     // 31 прежний кадр + 17 кадров «истории вместо окон» (11.11) — новые строго в конце, номера прежних не сдвигаются
     // + три кадра уведомлений итога урока (медаль и два экзамена, 11.11) в конце группы «вместо окон»
-    expect(events).toHaveLength(54);
+    // + два кадра Пика (позиция выросла, последний шанс, 11.11) в конце группы «вместо окон»
+    expect(events).toHaveLength(56);
     expect(events[8]).toMatchObject({ id: 'studio-duel', type: 'achievement', payload: { studioTemplate: 'duel' } });
     expect(events[23]).toMatchObject({ id: 'studio-contest_start', payload: { studioTemplate: 'contest_start' } });
     expect(events[27]).toMatchObject({ id: 'studio-contest_winner', payload: { studioTemplate: 'contest_winner' } });
@@ -68,6 +69,7 @@ describe('шаблоны историй v1 — реестр', () => {
     expect(studioStartIndex('instead_rate')).toBe(43);
     // кадры 49–51: медаль урока и открытие экзаменов — сразу после прежних 17, их номера не сдвинулись
     expect(events.slice(48, 51).map((e) => e.payload.studioTemplate)).toEqual(['instead_medal', 'instead_level_exam', 'instead_lingman_exam']);
+    expect(events.slice(51, 53).map((e) => e.payload.studioTemplate)).toEqual(['instead_peak_rise', 'instead_peak_last']);
   });
 });
 

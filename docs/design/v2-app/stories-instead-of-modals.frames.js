@@ -69,7 +69,7 @@ const TPL = [
   { id: 'plus_on', name: 'Plus подключён', group: 'Plus', kind: 'new', ev: 'plus_activated (новое)', when: 'взамен праздничного окна после покупки или выдачи Plus', data: 'kind, until', motion: 'знак Plus встаёт, три возможности отмечаются, конфетти один раз',
     render: () => `${confetti(18, 600)}<div class="art">${pbig(160)}</div><div class="ov a" style="--d:380ms">До 11 декабря</div><div class="h1">${words('Plus подключён', 460)}</div>${rows([['Все уроки курса'], ['Диалоги без счётчика'], ['Защита серии, 3 в месяц']], 700)}` },
 
-  { id: 'peak_overtake', name: 'Пик · тебя обошли', group: 'Пик', kind: 'new', ev: 'spire_position_change (новое)', when: 'взамен окон позиции Пика (поднялся, обошли, последний шанс) · до трёх окон подряд', data: 'league, floor, rival, gap, endsAt', motion: 'две полосы растут, полоса соперника длиннее',
-    cta: { label: 'Играть на Пике', icon: 'flash' },
-    render: () => `<div class="race" style="margin-bottom:24px"><div class="r her"><span class="nm">Марк</span>${coin(8, 36)}<div class="tr"><i style="--p:.86;--d:200ms"></i></div><span class="v">1 240</span></div><div class="r"><span class="nm">Ты</span>${coin(5, 36)}<div class="tr"><i style="--p:.82;--d:320ms"></i></div><span class="v">1 200</span></div></div><div class="ov a" style="--d:900ms">Пик · Гранит</div><div class="h1">${words('Марк обходит тебя', 980)}</div><div class="p a" style="--d:1240ms">Разрыв 40 монет · до конца недели 3 дня</div>` },
+  { id: 'peak_overtake', name: 'Пик · тебя обгоняют', group: 'Пик', kind: 'new', ev: 'spire_position_overtake (новое)', when: 'взамен всплывающей плашки «Тебя обогнали» после ступени · подробный макет трёх кадров Пика — stories-peak-position.html', data: 'rivalName, rivalCoinRank, gapCoins или gapSteps', motion: 'монета соперника появляется, заголовок встаёт по словам',
+    cta: { label: 'Играть', icon: 'flash' },
+    render: () => `<div class="art"><div class="pop" style="--d:120ms">${coin(8, 112)}</div></div><div class="h1">${words('Марк обгоняет тебя', 380)}</div><div class="p a" style="--d:700ms">на 120 монет за неделю</div>` },
 ];

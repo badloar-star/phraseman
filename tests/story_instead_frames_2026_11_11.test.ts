@@ -123,12 +123,12 @@ describe('кадры «истории вместо окон» — разметк
     for (const banned of ['borderWidth', 'borderColor', 'adjustsFontSizeToFit']) expect(all).not.toContain(banned);
   });
 
-  it('шаг 1: все 20 кадров (17 + медаль и два экзамена) подключены к просмотру и стоят в конце общего списка', () => {
+  it('шаг 1: все 22 кадра (17 + медаль, два экзамена и два кадра Пика) подключены к просмотру и стоят в конце общего списка', () => {
     const slide = read('components/stories/templates/StoryTemplateSlide.tsx');
     const registry = read('components/stories/templates/story_template_registry.ts');
     const own = read('components/stories/templates/story_instead_registry.ts');
     const unique = [...new Set([...own.matchAll(/'(instead_[a-z_]+)'/g)].map((m) => m[1]))];
-    expect(unique).toHaveLength(20);
+    expect(unique).toHaveLength(22);
     for (const id of unique) expect(slide).toContain(`case '${id}':`);
     // новые кадры — строго в конце общего списка: номера прежних 31 в фотостудии не сдвигаются
     // зачем (11.11, правка разрешена автором сторожа): после кадров «вместо окон» в тот же массив дописаны три кадра-предложения Plus —
@@ -137,11 +137,11 @@ describe('кадры «истории вместо окон» — разметк
     expect(registry).toContain('...STORY_INSTEAD_TEMPLATE_SAMPLES,');
   });
 
-  it('шаг 2: у восемнадцати кадров есть источник — событие instead; без источника — приз набора и обгон в Пике', () => {
+  it('шаг 2: у двадцати одного кадра есть источник — событие instead; без источника — только приз набора', () => {
     const fromEvent = read('components/stories/templates/story_template_from_event.ts');
     expect(fromEvent).toContain("case 'instead': return insteadTemplateFromPayload(p);");
     const own = read('components/stories/templates/story_instead_from_event.ts');
-    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello', 'message', 'plus_on'] as const;");
+    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello', 'message', 'plus_on', 'peak_rise', 'peak_overtake', 'peak_last'] as const;");
   });
 });
 
@@ -184,7 +184,7 @@ describe('макет и код говорят одно и то же', () => {
 
   it('в макете 17 кадров и тексты, приведённые к коду', () => {
     expect((mock.match(/\{ id: '/g) ?? [])).toHaveLength(17);
-    for (const text of ['карточки на повтор', 'фраз выучено', '100%. Ты вообще оставил уроку шанс?', 'Оценить в Google Play', 'Это Компас. У меня кое-что новое', 'Доступна новая версия — быстрее и удобнее.', 'Без практики: 3 дня', 'Включить напоминания', 'Тебя пригласили', 'Первый разговор по-английски — есть!', 'Доступ можно открыть снова', 'Набор месяца за октябрь', 'сохранений: 214', 'Марк обходит тебя']) {
+    for (const text of ['карточки на повтор', 'фраз выучено', '100%. Ты вообще оставил уроку шанс?', 'Оценить в Google Play', 'Это Компас. У меня кое-что новое', 'Доступна новая версия — быстрее и удобнее.', 'Без практики: 3 дня', 'Включить напоминания', 'Тебя пригласили', 'Первый разговор по-английски — есть!', 'Доступ можно открыть снова', 'Набор месяца за октябрь', 'сохранений: 214', 'Марк обгоняет тебя']) {
       expect(mock).toContain(text);
     }
   });

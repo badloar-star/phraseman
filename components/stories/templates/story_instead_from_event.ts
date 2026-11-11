@@ -9,8 +9,8 @@
 // `perfect` («Идеальный урок»), `lesson_open` («Открыт урок N»),
 // `medal` («Медаль урока»), `level_exam` и `lingman_exam` (открытие экзаменов),
 // `update` («Вышло обновление»), `nudge` («Включить напоминания»), `hello` («Добро пожаловать»),
-// `message` («Сообщение» команды), `plus_on` («Plus подключён»). Без источника остаются два кадра: приз набора (его событие уже
-// показывает история Сообщества) и обгон в Пике (ждёт нового макета).
+// `message` («Сообщение» команды), `plus_on` («Plus подключён»), `peak_rise` / `peak_overtake` / `peak_last` (окна позиции Пика).
+// Без источника остаётся кадр приза набора: его событие уже показывает история Сообщества.
 // Числа проверяются строго: строка '6' и дробное 6.9 не превращаются в 6 — так уже маскировался битый payload у ранга монеты.
 // ═══════════════════════════════════════════════════════════════════════════
 import { isValidCoinRank } from '../../../app/coin_rank_table_v1';
@@ -26,7 +26,7 @@ function count(value: unknown): number | null {
 }
 
 /** Виды событий `instead`, у которых уже есть источник. */
-export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello', 'message', 'plus_on'] as const;
+export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello', 'message', 'plus_on', 'peak_rise', 'peak_overtake', 'peak_last'] as const;
 
 const RATE_CONTEXTS = ['perfect_lesson', 'level_exam_pass', 'streak_milestone'] as const;
 const RATE_STREAK_DAYS = [7, 14, 30] as const;
@@ -151,6 +151,31 @@ export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | n
       if (freezesPerMonth === null || freezesPerMonth < 1) return null;
       // дату окончания праздничное окно не знало — кадр идёт без строки с датой
       return { id: 'instead_plus_on', untilLabel: null, freezesPerMonth };
+    }
+    case 'peak_rise': {
+      const fromIndex = count(p.fromIndex);
+      const toIndex = count(p.toIndex);
+      const coinsGained = count(p.coinsGained);
+      // место выросло — «стало» выше «было»; иначе это не подъём
+      if (fromIndex === null || toIndex === null || toIndex >= fromIndex || coinsGained === null) return null;
+      return { id: 'instead_peak_rise', fromIndex, toIndex, coinsGained };
+    }
+    case 'peak_overtake': {
+      const gapCoins = count(p.gapCoins);
+      if (typeof p.rivalName !== 'string' || p.rivalName.trim().length === 0 || gapCoins === null) return null;
+      return {
+        id: 'instead_peak_overtake', rivalName: p.rivalName.trim(),
+        rivalCoinRank: isValidCoinRank(p.rivalCoinRank) ? p.rivalCoinRank : null,
+        gapCoins, gapSteps: count(p.gapSteps),
+      };
+    }
+    case 'peak_last': {
+      const weekEndsAtMs = count(p.weekEndsAtMs);
+      const energyReadyAtMs = count(p.energyReadyAtMs);
+      if (weekEndsAtMs === null || weekEndsAtMs < 1 || energyReadyAtMs === null) return null;
+      // зачем (владелец 11.11: «Считать при открытии»): неделя уже закончилась — «последнего шанса» больше нет, кадр не строим
+      if (Date.now() >= weekEndsAtMs) return null;
+      return { id: 'instead_peak_last', weekEndsAtMs, energyReadyAtMs, gapCoins: count(p.gapCoins), gapSteps: count(p.gapSteps) };
     }
     default:
       return null;

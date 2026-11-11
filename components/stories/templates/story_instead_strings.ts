@@ -30,7 +30,7 @@ const S = {
   ctaInviteFriend: ['Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời một người bạn', 'Ajak teman', 'Arkadaş davet et', 'Zaproś znajomego'], // дословно как кнопка окна
   ctaStartLesson: ['Начать урок {lessonNo}', 'Почати урок {lessonNo}', 'Start lesson {lessonNo}', 'Empezar la lección {lessonNo}', 'Começar a lição {lessonNo}', 'Bắt đầu bài {lessonNo}', 'Mulai pelajaran {lessonNo}', '{lessonNo}. derse başla', 'Zacznij lekcję {lessonNo}'],
   ctaClaim: ['Забрать {coins} {cw}', 'Забрати {coins} {cw}', 'Claim {coins} {cw}', 'Recibir {coins} {cw}', 'Resgatar {coins} {cw}', 'Nhận {coins} {cw}', 'Ambil {coins} {cw}', '{coins} {cw} al', 'Odbierz {coins} {cw}'],
-  ctaPlayPeak: ['Играть на Пике', 'Грати на Піку', 'Play the Peak', 'Jugar en el Pico', 'Jogar no Pico', 'Chơi ở Đỉnh', 'Main di Puncak', 'Zirve’de oyna', 'Graj na Szczycie'],
+
 
   // ── 1 · приветствие новичка ──
   helloOverline: ['Первый день', 'Перший день', 'Day one', 'Primer día', 'Primeiro dia', 'Ngày đầu tiên', 'Hari pertama', 'İlk gün', 'Pierwszy dzień'],

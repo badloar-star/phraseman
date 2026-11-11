@@ -36,6 +36,7 @@ import { TODAY_RING_ON_CARD_MIN, todayRingOnCard, todaySceneRingLook } from './t
 import type { TodaySceneDecision } from './today_scene_state';
 // зачем (Темы 25.10, перепись цветов b5a22eebb): белые чернила, стекло и кнопка сцены — свет сцены, одинаковый во всех темах; живут в одном модуле (как SPIRE_SCENE_INK у Пика), замер контраста читает отсюда
 import { HOME_SCENE_INK } from '../scene/home_scene_ink';
+import WarmupTodayRow from '../../../games/WarmupTodayRow';
 
 /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
 const STAGE_SCREEN_SHARE = 392 / 844;
@@ -171,6 +172,9 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
       </View>
       </SceneBlockShadow>
       <View testID="today-scene-panel" style={[s.panel, { backgroundColor: card.opaqueCard, boxShadow: plateBoxShadow(glass) }]}>
+        {/* зачем (владелец 11.11, D207, макет elevate-real.js): разминка — отдельная строка каждый день НАД тремя заданиями, в счёт «N из 3» не входит;
+            строка самодостаточная: сама читает состояние из памяти и сама ведёт на экран разминки */}
+        <WarmupTodayRow style={{ marginBottom: 12 }} />
         <View style={s.panelHead}>
           <Text accessibilityRole="header" style={[s.panelTitle, { color: card.text }]}>{copy.panelTitle}</Text>
           <Text style={[s.panelCount, { color: card.secondary }]}>{copy.panelCount}</Text>

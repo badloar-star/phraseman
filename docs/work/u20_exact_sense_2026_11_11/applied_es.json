@@ -12,12 +12,18 @@
   "tr": "Evdesin.",
   "pl": "Jesteś w domu."
  },
+ "01.10": {
+  "pt-BR": "Estou dentro."
+ },
  "01.13": {
   "pt-BR": "Ana está em casa.",
   "vi": "Ana đang ở nhà.",
   "id": "Ana di rumah.",
   "tr": "Ana evde.",
   "pl": "Ana jest w domu."
+ },
+ "01.17": {
+  "pt-BR": "Ana está dentro."
  },
  "01.18": {
   "pt-BR": "Luis está longe.",
@@ -58,6 +64,9 @@
  "02.06": {
   "pl": "Any nie ma w domu."
  },
+ "02.09": {
+  "pl": "Luisa tu nie ma."
+ },
  "02.13": {
   "pt-BR": "A estação não fica longe.",
   "vi": "Nhà ga không ở xa.",
@@ -83,8 +92,14 @@
  "02.26": {
   "pl": "Any i Luisa nie ma w domu."
  },
+ "02.29": {
+  "pl": "Luisa nie ma w samochodzie."
+ },
  "02.32": {
-  "pt-BR": "As chaves não estão aqui."
+  "pt-BR": "As chaves não estão aqui.",
+  "vi": "Những chiếc chìa khóa không có ở đây.",
+  "id": "Kunci-kuncinya tidak ada di sini.",
+  "tr": "Anahtarlar burada değil."
  },
  "02.40": {
   "pt-BR": "A bolsa não está no carro.",
@@ -119,6 +134,9 @@
   "vi": "Tôi có ở gần đây không?",
   "tr": "Yakın mıyım?"
  },
+ "03.08": {
+  "id": "Apakah kita ada di stasiun?"
+ },
  "03.21": {
   "pl": "Czy jesteście w domu?"
  },
@@ -133,6 +151,9 @@
  },
  "03.25": {
   "pl": "Czy jesteście przy wejściu?"
+ },
+ "03.26": {
+  "id": "Apakah kita ada di halte bus?"
  },
  "03.31": {
   "pt-BR": "O telefone está em casa?",
@@ -185,6 +206,9 @@
  "04.47": {
   "pl": "Jesteście przewodnikami."
  },
+ "05.14": {
+  "pl": "Kto jest przy drzwiach?"
+ },
  "05.20": {
   "pt-BR": "Quem está na recepção?",
   "vi": "Ai đang ở quầy lễ tân?",
@@ -220,6 +244,13 @@
   "vi": "Vé nào ở trong ba lô?",
   "id": "Tiket mana yang ada di dalam ransel?",
   "tr": "Sırt çantasında hangi bilet var?"
+ },
+ "05.38": {
+  "pt-BR": "Quais ingressos estão no bolso?",
+  "vi": "Những vé nào ở trong túi?",
+  "id": "Tiket apa yang ada di saku?",
+  "tr": "Cepte hangi biletler var?",
+  "pl": "Jakie bilety są w kieszeni?"
  },
  "05.40": {
   "pt-BR": "Quais professores estão na sala de aula?",
@@ -263,6 +294,12 @@
  "06.13": {
   "vi": "Tàu hỏa ở gần đây."
  },
+ "06.16": {
+  "pt-BR": "As lojas ficam por perto.",
+  "vi": "Các cửa hàng ở gần đây.",
+  "tr": "Mağazalar yakında.",
+  "pl": "Sklepy są w pobliżu."
+ },
  "06.21": {
   "pt-BR": "O mapa está sobre a mesa.",
   "vi": "Bản đồ ở trên bàn.",
@@ -305,6 +342,46 @@
   "tr": "Pasaport valizde.",
   "pl": "Paszport jest w walizce."
  },
+ "06.40": {
+  "pt-BR": "Os trens estão na estação.",
+  "vi": "Các chuyến tàu ở nhà ga.",
+  "tr": "Trenler istasyonda.",
+  "pl": "Pociągi są na stacji."
+ },
+ "06.41": {
+  "pl": "Lekarz jest przy drzwiach."
+ },
+ "06.42": {
+  "pl": "Lekarka jest przy drzwiach."
+ },
+ "06.43": {
+  "pt-BR": "Os alunos estão na estação.",
+  "tr": "Öğrenciler istasyonda.",
+  "pl": "Studenci są na stacji."
+ },
+ "06.44": {
+  "pt-BR": "As alunas estão na estação.",
+  "tr": "Kız öğrenciler istasyonda.",
+  "pl": "Studentki są na stacji."
+ },
+ "06.45": {
+  "pt-BR": "O guia está no hotel.",
+  "vi": "Hướng dẫn viên ở khách sạn.",
+  "id": "Pemandu itu ada di hotel.",
+  "tr": "Rehber otelde.",
+  "pl": "Przewodnik jest w hotelu."
+ },
+ "06.46": {
+  "pt-BR": "A guia está no hotel.",
+  "vi": "Nữ hướng dẫn viên ở khách sạn.",
+  "id": "Pemandu perempuan itu ada di hotel.",
+  "tr": "Kadın rehber otelde.",
+  "pl": "Przewodniczka jest w hotelu."
+ },
+ "06.48": {
+  "pt-BR": "Os ingressos estão nas bolsas.",
+  "pl": "Bilety są w torbach."
+ },
  "06.49": {
   "pt-BR": "O mapa está na mala.",
   "vi": "Bản đồ ở trong vali.",
@@ -312,8 +389,17 @@
   "tr": "Harita bavulda.",
   "pl": "Mapa jest w walizce."
  },
+ "07.09": {
+  "tr": "Cepte bir bilet var."
+ },
+ "07.17": {
+  "tr": "Cepte iki bilet var."
+ },
  "08.13": {
   "pl": "Twój klucz jest na stole."
+ },
+ "08.15": {
+  "id": "Pengisi dayamu ada di dapur."
  },
  "08.28": {
   "vi": "Vé của bạn ở trên bàn."
@@ -417,7 +503,8 @@
  },
  "10.46": {
   "pt-BR": "Luis está escrevendo uma mensagem?",
-  "id": "Apakah Luis menulis pesan?"
+  "id": "Apakah Luis menulis pesan?",
+  "tr": "Luis mesaj yazıyor mu?"
  },
  "10.50": {
   "pt-BR": "Vocês estão escrevendo uma carta?",
@@ -432,6 +519,9 @@
  },
  "11.08": {
   "tr": "Kitabınız bende."
+ },
+ "11.09": {
+  "pt-BR": "Tenho o passaporte."
  },
  "11.16": {
   "pt-BR": "Temos tempo.",
@@ -448,12 +538,17 @@
  "11.26": {
   "pt-BR": "Não tenho carro."
  },
+ "11.30": {
+  "pt-BR": "Não tenho as chaves."
+ },
  "11.37": {
   "pt-BR": "Vocês têm uma reserva?",
+  "tr": "Rezervasyonunuz var mı?",
   "pl": "Czy macie rezerwację?"
  },
  "11.38": {
   "pt-BR": "Vocês têm uma reserva?",
+  "tr": "Rezervasyonunuz var mı?",
   "pl": "Czy macie rezerwację?"
  },
  "11.43": {
@@ -502,7 +597,9 @@
   "pl": "Nauczycielka jest zmęczona."
  },
  "13.19": {
-  "pl": "Czy jesteście gotowi?"
+  "pl": "Czy jesteście gotowi?",
+  "vi": "Các bạn đã sẵn sàng chưa?",
+  "id": "Apakah kalian siap?"
  },
  "13.35": {
   "pl": "Czy toaleta jest wolna?"
@@ -513,11 +610,15 @@
  "13.44": {
   "pt-BR": "Vocês estão felizes hoje.",
   "tr": "Bugün mutlusunuz.",
-  "pl": "Jesteście dziś szczęśliwe."
+  "pl": "Jesteście dziś szczęśliwe.",
+  "vi": "Hôm nay các bạn vui vẻ.",
+  "id": "Kalian bahagia hari ini."
  },
  "14.07": {
   "pt-BR": "Vocês acordam cedo.",
-  "pl": "Wstajecie wcześnie."
+  "pl": "Wstajecie wcześnie.",
+  "vi": "Các bạn dậy sớm.",
+  "id": "Kalian bangun pagi."
  },
  "14.12": {
   "pt-BR": "Você toma banho em casa.",
@@ -541,32 +642,49 @@
  },
  "14.27": {
   "pt-BR": "Vocês lavam as mãos.",
-  "pl": "Myjecie ręce."
+  "pl": "Myjecie ręce.",
+  "vi": "Các bạn rửa tay.",
+  "id": "Kalian mencuci tangan."
  },
  "14.31": {
-  "pt-BR": "Eu me sento aqui."
+  "pt-BR": "Eu me sento aqui.",
+  "pl": "Siadam tutaj."
+ },
+ "14.32": {
+  "pl": "Siadasz przy oknie."
  },
  "14.33": {
-  "pt-BR": "Ana se senta aqui."
+  "pt-BR": "Ana se senta aqui.",
+  "pl": "Ana tu siada."
  },
  "14.34": {
-  "pt-BR": "Nos sentamos perto da janela."
+  "pt-BR": "Nos sentamos perto da janela.",
+  "pl": "Siadamy przy oknie."
  },
  "14.35": {
-  "pt-BR": "Luis se senta aqui."
+  "pt-BR": "Luis se senta aqui.",
+  "pl": "Luis siada tutaj."
  },
  "14.36": {
-  "pt-BR": "Meus irmãos se sentam perto da janela."
+  "pt-BR": "Meus irmãos se sentam perto da janela.",
+  "pl": "Moi bracia siadają przy oknie."
  },
  "14.37": {
   "pt-BR": "Vocês se sentam aqui.",
-  "pl": "Siadacie tutaj."
+  "pl": "Siadacie tutaj.",
+  "vi": "Các bạn ngồi đây.",
+  "id": "Kalian duduk di sini."
+ },
+ "14.38": {
+  "pl": "Siadasz przy oknie?"
  },
  "14.39": {
-  "pt-BR": "Eu não me sento aqui."
+  "pt-BR": "Eu não me sento aqui.",
+  "pl": "Nie siadam tu."
  },
  "14.40": {
-  "pt-BR": "Minhas irmãs se sentam perto da janela?"
+  "pt-BR": "Minhas irmãs se sentam perto da janela?",
+  "pl": "Czy moje siostry siadają przy oknie?"
  },
  "14.42": {
   "pt-BR": "Você se prepara para a viagem.",
@@ -576,7 +694,9 @@
   "pl": "Przygotowujesz się do podróży."
  },
  "14.47": {
-  "pl": "Przygotowujecie się do zajęć."
+  "pl": "Przygotowujecie się do zajęć.",
+  "vi": "Các bạn đang chuẩn bị cho lớp học.",
+  "id": "Kalian sedang bersiap untuk kelas."
  },
  "14.49": {
   "pt-BR": "Eu não me preparo para a aula.",
@@ -620,6 +740,11 @@
   "tr": "Pencereyi açabilirsiniz.",
   "pl": "Możesz otworzyć okno."
  },
+ "15.16": {
+  "pt-BR": "Posso escrever uma mensagem.",
+  "id": "Saya bisa menulis pesan.",
+  "pl": "Mogę napisać wiadomość."
+ },
  "15.17": {
   "pt-BR": "Você pode enviar a foto.",
   "vi": "Bạn có thể gửi ảnh.",
@@ -649,7 +774,9 @@
  },
  "15.28": {
   "pt-BR": "Vocês podem ler a mensagem hoje.",
-  "pl": "Możecie dziś przeczytać wiadomość."
+  "pl": "Możecie dziś przeczytać wiadomość.",
+  "vi": "Hôm nay các bạn có thể đọc tin nhắn.",
+  "id": "Kalian bisa membaca pesan itu hari ini."
  },
  "15.32": {
   "pt-BR": "Não posso enviar o mapa.",
@@ -662,11 +789,14 @@
   "pt-BR": "Não podemos pagar em dinheiro aqui.",
   "id": "Kami tidak bisa membayar tunai di sini.",
   "tr": "Burada nakit ödeyemeyiz.",
-  "pl": "Nie możemy tu płacić gotówką."
+  "pl": "Nie możemy tu płacić gotówką.",
+  "vi": "Chúng tôi không thể thanh toán bằng tiền mặt ở đây."
  },
  "15.39": {
   "pt-BR": "Vocês não podem entrar no escritório.",
-  "pl": "Nie możecie wejść do biura."
+  "pl": "Nie możecie wejść do biura.",
+  "vi": "Các bạn không thể vào văn phòng.",
+  "id": "Kalian tidak bisa masuk ke kantor."
  },
  "15.49": {
   "pt-BR": "Você pode enviar o mapa?",
@@ -696,9 +826,14 @@
   "tr": "Luis ekmek alacak.",
   "pl": "Luis zamierza kupić chleb."
  },
+ "16.19": {
+  "pl": "Moi bracia później ugotują kolację."
+ },
  "16.22": {
   "pt-BR": "Vocês planejam pagar com cartão amanhã.",
-  "pl": "Planujecie zapłacić kartą jutro."
+  "pl": "Planujecie zapłacić kartą jutro.",
+  "vi": "Các bạn dự định thanh toán bằng thẻ vào ngày mai.",
+  "id": "Kalian berencana membayar dengan kartu besok."
  },
  "16.23": {
   "pt-BR": "Ana vai passar pelo supermercado.",
@@ -709,7 +844,9 @@
  },
  "16.25": {
   "pt-BR": "Vocês vão comprar arroz no supermercado?",
-  "pl": "Zamierzacie kupić ryż w supermarkecie?"
+  "pl": "Zamierzacie kupić ryż w supermarkecie?",
+  "vi": "Các bạn sẽ mua gạo ở siêu thị chứ?",
+  "id": "Apakah kalian akan membeli beras di supermarket?"
  },
  "16.26": {
   "vi": "Các anh trai tôi sẽ đến văn phòng vào ngày mai."
@@ -730,6 +867,9 @@
   "id": "Luis akan membawa tas besok.",
   "tr": "Luis yarın çantayı taşıyacak.",
   "pl": "Luis zaniesie torbę jutro."
+ },
+ "16.37": {
+  "pl": "Moje siostry nie będą dziś gotować kolacji."
  },
  "16.38": {
   "pt-BR": "Não vamos levar o carro.",
@@ -753,7 +893,9 @@
  },
  "16.49": {
   "pt-BR": "Vocês vão esperar aqui?",
-  "pl": "Zamierzacie tu poczekać?"
+  "pl": "Zamierzacie tu poczekać?",
+  "vi": "Các bạn sẽ đợi ở đây chứ?",
+  "id": "Apakah kalian akan menunggu di sini?"
  },
  "17.02": {
   "tr": "Ekmeği seviyorum."
@@ -811,6 +953,9 @@
  "18.02": {
   "pl": "Masz ją tutaj."
  },
+ "18.05": {
+  "id": "Luis tidak memilikinya di sini."
+ },
  "18.06": {
   "pl": "Mam ją tutaj."
  },
@@ -819,6 +964,10 @@
  },
  "18.12": {
   "pl": "Ana jej szuka."
+ },
+ "18.13": {
+  "ru": "Я возвращаю их сегодня.",
+  "uk": "Я повертаю їх сьогодні."
  },
  "18.16": {
   "pl": "Szukasz jej."
@@ -841,8 +990,20 @@
  "18.42": {
   "pl": "Zostawiam ją w domu."
  },
+ "18.43": {
+  "pt-BR": "A música eu ouço em casa."
+ },
+ "18.44": {
+  "ru": "Я забираю их после занятия.",
+  "uk": "Я забираю їх після заняття."
+ },
  "18.46": {
   "pl": "Ana zostawia ją w domu."
+ },
+ "18.49": {
+  "ru": "Ты возвращаешь его завтра?",
+  "uk": "Ти повертаєш його завтра?",
+  "pl": "Czy oddajesz go jutro?"
  },
  "19.02": {
   "pt-BR": "Você está lendo o livro.",
@@ -895,7 +1056,9 @@
   "pl": "Jecie teraz w kuchni."
  },
  "19.38": {
-  "pt-BR": "Não estamos voltando para casa agora."
+  "pt-BR": "Não estamos voltando para casa agora.",
+  "pl": "Nie wracamy teraz do domu.",
+  "tr": "Şu anda eve dönmüyoruz."
  },
  "19.43": {
   "pt-BR": "Estamos escrevendo uma mensagem?",
@@ -919,6 +1082,9 @@
   "id": "Saudari-saudari saya membuka jendela minggu ini.",
   "tr": "Kız kardeşlerim bu hafta pencereyi açtılar.",
   "pl": "Moje siostry otworzyły okno w tym tygodniu."
+ },
+ "20.26": {
+  "vi": "Các anh trai tôi đã về nhà tuần này."
  },
  "20.30": {
   "pt-BR": "Vocês levaram a bolsa esta semana.",
@@ -947,6 +1113,11 @@
   "id": "Apakah Anda sudah mengkonfirmasi pesanan?",
   "tr": "Siparişi onayladınız mı?",
   "pl": "Czy potwierdziłeś/aś zamówienie?"
+ },
+ "20.43": {
+  "pt-BR": "Voltamos para casa hoje?",
+  "pl": "Czy wróciliśmy dziś do domu?",
+  "tr": "Bugün eve döndük mü?"
  },
  "20.50": {
   "pt-BR": "Vocês entraram no escritório hoje?",
@@ -1074,6 +1245,9 @@
   "pt-BR": "Vocês chegaram ao hotel ontem.",
   "pl": "Przybyliście wczoraj do hotelu."
  },
+ "22.40": {
+  "pl": "Czy przyjechałeś wczoraj z Aną?"
+ },
  "22.42": {
   "pt-BR": "Você conseguiu chegar em casa ontem à noite.",
   "vi": "Bạn đã về được nhà tối qua.",
@@ -1125,6 +1299,9 @@
  "23.18": {
   "tr": "Kız kardeşlerim her gün otelde çalışırlardı."
  },
+ "23.19": {
+  "en": "As a boy I used to go to that school."
+ },
  "23.20": {
   "pt-BR": "Você esperava do lado de fora todos os dias.",
   "tr": "Her gün dışarıda beklerdiniz."
@@ -1149,6 +1326,10 @@
  "23.28": {
   "pt-BR": "Bebíamos água com frequência.",
   "tr": "Sık sık su içerdik."
+ },
+ "23.29": {
+  "pt-BR": "Meus irmãos escreviam uma mensagem com frequência.",
+  "id": "Saudara-saudaraku dulu sering menulis pesan."
  },
  "23.30": {
   "pt-BR": "Vocês comiam em casa com frequência.",
@@ -1188,14 +1369,23 @@
   "vi": "Các chị gái tôi trước đây có về nhà không?",
   "tr": "Kız kardeşlerim daha önce eve dönerler miydi?"
  },
+ "24.39": {
+  "pt-BR": "Enquanto comíamos em casa, Luis ligou."
+ },
  "24.40": {
   "pt-BR": "Enquanto eu fatiava o queijo, a campainha tocou."
+ },
+ "24.49": {
+  "pt-BR": "Enquanto comíamos em casa, o médico entrou."
  },
  "25.16": {
   "pt-BR": "Envie o mapa.",
   "vi": "Gửi bản đồ.",
   "id": "Kirim peta.",
   "pl": "Wyślij mapę."
+ },
+ "25.19": {
+  "pl": "Przygotuj kolację."
  },
  "25.22": {
   "pt-BR": "Volte para casa agora.",
@@ -1206,6 +1396,9 @@
   "vi": "Gửi bản đồ sau.",
   "id": "Kirim peta nanti.",
   "pl": "Wyślij mapę później."
+ },
+ "25.43": {
+  "en": "Cut the cheese."
  },
  "26.21": {
   "pt-BR": "Mostrei o mapa para eles.",
@@ -1339,6 +1532,9 @@
   "vi": "Bạn sẽ mua bánh mì.",
   "id": "Anda akan membeli roti."
  },
+ "29.09": {
+  "tr": "Luis eve dönerdi."
+ },
  "29.10": {
   "pt-BR": "Nós esperaríamos aqui.",
   "vi": "Chúng tôi sẽ đợi ở đây.",
@@ -1422,7 +1618,10 @@
   "tr": "Bugün kitabı okumazdım."
  },
  "29.32": {
-  "tr": "Bugün mesaj yazmazdınız."
+  "tr": "Bugün mesaj yazmazdınız.",
+  "pt-BR": "Você não escreveria uma mensagem hoje.",
+  "id": "Anda tidak akan menulis pesan hari ini.",
+  "pl": "Nie napisałbyś dziś wiadomości."
  },
  "29.34": {
   "pt-BR": "Não voltaríamos para casa hoje.",
@@ -1451,6 +1650,10 @@
  },
  "29.48": {
   "vi": "Bạn sẽ đợi ở đây một phút không?"
+ },
+ "29.49": {
+  "pt-BR": "Minhas irmãs escreveriam uma mensagem?",
+  "id": "Apakah saudari-saudari saya akan menulis pesan?"
  },
  "29.50": {
   "pl": "Czy wysłalibyście zdjęcie?"
@@ -1510,6 +1713,13 @@
  },
  "31.39": {
   "tr": "Sinyal olduğunda size programı göndereceğim."
+ },
+ "31.41": {
+  "pt-BR": "Quando você estiver pronto, sairemos.",
+  "vi": "Khi bạn sẵn sàng, chúng ta sẽ ra ngoài.",
+  "id": "Saat kamu siap, kita akan keluar.",
+  "tr": "Hazır olduğunuzda çıkacağız.",
+  "pl": "Kiedy będziesz gotowy, wyjdziemy."
  },
  "32.30": {
   "pt-BR": "Se a bateria estivesse carregada, eu usaria o mapa.",

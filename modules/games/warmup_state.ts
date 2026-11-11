@@ -103,7 +103,11 @@ function dayNumber(dayKey: string): number {
  */
 export function warmupGamesForDay(dayKey: string, pool: readonly WarmupGame[] = WARMUP_POOL): readonly WarmupGame[] {
   if (pool.length <= WARMUP_GAMES_PER_DAY) return pool;
-  const start = (((dayNumber(dayKey) * WARMUP_GAMES_PER_DAY) % pool.length) + pool.length) % pool.length;
+  // зачем: битая дата дня давала NaN и тройку из пустых мест — экран разминки упал бы на game.id;
+  // сторож: tests/game_content_integrity.test.ts
+  const dayIndex = dayNumber(dayKey);
+  const day = Number.isFinite(dayIndex) ? dayIndex : 0;
+  const start = (((day * WARMUP_GAMES_PER_DAY) % pool.length) + pool.length) % pool.length;
   return Array.from({ length: WARMUP_GAMES_PER_DAY }, (_, i) => pool[(start + i) % pool.length]);
 }
 

@@ -9,7 +9,8 @@
 // зачем (владелец 05.11 ~20:55 «КАК ПО МАКЕТУ»): размеры, значки и подписи — 1:1 с макетом (☀/☾ в сегменте, замок у «Plus», значок у «Вернуть стандартный»,
 // кромка дорожки, 15 px у чисел). Круг «назад» остаётся на общем месте приложения (правило владельца «назад везде в одной точке»), заголовок — под ним.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { Profiler, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { Profiler, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useFrameCallback, useSharedValue } from 'react-native-reanimated';
 import { Pressable, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
@@ -67,8 +68,42 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
   const applied: ThemeTune = parseThemeTuneId(liquidGlassThemeId) ?? THEME_TUNE_STANDARD;
   const [draft, setDraft] = useState<ThemeTune | null>(null);
   const shown = draft ?? applied;
+  // ВРЕМЕННО (аудит владельца 11.11 «ползунки всё равно тормозят», пакет theme-sliders-perf-audit-2026-11-11): строка [THEME-SLIDER] ui_frames на жест.
+  // Прежние perf / perf_split слепы в двух местах: расчёт цветов шага идёт ВНЕ Profiler, а кадры потока отрисовки (где едет бегунок) не мерились вовсе.
+  // Убрать вместе с починкой ползунков.
+  const auditRef = useRef({ active: false, calcN: 0, calcSumMs: 0, calcMaxMs: 0, stepAt: 0, stepN: 0, stepSumMs: 0, stepMaxMs: 0, glowAt: 0, glowN: 0, glowSumMs: 0, glowMaxMs: 0 });
+  const uiFrames = useSharedValue(0);
+  const uiSumMs = useSharedValue(0);
+  const uiMaxMs = useSharedValue(0);
+  const uiOver20 = useSharedValue(0);
+  const uiOver34 = useSharedValue(0);
+  const uiOver50 = useSharedValue(0);
+  const uiFrameCb = useFrameCallback((frame) => {
+    'worklet';
+    const dt = frame.timeSincePreviousFrame;
+    if (dt === null || dt === undefined) return;
+    uiFrames.value += 1;
+    uiSumMs.value += dt;
+    if (dt > uiMaxMs.value) uiMaxMs.value = dt;
+    if (dt > 20) uiOver20.value += 1;
+    if (dt > 34) uiOver34.value += 1;
+    if (dt > 50) uiOver50.value += 1;
+  }, false);
+  const calcT0 = performance.now();
   // зачем (06.11): во время жеста экран красится локально по черновику — остальное приложение не перерисовывается до отпускания
   const glass = liquidGlassTokens(draft ? themeTuneId(draft) : liquidGlassThemeId);
+  if (__DEV__ && draft && auditRef.current.active) {
+    const ms = performance.now() - calcT0;
+    const a = auditRef.current;
+    auditRef.current = { ...a, calcN: a.calcN + 1, calcSumMs: a.calcSumMs + ms, calcMaxMs: Math.max(a.calcMaxMs, ms) };
+  }
+  // Полная цена шага в JS: от решения перекрасить (setDraft) до конца перерисовки экрана (включая ThemeDraftScope и всех детей).
+  useLayoutEffect(() => {
+    const a = auditRef.current;
+    if (!__DEV__ || !a.active || a.stepAt === 0) return;
+    const ms = performance.now() - a.stepAt;
+    auditRef.current = { ...a, stepAt: 0, stepN: a.stepN + 1, stepSumMs: a.stepSumMs + ms, stepMaxMs: Math.max(a.stepMaxMs, ms) };
+  }, [draft]);
   const locked = !hasPremiumAccess;
 
   useEffect(() => {
@@ -103,6 +138,13 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
   // зачем (владелец 11.11 «оно теперь подтормаживает — ползунки»): пятна света фона (полноэкранный SVG) красятся по отдельному черновику не чаще
   // раза в GLOW_PREVIEW_MS; последний шаг догоняет таймером, чтобы при остановке пальца пятна не оставались от прошлого цвета.
   const [glowDraft, setGlowDraft] = useState<ThemeTune | null>(null);
+  // ВРЕМЕННО ([THEME-SLIDER]): цена перекраски пятен фона в JS (сама растеризация SVG — на потоке отрисовки, её видно по uiOver*)
+  useLayoutEffect(() => {
+    const a = auditRef.current;
+    if (!__DEV__ || !a.active || a.glowAt === 0) return;
+    const ms = performance.now() - a.glowAt;
+    auditRef.current = { ...a, glowAt: 0, glowN: a.glowN + 1, glowSumMs: a.glowSumMs + ms, glowMaxMs: Math.max(a.glowMaxMs, ms) };
+  }, [glowDraft]);
   const glowAtRef = useRef(0);
   const glowTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   // зачем (правило «сперва логи»): куда уходит время шага — расчёт цветов и перерисовка экрана — одной строкой на жест ([THEME-SLIDERS] perf_split)
@@ -117,12 +159,19 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
   }, []);
   const preview = useCallback((next: ThemeTune, target: string) => {
     perfRef.current?.preview(target);
+    if (__DEV__ && !auditRef.current.active) {
+      // ВРЕМЕННО ([THEME-SLIDER]): первый шаг жеста — обнуляем счётчики и включаем счёт кадров потока отрисовки
+      auditRef.current = { active: true, calcN: 0, calcSumMs: 0, calcMaxMs: 0, stepAt: 0, stepN: 0, stepSumMs: 0, stepMaxMs: 0, glowAt: 0, glowN: 0, glowSumMs: 0, glowMaxMs: 0 };
+      uiFrames.value = 0; uiSumMs.value = 0; uiMaxMs.value = 0; uiOver20.value = 0; uiOver34.value = 0; uiOver50.value = 0;
+      uiFrameCb.setActive(true);
+    }
     pendingRef.current = next;
     if (rafRef.current !== null) return;
     rafRef.current = requestAnimationFrame(() => {
       rafRef.current = null;
       const n = pendingRef.current;
       if (!n) return;
+      if (__DEV__ && auditRef.current.active) auditRef.current = { ...auditRef.current, stepAt: performance.now() };
       setDraft(n);
       const pushGlow = () => {
         glowTimerRef.current = null;
@@ -130,6 +179,7 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
         if (!latest) return;
         glowAtRef.current = performance.now();
         splitRef.current = { ...splitRef.current, glowUpdates: splitRef.current.glowUpdates + 1 };
+        if (__DEV__ && auditRef.current.active) auditRef.current = { ...auditRef.current, glowAt: performance.now() };
         setGlowDraft(latest);
       };
       const wait = GLOW_PREVIEW_MS - (performance.now() - glowAtRef.current);
@@ -145,6 +195,22 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
     const split = splitRef.current;
     splitRef.current = { commits: 0, commitSumMs: 0, commitMaxMs: 0, glowUpdates: 0 };
     console.log(LOG, 'perf_split', JSON.stringify({ why, screenCommits: split.commits, commitAvgMs: split.commits ? Math.round((split.commitSumMs / split.commits) * 10) / 10 : 0, commitMaxMs: Math.round(split.commitMaxMs * 10) / 10, glowUpdates: split.glowUpdates })); // guard-ok: одна строка на жест
+    if (__DEV__ && auditRef.current.active) {
+      // ВРЕМЕННО ([THEME-SLIDER]): итог жеста. uiOver20/34/50 — кадры потока отрисовки длиннее 20/34/50 мс (потерян 1 / 2 / 3+ кадра при 60 Гц): это и есть «бегунок дёргается».
+      // calc* — расчёт цветов шага; step* — вся перерисовка экрана на шаг в JS; glow* — перекраска пятен фона в JS.
+      const a = auditRef.current;
+      auditRef.current = { ...a, active: false };
+      uiFrameCb.setActive(false);
+      const r1 = (v: number) => Math.round(v * 10) / 10;
+      const frames = uiFrames.value;
+      console.log('[THEME-SLIDER] ui_frames', JSON.stringify({
+        why, appearance: liquidGlassAppearance, to: id,
+        uiFrames: frames, uiAvgMs: frames ? r1(uiSumMs.value / frames) : 0, uiMaxMs: r1(uiMaxMs.value), uiOver20: uiOver20.value, uiOver34: uiOver34.value, uiOver50: uiOver50.value,
+        calcN: a.calcN, calcAvgMs: a.calcN ? r1(a.calcSumMs / a.calcN) : 0, calcMaxMs: r1(a.calcMaxMs),
+        stepN: a.stepN, stepAvgMs: a.stepN ? r1(a.stepSumMs / a.stepN) : 0, stepMaxMs: r1(a.stepMaxMs),
+        glowN: a.glowN, glowAvgMs: a.glowN ? r1(a.glowSumMs / a.glowN) : 0, glowMaxMs: r1(a.glowMaxMs),
+      })); // guard-ok: одна строка на жест, только dev, временно (аудит 11.11)
+    }
     pendingRef.current = null;
     setGlowDraft(null);
     setDraft(null);

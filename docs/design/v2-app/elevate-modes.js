@@ -131,7 +131,7 @@
     write: was(`${hdr('Вспомни и напиши', 'Набор карточек', K.energy(4))}<div class="trk" style="margin-top:14px"><i style="width:30%"></i></div>${qc('Напиши по-английски', 'Он готовит ужин')}<div class="field" style="margin-top:14px">Введи фразу</div><div style="height:16px"></div><div class="cta dis">Проверить</div>`),
   };
 
-  window.ELM = { blitz };
+  window.ELM = { blitz, build, speak, write, words, truth }; // зачем: Пик и уроки ставят эти же экраны в свои рамки
   const S = [
     { id: 'modes', title: 'Режимы приложения на новый лад', lead: 'Правила режимов не тронуты: те же фразы, те же сердца и энергия. Меняется подача — сцена вместо графита, слова перелетают, буквы встают в ячейки, время видно полосой.',
       screens: [

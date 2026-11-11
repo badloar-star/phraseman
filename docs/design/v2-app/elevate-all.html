@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="kit.css">
 <link rel="stylesheet" href="elevate-mechanics.css">
 <link rel="stylesheet" href="elevate-extra.css">
+<link rel="stylesheet" href="elevate-sections.css">
 </head>
 <body data-theme="ink" data-page="all">
 <div class="page">
@@ -28,6 +29,9 @@
 <script src="elevate-modes.js"></script>
 <script src="elevate-games.js"></script>
 <script src="elevate-skills.js"></script>
+<script src="elevate-peak.js"></script>
+<script src="elevate-learn.js"></script>
+<script src="elevate-social.js"></script>
 <script>
 // зачем (владелец 11.11: «1 макет сделай со всеми сразу, отсортировано»): одна страница собирает разделы четырёх страниц по пути человека
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,9 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
     sec('a-warm', 'Три игры разминки', 'Идут подряд после кнопки «Начать». Материал — фразы уроков и ошибки человека.', [p1('flow'), p1('cut'), p1('sort')]),
     sec('a-modes', 'Режимы приложения: было → стало', S.modes.lead, S.modes.screens),
     sec('a-games', 'Новые игры на наших материалах', S.games.lead, S.games.screens),
+    sec('a-peak', S.peak.title, S.peak.lead, S.peak.screens),
+    sec('a-lessons', S.learn[0].title, S.learn[0].lead, S.learn[0].screens),
+    sec('a-mistakes', S.learn[1].title, S.learn[1].lead, S.learn[1].screens),
+    sec('a-exams', S.learn[2].title, S.learn[2].lead, S.learn[2].screens),
+    sec('a-dialogs', S.social[0].title, S.social[0].lead, S.social[0].screens),
+    sec('a-packs', S.social[1].title, S.social[1].lead, S.social[1].screens),
     sec('a-results', 'Экраны завершения: было → стало', S.results.lead, S.results.screens),
     sec('a-growth', 'Рост: навыки, уровни и статистика', 'Шесть навыков, у каждого 30 уровней. Звезда одна и та же в статистике, на итогах, в историях. Статистика: что из нынешних блоков заменено и что добавлено.', S.skills[0].screens.concat(S.stats.screens)),
-    sec('a-social', S.skills[2].title, S.skills[2].lead, S.skills[2].screens),
+    sec('a-social', 'Визитка и друзья', S.skills[2].lead, S.skills[2].screens.concat(S.social[2].screens)),
     Object.assign(sec('a-matrix', S.skills[3].title, S.skills[3].lead, []), { html: S.skills[3].html }),
   ].map((s, i) => Object.assign(s, { title: `${i + 1} · ${s.title}`, screens: s.screens.map((x) => Object.assign({}, x, { lbl: x.lbl.replace(/^\d+ · /, '') })) })); // зачем: номера несёт раздел, у телефонов свои номера с отдельных страниц сбивали бы счёт
   document.getElementById('toc').innerHTML = list.map((s) => `<a href="#${s.id}">${s.title}<b>${s.screens.length}</b></a>`).join('');

@@ -19,11 +19,15 @@ describe('Optimistic UI: размер шрифта и скорость озву�
     expect(body).not.toMatch(/void AsyncStorage\.setItem\('app_font_size'/);
   });
 
-  it('скорость озвучки: значение на начало жеста запоминается и передаётся в откат', () => {
+  // зачем (владелец 11.11.2026, ползунок скорости — «убрать вместе с голосом»): №4 сторожил откат ползунка к значению
+  // на начало жеста. Ползунка больше нет; остаётся откат переключателей экрана при сбое записи — его и держим.
+  it('настройки обучения: ползунка скорости нет, переключатель при сбое записи откатывается и говорит об этом', () => {
     const src = read('app/settings_edu.tsx');
-    expect(src).toContain('onSlidingStart={() => { speechRateStartRef.current = normalizeSpeechRate(latestSettingsRef.current.speechRate); }}');
-    expect(src).toContain("update('speechRate', rate, startRate);");
-    expect(src).toContain('baseline?: boolean | number | null');
-    expect(src).toContain('{ ...latestSettingsRef.current, [key]: baseline }');
+    expect(src).not.toContain('speechRateStartRef');
+    expect(src).not.toContain('onSlidingStart');
+    expect(src).toContain('const previous = latestSettingsRef.current;');
+    expect(src).toContain('if (latestSettingsRef.current[key] !== val) {');
+    expect(src).toContain('const reverted = { ...latestSettingsRef.current, [key]: previous[key] };');
+    expect(src).toContain("emitAppEvent('action_toast', actionToastTri('error'");
   });
 });

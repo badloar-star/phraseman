@@ -46,11 +46,10 @@ test('setup explanation distinguishes loading, failed, empty, unselected and sel
 test('training setup does not call existing packs empty merely because nothing is selected', () => {
   assert.ok(read('app/flashcards_training_setup.tsx').includes('trainingSetupExplanation('));
 });
-test('voice controls announce user-facing labels and retain QA testIDs', () => {
-  const voice = read('app/flashcards_voice_picker.tsx');
-  assert.ok(!voice.includes('accessibilityLabel={`qa-fc-voice-rate-'));
-  assert.ok(voice.includes('testID={`fc-voice-rate-${p.key}`}'));
-  assert.ok(voice.includes('accessibilityState={{ selected: active }}'));
+// зачем (владелец 11.11.2026: «убирай голос телефона из настроек вообще»): экран выбора голоса
+// app/flashcards_voice_picker.tsx удалён, UX-контракт на его подписи снят вместе с экраном.
+test('the phone-voice picker screen is gone', () => {
+  assert.ok(!fs.existsSync(path.join(__dirname, '..', 'app', 'flashcards_voice_picker.tsx')));
 });
 // зачем: PM-171 — app/ideas_submit.tsx удалён вместе с разделом «Идеи», UX-контракт
 // на его тексты снят вместе с экраном.

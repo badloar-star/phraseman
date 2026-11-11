@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 import { speechStudyLanguageOf, STUDY_SPEECH_LOCALE } from '../app/study_speech_locale';
 import { Platform } from 'react-native';
 import * as Speech from 'expo-speech';
-import { getUserSettingsSnapshot, normalizeSpeechRate } from '../app/user_settings_store';
+import { normalizeSpeechRate } from '../app/user_settings_store';
 import type * as PhraseAudioPlayer from './phrase_audio_player';
 import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import {
@@ -20,7 +20,7 @@ import {
   type CardTtsLanguage,
 } from '../app/flashcards/card_tts_audio';
 import { getVoicesOnce } from '../app/flashcards/tts_voices';
-import { SLOW_REPEAT_RATE, emitSlowRepeatToast, isSlowRepeat } from '../app/slow_repeat'; // зачем (удобство №2, 04.11): повтор той же фразы за ~3 с — медленнее 0,7×
+import { SLOW_NOW_RATE } from '../app/slow_repeat'; // скорость явной кнопки «Медленнее» в диалогах
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 export function preloadAudio() {}
@@ -65,11 +65,6 @@ export type SpeakOpts = {
   cardAudio?: boolean;
   /** Skip every prerecorded/corpus route and speak through the device engine. */
   systemTtsOnly?: boolean;
-  /**
-   * Удобство №2 (04.11): вызов по нажатию кнопки звука — второе нажатие той же фразы в течение ~3 с играет её медленнее 0,7× через системный голос
-   * и показывает метку «Медленнее 0,7×». Не ставить на автозапуск озвучки (иначе авто-повтор замедлится сам).
-   */
-  slowRepeat?: boolean;
   /** Удобство №6 (04.11): явная команда «Послушать медленно» — сразу 0,7× через системный голос (без ожидания повтора и без тоста). */
   slowNow?: boolean;
   onStart?: () => void;
@@ -232,14 +227,13 @@ export function useAudio() {
     }
 
     // зачем (удобство №2, 04.11): осознанный повтор по кнопке в окне ~3 с — медленнее; готовые клипы играют в оригинальной длине, поэтому идём через системный голос.
+    // зачем (владелец 11.11.2026, «Убрать медленный повтор»): автоматическое замедление при повторном нажатии на ту же
+    // фразу снято — повтор звучит так же, как первое нажатие. Остаётся только явная кнопка «Медленнее» в меню
+    // реплики диалога (slowNow): человек сам просит медленно, и это идёт голосом телефона.
     const slowNow = opts?.slowNow === true;
-    const slowByRepeat = !slowNow && opts?.slowRepeat === true && rate === undefined
-      && isSlowRepeat({ sameText: dedupeKey === lastTextRef.current, sinceLastMs: now - lastSpeakAtRef.current });
-    const slowRepeatActive = slowNow || slowByRepeat;
-    if (slowRepeatActive) {
+    if (slowNow) {
       opts = { ...opts, systemTtsOnly: true };
-      console.log(`[SLOW-REPEAT] on mode=${slowNow ? 'now' : 'repeat'} text=${JSON.stringify(normalized.slice(0, 40))} sinceLastMs=${now - lastSpeakAtRef.current} rate=${SLOW_REPEAT_RATE}`);
-      if (slowByRepeat) emitSlowRepeatToast();
+      console.log(`[SLOW-NOW] on text=${JSON.stringify(normalized.slice(0, 40))} rate=${SLOW_NOW_RATE}`);
     }
 
     speechGenerationRef.current += 1;
@@ -257,11 +251,14 @@ export function useAudio() {
     // Подозрение: пока клип грузится, таймер запуска отдаёт озвучку системному голосу, а клип потом всё равно стартует → два голоса подряд.
     console.warn(`[WORD-AUDIO] speak:enter gen=${generation} text=${JSON.stringify(normalized.slice(0, 40))}`);
 
-    const settings = getUserSettingsSnapshot();
     // зачем: скорость применяется ТОЛЬКО к системному TTS. Готовые клипы озвучки
     // играют в оригинальной длине (решение владельца 2026-08-24) — им safeRate
     // не передаётся, см. playPhraseByText ниже и phrase_audio_player.ts.
-    const safeRate = slowRepeatActive ? SLOW_REPEAT_RATE : normalizeSpeechRate(rate ?? settings.speechRate);
+    // зачем (владелец 11.11.2026, ползунок скорости — «убрать вместе с голосом»): голос телефона говорит с обычной
+    // скоростью приложения. Сохранённая когда-то настройка скорости и скорость, переданная экраном, не читаются:
+    // иначе у тех, кто двигал ползунок, скорость осталась бы навсегда без способа её вернуть.
+    void rate;
+    const safeRate = slowNow ? SLOW_NOW_RATE : normalizeSpeechRate(undefined);
     const language = opts?.language?.trim() || inferExpoSpeechLanguage(spokenText);
     // cards-2.0 (E13): voiceId — алиас voice для voice picker карточек. Явный
     // opts (в т.ч. null = «системный») всегда сильнее; иначе для en берём голос

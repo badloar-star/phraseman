@@ -1,19 +1,16 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { actionToastTri, emitAppEvent } from './events';
-import Slider from '@react-native-community/slider';
 import { useRouter, useFocusEffect } from 'expo-router';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Platform, Text, View } from 'react-native';
+import React, { useCallback, useRef, useState } from 'react';
+import { Text, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ScreenBackButton, { ScreenBackZone } from '../components/v2/ScreenBackButton';
 import { useTheme } from '../components/ThemeContext';
-import PressableHybrid from '../components/PressableHybrid';
 import { GlassSwitch } from '../components/settings/GlassSwitch';
 import { nestedBoxShadow, PlateFill, plateBoxShadow } from '../components/v2/ShadowSurface';
-import { useAudio } from '../hooks/use-audio';
 import {
   isFcAutoSpeakEnabled,
   isFcSfxEnabled,
@@ -25,14 +22,9 @@ import {
   applyUserSettingsNow,
   getUserSettingsSnapshot,
   loadSettings,
-  normalizeSpeechRate,
   type UserSettings,
 } from './user_settings_store';
 import { safeRouterBack } from './navigation_back';
-import { getVoiceIdForLang, peekVoiceIdForLocale, voiceStudyLangOf, type VoiceStudyLang } from './flashcards/voice_prefs';
-import { useStudyTarget } from '../components/StudyTargetContext';
-import { getVoicesOnce, voiceTitle } from './flashcards/tts_voices';
-import { voicePlaybackPolicy } from '../modules/audio/voice_playback_policy';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import BackGlyph from '../components/v2/BackGlyph';
@@ -63,17 +55,11 @@ function LocalSwitch({ value, onValueChange, testID, accessibilityLabel, glass }
   return <GlassSwitch testID={testID} accessibilityLabel={accessibilityLabel} value={value} onValueChange={onValueChange} glass={glass} />;
 }
 
-// зачем: последнее показанное значение строки «Голос озвучки (EN)» живёт в памяти модуля —
-// повторный вход на экран рисует его с первого кадра (Performance Bible: первый кадр = последнее известное).
-// undefined — ещё ни разу не вычисляли; null — системный голос; строка — имя выбранного голоса.
-// с 15.10 значение помнится вместе с языком: смена изучаемого языка не должна показать чужой голос
-let lastShownVoice: Readonly<{ lang: VoiceStudyLang; value: string | null }> | undefined;
 
 export default function SettingsEdu() {
   const router = useRouter();
   const { theme: t, liquidGlassThemeId } = useTheme();
   const { lang, s: loc } = useLang();
-  const { speak: speakAudio, stop: stopAudio } = useAudio();
   const insets = useStableSafeAreaInsets();
   const glass = liquidGlassTokens(liquidGlassThemeId);
   const [s, setS] = useState<UserSettings>(() => getUserSettingsSnapshot());
@@ -81,51 +67,9 @@ export default function SettingsEdu() {
   // «Автопроизношение» (fc_autospeak_on), оба дефолт true (SoundService).
   const [fcSfx, setFcSfx] = useState(() => isFcSfxEnabled());
   const [fcAutoSpeak, setFcAutoSpeak] = useState(() => isFcAutoSpeakEnabled());
-  // зачем: паритет profile.html PRF-05 (13.10): у строки «Голос озвучки (EN)» справа значение — «Системный»
-  // или имя выбранного голоса. Первый кадр: последнее показанное значение; если его нет, но голос выбран
-  // (синхронный снимок peekEnVoiceId) — пустое место вместо неверного «Системный». Имя догружается фоном
-  // из локального списка голосов телефона (без сети).
-  // зачем (Ревизор 15.10): голос выбирается для ИЗУЧАЕМОГО языка — строка и её значение тоже по нему, а не всегда (EN)
-  const { studyTarget } = useStudyTarget();
-  const voiceLang: VoiceStudyLang = voiceStudyLangOf(studyTarget) ?? 'en';
-  const [voiceValue, setVoiceValue] = useState<string | null>(() => (
-    lastShownVoice?.lang === voiceLang ? lastShownVoice.value : (peekVoiceIdForLocale(voiceLang) ? '' : null)
-  ));
-
-  // зачем (координатор 12.10, 🟡 Ядра по 59ba4d58d): подпись голоса зависит от ЯЗЫКА ИНТЕРФЕЙСА и списка голосов (voiceTitle), а useFocusEffect с пустыми deps читал `lang` только при входе
-  // на экран — при смене языка подпись обновлялась лишь при следующем открытии. Загрузка подписи вынесена в колбэк с зависимостью [lang]: он зовётся из фокус-эффекта (вход на экран)
-  // и отдельным эффектом при смене языка — остальные чтения (настройки, переключатели) на смену языка НЕ перезапускаются.
-  const voiceRequestRef = useRef(0);
-  const voiceLoadedLangRef = useRef<string | null>(null);
-  const loadVoiceValue = useCallback((reason: 'focus' | 'lang_changed') => {
-    const request = ++voiceRequestRef.current;
-    voiceLoadedLangRef.current = lang;
-    console.log(`[SETTINGS-EDU] voice_value:load reason=${reason} lang=${lang} voiceLang=${voiceLang} request=${request}`);
-    void getVoiceIdForLang(voiceLang)
-      .then(async (chosenId) => {
-        if (!chosenId) {
-          if (request !== voiceRequestRef.current) { console.log(`[SETTINGS-EDU] voice_value:stale request=${request} (системный голос)`); return; }
-          lastShownVoice = { lang: voiceLang, value: null };
-          setVoiceValue(null);
-          return;
-        }
-        const voices = await getVoicesOnce();
-        const match = voices.find((v) => v.identifier === chosenId);
-        // голос выбран, но в телефоне его больше нет — озвучка уйдёт в системный фолбэк, так и показываем
-        // зачем (settings-gap-034): язык интерфейса и список голосов — чтобы технический id стал «English (Australia) · 2»
-        // compact (settings-gap-034, 13.10): язык уже в названии строки «(EN)» — справа только регион и номер, название не переносится
-        const next = match ? voiceTitle(match, lang, voices, { compact: true }) : null;
-        if (request !== voiceRequestRef.current) { console.log(`[SETTINGS-EDU] voice_value:stale request=${request} (ушёл с экрана или язык сменился ещё раз)`); return; }
-        lastShownVoice = { lang: voiceLang, value: next };
-        setVoiceValue((prev) => (prev === next ? prev : next));
-        console.log(`[SETTINGS-EDU] voice_value:shown reason=${reason} lang=${lang} voices=${voices.length} matched=${match ? 'yes' : 'no'} value=${next ?? 'system'}`);
-      })
-      .catch((error: unknown) => {
-        console.warn(`[SETTINGS-EDU] voice_value_load_failed reason=${error instanceof Error ? error.message : String(error)}`);
-      });
-  }, [lang, voiceLang]);
-  const loadVoiceValueRef = useRef(loadVoiceValue);
-  loadVoiceValueRef.current = loadVoiceValue;
+  // зачем (владелец 11.11.2026: «убирай голос телефона из настроек вообще»; ползунок скорости — «убрать вместе с голосом»):
+  // строка «Голос озвучки» и карточка скорости сняты с экрана вместе со своим состоянием. Курсы звучат записями,
+  // а голос телефона (карточки и случаи без записи) — голосом по умолчанию с обычной скоростью.
 
   // зачем (координатор 12.10, аудит Optimistic UI R1): поздний ответ loadSettings() не имеет права затереть переключатель, который человек уже тронул — версия правок сверяется до применения.
   const editVersionRef = useRef(0);
@@ -144,29 +88,17 @@ export default function SettingsEdu() {
       });
       setFcSfx(isFcSfxEnabled());
       setFcAutoSpeak(isFcAutoSpeakEnabled());
-      loadVoiceValueRef.current('focus');
-      return () => {
-        // уход с экрана снимает ожидающий ответ подписи голоса (раньше это делал флаг alive)
-        voiceRequestRef.current += 1;
-      };
     }, []),
   );
-  // зачем (🟡 Ядра): язык интерфейса сменился при открытом экране — подпись голоса пересчитывается сразу; при первом входе фокус-эффект уже загрузил для этого языка — повтора нет
-  useEffect(() => {
-    if (voiceLoadedLangRef.current === lang) return;
-    console.log(`[SETTINGS-EDU] voice_value:lang_effect prev=${voiceLoadedLangRef.current ?? 'none'} now=${lang}`);
-    loadVoiceValue('lang_changed');
-  }, [lang, loadVoiceValue]);
 
   // зачем (координатор 12.10, аудит Optimistic UI R1, E4/E6): запись больше не живёт внутри обновителя состояния (двойной вызов в StrictMode = двойная запись); при отказе хранилища откатывается ТОЛЬКО эта строка и только если её не успели изменить снова.
   const latestSettingsRef = useRef(s);
   latestSettingsRef.current = s;
-  // зачем (аудит Optimistic UI Дизайна 15.10, №4): ползунок скорости озвучки пишет промежуточные значения в состояние, и откат при сбое брал промежуточное,
-  // а не то, что было до жеста. Значение на начало жеста запоминается в onSlidingStart и передаётся как baseline.
-  const speechRateStartRef = useRef<number | null>(null);
-  const update = (key: keyof UserSettings, val: boolean | number, baseline?: boolean | number | null) => {
+  const update = (key: RowKey, val: boolean) => {
     editVersionRef.current += 1;
-    const previous = baseline !== undefined && baseline !== null ? { ...latestSettingsRef.current, [key]: baseline } : latestSettingsRef.current;
+    // зачем: отдельное «значение на начало жеста» было нужно только ползунку скорости (снят 11.11.2026) — у
+    // переключателя промежуточных значений нет, откат берёт состояние до нажатия
+    const previous = latestSettingsRef.current;
     const next = { ...latestSettingsRef.current, [key]: val };
     latestSettingsRef.current = next;
     setS(next);
@@ -189,7 +121,6 @@ export default function SettingsEdu() {
   };
 
   const L = (m: Record<string, string>): string => m[lang] ?? m.ru;
-  const voiceRowTitle = `${L({ ru: 'Голос озвучки', uk: 'Голос озвучення', en: 'Voice', es: 'Voz', 'pt-BR': 'Voz', vi: 'Giọng đọc', id: 'Suara', tr: 'Ses', pl: 'Głos' })} (${voiceLang.toUpperCase()})`;
 
   const rows: { key: RowKey; label: string; sub: string; icon: keyof typeof Ionicons.glyphMap }[] = [
     {
@@ -394,63 +325,6 @@ export default function SettingsEdu() {
             </View>)}
             </View>
 
-            <View style={[rowStyle, { marginTop: 10, alignItems: 'flex-start' /* зачем (settings-gaps-states): в карточке скорости значок вверху, как в макете */ }]}>
-              <PlateFill g={glass} radius={14} />
-              <RowIcon name="volume-high" />
-              <View style={{ flex: 1, minWidth: 0 }}>
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
-                  <Text style={[titleStyle, { flex: 1, minWidth: 0 }]}>{loc.edu.speed}</Text>
-                  <Text style={[titleStyle, { color: glass.lightTint, flexShrink: 1 }]}>{normalizeSpeechRate(s.speechRate).toFixed(1)}x</Text>
-                </View>
-                <Text style={subStyle}>{loc.edu.speedHint}</Text>
-                <Slider
-                  style={{ height: 44, alignSelf: 'stretch', ...(Platform.OS === 'android' ? { marginHorizontal: -16 } : null) /* зачем (Сверка settings-gap-015): на Android у ползунка свои поля ~16 по бокам — трек выходит короче колонки; в макете трек на всю ширину колонки */ }}
-                  minimumValue={0.8}
-                  maximumValue={1.3}
-                  step={0.1}
-                  value={normalizeSpeechRate(s.speechRate)}
-                  onSlidingStart={() => { speechRateStartRef.current = normalizeSpeechRate(latestSettingsRef.current.speechRate); }}
-                  onValueChange={v => setS(prev => ({ ...prev, speechRate: normalizeSpeechRate(v) }))}
-                  onSlidingComplete={v => {
-                    const rate = normalizeSpeechRate(v);
-                    const startRate = speechRateStartRef.current;
-                    speechRateStartRef.current = null;
-                    update('speechRate', rate, startRate);
-                    stopAudio();
-                    if (voicePlaybackPolicy.isEnabled()) speakAudio('a dark horse', rate, { language: 'en-US' });
-                    else console.log(`[SETTINGS-EDU] speech_rate_preview_skipped reason=voice_disabled rate=${rate}`); // guard-ok: единичный лог на жест, причина тишины при отпускании ползунка
-                  }}
-                  minimumTrackTintColor={t.textSecond}
-                  maximumTrackTintColor={t.border}
-                  thumbTintColor={t.textSecond}
-                />
-              </View>
-            </View>
-
-            <PressableHybrid
-            testID="fc-voice-picker-row"
-            accessibilityLabel={voiceRowTitle}
-            accessible
-            withHaptic={false}
-            withSound={false}
-            onPress={() => {
-            // зачем: вибрация только на управляющих кнопках, не на строках/плитках (правило владельца, FINAL_PHASE п.7).
-            router.push('/flashcards_voice_picker' as any);
-            }}
-            variant="card"
-            contentStyle={[rowStyle, { marginTop: 10 }]}
-            >
-            <PlateFill g={glass} radius={14} />
-            <RowIcon name="person-outline" />
-            {/* зачем (settings-gap-034, кадр 13.10 02:25Z): как в образце (.gs-tx flex:1 min-width:0 / .gs-vv flex:none max-width:120) — место
-                уступает колонка названия (подпись под ним уходит на 2-ю строку), а значение держит одну строку до 120. Раньше колонка не
-                сжималась, её ширину задавала подпись, и «Австралия · 2» складывалась в три строки. */}
-            <View style={{ flexGrow: 1, flexShrink: 1, minWidth: 0 }}><Text style={titleStyle}>{voiceRowTitle}</Text><Text style={subStyle}>{L({ ru: 'Голос и скорость телефона', uk: 'Голос і швидкість телефона', en: 'Phone voice and speed', es: 'Voz y velocidad del teléfono', 'pt-BR': 'Voz e velocidade do telefone', vi: 'Giọng và tốc độ của điện thoại', id: 'Suara dan kecepatan ponsel', tr: 'Telefonun sesi ve hızı', pl: 'Głos i tempo telefonu' })}</Text></View>
-            <Text style={{ color: t.textMuted, fontSize: 16, lineHeight: 21, flexShrink: 0, maxWidth: 120, textAlign: 'right', marginLeft: -6 /* зачем (Сверка settings-gap-015): «Голос озвучки (EN)» переносился на 2 строки при запасе в пару dp — зазоры значение↔колонка и значение↔стрелка уменьшены на 6 и 8 dp, название держит одну строку (в макете одна). Прежде: text-integrity — длинное имя голоса переносится внутри 120, без обрезки; отступ — только gap строки 14, как в образце */ }}>
-              {voiceValue ?? L({ ru: 'Системный', uk: 'Системний', en: 'System', es: 'Del sistema', 'pt-BR': 'Do sistema', vi: 'Hệ thống', id: 'Sistem', tr: 'Sistem', pl: 'Systemowy' })}
-            </Text>
-            <Ionicons name="chevron-forward" size={20} color={t.textMuted} style={{ marginLeft: -8 }} />
-            </PressableHybrid>
           </BouncyScrollView>
         </ContentWrap>
       </View>

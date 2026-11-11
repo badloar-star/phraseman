@@ -27,9 +27,10 @@ describe('main Settings sound controls', () => {
     expect(block).not.toMatch(/TTS|OpenAI|AI voice/i);
   });
 
-  test('moves the voice switch out of education settings but keeps speech speed', () => {
+  // зачем (владелец 11.11.2026): было «…but keeps speech speed». Ползунок скорости снят («убрать вместе с голосом»).
+  test('moves the voice switch out of education settings; speech speed is gone too', () => {
     expect(educationSource).not.toContain("key: 'voiceOut'");
-    expect(educationSource).toContain('normalizeSpeechRate(s.speechRate)');
-    expect(educationSource).toContain('voicePlaybackPolicy.isEnabled()');
+    expect(educationSource).not.toContain('normalizeSpeechRate(s.speechRate)');
+    expect(educationSource).not.toContain('<Slider');
   });
 });

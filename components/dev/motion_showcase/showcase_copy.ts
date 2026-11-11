@@ -417,7 +417,6 @@ const RU = {
   fc_blitz_title: 'Карточки · блиц-сессия',
   fc_audio_title: 'Карточки · аудио-режим',
   fc_card_editor_title: 'Карточки · редактор карточки',
-  fc_voice_picker_title: 'Карточки · выбор голоса TTS',
   pack_opening_title: 'Карточки · вскрытие набора',
 
   // ── screens_learn ──

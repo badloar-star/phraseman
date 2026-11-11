@@ -99,7 +99,7 @@ describe('dev cards states', () => {
       ['app/flashcards/FlashcardsCategoryHub.tsx', /isDevCardsHeld\('catalog_loading'\)/],
       ['app/flashcards_training_setup.tsx', /isDevCardsHeld\('setup_loading'\)[\s\S]*isDevCardsFail\('setup_decks'\)/],
       ['app/flashcards_recall_session.tsx', /isDevCardsFail\('recall_load'\)/],
-      ['app/flashcards_voice_picker.tsx', /isDevCardsHeld\('voices_loading'\)/],
+      // 11.11.2026: экран выбора голоса телефона удалён («убирай голос телефона из настроек вообще») — строка снята вместе с ним
       ['app/flashcards/custom_cards_store.ts', /isDevCardsFail\('card_write'\)/],
       ['app/community_packs/localPackCardAdd.ts', /isDevCardsFail\('pack_write'\)/],
       ['app/community_packs/communityPackActions.ts', /isDevCardsFail\('pack_write'\)/],

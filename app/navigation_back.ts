@@ -102,7 +102,6 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   // и «назад» возвращает туда, а не в хаб Диалогов
   '/dialogue_v2_memory',
   '/settings_edu',
-  '/flashcards_voice_picker',
   '/ai_dialog_briefing',
   '/ai_dialog_consent_gate',
   '/ai_dialog_session',

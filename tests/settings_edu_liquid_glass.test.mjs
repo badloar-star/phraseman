@@ -45,11 +45,15 @@ test('learning settings use the approved liquid-glass shell without losing setti
   assert.match(source, /translateX: value \? 19 : 0/);
   // зачем (Сверка settings-gap-015, макет settings-gaps-states; ee7e44404): значки звука залитые ('volume-high'), как в макете; раскладка карточки скорости прежняя:
   // значок → название → подсказка → ползунок высотой 44.
-  assert.match(source, /<RowIcon name="volume-high" \/>[\s\S]*loc\.edu\.speed[\s\S]*<Slider[\s\S]*height: 44/);
-  assert.match(source, /<RowIcon name="volume-high" \/>[\s\S]*?<Text style=\{subStyle\}>\{loc\.edu\.speedHint\}<\/Text>/);
+  // зачем (владелец 11.11.2026, ползунок скорости — «убрать вместе с голосом»): карточки скорости на экране больше нет
+  assert.doesNotMatch(source, /<Slider/);
+  assert.doesNotMatch(source, /loc\.edu\.speed/);
 });
 
-test('learning settings retain all callbacks, normalized speed preview, and voice navigation', () => {
+// зачем (владелец 11.11.2026: «убирай голос телефона из настроек вообще»): раньше тест требовал ползунок скорости с
+// пробным произношением и переход на экран выбора голоса. Оба сняты вместе с экраном; сторож держит, что они не
+// вернулись и что остальные обратные вызовы экрана на месте.
+test('learning settings retain all callbacks; speed slider and phone-voice choice are gone', () => {
   for (const key of ['autoCheck', 'autoAdvance', 'hardMode', 'haptics']) assert.match(source, new RegExp(`key: '${key}'`));
   assert.match(source, /getUserSettingsSnapshot\(\)/);
   // зачем (координатор 12.10, аудит Optimistic UI R1; тест устарел): поздний ответ loadSettings() применяется через setS(loaded), но не затирает уже сделанную правку (editVersionRef).
@@ -57,11 +61,11 @@ test('learning settings retain all callbacks, normalized speed preview, and voic
   assert.match(source, /applyUserSettingsNow\(next\)/);
   assert.match(source, /setFcSfxEnabled\(value\)/);
   assert.match(source, /setFcAutoSpeakEnabled\(value\)/);
-  assert.match(source, /minimumValue=\{0\.8\}[\s\S]*maximumValue=\{1\.3\}[\s\S]*step=\{0\.1\}/);
-  assert.match(source, /onValueChange=\{v => setS\(prev => \(\{ \.\.\.prev, speechRate: normalizeSpeechRate\(v\) \}\)\)\}/);
-  assert.match(source, /onSlidingComplete=\{v => \{[\s\S]*normalizeSpeechRate\(v\)[\s\S]*stopAudio\(\)[\s\S]*voicePlaybackPolicy\.isEnabled\(\)[\s\S]*speakAudio\('a dark horse', rate, \{ language: 'en-US' \}\)/);
-  assert.match(source, /router\.push\('\/flashcards_voice_picker' as any\)/);
-  assert.match(source, /testID="fc-voice-picker-row"[\s\S]*withHaptic=\{false\}[\s\S]*withSound=\{false\}/);
+  assert.doesNotMatch(source, /speechRate: normalizeSpeechRate/);
+  assert.doesNotMatch(source, /speakAudio\(/);
+  assert.doesNotMatch(source, /flashcards_voice_picker/);
+  assert.doesNotMatch(source, /fc-voice-picker-row/);
+  assert.doesNotMatch(source, /voice_prefs/);
   assert.match(source, /safeRouterBack\(router, '\/\(tabs\)\/settings' as any\)/);
   assert.doesNotMatch(source, /key:\s*'voiceOut'/);
 });

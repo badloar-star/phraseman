@@ -25,8 +25,9 @@ describe('меню реплики диалога', () => {
     expect(menu).toContain('systemTtsOnly: true, slowNow: true');
     const audio = read('hooks/use-audio.ts');
     expect(audio).toContain('slowNow?: boolean;');
-    expect(audio).toContain('const slowRepeatActive = slowNow || slowByRepeat;');
-    expect(audio).toContain('if (slowByRepeat) emitSlowRepeatToast();');
+    // зачем (владелец 11.11.2026, «Убрать медленный повтор»): автозамедление повтора снято, кнопка «Медленнее» осталась
+    expect(audio).toContain('const safeRate = slowNow ? SLOW_NOW_RATE : normalizeSpeechRate(undefined);');
+    expect(audio).not.toContain('slowByRepeat');
   });
   it('пузырь: onLongPress меняет View на Pressable в том же слоте, без лишних View', () => {
     const chat = read('components/dialogs/glass/DialogueGlassChat.tsx');

@@ -11,7 +11,6 @@
     "app/flashcards/MyPacksV2.tsx",
     "app/flashcards_packs.tsx",
     "app/flashcards_video_packs.tsx",
-    "app/flashcards_voice_picker.tsx",
     "app/language_welcome.tsx",
     "app/lesson_intro_screens.tsx",
     "app/lingman_playlist.tsx",

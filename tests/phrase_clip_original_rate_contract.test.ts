@@ -63,11 +63,12 @@ describe('готовые клипы озвучки играют в оригин�
     expect(call![1]).not.toMatch(/safeRate/);
   });
 
-  it('слайдер скорости продолжает работать для системного TTS', () => {
-    // Правило снимает скорость с клипов, но не ломает озвучку синтезатором:
-    // без этого «фикс» превратился бы в отключение настройки целиком.
-    // 04.11 (удобство №2): медленный повтор берёт 0,7× в обход нижней границы настроек; обычный путь по-прежнему normalizeSpeechRate(rate ?? настройка)
-    expect(audioSource).toContain('const safeRate = slowRepeatActive ? SLOW_REPEAT_RATE : normalizeSpeechRate(rate ?? settings.speechRate);');
+  // зачем (владелец 11.11.2026, ползунок скорости — «убрать вместе с голосом»): раньше здесь сторожилось «слайдер
+  // скорости продолжает работать для системного TTS». Ползунок снят: голос телефона говорит с обычной скоростью
+  // приложения, сохранённая настройка и скорость от экрана не читаются; 0,7× — только явная кнопка «Медленнее».
+  it('голос телефона говорит с обычной скоростью: настройка скорости больше не читается', () => {
+    expect(audioSource).toContain('const safeRate = slowNow ? SLOW_NOW_RATE : normalizeSpeechRate(undefined);');
+    expect(audioSource).not.toContain('settings.speechRate');
     expect(audioSource).toContain('rate: safeRate,');
   });
 });

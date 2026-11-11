@@ -1,42 +1,38 @@
-// Удобство №2 (владелец одобрил 04.11): второе нажатие кнопки звука той же фразы за ~3 с — медленнее 0,7× через системный голос, с меткой.
+// зачем (владелец 11.11.2026, «Убрать медленный повтор»): удобство №2 от 04.11 — второе нажатие на ту же фразу за ~3 с
+// само замедляло её до 0,7× и показывало метку — снято. Оно работало только на голосе телефона, а с новой озвучкой
+// курса (записи играют как записаны) перестало срабатывать там, где человек его ждал. Сторож не даёт ему вернуться
+// незаметно и держит то, что осталось: явная кнопка «Медленнее» в меню реплики диалога.
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { SLOW_REPEAT_MIN_GAP_MS, SLOW_REPEAT_RATE, SLOW_REPEAT_WINDOW_MS, isSlowRepeat } from '../app/slow_repeat';
+import * as slowRepeat from '../app/slow_repeat';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
 
-describe('правило медленного повтора', () => {
-  it('скорость 0,7×, окно 3 с', () => {
-    expect(SLOW_REPEAT_RATE).toBe(0.7);
-    expect(SLOW_REPEAT_WINDOW_MS).toBe(3000);
-  });
-  it('тот же текст внутри окна — медленно', () => {
-    expect(isSlowRepeat({ sameText: true, sinceLastMs: 800 })).toBe(true);
-    expect(isSlowRepeat({ sameText: true, sinceLastMs: SLOW_REPEAT_MIN_GAP_MS })).toBe(true);
-    expect(isSlowRepeat({ sameText: true, sinceLastMs: SLOW_REPEAT_WINDOW_MS - 1 })).toBe(true);
-  });
-  it('другой текст, слишком быстрый дубль и «давно» — обычная скорость', () => {
-    expect(isSlowRepeat({ sameText: false, sinceLastMs: 800 })).toBe(false);
-    expect(isSlowRepeat({ sameText: true, sinceLastMs: SLOW_REPEAT_MIN_GAP_MS - 1 })).toBe(false);
-    expect(isSlowRepeat({ sameText: true, sinceLastMs: SLOW_REPEAT_WINDOW_MS })).toBe(false);
-  });
-});
-
-describe('проводка в озвучку', () => {
+describe('медленный повтор снят', () => {
   const audio = read('hooks/use-audio.ts');
-  it('только по opt-in slowRepeat, без явной скорости и записей Learning V2', () => {
-    expect(audio).toContain('slowRepeat?: boolean;');
-    expect(audio).toContain('opts?.slowRepeat === true && rate === undefined && !opts.learningV2Recorded');
+
+  it('в модуле осталась только скорость явной кнопки «Медленнее»', () => {
+    expect(slowRepeat.SLOW_NOW_RATE).toBe(0.7);
+    expect(Object.keys(slowRepeat)).toEqual(['SLOW_NOW_RATE']);
   });
-  it('медленный повтор идёт через системный голос, скорость 0,7 в обход нижней границы настроек', () => {
-    expect(audio).toContain('opts = { ...opts, systemTtsOnly: true };');
-    expect(audio).toContain('const safeRate = slowRepeatActive ? SLOW_REPEAT_RATE : normalizeSpeechRate(');
+
+  it('общая функция озвучки не замедляет повторное нажатие и не показывает метку', () => {
+    expect(audio).not.toContain('slowRepeat');
+    expect(audio).not.toContain('slowByRepeat');
+    expect(audio).not.toContain('isSlowRepeat');
+    expect(audio).not.toContain('emitSlowRepeatToast');
   });
-  it('метка — тост на 9 языках без мелких подписей', () => {
+
+  it('метки «Медленнее 0,7×» в приложении больше нет', () => {
     const src = read('app/slow_repeat.ts');
-    for (const text of ['Медленнее 0,7×', 'Повільніше 0,7×', 'Slower 0.7×', 'Más lento 0,7×', 'Mais devagar 0,7×', 'Chậm hơn 0,7×', 'Lebih lambat 0,7×', 'Daha yavaş 0,7×', 'Wolniej 0,7×']) {
-      expect(src).toContain(text);
-    }
+    expect(src).not.toContain('actionToastTri');
+    expect(src).not.toContain('Slower 0.7×');
+  });
+
+  it('явная кнопка «Медленнее» по-прежнему идёт голосом телефона на 0,7×', () => {
+    expect(audio).toContain('const slowNow = opts?.slowNow === true;');
+    expect(audio).toContain('opts = { ...opts, systemTtsOnly: true };');
+    expect(audio).toContain('const safeRate = slowNow ? SLOW_NOW_RATE : normalizeSpeechRate(undefined);');
   });
 });

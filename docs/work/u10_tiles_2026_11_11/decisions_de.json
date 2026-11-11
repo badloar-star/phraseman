@@ -1,0 +1,195 @@
+[
+  {
+    "correct": "ins",
+    "distractor": "zum",
+    "where": "Kino",
+    "with": [
+      "am",
+      "vom",
+      "beim",
+      "im",
+      "ans",
+      "aufs",
+      "fürs",
+      "ums",
+      "durchs"
+    ],
+    "why": "zum Kino gehen — тоже «иду в кино»"
+  },
+  {
+    "correct": "damals",
+    "distractor": "früher",
+    "where": null,
+    "with": [
+      "morgen",
+      "gleich",
+      "bald"
+    ],
+    "why": "Früher hatte ich kein Auto — «тогда/раньше не было машины»"
+  },
+  {
+    "correct": "dürfte",
+    "distractor": "kann",
+    "where": null,
+    "with": [
+      "bin",
+      "habe",
+      "werde"
+    ],
+    "why": "Kann ich mich hier hinsetzen? — тот же перевод «можно мне…»"
+  },
+  {
+    "correct": "dürfte",
+    "distractor": "könnte",
+    "where": null,
+    "with": [
+      "bin",
+      "habe",
+      "werde"
+    ],
+    "why": "Könnte ich hier parken? — «можно было бы мне…»"
+  },
+  {
+    "correct": "dürfte",
+    "distractor": "darf",
+    "where": null,
+    "with": [
+      "bin",
+      "habe",
+      "werde"
+    ],
+    "why": "Darf ich hier parken? — та же просьба"
+  },
+  {
+    "correct": "dürften",
+    "distractor": "könnten",
+    "where": null,
+    "with": [
+      "sind",
+      "haben",
+      "werden"
+    ],
+    "why": "Könnten wir kurz telefonieren? — «можно нам позвонить?»"
+  },
+  {
+    "correct": "kann",
+    "distractor": "könnte",
+    "where": null,
+    "with": [
+      "bin",
+      "habe",
+      "werde"
+    ],
+    "why": "Die Adresse könnte noch geändert werden — «адрес ещё можно изменить»"
+  },
+  {
+    "correct": "gekommen",
+    "distractor": "angekommen",
+    "where": null,
+    "with": [
+      "gegessen",
+      "geschrieben",
+      "gekauft"
+    ],
+    "why": "angekommen — тоже «пришёл/приехал»"
+  },
+  {
+    "correct": "angekommen",
+    "distractor": "gekommen",
+    "where": null,
+    "with": [
+      "gegessen",
+      "geschrieben",
+      "gekauft"
+    ],
+    "why": "Die Gäste sind gekommen — «гости приехали»"
+  },
+  {
+    "correct": "gefahren",
+    "distractor": "abgefahren",
+    "where": null,
+    "with": [
+      "gegessen",
+      "geschrieben",
+      "gekauft"
+    ],
+    "why": "mit dem Bus abgefahren — «поехала на автобусе»"
+  },
+  {
+    "correct": "gern",
+    "distractor": "bitte",
+    "where": null,
+    "with": [
+      "nie",
+      "kaum",
+      "selten"
+    ],
+    "why": "Ich hätte bitte ein Wasser — та же просьба"
+  },
+  {
+    "correct": "könnte",
+    "distractor": "darf",
+    "where": null,
+    "with": [
+      "bin",
+      "habe",
+      "werde"
+    ],
+    "why": "Darf ich den Mantel anprobieren? — тот же перевод «можно мне примерить»"
+  },
+  {
+    "correct": "könnte",
+    "distractor": "kann",
+    "where": null,
+    "with": [
+      "bin",
+      "habe",
+      "werde"
+    ],
+    "why": "Kann ich mit Karte bezahlen? — та же просьба"
+  },
+  {
+    "correct": "telefonieren",
+    "distractor": "anrufen",
+    "where": null,
+    "with": [
+      "schlafen",
+      "essen",
+      "lesen"
+    ],
+    "why": "kurz anrufen — «ненадолго позвонить»"
+  },
+  {
+    "correct": "schön",
+    "distractor": "gut",
+    "where": null,
+    "with": [
+      "teuer",
+      "alt",
+      "leer"
+    ],
+    "why": "Es ist gut, dich zu sehen — «приятно тебя видеть»"
+  },
+  {
+    "correct": "passt",
+    "distractor": "funktioniert",
+    "where": null,
+    "with": [
+      "schläft",
+      "kocht",
+      "liest"
+    ],
+    "why": "Der Schlüssel funktioniert nicht — близко к «ключ не подходит»"
+  },
+  {
+    "correct": "stimmt",
+    "distractor": "passt",
+    "where": null,
+    "with": [
+      "schläft",
+      "kocht",
+      "liest"
+    ],
+    "why": "ob die Rechnung passt — разговорное «верен ли счёт»"
+  }
+]

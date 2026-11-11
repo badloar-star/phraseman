@@ -1,0 +1,124 @@
+[
+  {
+    "correct": "alla",
+    "distractor": "nella",
+    "where": null,
+    "with": [
+      "sulla",
+      "dalla",
+      "della",
+      "colla"
+    ],
+    "why": "nella stazione — тот же перевод «на вокзале»"
+  },
+  {
+    "correct": "accanto",
+    "distractor": "vicino",
+    "where": null,
+    "with": [
+      "sopra",
+      "sotto",
+      "dentro"
+    ],
+    "why": "vicino al letto — «у кровати»"
+  },
+  {
+    "correct": "aggiunga",
+    "distractor": "metta",
+    "where": null,
+    "with": [
+      "apra",
+      "chiuda",
+      "legga"
+    ],
+    "why": "Non metta sale — «не добавляйте соль»"
+  },
+  {
+    "correct": "dei",
+    "distractor": "alcuni",
+    "where": null,
+    "with": [
+      "del",
+      "della",
+      "dello"
+    ],
+    "why": "alcuni libri — тот же перевод без артикля"
+  },
+  {
+    "correct": "delle",
+    "distractor": "alcune",
+    "where": null,
+    "with": [
+      "del",
+      "dei",
+      "dello"
+    ],
+    "why": "alcune pile — тот же перевод без артикля"
+  },
+  {
+    "correct": "degli",
+    "distractor": "alcuni",
+    "where": null,
+    "with": [
+      "del",
+      "della",
+      "delle"
+    ],
+    "why": "alcuni spiccioli — тот же перевод"
+  },
+  {
+    "correct": "libera",
+    "distractor": "vuota",
+    "where": null,
+    "with": [
+      "chiusa",
+      "nuova",
+      "piccola"
+    ],
+    "why": "camera vuota — «свободная комната»"
+  },
+  {
+    "correct": "richiamarmi",
+    "distractor": "chiamarmi",
+    "where": null,
+    "with": [
+      "vedermi",
+      "sentirmi",
+      "aspettarmi"
+    ],
+    "why": "Potrebbe chiamarmi dopo le dieci — та же просьба позвонить"
+  },
+  {
+    "correct": "ricevuto",
+    "distractor": "avuto",
+    "where": null,
+    "with": [
+      "venduto",
+      "perso",
+      "chiuso"
+    ],
+    "why": "la lettera che aveva avuto — «которое получила»"
+  },
+  {
+    "correct": "ricevuto",
+    "distractor": "preso",
+    "where": null,
+    "with": [
+      "venduto",
+      "perso",
+      "chiuso"
+    ],
+    "why": "Ho preso il pacco — «получил/забрал посылку»"
+  },
+  {
+    "correct": "sulla",
+    "distractor": "nella",
+    "where": "mappa",
+    "with": [
+      "dalla",
+      "della",
+      "colla"
+    ],
+    "why": "nella mappa — «на карте»"
+  }
+]

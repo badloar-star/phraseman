@@ -1,0 +1,10 @@
+[
+  {"correct": "aimerions", "distractor": "voudrions", "where": null, "with": ["avons", "sommes", "allons"], "why": "Nous voudrions… — тот же перевод «мы хотели бы»"},
+  {"correct": "souhaiterais", "distractor": "voudrais", "where": null, "with": ["ai", "suis", "vais"], "why": "Je voudrais… — тот же перевод «я хотел бы»"},
+  {"correct": "affaires", "distractor": "bagages", "where": null, "with": ["clés", "livres", "billets"], "why": "prépare ses bagages — «собирает свои вещи»"},
+  {"correct": "davantage", "distractor": "plus", "where": null, "with": ["moins", "peu", "trop"], "why": "en commander plus — «заказать ещё»"},
+  {"correct": "acheté", "distractor": "pris", "where": null, "with": ["vendu", "perdu", "fermé"], "why": "j’ai pris du pain — в магазине значит «купил»"},
+  {"correct": "achète", "distractor": "prend", "where": null, "with": ["vend", "perd", "ferme"], "why": "il prend un kilo de pommes — «покупает»"},
+  {"correct": "quand", "distractor": "lorsque", "where": null, "with": ["où", "comment", "pourquoi"], "why": "lorsque — синоним quand"},
+  {"correct": "à", "distractor": "dans", "where": "(^| )à (la|l’|l')", "with": ["sur", "chez", "vers"], "why": "dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку»"}
+]

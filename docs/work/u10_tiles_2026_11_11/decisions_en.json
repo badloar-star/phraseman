@@ -1,0 +1,20 @@
+[
+  {"correct": "before", "distractor": "by", "where": "gets up before six|set off for the harbour before lunch", "with": ["under", "between", "among"], "why": "by six / by lunch — тоже «до шести», «до обеда»"},
+  {"correct": "get", "distractor": "take", "where": "should get some rest", "with": ["put", "send", "open"], "why": "take some rest — тоже «отдохнуть»"},
+  {"correct": "carry", "distractor": "take", "where": "I will carry the heavy box|helped each other carry", "with": ["read", "open", "close"], "why": "take the box — «понесу/донести» так же естественно"},
+  {"correct": "bought", "distractor": "got", "where": null, "with": ["sold", "lost", "broke"], "why": "got = купил в разговорной речи"},
+  {"correct": "brought", "distractor": "got", "where": null, "with": ["sold", "lost", "broke"], "why": "I got you a towel = «принёс тебе полотенце»"},
+  {"correct": "buy", "distractor": "get", "where": null, "with": ["sell", "lose", "break"], "why": "get water / get tickets = купить"},
+  {"correct": "evening", "distractor": "night", "where": null, "with": ["week", "month", "year"], "why": "Friday night / that night = «в пятницу вечером», «в тот вечер»"},
+  {"correct": "must", "distractor": "should", "where": "You must wear a helmet", "with": ["did", "were", "are"], "why": "should wear — тоже «должны надеть»"},
+  {"correct": "should", "distractor": "must", "where": "You should keep the receipt|She should call the office", "with": ["did", "were", "are"], "why": "must — тоже «следует/должен»"},
+  {"correct": "might", "distractor": "can", "where": "They said they might be late", "with": ["did", "were", "are"], "why": "they can be late — тоже «могут опоздать»"},
+  {"correct": "some", "distractor": "a", "where": "should get some rest|poured herself some water", "with": ["many", "few", "both"], "why": "get a rest — та же фраза по-русски"},
+  {"correct": "anything", "distractor": "something", "where": null, "with": ["nowhere", "nobody", "never"], "why": "Do you need something else? — тот же перевод «что-нибудь»"},
+  {"correct": "accept", "distractor": "take", "where": "does not accept coins", "with": ["open", "read", "close"], "why": "machine does not take coins — обычная фраза"},
+  {"correct": "about", "distractor": "of", "where": "complained about waiting|I told you about", "with": ["under", "between", "among"], "why": "complained of / told you of — допустимо"},
+  {"correct": "catch", "distractor": "take", "where": null, "with": ["open", "read", "close"], "why": "take the bus — тоже «сядем на автобус»"},
+  {"correct": "forgot", "distractor": "left", "where": null, "with": ["sold", "opened", "closed"], "why": "left their bags = «забыли сумки»"},
+  {"correct": "the", "distractor": "that", "where": "Was this the shop you used to visit|Is this the letter you were waiting for", "with": ["an", "many", "much"], "why": "перевод «тот магазин», «то письмо» — that подходит"},
+  {"correct": "at", "distractor": "in", "where": "Who did you meet at the station|waiting at the harbour|the queue at the cinema", "with": ["of", "off", "onto"], "why": "in the station / in the harbour / in the cinema — тот же перевод"}
+]

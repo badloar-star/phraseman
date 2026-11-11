@@ -32,12 +32,13 @@ jest.mock('react-native-reanimated', () => {
   return {
     __esModule: true,
     default: { View: 'View' },
-    Easing: { inOut: (fn: unknown) => fn, quad: () => 0 },
+    Easing: { inOut: (fn: unknown) => fn, quad: () => 0, bezier: () => () => 0 },
     cancelAnimation: (value: unknown) => mockCancel(value),
     useAnimatedStyle: (fn: () => unknown) => fn(),
     useReducedMotion: () => mockReducedMotion(),
     useSharedValue: (initial: number) => R.useRef({ value: initial }).current,
     withRepeat: (animation: unknown, count: number, reverse: boolean) => mockRepeat(animation, count, reverse),
+    withDelay: (_delayMs: number, animation: unknown) => animation,
     withSequence: (...steps: unknown[]) => steps[steps.length - 1],
     withTiming: (to: number) => to,
   };
@@ -46,6 +47,13 @@ jest.mock('../hooks/use_runtime_active', () => ({ useRuntimeActive: () => mockRu
 
 const mockStories = jest.fn();
 jest.mock('../modules/story_events/use_story_events', () => ({ useStoryEvents: () => mockStories() }));
+// «Волны» (владелец 11.11): правило двух дней проверяет tests/story_ignore_nudge_2026_11_11.test.ts; здесь — что кольцо делает по его ответу
+const mockNudgeWaves = jest.fn(() => false);
+const mockMarkViewed = jest.fn();
+const mockNudgeSeenRing = jest.fn();
+jest.mock('../modules/story_events/use_story_ignore_nudge', () => ({
+  useStoryIgnoreNudge: (hasUnseen: boolean) => { mockNudgeSeenRing(hasUnseen); return { waves: mockNudgeWaves(), markViewed: mockMarkViewed }; },
+}));
 
 import StoryAvatarSlot from '../components/stories/StoryAvatarSlot';
 
@@ -61,6 +69,51 @@ describe('владелец 11.11: аватар пульсирует всё вр�
     mockCancel.mockClear();
     mockReducedMotion.mockReturnValue(false);
     mockRuntimeActive.mockReturnValue(true);
+    mockNudgeWaves.mockReturnValue(false);
+    mockNudgeSeenRing.mockClear();
+  });
+
+  it('два дня игнора → от кольца идут две волны, пульсация остаётся; правилу передан признак «кольцо есть»', async () => {
+    mockStories.mockReturnValue(stories(1));
+    mockNudgeWaves.mockReturnValue(true);
+    await render(slot());
+    expect(screen.queryAllByTestId('story-ring-wave')).toHaveLength(2);
+    expect(infiniteStarts()).toBe(3); // пульс кольца + два круга
+    expect(mockNudgeSeenRing).toHaveBeenLastCalledWith(true);
+  });
+
+  it('игнора нет → волн нет, только пульсация', async () => {
+    mockStories.mockReturnValue(stories(1));
+    await render(slot());
+    expect(screen.queryAllByTestId('story-ring-wave')).toHaveLength(0);
+    expect(infiniteStarts()).toBe(1);
+  });
+
+  it('волны вне фокуса экрана или в фоне стоят', async () => {
+    mockStories.mockReturnValue(stories(1));
+    mockNudgeWaves.mockReturnValue(true);
+    mockRuntimeActive.mockReturnValue(false);
+    await render(slot());
+    expect(screen.queryAllByTestId('story-ring-wave')).toHaveLength(2);
+    expect(mockRepeat).not.toHaveBeenCalled();
+  });
+
+  it('при «уменьшить движение» волн нет совсем', async () => {
+    mockStories.mockReturnValue(stories(1));
+    mockNudgeWaves.mockReturnValue(true);
+    mockReducedMotion.mockReturnValue(true);
+    await render(slot());
+    expect(screen.queryAllByTestId('story-ring-wave')).toHaveLength(0);
+    expect(mockRepeat).not.toHaveBeenCalled();
+  });
+
+  it('непросмотренного нет → правилу передано «кольца нет», волн и кольца нет', async () => {
+    mockStories.mockReturnValue(stories(0));
+    mockNudgeWaves.mockReturnValue(true);
+    await render(slot());
+    expect(mockNudgeSeenRing).toHaveBeenLastCalledWith(false);
+    expect(screen.queryByTestId('story-ring')).toBeNull();
+    expect(screen.queryAllByTestId('story-ring-wave')).toHaveLength(0);
   });
 
   it('есть непросмотренная история → кольцо на месте и цикл вечный, а не на несколько повторов', async () => {

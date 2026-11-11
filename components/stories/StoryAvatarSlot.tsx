@@ -16,6 +16,7 @@ import type { Lang } from '../../constants/i18n';
 import { DebugLogger } from '../../app/debug-logger';
 import { sceneTouchTrace } from '../../app/scene_touch_trace';
 import { useStoryEvents } from '../../modules/story_events/use_story_events';
+import { useStoryIgnoreNudge } from '../../modules/story_events/use_story_ignore_nudge';
 import { storyRecentQueue, type StoryEventList } from '../../modules/story_events/story_events_core';
 import { STORY_RING_COIN, STORY_RING_SLOT } from './story_ring_constants';
 import type { StoryOrigin } from './StoryViewer';
@@ -90,6 +91,10 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
   const ring = unreadQueue.length > 0 || (enabled && unseenCount > 0);
   // ЗАМОК ВЛАДЕЛЬЦА 28.10 20:05: одно кольцо. Есть непросмотренная история → только кольцо историй; иначе кольцо Plus по статусу; иначе без кольца.
   const ringKind: 'story' | 'plus' | 'none' = ring ? 'story' : plusSurface !== null ? 'plus' : 'none';
+  // зачем (владелец 11.11, выбор «Волны»): два завершённых дня захода подряд кольцо было, а историю не открыли → от кольца расходятся волны.
+  // Дни захода и просмотр — локальные факты по аккаунту (сети нет); показ вычисляется из них, в хранилище «долга на показ» нет.
+  const nudge = useStoryIgnoreNudge(ring);
+  const markStoryViewed = nudge.markViewed;
   // Владелец 26.10: новые истории — обычным тапом; просмотренные повторяются удержанием.
   // Повтор идёт от старых к новым: список хранилища отдаёт новые первыми.
   const replayQueue = useMemo(() => storyRecentQueue([...(enabled ? stories : []), ...sceneStories]), [enabled, sceneStories, stories]);
@@ -134,12 +139,13 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
 
   const closeViewer = useCallback(() => { openingRef.current = false; setViewer(null); }, []);
   const onSeen = useCallback((id: string) => {
+    markStoryViewed(); // зачем: человек открыл историю — игнор закончился, волны гаснут сразу
     if (id.startsWith('home-activity:')) {
       setSeenHomeIds((seen) => seen.has(id) ? seen : new Set([...seen, id]));
     } else {
       markSeen(id);
     }
-  }, [markSeen]);
+  }, [markSeen, markStoryViewed]);
 
   // зачем (Сверка 22.10: аватар открывает профиль 3 из 5 — первое нажатие после входа на Главную и у верхнего края круга; правило
   // «сперва логи»): [AVATAR-TAP] показывает, где кнопка на экране, дошло ли касание до неё, отдал ли ей responder нажатие и какая ветка
@@ -218,7 +224,7 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
           }}
           hitSlop={6}
         >
-          {Ring ? <Ring>{coin(STORY_RING_COIN)}</Ring> : plusSurface !== null ? <PlusAvatarRing plus tier={plusTier} size={STORY_RING_SLOT} surface={plusSurface}>{coin(STORY_RING_SLOT)}</PlusAvatarRing> : coin(STORY_RING_SLOT)}
+          {Ring ? <Ring waves={nudge.waves}>{coin(STORY_RING_COIN)}</Ring> : plusSurface !== null ? <PlusAvatarRing plus tier={plusTier} size={STORY_RING_SLOT} surface={plusSurface}>{coin(STORY_RING_SLOT)}</PlusAvatarRing> : coin(STORY_RING_SLOT)}
         </TouchableOpacity>
       </View>
       {viewer && Viewer ? (

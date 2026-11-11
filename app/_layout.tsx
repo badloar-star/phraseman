@@ -146,7 +146,8 @@ import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { startupSplashPalette, STARTUP_SPLASH_DARK_BG } from '../constants/startup_splash_palette';
 import UpdateModal from '../components/UpdateModal';
-import { recordAppUpdateStory, recordNotifNudgeStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
+import { insteadStoryLanded, recordAppUpdateStory, recordNotifNudgeStory, recordTeamMessageStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
+import { pickAppMessageText } from './app_messages';
 import AppMessageAnnouncementModal from '../components/AppMessageAnnouncementModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import ReleaseNotesV2Modal from '../components/ReleaseNotesV2Modal';
@@ -1348,7 +1349,26 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         if (personal) {
           const personalDecision = decideTeamModal({ verdict, createdAtMs: personal.createdAtMs, personal: true });
           logTeamModalDecision('personal', personal.id, personal.createdAtMs, verdict, personalDecision);
-          setPersonalAdminMessage(personalDecision === 'show' ? personal : null);
+          // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях личное
+          // сообщение приходит кадром истории. После записи ставим ту же отметку «окно показано», что ставила кнопка «Закрыть» — письмо
+          // остаётся во «Входящих»; не записалось — отметку не ставим, письмо придёт при следующем входе. Истории выключены — окно как раньше.
+          if (personalDecision === 'show' && storiesReplaceWindows()) {
+            setPersonalAdminMessage(null);
+            const picked = pickAppMessageText(personal, lang);
+            const ownerUid = token.stableId;
+            void recordTeamMessageStory({ messageId: personal.id, title: picked.title ?? '', body: picked.body ?? '' }, token)
+              .then(async (record) => {
+                if (!insteadStoryLanded(record)) {
+                  console.warn(`[OVERLAY-QUEUE] personal: id=${personal.id} история не записана (${record.recorded ? 'ok' : record.reason}) — отметку «показано» не ставим`); // guard-ok: ранний выход с причиной
+                  return;
+                }
+                if (!ownerUid || !isCurrentAccountGeneration(token, ownerUid)) return; // guard-ok: аккаунт сменился — чужому письму отметку не ставим
+                await acknowledgePersonalAdminMessageModal(personal.id, ownerUid);
+              })
+              .catch((e: unknown) => { DebugLogger.error('_layout:recordTeamMessageStory', e instanceof Error ? e : new Error(String(e)), 'warning'); });
+          } else {
+            setPersonalAdminMessage(personalDecision === 'show' ? personal : null);
+          }
         } else {
           setPersonalAdminMessage(null);
         }

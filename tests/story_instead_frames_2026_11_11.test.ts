@@ -26,7 +26,7 @@ describe('тексты кадров «истории вместо окон»', (
     expect(ru('rankTitle')).toBe('Хватает на ранг 5');
     expect(ru('rankText')).toBe('На счёте 2 400 монет. Ранг 5 стоит 2 000.');
     expect(ru('rankLeft')).toBe('останется 400');
-    expect(ru('msgTitle')).toBe('Ответ от команды');
+    expect(ru('msgOverline')).toBe('Сообщение');
     expect(ru('expiredTitle')).toBe('Plus закончился');
     expect(ru('perkShield')).toBe('Защита серии, 3 в месяц');
     // текст реферального окна — дословно
@@ -137,11 +137,11 @@ describe('кадры «истории вместо окон» — разметк
     expect(registry).toContain('...STORY_INSTEAD_TEMPLATE_SAMPLES,');
   });
 
-  it('шаг 2: у шестнадцати кадров есть источник — событие instead; остальные 4 ждут своих партий', () => {
+  it('шаг 2: у восемнадцати кадров есть источник — событие instead; без источника — приз набора и обгон в Пике', () => {
     const fromEvent = read('components/stories/templates/story_template_from_event.ts');
     expect(fromEvent).toContain("case 'instead': return insteadTemplateFromPayload(p);");
     const own = read('components/stories/templates/story_instead_from_event.ts');
-    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello'] as const;");
+    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello', 'message', 'plus_on'] as const;");
   });
 });
 

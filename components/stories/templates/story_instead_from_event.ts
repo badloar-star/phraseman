@@ -8,7 +8,9 @@
 // `ref_welcome` («Тебя пригласили»), `first_dialog` («Первый разговор»), `rate` («Оцените приложение»),
 // `perfect` («Идеальный урок»), `lesson_open` («Открыт урок N»),
 // `medal` («Медаль урока»), `level_exam` и `lingman_exam` (открытие экзаменов),
-// `update` («Вышло обновление»), `nudge` («Включить напоминания»), `hello` («Добро пожаловать»); остальные 4 — следующими партиями.
+// `update` («Вышло обновление»), `nudge` («Включить напоминания»), `hello` («Добро пожаловать»),
+// `message` («Сообщение» команды), `plus_on` («Plus подключён»). Без источника остаются два кадра: приз набора (его событие уже
+// показывает история Сообщества) и обгон в Пике (ждёт нового макета).
 // Числа проверяются строго: строка '6' и дробное 6.9 не превращаются в 6 — так уже маскировался битый payload у ранга монеты.
 // ═══════════════════════════════════════════════════════════════════════════
 import { isValidCoinRank } from '../../../app/coin_rank_table_v1';
@@ -24,7 +26,7 @@ function count(value: unknown): number | null {
 }
 
 /** Виды событий `instead`, у которых уже есть источник. */
-export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello'] as const;
+export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello', 'message', 'plus_on'] as const;
 
 const RATE_CONTEXTS = ['perfect_lesson', 'level_exam_pass', 'streak_milestone'] as const;
 const RATE_STREAK_DAYS = [7, 14, 30] as const;
@@ -139,6 +141,17 @@ export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | n
     case 'hello':
       if (!isValidCoinRank(p.coinRank)) return null;
       return { id: 'instead_hello', coinRank: p.coinRank };
+    case 'message': {
+      // письмо без текста кадра не даёт; заголовка может не быть — тогда кадр, как окно, пишет «Сообщение»
+      if (typeof p.body !== 'string' || p.body.trim().length === 0) return null;
+      return { id: 'instead_message', title: typeof p.title === 'string' ? p.title.trim() : '', body: p.body };
+    }
+    case 'plus_on': {
+      const freezesPerMonth = count(p.freezesPerMonth);
+      if (freezesPerMonth === null || freezesPerMonth < 1) return null;
+      // дату окончания праздничное окно не знало — кадр идёт без строки с датой
+      return { id: 'instead_plus_on', untilLabel: null, freezesPerMonth };
+    }
     default:
       return null;
   }

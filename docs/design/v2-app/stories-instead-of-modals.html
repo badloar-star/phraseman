@@ -442,9 +442,8 @@ const TPL = [
     cta: { label: 'Обновить', icon: 'refresh' },
     render: () => `<div class="art">${icn('rocket')}</div><div class="h1 s">${words('Это Компас. У меня кое-что новое', 380)}</div><div class="p a" style="--d:760ms">Доступна новая версия — быстрее и удобнее.</div>` },
 
-  { id: 'team_msg', name: 'Личное сообщение', group: 'Сообщения', kind: 'new', ev: 'personal_message (новое)', when: 'взамен окна личного сообщения · команда написала этому игроку', data: 'text, sentAt', motion: 'реплика всплывает, как в диалоге',
-    cta: { label: 'Ответить', icon: 'chat' },
-    render: () => `<div class="bubs"><div class="b a" style="--d:240ms;max-width:100%">Plus на 30 дней уже на аккаунте. Спасибо, что написали про ошибку в уроке 14.</div></div><div class="ov a" style="--d:620ms">Личное сообщение</div><div class="h1">${words('Ответ от команды', 700)}</div><div class="p a" style="--d:940ms">Сегодня, 14:20</div>` },
+  { id: 'team_msg', name: 'Личное сообщение', group: 'Сообщения', kind: 'new', ev: 'personal_message (новое)', when: 'взамен окна личного сообщения · команда написала этому игроку', data: 'title, body', motion: 'реплика всплывает, как в диалоге',
+    render: () => `<div class="bubs"><div class="b a" style="--d:240ms;max-width:100%">Plus на 30 дней уже на аккаунте. Спасибо, что написали про ошибку в уроке 14.</div></div><div class="ov a" style="--d:620ms">Сообщение</div><div class="h1">${words('Спасибо за письмо', 700)}</div>` },
 
   { id: 'notif_nudge', name: 'Напоминания выключены', group: 'Сообщения', kind: 'new', ev: 'notif_nudge (новое)', when: 'взамен окна «Включить уведомления» · были пропущенные дни, уведомления выключены', data: 'missedDays', motion: 'знак появляется, заголовок встаёт по словам',
     cta: { label: 'Включить напоминания', icon: 'time' },

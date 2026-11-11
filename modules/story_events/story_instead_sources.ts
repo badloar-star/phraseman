@@ -139,6 +139,22 @@ export function recordHelloStory(): Promise<StoryRecordResult> {
   return record('hello', 'once', { coinRank: 0 }); // guard-ok: ранг монеты для показа в кадре (начальный), ранг и баланс не меняются
 }
 
+/**
+ * «Сообщение» (взамен полноэкранного окна личного сообщения команды): заголовок и текст письма на языке интерфейса в момент записи.
+ * Ключ — номер сообщения: одно письмо — одна история.
+ */
+export function recordTeamMessageStory(input: Readonly<{ messageId: string; title: string; body: string }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
+  return record('message', input.messageId, { title: input.title, body: input.body }, accountToken);
+}
+
+/**
+ * «Plus подключён» (взамен праздничного окна после покупки или выдачи Plus): сколько защит серии в месяц даёт Plus (число — из правил
+ * приложения). Ключ — отметка события покупки или выдачи: одно событие — одна история.
+ */
+export function recordPlusOnStory(input: Readonly<{ key: string; freezesPerMonth: number }>): Promise<StoryRecordResult> {
+  return record('plus_on', input.key, { freezesPerMonth: input.freezesPerMonth });
+}
+
 /** «Хватает на ранг N»: ключ — номер следующего ранга, один раз на ранг (как у окна). */
 export function recordRankEnoughStory(input: Readonly<{ rank: number; nextRank: number; balance: number; price: number }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
   return record('rank_enough', String(input.nextRank), { rank: input.rank, nextRank: input.nextRank, balance: input.balance, price: input.price }, accountToken);

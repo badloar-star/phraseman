@@ -32,7 +32,8 @@ export type LegacyCoinsStory = Readonly<{ coins: number; xpBefore: number; pearl
 export type RankEnoughStory = Readonly<{ rank: number; nextRank: number; balance: number; price: number }>;
 /** Текст из настроек обновления (его показывало окно) или null — тогда стандартный текст окна. Номера версии и списка изменений проверка обновления не знает. */
 export type AppUpdateStory = Readonly<{ message: string | null }>;
-export type TeamMessageStory = Readonly<{ text: string; whenLabel: string }>;
+/** Заголовок (может быть пустым) и текст письма — то, что показывало окно; времени и ответа у окна не было. */
+export type TeamMessageStory = Readonly<{ title: string; body: string }>;
 /** Сколько дней без занятий — единственное, что знает сигнал; занимался ли человек в дни до этого, приложение не знает. */
 export type NotifNudgeStory = Readonly<{ missedDays: number }>;
 /** `freezesPerMonth` — из PREMIUM_FREE_FREEZES_PER_MONTH, `untilLabel` — готовая дата на языке интерфейса; null — дата неизвестна, строки с датой нет. */
@@ -139,13 +140,15 @@ export const AppUpdateFrame = memo(function AppUpdateFrame({ tpl, lang }: FrameP
 // ── 6 · личное сообщение (взамен окна личного сообщения от команды) ──────────────────────────────────
 
 export const TeamMessageFrame = memo(function TeamMessageFrame({ tpl, lang }: FrameProps<TeamMessageStory>) {
-  const bubbles = useMemo(() => [{ text: tpl.text, me: false }], [tpl.text]);
+  // зачем (шаг 2м, 11.11): кадр повторяет окно личного сообщения — строка «Сообщение», заголовок и текст письма. Придуманные в макете
+  // «Ответ от команды» и время убраны; без заголовка кадр, как окно, пишет «Сообщение» заголовком
+  const bubbles = useMemo(() => [{ text: tpl.body, me: false }], [tpl.body]);
+  const word = insteadText(lang, 'msgOverline');
   return (
     <FrameRoot testID="story-tpl-instead-message">
       <Bubbles bubbles={bubbles} d0={240} wide />
-      <Ov text={insteadText(lang, 'msgOverline')} d={620} />
-      <H1 text={insteadText(lang, 'msgTitle')} d0={700} />
-      <P text={tpl.whenLabel} d={940} />
+      {tpl.title ? <Ov text={word} d={620} /> : null}
+      <H1 text={tpl.title || word} d0={700} />
     </FrameRoot>
   );
 });

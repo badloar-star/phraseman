@@ -25,7 +25,6 @@ const S = {
   ctaReviewCards: ['Повторить карточки', 'Повторити картки', 'Review cards', 'Repasar tarjetas', 'Revisar cartões', 'Ôn thẻ', 'Ulangi kartu', 'Kartları tekrar et', 'Powtórz karty'],
   ctaUpgradeCoin: ['Улучшить монету', 'Покращити монету', 'Upgrade coin', 'Mejorar la moneda', 'Melhorar a moeda', 'Nâng cấp đồng xu', 'Tingkatkan koin', 'Jetonu yükselt', 'Ulepsz monetę'],
   ctaUpdate: ['Обновить', 'Оновити', 'Update', 'Actualizar', 'Atualizar', 'Cập nhật', 'Perbarui', 'Güncelle', 'Zaktualizuj'],
-  ctaReply: ['Ответить', 'Відповісти', 'Reply', 'Responder', 'Responder', 'Trả lời', 'Balas', 'Yanıtla', 'Odpowiedz'],
   ctaRestorePlus: ['Вернуть Plus', 'Повернути Plus', 'Get Plus back', 'Recuperar Plus', 'Recuperar Plus', 'Lấy lại Plus', 'Aktifkan Plus lagi', 'Plus’ı geri al', 'Odzyskaj Plus'],
   ctaEnterCode: ['У меня есть код приглашения', 'У мене є код запрошення', 'I have an invite code', 'Tengo un código de invitación', 'Tenho um código de convite', 'Tôi có mã mời', 'Saya punya kode undangan', 'Davet kodum var', 'Mam kod zaproszenia'], // дословно как кнопка окна
   ctaInviteFriend: ['Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời một người bạn', 'Ajak teman', 'Arkadaş davet et', 'Zaproś znajomego'], // дословно как кнопка окна
@@ -83,9 +82,8 @@ const S = {
   ],
   rankLeft: ['останется {left}', 'залишиться {left}', '{left} left after', 'te quedarán {left}', 'sobram {left}', 'còn lại {left}', 'tersisa {left}', 'geriye {left} kalır', 'zostanie {left}'],
 
-  // ── 6 · личное сообщение (текст и время приходят из события) ──
-  msgOverline: ['Личное сообщение', 'Особисте повідомлення', 'Personal message', 'Mensaje personal', 'Mensagem pessoal', 'Tin nhắn riêng', 'Pesan pribadi', 'Kişisel mesaj', 'Wiadomość osobista'],
-  msgTitle: ['Ответ от команды', 'Відповідь від команди', 'A reply from the team', 'Respuesta del equipo', 'Resposta da equipe', 'Phản hồi từ đội ngũ', 'Balasan dari tim', 'Ekipten yanıt', 'Odpowiedź od zespołu'],
+  // ── 6 · личное сообщение — слово над заголовком то же, что в окне (components/PersonalAdminMessageModal) ──
+  msgOverline: ['Сообщение', 'Повідомлення', 'Message', 'Mensaje', 'Mensagem', 'Tin nhắn', 'Pesan', 'Mesaj', 'Wiadomość'],
 
   // ── 8 и 16 · Plus закончился / Plus подключён (дата приходит готовой строкой) ──
   untilOverline: ['До {date}', 'До {date}', 'Until {date}', 'Hasta el {date}', 'Até {date}', 'Đến {date}', 'Hingga {date}', '{date} tarihine kadar', 'Do {date}'],

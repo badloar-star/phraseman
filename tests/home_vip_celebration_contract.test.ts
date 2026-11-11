@@ -20,6 +20,14 @@ describe('home VIP celebration queue contract', () => {
     expect(premiumBody).toContain('setCelebrationMarker(marker)');
     // The queue-time block must NOT consume — that is the bug this fix removes.
     expect(premiumBody).not.toContain('consumeCelebration(marker)');
+    // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях поздравление
+    // Plus приходит кадром истории. Правило то же — ожидающее поздравление не гасится, пока оно не сохранено для человека: гашение стоит
+    // в отдельном модуле и только ПОСЛЕ успешной записи истории в журнал; не записалась — поздравление остаётся ожидающим.
+    const storyPath = fs.readFileSync(path.join(process.cwd(), 'modules', 'story_events', 'plus_on_story.ts'), 'utf8');
+    const notLanded = storyPath.indexOf('if (!insteadStoryLanded(record)) {');
+    expect(notLanded).toBeGreaterThan(-1);
+    expect(storyPath.slice(notLanded, storyPath.indexOf('await consumeCelebration(marker);'))).toContain('return true;');
+    expect(storyPath.indexOf('await consumeCelebration(marker);')).toBeGreaterThan(notLanded);
 
     const vipStart = source.indexOf('const vipPending = await isVipCelebrationPending()');
     expect(vipStart).toBeGreaterThan(-1);

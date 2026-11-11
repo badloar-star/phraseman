@@ -104,8 +104,42 @@ describe('событие instead → данные кадра', () => {
     expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 })).toBeNull();
   });
 
-  it('список видов с источником — шестнадцать; остальные 4 кадра ждут своих партий', () => {
-    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello']);
+  it('список видов с источником — восемнадцать; без источника — приз набора и обгон в Пике', () => {
+    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello', 'message', 'plus_on']);
+  });
+
+  it('личное сообщение: текст письма → кадр; отметка «окно показано» — только после записи истории', () => {
+    expect(storyEventKey('instead', { kind: 'message', key: 'msg-1', title: 'Спасибо', body: 'Текст' })).toBe('instead:message:msg-1');
+    expect(insteadTemplateFromPayload({ kind: 'message', key: 'msg-1', title: ' Спасибо ', body: 'Текст' })).toEqual({ id: 'instead_message', title: 'Спасибо', body: 'Текст' });
+    // заголовка может не быть — кадр, как окно, покажет «Сообщение»; без текста письма кадра нет
+    expect(insteadTemplateFromPayload({ kind: 'message', key: 'msg-1', body: 'Текст' })).toEqual({ id: 'instead_message', title: '', body: 'Текст' });
+    expect(insteadTemplateFromPayload({ kind: 'message', key: 'msg-1', title: 'Спасибо', body: '  ' })).toBeNull();
+    const layout = read('app/_layout.tsx');
+    const branch = layout.indexOf("if (personalDecision === 'show' && storiesReplaceWindows()) {");
+    expect(branch).toBeGreaterThan(-1);
+    const landed = layout.indexOf('if (!insteadStoryLanded(record)) {', branch);
+    const ack = layout.indexOf('await acknowledgePersonalAdminMessageModal(personal.id, ownerUid);', branch);
+    expect(landed).toBeGreaterThan(branch);
+    expect(ack).toBeGreaterThan(landed);
+    expect(layout.indexOf("setPersonalAdminMessage(personalDecision === 'show' ? personal : null);", branch)).toBeGreaterThan(ack);
+    // у окна была только кнопка «Закрыть» — у кадра кнопки нет
+    expect(read('components/stories/templates/story_instead_registry.ts')).not.toContain("action: 'reply_team', text");
+  });
+
+  it('«Plus подключён»: только подписка Plus; ожидающее поздравление гасится после записи истории; Pro и VIP — прежним окном', () => {
+    expect(insteadTemplateFromPayload({ kind: 'plus_on', key: 'm1', freezesPerMonth: 3 })).toEqual({ id: 'instead_plus_on', untilLabel: null, freezesPerMonth: 3 });
+    expect(insteadTemplateFromPayload({ kind: 'plus_on', key: 'm1', freezesPerMonth: 0 })).toBeNull();
+    const home = read('app/(tabs)/home.tsx');
+    const branch = home.indexOf("if (variant === 'premium' && await plusCelebrationAsStory({ marker, dayKey: getLocalDayKey(), freezesPerMonth: PREMIUM_FREE_FREEZES_PER_MONTH })) {");
+    expect(branch).toBeGreaterThan(-1);
+    expect(home.indexOf('setCelebrationVisible(true);', branch)).toBeGreaterThan(branch);
+    // гашение «ожидающего поздравления» — в отдельном модуле и строго после того, как история записана; не записалась — не гасим
+    const story = read('modules/story_events/plus_on_story.ts');
+    expect(story).toContain('if (!storiesReplaceWindows()) return false;');
+    const notLanded = story.indexOf('if (!insteadStoryLanded(record)) {');
+    expect(notLanded).toBeGreaterThan(-1);
+    expect(story.indexOf('await consumeCelebration(marker);')).toBeGreaterThan(notLanded);
+    expect(story.match(/consumeCelebration\(/g)).toHaveLength(1);
   });
 
   it('приветствие новичка: при включённых историях — кадр, «показано» после записи; три экрана остаются путём для выключенных историй', () => {

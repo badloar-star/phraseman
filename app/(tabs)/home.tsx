@@ -26,9 +26,10 @@ import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { DebugLogger } from '../debug-logger';
 import { checkStreakLossPending } from '../hall_of_fame_utils';
 import { getLocalDayKey } from '../local_date';
-import { applyMonthlyPremiumFreezeAllowance } from '../premium_freeze_allowance';
+import { applyMonthlyPremiumFreezeAllowance, PREMIUM_FREE_FREEZES_PER_MONTH } from '../premium_freeze_allowance';
 import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationVariant, isCelebrationPending, type PremiumCelebrationVariant, } from '../premium_celebration_state';
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
+import { plusCelebrationAsStory } from '../../modules/story_events/plus_on_story';
 import { isLightThemeMode } from '../../constants/theme';
 import { GOLD_RICH } from '../../constants/goldTheme';
 import { noAndroidOutline } from '../../constants/androidGlow';
@@ -2242,10 +2243,21 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 // через OverlayArbiter и может быть отложена за нативной модалкой. Если
                 // погасить сейчас, а юзер уйдёт до показа — celebration пропадёт навсегда.
                 // consumeCelebration вызывается в onClose, когда юзер реально увидел и закрыл.
-                setCelebrationMarker(marker);
-                setCelebrationVariant(variant);
-                // зачем (D107): revive-модалки больше нет — конкурировать не с кем, показываем сразу.
-                setCelebrationVisible(true);
+                // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях
+                // поздравление с Plus (подписка) приходит кадром истории. Окно ничего не начисляло — только гасило «ожидающее поздравление»;
+                // то же гашение выполняем после записи истории (не записалась — не гасим, поздравление не теряется).
+                // Phraseman Pro и VIP остаются окнами: кадр «Plus подключён» к ним не подходит.
+                if (variant === 'premium' && await plusCelebrationAsStory({ marker, dayKey: getLocalDayKey(), freezesPerMonth: PREMIUM_FREE_FREEZES_PER_MONTH })) {
+                    // гашение «ожидающего поздравления» — внутри plusCelebrationAsStory и только после записи истории (modules/story_events/plus_on_story.ts)
+                    // гард сессии снимаем: новое событие покупки или выдачи снова сможет встать в очередь
+                    celebrationQueuedRef.current = false;
+                }
+                else {
+                    setCelebrationMarker(marker);
+                    setCelebrationVariant(variant);
+                    // зачем (D107): revive-модалки больше нет — конкурировать не с кем, показываем сразу.
+                    setCelebrationVisible(true);
+                }
             }
             const vipPending = await isVipCelebrationPending();
             if (vipPending && mountedRef.current) {

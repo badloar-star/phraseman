@@ -65,7 +65,7 @@ export const STORY_INSTEAD_TEMPLATE_SAMPLES: Readonly<{ [I in StoryInsteadTempla
   instead_rank: { id: 'instead_rank', rank: 4, nextRank: 5, balance: 2400, price: 2000 },
   // пример — без текста из настроек: кадр показывает стандартный текст окна
   instead_update: { id: 'instead_update', message: null },
-  instead_message: { id: 'instead_message', text: 'Plus на 30 дней уже на аккаунте. Спасибо, что написали про ошибку в уроке 14.', whenLabel: 'Сегодня, 14:20' },
+  instead_message: { id: 'instead_message', title: 'Спасибо за письмо', body: 'Plus на 30 дней уже на аккаунте. Спасибо, что написали про ошибку в уроке 14.' },
   // пример окна: «Без практики: 3 дня»
   instead_nudge: { id: 'instead_nudge', missedDays: 3 },
   instead_plus_expired: { id: 'instead_plus_expired', untilLabel: '10 ноября', freezesPerMonth: 3 },
@@ -124,7 +124,6 @@ export function storyInsteadCta(tpl: StoryInsteadTemplate, lang: Lang): StoryIns
     case 'instead_back': return { action: 'review_cards', text: insteadText(lang, 'ctaReviewCards'), icon: 'layers' };
     case 'instead_rank': return { action: 'upgrade_coin', text: insteadText(lang, 'ctaUpgradeCoin'), icon: 'trending-up' };
     case 'instead_update': return { action: 'update_app', text: insteadText(lang, 'ctaUpdate'), icon: 'refresh' };
-    case 'instead_message': return { action: 'reply_team', text: insteadText(lang, 'ctaReply'), icon: 'chatbubble' };
     // подпись — та же, что у главной кнопки окна: «Включить напоминания»
     case 'instead_nudge': return { action: 'enable_reminder', text: notifNudgeCopy(lang, tpl.missedDays).confirmLabel, icon: 'time' };
     case 'instead_plus_expired': return { action: 'open_plus', text: insteadText(lang, 'ctaRestorePlus'), icon: 'sparkles' };
@@ -142,6 +141,8 @@ export function storyInsteadCta(tpl: StoryInsteadTemplate, lang: Lang): StoryIns
     case 'instead_level_exam':
     case 'instead_lingman_exam':
       return { action: 'share_celebration', text: celebrationShareLabel(lang), icon: 'share-social' };
+    // у окна личного сообщения была только кнопка «Закрыть» — у кадра кнопки нет
+    case 'instead_message':
     case 'instead_legacy':
     case 'instead_perfect':
     case 'instead_first_dialog':

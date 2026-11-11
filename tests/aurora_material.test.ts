@@ -25,9 +25,12 @@ const MOCKUP: Readonly<Record<string, Ref>> = {
   'dark:250:0': { bgTop: '#000000', bg: '#000000', bgBottom: '#000000', control: '#747474', secondary: '#D7D7D7', cardFrom: '#5B5B5B', cardTo: '#4D4D4D', bgGlow1: 'rgba(56,56,56,0.09)', bgGlow2: 'rgba(46,46,46,0.09)',
     ctaFrom: '#D7D7D7', ctaTo: '#E8E8E8', ctaInk: '#161616', chipFrom: '#696969', chipTo: '#4D4D4D', shadow: 'rgba(0,0,0,0.95)', frostTop: 'rgba(133,133,133,0.96)', frostMid: 'rgba(112,112,112,0.96)', frostBottom: 'rgba(91,91,91,0.96)',
     frostGlow1: 'rgba(140,140,140,0.2)', frostGlow2: 'rgba(116,116,116,0.16)', dayFrom: '#D7D7D7', dayTo: '#BEBEBE', dayInk: '#1B1B1B', dayGlow: 'rgba(190,190,190,0.5)', sceneTop: '#383838', ink: '#0F0F0F', inkShadow: 'rgba(15,15,15,0.8)' },
-  'light:150:55': { bgTop: '#BFE6BD', bg: '#ADD9B5', bgBottom: '#AADEBF', control: '#D0E7D4', secondary: null, cardFrom: '#FFFFFF', cardTo: '#F6FEFC', bgGlow1: 'rgba(82,226,234,0.35)', bgGlow2: 'rgba(207,210,112,0.35)',
-    ctaFrom: '#C8E3A1', ctaTo: '#ABF8F7', ctaInk: '#001D05', chipFrom: '#537700', chipTo: '#006456', shadow: 'rgba(7,87,38,0.34)', frostTop: 'rgba(26,149,146,0.96)', frostMid: 'rgba(141,202,201,0.96)', frostBottom: 'rgba(255,255,255,0.96)',
-    frostGlow1: 'rgba(0,165,179,0.18)', frostGlow2: 'rgba(132,119,0,0.12)', dayFrom: '#8BE9F4', dayTo: '#54D5CB', dayInk: '#00231C', dayGlow: 'rgba(84,213,203,0.5)', sceneTop: '#214200', ink: '#001503', inkShadow: 'rgba(0,21,3,0.8)' },
+  // зачем (владелец 11.11: «насыщенность почти ничего не делает, есть только граничные состояния» → «да, растянуть»): в макете цветность поверхностей
+  // упиралась в потолок уже к ~56–65 % насыщенности. По решению владельца потолок достигается ровно к 100 %: строки 0 %, 35 % и 100 % — по-прежнему
+  // числа макета без допуска, а эта строка (55 %, середина растянутого участка) — числа приложения после растяжки.
+  'light:150:55': { bgTop: '#C3E4C2', bg: '#B2D7B9', bgBottom: '#B1DBC1', control: '#D2E6D5', secondary: null, cardFrom: '#FFFFFF', cardTo: '#F7FDFC', bgGlow1: 'rgba(82,226,234,0.35)', bgGlow2: 'rgba(207,210,112,0.35)',
+    ctaFrom: '#CAE2A9', ctaTo: '#B1F7F5', ctaInk: '#001D05', chipFrom: '#537700', chipTo: '#006456', shadow: 'rgba(7,87,38,0.34)', frostTop: 'rgba(63,148,145,0.96)', frostMid: 'rgba(159,202,200,0.96)', frostBottom: 'rgba(255,255,255,0.96)',
+    frostGlow1: 'rgba(0,165,179,0.18)', frostGlow2: 'rgba(132,119,0,0.12)', dayFrom: '#97E7F0', dayTo: '#66D3CA', dayInk: '#00221C', dayGlow: 'rgba(102,211,202,0.5)', sceneTop: '#264105', ink: '#011505', inkShadow: 'rgba(1,21,5,0.8)' },
 };
 
 const up = (v: string | null): string | null => (v === null ? null : v.startsWith('#') ? v.toUpperCase() : v);
@@ -65,6 +68,15 @@ describe('aurora_material: стражи и поведение на краях', 
     for (const hex of [m.bgTop, m.bg, m.bgBottom, m.cardFrom, m.cardTo, m.control, m.ctaFrom, m.ctaTo, m.chipFrom, m.chipTo, m.scene.top, m.scene.mid, m.scene.bottom, m.scene.sun]) {
       expect(hex.slice(1, 3)).toBe(hex.slice(3, 5));
       expect(hex.slice(3, 5)).toBe(hex.slice(5, 7));
+    }
+  });
+  // зачем (владелец 11.11 «да, растянуть»): насыщенность работает на всей длине ползунка — после 65 % поверхности не замирают
+  it('насыщенность: от 65 % до 100 % фон и вложенная плашка продолжают меняться (нет «полки»)', () => {
+    for (const H of [30, 150, 250, 330]) {
+      const light = [65, 80, 100].map((S) => auroraMaterial(H, S, 'light').bg);
+      expect(new Set(light).size).toBe(3);
+      const dark = [65, 80, 100].map((S) => auroraMaterial(H, S, 'dark').control);
+      expect(new Set(dark).size).toBe(3);
     }
   });
   it('материал есть только у тем-ползунков; именная тема и мусор → null', () => {

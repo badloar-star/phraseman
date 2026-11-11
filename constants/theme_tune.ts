@@ -86,7 +86,8 @@ export function tunedBaseTokens(tune: ThemeTune): LiquidGlassBaseTokens {
  */
 export function themeTuneVivid(tune: ThemeTune): LiquidGlassVivid {
   const { H, S } = normalizeThemeTune(tune);
-  return Object.freeze({ fam: 'gem', h: H, h2: H, c: (S / 100) * THEME_TUNE_CMAX });
+  // зачем (владелец 11.11 «да, растянуть»): tintFloor 0 — в светлом оформлении насыщенность работает с первого процента, а не только после 35 %
+  return Object.freeze({ fam: 'gem', h: H, h2: H, c: (S / 100) * THEME_TUNE_CMAX, tintFloor: 0 });
 }
 
 /**

@@ -115,32 +115,48 @@ const mix = (a: string, b: string, k: number): string => {
   return `#${x.map((v, i) => Math.round(v + (y[i]! - v) * k).toString(16).padStart(2, '0')).join('')}`;
 };
 
+/** «Сочная» цветность украшений из насыщенности 0…1: 0 при 0 %, ≈ 0,105 при стандартных 35 %, 0,21 при 100 %. */
+const vividChroma = (sat: number): number => 0.21 * (1 - Math.pow(1 - sat, 1.6));
+/** Стандартная насыщенность (35 %) — до неё формулы макета не тронуты. */
+const AURORA_SAT_STANDARD = 0.35;
+const CV_STANDARD = vividChroma(AURORA_SAT_STANDARD);
+const CV_FULL = vividChroma(1);
+
 /** Материал из оттенка (0…359°), насыщенности (0…100 %) и оформления — перенос compute() макета. */
 export function auroraMaterial(hue: number, saturation: number, appearance: AuroraAppearance): AuroraMaterial {
   const dark = appearance === 'dark';
   const SH = hue;
   const sat = saturation / 100;
   // «сочная» цветность украшений: 0 при 0 %, ≈ 0,105 при стандартных 35 %, 0,21 при 100 %; основа сцены и фона — спокойнее
-  const Cv = 0.21 * (1 - Math.pow(1 - sat, 1.6));
+  const Cv = vividChroma(sat);
   const Cb = Cv / 1.45;
+  // зачем (владелец 11.11: «насыщенность почти ничего не делает, есть только граничные состояния» → «да, растянуть»): в макете цветность поверхностей
+  // была min(потолок, Cv · множитель) — потолок достигался уже к ~56–65 % насыщенности, и последняя треть ползунка ничего не меняла.
+  // Теперь от 0 до стандартных 35 % формула прежняя, а от 35 % до 100 % цветность доходит до того же потолка ровно к 100 %:
+  // цвета при 0 %, 35 % и 100 % остались байт-в-байт как в утверждённом макете, изменилась только середина — ползунок работает на всей длине.
+  const rise = (cap: number, factor: number): number => {
+    if (sat <= AURORA_SAT_STANDARD) return Math.min(cap, Cv * factor);
+    const from = Math.min(cap, CV_STANDARD * factor);
+    return from + (cap - from) * ((Cv - CV_STANDARD) / (CV_FULL - CV_STANDARD));
+  };
 
   const a1c = ok(0.64, Cv, SH + 52);
-  const ctaFrom = ok(0.88, Math.min(0.1, Cv * 0.6), SH - 24);
-  const ctaTo = ok(0.93, Math.min(0.09, Cv * 0.5), SH + 44);
+  const ctaFrom = ok(0.88, rise(0.1, 0.6), SH - 24);
+  const ctaTo = ok(0.93, rise(0.09, 0.5), SH + 44);
 
   // три ступени тона и их страж
   const K = AURORA_PLATE_CONTRAST;
   const target = dark ? 1.5 + 0.9 * K : 1.2 + 0.4 * K;
-  const pgTop = dark ? ok(0.115 - 0.07 * K, Cb * 0.9, SH - 10) : ok(0.925 - 0.04 * K, Math.min(0.07, Cv * 0.45), SH - 6);
+  const pgTop = dark ? ok(0.115 - 0.07 * K, Cb * 0.9, SH - 10) : ok(0.925 - 0.04 * K, rise(0.07, 0.45), SH - 6);
   let pgL = 0.905;
-  const pgC = Math.min(0.07, Cv * 0.45);
+  const pgC = rise(0.07, 0.45);
   let pgMid = dark ? ok(0.085 - 0.05 * K, Cb * 0.8, SH) : ok(pgL, pgC, SH);
   const glowA = dark ? 0.22 - 0.13 * K : 0.5 - 0.15 * K;
   const glow1 = ok(dark ? 0.34 : 0.84, Cv * 0.8, SH + 50);
   const glow2 = ok(dark ? 0.3 : 0.84, Cv * 0.8, SH - 40);
   let Lc = 0.27;
-  const cardOf = (L: number): [string, string] => [ok(L + 0.05, Math.min(0.05, Cv * 0.32), SH + 30), ok(L, Math.min(0.04, Cv * 0.26), SH)];
-  let card: [string, string] = dark ? cardOf(Lc) : ['#FFFFFF', ok(0.99, Math.min(0.008, Cv * 0.06), SH + 30)];
+  const cardOf = (L: number): [string, string] => [ok(L + 0.05, rise(0.05, 0.32), SH + 30), ok(L, rise(0.04, 0.26), SH)];
+  let card: [string, string] = dark ? cardOf(Lc) : ['#FFFFFF', ok(0.99, rise(0.008, 0.06), SH + 30)];
   if (dark) {
     const worst = mix(pgTop, glow1, glowA);
     while (ratio(card[1], worst) < target && Lc < 0.44) {
@@ -153,13 +169,13 @@ export function auroraMaterial(hue: number, saturation: number, appearance: Auro
       pgMid = ok(pgL, pgC, SH);
     }
   }
-  const control = dark ? ok(Lc + 0.14, Math.min(0.05, Cv * 0.3), SH) : ok(0.905, Math.min(0.035, Cv * 0.28), SH);
+  const control = dark ? ok(Lc + 0.14, rise(0.05, 0.3), SH) : ok(0.905, rise(0.035, 0.28), SH);
   const plateContrast = ratio(card[1], dark ? mix(pgTop, glow1, glowA) : pgMid);
 
   // сцена «Рассвет»
-  const Cs = Math.min(0.11, Cv * 0.7);
-  const sun = ok(0.88, Math.min(0.1, Cv * 0.6), SH + 55);
-  const sun2 = ok(0.8, Math.min(0.13, Cv * 0.75), SH + 38);
+  const Cs = rise(0.11, 0.7);
+  const sun = ok(0.88, rise(0.1, 0.6), SH + 55);
+  const sun2 = ok(0.8, rise(0.13, 0.75), SH + 38);
   const sA = ok(0.34, Cs, SH - 18);
   const sB = ok(0.46, Cs, SH + 14);
   const sC = ok(0.56, Cs * 0.9, SH + 40);
@@ -181,7 +197,7 @@ export function auroraMaterial(hue: number, saturation: number, appearance: Auro
     cardFrom: card[0],
     cardTo: card[1],
     control,
-    secondary: dark ? ok(0.88, Math.min(0.03, Cv * 0.2), SH) : null,
+    secondary: dark ? ok(0.88, rise(0.03, 0.2), SH) : null,
     shadow: rgba(shadowHex, dark ? 0.95 : 0.34),
     shadowSoft: dark ? null : rgba(shadowHex, 0.1),
     ctaFrom,

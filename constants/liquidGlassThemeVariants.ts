@@ -41,7 +41,12 @@ export function resolveLiquidGlassAppearance(value: unknown): LiquidGlassAppeara
 }
 
 type Family = 'gem' | 'metal' | 'nature' | 'night';
-export type LiquidGlassVivid = Readonly<{ fam: Family; h: number; h2: number; c: number }>;
+// зачем (владелец 11.11: «насыщенность почти ничего не делает» → «да, растянуть»): tintFloor — нижний порог тона светлого оформления. У именных тем он 0,006
+// (фон никогда не серый), из-за него у тем-ползунков от 0 до 35 % насыщенности светлое оформление не менялось вовсе. Темы-ползунки передают 0:
+// при 0 % фон чисто серый и набирает цвет с первого процента; при 35 % и выше значения прежние.
+export type LiquidGlassVivid = Readonly<{ fam: Family; h: number; h2: number; c: number; tintFloor?: number }>;
+const LIGHT_TINT_FLOOR = 0.006;
+const lightTint = (v: LiquidGlassVivid): number => Math.max(v.tintFloor ?? LIGHT_TINT_FLOOR, Math.min(0.016, v.c * 0.11));
 
 /** Яркий двойник каждой темы — `VIVID` из themes-v2-proposals.js (ключи тем прежние). */
 export const LIQUID_GLASS_VIVID: Readonly<Record<string, LiquidGlassVivid>> = Object.freeze({
@@ -197,7 +202,7 @@ function darkMaxBase(v: LiquidGlassVivid, t: LiquidGlassBaseTokens): LiquidGlass
 /** Светлое оформление: фон в оттенке темы, белые карточки, тёмный текст с оттенком темы. */
 function lightBase(v: LiquidGlassVivid, level: LiquidGlassColorLevel): LiquidGlassBaseTokens {
   const { h, h2, c } = v;
-  const tn = Math.max(0.006, Math.min(0.016, c * 0.11));
+  const tn = lightTint(v);
   const max = level === 'max';
   const text = oklchToHex(0.21, tn * 1.3, h);
   const card = max ? oklchToHex(0.993, c * 0.08, h) : oklchToHex(0.997, tn * 0.15, h);
@@ -242,7 +247,7 @@ function whiteSafe(maxL: number, chroma: number, hue: number): string {
 
 function lightRoles(v: LiquidGlassVivid, t: LiquidGlassBaseTokens, level: LiquidGlassColorLevel): LiquidGlassAccentRoles {
   const { fam, h, h2, c } = v;
-  const tn = Math.max(0.006, Math.min(0.016, c * 0.11));
+  const tn = lightTint(v);
   const calm = level === 'calm';
   const max = level === 'max';
   const shadowTint = oklchA(0.35, c * 0.6 + 0.01, h, 0.16);

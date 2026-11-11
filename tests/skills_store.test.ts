@@ -5,7 +5,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
-  __skillStoreTestHooks as hooks, parseSkillsState, peekSkills, recordSkillAction, refreshSkills, subscribeSkills,
+  __skillStoreTestHooks as hooks, parseSkillsState, peekSkills, recordSkillAction, refreshSkills, skillWeekGains, subscribeSkills,
 } from '../modules/skills/skill_store';
 
 const NOON = new Date(2026, 10, 11, 12, 0, 0).getTime();
@@ -99,11 +99,27 @@ it('отклонённое действие ничего не пишет', async
   expect(setItem).not.toHaveBeenCalled();
 });
 
+it('прирост за неделю считается с понедельника и обнуляется на новой неделе', async () => {
+  await AsyncStorage.setItem('skills_v1:owner-a', JSON.stringify({ v: 1, totals: { vocab: 40 }, ledger: {}, week: { key: '2026-11-02', base: { vocab: 10 } } }));
+  // 11.11.2026 — среда, неделя началась 09.11: запись прошлой недели прирост не даёт
+  const first = await refreshSkills();
+  expect(first.week.key).toBe('2026-11-09');
+  expect(skillWeekGains(first).vocab).toBe(0);
+  await recordSkillAction({ action: 'recall_written', itemKey: 'w1' });
+  const mid = peekSkills();
+  expect(mid ? skillWeekGains(mid).vocab : -1).toBe(2);
+  now = NOON + 5 * DAY_MS; // понедельник 16.11
+  const rolled = await refreshSkills();
+  expect(rolled.week.key).toBe('2026-11-16');
+  expect(skillWeekGains(rolled).vocab).toBe(0);
+  expect(rolled.totals.vocab).toBe(42);
+});
+
 it('мусор на диске не ломает чтение', () => {
   jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-  expect(parseSkillsState('{oops', 'o', '2026-11-11').totals.vocab).toBe(0);
+  expect(parseSkillsState('{oops', 'o', '2026-11-11', '2026-11-09').totals.vocab).toBe(0);
   const dirty = JSON.stringify({ totals: { vocab: -5, speed: 'x', grammar: 12 }, ledger: { day: '2026-11-10', itemHits: { a: 2 } } });
-  const state = parseSkillsState(dirty, 'o', '2026-11-11');
+  const state = parseSkillsState(dirty, 'o', '2026-11-11', '2026-11-09');
   expect(state.totals).toMatchObject({ vocab: 0, speed: 0, grammar: 12 });
   expect(state.ledger).toEqual({ day: '2026-11-11', itemHits: {}, actionHits: {} });
 });

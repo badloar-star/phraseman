@@ -29,6 +29,14 @@ export interface SkillsState {
   readonly ownerKey: string;
   readonly totals: SkillTotals;
   readonly ledger: SkillDayLedger;
+  /** Итоги на начало текущей недели — из них считается прирост «за неделю» на экране «Навыки». */
+  readonly week: SkillWeekBase;
+}
+
+export interface SkillWeekBase {
+  /** Понедельник недели, локальный день `YYYY-MM-DD`. */
+  readonly key: string;
+  readonly base: SkillTotals;
 }
 
 export type SkillsDeps = Readonly<{
@@ -84,6 +92,30 @@ function localDayKey(nowMs: number): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 }
 
+/** Понедельник недели, в которую попадает момент `nowMs` (локальное время). */
+function localWeekKey(nowMs: number): string {
+  const d = new Date(nowMs);
+  const sinceMonday = (d.getDay() + 6) % 7;
+  return localDayKey(new Date(d.getFullYear(), d.getMonth(), d.getDate() - sinceMonday).getTime());
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+function cleanTotals(value: unknown): SkillTotals {
+  const raw = isRecord(value) ? value : {};
+  return Object.fromEntries(SKILL_IDS.map((skill) => {
+    const n = raw[skill];
+    return [skill, typeof n === 'number' && Number.isFinite(n) && n > 0 ? n : 0];
+  })) as Record<SkillId, number>;
+}
+
+/** Сколько очков каждый навык набрал с начала недели. */
+export function skillWeekGains(state: SkillsState): SkillTotals {
+  return Object.fromEntries(SKILL_IDS.map((skill) => [skill, Math.max(0, state.totals[skill] - state.week.base[skill])])) as Record<SkillId, number>;
+}
+
 function serialized<T>(work: () => Promise<T>): Promise<T> {
   const run = queue.then(work, work);
   queue = run.catch((error: unknown) => {
@@ -103,10 +135,6 @@ function publish(next: SkillsState | null): void {
   }
 }
 
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === 'object' && value !== null && !Array.isArray(value);
-}
-
 function cleanCounts(value: unknown): Record<string, number> {
   if (!isRecord(value)) return {};
   return Object.fromEntries(
@@ -115,8 +143,8 @@ function cleanCounts(value: unknown): Record<string, number> {
 }
 
 /** Разбор содержимого диска: что не число или меньше нуля — обнуляется, чужой день журнала — отбрасывается позже. */
-export function parseSkillsState(raw: string | null, ownerKey: string, dayKey: string): SkillsState {
-  const empty: SkillsState = { ownerKey, totals: EMPTY_SKILL_TOTALS, ledger: emptySkillDayLedger(dayKey) };
+export function parseSkillsState(raw: string | null, ownerKey: string, dayKey: string, weekKey: string): SkillsState {
+  const empty: SkillsState = { ownerKey, totals: EMPTY_SKILL_TOTALS, ledger: emptySkillDayLedger(dayKey), week: { key: weekKey, base: EMPTY_SKILL_TOTALS } };
   if (!raw) return empty;
   let parsed: unknown;
   try {
@@ -129,21 +157,20 @@ export function parseSkillsState(raw: string | null, ownerKey: string, dayKey: s
     console.warn(`${LOG} parse:not_object ${JSON.stringify({ action: 'start_empty' })}`);
     return empty;
   }
-  const rawTotals = isRecord(parsed.totals) ? parsed.totals : {};
-  const totals = Object.fromEntries(SKILL_IDS.map((skill) => {
-    const value = rawTotals[skill];
-    return [skill, typeof value === 'number' && Number.isFinite(value) && value > 0 ? value : 0];
-  })) as Record<SkillId, number>;
+  const totals = cleanTotals(parsed.totals);
   const rawLedger = isRecord(parsed.ledger) ? parsed.ledger : {};
   const ledger: SkillDayLedger = rawLedger.day === dayKey
     ? { day: dayKey, itemHits: cleanCounts(rawLedger.itemHits), actionHits: cleanCounts(rawLedger.actionHits) }
     : emptySkillDayLedger(dayKey);
-  return { ownerKey, totals, ledger };
+  // зачем: запись прошлой недели не должна показывать старый прирост — новая неделя начинается с текущих итогов
+  const rawWeek = isRecord(parsed.week) ? parsed.week : {};
+  const week: SkillWeekBase = rawWeek.key === weekKey ? { key: weekKey, base: cleanTotals(rawWeek.base) } : { key: weekKey, base: totals };
+  return { ownerKey, totals, ledger, week };
 }
 
 async function persist(state: SkillsState): Promise<boolean> {
   try {
-    await AsyncStorage.setItem(`${STATE_KEY_PREFIX}${state.ownerKey}`, JSON.stringify({ v: 1, totals: state.totals, ledger: state.ledger }));
+    await AsyncStorage.setItem(`${STATE_KEY_PREFIX}${state.ownerKey}`, JSON.stringify({ v: 1, totals: state.totals, ledger: state.ledger, week: state.week }));
     return true;
   } catch (error) {
     console.warn(`${LOG} persist:failed ${JSON.stringify({ ownerKey: state.ownerKey.slice(0, 8), error: errText(error), status: 'stays_in_memory' })}`);
@@ -155,7 +182,14 @@ async function persist(state: SkillsState): Promise<boolean> {
 async function ensureLoaded(): Promise<SkillsState> {
   const ownerKey = (await deps.ownerStableId()) ?? ANON_OWNER;
   const dayKey = localDayKey(deps.now());
-  if (current && current.ownerKey === ownerKey) return current;
+  const weekKey = localWeekKey(deps.now());
+  if (current && current.ownerKey === ownerKey) {
+    if (current.week.key === weekKey) return current;
+    // зачем: приложение пережило полночь воскресенья без перезапуска — неделя начинается заново с текущих итогов
+    const rolled: SkillsState = { ...current, week: { key: weekKey, base: current.totals } };
+    publish(rolled);
+    return rolled;
+  }
   let raw: string | null = null;
   try {
     raw = await AsyncStorage.getItem(`${STATE_KEY_PREFIX}${ownerKey}`);
@@ -163,7 +197,7 @@ async function ensureLoaded(): Promise<SkillsState> {
     // зачем: сбой чтения не должен ронять режим — начинаем с пустого, но причина видна в журнале
     console.warn(`${LOG} load:read_failed ${JSON.stringify({ ownerKey: ownerKey.slice(0, 8), error: errText(error), action: 'start_empty' })}`);
   }
-  const state = parseSkillsState(raw, ownerKey, dayKey);
+  const state = parseSkillsState(raw, ownerKey, dayKey, weekKey);
   publish(state);
   return state;
 }
@@ -181,7 +215,7 @@ export function recordSkillAction(event: SkillActionEvent): Promise<SkillRecordR
     if (!changed && !unsaved) {
       return { skill: award.skill, points: 0, skipped: award.skipped, levelUps: [], saved: true };
     }
-    const next: SkillsState = { ownerKey: before.ownerKey, totals, ledger: award.ledger };
+    const next: SkillsState = { ownerKey: before.ownerKey, totals, ledger: award.ledger, week: before.week };
     publish(next);
     const saved = await persist(next);
     unsaved = !saved;

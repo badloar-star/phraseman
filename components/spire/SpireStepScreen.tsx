@@ -222,7 +222,8 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
     : null;
   const reportText = task && (typeof task.payload.phrase === 'string' || typeof task.payload.prompt === 'string')
     ? String(task.payload.phrase ?? task.payload.prompt)
-    : task?.taskId;
+    // зачем (владелец 11.11.2026): у задания новой механики текст лежит в payload.ui — в жалобе показываем его, а не номер задания
+    : spireExpandedReportText(task?.payload) ?? task?.taskId;
   // зачем (координатор 24.10, замер [PEAK-PERF] 1→10): «решить задание» — только отладочная сборка, строкой рядом с «пожаловаться»
   // (не поверх экрана); в релизе __DEV__ = false — файл кнопки не подключается
   // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -377,3 +378,10 @@ const s = StyleSheet.create({
 });
 
 export default memo(SpireStepScreen);
+
+/** Текст задания новой механики для окна жалобы: английская формулировка есть у каждого задания пула. */
+function spireExpandedReportText(payload: Readonly<Record<string, unknown>> | undefined): string | null {
+  const ui = payload?.ui as { en?: { prompt?: unknown } } | undefined;
+  const prompt = ui?.en?.prompt;
+  return typeof prompt === 'string' && prompt.trim().length > 0 ? prompt : null;
+}

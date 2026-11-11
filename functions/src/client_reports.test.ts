@@ -248,6 +248,60 @@ describe('submitClientReport', () => {
     expect(storageDownloadCalls).toBe(1);
   });
 
+  // зачем (владелец 11.11.2026, «Да, доделай»): задание новой механики стоит в накладке рядом с пакетом — жалоба на него
+  // должна приниматься и снимать задание, а без накладки (или с чужой) отклоняться, как жалоба на несуществующее задание.
+  test('accepts a report on a new-mechanic task placed by the published overlay and quarantines it', async () => {
+    jest.setSystemTime(new Date('2026-09-28T12:00:00.000Z'));
+    const expandedId = 'peak-expanded-es-b003-word_repair-05';
+    const packBody = {
+      schema: 'spire-pack-v1', weekId: '2026-W40', lang: 'es', tier: 2,
+      floors: [{ floor: 1, steps: [{ step: 1, sets: [{ tasks: [{
+        taskId: 'arena-es-fill_gap-1-0000', mode: 'fill_gap', kind: 'choice', difficulty: 1, payload: {},
+      }] }] }] }],
+    };
+    const { spirePackHash } = require('./spire_pack_contract');
+    const packHash = spirePackHash(packBody);
+    storageObjects.set('spire_packs/es/2/2026-W40.json', {
+      bytes: Buffer.from(JSON.stringify({ ...packBody, packHash }), 'utf8'), metadata: { packHash },
+    });
+    const request = {
+      kind: 'spire_task_report', expectedStableUid: 'stable-reporter', idempotencyKey: 'spire-report-expanded-1',
+      payload: {
+        taskId: expandedId, studyTarget: 'es', weekId: '2026-W40', tier: 2, packHash,
+        floor: 1, step: 1, setIndex: 0, taskIndex: 0, reason: 'Подходят два варианта',
+      },
+    };
+
+    // накладки нет — отказ, ничего не записано
+    await expect(callSubmitClientReport(request)).rejects.toMatchObject({ message: 'spire_task_report_pack_unavailable' });
+    expect(reportDocs('error_reports')).toHaveLength(0);
+
+    const overlay = {
+      schema: 'spire-expanded-overlay-v1', weekId: '2026-W40', lang: 'es', tier: 2, basePackHash: packHash,
+      tasks: { [expandedId]: { taskId: expandedId, mode: 'word_repair', kind: 'expanded', difficulty: 2, payload: {} } },
+      slots: [[1, 1, 0, 0, expandedId]],
+    };
+    // накладка от другого пакета — отказ
+    storageObjects.set('spire_packs/es/2/2026-W40.expanded.json', {
+      bytes: Buffer.from(JSON.stringify({ ...overlay, basePackHash: 'sp1_other_pack_hash' }), 'utf8'), metadata: {},
+    });
+    await expect(callSubmitClientReport({ ...request, idempotencyKey: 'spire-report-expanded-2' }))
+      .rejects.toMatchObject({ message: 'spire_task_report_pack_mismatch' });
+    expect(reportDocs('error_reports')).toHaveLength(0);
+
+    storageObjects.set('spire_packs/es/2/2026-W40.expanded.json', {
+      bytes: Buffer.from(JSON.stringify(overlay), 'utf8'), metadata: {},
+    });
+    await callSubmitClientReport({ ...request, idempotencyKey: 'spire-report-expanded-3' });
+
+    expect(reportDocs('error_reports')).toHaveLength(1);
+    expect(reportDocs('error_reports')[0]).toMatchObject({
+      contentScope: 'spire', spireTaskId: expandedId, spireLang: 'es', spireTaskKind: 'expanded', spireTaskMode: 'word_repair',
+      spireQuarantineState: 'quarantined',
+    });
+    expect(docs.get('config/spire_task_flags_es')).toMatchObject({ flagged: { [expandedId]: { taskId: expandedId } } });
+  });
+
   test('rejects finalized replay when the same idempotency key carries a different canonical payload', async () => {
     jest.setSystemTime(new Date('2026-09-28T12:00:00.000Z'));
     const packBody = {

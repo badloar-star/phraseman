@@ -11,6 +11,8 @@ import {
 } from './quality_daily_aggregate';
 import {
   parseSpireTaskReportClaim,
+  isSpireExpandedTaskClaim,
+  verifySpireTaskClaimAgainstOverlay,
   verifySpireTaskClaimAgainstPack,
   type VerifiedSpireTaskClaim,
 } from './spire_task_report_contract';
@@ -26,6 +28,7 @@ import {
   spireTaskIncidentId,
 } from './spire_task_incident_contract';
 import { spireWeekId } from './spire_groups';
+import { spireExpandedOverlayPath } from './spire_expanded_overlay';
 import { spireWeekStartMs } from './spire_residents';
 
 const REGION = 'us-central1';
@@ -485,6 +488,22 @@ async function verifyPublishedSpireTaskClaim(payload: Record<string, unknown>): 
     const [bytes] = await file.download({ validation: 'crc32c' });
     if (bytes.byteLength !== size) throw new Error('spire_task_report_pack_unavailable');
     const pack = JSON.parse(bytes.toString('utf8')) as unknown;
+    if (isSpireExpandedTaskClaim(claim)) {
+      // зачем (владелец 11.11.2026, «Да, доделай»): задание новой механики лежит не в пакете, а в накладке рядом с ним —
+      // сверяем оба файла. Размер ограничен так же, как у пакета; нет накладки или она не от этого пакета — отказ.
+      const overlayPath = spireExpandedOverlayPath(claim.studyTarget, claim.tier, claim.weekId);
+      const overlayFile = admin.storage().bucket().file(overlayPath);
+      const [overlayMetadata] = await overlayFile.getMetadata();
+      const overlaySize = Number(overlayMetadata.size ?? 0);
+      if (!Number.isFinite(overlaySize) || overlaySize <= 0 || overlaySize > 12 * 1024 * 1024) {
+        throw new Error('spire_task_report_pack_unavailable');
+      }
+      const [overlayBytes] = await overlayFile.download({ validation: 'crc32c' });
+      if (overlayBytes.byteLength !== overlaySize) throw new Error('spire_task_report_pack_unavailable');
+      const overlay = JSON.parse(overlayBytes.toString('utf8')) as unknown;
+      const verifiedExpanded = verifySpireTaskClaimAgainstOverlay(claim, pack, publishedPackHash, overlay);
+      return { ...verifiedExpanded, __verifiedSpireTaskClaim: true };
+    }
     const verified = verifySpireTaskClaimAgainstPack(claim, pack, publishedPackHash);
     return { ...verified, __verifiedSpireTaskClaim: true };
   } catch (error) {

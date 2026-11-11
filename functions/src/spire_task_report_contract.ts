@@ -5,7 +5,9 @@ import {
   type SpirePack,
 } from './spire_pack_contract';
 import type { ArenaStudyTarget } from './arena_target_registry';
-import { isSpireFlaggableStudyTarget, spireTaskIdBelongsToTarget } from './spire_task_flag_contract';
+import { SPIRE_EXPANDED_OVERLAY_SCHEMA } from './spire_expanded_overlay';
+import { SPIRE_EXPANDED_KIND } from './spire_expanded_task';
+import { SPIRE_EXPANDED_TASK_ID_PREFIX, isSpireFlaggableStudyTarget, spireTaskIdBelongsToTarget } from './spire_task_flag_contract';
 
 export type SpireTaskReportClaim = Readonly<{
   taskId: string;
@@ -94,6 +96,67 @@ export function verifySpireTaskClaimAgainstPack(
     && row(step).step === claim.step
     && String(task.taskId ?? '') === claim.taskId;
   if (!exact) throw new Error('spire_task_report_pack_mismatch');
+  return Object.freeze({
+    ...claim,
+    mode: String(task.mode ?? '').slice(0, 80),
+    kind: String(task.kind ?? '').slice(0, 80),
+    difficulty: Number(task.difficulty) || 0,
+  });
+}
+
+/** Жалоба на задание новой механики: такого номера в пакете нет, оно лежит в накладке рядом с пакетом. */
+export function isSpireExpandedTaskClaim(claim: SpireTaskReportClaim): boolean {
+  return claim.taskId.startsWith(`${SPIRE_EXPANDED_TASK_ID_PREFIX}${claim.studyTarget}-`);
+}
+
+/**
+ * Сверка жалобы на задание новой механики (владелец 11.11.2026). Задание стоит не в пакете, а в накладке
+ * `{weekId}.expanded.json`, поэтому проверяются ОБА файла:
+ *   - пакет — тот самый опубликованный (схема, неделя, язык, шпиль, отпечаток из метаданных и пересчитанный отпечаток
+ *     совпадают с жалобой), и названный слот в нём существует;
+ *   - накладка — собрана именно для этого пакета (basePackHash) и ставит именно это задание именно в этот слот.
+ * Любое расхождение — тот же отказ `spire_task_report_pack_mismatch`, что и у обычного задания: жалобой нельзя
+ * снять задание, которого игрок в этом слоте видеть не мог.
+ */
+export function verifySpireTaskClaimAgainstOverlay(
+  claim: SpireTaskReportClaim,
+  rawPack: unknown,
+  publishedPackHash: string,
+  rawOverlay: unknown,
+): VerifiedSpireTaskClaim {
+  const pack = row(rawPack) as Partial<SpirePack>;
+  const floors = Array.isArray(pack.floors) ? pack.floors : [];
+  const floor = floors.find((candidate) => row(candidate).floor === claim.floor);
+  const steps = Array.isArray(row(floor).steps) ? row(floor).steps as unknown[] : [];
+  const step = steps.find((candidate) => row(candidate).step === claim.step);
+  const sets = Array.isArray(row(step).sets) ? row(step).sets as unknown[] : [];
+  const baseTasks = Array.isArray(row(sets[claim.setIndex]).tasks) ? row(sets[claim.setIndex]).tasks as unknown[] : [];
+  const { packHash: _embeddedHash, ...packBody } = pack;
+  const packExact = pack.schema === SPIRE_PACK_SCHEMA
+    && pack.weekId === claim.weekId
+    && pack.lang === claim.studyTarget
+    && pack.tier === claim.tier
+    && pack.packHash === claim.packHash
+    && publishedPackHash === claim.packHash
+    && spirePackHash(packBody) === claim.packHash
+    && row(floor).floor === claim.floor
+    && row(step).step === claim.step
+    && String(row(baseTasks[claim.taskIndex]).taskId ?? '') !== '';
+  const overlay = row(rawOverlay);
+  const slots = Array.isArray(overlay.slots) ? overlay.slots as unknown[] : [];
+  const slotMatches = slots.some((slot) => Array.isArray(slot) && slot.length === 5
+    && slot[0] === claim.floor && slot[1] === claim.step && slot[2] === claim.setIndex
+    && slot[3] === claim.taskIndex && slot[4] === claim.taskId);
+  const task = row(row(overlay.tasks)[claim.taskId]);
+  const overlayExact = overlay.schema === SPIRE_EXPANDED_OVERLAY_SCHEMA
+    && overlay.weekId === claim.weekId
+    && overlay.lang === claim.studyTarget
+    && overlay.tier === claim.tier
+    && overlay.basePackHash === claim.packHash
+    && slotMatches
+    && task.taskId === claim.taskId
+    && task.kind === SPIRE_EXPANDED_KIND;
+  if (!isSpireExpandedTaskClaim(claim) || !packExact || !overlayExact) throw new Error('spire_task_report_pack_mismatch');
   return Object.freeze({
     ...claim,
     mode: String(task.mode ?? '').slice(0, 80),

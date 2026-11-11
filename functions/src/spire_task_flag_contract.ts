@@ -45,6 +45,9 @@ export function spireTaskFlagsDocId(lang: ArenaStudyTarget): string {
   return `spire_task_flags_${lang}`;
 }
 
+/** Начало номера задания новой механики; за ним идёт язык обучения. */
+export const SPIRE_EXPANDED_TASK_ID_PREFIX = 'peak-expanded-' as const;
+
 export function isSpireFlaggableStudyTarget(value: unknown): value is ArenaStudyTarget {
   return (SPIRE_FLAGGABLE_STUDY_TARGETS as readonly string[]).includes(String(value ?? ''));
 }
@@ -52,6 +55,12 @@ export function isSpireFlaggableStudyTarget(value: unknown): value is ArenaStudy
 export function spireTaskIdBelongsToTarget(taskId: unknown, studyTarget: ArenaStudyTarget): boolean {
   const value = String(taskId ?? '').trim();
   if (!value || value.length > 200 || !/^[A-Za-z0-9][A-Za-z0-9_:-]*$/u.test(value)) return false;
+  // зачем (владелец 11.11.2026, «Да, доделай»): задания двенадцати новых механик Пика носят номера автора
+  // `peak-expanded-{lang}-…` (content/spire-expanded). Без этой строки жалоба на такое задание отклонялась ещё до сверки
+  // с пакетом, а оператор не мог снять его вручную. ВАЖНО при выкладке: правило читают строгий разбор флагов в сборке
+  // пакета, приём жалоб и админские функции — их выкладывают ВМЕСТЕ, иначе снятое новое задание делает документ флагов
+  // «битым» для функции со старым правилом (сборка пакета языка уходит в отказ spire_task_flags_invalid).
+  if (value.startsWith(`${SPIRE_EXPANDED_TASK_ID_PREFIX}${studyTarget}-`)) return true;
   return studyTarget === 'en'
     ? value.startsWith('arena-en-') || value.startsWith('spire-en-')
     : value.startsWith(`arena-${studyTarget}-`);

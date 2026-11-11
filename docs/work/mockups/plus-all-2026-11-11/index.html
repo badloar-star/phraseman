@@ -34,15 +34,16 @@ iframe{display:block;width:100%;border:0;border-top:1px solid var(--line);border
 </style>
 </head>
 <body>
-<div class="top"><div class="in"><b>Plus — сводный макет</b><a href="#scen">Сценарии</a><a href="#store">Магазин недоступен</a><a href="#soft">Карточки и пуши</a></div></div>
+<div class="top"><div class="in"><b>Plus — сводный макет</b><a href="#scen">Сценарии</a><a href="#store">Магазин недоступен</a><a href="#soft">Истории Plus</a><a href="#push">Пуши</a></div></div>
 
 <div class="head">
   <h1>Всё, что сделано и будет сделано по Plus</h1>
-  <p class="lead">Три блока. У каждого метка: что уже в приложении, что вы одобрили и ждёт кода, а что ждёт вашего решения.</p>
+  <p class="lead">Четыре блока. У каждого метка: что уже в приложении, что вы одобрили и ждёт кода, а что ждёт вашего решения.</p>
   <div class="sum">
     <a href="#scen"><span class="st ok">Уже в приложении</span><b>Plus открывает все сценарии</b><span>Каталог диалогов у подписчика: было и стало.</span></a>
     <a href="#store"><span class="st todo">Одобрено, в коде нет</span><b>Окно «магазин недоступен»</b><span>Android — бот в Telegram, iPhone — поддержка.</span></a>
-    <a href="#soft"><span class="st wait">Ждёт одобрения текстов</span><b>Карточки-предложения и пуши</b><span>Вехи серии, недельный итог, второй диалог, пуши 4/7/14.</span></a>
+    <a href="#soft"><span class="st wait">Ждёт одобрения вида</span><b>Предложения Plus в «Историях»</b><span>Три кадра: серия, итог недели, второй диалог.</span></a>
+    <a href="#push"><span class="st todo">Написано, проверяется</span><b>Пуши на 4, 7 и 14 день</b><span>Отсчёт от установки, тексты прежние.</span></a>
   </div>
 </div>
 
@@ -59,12 +60,18 @@ iframe{display:block;width:100%;border:0;border-top:1px solid var(--line);border
 </section>
 
 <section id="soft">
-  <div class="sh"><span class="st wait">Ждёт одобрения текстов</span><h2>3. Карточки-предложения и пуши</h2>
-    <p>Карточка уже есть в приложении после первого урока. Три новых места и их тексты — предложение.</p></div>
-  <iframe title="Мягкие предложения и пуши" src="../plus-soft-offers-2026-11-11/index.html"></iframe>
+  <div class="sh"><span class="st wait">Ждёт одобрения вида</span><h2>3. Предложения Plus в «Историях»</h2>
+    <p>Вместо карточек внутри экранов — отдельные кадры в «Историях». Плеер живой: тап справа листает дальше, сверху можно сменить тему и светлое оформление.</p></div>
+  <iframe title="Предложения Plus в Историях" src="../../../design/v2-app/stories-plus-offers.html"></iframe>
 </section>
 
-<div class="foot">Здесь нет: экранов вокруг карточки (итог серии, недельный обзор, итог диалога) и правок статистики показов — у них нет вида.</div>
+<section id="push">
+  <div class="sh"><span class="st todo">Написано, проверяется</span><h2>4. Пуши на 4, 7 и 14 день</h2>
+    <p>Ниже — прежний макет: три пуша внизу страницы. Карточки на нём заменены историями из блока 3.</p></div>
+  <iframe title="Пуши о Plus" src="../plus-soft-offers-2026-11-11/index.html"></iframe>
+</section>
+
+<div class="foot">Здесь нет правок статистики показов — у них нет вида.</div>
 
 <script>
 // высота рамки = высота содержимого: одна прокрутка на всю страницу, а не четыре вложенных

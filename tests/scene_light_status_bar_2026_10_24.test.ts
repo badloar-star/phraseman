@@ -30,4 +30,17 @@ describe('светлая строка состояния на тёмных сц�
     await act(async () => { reportSeasonCoverTop({ mounted: false, atTop: true }); });
     expect(hook.result.current).toEqual({ mounted: false, atTop: true });
   });
+
+  // зачем (владелец 11.11, пересмотр обрезанных тестов): случай был вырезан целиком вместе с курсом занятий; живая часть возвращена
+  it('подключено: Главная — в оболочке вкладок, «Сегодня» — на своём экране', () => {
+    const tabs = readSource('app/(tabs)/_layout.tsx');
+    // 25.10 (срочно, «скролл дёрганый»): хуки — в листьях SceneStatusBarControllers, корень оболочки не перерисовывается от прокрутки; в самом корне хуков порога больше нет
+    expect(tabs).toContain('<HomeSceneStatusBarController scrollY={topFadeScroll?.scrollY} enabled={tabsFocused && HOME_SCENE_V2_ENABLED && visualIdx === 0} />');
+    expect(tabs).not.toContain('useAnimatedAtTop(');
+    const leaves = readSource('components/home/v2/scene/SceneStatusBarControllers.tsx');
+    expect(leaves).toContain("useSceneStatusBar('home', enabled && tint !== null && atTop, 'home_scene_under_clock', tint);");
+    const today = readSource('components/home/v2/today_scene/TodaySceneView.tsx');
+    expect(today).toContain("useSceneStatusBar('today', focused && sceneAtTop, 'today_scene_under_clock', tokens.sceneTop);");
+    expect(today).toContain('onScroll={onSceneScroll} scrollEventThrottle={32}');
+  });
 });

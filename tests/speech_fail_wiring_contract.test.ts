@@ -29,4 +29,10 @@ describe('«не засчитано»: проводка блока', () => {
 });
 
 describe('«не услышали слово»: только при reason === missing_words (R11)', () => {
+
+  // зачем (владелец 11.11, пересмотр обрезанных тестов): случай был вырезан целиком вместе с курсом занятий; живая часть возвращена
+  it('Карточки и урок строят блок только по причине missing_words', () => {
+    expect(read('app/flashcards_speaking_session.tsx')).toContain("reason?: unknown }).reason !== 'missing_words'");
+    expect(read('app/lesson1.tsx')).toContain("speakingResult.reason === 'missing_words'");
+  });
 });

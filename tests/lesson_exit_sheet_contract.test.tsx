@@ -14,6 +14,16 @@ const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(ROOT, rel),
 
 describe('окно выхода из урока снято (владелец 22.10)', () => {
 
+  // зачем (владелец 11.11, пересмотр обрезанных тестов): случай был вырезан целиком вместе с курсом занятий; живая часть возвращена
+  it('компонента окна нет, и урок его не подключает', () => {
+    expect(fs.existsSync(path.join(ROOT, 'components/lesson_exit/LessonExitSheet.tsx'))).toBe(false);
+    for (const rel of ['app/lesson1.tsx']) {
+      const src = read(rel);
+      expect([rel, src.includes('LessonExitSheet')]).toEqual([rel, false]);
+      expect([rel, /exitSheetOpen|setExitSheetOpen|confirmLessonExit|confirmEpisodeExit|lesson-exit-sheet|learning-v2-exit-sheet/.test(src)]).toEqual([rel, false]);
+    }
+  });
+
   it('lesson1: «назад» (кнопка и системный) — сразу выход; в паузе завершения — сразу итог; интро — тот же прямой выход', () => {
     const src = read('app/lesson1.tsx');
     expect(src).toContain('onHeaderBack={requestLessonExit}');

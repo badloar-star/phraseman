@@ -13,10 +13,6 @@
     "app/flashcards/MyPacksV2.tsx",
     "app/flashcards/PhraseCard.tsx",
     "app/flashcards_swipe.tsx",
-    "app/learning-v2/chapter-exam.tsx",
-    "app/learning-v2/session/[id].tsx",
-    "app/learning_v2_direct_session_player_v1.tsx",
-    "app/learning_v2_modes_showcase_run/[family].tsx",
     "app/mistakes_list.tsx",
     "app/referral_access_ended_modal.tsx"
   ]

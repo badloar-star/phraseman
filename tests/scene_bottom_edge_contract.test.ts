@@ -41,4 +41,21 @@ describe('Нижний край сцены: скруглён и не закры�
     expect(m).not.toBeNull();
     expect(Number(m![1])).toBeLessThan(0);
   });
+
+  // зачем (владелец 11.11, пересмотр обрезанных тестов): случай был вырезан целиком вместе с курсом занятий; живая часть возвращена
+  it(`у всех сцен нижний край скруглён радиусом ${BOTTOM_RADIUS} (Главная, Диалоги, Пик)`, () => {
+    const radii: Array<[string, RegExp]> = [
+      ['components/home/v2/scene/HomeSceneStage.tsx', /stage: \{[^}]*borderBottomLeftRadius: 28, borderBottomRightRadius: 28/],
+      ['components/dialogs/scene/DialogsSceneStage.tsx', /stage: \{[^}]*borderBottomLeftRadius: 28, borderBottomRightRadius: 28/],
+      ['components/spire/scene/SpireScene.tsx', /stage: \{[^}]*borderBottomLeftRadius: 28, borderBottomRightRadius: 28/],
+    ];
+    for (const [file, rx] of radii) expect(`${file}: ${rx.test(read(file))}`).toBe(`${file}: true`);
+  });
+
+  // зачем (владелец 11.11, пересмотр обрезанных тестов): случай был вырезан целиком вместе с курсом занятий; живая часть возвращена
+  it('сцены клипают содержимое по скруглению (overflow hidden), слой цвета не выходит за него', () => {
+    for (const file of ['components/home/v2/scene/HomeSceneStage.tsx', 'components/dialogs/scene/DialogsSceneStage.tsx', 'components/spire/scene/SpireScene.tsx']) {
+      expect(`${file}: ${/overflow: 'hidden'/.test(read(file))}`).toBe(`${file}: true`);
+    }
+  });
 });

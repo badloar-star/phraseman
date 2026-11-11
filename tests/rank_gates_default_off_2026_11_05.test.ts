@@ -22,6 +22,13 @@ describe('гейты по умолчанию выключены', () => {
     // зачем (05.11): значение по умолчанию живёт в app/remote_flags.ts (true); подпись/дефолт тумблера в Пульте обновит выкладка админки — тест проверяет, что ключ в Пульте есть
     expect(read('admin/v2/legacy.html')).toMatch(/key: 'rank_gates_enabled',\s+label: 'Главная по рангам/);
   });
+
+  // зачем (владелец 11.11, пересмотр обрезанных тестов): случай был вырезан целиком вместе с курсом занятий; живая часть возвращена
+  it('бонус +500 не читает флаг гейтов в завершении урока', () => {
+    for (const file of ['app/lesson_complete.tsx']) {
+      expect(read(file)).toMatch(/maybeGrantFirstLessonBonus\(defaultFirstLessonBonusDeps\(\(\) => true/);
+    }
+  });
 });
 
 describe('dev-принуждение флагов для E2E Сверки (без записи в боевой Пульт)', () => {

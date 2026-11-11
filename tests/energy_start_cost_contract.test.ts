@@ -193,4 +193,16 @@ describe('numeric energy v2 contract', () => {
       expect(source).toContain(`${latch}.current = false`);
     }
   });
+
+  // зачем (владелец 11.11, пересмотр обрезанных тестов): случай был вырезан целиком вместе с курсом занятий; живая часть возвращена
+  it('covers the recall paid-entry callsite', () => {
+    const recall = read('app/flashcards_recall_session.tsx');
+    expect(recall).toContain("useEnergySessionIntent(");
+    expect(recall).toContain("'flashcards_recall'");
+    // зачем (03.10): интент берётся под запись журнала (resolveEnergyIntentForRecord), а не из manifest.
+    expect(recall).toContain('confirmSpendOne(recordIntent)');
+    expect(recall).toContain('resolveEnergyIntentForRecord(');
+    expect(recall).toContain('activity="flashcards"');
+
+  });
 });

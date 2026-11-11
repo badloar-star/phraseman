@@ -42,11 +42,15 @@ test('видимые ru-строки занятия без механики, в�
   assert.deepEqual(bad, []);
 });
 
-test('шторка занятия не передаёт «≈ 5 минут» и «3 попытки», пустые плитки фактов не рисуются', () => {
+// зачем (11.11): шторка занятия удалена вместе с курсом — остаётся проверка, что список уроков не передаёт эти подписи
+test('список уроков не передаёт «≈ 5 минут» и «3 попытки»', () => {
   const lessons = fs.readFileSync(path.join(ROOT, 'app/(tabs)/lessons.tsx'), 'utf8');
   assert.doesNotMatch(lessons, /durationLabel=\{/);
   assert.doesNotMatch(lessons, /attemptsLabel=\{/);
-  const sheet = fs.readFileSync(path.join(ROOT, 'components/LearningV2SessionOutcomeSheet.tsx'), 'utf8');
-  assert.match(sheet, /\.filter\(\(stat\) => typeof stat\.value === "string" && stat\.value\.trim\(\)\.length > 0\)/);
-  assert.match(sheet, /locked \|\| stats\.length === 0 \? null/);
+});
+
+// зачем (владелец 11.11, пересмотр обрезанных тестов): случай был вырезан целиком вместе с курсом занятий; живая часть возвращена
+test('Пик без плашки «бета»', () => {
+  const title = fs.readFileSync(path.join(ROOT, 'components/spire/SpireHomeTitle.tsx'), 'utf8');
+  assert.doesNotMatch(title, /spire-beta-pill|SPIRE_BETA_LANGS/);
 });

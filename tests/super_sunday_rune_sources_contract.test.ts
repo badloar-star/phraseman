@@ -7,6 +7,20 @@ function read(relativePath: string): string {
 
 describe('Super Sunday live earn source wiring', () => {
 
+  // зачем (владелец 11.11, пересмотр обрезанных тестов): случай был вырезан целиком вместе с курсом занятий; живая часть возвращена
+  it('covers every live gameplay award boundary without multiplying practice twice on the server', () => {
+    const spin = read('app/level_spin_star_grants.ts');
+    const practiceClient = read('app/practice_rune_settlement.ts');
+    const practiceServer = read('functions/src/practice_rune_grant.ts');
+    const reportCompensation = read('app/report_reward_bundle.ts');
+
+    expect(spin).toContain('applySuperSundayRuneMultiplier(baseAmount, input.createdAtMs)');
+    expect(spin).toContain('levelSpinStarOperationAmountV1({ requestId, giftId, promotionEligibility, createdAtMs })');
+    expect(practiceClient).toContain('applySuperSundayRuneMultiplier(input.earnings.pendingRunes, createdAtMs)');
+    expect(practiceServer).not.toContain('applySuperSundayRuneMultiplier');
+    expect(reportCompensation).toContain("promotionEligibility: 'excluded_compensation'");
+  });
+
   // зачем (01.10): награды «Вместе» монетами сняты вместе с подарками; сторож — что удвоение не вернулось.
   it('Friends together no longer awards doubled runes (D147)', () => {
     // зачем: D78 — серверная Арена (arena_v2.ts/arena_expansion.ts) удалена; её рунные награды больше не начисляются.

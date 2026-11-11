@@ -18,4 +18,12 @@ describe('new mistake capture source coverage', () => {
     const source = read(relative);
     expect(source).toMatch(/capture(ObjectiveAttempt|CurrentAccountObjectiveAttempt)/);
   });
+
+  // зачем (владелец 11.11, пересмотр обрезанных тестов): случай был вырезан целиком вместе с курсом занятий; живая часть возвращена
+  test('manual diagnostic skip is not captured', () => {
+    const diagnostic = read('app/diagnostic_test.tsx');
+    const skipStart = diagnostic.indexOf('const handleSkip = () =>');
+    const skip = diagnostic.slice(skipStart, diagnostic.indexOf('handleSkipRef.current = handleSkip', skipStart));
+    expect(skip).not.toContain('captureDiagnosticWrong');
+  });
 });

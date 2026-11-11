@@ -31,6 +31,8 @@ const NAV_GUARD_MS = 700;
 const COPY = {
   title: { ru: 'Разминка', uk: 'Розминка', es: 'Calentamiento', en: 'Warm-up' },
   headline: { ru: '3 игры\nна 4 минуты', uk: '3 гри\nна 4 хвилини', es: '3 juegos\nen 4 minutos', en: '3 games\nin 4 minutes' },
+  // зачем (первый запуск на телефоне 11.11): для языка с одной доступной игрой заголовок обещал «3 игры» — обещаем то, что есть
+  headlineShort: { ru: 'Игра дня', uk: 'Гра дня', es: 'Juego del día', en: 'Game of the day' },
   start: { ru: 'Начать', uk: 'Почати', es: 'Empezar', en: 'Start' },
   again: { ru: 'Сыграть ещё раз', uk: 'Зіграти ще раз', es: 'Jugar otra vez', en: 'Play again' },
   complete: { ru: 'Разминка пройдена', uk: 'Розминку пройдено', es: 'Calentamiento completado', en: 'Warm-up complete' },
@@ -113,7 +115,7 @@ export default function WarmupScreen() {
 
           <View style={s.head}>
             <Text style={[s.over, { color: p.textSecondary }]}>{date}</Text>
-            <Text style={[s.big, { color: p.text }]}>{triLang(lang, COPY.headline)}</Text>
+            <Text style={[s.big, { color: p.text }]}>{triLang(lang, state.games.length >= 3 ? COPY.headline : COPY.headlineShort)}</Text>
           </View>
 
           <ScrollView

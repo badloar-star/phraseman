@@ -76,7 +76,8 @@ const s = StyleSheet.create({
   body: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 8 },
   rows: { flex: 1, gap: 9 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 10, height: 20 },
-  name: { width: 88, fontSize: 14, lineHeight: 18, fontWeight: '600' },
+  // зачем: 88 из макета обрезало «Социальный» на телефоне на одну букву — колонка шире на 10
+  name: { width: 98, fontSize: 14, lineHeight: 18, fontWeight: '600' },
   level: { width: 22, textAlign: 'right', fontSize: 16, lineHeight: 20, fontWeight: '800', fontVariant: ['tabular-nums'] },
 });
 

@@ -15,6 +15,7 @@ import { resolveThemedArt } from './theme/themed_art_registry';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useGlobalSearchParams } from 'expo-router';
 import { inferExpoSpeechLanguage, useAudio } from '../hooks/use-audio';
+import { warmCourseVoiceSoon } from '../hooks/course_voice_warm';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
@@ -221,6 +222,14 @@ function DailyPhraseCard({
     }).catch(noteSwallowedHandler('DailyPhraseCard:useEffect.getTodayPhraseForTarget'));
     return () => { cancelled = true; unsubscribePeek(); };
   }, [dailyPhraseGateOpen, lang, studyTarget]);
+
+  // зачем (владелец 11.11.2026: фраза дня звучит записью, «чтобы юзеры не ждали загрузку»): запись сегодняшней фразы (один
+  // файл ≈15 КБ) скачивается на диск вскоре после показа карточки — нажатие на звук играет её сразу. Задержка уступает
+  // первому кадру Главной; нет записи или сети — прозвучит голос телефона.
+  const phraseEnglishForWarm = dailyPhraseGateOpen ? (phrase?.english ?? '') : '';
+  useEffect(() => {
+    if (phraseEnglishForWarm) warmCourseVoiceSoon('daily_phrase', [phraseEnglishForWarm], inferExpoSpeechLanguage(phraseEnglishForWarm, studyTarget));
+  }, [phraseEnglishForWarm, studyTarget]);
 
   // React to "phrase of the day" widget deep links:
   //   phraseman://phrase/<id>        -> openPhrase=<id>        (open details)

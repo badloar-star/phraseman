@@ -19,7 +19,8 @@ describe('phrase audio lookup — новая озвучка курса без к
     expect(fs.existsSync(path.join(ROOT, 'app', 'phrase_audio_url_map.generated.ts'))).toBe(false);
   });
 
-  it.each(['', '   ', 'A long shot', 'zzz такой фразы в курсе нет'])('для незаписанного текста %j ссылки нет — говорит голос телефона', (text) => {
+  // 11.11: «A long shot» стала записанной фразой дня — пример незаписанного текста заменён
+  it.each(['', '   ', 'A purple teapot sings loudly', 'zzz такой фразы в курсе нет'])('для незаписанного текста %j ссылки нет — говорит голос телефона', (text) => {
     expect(getPlayablePhraseAudioUrl(text)).toBeUndefined();
   });
 

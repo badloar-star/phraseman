@@ -52,14 +52,16 @@ describe('karaokeIndexAtTime', () => {
     });
   }
 
-  it('work.say: зазор 980→1200 — на 980..1199 остаётся подсвечено слово "Sure,"', () => {
+  // зачем (владелец 11.11.2026: знакомство — «Перезаписать новыми»): реплики перезаписаны голосами курса, времена слов
+  // сняты с новой записи. Было «Sure,» 0–980, «does» с 1200; стало 0–313 и с 348 — проверяется тот же зазор между словами.
+  it('work.say: зазор 313→348 — на 313..347 остаётся подсвечено слово "Sure,"', () => {
     const line = AHA_SCENARIOS.work.say;
     const frames = buildKaraokeFrames(line);
-    // "Sure," startMs=0, endMs=980; "does" startMs=1200.
+    expect(line.timings[0]).toEqual({ word: 'Sure,', startMs: 0, endMs: 313 });
     expect(karaokeIndexAtTime(frames, 0)).toBe(0);
-    expect(karaokeIndexAtTime(frames, 980)).toBe(0);
-    expect(karaokeIndexAtTime(frames, 1199)).toBe(0);
-    expect(karaokeIndexAtTime(frames, 1200)).toBe(1);
+    expect(karaokeIndexAtTime(frames, 313)).toBe(0);
+    expect(karaokeIndexAtTime(frames, 347)).toBe(0);
+    expect(karaokeIndexAtTime(frames, 348)).toBe(1);
   });
 
   it('нулевой момент времени = -1, когда первое слово начинается позже 0', () => {

@@ -20,7 +20,7 @@ import { resolveStableUidForAuth } from './auth_identity';
 import { aiGloballyDisabled } from './remote_gates';
 import { resolveJobConfig } from './openai_jobs_config';
 import { openAiChat } from './explain/explain_provider';
-import { assertAiOutputLanguage, resolveAiOutputLang, resolveStudyTarget, studyTargetName, type AiOutputLang } from './ai_language_contract';
+import { assertAiOutputLanguage, resolveAiOutputLang, resolveStudyTarget, studyTargetName, type AiOutputLang, type StudyTarget } from './ai_language_contract';
 import { enforceFreeJobGenLimit, refundFreeJobGenLimit, type FreeJobGenReservation } from './explain/explain_budget';
 import { PAID_AI_FETCH_TIMEOUT_MS } from './paid_ai_fetch_timeout';
 import { enforceCallerRateWindow } from './caller_rate_window';
@@ -55,7 +55,8 @@ export interface MistakeHubAdviceResponse {
 interface Counted<T extends string> { readonly key: T; readonly count: number; }
 
 interface CleanSummary {
-  readonly studyTarget: 'en' | 'fr';
+  // зачем (владелец 11.11, все пять курсов): общий тип языка курса вместо своего «en | fr».
+  readonly studyTarget: StudyTarget;
   readonly lang: AiOutputLang;
   readonly active: number;
   readonly ready: number;
@@ -88,7 +89,7 @@ function counted(list: unknown, field: string, allowed: Set<string>, max: number
 export function cleanSummary(data: Record<string, unknown>, nowMs: number = Date.now()): CleanSummary {
   // lang: строгий список AiOutputLang (неизвестный → invalid-argument).
   const lang = resolveAiOutputLang(String(data.lang ?? 'ru'), 'mistake_explain');
-  // studyTarget: сводится к конечному набору en|fr (es/de клиента → en, как и раньше).
+  // studyTarget: сводится к конечному набору курсов en|es|fr|de|it (неизвестное → en).
   const studyTarget = resolveStudyTarget(data.studyTarget);
   const topPhrases: Array<Readonly<{ phrase: string; count: number; facet: string }>> = [];
   if (Array.isArray(data.topPhrases)) {

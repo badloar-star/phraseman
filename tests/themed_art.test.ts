@@ -104,8 +104,8 @@ describe('first real assets (adfaa8c34) and set choice', () => {
     for (const brightness of ['dark', 'light'] as const) {
       const spire = resolveThemedArt('spire_tile', brightness);
       expect(spire.origin).toBe('v2art');
-      // зачем (владелец 04.11): плитка Пика — одна готовая корона (графит/платина), без слоя .accent и без перекраски по слоям — иначе окрас «рваный» в светлой теме
-      expect(spire.accent).toBeNull();
+      // зачем (владелец 11.11, новые иконки плиток): у короны цветная полоса отдельным слоем .accent и красится в цвет темы — слово владельца «цветная часть меняется под цвет темы» заменило правило 04.11
+      expect(spire.accent).not.toBeNull();
     }
   });
 

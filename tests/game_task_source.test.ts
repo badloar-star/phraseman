@@ -22,7 +22,8 @@ it('для английского уроков 1–8 у каждой игры е
       expect(deck?.rounds.length ?? 0).toBeGreaterThan(0);
       expect(deck?.rounds.every(isValidQuizRound)).toBe(true);
     }
-    expect(ALL.every((id) => isGameAvailable(id, 'en', lesson))).toBe(true);
+    // зачем (владелец 11.11, «Скрыть на уроке 1»): в уроке 1 одни утверждения, однозначный порядок реплик не собрать — «Собери диалог» идёт с урока 2
+    expect([lesson, ALL.filter((id) => !isGameAvailable(id, 'en', lesson))]).toEqual([lesson, lesson === 1 ? ['order'] : []]);
   }
 });
 

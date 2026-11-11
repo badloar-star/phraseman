@@ -1,0 +1,1542 @@
+{
+ "01.04": {
+  "pt-BR": "Você está por perto.",
+  "vi": "Bạn đang ở gần đây.",
+  "id": "Kamu di dekat sini.",
+  "tr": "Yakındasın."
+ },
+ "01.07": {
+  "pt-BR": "Você está em casa.",
+  "vi": "Bạn đang ở nhà.",
+  "id": "Kamu di rumah.",
+  "tr": "Evdesin.",
+  "pl": "Jesteś w domu."
+ },
+ "01.13": {
+  "pt-BR": "Ana está em casa.",
+  "vi": "Ana đang ở nhà.",
+  "id": "Ana di rumah.",
+  "tr": "Ana evde.",
+  "pl": "Ana jest w domu."
+ },
+ "01.18": {
+  "pt-BR": "Luis está longe.",
+  "vi": "Luis ở xa.",
+  "id": "Luis jauh.",
+  "tr": "Luis uzakta.",
+  "pl": "Luis jest daleko."
+ },
+ "01.25": {
+  "pt-BR": "Vocês estão aqui.",
+  "pl": "Jesteście tutaj."
+ },
+ "01.27": {
+  "pt-BR": "Vocês estão do lado de fora.",
+  "pl": "Jesteście na zewnątrz."
+ },
+ "01.29": {
+  "pt-BR": "Ana e Luis estão aqui.",
+  "vi": "Ana và Luis ở đây.",
+  "id": "Ana dan Luis ada di sini.",
+  "tr": "Ana ve Luis burada.",
+  "pl": "Ana i Luis są tutaj."
+ },
+ "01.37": {
+  "pt-BR": "O telefone está em casa.",
+  "vi": "Điện thoại ở nhà.",
+  "id": "Ponselnya ada di rumah.",
+  "tr": "Telefon evde.",
+  "pl": "Telefon jest w domu."
+ },
+ "01.44": {
+  "pt-BR": "Estamos na estação.",
+  "vi": "Chúng ta đang ở nhà ga.",
+  "id": "Kita di stasiun.",
+  "tr": "İstasyondayız.",
+  "pl": "Jesteśmy na stacji."
+ },
+ "02.06": {
+  "pl": "Any nie ma w domu."
+ },
+ "02.13": {
+  "pt-BR": "A estação não fica longe.",
+  "vi": "Nhà ga không ở xa.",
+  "id": "Stasiunnya tidak jauh.",
+  "tr": "İstasyon uzak değil.",
+  "pl": "Stacja nie jest daleko."
+ },
+ "02.14": {
+  "pt-BR": "O carro não está longe.",
+  "vi": "Chiếc xe không ở xa.",
+  "id": "Mobilnya tidak jauh.",
+  "tr": "Araba uzak değil.",
+  "pl": "Samochód nie jest daleko."
+ },
+ "02.21": {
+  "pt-BR": "Vocês não estão na estação.",
+  "pl": "Nie jesteście na stacji."
+ },
+ "02.23": {
+  "pt-BR": "Vocês não estão na estação.",
+  "pl": "Nie jesteście na stacji."
+ },
+ "02.26": {
+  "pl": "Any i Luisa nie ma w domu."
+ },
+ "02.32": {
+  "pt-BR": "As chaves não estão aqui."
+ },
+ "02.40": {
+  "pt-BR": "A bolsa não está no carro.",
+  "vi": "Túi không có trong xe.",
+  "id": "Tasnya tidak ada di dalam mobil.",
+  "tr": "Çanta arabada değil.",
+  "pl": "Torby nie ma w samochodzie."
+ },
+ "02.43": {
+  "pt-BR": "O telefone não está na bolsa.",
+  "vi": "Điện thoại không có trong túi xách.",
+  "id": "Ponselnya tidak ada di dalam tas.",
+  "tr": "Telefon çantada değil."
+ },
+ "02.44": {
+  "pt-BR": "O telefone não está no bolso.",
+  "vi": "Điện thoại không có trong túi quần.",
+  "id": "Ponselnya tidak ada di saku.",
+  "tr": "Telefon cepte değil."
+ },
+ "02.48": {
+  "pt-BR": "A bolsa não está em casa.",
+  "vi": "Túi không có ở nhà.",
+  "id": "Tasnya tidak ada di rumah.",
+  "tr": "Çanta evde değil.",
+  "pl": "Torby nie ma w domu."
+ },
+ "03.06": {
+  "vi": "Chúng ta có ở gần đây không?"
+ },
+ "03.07": {
+  "vi": "Tôi có ở gần đây không?",
+  "tr": "Yakın mıyım?"
+ },
+ "03.21": {
+  "pl": "Czy jesteście w domu?"
+ },
+ "03.22": {
+  "pl": "Czy jesteście w domu?"
+ },
+ "03.23": {
+  "pt-BR": "Você está em casa?"
+ },
+ "03.24": {
+  "pl": "Czy jesteście przy wejściu?"
+ },
+ "03.25": {
+  "pl": "Czy jesteście przy wejściu?"
+ },
+ "03.31": {
+  "pt-BR": "O telefone está em casa?",
+  "vi": "Điện thoại có ở nhà không?",
+  "id": "Apakah ponselnya ada di rumah?",
+  "tr": "Telefon evde mi?",
+  "pl": "Czy telefon jest w domu?"
+ },
+ "03.37": {
+  "pt-BR": "O telefone está na bolsa?",
+  "vi": "Điện thoại có trong túi xách không?",
+  "id": "Apakah ponselnya ada di dalam tas?",
+  "tr": "Telefon çantada mı?",
+  "pl": "Czy telefon jest w torbie?"
+ },
+ "03.38": {
+  "pt-BR": "A bolsa está no carro?",
+  "vi": "Túi có trong xe không?",
+  "id": "Apakah tasnya ada di dalam mobil?",
+  "tr": "Çanta arabada mı?",
+  "pl": "Czy torba jest w samochodzie?"
+ },
+ "03.43": {
+  "pt-BR": "O bilhete está no bolso?",
+  "vi": "Vé có trong túi quần không?",
+  "id": "Apakah tiketnya ada di saku?",
+  "tr": "Bilet cepte mi?",
+  "pl": "Czy bilet jest w kieszeni?"
+ },
+ "04.17": {
+  "pt-BR": "Ela é Ana.",
+  "vi": "Cô ấy là Ana.",
+  "id": "Dia Ana.",
+  "tr": "O Ana.",
+  "pl": "Ona jest Ana."
+ },
+ "04.18": {
+  "pt-BR": "Ele é Luis.",
+  "vi": "Anh ấy là Luis.",
+  "id": "Dia Luis.",
+  "tr": "O Luis.",
+  "pl": "On jest Luis."
+ },
+ "04.26": {
+  "pl": "Jesteście studentami."
+ },
+ "04.27": {
+  "pl": "Jesteście studentami."
+ },
+ "04.47": {
+  "pl": "Jesteście przewodnikami."
+ },
+ "05.20": {
+  "pt-BR": "Quem está na recepção?",
+  "vi": "Ai đang ở quầy lễ tân?",
+  "id": "Siapa yang berada di meja resepsionis?",
+  "tr": "Resepsiyonda kim var?",
+  "pl": "Kto jest w recepcji?"
+ },
+ "05.21": {
+  "tr": "O kim?"
+ },
+ "05.27": {
+  "pt-BR": "Quem é o guia?",
+  "vi": "Ai là hướng dẫn viên?",
+  "id": "Siapa pemandu itu?",
+  "tr": "Rehber kim?",
+  "pl": "Kim jest przewodnik?"
+ },
+ "05.30": {
+  "pt-BR": "Quem são os estudantes?",
+  "vi": "Các sinh viên là ai?",
+  "id": "Siapa para siswa itu?",
+  "tr": "Öğrenciler kim?",
+  "pl": "Kim są ci studenci?"
+ },
+ "05.32": {
+  "pt-BR": "O que é isso?",
+  "vi": "Đó là gì?",
+  "id": "Apa itu?",
+  "tr": "O nedir?"
+ },
+ "05.37": {
+  "pt-BR": "Qual ingresso está na mochila?",
+  "vi": "Vé nào ở trong ba lô?",
+  "id": "Tiket mana yang ada di dalam ransel?",
+  "tr": "Sırt çantasında hangi bilet var?"
+ },
+ "05.40": {
+  "pt-BR": "Quais professores estão na sala de aula?",
+  "vi": "Những giáo viên nào ở trong lớp?",
+  "id": "Guru mana saja yang ada di kelas?",
+  "tr": "Sınıfta hangi öğretmenler var?"
+ },
+ "05.43": {
+  "pt-BR": "Onde está o passaporte?",
+  "vi": "Hộ chiếu ở đâu?",
+  "id": "Di mana paspornya?",
+  "tr": "Pasaport nerede?",
+  "pl": "Gdzie jest paszport?"
+ },
+ "05.45": {
+  "pt-BR": "Onde vocês estão?",
+  "vi": "Các bạn đang ở đâu?",
+  "id": "Di mana kalian?",
+  "pl": "Gdzie jesteście?"
+ },
+ "05.46": {
+  "pt-BR": "Onde vocês estão?",
+  "vi": "Các bạn đang ở đâu?",
+  "id": "Di mana kalian?",
+  "pl": "Gdzie jesteście?"
+ },
+ "06.09": {
+  "pt-BR": "A bolsa está lá dentro.",
+  "vi": "Cái túi ở bên trong.",
+  "id": "Tas itu ada di dalam.",
+  "tr": "Çanta içeride.",
+  "pl": "Torba jest w środku."
+ },
+ "06.10": {
+  "pt-BR": "Os casacos estão lá dentro.",
+  "vi": "Những chiếc áo khoác ở bên trong.",
+  "id": "Mantel-mantel itu ada di dalam.",
+  "tr": "Paltolar içeride.",
+  "pl": "Płaszcze są w środku."
+ },
+ "06.13": {
+  "vi": "Tàu hỏa ở gần đây."
+ },
+ "06.21": {
+  "pt-BR": "O mapa está sobre a mesa.",
+  "vi": "Bản đồ ở trên bàn.",
+  "id": "Peta itu ada di atas meja.",
+  "tr": "Harita masanın üzerinde.",
+  "pl": "Mapa jest na stole."
+ },
+ "06.22": {
+  "pt-BR": "Os mapas estão sobre a mesa.",
+  "vi": "Các bản đồ ở trên bàn.",
+  "id": "Peta-peta itu ada di atas meja.",
+  "tr": "Haritalar masanın üzerinde.",
+  "pl": "Mapy są na stole."
+ },
+ "06.25": {
+  "pt-BR": "O mapa está na mochila.",
+  "vi": "Bản đồ ở trong ba lô.",
+  "id": "Peta itu ada di dalam ransel.",
+  "tr": "Harita sırt çantasında.",
+  "pl": "Mapa jest w plecaku."
+ },
+ "06.27": {
+  "pt-BR": "Os mapas estão no carro.",
+  "vi": "Các bản đồ ở trong xe.",
+  "id": "Peta-peta itu ada di dalam mobil.",
+  "tr": "Haritalar arabada.",
+  "pl": "Mapy są w samochodzie."
+ },
+ "06.29": {
+  "pt-BR": "O mapa está no bolso.",
+  "vi": "Bản đồ ở trong túi quần.",
+  "id": "Peta itu ada di dalam saku.",
+  "tr": "Harita cepte.",
+  "pl": "Mapa jest w kieszeni."
+ },
+ "06.31": {
+  "pt-BR": "O passaporte está na mala.",
+  "vi": "Hộ chiếu ở trong vali.",
+  "id": "Paspor ada di dalam koper.",
+  "tr": "Pasaport valizde.",
+  "pl": "Paszport jest w walizce."
+ },
+ "06.49": {
+  "pt-BR": "O mapa está na mala.",
+  "vi": "Bản đồ ở trong vali.",
+  "id": "Peta itu ada di dalam koper.",
+  "tr": "Harita bavulda.",
+  "pl": "Mapa jest w walizce."
+ },
+ "08.13": {
+  "pl": "Twój klucz jest na stole."
+ },
+ "08.28": {
+  "vi": "Vé của bạn ở trên bàn."
+ },
+ "08.34": {
+  "vi": "Anh em của tôi ở đây."
+ },
+ "08.42": {
+  "pl": "Twoich kluczy nie ma w domu."
+ },
+ "09.06": {
+  "tr": "Evde ders çalışıyorsun."
+ },
+ "09.10": {
+  "pt-BR": "Você fala espanhol.",
+  "vi": "Bạn nói tiếng Tây Ban Nha.",
+  "id": "Anda berbicara bahasa Spanyol.",
+  "tr": "İspanyolca konuşuyorsunuz.",
+  "pl": "Mówisz po hiszpańsku."
+ },
+ "09.15": {
+  "pt-BR": "Ana fala espanhol.",
+  "vi": "Ana nói tiếng Tây Ban Nha.",
+  "id": "Ana berbicara bahasa Spanyol.",
+  "tr": "Ana İspanyolca konuşuyor.",
+  "pl": "Ana mówi po hiszpańsku."
+ },
+ "09.25": {
+  "pt-BR": "Vocês trabalham em casa.",
+  "pl": "Pracujecie w domu."
+ },
+ "09.26": {
+  "pt-BR": "Vocês estão estudando aqui.",
+  "pl": "Uczycie się tutaj."
+ },
+ "09.27": {
+  "pl": "Mówicie po hiszpańsku."
+ },
+ "09.30": {
+  "pt-BR": "Os alunos falam espanhol.",
+  "tr": "Öğrenciler İspanyolca konuşuyor.",
+  "pl": "Studenci mówią po hiszpańsku."
+ },
+ "09.36": {
+  "pt-BR": "Vocês estão procurando a parada.",
+  "pl": "Szukacie przystanku."
+ },
+ "09.37": {
+  "pt-BR": "Os alunos estão procurando seus livros.",
+  "tr": "Öğrenciler kitaplarını arıyor."
+ },
+ "10.16": {
+  "vi": "Chúng tôi đọc tin nhắn.",
+  "tr": "Mesajı okuyoruz.",
+  "pl": "Czytamy wiadomość."
+ },
+ "10.20": {
+  "pt-BR": "Escrevemos uma mensagem.",
+  "id": "Kami menulis pesan.",
+  "tr": "Bir mesaj yazıyoruz.",
+  "pl": "Piszemy wiadomość."
+ },
+ "10.22": {
+  "pl": "Jecie w domu."
+ },
+ "10.26": {
+  "pt-BR": "Meus irmãos estão lendo a mensagem.",
+  "id": "Saudara-saudara saya sedang membaca pesan itu.",
+  "tr": "Kardeşlerim mesajı okuyorlar.",
+  "pl": "Moi bracia czytają wiadomość."
+ },
+ "10.27": {
+  "pt-BR": "Vocês estão escrevendo uma carta.",
+  "pl": "Piszecie list."
+ },
+ "10.30": {
+  "pt-BR": "Vocês moram perto da estação de trem.",
+  "pl": "Mieszkacie niedaleko dworca kolejowego."
+ },
+ "10.32": {
+  "pt-BR": "Você não abre a porta hoje.",
+  "id": "Kamu tidak membuka pintu hari ini."
+ },
+ "10.33": {
+  "pt-BR": "Ana não abre a janela hoje.",
+  "pl": "Ana nie otwiera dziś okna."
+ },
+ "10.34": {
+  "pt-BR": "Luis não abre a janela hoje.",
+  "vi": "Luis không mở cửa sổ hôm nay.",
+  "id": "Luis tidak membuka jendela hari ini.",
+  "tr": "Luis bugün pencereyi açmıyor.",
+  "pl": "Luis nie otwiera dziś okna."
+ },
+ "10.37": {
+  "pt-BR": "Eu não como na cozinha hoje.",
+  "tr": "Bugün mutfakta yemek yemiyorum."
+ },
+ "10.39": {
+  "id": "Kamu tidak membaca buku hari ini."
+ },
+ "10.46": {
+  "pt-BR": "Luis está escrevendo uma mensagem?",
+  "id": "Apakah Luis menulis pesan?"
+ },
+ "10.50": {
+  "pt-BR": "Vocês estão escrevendo uma carta?",
+  "pl": "Piszecie list?"
+ },
+ "11.02": {
+  "pt-BR": "Você tem uma pergunta.",
+  "vi": "Bạn có một câu hỏi.",
+  "id": "Kamu punya pertanyaan.",
+  "tr": "Bir sorunuz var.",
+  "pl": "Masz pytanie."
+ },
+ "11.08": {
+  "tr": "Kitabınız bende."
+ },
+ "11.16": {
+  "pt-BR": "Temos tempo.",
+  "tr": "Zamanımız var.",
+  "pl": "Mamy czas."
+ },
+ "11.22": {
+  "pt-BR": "Você não tem troco.",
+  "vi": "Bạn không có tiền lẻ.",
+  "id": "Kamu tidak punya uang kembalian.",
+  "tr": "Bozuk paran yok.",
+  "pl": "Nie masz reszty."
+ },
+ "11.26": {
+  "pt-BR": "Não tenho carro."
+ },
+ "11.37": {
+  "pt-BR": "Vocês têm uma reserva?",
+  "pl": "Czy macie rezerwację?"
+ },
+ "11.38": {
+  "pt-BR": "Vocês têm uma reserva?",
+  "pl": "Czy macie rezerwację?"
+ },
+ "11.43": {
+  "tr": "Ana'da numaram var."
+ },
+ "11.44": {
+  "tr": "Luis'te numaram var."
+ },
+ "11.45": {
+  "tr": "Doktorda numaram var."
+ },
+ "11.47": {
+  "pt-BR": "Você tem as chaves de casa.",
+  "vi": "Bạn có chìa khóa nhà.",
+  "id": "Kamu punya kunci rumah.",
+  "tr": "Ev anahtarları sizde.",
+  "pl": "Masz klucze do domu."
+ },
+ "12.02": {
+  "pt-BR": "A bolsa é nova.",
+  "vi": "Cái túi còn mới.",
+  "id": "Tasnya baru.",
+  "tr": "Çanta yeni.",
+  "pl": "Torba jest nowa."
+ },
+ "12.04": {
+  "pt-BR": "O mapa é novo.",
+  "vi": "Bản đồ còn mới.",
+  "id": "Peta itu baru.",
+  "tr": "Harita yeni.",
+  "pl": "Mapa jest nowa."
+ },
+ "12.14": {
+  "pt-BR": "Os mapas são pequenos.",
+  "vi": "Các bản đồ nhỏ.",
+  "id": "Peta-peta itu kecil.",
+  "tr": "Haritalar küçük.",
+  "pl": "Mapy są małe."
+ },
+ "12.30": {
+  "pl": "Mam biały stół."
+ },
+ "13.10": {
+  "pt-BR": "A professora está cansada.",
+  "tr": "Öğretmen yorgun.",
+  "pl": "Nauczycielka jest zmęczona."
+ },
+ "13.19": {
+  "pl": "Czy jesteście gotowi?"
+ },
+ "13.35": {
+  "pl": "Czy toaleta jest wolna?"
+ },
+ "13.40": {
+  "vi": "Các giáo viên có rảnh không?"
+ },
+ "13.44": {
+  "pt-BR": "Vocês estão felizes hoje.",
+  "tr": "Bugün mutlusunuz.",
+  "pl": "Jesteście dziś szczęśliwe."
+ },
+ "14.07": {
+  "pt-BR": "Vocês acordam cedo.",
+  "pl": "Wstajecie wcześnie."
+ },
+ "14.12": {
+  "pt-BR": "Você toma banho em casa.",
+  "vi": "Bạn tắm ở nhà.",
+  "id": "Anda mandi di rumah.",
+  "tr": "Evde duş alıyorsunuz.",
+  "pl": "Bierzesz prysznic w domu."
+ },
+ "14.14": {
+  "tr": "Evde duş alıyoruz."
+ },
+ "14.22": {
+  "pt-BR": "Você lava o rosto.",
+  "vi": "Bạn rửa mặt.",
+  "id": "Kamu mencuci muka.",
+  "tr": "Yüzünüzü yıkıyorsunuz.",
+  "pl": "Myjesz twarz."
+ },
+ "14.26": {
+  "vi": "Các anh trai tôi rửa mặt."
+ },
+ "14.27": {
+  "pt-BR": "Vocês lavam as mãos.",
+  "pl": "Myjecie ręce."
+ },
+ "14.31": {
+  "pt-BR": "Eu me sento aqui."
+ },
+ "14.33": {
+  "pt-BR": "Ana se senta aqui."
+ },
+ "14.34": {
+  "pt-BR": "Nos sentamos perto da janela."
+ },
+ "14.35": {
+  "pt-BR": "Luis se senta aqui."
+ },
+ "14.36": {
+  "pt-BR": "Meus irmãos se sentam perto da janela."
+ },
+ "14.37": {
+  "pt-BR": "Vocês se sentam aqui.",
+  "pl": "Siadacie tutaj."
+ },
+ "14.39": {
+  "pt-BR": "Eu não me sento aqui."
+ },
+ "14.40": {
+  "pt-BR": "Minhas irmãs se sentam perto da janela?"
+ },
+ "14.42": {
+  "pt-BR": "Você se prepara para a viagem.",
+  "vi": "Bạn chuẩn bị cho chuyến đi.",
+  "id": "Anda bersiap-siap untuk perjalanan.",
+  "tr": "Geziye hazırlanıyorsunuz.",
+  "pl": "Przygotowujesz się do podróży."
+ },
+ "14.47": {
+  "pl": "Przygotowujecie się do zajęć."
+ },
+ "14.49": {
+  "pt-BR": "Eu não me preparo para a aula.",
+  "vi": "Tôi không chuẩn bị cho lớp học.",
+  "id": "Saya tidak bersiap-siap untuk kelas.",
+  "tr": "Derse hazırlanmıyorum.",
+  "pl": "Nie przygotowuję się do zajęć."
+ },
+ "14.50": {
+  "pt-BR": "Minha irmã se prepara em casa.",
+  "vi": "Chị gái tôi chuẩn bị ở nhà.",
+  "id": "Adik perempuan saya bersiap-siap di rumah.",
+  "tr": "Kız kardeşim evde hazırlanıyor.",
+  "pl": "Moja siostra przygotowuje się w domu."
+ },
+ "15.02": {
+  "pt-BR": "Você pode entrar na loja.",
+  "vi": "Bạn có thể vào cửa hàng.",
+  "id": "Kamu bisa masuk ke toko.",
+  "tr": "Mağazaya girebilirsiniz.",
+  "pl": "Możesz wejść do sklepu."
+ },
+ "15.04": {
+  "pt-BR": "Você pode entrar no escritório.",
+  "vi": "Bạn có thể vào văn phòng.",
+  "id": "Kamu bisa masuk ke kantor.",
+  "tr": "Ofise girebilirsiniz.",
+  "pl": "Możesz wejść do biura."
+ },
+ "15.08": {
+  "pt-BR": "Você pode esperar lá fora.",
+  "vi": "Bạn có thể đợi bên ngoài.",
+  "id": "Kamu bisa menunggu di luar.",
+  "tr": "Dışarıda bekleyebilirsiniz.",
+  "pl": "Możesz poczekać na zewnątrz."
+ },
+ "15.12": {
+  "pt-BR": "Você pode abrir a janela.",
+  "vi": "Bạn có thể mở cửa sổ.",
+  "id": "Kamu bisa membuka jendela.",
+  "tr": "Pencereyi açabilirsiniz.",
+  "pl": "Możesz otworzyć okno."
+ },
+ "15.17": {
+  "pt-BR": "Você pode enviar a foto.",
+  "vi": "Bạn có thể gửi ảnh.",
+  "id": "Kamu bisa mengirim foto.",
+  "tr": "Fotoğrafı gönderebilirsiniz.",
+  "pl": "Możesz wysłać zdjęcie."
+ },
+ "15.18": {
+  "pt-BR": "Podemos enviar o mapa.",
+  "vi": "Chúng ta có thể gửi bản đồ.",
+  "id": "Kita bisa mengirim peta.",
+  "tr": "Haritayı gönderebiliriz.",
+  "pl": "Możemy wysłać mapę."
+ },
+ "15.19": {
+  "vi": "Các anh trai tôi có thể mang vali."
+ },
+ "15.20": {
+  "pt-BR": "Minhas irmãs podem carregar a bolsa."
+ },
+ "15.25": {
+  "pt-BR": "Luis pode voltar para casa hoje.",
+  "id": "Luis bisa pulang hari ini."
+ },
+ "15.26": {
+  "id": "Saudari-saudari saya bisa kembali ke stasiun hari ini."
+ },
+ "15.28": {
+  "pt-BR": "Vocês podem ler a mensagem hoje.",
+  "pl": "Możecie dziś przeczytać wiadomość."
+ },
+ "15.32": {
+  "pt-BR": "Não posso enviar o mapa.",
+  "vi": "Tôi không thể gửi bản đồ.",
+  "id": "Saya tidak dapat mengirim peta.",
+  "tr": "Haritayı gönderemiyorum.",
+  "pl": "Nie mogę wysłać mapy."
+ },
+ "15.33": {
+  "pt-BR": "Não podemos pagar em dinheiro aqui.",
+  "id": "Kami tidak bisa membayar tunai di sini.",
+  "tr": "Burada nakit ödeyemeyiz.",
+  "pl": "Nie możemy tu płacić gotówką."
+ },
+ "15.39": {
+  "pt-BR": "Vocês não podem entrar no escritório.",
+  "pl": "Nie możecie wejść do biura."
+ },
+ "15.49": {
+  "pt-BR": "Você pode enviar o mapa?",
+  "vi": "Bạn có thể gửi bản đồ không?",
+  "id": "Bisakah kamu mengirim petanya?",
+  "tr": "Haritayı gönderebilir misiniz?",
+  "pl": "Czy możesz wysłać mapę?"
+ },
+ "15.50": {
+  "pt-BR": "Você pode carregar a bolsa?",
+  "vi": "Bạn có thể mang cái túi không?",
+  "id": "Bisakah kamu membawa tasnya?",
+  "tr": "Çantayı taşıyabilir misiniz?",
+  "pl": "Czy możesz zanieść torbę?"
+ },
+ "16.07": {
+  "pt-BR": "Ana vai entrar na loja.",
+  "vi": "Ana định vào cửa hàng.",
+  "id": "Ana akan masuk ke toko.",
+  "tr": "Ana mağazaya girecek.",
+  "pl": "Ana wejdzie do sklepu."
+ },
+ "16.10": {
+  "pt-BR": "Luis vai comprar pão.",
+  "vi": "Luis định mua bánh mì.",
+  "id": "Luis akan membeli roti.",
+  "tr": "Luis ekmek alacak.",
+  "pl": "Luis zamierza kupić chleb."
+ },
+ "16.22": {
+  "pt-BR": "Vocês planejam pagar com cartão amanhã.",
+  "pl": "Planujecie zapłacić kartą jutro."
+ },
+ "16.23": {
+  "pt-BR": "Ana vai passar pelo supermercado.",
+  "vi": "Ana định ghé siêu thị.",
+  "id": "Ana akan mampir ke supermarket.",
+  "tr": "Ana süpermarkete uğrayacak.",
+  "pl": "Ana wstąpi do supermarketu."
+ },
+ "16.25": {
+  "pt-BR": "Vocês vão comprar arroz no supermercado?",
+  "pl": "Zamierzacie kupić ryż w supermarkecie?"
+ },
+ "16.26": {
+  "vi": "Các anh trai tôi sẽ đến văn phòng vào ngày mai."
+ },
+ "16.28": {
+  "pt-BR": "Vocês planejam enviar o mapa amanhã.",
+  "vi": "Các bạn dự định gửi bản đồ vào ngày mai.",
+  "id": "Kalian berencana mengirim peta besok.",
+  "tr": "Yarın haritayı göndermeyi planlıyorsunuz.",
+  "pl": "Planujecie wysłać jutro mapę."
+ },
+ "16.29": {
+  "vi": "Các anh trai tôi sẽ mang vali vào ngày mai."
+ },
+ "16.30": {
+  "pt-BR": "Luis vai levar a bolsa amanhã.",
+  "vi": "Luis sẽ mang túi vào ngày mai.",
+  "id": "Luis akan membawa tas besok.",
+  "tr": "Luis yarın çantayı taşıyacak.",
+  "pl": "Luis zaniesie torbę jutro."
+ },
+ "16.38": {
+  "pt-BR": "Não vamos levar o carro.",
+  "vi": "Chúng tôi sẽ không mang xe hơi theo.",
+  "id": "Kami tidak akan membawa mobil.",
+  "tr": "Arabayı götürmeyeceğiz.",
+  "pl": "Nie zamierzamy brać samochodu."
+ },
+ "16.39": {
+  "pt-BR": "Você não vai abrir a porta hoje."
+ },
+ "16.46": {
+  "vi": "Các chị gái tôi sẽ đọc sách chứ?"
+ },
+ "16.48": {
+  "pt-BR": "Você vai levar a bolsa?",
+  "vi": "Bạn sẽ mang túi chứ?",
+  "id": "Apakah kamu akan membawa tasnya?",
+  "tr": "Çantayı taşıyacak mısınız?",
+  "pl": "Czy zaniesiesz torbę?"
+ },
+ "16.49": {
+  "pt-BR": "Vocês vão esperar aqui?",
+  "pl": "Zamierzacie tu poczekać?"
+ },
+ "17.02": {
+  "tr": "Ekmeği seviyorum."
+ },
+ "17.04": {
+  "tr": "Bu kitabı beğeniyorum."
+ },
+ "17.05": {
+  "tr": "Evinizi beğeniyorum."
+ },
+ "17.06": {
+  "tr": "Bu kitapları beğeniyorum.",
+  "pl": "Podobają mi się te książki."
+ },
+ "17.07": {
+  "tr": "Fotoğrafları beğeniyorum.",
+  "pl": "Podobają mi się zdjęcia."
+ },
+ "17.08": {
+  "tr": "Fikirlerinizi beğeniyorum.",
+  "pl": "Podobają mi się twoje pomysły."
+ },
+ "17.09": {
+  "tr": "Büyük pencereleri beğeniyorum."
+ },
+ "17.10": {
+  "tr": "Bu şarkıları beğeniyorum.",
+  "pl": "Podobają mi się te piosenki."
+ },
+ "17.28": {
+  "pt-BR": "Você gosta das fotos da Ana.",
+  "vi": "Bạn thích ảnh của Ana.",
+  "id": "Kamu suka foto-foto Ana.",
+  "tr": "Ana'nın fotoğraflarını beğeniyorsun.",
+  "pl": "Podobają Ci się zdjęcia Any."
+ },
+ "17.29": {
+  "pt-BR": "Vocês gostam desta música?",
+  "pl": "Czy podoba Wam się ta piosenka?"
+ },
+ "17.30": {
+  "tr": "Ana'nın fotoğraflarını beğeniyorum.",
+  "pl": "Podobają mi się zdjęcia Any."
+ },
+ "17.31": {
+  "tr": "Evde kitap okumayı seviyorum."
+ },
+ "17.38": {
+  "pt-BR": "Vocês gostam de estudar aqui?",
+  "pl": "Czy lubicie się tu uczyć?"
+ },
+ "18.01": {
+  "pl": "Mam go tutaj."
+ },
+ "18.02": {
+  "pl": "Masz ją tutaj."
+ },
+ "18.06": {
+  "pl": "Mam ją tutaj."
+ },
+ "18.11": {
+  "pl": "Szukasz go."
+ },
+ "18.12": {
+  "pl": "Ana jej szuka."
+ },
+ "18.16": {
+  "pl": "Szukasz jej."
+ },
+ "18.21": {
+  "pl": "Ana niesie go do domu."
+ },
+ "18.31": {
+  "pl": "Potrzebujemy go dzisiaj."
+ },
+ "18.32": {
+  "pl": "Luis potrzebuje jej dzisiaj."
+ },
+ "18.36": {
+  "pl": "Potrzebujemy jej dzisiaj."
+ },
+ "18.41": {
+  "pl": "Luis zostawia go w domu."
+ },
+ "18.42": {
+  "pl": "Zostawiam ją w domu."
+ },
+ "18.46": {
+  "pl": "Ana zostawia ją w domu."
+ },
+ "19.02": {
+  "pt-BR": "Você está lendo o livro.",
+  "vi": "Bạn đang đọc sách.",
+  "id": "Kamu sedang membaca buku.",
+  "tr": "Şu anda kitap okuyorsun.",
+  "pl": "Czytasz teraz książkę."
+ },
+ "19.04": {
+  "pt-BR": "Você está lendo a mensagem.",
+  "vi": "Bạn đang đọc tin nhắn.",
+  "id": "Kamu sedang membaca pesan.",
+  "tr": "Şu anda mesaj okuyorsun.",
+  "pl": "Czytasz teraz wiadomość."
+ },
+ "19.13": {
+  "pt-BR": "Você está preparando o jantar agora.",
+  "vi": "Bạn đang nấu bữa tối.",
+  "id": "Kamu sedang memasak makan malam sekarang.",
+  "tr": "Şu anda akşam yemeği pişiriyorsun.",
+  "pl": "Gotujesz teraz obiad."
+ },
+ "19.18": {
+  "pt-BR": "Ana está secando a louça agora.",
+  "vi": "Ana đang lau khô bát đĩa.",
+  "id": "Ana sedang mengeringkan piring sekarang.",
+  "tr": "Ana şu anda bulaşıkları kurutuyor.",
+  "pl": "Ana wyciera teraz naczynia."
+ },
+ "19.20": {
+  "pt-BR": "Você está pagando com cartão.",
+  "vi": "Bạn đang thanh toán bằng thẻ.",
+  "id": "Kamu sedang membayar dengan kartu.",
+  "tr": "Şu anda kartla ödeme yapıyorsun.",
+  "pl": "Płacisz kartą."
+ },
+ "19.22": {
+  "pt-BR": "Vocês estão lendo a mensagem agora.",
+  "pl": "Czytacie teraz wiadomość."
+ },
+ "19.27": {
+  "pt-BR": "Você está cortando as verduras.",
+  "vi": "Bạn đang thái rau.",
+  "id": "Kamu sedang memotong sayuran.",
+  "tr": "Şu anda sebze doğruyorsun.",
+  "pl": "Kroisz teraz warzywa."
+ },
+ "19.30": {
+  "pt-BR": "Vocês estão comendo na cozinha agora.",
+  "pl": "Jecie teraz w kuchni."
+ },
+ "19.38": {
+  "pt-BR": "Não estamos voltando para casa agora."
+ },
+ "19.43": {
+  "pt-BR": "Estamos escrevendo uma mensagem?",
+  "id": "Apakah kita sedang menulis pesan?",
+  "pl": "Czy teraz piszemy wiadomość?"
+ },
+ "20.14": {
+  "pt-BR": "Você preparou a mochila hoje.",
+  "vi": "Hôm nay bạn đã chuẩn bị ba lô.",
+  "id": "Kamu sudah mengepak ranselmu hari ini.",
+  "tr": "Bugün sırt çantanı hazırladın.",
+  "pl": "Spakowałeś dziś plecak."
+ },
+ "20.22": {
+  "pt-BR": "Vocês leram a mensagem esta semana.",
+  "pl": "W tym tygodniu przeczytaliście wiadomość."
+ },
+ "20.25": {
+  "pt-BR": "Minhas irmãs abriram a janela esta semana.",
+  "vi": "Các chị gái tôi đã mở cửa sổ tuần này.",
+  "id": "Saudari-saudari saya membuka jendela minggu ini.",
+  "tr": "Kız kardeşlerim bu hafta pencereyi açtılar.",
+  "pl": "Moje siostry otworzyły okno w tym tygodniu."
+ },
+ "20.30": {
+  "pt-BR": "Vocês levaram a bolsa esta semana.",
+  "vi": "Các bạn đã mang túi trong tuần này.",
+  "id": "Kalian telah membawa tas minggu ini.",
+  "tr": "Bu hafta çantayı taşıdınız.",
+  "pl": "W tym tygodniu zanieśliście torbę."
+ },
+ "20.31": {
+  "pt-BR": "Não escrevi uma mensagem esta manhã.",
+  "vi": "Sáng nay tôi không viết tin nhắn.",
+  "id": "Saya tidak menulis pesan pagi ini.",
+  "tr": "Bu sabah mesaj yazmadım.",
+  "pl": "Nie napisałem dziś rano wiadomości."
+ },
+ "20.33": {
+  "pt-BR": "Ana não enviou o mapa esta manhã.",
+  "vi": "Sáng nay Ana không gửi bản đồ.",
+  "id": "Ana tidak mengirim peta pagi ini.",
+  "tr": "Ana bu sabah haritayı göndermedi.",
+  "pl": "Ana nie wysłała dziś rano mapy."
+ },
+ "20.42": {
+  "pt-BR": "Você confirmou o pedido?",
+  "vi": "Bạn đã xác nhận đơn hàng chưa?",
+  "id": "Apakah Anda sudah mengkonfirmasi pesanan?",
+  "tr": "Siparişi onayladınız mı?",
+  "pl": "Czy potwierdziłeś/aś zamówienie?"
+ },
+ "20.50": {
+  "pt-BR": "Vocês entraram no escritório hoje?",
+  "pl": "Czy weszliście dziś do biura?"
+ },
+ "21.02": {
+  "pt-BR": "Você ligou para o hotel ontem.",
+  "vi": "Bạn đã gọi cho khách sạn hôm qua.",
+  "id": "Kamu menelepon hotel kemarin.",
+  "tr": "Dün oteli aradın.",
+  "pl": "Wczoraj zadzwoniłeś do hotelu."
+ },
+ "21.04": {
+  "pt-BR": "Você ligou para Ana ontem.",
+  "vi": "Bạn đã gọi cho Ana hôm qua.",
+  "id": "Kamu menelepon Ana kemarin.",
+  "tr": "Dün Ana'yı aradın.",
+  "pl": "Wczoraj zadzwoniłeś do Any."
+ },
+ "21.08": {
+  "pt-BR": "Você comprou pão ontem.",
+  "vi": "Bạn đã mua bánh mì hôm qua.",
+  "id": "Kamu membeli roti kemarin.",
+  "tr": "Dün ekmek aldın.",
+  "pl": "Wczoraj kupiłeś chleb."
+ },
+ "21.09": {
+  "pt-BR": "Luis preparou o jantar ontem.",
+  "vi": "Luis đã nấu bữa tối hôm qua.",
+  "id": "Luis membuat makan malam kemarin.",
+  "tr": "Luis dün akşam yemeği yaptı.",
+  "pl": "Luis ugotował wczoraj kolację."
+ },
+ "21.12": {
+  "pt-BR": "Ana escreveu uma mensagem ontem à noite.",
+  "id": "Ana menulis pesan tadi malam.",
+  "tr": "Ana dün gece bir mesaj yazdı.",
+  "pl": "Ana napisała wiadomość wczoraj wieczorem."
+ },
+ "21.20": {
+  "pt-BR": "Você levou a bolsa ontem à noite.",
+  "vi": "Bạn đã mang túi tối qua.",
+  "id": "Kamu membawa tas tadi malam.",
+  "tr": "Dün gece çantayı taşıdın.",
+  "pl": "Zaniosłeś wczoraj wieczorem torbę."
+ },
+ "21.22": {
+  "pt-BR": "Vocês pagaram com cartão ontem.",
+  "pl": "Zapłaciliście wczoraj kartą."
+ },
+ "21.27": {
+  "pt-BR": "Vocês compraram uma passagem ontem.",
+  "pl": "Kupiliście wczoraj bilet."
+ },
+ "21.29": {
+  "vi": "Các anh trai tôi đã mua hành tây ở chợ."
+ },
+ "21.30": {
+  "pt-BR": "Vocês enviaram o mapa ontem.",
+  "vi": "Các bạn đã gửi bản đồ hôm qua.",
+  "id": "Kalian mengirim peta kemarin.",
+  "tr": "Dün haritayı gönderdiniz.",
+  "pl": "Wysłaliście wczoraj mapę."
+ },
+ "21.39": {
+  "pt-BR": "Vocês não levaram a bolsa ontem à noite.",
+  "vi": "Các bạn đã không mang túi tối qua.",
+  "id": "Kalian tidak membawa tas tadi malam.",
+  "tr": "Dün gece çantayı taşımadınız.",
+  "pl": "Nie zanieśliście wczoraj wieczorem torby."
+ },
+ "21.48": {
+  "vi": "Luis có mở cửa sổ hôm qua không?",
+  "id": "Apakah Luis membuka jendela kemarin?",
+  "tr": "Luis dün pencereyi açtı mı?",
+  "pl": "Czy Luis otworzył wczoraj okno?"
+ },
+ "21.50": {
+  "pt-BR": "Vocês escreveram uma mensagem ontem?",
+  "vi": "Các bạn đã viết tin nhắn hôm qua chưa?",
+  "id": "Apakah kalian menulis pesan kemarin?",
+  "tr": "Dün mesaj yazdınız mı?",
+  "pl": "Czy napisaliście wczoraj wiadomość?"
+ },
+ "22.02": {
+  "pt-BR": "Você foi ao hotel ontem à noite.",
+  "vi": "Bạn đã đến khách sạn tối qua.",
+  "id": "Kamu pergi ke hotel tadi malam.",
+  "tr": "Dün gece otele gittin.",
+  "pl": "Wczoraj wieczorem poszedłeś do hotelu."
+ },
+ "22.13": {
+  "tr": "Ana'nın bir fikri vardı.",
+  "pl": "Ana miała pomysł."
+ },
+ "22.14": {
+  "pt-BR": "Tivemos um compromisso ontem.",
+  "vi": "Chúng tôi đã có một cuộc hẹn hôm qua.",
+  "tr": "Dün bir randevumuz vardı."
+ },
+ "22.17": {
+  "pt-BR": "Vocês tiveram tempo de ler ontem.",
+  "vi": "Hôm qua các bạn đã có thời gian đọc sách.",
+  "id": "Kalian punya waktu untuk membaca kemarin.",
+  "tr": "Dün okumaya vaktiniz oldu.",
+  "pl": "Mieliście wczoraj czas poczytać."
+ },
+ "22.18": {
+  "pt-BR": "Você teve outra ideia?",
+  "tr": "Başka bir fikriniz oldu mu?",
+  "pl": "Miałeś inny pomysł?"
+ },
+ "22.27": {
+  "pt-BR": "Vocês fizeram uma reserva ontem.",
+  "pl": "Zrobiliście wczoraj rezerwację."
+ },
+ "22.35": {
+  "pt-BR": "Luis veio com Ana.",
+  "vi": "Luis đã đến cùng Ana.",
+  "id": "Luis datang bersama Ana.",
+  "tr": "Luis, Ana ile birlikte geldi.",
+  "pl": "Luis przyjechał z Aną."
+ },
+ "22.37": {
+  "pt-BR": "Vocês chegaram ao hotel ontem.",
+  "pl": "Przybyliście wczoraj do hotelu."
+ },
+ "22.42": {
+  "pt-BR": "Você conseguiu chegar em casa ontem à noite.",
+  "vi": "Bạn đã về được nhà tối qua.",
+  "id": "Kamu berhasil pulang tadi malam.",
+  "tr": "Dün gece eve ulaşmayı başardın.",
+  "pl": "Udało Ci się wrócić do domu wczoraj wieczorem."
+ },
+ "22.43": {
+  "pt-BR": "Ana conseguiu comprar a passagem.",
+  "vi": "Ana đã mua được vé.",
+  "id": "Ana berhasil membeli tiket.",
+  "tr": "Ana bileti almayı başardı.",
+  "pl": "Anie udało się kupić bilet."
+ },
+ "22.47": {
+  "pt-BR": "Vocês conseguiram voltar para casa ontem.",
+  "pl": "Udało Wam się wczoraj wrócić do domu."
+ },
+ "23.11": {
+  "pt-BR": "Eu bebia água todos os dias.",
+  "tr": "Her gün su içerdim."
+ },
+ "23.12": {
+  "tr": "Ana her gün kahve içerdi."
+ },
+ "23.13": {
+  "pt-BR": "Minha mãe ia ao mercado de ônibus.",
+  "tr": "Annem otobüsle pazara giderdi.",
+  "pl": "Moja mama jeździła autobusem na targ."
+ },
+ "23.14": {
+  "pt-BR": "Você lia a mensagem todos os dias.",
+  "tr": "Mesajı her gün okurdunuz."
+ },
+ "23.15": {
+  "pt-BR": "Eu escrevia uma carta todos os dias.",
+  "tr": "Her gün bir mektup yazardım."
+ },
+ "23.16": {
+  "pt-BR": "Escrevíamos uma mensagem todos os dias.",
+  "vi": "Chúng tôi từng viết một tin nhắn mỗi ngày.",
+  "id": "Kami dulu menulis satu pesan setiap hari.",
+  "tr": "Her gün bir mesaj yazardık.",
+  "pl": "Pisaliśmy wiadomość codziennie."
+ },
+ "23.17": {
+  "tr": "Ana her gün evden çalışırdı."
+ },
+ "23.18": {
+  "tr": "Kız kardeşlerim her gün otelde çalışırlardı."
+ },
+ "23.20": {
+  "pt-BR": "Você esperava do lado de fora todos os dias.",
+  "tr": "Her gün dışarıda beklerdiniz."
+ },
+ "23.22": {
+  "pt-BR": "Vocês comiam na cozinha com frequência.",
+  "pl": "Często jadaliście w kuchni."
+ },
+ "23.24": {
+  "pt-BR": "Meus vizinhos caminhavam pelo parque.",
+  "vi": "Hàng xóm của tôi từng đi dạo trong công viên.",
+  "id": "Tetangga-tetanggaku dulu berjalan-jalan di taman."
+ },
+ "23.25": {
+  "pt-BR": "Minhas irmãs liam o livro com frequência.",
+  "tr": "Kız kardeşlerim sık sık kitap okurlardı.",
+  "pl": "Moje siostry często czytały książkę."
+ },
+ "23.26": {
+  "pl": "Moi bracia często czytali wiadomość."
+ },
+ "23.28": {
+  "pt-BR": "Bebíamos água com frequência.",
+  "tr": "Sık sık su içerdik."
+ },
+ "23.30": {
+  "pt-BR": "Vocês comiam em casa com frequência.",
+  "pl": "Często jadaliście w domu."
+ },
+ "23.32": {
+  "pt-BR": "Você não comia na cozinha antes.",
+  "vi": "Trước đây bạn không ăn trong bếp.",
+  "id": "Anda dulu tidak makan di dapur.",
+  "tr": "Eskiden mutfakta yemek yemezdiniz.",
+  "pl": "Kiedyś nie jadłeś w kuchni."
+ },
+ "23.36": {
+  "pt-BR": "Minhas irmãs não esperavam aqui antes.",
+  "vi": "Các chị gái tôi trước đây không đợi ở đây.",
+  "tr": "Kız kardeşlerim daha önce burada beklemezlerdi."
+ },
+ "23.38": {
+  "pt-BR": "Íamos de bicicleta para a escola.",
+  "tr": "Okula bisikletlerimizle giderdik."
+ },
+ "23.39": {
+  "pt-BR": "Vocês não voltavam à estação de trem antes.",
+  "tr": "Daha önce tren istasyonuna geri dönmezdiniz.",
+  "pl": "Wcześniej nie wracaliście na dworzec kolejowy."
+ },
+ "23.43": {
+  "pt-BR": "Trabalhávamos no hotel antes?"
+ },
+ "23.46": {
+  "pt-BR": "Ana escrevia uma mensagem antes?",
+  "tr": "Ana daha önce mesaj yazar mıydı?",
+  "pl": "Czy Ana pisała wcześniej wiadomość?"
+ },
+ "23.49": {
+  "pt-BR": "Minhas irmãs voltavam para casa antes?",
+  "vi": "Các chị gái tôi trước đây có về nhà không?",
+  "tr": "Kız kardeşlerim daha önce eve dönerler miydi?"
+ },
+ "24.40": {
+  "pt-BR": "Enquanto eu fatiava o queijo, a campainha tocou."
+ },
+ "25.16": {
+  "pt-BR": "Envie o mapa.",
+  "vi": "Gửi bản đồ.",
+  "id": "Kirim peta.",
+  "pl": "Wyślij mapę."
+ },
+ "25.22": {
+  "pt-BR": "Volte para casa agora.",
+  "pl": "Wróć teraz do domu."
+ },
+ "25.36": {
+  "pt-BR": "Envie o mapa mais tarde.",
+  "vi": "Gửi bản đồ sau.",
+  "id": "Kirim peta nanti.",
+  "pl": "Wyślij mapę później."
+ },
+ "26.21": {
+  "pt-BR": "Mostrei o mapa para eles.",
+  "vi": "Tôi đã cho họ xem tấm bản đồ.",
+  "id": "Saya menunjukkan peta itu kepada mereka.",
+  "pl": "Pokazałem im mapę.",
+  "tr": "Onlara haritayı gösterdim."
+ },
+ "26.22": {
+  "pt-BR": "Mostrei o mapa para Ana.",
+  "vi": "Tôi đã cho Ana xem tấm bản đồ.",
+  "id": "Saya menunjukkan peta itu kepada Ana.",
+  "pl": "Pokazałem Anie mapę.",
+  "tr": "Ana'ya haritayı gösterdim."
+ },
+ "26.23": {
+  "pt-BR": "Eu não mostrei o mapa para ele.",
+  "vi": "Tôi không cho anh ấy xem tấm bản đồ.",
+  "id": "Saya tidak menunjukkan peta itu kepadanya.",
+  "pl": "Nie pokazałem mu mapy.",
+  "tr": "Ona haritayı göstermedim."
+ },
+ "26.39": {
+  "pt-BR": "Lemos a carta para Ana.",
+  "vi": "Chúng ta đã đọc thư cho Ana nghe.",
+  "id": "Kami membacakan surat itu kepada Ana.",
+  "tr": "Ana'ya mektubu okuduk."
+ },
+ "27.04": {
+  "pt-BR": "O livro que tenho aqui é novo.",
+  "id": "Buku yang saya miliki di sini masih baru.",
+  "pl": "Książka, którą mam tutaj, jest nowa.",
+  "tr": "Buradaki kitap yeni.",
+  "vi": "Cuốn sách tôi đang có ở đây là sách mới."
+ },
+ "27.36": {
+  "pl": "Podobają mi się listy, które pisze Ana."
+ },
+ "27.37": {
+  "pl": "Podobają mi się listy, które napisałeś wczoraj."
+ },
+ "27.38": {
+  "pl": "Podobają mi się listy, które przyszły dzisiaj."
+ },
+ "28.08": {
+  "pt-BR": "Você enviará o mapa amanhã.",
+  "vi": "Bạn sẽ gửi bản đồ vào ngày mai.",
+  "id": "Anda akan mengirim peta besok.",
+  "pl": "Wyślesz mapę jutro.",
+  "tr": "Haritayı yarın göndereceksiniz."
+ },
+ "28.14": {
+  "pt-BR": "Você abrirá a janela mais tarde.",
+  "vi": "Bạn sẽ mở cửa sổ sau.",
+  "id": "Anda akan membuka jendela nanti.",
+  "tr": "Pencereyi daha sonra açacaksınız.",
+  "pl": "Otworzysz okno później."
+ },
+ "28.20": {
+  "pt-BR": "Você pagará em dinheiro mais tarde.",
+  "vi": "Bạn sẽ thanh toán bằng tiền mặt sau.",
+  "id": "Anda akan membayar tunai nanti.",
+  "tr": "Daha sonra nakit ödeyeceksiniz.",
+  "pl": "Zapłacisz gotówką później."
+ },
+ "28.21": {
+  "pl": "Sprzedam samochód po podróży."
+ },
+ "28.22": {
+  "pt-BR": "Vocês enviarão o mapa amanhã.",
+  "vi": "Các bạn sẽ gửi bản đồ vào ngày mai.",
+  "id": "Kalian akan mengirim peta besok.",
+  "pl": "Wyślecie mapę jutro.",
+  "tr": "Haritayı yarın göndereceksiniz."
+ },
+ "28.27": {
+  "pt-BR": "Vocês pagarão em dinheiro amanhã.",
+  "pl": "Zapłacicie gotówką jutro.",
+  "vi": "Các bạn sẽ trả tiền mặt vào ngày mai.",
+  "id": "Kalian akan membayar tunai besok."
+ },
+ "28.32": {
+  "pt-BR": "Você não escreverá uma mensagem hoje à noite.",
+  "id": "Anda tidak akan menulis pesan malam ini.",
+  "pl": "Nie napiszesz dziś wiadomości.",
+  "tr": "Bu gece mesaj yazmayacaksınız."
+ },
+ "28.35": {
+  "pt-BR": "Luis não enviará o mapa hoje à noite.",
+  "vi": "Luis sẽ không gửi bản đồ tối nay.",
+  "id": "Luis tidak akan mengirim peta malam ini.",
+  "pl": "Luis nie wyśle dziś mapy.",
+  "tr": "Luis bu gece haritayı göndermeyecek."
+ },
+ "28.44": {
+  "pt-BR": "Você abrirá a janela?",
+  "vi": "Bạn sẽ mở cửa sổ chứ?"
+ },
+ "28.50": {
+  "pt-BR": "Vocês vão ler a mensagem?",
+  "pl": "Czy przeczytacie wiadomość?",
+  "vi": "Các bạn sẽ đọc tin nhắn chứ?",
+  "id": "Apakah kalian akan membaca pesan itu?"
+ },
+ "29.01": {
+  "pt-BR": "Eu ligaria para o hotel.",
+  "vi": "Tôi sẽ gọi cho khách sạn.",
+  "id": "Saya akan menelepon hotel."
+ },
+ "29.02": {
+  "pt-BR": "Você ligaria para o hotel.",
+  "vi": "Bạn sẽ gọi cho khách sạn.",
+  "id": "Anda akan menelepon hotel.",
+  "tr": "Oteli arardınız.",
+  "pl": "Zadzwoniłbyś do hotelu."
+ },
+ "29.03": {
+  "pt-BR": "Eu ligaria para Ana.",
+  "vi": "Tôi sẽ gọi cho Ana.",
+  "id": "Aku akan menelepon Ana."
+ },
+ "29.04": {
+  "pt-BR": "Você ligaria para Ana.",
+  "vi": "Bạn sẽ gọi cho Ana.",
+  "id": "Anda akan menelepon Ana.",
+  "tr": "Ana'yı arardınız.",
+  "pl": "Zadzwoniłbyś do Anyi."
+ },
+ "29.08": {
+  "pt-BR": "Você compraria pão.",
+  "vi": "Bạn sẽ mua bánh mì.",
+  "id": "Anda akan membeli roti."
+ },
+ "29.10": {
+  "pt-BR": "Nós esperaríamos aqui.",
+  "vi": "Chúng tôi sẽ đợi ở đây.",
+  "id": "Kami akan menunggu di sini.",
+  "tr": "Burada beklerdik.",
+  "pl": "Poczekalibyśmy tu."
+ },
+ "29.11": {
+  "pt-BR": "Eu abriria a porta.",
+  "vi": "Tôi sẽ mở cửa.",
+  "id": "Aku akan membuka pintu."
+ },
+ "29.13": {
+  "pt-BR": "Luis enviaria a foto.",
+  "vi": "Luis sẽ gửi bức ảnh.",
+  "id": "Luis akan mengirim foto.",
+  "tr": "Luis fotoğrafı gönderirdi."
+ },
+ "29.14": {
+  "pt-BR": "Você enviaria o mapa.",
+  "vi": "Bạn sẽ gửi bản đồ.",
+  "id": "Kamu akan mengirim peta.",
+  "tr": "Haritayı gönderirdiniz.",
+  "pl": "Wysłałbyś mapę."
+ },
+ "29.16": {
+  "pt-BR": "Nós escreveríamos uma mensagem.",
+  "vi": "Chúng tôi sẽ viết một tin nhắn.",
+  "id": "Kami akan menulis pesan.",
+  "tr": "Bir mesaj yazardık."
+ },
+ "29.17": {
+  "tr": "Ana nakit öderdi.",
+  "pl": "Ana zapłaciłaby gotówką."
+ },
+ "29.18": {
+  "pt-BR": "Minhas irmãs pagariam com cartão.",
+  "vi": "Các chị gái tôi sẽ trả tiền bằng thẻ."
+ },
+ "29.19": {
+  "pt-BR": "Eu visitaria o apartamento com luz natural.",
+  "vi": "Tôi sẽ đi xem căn hộ có ánh sáng tự nhiên.",
+  "id": "Saya akan mengunjungi apartemen dengan cahaya alami.",
+  "tr": "Doğal ışık alan daireyi görmeye giderdim.",
+  "pl": "Obejrzałbym mieszkanie z naturalnym światłem."
+ },
+ "29.20": {
+  "pt-BR": "Você entraria no escritório.",
+  "vi": "Bạn sẽ vào văn phòng.",
+  "id": "Anda akan masuk ke kantor.",
+  "tr": "Ofise girerdiniz.",
+  "pl": "Wszedłbyś do biura."
+ },
+ "29.22": {
+  "pl": "Przygotowalibyście plecak."
+ },
+ "29.23": {
+  "pt-BR": "Meus irmãos voltariam para casa.",
+  "vi": "Các anh trai tôi sẽ về nhà.",
+  "id": "Saudara-saudara saya akan pulang.",
+  "tr": "Kardeşlerim eve dönerlerdi."
+ },
+ "29.26": {
+  "pt-BR": "Meus irmãos levariam a sacola.",
+  "vi": "Các anh trai tôi sẽ xách cái túi.",
+  "id": "Saudara-saudara saya akan membawa tas itu.",
+  "tr": "Kardeşlerim çantayı taşırlardı.",
+  "pl": "Moi bracia zanieśliby torbę."
+ },
+ "29.27": {
+  "pl": "Przeczytalibyście wiadomość.",
+  "pt-BR": "Vocês leriam a mensagem.",
+  "vi": "Các bạn sẽ đọc tin nhắn.",
+  "id": "Kalian akan membaca pesan itu.",
+  "tr": "Mesajı okurdunuz."
+ },
+ "29.30": {
+  "pl": "Czekalibyście na zewnątrz."
+ },
+ "29.31": {
+  "tr": "Bugün kitabı okumazdım."
+ },
+ "29.32": {
+  "tr": "Bugün mesaj yazmazdınız."
+ },
+ "29.34": {
+  "pt-BR": "Não voltaríamos para casa hoje.",
+  "vi": "Hôm nay chúng tôi sẽ không về nhà.",
+  "id": "Kita tidak akan pulang hari ini."
+ },
+ "29.37": {
+  "pt-BR": "Eu não pagaria tanto por um quarto barulhento."
+ },
+ "29.38": {
+  "pt-BR": "Eu não pagaria tanto por aquele hotel."
+ },
+ "29.39": {
+  "pl": "Nie kupilibyście dziś biletu.",
+  "pt-BR": "Vocês não comprariam uma passagem hoje."
+ },
+ "29.41": {
+  "pl": "Czy zadzwoniłbyś do hotelu?"
+ },
+ "29.44": {
+  "vi": "Bạn sẽ thanh toán bằng thẻ không?"
+ },
+ "29.46": {
+  "tr": "Ana bavulu taşır mıydı?",
+  "pl": "Czy Ana zaniosłaby walizkę?"
+ },
+ "29.48": {
+  "vi": "Bạn sẽ đợi ở đây một phút không?"
+ },
+ "29.50": {
+  "pl": "Czy wysłalibyście zdjęcie?"
+ },
+ "30.09": {
+  "pt-BR": "Quero que voltemos juntos."
+ },
+ "30.11": {
+  "pt-BR": "Queremos que você entre agora.",
+  "vi": "Chúng tôi muốn bạn vào ngay bây giờ.",
+  "id": "Kami ingin kamu masuk sekarang.",
+  "pl": "Chcemy, żebyś teraz wszedł."
+ },
+ "30.18": {
+  "pl": "Chcemy, żebyście wrócili razem."
+ },
+ "30.27": {
+  "pt-BR": "Ana quer que voltemos juntos.",
+  "pl": "Ana chce, żebyśmy wrócili razem."
+ },
+ "30.32": {
+  "tr": "Annem metni kopyalamanı istiyor."
+ },
+ "30.33": {
+  "tr": "Annem akşam yemeğinden sonra şarkı söylemeni istemiyor."
+ },
+ "30.36": {
+  "pt-BR": "Minha mãe quer que a gente volte junto."
+ },
+ "30.48": {
+  "vi": "Bạn có muốn tôi giảm âm lượng không?",
+  "tr": "Sesi kısmamı ister misin?"
+ },
+ "31.12": {
+  "pt-BR": "Compraremos as passagens quando eu souber o horário.",
+  "vi": "Chúng ta sẽ mua vé khi tôi biết giờ.",
+  "id": "Kita akan membeli tiket saat aku tahu jam berapa.",
+  "tr": "Saati öğrendiğimde bilet alacağız.",
+  "pl": "Kupimy bilety, gdy dowiem się, która godzina."
+ },
+ "31.21": {
+  "pt-BR": "Abrirei a porta quando Ana vier.",
+  "vi": "Tôi sẽ mở cửa khi Ana đến.",
+  "id": "Aku akan membuka pintu saat Ana datang.",
+  "tr": "Ana geldiğinde kapıyı açacağım.",
+  "pl": "Otworzę drzwi, kiedy Ana przyjdzie."
+ },
+ "31.28": {
+  "pl": "Porozmawiamy, kiedy sygnał wróci."
+ },
+ "31.30": {
+  "pt-BR": "Falaremos sobre a viagem quando a Ana vier.",
+  "vi": "Chúng ta sẽ nói về chuyến đi khi Ana đến.",
+  "id": "Kami akan membicarakan perjalanan itu ketika Ana datang.",
+  "tr": "Ana geldiğinde gezi hakkında konuşacağız.",
+  "pl": "Porozmawiamy o wycieczce, kiedy Ana przyjdzie."
+ },
+ "31.39": {
+  "tr": "Sinyal olduğunda size programı göndereceğim."
+ },
+ "32.30": {
+  "pt-BR": "Se a bateria estivesse carregada, eu usaria o mapa.",
+  "vi": "Nếu pin đã được sạc đầy, tôi sẽ dùng bản đồ.",
+  "id": "Jika baterainya terisi penuh, saya akan menggunakan peta.",
+  "tr": "Pil şarjlı olsaydı, haritayı kullanırdım.",
+  "pl": "Gdyby bateria była naładowana, użyłbym mapy."
+ },
+ "32.36": {
+  "pt-BR": "Eu te acompanharia se tivesse tempo.",
+  "vi": "Tôi sẽ đi cùng bạn nếu tôi có thời gian.",
+  "id": "Aku akan menemanimu jika aku punya waktu.",
+  "tr": "Zamanım olsaydı sana eşlik ederdim.",
+  "pl": "Towarzyszyłbym ci, gdybym miał czas."
+ },
+ "32.38": {
+  "pt-BR": "Se eu tivesse um carro, eu te acompanharia.",
+  "vi": "Nếu tôi có xe hơi, tôi sẽ đi cùng bạn.",
+  "id": "Jika aku punya mobil, aku akan menemanimu.",
+  "tr": "Arabam olsaydı, sana eşlik ederdim.",
+  "pl": "Gdybym miał samochód, towarzyszyłbym ci."
+ },
+ "32.40": {
+  "pt-BR": "Se você pudesse vir, eu te acompanharia.",
+  "vi": "Nếu bạn có thể đến, tôi sẽ đi cùng bạn.",
+  "id": "Jika kamu bisa ikut, saya akan menemanimu.",
+  "tr": "Gelebilseydin, sana eşlik ederdim.",
+  "pl": "Gdybyś mógł przyjść, towarzyszyłbym ci."
+ }
+}

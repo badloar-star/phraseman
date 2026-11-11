@@ -1,0 +1,67 @@
+# Task packet: U20 — точный смысл подсказок в курсах испанского, французского, немецкого и итальянского
+
+Governance-ID: TG-93FC0B43BB71
+Governance-ID: TG-741761F05E1E
+Governance-ID: TG-CCBFAC997C18
+Governance-ID: TG-5516F7FE4EC0
+Governance-ID: TG-E1EB3E0EF814
+Governance-ID: TG-7ADAC35B034C
+Governance-ID: TG-927B4A9CD2F9
+Status: In progress
+Owner: сессия Claude (U20, 11.11.2026)
+Related epic/enabler: U20 «Точный смысл»; продолжение `u20-exact-sense-hints-en-2026-11-11.md`
+
+## Outcome
+
+Владелец 11.11 поручил проверить тем же способом остальные четыре курса (по 1600 фраз, 8 языков
+подсказок каждый). Ученик собирает фразу на изучаемом языке по подсказке на своём; подсказка обязана
+вести к той же конструкции: время, лицо и число, отрицание, тип предложения, состояние/действие, слово.
+
+Мера успеха: все 6400 фраз прочитаны проверяющими; находки высокой и средней уверенности внесены слоем
+правок после выборочной проверки; находки низкой уверенности перечислены владельцу, а не исправлены молча.
+
+## Scope
+
+In scope:
+- временные файлы проверяющих (выгрузки курсов и находки) — вне репозитория, в scratchpad сессии;
+- новые слои `docs/work/classic_translation_fixes_u20_exact_sense_<lang>_2026_11_11.json`
+  (es, fr, de, it), читает сборщик `scripts/classic_course_pack.mjs`;
+- `modules/classic-courses/<lang>/lessons-NN.json` — только строки `sourceLocales` затронутых фраз;
+- `modules/classic-courses/<lang>/index.json`, `modules/classic-courses/manifest.json` — пересчёт rev/sha256;
+- `scripts/u20_apply_exact_sense_hints.cjs` — параметр языка курса;
+- артефакты `docs/work/u20_exact_sense_2026_11_11/findings_<lang>.json`, `applied_<lang>.json`.
+
+Out of scope: цели, плитки, соблазны, допустимые ответы, id; теория и вступления этих курсов; код приложения.
+
+## Architecture
+
+No architecture change: тот же шов, что в английском проходе — слой `TRANSLATION_FIXES` сборщика плюс
+идемпотентное внесение в готовые lessons-файлы с пересчётом `index.rev` и строк `manifest.files`.
+У курсов es/fr/de/it `rev` фразы берётся из исходного архива (contentRevision / contentFingerprint /
+revision) и от подсказок не зависит — он не меняется.
+
+## Security and privacy
+
+Не затрагивается: статический учебный контент в бандле. Нет пользовательских данных, сети, авторизации,
+секретов, разрешений. Privacy Policy не меняется.
+
+## Technical debt
+
+- Contain: объём находок (сотни на курс) не позволяет перечитать каждую вручную. Принимаются только
+  находки высокой и средней уверенности, после выборочной проверки; все находки и принятые значения
+  сохраняются артефактом, откат — одним коммитом.
+- Accept temporarily: находки низкой уверенности не вносятся; список — владельцу.
+- Contain: рабочая копия `manifest.json` содержит чужие незакоммиченные строки; в коммит идут только
+  строки затронутого курса (HEAD + свои строки), чужие остаются в рабочей копии.
+
+## Verification
+
+- сверка скриптом: число фраз 1600 на курс, вне `sourceLocales` изменений 0, manifest = файлы;
+- `npm run test:one -- tests/classic_courses_pack_2026_11_04.test.ts` через светофор;
+- `tests/classic_lesson_prompt_locales.test.ts` (подсказка на языке ученика);
+- артефакты находок и применённых правок в `docs/work/u20_exact_sense_2026_11_11/`.
+
+## Rollback
+
+`git revert` коммита курса либо удалить слой курса и вернуть `lessons-*.json`, `index.json` и строки
+курса в `manifest.json` из предыдущего коммита. Прогресс пользователей привязан к id фраз и не страдает.

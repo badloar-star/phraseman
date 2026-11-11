@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useWindowDimensions } from 'react-native';
+import { APP_MAX_FONT_SCALE } from '../constants/font_scale_cap';
 
 /**
  * Масштаб межстрочного под системный размер шрифта — общий для всех экранов.
@@ -10,11 +11,15 @@ import { useWindowDimensions } from 'react-native';
  *
  * Предел `maxMultiplier` (доработка Дизайна 05.10): там, где у Text стоит `maxFontSizeMultiplier` (1.2–1.3), сам текст растёт не больше
  * этого множителя, значит и строка должна расти не больше — иначе при системном 2.0 текст ×1.3, а строка ×2 (лишний воздух).
+ *
+ * Общий потолок (владелец 11.11.2026): у всего текста приложения теперь есть потолок по умолчанию `APP_MAX_FONT_SCALE`
+ * (constants/font_scale_cap.ts, ставится патчем Text/TextInput). Поэтому без явного `maxMultiplier` строка растёт не больше этого
+ * потолка — ровно как сам текст. Явный `maxMultiplier` (и меньший, и больший) по-прежнему побеждает, как и явный проп у Text.
  */
 export function lineScaleFactor(fontScale: number, maxMultiplier?: number): number {
   if (!Number.isFinite(fontScale) || fontScale <= 1) return 1;
   if (maxMultiplier !== undefined && Number.isFinite(maxMultiplier) && maxMultiplier >= 1) return Math.min(fontScale, maxMultiplier);
-  return fontScale;
+  return Math.min(fontScale, APP_MAX_FONT_SCALE);
 }
 
 /** Округление до десятой: 22 × 1.3 = 28.6 (дробный lineHeight RN принимает), целые коэффициенты дают целые числа. */
@@ -31,7 +36,8 @@ export function scaleLineHeight(lineHeight: number, fontScale: number, maxMultip
  */
 export function useLineScale(): (lineHeight: number, maxMultiplier?: number) => number {
   const { fontScale } = useWindowDimensions();
-  const base = lineScaleFactor(fontScale);
+  // зачем: base — сырой системный масштаб (не ниже 1), без общего потолка: иначе явный предел выше общего (например 1.4) не смог бы сработать.
+  const base = Number.isFinite(fontScale) && fontScale > 1 ? fontScale : 1;
   return useCallback((lineHeight: number, maxMultiplier?: number) => {
     const factor = base === 1 ? 1 : lineScaleFactor(base, maxMultiplier);
     return factor === 1 ? lineHeight : round1(lineHeight * factor);

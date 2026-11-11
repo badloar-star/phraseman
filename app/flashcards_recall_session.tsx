@@ -12,12 +12,16 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import Reanimated, { FadeInDown, FadeInUp, useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import ContentWrap from '../components/ContentWrap';
+import { useScreen } from '../hooks/use-screen';
+import { effectiveFontScale } from '../constants/font_scale_cap';
+import { recallPromptFit } from './flashcards/recall_prompt_fit';
 import { useEnergy, useEnergySessionIntent } from '../components/EnergyContext';
 import { buildManifestCardIndex, manifestSeed, restoreManifestCards, toManifestIds } from './flashcards/training_manifest_ids';
 import { resolveEnergyIntentForRecord } from './flashcards/training_energy_intent';
@@ -150,6 +154,9 @@ export default function FlashcardsRecallSession() {
   // языки с «Карточками» ready, иначе язык приложения). Энергия и месячная квота — по аккаунту, от языка не зависят.
   const studyTarget = useTrainingStudyTarget();
   const { theme: t, f, statusBarLight, liquidGlassThemeId } = useTheme();
+  // зачем (владелец 11.11, жалоба Стеллы): фраза задания подгоняется под ширину экрана и системный шрифт — см. flashcards/recall_prompt_fit.ts
+  const { width: windowWidth, fontScale: systemFontScale } = useWindowDimensions();
+  const { contentMaxW } = useScreen();
   const recallGlass = liquidGlassTokens(liquidGlassThemeId);
   const { accessResolved, hasPremiumAccess } = usePremium();
   const reducedMotion = useReducedMotion();
@@ -988,6 +995,10 @@ export default function FlashcardsRecallSession() {
     );
   }
 
+  const promptFit = recallPromptFit({ text: promptOf(activeCard), contentWidth: Math.min(windowWidth, contentMaxW), fontScale: systemFontScale });
+  // зачем: подпись задания приколота к верху карточки (18 + строка 21); фразе оставляем под неё место, иначе длинная фраза наезжала на подпись.
+  // 24 при обычном шрифте: одна и две строки фразы по-прежнему умещаются в 170 макета; при крупном шрифте зазор растёт вместе с подписью.
+  const promptClearance = Math.round(24 * effectiveFontScale(systemFontScale));
   const feedbackSurface = feedback?.kind === 'wrong' ? FEEDBACK_BAD_SURFACE : FEEDBACK_OK_SURFACE;
   const attemptsInteractive = attempts.hydrated && attemptsPhase === 'active';
   const canCheck = attemptsInteractive && input.trim().length > 0 && !feedback && !answerRevealed;
@@ -1029,9 +1040,9 @@ export default function FlashcardsRecallSession() {
                 collapsable={false}
                 accessible
                 accessibilityLabel={`${direction === 'to_source' ? copy.promptToSource : copy.prompt}. ${promptOf(activeCard)}`}
-                style={styles.focusPrompt}
+                style={[styles.focusPrompt, { marginVertical: promptClearance }]}
               >
-                <Text style={[styles.translation, { color: t.textPrimary, fontSize: 34, lineHeight: 40 }]}>
+                <Text testID="fc-recall-prompt" style={[styles.translation, { color: t.textPrimary, fontSize: promptFit.fontSize, lineHeight: promptFit.lineHeight }]}>
                   {promptOf(activeCard)}
                 </Text>
               </View>

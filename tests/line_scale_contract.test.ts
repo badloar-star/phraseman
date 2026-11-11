@@ -1,3 +1,4 @@
+import { APP_MAX_FONT_SCALE } from '../constants/font_scale_cap';
 import { lineScaleFactor, scaleLineHeight } from '../hooks/useLineScale';
 
 // зачем (координатор 05.10): при системном шрифте 1.0 (и меньше) коэффициент ровно 1 — разметка не меняется; при крупном растёт lineHeight.
@@ -8,17 +9,25 @@ describe('useLineScale', () => {
       for (const lh of [16, 20, 22, 25, 40, 44, 46]) expect(scaleLineHeight(lh, fs)).toBe(lh);
     }
   });
-  test('large font scales line height by the same factor', () => {
-    expect(lineScaleFactor(2)).toBe(2);
-    expect(scaleLineHeight(22, 2)).toBe(44);
+  // зачем (владелец 11.11.2026): у текста появился общий потолок системного шрифта (constants/font_scale_cap.ts) — строка без своего
+  // предела растёт не больше него, иначе при системном 2.0 текст ×1.3, а строка ×2. До потолка рост прежний, тем же коэффициентом.
+  test('large font scales line height by the same factor, up to the app-wide ceiling', () => {
+    expect(APP_MAX_FONT_SCALE).toBe(1.3);
+    expect(lineScaleFactor(1.15)).toBe(1.15);
     expect(scaleLineHeight(25, 1.3)).toBe(32.5);
+    expect(lineScaleFactor(2)).toBe(APP_MAX_FONT_SCALE);
+    expect(scaleLineHeight(22, 2)).toBe(28.6);
+  });
+  test('an explicit limit above the app-wide ceiling still wins (Text with its own maxFontSizeMultiplier)', () => {
+    expect(lineScaleFactor(2, 1.4)).toBe(1.4);
+    expect(scaleLineHeight(20, 2, 1.4)).toBe(28);
   });
   test('maxMultiplier caps growth: 2.0 with a 1.3 limit gives 22 → 28.6; at 1.0 still exactly n', () => {
     expect(lineScaleFactor(2, 1.3)).toBe(1.3);
     expect(scaleLineHeight(22, 2, 1.3)).toBe(28.6);
     expect(scaleLineHeight(22, 1.15, 1.3)).toBe(25.3);
     for (const lh of [16, 20, 22, 25, 40]) expect(scaleLineHeight(lh, 1, 1.3)).toBe(lh);
-    expect(scaleLineHeight(22, 2, undefined)).toBe(44);
+    expect(scaleLineHeight(22, 2, undefined)).toBe(28.6);
   });
   test('the hook reads fontScale from useWindowDimensions and memoises on it', () => {
     const fs = require('node:fs') as typeof import('node:fs');

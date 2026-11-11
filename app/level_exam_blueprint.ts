@@ -316,7 +316,12 @@ function tileGapsOf(reference: PhraseReference, ctx: VocabContext): ExpandedSeed
  * Перевод фразы на язык ученика. Если интерфейс совпал с языком курса (испанский курс при испанском интерфейсе),
  * «перевод» был бы самой фразой — тогда берётся английский, затем русский перевод курса.
  */
-function sourceTextFor(phrase: LessonPhrase, locale: SourceLocale, studyTarget: LevelExamStudyTarget): string {
+function sourceTextFor(phrase: LessonPhrase, locale: SourceLocale, studyTarget: LevelExamStudyTarget, englishInterface: boolean): string {
+  // зачем: английский интерфейс у не-английского курса — перевод фразы на английский (он есть в данных курса)
+  if (englishInterface && studyTarget !== 'en') {
+    const english = phrase.classic?.sourceLocales?.en?.trim();
+    if (english) return english;
+  }
   if ((locale as string) !== studyTarget) return explicitSourceText(phrase, locale);
   return phrase.classic?.sourceLocales?.en?.trim() || phrase.russian.trim();
 }
@@ -466,6 +471,9 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   const [fromLesson, toLesson] = COURSE_LEVEL_RANGES[input.level];
   // зачем: loud считает отброшенное/добранное только для РЕАЛЬНО выданных заданий; quiet — для проб кандидатов (иначе счёт раздувается)
   const target = input.studyTarget;
+  const englishInterface = input.englishInterface === true;
+  // зачем: подписи «что сделать» идут на языке интерфейса; у английского интерфейса свой набор подписей
+  const copyLocale: string = englishInterface ? 'en' : input.sourceLocale;
   // зачем: до версии 5 движок знал только английский; у остальных курсов прежних попыток этого движка не бывает
   if (target !== 'en' && blueprintVersion < 5) throw new Error(`level_exam_version_unsupported:${target}:${blueprintVersion}`);
   // зачем: слова с диакритикой (está, über, déjà) английской маской [A-Za-z] отбрасывались бы; английскую маску не трогаем — от неё зависят прежние версии
@@ -477,7 +485,7 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   const references: PhraseReference[] = [];
   for (let lessonId = fromLesson; lessonId <= toLesson; lessonId += 1) {
     for (const phrase of lessonPhrases(lessonId, courseTarget)) {
-      const sourceText = sourceTextFor(phrase, input.sourceLocale, target);
+      const sourceText = sourceTextFor(phrase, input.sourceLocale, target, englishInterface);
       if (phrase.english.trim() && sourceText) references.push({ lessonId, phraseId: String(phrase.id), phrase, sourceText });
     }
   }
@@ -627,7 +635,7 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
         release(picked);
         return null;
       }
-      const draft = buildExpandedExamDraft(format, picked.map(seedOf), `${input.seed}:${format}:${serial}:${attemptIndex}`, input.sourceLocale, target);
+      const draft = buildExpandedExamDraft(format, picked.map(seedOf), `${input.seed}:${format}:${serial}:${attemptIndex}`, copyLocale, target);
       if (draft) {
         const main = picked[0];
         const id = `${input.level}:${format}:${main.lessonId}:${main.phraseId}`;
@@ -671,7 +679,7 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
       let task: LevelExamExpandedTask | null = null;
       for (const item of authoredPool) {
         if (item.format !== format || authoredUsed.has(item.id)) continue;
-        const draft = buildAuthoredExamDraft(item, input.seed, input.sourceLocale, target);
+        const draft = buildAuthoredExamDraft(item, input.seed, copyLocale, target);
         if (!draft) {
           DebugLogger.warn(LOG, `authored item rejected id=${item.id} format=${format}`);
           continue;

@@ -49,6 +49,9 @@ import { canShowReview } from './review_utils';
 import ReviewPromptModal from '../components/ReviewPromptModal';
 import { soundDirector } from '../modules/audio/sound_director';
 import LevelExamV2 from '../components/level-exam/LevelExamV2';
+
+/** Зачёт всех пяти курсов идёт через новый экран (владелец 11.11.2026). Пока true — банк старого встроенного экрана не собирается. */
+const LEVEL_EXAM_V2_FOR_ALL_COURSES = true;
 import { DebugLogger } from './debug-logger';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { LEVEL_EXAM_PASS_PERCENT } from './lesson_star_scale';
@@ -626,6 +629,10 @@ export default function LevelExam() {
 
   useEffect(() => {
     let cancelled = false;
+    // зачем (прогон на эмуляторе 11.11, сессия F01): зачёт всех курсов рисует новый экран (LevelExamV2), а этот загрузчик
+    // по-прежнему собирал 30 заданий старого экрана — около секунды работы впустую на каждом открытии. Старый экран
+    // остаётся в коде до проверки нового на телефоне; пока новый экран включён для всех курсов, банк старого не собираем.
+    if (LEVEL_EXAM_V2_FOR_ALL_COURSES) return;
     if (!classicExamTarget || frenchExamBlocked) {
       console.log(`[LEVEL-EXAM] банк: target=${storageStudyTarget(studyTarget)} classic=${String(classicExamTarget)} закрыт=${frenchExamBlocked} level=${lvl} → английский зачёт`); // guard-ok: ранний выход называет причину
       setClassicQuestions([]);

@@ -136,6 +136,28 @@ describe.each(TARGETS)('экзамен уровня, курс %s', (studyTarget)
   });
 });
 
+describe('экзамен уровня, не-английский курс при английском интерфейсе', () => {
+  // зачем (прогон на эмуляторе 11.11): ученик испанского с английским интерфейсом видел задание по-русски
+  it.each(TARGETS)('курс %s: перевод и подписи заданий английские, а не русские', (studyTarget) => {
+    const blueprint = buildLevelExamBlueprint({ level: 'A1', studyTarget, sourceLocale: 'ru', seed: 'english-ui', englishInterface: true });
+    const cyrillic = /[\u0400-\u04FF]/u;
+    for (const task of blueprint.tasks) {
+      if (task.format === 'speed_match') {
+        for (const pair of task.pairs) expect([pair.scoreUnitId, cyrillic.test(pair.source)]).toEqual([pair.scoreUnitId, false]);
+        continue;
+      }
+      expect([task.id, cyrillic.test(task.prompt)]).toEqual([task.id, false]);
+      if ('instruction' in task) expect([task.id, cyrillic.test(task.instruction)]).toEqual([task.id, false]);
+    }
+  });
+
+  it('без признака английского интерфейса перевод остаётся на языке ученика', () => {
+    const blueprint = buildLevelExamBlueprint({ level: 'A1', studyTarget: 'es', sourceLocale: 'ru', seed: 'english-ui' });
+    const guess = blueprint.tasks.find((task) => task.format === 'guess_phrase');
+    expect(guess && guess.format === 'guess_phrase' && /[\u0400-\u04FF]/u.test(guess.prompt)).toBe(true);
+  });
+});
+
 describe('экзамен уровня, испанский курс при испанском интерфейсе', () => {
   it('перевод фразы не совпадает с самой фразой', () => {
     const blueprint = build('es', 'A1', 'same-language', 'es');

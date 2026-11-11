@@ -17,6 +17,7 @@ Governance-ID: TG-8D54274D1269
 Governance-ID: TG-7EEBDA4301F4
 Governance-ID: TG-3BE500344E5E
 Governance-ID: TG-89AFE2A4EE81
+Governance-ID: TG-D1C8BFB8C0B5
 Peak-wiring: client (pack decode, verdict, screen); pool not published
 Status: In progress
 Owner: сессия Claude (владелец 11.11.2026: «все механики а не 5 и всё, что ещё не в приложении для Пика, что Кодекс не добавил, — доделай и добавь ты»)

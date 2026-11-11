@@ -307,6 +307,7 @@ export default function LevelExamV2({ level, lang, studyTarget = 'en', accessSta
           level,
           studyTarget,
           sourceLocale: examSourceLocale,
+          englishInterface: lang === 'en',
           seed: decision.attempt.seed,
           blueprintVersion: decision.attempt.blueprintVersion,
         });
@@ -378,6 +379,7 @@ export default function LevelExamV2({ level, lang, studyTarget = 'en', accessSta
           level,
           studyTarget,
           sourceLocale: examSourceLocale,
+          englishInterface: lang === 'en',
           seed: `${ownerStableUid}:${level}:${startToken}`,
           blueprintVersion: CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION,
         });

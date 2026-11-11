@@ -32,6 +32,7 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
   const { liquidGlassThemeId, setLiquidGlassThemeId } = useTheme();
   const router = useRouter();
   const sharingRef = useRef(false);
+  const ratingRef = useRef(false);
   return useCallback((cta: StoryTemplateCta, ctx: StoryCtaContext) => {
     DebugLogger.info(LOG, `кнопка action=${cta.action} кадр=${ctx.source} студия=${String(studio)}`);
     void hapticTap();
@@ -105,6 +106,22 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
       DebugLogger.info(LOG, `код приглашения: закрываем просмотр и открываем ввод кода (кадр=${ctx.source})`);
       closeViewer('cta_enter_referral_code');
       router.push('/referrals?enter=1' as never);
+      return;
+    }
+    if (cta.action === 'rate_app') {
+      // зачем (истории вместо окон, 11.11): то же, что главная кнопка окна просьбы об оценке — открыть страницу магазина; «оценено» ставим только
+      // если магазин открылся (R58 #55: иначе просьба пропадала навсегда без оценки); двойной тап магазин дважды не открывает
+      if (ratingRef.current) { DebugLogger.info(LOG, 'оценка: магазин уже открывается — повторный тап пропущен'); return; }
+      ratingRef.current = true;
+      closeViewer('cta_rate_app');
+      void Promise.all([import('../../../app/store_review'), import('../../../app/review_utils')])
+        .then(async ([store, review]) => {
+          const opened = await store.openStoreReviewPage();
+          DebugLogger.info(LOG, `оценка: магазин открыт=${String(opened)} (кадр=${ctx.source})`);
+          if (opened) await review.markReviewRated();
+        })
+        .catch((e: unknown) => { DebugLogger.info(LOG, `оценка упала: ${String(e)}`); })
+        .finally(() => { ratingRef.current = false; });
       return;
     }
     DebugLogger.info(LOG, `кнопка action=${cta.action}: события этого кадра в приложении ещё нет — переход не назначен`);

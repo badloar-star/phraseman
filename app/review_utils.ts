@@ -208,11 +208,12 @@ const GENERAL_VARIANTS: ReviewVariantDefinition[] = [
   },
 ];
 
-/** lang — язык интерфейса для всех текстов модалки. */
-export const getReviewVariant = async (
-  context: ReviewContext,
-  lang: Lang = 'ru'
-): Promise<ReviewVariant> => {
+/**
+ * Текст просьбы сразу, без ожидания.
+ * зачем (истории вместо окон, 11.11): кадр истории рисуется синхронно и обязан показать те же слова, что окно; выбор текста
+ * хранилище не читает, поэтому ждать тут нечего — окно берёт тот же текст через getReviewVariant ниже.
+ */
+export function reviewVariantFor(context: ReviewContext, lang: Lang = 'ru'): ReviewVariant {
   if (lang === 'ru') {
     return {
       ...APPROVED_RU_COPY[context],
@@ -224,6 +225,14 @@ export const getReviewVariant = async (
     ...localizeVariant(base, lang),
     presentation: 'dialog',
   };
+}
+
+/** lang — язык интерфейса для всех текстов модалки. */
+export const getReviewVariant = async (
+  context: ReviewContext,
+  lang: Lang = 'ru'
+): Promise<ReviewVariant> => {
+  return reviewVariantFor(context, lang);
 };
 
 export const incrementSessionCount = async (): Promise<void> => {

@@ -31,7 +31,6 @@ const S = {
   ctaEnterCode: ['У меня есть код приглашения', 'У мене є код запрошення', 'I have an invite code', 'Tengo un código de invitación', 'Tenho um código de convite', 'Tôi có mã mời', 'Saya punya kode undangan', 'Davet kodum var', 'Mam kod zaproszenia'], // дословно как кнопка окна
   ctaInviteFriend: ['Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời một người bạn', 'Ajak teman', 'Arkadaş davet et', 'Zaproś znajomego'], // дословно как кнопка окна
   ctaStartLesson: ['Начать урок {lessonNo}', 'Почати урок {lessonNo}', 'Start lesson {lessonNo}', 'Empezar la lección {lessonNo}', 'Começar a lição {lessonNo}', 'Bắt đầu bài {lessonNo}', 'Mulai pelajaran {lessonNo}', '{lessonNo}. derse başla', 'Zacznij lekcję {lessonNo}'],
-  ctaRate: ['Оценить', 'Оцінити', 'Rate', 'Calificar', 'Avaliar', 'Đánh giá', 'Beri nilai', 'Puan ver', 'Oceń'],
   ctaClaim: ['Забрать {coins} {cw}', 'Забрати {coins} {cw}', 'Claim {coins} {cw}', 'Recibir {coins} {cw}', 'Resgatar {coins} {cw}', 'Nhận {coins} {cw}', 'Ambil {coins} {cw}', '{coins} {cw} al', 'Odbierz {coins} {cw}'],
   ctaPlayPeak: ['Играть на Пике', 'Грати на Піку', 'Play the Peak', 'Jugar en el Pico', 'Jogar no Pico', 'Chơi ở Đỉnh', 'Main di Puncak', 'Zirve’de oyna', 'Graj na Szczycie'],
 
@@ -136,21 +135,6 @@ const S = {
   openOverline: ['Урок {lessonNo} пройден', 'Урок {lessonNo} пройдено', 'Lesson {lessonNo} done', 'Lección {lessonNo} completada', 'Lição {lessonNo} concluída', 'Đã xong bài {lessonNo}', 'Pelajaran {lessonNo} selesai', '{lessonNo}. ders tamam', 'Lekcja {lessonNo} ukończona'],
   openTitle: ['Открыт урок {next}', 'Відкрито урок {next}', 'Lesson {next} is open', 'Se abrió la lección {next}', 'Lição {next} liberada', 'Đã mở bài {next}', 'Pelajaran {next} terbuka', '{next}. ders açıldı', 'Lekcja {next} odblokowana'],
   openTopic: ['Тема: {topic}.', 'Тема: {topic}.', 'Topic: {topic}.', 'Tema: {topic}.', 'Tema: {topic}.', 'Chủ đề: {topic}.', 'Topik: {topic}.', 'Konu: {topic}.', 'Temat: {topic}.'],
-
-  // ── 13 · оценка приложения ──
-  rateOverline: ['{lessons} {lessons_w} позади', '{lessons} {lessons_w} позаду', '{lessons} {lessons_w} done', '{lessons} {lessons_w} hasta hoy', '{lessons} {lessons_w} até hoje', 'Đã học {lessons} {lessons_w}', '{lessons} {lessons_w} selesai', '{lessons} {lessons_w} tamam', '{lessons} {lessons_w} za tobą'],
-  rateTitle: ['Нравится PhraseMan?', 'Подобається PhraseMan?', 'Enjoying PhraseMan?', '¿Te gusta PhraseMan?', 'Gostando do PhraseMan?', 'Bạn thích PhraseMan chứ?', 'Suka PhraseMan?', 'PhraseMan’i beğendin mi?', 'Podoba ci się PhraseMan?'],
-  rateText: [
-    'Оценка в магазине занимает 10 секунд и помогает другим найти приложение.',
-    'Оцінка в магазині займає 10 секунд і допомагає іншим знайти застосунок.',
-    'A store rating takes 10 seconds and helps others find the app.',
-    'Calificar en la tienda toma 10 segundos y ayuda a otros a encontrar la app.',
-    'Avaliar na loja leva 10 segundos e ajuda outras pessoas a encontrar o app.',
-    'Đánh giá trên cửa hàng mất 10 giây và giúp người khác tìm thấy ứng dụng.',
-    'Memberi nilai di toko hanya 10 detik dan membantu orang lain menemukan aplikasi.',
-    'Mağazada puan vermek 10 saniye sürer ve başkalarının uygulamayı bulmasına yardım eder.',
-    'Ocena w sklepie zajmuje 10 sekund i pomaga innym znaleźć aplikację.',
-  ],
 
   // ── 14 · приз за набор месяца ({monthIn} — готовая связка «за октябрь» из tplMonthIn) ──
   prizeOverline: ['Набор месяца {monthIn}', 'Набір місяця {monthIn}', 'Pack of the month {monthIn}', 'Pack del mes {monthIn}', 'Pacote do mês {monthIn}', 'Bộ thẻ nổi bật {monthIn}', 'Paket terbaik {monthIn}', '{monthIn} ayın paketi', 'Zestaw miesiąca {monthIn}'],

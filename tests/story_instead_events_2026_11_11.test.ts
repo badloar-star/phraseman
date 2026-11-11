@@ -104,8 +104,39 @@ describe('событие instead → данные кадра', () => {
     expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 })).toBeNull();
   });
 
-  it('список видов с источником — семь; остальные 10 кадров ждут своих партий', () => {
-    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog']);
+  it('список видов с источником — восемь; остальные 9 кадров ждут своих партий', () => {
+    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate']);
+  });
+
+  it('«Оцените приложение»: повод события → кадр; серия — только три рубежа окна; чужой повод — нет кадра', () => {
+    expect(storyEventKey('instead', { kind: 'rate', key: 'perfect_lesson:2026-11-11', context: 'perfect_lesson', streakDays: 0 })).toBe('instead:rate:perfect_lesson:2026-11-11');
+    expect(insteadTemplateFromPayload({ kind: 'rate', key: 'k', context: 'perfect_lesson', streakDays: 0 })).toEqual({ id: 'instead_rate', context: 'perfect_lesson', streakDays: null });
+    expect(insteadTemplateFromPayload({ kind: 'rate', key: 'k', context: 'streak_milestone', streakDays: 14 })).toEqual({ id: 'instead_rate', context: 'streak_milestone', streakDays: 14 });
+    // рубеж серии, которого у окна не было, и серия у повода «зачёт» строкой серии не становятся
+    expect(insteadTemplateFromPayload({ kind: 'rate', key: 'k', context: 'streak_milestone', streakDays: 9 })).toEqual({ id: 'instead_rate', context: 'streak_milestone', streakDays: null });
+    expect(insteadTemplateFromPayload({ kind: 'rate', key: 'k', context: 'level_exam_pass', streakDays: 7 })).toEqual({ id: 'instead_rate', context: 'level_exam_pass', streakDays: null });
+    expect(insteadTemplateFromPayload({ kind: 'rate', key: 'k', context: 'something_else', streakDays: 0 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'rate', key: 'k' })).toBeNull();
+  });
+
+  it('просьба об оценке: окно не тронуто (один слот, один учёт показа), история — отдельным файлом и учитывает показ после записи', () => {
+    const modal = read('components/ReviewPromptModal.tsx');
+    expect(modal).toContain("useOverlayVisible('reviewPrompt', visible)");
+    expect(modal.match(/markReviewPrompted\(\)/g)).toHaveLength(1);
+    expect(modal).toContain('<ReviewPromptModal {...props} visible={props.visible && !storiesInstead} />');
+    const hook = read('components/use_review_prompt_story.ts');
+    expect(hook).toContain('const storiesInstead = visible && storiesReplaceWindows();');
+    expect(hook.indexOf('if (!insteadStoryLanded(record))')).toBeLessThan(hook.indexOf('await markReviewPrompted();'));
+    expect(hook.indexOf("if (!record.recorded) {")).toBeLessThan(hook.indexOf('await markReviewPrompted();'));
+    expect(hook).toContain('.finally(() => { onCloseRef.current(); });');
+    // кадр и окно говорят одними словами: общий файл надписей и общий текст просьбы
+    const frames = read('components/stories/templates/frames_instead_b.tsx');
+    expect(frames).toContain('const copy = reviewVariantFor(tpl.context, lang);');
+    expect(read('components/stories/templates/story_instead_registry.ts')).toContain("case 'instead_rate': return { action: 'rate_app', text: reviewStoreCta(lang), icon: 'star' };");
+    // кнопка кадра: «оценено» только если магазин открылся; двойной тап не открывает магазин дважды
+    const cta = read('components/stories/templates/use_story_cta_action.ts');
+    expect(cta).toMatch(/const opened = await store\.openStoreReviewPage\(\);[\s\S]{0,200}if \(opened\) await review\.markReviewRated\(\);/);
+    expect(cta).toContain('if (ratingRef.current) {');
   });
 
   it('реферальное приветствие и первый разговор: прежний путь окна сохранён, отметка — после записи', () => {

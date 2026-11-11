@@ -1,10 +1,11 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Modal, Platform, Pressable, ScrollView, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import { Modal, Pressable, ScrollView, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { getReviewVariant, markReviewPrompted, markReviewRated, type ReviewContext, type ReviewVariant } from '../app/review_utils';
 import { openStoreReviewPage } from '../app/store_review';
-import { pluralWord } from '../constants/plural';
+import { reviewKicker, reviewStoreCta, reviewStoreName, reviewStreakLine } from './review_prompt_copy';
+import { useReviewPromptStory } from './use_review_prompt_story';
 import { triLang, type Lang } from '../constants/i18n';
 import { useOverlayVisible } from './OverlayArbiter';
 import { useTheme } from './ThemeContext';
@@ -36,15 +37,6 @@ const iconForContext: Record<ReviewContext, keyof typeof Ionicons.glyphMap> = {
   level_exam_pass: 'star-outline',
   streak_milestone: 'flame-outline',
 };
-
-function labelForContext(context: ReviewContext, lang: Lang): string {
-  const labels: Record<ReviewContext, Record<Lang, string>> = {
-    perfect_lesson: { ru: 'КСТАТИ, ПРО УРОК', uk: 'ДО РЕЧІ, ПРО УРОК', en: 'ABOUT THE LESSON', es: 'SOBRE LA LECCIÓN', 'pt-BR': 'SOBRE A LIÇÃO', vi: 'VỀ BÀI HỌC', id: 'TENTANG PELAJARAN', tr: 'DERS HAKKINDA', pl: 'O LEKCJI' },
-    level_exam_pass: { ru: 'МАЛЕНЬКИЙ ВОПРОС', uk: 'МАЛЕНЬКЕ ЗАПИТАННЯ', en: 'A QUICK QUESTION', es: 'UNA PEQUEÑA PREGUNTA', 'pt-BR': 'UMA PEQUENA PERGUNTA', vi: 'MỘT CÂU HỎI NHỎ', id: 'PERTANYAAN SINGKAT', tr: 'KÜÇÜK BİR SORU', pl: 'MAŁE PYTANIE' },
-    streak_milestone: { ru: 'СЕРИЯ', uk: 'СЕРІЯ', en: 'STREAK', es: 'RACHA', 'pt-BR': 'SEQUÊNCIA', vi: 'CHUỖI', id: 'RANGKAIAN', tr: 'SERİ', pl: 'SERIA' },
-  };
-  return triLang(lang, labels[context]);
-}
 
 function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motionVariant = 'hybrid' }: Props) {
   const { theme: t, liquidGlassThemeId } = useTheme();
@@ -97,18 +89,8 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
   // зачем: паритет с макетом system.html system_20 — главная кнопка белая (графит/белый), без золота, зелёного и фиолетового.
   const accent = glass.accent;
   const accentText = glass.accentInk;
-  const storeName = Platform.OS === 'ios' ? 'App Store' : 'Google Play';
-  const storeCta = triLang(lang, {
-    ru: `Оценить в ${storeName}`,
-    uk: `Оцінити в ${storeName}`,
-    en: `Rate in ${storeName}`,
-    es: `Valorar en ${storeName}`,
-    'pt-BR': `Avaliar na ${storeName}`,
-    vi: `Đánh giá trên ${storeName}`,
-    id: `Nilai di ${storeName}`,
-    tr: `${storeName}'de değerlendir`,
-    pl: `Oceń w ${storeName}`,
-  });
+  const storeName = reviewStoreName();
+  const storeCta = reviewStoreCta(lang);
   const ratingAccessibilityLabel = triLang(lang, {
     ru: `Оценка в ${storeName}`,
     uk: `Оцінка в ${storeName}`,
@@ -130,7 +112,7 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
         {/* зачем: кикер `.ov` макета system_20 (12/3px), размер по шкале D145 (01.10, новее макета) — 13. */}
         <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 3, alignSelf: 'flex-start' }}>
-          {labelForContext(context === 'streak_milestone' ? 'level_exam_pass' : context, lang)}
+          {reviewKicker(context === 'streak_milestone' ? 'level_exam_pass' : context, lang)}
         </Text>
       </CascadeItem>
       <CascadeItem delay={isHybrid ? LUM.ladder[2] : 0} reduceMotion={!isHybrid || reduceMotion}>
@@ -144,8 +126,8 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
             <Ionicons name={iconForContext.streak_milestone} size={20} color={glass.text} />
           </View>
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2 }}>{labelForContext('streak_milestone', lang)}</Text>
-            <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22, fontWeight: '700', marginTop: 2 }}>{triLang(lang, { ru: `${streakDays} ${pluralWord('ru', streakDays, { one: 'день', few: 'дня', many: 'дней' })} подряд`, uk: `${streakDays} ${pluralWord('uk', streakDays, { one: 'день', few: 'дні', many: 'днів' })} поспіль`, en: `${streakDays} days in a row`, es: `${streakDays} días seguidos`, 'pt-BR': `${streakDays} dias seguidos`, vi: `${streakDays} ngày liên tiếp`, id: `${streakDays} hari berturut-turut`, tr: `${streakDays} gün üst üste`, pl: `${streakDays} ${pluralWord('pl', streakDays, { one: 'dzień', few: 'dni', many: 'dni' })} z rzędu` })}</Text>
+            <Text style={{ color: glass.secondary, fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 2 }}>{reviewKicker('streak_milestone', lang)}</Text>
+            <Text style={{ color: glass.text, fontSize: 16, lineHeight: 22, fontWeight: '700', marginTop: 2 }}>{reviewStreakLine(streakDays, lang)}</Text>
           </View>
         </View>
       ) : null}
@@ -302,4 +284,14 @@ function ReviewPromptModal({ visible, context, lang, onClose, streakDays, motion
   );
 }
 
-export default memo(ReviewPromptModal);
+/**
+ * зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях просьбу
+ * забирает кадр истории (use_review_prompt_story) — окну приходит visible=false, слот очереди окон оно не просит.
+ * Истории выключены — окно работает как раньше.
+ */
+function ReviewPromptGate(props: Props) {
+  const storiesInstead = useReviewPromptStory(props);
+  return <ReviewPromptModal {...props} visible={props.visible && !storiesInstead} />;
+}
+
+export default memo(ReviewPromptGate);

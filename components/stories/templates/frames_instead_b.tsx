@@ -25,6 +25,8 @@ import { IconDisc } from './story_instead_parts';
 import { firstDialogStats, firstDialogText } from '../../dialog_moments/first_dialog_strings';
 import { studyLanguageWord } from '../../../constants/study_language_words';
 import { insteadText } from './story_instead_strings';
+import { reviewVariantFor, type ReviewContext } from '../../../app/review_utils';
+import { reviewKicker, reviewStreakLine } from '../../review_prompt_copy';
 
 /** Данные кадров — только то, что событие уже знает. При подключении переезжают в story_template_registry. */
 /** `needsCodeEntry` — человеку ещё нужно ввести код друга (тогда у кадра кнопка «У меня есть код приглашения»). Имени друга и подарка окно не знало. */
@@ -33,7 +35,8 @@ export type ReferralWelcomeStory = Readonly<{ needsCodeEntry: boolean }>;
 export type ReferralEndedStory = Readonly<{ windowEndMs: number }>;
 export type PerfectLessonStory = Readonly<{ lessonNo: number; correct: number; total: number; coins: number }>;
 export type LessonOpenStory = Readonly<{ lessonNo: number; nextLessonNo: number; topic: string | null }>;
-export type RateAppStory = Readonly<{ lessonsDone: number }>;
+/** Повод просьбы и рубеж серии (только для повода «серия») — то, что знало окно; числа пройденных уроков у него не было. */
+export type RateAppStory = Readonly<{ context: ReviewContext; streakDays: 7 | 14 | 30 | null }>;
 /** `month` — 1…12; `podium` — тройка месяца, своя строка помечена `me`. */
 export type PackPrizeStory = Readonly<{ place: 1 | 2 | 3; month: number; packName: string; saves: number; coins: number; podium: readonly StoryPodiumEntry[] }>;
 /** То, что знает итог диалога: изучаемый язык (для «по-английски»), реплики человека и задания. Минут и текста реплик у окна не было. */
@@ -112,12 +115,18 @@ export const LessonOpenFrame = memo(function LessonOpenFrame({ tpl, lang }: Fram
 });
 
 // ── 13 · оценка приложения (взамен окна «Оцените приложение» на итоге урока) ─────────────────────────
+// зачем (шаг 2е, 11.11): слова кадра — те же, что у окна по поводу показа (review_utils + review_prompt_copy); придуманные в макете
+// «30 уроков позади» и «Нравится PhraseMan?» убраны — окно такого не говорило. У повода «серия» над заголовком — «СЕРИЯ · 7 дней подряд».
 
 const FIVE = [{ id: 'star-1', d: 160 }, { id: 'star-2', d: 250 }, { id: 'star-3', d: 340 }, { id: 'star-4', d: 430 }, { id: 'star-5', d: 520 }] as const;
 
 export const RateAppFrame = memo(function RateAppFrame({ tpl, lang }: FrameProps<RateAppStory>) {
   const pal = useStoryTemplatePalette();
   const star = pal.isLight ? pal.accG : pal.accB;
+  const copy = reviewVariantFor(tpl.context, lang);
+  const overline = tpl.context === 'streak_milestone' && tpl.streakDays !== null
+    ? `${reviewKicker('streak_milestone', lang)} · ${reviewStreakLine(tpl.streakDays, lang)}`
+    : reviewKicker(tpl.context, lang);
   return (
     <FrameRoot testID="story-tpl-instead-rate">
       <Art>
@@ -125,9 +134,9 @@ export const RateAppFrame = memo(function RateAppFrame({ tpl, lang }: FrameProps
           {FIVE.map((s) => <Enter key={s.id} kind="pop" d={s.d}><Ionicons name="star" size={44} color={star} style={f.star44} /></Enter>)}
         </View>
       </Art>
-      <Ov text={insteadText(lang, 'rateOverline', { lessons: tpl.lessonsDone })} d={700} />
-      <H1 text={insteadText(lang, 'rateTitle')} d0={780} />
-      <P text={insteadText(lang, 'rateText')} d={1060} />
+      <Ov text={overline} d={700} />
+      <H1 text={copy.title} d0={780} />
+      <P text={copy.subtitle} d={1060} />
     </FrameRoot>
   );
 });

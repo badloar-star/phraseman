@@ -5,7 +5,7 @@
 // (нет числа, отрицательное, ранг вне таблицы) кадра не даёт — лучше пропустить историю, чем показать «0 дней перерыва».
 // Подключены четыре вида: `back` («С возвращением»), `rank_enough` («Хватает на ранг»), `legacy` («Бонусы стали монетами»),
 // `plus_expired` («Plus закончился»), `ref_ended` («Доступ можно открыть снова»),
-// `ref_welcome` («Тебя пригласили»), `first_dialog` («Первый разговор»); остальные 10 — следующими партиями.
+// `ref_welcome` («Тебя пригласили»), `first_dialog` («Первый разговор»), `rate` («Оцените приложение»); остальные 9 — следующими партиями.
 // Числа проверяются строго: строка '6' и дробное 6.9 не превращаются в 6 — так уже маскировался битый payload у ранга монеты.
 // ═══════════════════════════════════════════════════════════════════════════
 import { isValidCoinRank } from '../../../app/coin_rank_table_v1';
@@ -21,7 +21,10 @@ function count(value: unknown): number | null {
 }
 
 /** Виды событий `instead`, у которых уже есть источник. */
-export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog'] as const;
+export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate'] as const;
+
+const RATE_CONTEXTS = ['perfect_lesson', 'level_exam_pass', 'streak_milestone'] as const;
+const RATE_STREAK_DAYS = [7, 14, 30] as const;
 
 export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | null {
   switch (p.kind) {
@@ -70,6 +73,13 @@ export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | n
       if (typeof p.studyTarget !== 'string' || p.studyTarget.length === 0) return null;
       if (turns === null || turns < 1 || goalsDone === null || goalsTotal === null || goalsDone > goalsTotal) return null;
       return { id: 'instead_first_dialog', studyTarget: p.studyTarget, turns, goalsDone, goalsTotal };
+    }
+    case 'rate': {
+      const context = RATE_CONTEXTS.find((c) => c === p.context);
+      if (!context) return null;
+      // длина серии — только три рубежа окна; иное (0 = «нет») кадр показывает без строки серии, как окно без карточки
+      const streakDays = RATE_STREAK_DAYS.find((d) => d === p.streakDays) ?? null;
+      return { id: 'instead_rate', context, streakDays: context === 'streak_milestone' ? streakDays : null };
     }
     default:
       return null;

@@ -56,9 +56,9 @@ const TPL = [
     cta: { label: 'Начать урок 13', icon: 'play' },
     render: () => `<div class="art">${ring(1, `<div class="lvup"><span class="o">12</span><span class="nw">13</span></div>`)}</div><div class="ov a" style="--d:700ms">Урок 12 пройден</div><div class="h1">${words('Открыт урок 13', 780)}</div><div class="p a" style="--d:1020ms">Тема: планы на выходные.</div>` },
 
-  { id: 'rate_app', name: 'Оценка приложения', group: 'Уроки', kind: 'new', ev: 'review_ask (новое)', when: 'взамен окна «Оцените приложение» на итоге урока · те же условия показа, что сейчас', data: 'lessonsDone', motion: 'пять звёзд встают слева направо',
-    cta: { label: 'Оценить', icon: 'star' },
-    render: () => `<div class="art"><div class="stars five">${[0, 1, 2, 3, 4].map((i) => `<span class="pop" style="--d:${160 + i * 90}ms">${io('star', 44)}</span>`).join('')}</div></div><div class="ov a" style="--d:700ms">30 уроков позади</div><div class="h1">${words('Нравится PhraseMan?', 780)}</div><div class="p a" style="--d:1060ms">Оценка в магазине занимает 10 секунд и помогает другим найти приложение.</div>` },
+  { id: 'rate_app', name: 'Оценка приложения', group: 'Уроки', kind: 'new', ev: 'review_ask (новое)', when: 'взамен окна «Оцените приложение» на итоге урока · те же условия показа, что сейчас', data: 'context (урок / зачёт / серия), streakDays', motion: 'пять звёзд встают слева направо',
+    cta: { label: 'Оценить в Google Play', icon: 'star' },
+    render: () => `<div class="art"><div class="stars five">${[0, 1, 2, 3, 4].map((i) => `<span class="pop" style="--d:${160 + i * 90}ms">${io('star', 44)}</span>`).join('')}</div></div><div class="ov a" style="--d:700ms">КСТАТИ, ПРО УРОК</div><div class="h1">${words('100%. Ты вообще оставил уроку шанс?', 780)}</div><div class="p a" style="--d:1060ms">Оставь отзыв о Phraseman в магазине приложений и напиши пару слов. Мы прочитаем всё. Даже если там будет просто «норм».</div>` },
 
   { id: 'pack_prize', name: 'Приз за набор месяца', group: 'Карточки', kind: 'new', ev: 'community_month_reward (новое)', when: 'взамен окна «Награда сообщества», которое возвращалось при каждом заходе на вкладку', data: 'place, month, coins, top[3]', motion: 'три столбика растут, твой подсвечен',
     cta: { label: 'Забрать 500 монет', icon: 'wallet' },

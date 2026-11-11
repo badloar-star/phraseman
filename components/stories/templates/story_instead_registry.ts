@@ -12,6 +12,7 @@ import type { Lang } from '../../../constants/i18n';
 import type { AppUpdateStory, HelloNewStory, LegacyCoinsStory, NotifNudgeStory, PlusStateStory, RankEnoughStory, TeamMessageStory, WelcomeBackStory } from './frames_instead_a';
 import type { FirstDialogStory, LessonOpenStory, PackPrizeStory, PeakOvertakeStory, PerfectLessonStory, RateAppStory, ReferralEndedStory, ReferralWelcomeStory } from './frames_instead_b';
 import { insteadText } from './story_instead_strings';
+import { reviewStoreCta } from '../../review_prompt_copy';
 
 /** Порядок — как в макете (кадры 1…17). */
 export const STORY_INSTEAD_TEMPLATE_IDS = [
@@ -63,7 +64,8 @@ export const STORY_INSTEAD_TEMPLATE_SAMPLES: Readonly<{ [I in StoryInsteadTempla
   instead_ref_ended: { id: 'instead_ref_ended', windowEndMs: day(2026, 11, 10) },
   instead_perfect: { id: 'instead_perfect', lessonNo: 12, correct: 45, total: 45, coins: 120 },
   instead_lesson_open: { id: 'instead_lesson_open', lessonNo: 12, nextLessonNo: 13, topic: 'планы на выходные' },
-  instead_rate: { id: 'instead_rate', lessonsDone: 30 },
+  // пример — просьба после идеального урока (самый частый повод окна)
+  instead_rate: { id: 'instead_rate', context: 'perfect_lesson', streakDays: null },
   instead_pack_prize: {
     id: 'instead_pack_prize', place: 2, month: 10, packName: 'Фразы для кафе', saves: 214, coins: 500,
     podium: [
@@ -105,7 +107,8 @@ export function storyInsteadCta(tpl: StoryInsteadTemplate, lang: Lang): StoryIns
     // зачем: «Пригласить друга» в окне открывала отправку приглашения — у историй это готовое действие share_link (use_story_cta_action)
     case 'instead_ref_ended': return { action: 'share_link', text: insteadText(lang, 'ctaInviteFriend'), icon: 'person-add' };
     case 'instead_lesson_open': return { action: 'start_lesson', text: insteadText(lang, 'ctaStartLesson', { lessonNo: tpl.nextLessonNo }), icon: 'play' };
-    case 'instead_rate': return { action: 'rate_app', text: insteadText(lang, 'ctaRate'), icon: 'star' };
+    // подпись — та же, что у главной кнопки окна: «Оценить в App Store / Google Play»
+    case 'instead_rate': return { action: 'rate_app', text: reviewStoreCta(lang), icon: 'star' };
     case 'instead_pack_prize': return { action: 'claim_pack_prize', text: insteadText(lang, 'ctaClaim', { coins: tpl.coins }), icon: 'wallet' };
     case 'instead_peak_overtake': return { action: 'play_peak', text: insteadText(lang, 'ctaPlayPeak'), icon: 'flash' };
     case 'instead_legacy':

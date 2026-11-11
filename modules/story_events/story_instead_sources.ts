@@ -73,6 +73,15 @@ export function recordFirstDialogStory(input: Readonly<{ studyTarget: string; tu
   return record('first_dialog', input.studyTarget, { studyTarget: input.studyTarget, turns: input.turns, goalsDone: input.goalsDone, goalsTotal: input.goalsTotal });
 }
 
+/**
+ * «Оцените приложение» (взамен окна просьбы об оценке): повод просьбы (идеальный урок / зачёт / рубеж серии) и длина серии для повода «серия».
+ * Ключ — повод и локальный день: одна просьба в день, как у окна (у него ещё и своя пауза в 30 дней).
+ */
+export function recordRateAppStory(input: Readonly<{ context: 'perfect_lesson' | 'level_exam_pass' | 'streak_milestone'; streakDays: number | null; dayKey: string }>): Promise<StoryRecordResult> {
+  // 0 — длины серии нет (повод не «серия»): в событии только числа и строки
+  return record('rate', `${input.context}:${input.dayKey}`, { context: input.context, streakDays: input.streakDays ?? 0 }); // guard-ok: длина серии для подписи кадра, серия не меняется
+}
+
 /** «Хватает на ранг N»: ключ — номер следующего ранга, один раз на ранг (как у окна). */
 export function recordRankEnoughStory(input: Readonly<{ rank: number; nextRank: number; balance: number; price: number }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
   return record('rank_enough', String(input.nextRank), { rank: input.rank, nextRank: input.nextRank, balance: input.balance, price: input.price }, accountToken);

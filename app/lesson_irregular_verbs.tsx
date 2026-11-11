@@ -214,6 +214,16 @@ function irregularVerbTranslation(verb: IrregularVerb, lang: Lang): string {
     return (verb as unknown as Record<string, string | undefined>)[lang] || verb.en || verb.ru;
   }
   if (lang === 'es') return verb.es || IRREGULAR_VERB_ES_BY_BASE[verb.base] || verb.base;
+  // зачем (F18, 11.11): у английского списка переводы pt-BR/vi/id/tr/pl есть в данных, но сюда они не доходили —
+  // эти пять языков интерфейса видели РУССКИЙ. Свой перевод → русский только если своего нет.
+  if (lang === 'pt-BR' || lang === 'vi' || lang === 'id' || lang === 'tr' || lang === 'pl') {
+    const own = verb[lang]?.trim() || verb.sourceLocales?.[lang]?.trim();
+    if (own) return own;
+    console.warn(`[F18-VERBS] нет перевода ${lang} у глагола ${verb.base} — показан русский`); // guard-ok: причина запасного языка
+    return verb.ru;
+  }
+  // Английский интерфейс + английский список: перевода нет и не нужен — показываем сам глагол, а не русский текст.
+  if (lang === 'en') return verb.en?.trim() || verb.base;
   return verb.ru;
 }
 

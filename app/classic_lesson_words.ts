@@ -81,6 +81,8 @@ export function classicLessonWordBank(target: ClassicWordsLang, lessonId: number
       id: m.id ?? en,
       tr: m.tr ?? en,
       pl: m.pl ?? en,
+      // зачем (F18): английское значение — отдельным полем, иначе английский интерфейс показывал вопросом само слово курса
+      enGloss: m.en,
       pos: 'phrases',
       definition: m.ru ?? en,
     });

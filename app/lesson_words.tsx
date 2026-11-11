@@ -173,6 +173,8 @@ export interface Word {
   id?: string;
   tr?: string;
   pl?: string;
+  /** зачем (F18): английское значение из словаря курса — для английского интерфейса (`en` выше — само изучаемое слово). */
+  enGloss?: string;
   pos:POS;
   context?:string;
   definition?:string;

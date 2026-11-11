@@ -34,6 +34,8 @@ export type LessonWordGlossInput = {
   id?: string;
   tr?: string;
   pl?: string;
+  /** Английское значение слова (словарь курса). Отдельно от `en`: в экране слов `en` — само изучаемое слово. */
+  enGloss?: string;
   /** Если задано, для `nouns` снимаем и `(folders)` при лемме `folder`. */
   pos?: LessonWordGlossPos;
 };
@@ -138,6 +140,12 @@ const VERB_PROMPT_OVERRIDES: Record<string, { ru: string; uk: string; es: string
  * Текст подсказки для раунда «узнай перевод» (RU / UK / ES).
  */
 export function lessonWordRecognitionPrompt(word: LessonWordGlossInput, lang: Lang): string {
+  // зачем (F18, 11.11): при английском интерфейсе вопросом показывалось САМО изучаемое слово (поле `en` в экране слов —
+  // слово курса, а не его перевод): «je → je» во всех пяти курсах, ответ был на экране. Английское значение лежит отдельно.
+  if (lang === 'en') {
+    const englishMeaning = word.enGloss?.trim();
+    if (englishMeaning) return englishMeaning;
+  }
   if (lang !== 'ru' && lang !== 'uk' && lang !== 'es') {
     const plannedPrompt = (word as Record<string, unknown>)[lang as string];
     if (typeof plannedPrompt === 'string' && plannedPrompt.trim()) return plannedPrompt;

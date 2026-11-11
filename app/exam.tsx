@@ -751,12 +751,16 @@ export default function ExamScreen() {
               sourceId: `${question.lessonNum}:${question.q}`,
               canonicalTarget: buildExamQuestionPhrase(question),
               sourceMeaning: question.rawTopic ?? question.topic,
+              // зачем (владелец 11.11, «Мои ошибки 3.0», этап 1): сам вопрос — без него ошибку нельзя ни показать, ни объяснить.
+              sourcePrompt: question.q,
               lessonId: String(question.lessonNum),
               distractors: question.opts,
             },
             facet: {
               kind: question.q.includes('___') ? 'missing_token' : 'form',
               expected,
+              // зачем: выбранный вариант — «Твой ответ» в разделе; pickedIndex здесь уже не null (ранний выход выше).
+              given: question.opts[pickedIndex],
             },
           }).catch(noteSwallowedHandler('exam:submitExam.captureCurrentAccountObjectiveAttempt'));
         });

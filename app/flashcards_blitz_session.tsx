@@ -1060,7 +1060,8 @@ export default function FlashcardsBlitzSession() {
               sourceMeaning: question.card.translation,
               distractors: pool.filter((card) => card.id !== question.card.id).slice(0, 5).map((card) => card.en),
             },
-            facet: { kind: 'meaning', expected: question.card.en },
+            // зачем (владелец 11.11, «Мои ошибки 3.0», этап 1): выбранный вариант нужен разделу, чтобы показать «Твой ответ».
+            facet: { kind: 'meaning', expected: question.card.en, given: question.options[optIdx] },
           }).catch((error: unknown) => { console.warn('[FC-BLITZ] запись попытки в цели аккаунта не удалась (продолжаем без неё)', error); });
         }
         playSfx('incorrect');

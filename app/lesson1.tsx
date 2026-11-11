@@ -3394,6 +3394,9 @@ function LessonScreen() {
                   kind: mistakeFacetKind,
                   tokenIndex: tokenIndex >= 0 ? tokenIndex : undefined,
                   expected: tokenRow?.correct ?? tokenRow?.text ?? errWord,
+                  // зачем (владелец 11.11, «Мои ошибки 3.0», этап 1): без ответа ученика раздел не может показать
+                  // «Твой ответ» и место промаха. Берём тот же `answer`, по которому посчитан тип ошибки выше.
+                  given: answer,
                 },
               }))
               // зачем (владелец 13.10, «Добить: Ещё учу (N)»): id записанной ошибки нужен итогу урока, чтобы запустить повтор именно этих ошибок.

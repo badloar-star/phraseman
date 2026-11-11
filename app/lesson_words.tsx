@@ -3002,7 +3002,8 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
           lessonId: String(lessonId),
           distractors: card.options,
         },
-        facet: { kind: 'meaning', expected: card.word.en },
+        // зачем (владелец 11.11, «Мои ошибки 3.0», этап 1): выбранный вариант нужен разделу, чтобы показать «Твой ответ».
+        facet: { kind: 'meaning', expected: card.word.en, given: picked },
       }).catch(noteSwallowedHandler('lesson_words:useCallback.captureCurrentAccountObjectiveAttempt'));
     }
   }, [lessonId, qIdx, studyTarget]);

@@ -868,12 +868,16 @@ export default function LevelExam() {
             sourceId: `${lvl}:${q.lessonNum}:${q.q}`,
             canonicalTarget,
             sourceMeaning: q.topic,
+            // зачем (владелец 11.11, «Мои ошибки 3.0», этап 1): сам вопрос — без него ошибку нельзя ни показать, ни объяснить.
+            sourcePrompt: q.q,
             lessonId: String(q.lessonNum),
             distractors: q.opts,
           },
           facet: {
             kind: q.q.includes('___') ? 'missing_token' : 'form',
             expected,
+            // зачем: выбранный вариант — «Твой ответ» в разделе.
+            given: q.opts[ci],
           },
         }).catch(noteSwallowedHandler('level_exam:handlePick.captureCurrentAccountObjectiveAttempt'));
       }

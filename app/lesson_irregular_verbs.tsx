@@ -572,7 +572,8 @@ function LearnTab({ verbs, lessonVerbs, allVerbs, lang, initCounts, onUpdate, on
             lessonId: String(lessonId ?? 0),
             distractors: activeOptions,
           },
-          facet: { kind: 'form', expected: correct },
+          // зачем (владелец 11.11, «Мои ошибки 3.0», этап 1): выбранная форма нужна разделу, чтобы показать «Твой ответ».
+          facet: { kind: 'form', expected: correct, given: word },
         }).catch(noteSwallowedHandler('lesson_irregular_verbs:useCallback.captureCurrentAccountObjectiveAttempt'));
       }
 

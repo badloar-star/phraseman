@@ -9,8 +9,8 @@ const source = fs.readFileSync('app/support_report.tsx', 'utf8');
 
 const CLOSE_L_CALL_SIGNATURE = 'b10987a61038050827494cb91e3e977d9ac635add22ddc0922b69a5b4a678e0d';
 const EXPECTED_L_CALL_COUNTS = new Map([
-  // зачем (15.10, красные сторожи; 9376e4e7f): +1 карта — нейтральный текст карточки диагностики, пока журнал выключен (remote_flags); остальные 16 карт побайтно прежние.
-  ['358b563c52f6c109ad9992e1cddf02f4d96d08111a465759e62b8cf4d759351f', 1],
+  // зачем (владелец 11.11: «не надо им знать это», «мы берём её и так и так»): карточка «Техническая диагностика» убрана с формы — вместе с ней ушли 7 карт текста
+  // (заголовок, три варианта пояснения, подпись переключателя, «Посмотреть», «Скрыть»); остальные 14 карт побайтно прежние.
   ['ea5b9e6ac07f9ca7724e6360493b3f857bf1ac870f9f062f0dbf5fbf4a252929', 1],
   ['2e5bd5812deeae94c75a593b252a5f6d850c40e051d27bab4c4ac8aea009683c', 1],
   ['c672a0ca30eabc1cf5e35c47fb0a74178bafe7936fb26fe6d46e9516739299ac', 1],
@@ -21,18 +21,11 @@ const EXPECTED_L_CALL_COUNTS = new Map([
   // 04.10 (profile.html PRF-09, abc8be429): подсказка и строка диагностики сокращены, длинный абзац про бонус убран.
   // зачем (41443be48, 12.10): в украинском тексте-подсказке «фразу» → «вислів» (единое слово «вислів» в uk-интерфейсе); отпечаток подсказки пересчитан после сверки текста
   ['d006cfc36089d8902bf26c380d866700810530ffb23f2cd6895c9c4c3a9bd53c', 1],
-  ['e81a0adc1aef4b7aa958d40d03ac4c6be53ea0d5f2ccb6ccf3870cd5d77398d4', 1],
-  ['0d28caef3ca1a7a66555e05d3d4b367f1594fb3a2c9bcad52cbfa4aed8421413', 1],
-  ['d1305be1462fa75044a75d0cd4e9366bf7f0d4d77a3f50e16ac891dac085cf16', 1],
-  ['882d52d08a08b4d61850ce12791e99ba44e56250425ea31916ecc1ac38070744', 1],
   ['dbd58511e45eaaf6d232348a25ae4248db34f3c330910d55fcf7e8216758cf59', 1],
   [CLOSE_L_CALL_SIGNATURE, 1],
   // зачем (координатор 12.10, откат «Отправлено» при сбое): плашка «Не отправилось. Попробуй ещё раз» и кнопка «Повторить»
   ['1c9f3af94cbc30f07469c50c34a212a9231ec34ed7d25372bbaa6ee3cf6e98df', 1],
   ['3e17c2abebc832c494422cbceb2d7f0f0847d5299cde8831ed993ba69d51d8f4', 1],
-  // зачем (решение владельца 12.10 (б)): переключатель «Приложить журнал диагностики» — его подпись и текст «Журнал не будет приложен к обращению.»
-  ['61cb63e8498914bfe3e1d182405686cc80bf932ab0690c00cce5207a18e7254b', 1],
-  ['055841b39652220b0455f02542779c30f60f7cb75c306b2c8ccd2eac3dfd6800', 1],
 ]);
 const LOCALES = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const PREEXISTING_UNREVIEWED_L_CALLS = new Map([
@@ -61,7 +54,7 @@ function assertLocalizedBaseline(candidate) {
     ts.forEachChild(node, walk);
   };
   walk(file);
-  assert.equal(calls.length, 21, 'the centralized template removes exactly its prior localized L() call from the frozen before-source count of 22');
+  assert.equal(calls.length, 14, 'the diagnostics card removal (owner 11.11) takes its seven localized L() calls out of the previous 21');
   const actual = new Map();
   for (const call of calls) {
     const digest = signature(call);
@@ -120,33 +113,16 @@ function booleanProp(candidate, testID, prop) {
 function assertFeedbackContract(candidate) {
   // 22.10: «назад» — общая ScreenBackButton (вибрация при нажатии и тишина — внутри неё), свой PressableHybrid снят
   assert.ok(candidate.includes('<ScreenBackButton screen="support_report" testID="support-report-back"'), 'back is the shared ScreenBackButton');
-  for (const id of ['support-report-submit', 'support-report-done', 'support-diagnostics-preview-toggle']) {
+  for (const id of ['support-report-submit', 'support-report-done']) {
     assert.equal(booleanProp(candidate, id, 'withHaptic'), false, `${id} wrapper haptic stays disabled`);
     assert.equal(booleanProp(candidate, id, 'withSound'), false, `${id} wrapper sound stays disabled`);
   }
 }
 
-function assertDiagnosticsProjection(candidate) {
-  const file = parseSource(candidate);
-  let properties;
-  const walk = node => {
-    if (ts.isCallExpression(node) && ts.isPropertyAccessExpression(node.expression) && node.expression.name.text === 'map'
-      && node.expression.expression.getText(file).includes('diagnosticsPreview.events.slice(-12)')) {
-      const callback = node.arguments[0];
-      assert.ok(callback && (ts.isArrowFunction(callback) || ts.isFunctionExpression(callback)), 'diagnostic map callback exists');
-      const eventName = callback.parameters[0]?.name.getText(file);
-      const seen = new Set();
-      const scan = child => {
-        if (ts.isPropertyAccessExpression(child) && child.expression.getText(file) === eventName) seen.add(child.name.text);
-        ts.forEachChild(child, scan);
-      };
-      scan(callback.body);
-      properties = [...seen].sort();
-    }
-    ts.forEachChild(node, walk);
-  };
-  walk(file);
-  assert.deepEqual(properties, ['atMs', 'event', 'result'], 'rendered diagnostics expose only time, event, and result');
+// зачем (владелец 11.11): записи журнала на форме не показываются вовсе — сторож следит, что предпросмотр не вернулся
+function assertNoDiagnosticsOnScreen(candidate) {
+  assert.doesNotMatch(candidate, /diagnosticsPreview\s*\??\.\s*events/, 'diagnostic entries are never rendered');
+  assert.doesNotMatch(candidate, /support-diagnostics-|CustomSwitch|attachDiagnostics/, 'no diagnostics card, preview, or switch');
 }
 
 function createHarness({ lang = 'ru', capturePromise } = {}) {
@@ -257,13 +233,12 @@ test('support screen uses the approved bounded liquid-glass geometry and font no
   // зачем (стиль «Тень», владелец 12.10): поле описания — плашка с тенью вместо кромки borderWidth:1.
   assert.match(source, /minHeight:\s*118[\s\S]*?borderRadius:\s*14[\s\S]*?boxShadow:\s*plateBoxShadow\(glass\)/);
   assert.doesNotMatch(source, /borderWidth|glassEdge/);
-  assert.match(source, /marginTop:\s*12[\s\S]*?borderRadius:\s*14[\s\S]*?paddingVertical:\s*14[\s\S]*?paddingHorizontal:\s*16/);
   assert.match(source, /minHeight:\s*48[\s\S]*?marginTop:\s*18[\s\S]*?borderRadius:\s*24/);
   assert.match(source, /automaticallyAdjustKeyboardInsets/);
   assert.doesNotMatch(source, /SectionSheetHeader|SafeAreaView|TouchableOpacity|BlurView|adjustsFontSizeToFit|maxFontSizeMultiplier|fontWeight:\s*'800'/);
 });
 
-test('actual handlers keep validation, duplicate guard, optimistic confirmation, preview collapse, and close behavior', async () => {
+test('actual handlers keep validation, duplicate guard, optimistic confirmation, silent diagnostics, and close behavior', async () => {
   const harness = createHarness();
   let tree = harness.render();
   for (const effect of harness.effects.splice(0)) effect();
@@ -288,20 +263,10 @@ test('actual handlers keep validation, duplicate guard, optimistic confirmation,
   nodes = visit(tree);
   submit = nodes.find(node => node.type === 'PressableHybrid' && node.props.testID === 'support-report-submit');
   assert.equal(submit.props.disabled, false);
-  const toggle = nodes.find(node => node.type === 'PressableHybrid' && node.props.testID === 'support-diagnostics-preview-toggle');
-  assert.equal(toggle.props.accessibilityState.expanded, false);
-  assert.equal(toggle.props.withHaptic, false);
-  assert.equal(toggle.props.withSound, false);
-  toggle.props.onPress();
-  tree = harness.render();
-  nodes = visit(tree);
-  assert.equal(nodes.find(node => node.props?.testID === 'support-diagnostics-preview-toggle').props.accessibilityState.expanded, true);
-  const previewText = renderedText(tree);
-  assert.match(previewText, /navigation/);
-  assert.match(previewText, /feature_action/);
-  assert.match(previewText, /success/);
-  assert.match(previewText, /info/);
-  assert.doesNotMatch(previewText, /SECRET_SCREEN/, 'screen metadata is not projected into the preview');
+  // зачем (владелец 11.11): на форме нет ни карточки диагностики, ни её записей — журнал уходит молча
+  assert.equal(nodes.some(node => String(node.props?.testID ?? '').startsWith('support-diagnostics-')), false);
+  const formText = renderedText(tree);
+  assert.doesNotMatch(formText, /Техническая диагностика|navigation|feature_action|SECRET_SCREEN/);
   nodes.find(node => node.props?.testID === 'support-report-submit').props.onPress();
   nodes.find(node => node.props?.testID === 'support-report-submit').props.onPress();
   assert.equal(harness.calls.dismiss, 1);
@@ -310,6 +275,7 @@ test('actual handlers keep validation, duplicate guard, optimistic confirmation,
   assert.equal(harness.calls.sends[0][0].comment, '  enough detail  ');
   assert.equal(harness.calls.sends[0][0].screen, 'settings_support');
   assert.equal(harness.calls.sends[0][0].diagnostics, harness.diagnostics);
+  assert.equal(harness.calls.sends[0].length, 2, 'the screen never asks the outbox to skip diagnostics');
   tree = harness.render();
   nodes = visit(tree);
   const done = nodes.find(node => node.type === 'PressableHybrid' && node.props.testID === 'support-report-done');
@@ -353,12 +319,12 @@ test('all reviewed nine-locale argument arrays survive and every locale renders 
   assert.throws(() => assertLocalizedBaseline(mutation));
 });
 
-test('diagnostic projection is AST-scoped and rejects an event.screen mutation', () => {
-  assertDiagnosticsProjection(source);
-  const original = "{event.result ? ` · ${event.result}` : ''}";
-  const mutation = source.replace(original, `{event.screen}${original}`);
-  assert.notEqual(mutation, source, 'the diagnostic projection mutation was applied in memory');
-  assert.throws(() => assertDiagnosticsProjection(mutation));
+test('diagnostic entries are never rendered and a returning preview is rejected', () => {
+  assertNoDiagnosticsOnScreen(source);
+  const anchor = '{sendFailed ? (';
+  const mutation = source.replace(anchor, `{diagnosticsPreview?.events.length ? null : null}${anchor}`);
+  assert.notEqual(mutation, source, 'the preview mutation was applied in memory');
+  assert.throws(() => assertNoDiagnosticsOnScreen(mutation));
 });
 
 test('capture cleanup prevents a late diagnostic bundle from updating the unmounted screen', async () => {
@@ -373,21 +339,24 @@ test('capture cleanup prevents a late diagnostic bundle from updating the unmoun
   await Promise.resolve();
   await Promise.resolve();
   tree = harness.render();
-  assert.equal(visit(tree).some(node => node.props?.testID === 'support-diagnostics-preview-toggle'), false);
+  let nodes = visit(tree);
+  nodes.find(node => node.type === 'TextInput' && node.props.testID === 'support-report-input').props.onChangeText('enough detail');
+  tree = harness.render();
+  nodes = visit(tree);
+  nodes.find(node => node.props?.testID === 'support-report-submit').props.onPress();
+  assert.equal('diagnostics' in harness.calls.sends[0][0], false, 'a bundle that arrived after unmount never reaches the screen state');
 });
 
-test('support copy, payload, diagnostics allowlist projection, and controls remain intact', () => {
+test('support copy, payload, silent diagnostics attachment, and controls remain intact', () => {
   for (const text of [
     'Описание проблемы', 'Например: в «Карточках» нажимаю «Послушать», но звука нет.',
-    'Техническая диагностика', 'без сообщений, паролей и платёжных данных.',
-    'Посмотреть', 'Скрыть', 'Отправить', 'Обращение отправлено',
+    'Отправить', 'Обращение отправлено',
     'Спасибо! Команда всё проверит и ответит в приложении.', 'Готово',
   ]) assert.ok(source.includes(text), `${text} is preserved`);
   for (const token of [
     'isSupportReportCommentValid', 'getSupportReportTemplate', 'submissionStartedRef.current', 'maxLength={3000}',
     "screen: 'settings_support'", "dataId: 'settings_support_request'", "dataText: 'In-app support request'",
-    'diagnosticsPreview.events.slice(-12)',
-    'testID="support-diagnostics-disclosure"', 'testID="support-diagnostics-preview-toggle"',
+    '...(diagnosticsPreview ? { diagnostics: diagnosticsPreview } : {}),',
     'accessibilityLiveRegion="polite"',
   ]) assert.ok(source.includes(token), `${token} is preserved`);
   assert.ok(source.indexOf("setState('sent');") < source.indexOf('void sendSupportReportInBackground('));

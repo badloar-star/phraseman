@@ -61,9 +61,10 @@ describe('in-app support report contract', () => {
     const outbox = read('app/support_report_outbox.ts');
     const transport = read('app/error_report.ts');
     expect(screen).toContain('captureSupportDiagnosticBundle');
-    expect(screen).toContain('testID="support-diagnostics-disclosure"');
-    expect(screen).toContain('testID="support-diagnostics-preview-toggle"');
-    expect(screen).toContain('diagnosticsPreview.events');
+    // зачем (владелец 11.11: «не надо им знать это»): карточки и предпросмотра журнала на форме нет — журнал уходит с обращением молча
+    expect(screen).not.toContain('support-diagnostics-');
+    expect(screen).not.toContain('diagnosticsPreview.events');
+    expect(screen).toContain('...(diagnosticsPreview ? { diagnostics: diagnosticsPreview } : {}),');
     expect(screen).not.toContain('diagnosticsPreview.comment');
     expect(outbox).toContain('const frozenPayload = diagnostics');
     expect(outbox).toContain('payload: frozenPayload');

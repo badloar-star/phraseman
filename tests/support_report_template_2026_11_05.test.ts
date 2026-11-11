@@ -11,7 +11,7 @@ describe('Поддержка: шаблон обращения', () => {
     expect(src).toContain('onPress={() => setDescription(getSupportReportTemplate(lang))}');
   });
   it('без новой подписи мелким шрифтом: кнопка 15 px, без обводки', () => {
-    const block = src.slice(src.indexOf('support-report-template'), src.indexOf('support-diagnostics-disclosure'));
+    const block = src.slice(src.indexOf('support-report-template'), src.indexOf('support-report-failed')); // 11.11: карточка диагностики убрана, блок шаблона кончается перед плашкой сбоя
     expect(block).toContain('fontSize: scaled(15)');
     expect(block).not.toMatch(/border(Width|Color)\s*:/);
   });

@@ -1,25 +1,18 @@
-// зачем (координатор 12.10, R1): карточка «Техническая диагностика» не обещает того, чего не делает. Пока журнал выключен флагом (remote_flags), текст «Прикрепятся…» не показывается — только нейтральный.
+// зачем (владелец 11.11: «убери "техническая диагностика"… не надо им знать это», «мы берём её и так и так»):
+// карточки диагностики на форме поддержки нет вовсе — ни заголовка, ни обещаний, ни «Посмотреть». Раньше (12.10) тест сторожил честность текста карточки.
 import fs from 'node:fs';
 import path from 'node:path';
 
 const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8');
 
-describe('support report: карточка диагностики честная', () => {
-  it('обещание «Прикрепятся…» показывается только при включённом журнале, иначе нейтральный текст', () => {
+describe('support report: карточки диагностики на форме нет', () => {
+  it('форма не показывает ни карточку, ни её тексты, ни список записей журнала', () => {
     const screen = read('app/support_report.tsx');
-    expect(screen).toContain("import { isSupportDiagnosticsEnabled } from './remote_flags';");
-    const promiseAt = screen.indexOf("'Прикрепятся только недавние технические действия");
-    const neutralAt = screen.indexOf("'Журнал технических действий сейчас выключен");
-    const branchAt = screen.indexOf('diagnosticsEnabled ? L(');
-    expect(branchAt).toBeGreaterThan(0);
-    expect(promiseAt).toBeGreaterThan(branchAt);
-    expect(neutralAt).toBeGreaterThan(promiseAt);
-    // у нейтрального текста нет слов-обещаний «прикреп» (ru) — в той же ветке нет и английского «attached»
-    const neutral = screen.slice(neutralAt, screen.indexOf(')}', neutralAt));
-    expect(neutral).not.toMatch(/прикреп|attached/i);
-    // решение владельца 12.10 (б): галочка — только когда журнал включён И приложение его прикладывает
-    expect(screen).toContain("diagnosticsEnabled && attachDiagnostics ? 'checkmark' : 'information-circle-outline'");
-    expect(screen).toContain('[SUPPORT-DIAG] карточка:');
+    expect(screen).not.toContain('support-diagnostics-');
+    expect(screen).not.toMatch(/L\(\s*'Техническая диагностика'/);
+    expect(screen).not.toMatch(/Прикрепятся только недавние|Журнал технических действий сейчас выключен|Журнал не будет приложен/);
+    expect(screen).not.toContain('diagnosticsPreview.events');
+    expect(screen).not.toContain('[SUPPORT-DIAG]');
   });
 
   it('журнал включён решением владельца (п.81(14)); запись и захват по-прежнему проверяют флаг первыми', () => {

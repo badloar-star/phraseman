@@ -3,7 +3,7 @@
  * В диалоге одно слово неверное: нажатие на него заменяет слово верным и показывает объяснение;
  * нажатие на другое слово — короткая дрожь.
  * зачем так: правила и задания — в modules/games/dialogue_core; экран только рисует и исполняет нажатия.
- * Очков навыков игра пока не даёт: её строки нет в утверждённой таблице (вопрос владельцу в итоге сессии).
+ * Найденная ошибка даёт «Грамматику» +2 (строка таблицы добавлена владельцем 11.11).
  */
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -23,6 +23,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { isHuntHit } from '../modules/games/dialogue_core';
 import { huntTasksFor } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
+import { noteSkillAction } from '../modules/skills/skill_store';
 import { safeRouterBack } from './navigation_back';
 
 const COPY = {
@@ -74,6 +75,8 @@ export default function GameHuntScreen() {
     }
     lock.current = true;
     setFound(true);
+    // зачем (D207, владелец 11.11): найденная ошибка — «Грамматика» +2
+    noteSkillAction({ action: 'hunt_correct', itemKey: `hunt:${task.id}` });
   }, [task]);
 
   // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры

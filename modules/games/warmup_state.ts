@@ -67,7 +67,7 @@ export const WARMUP_POOL: readonly WarmupGame[] = [
     description: { ru: 'Найди в диалоге одно неверное слово', uk: 'Знайди в діалозі одне неправильне слово', es: 'Encuentra la palabra incorrecta del diálogo', en: 'Find the one wrong word in the dialogue' },
   },
   {
-    id: 'order', route: '/game_order', skill: 'listening', icon: 'chatbubbles',
+    id: 'order', route: '/game_order', skill: 'grammar', icon: 'chatbubbles',
     name: { ru: 'Собери диалог', uk: 'Збери діалог', es: 'Arma el diálogo', en: 'Build the dialogue' },
     description: { ru: 'Расставь реплики по порядку', uk: 'Розстав репліки по порядку', es: 'Ordena las réplicas', en: 'Put the lines in order' },
   },

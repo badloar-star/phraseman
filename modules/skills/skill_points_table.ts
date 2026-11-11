@@ -48,6 +48,9 @@ export const SKILL_POINT_RULES = {
   odd_word_sorting_correct: { skill: 'grammar', points: 2 },
   by_ear_correct: { skill: 'listening', points: 2 },
   memory_exact_word_correct: { skill: 'vocab', points: 2 },
+  // зачем (владелец 11.11, вечер): игр на диалогах в таблице не было; «Собери диалог» к слуху не относится — обе дают «Грамматику»
+  hunt_correct: { skill: 'grammar', points: 2 },
+  order_correct: { skill: 'grammar', points: 2 },
   peak_task: { skill: null, points: 2, allowedSkills: ['listening', 'speech', 'vocab', 'grammar', 'speed'] },
   // Бонус за ступень порогу скорости не подчинён: в таблице владельца это отдельная строка без условия.
   peak_step_cleared: { skill: 'speed', points: 5 },

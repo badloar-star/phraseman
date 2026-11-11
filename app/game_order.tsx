@@ -3,7 +3,7 @@
  * Реплики нажимаются по порядку и встают в ленту диалога; не та реплика — короткая дрожь.
  * зачем так: правила и задания — в modules/games/dialogue_core; места под все реплики заняты сразу,
  * поэтому лента не прыгает, когда реплика встаёт на место.
- * Очков навыков игра пока не даёт: её строки нет в утверждённой таблице (вопрос владельцу в итоге сессии).
+ * Собранный диалог даёт «Грамматику» +2 (строка таблицы добавлена владельцем 11.11).
  */
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
@@ -22,6 +22,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { INITIAL_ORDER_STATE, shuffledOrder, tapOrderLine } from '../modules/games/dialogue_core';
 import { orderTasksFor } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
+import { noteSkillAction } from '../modules/skills/skill_store';
 import { safeRouterBack } from './navigation_back';
 
 const COPY = {
@@ -79,8 +80,11 @@ export default function GameOrderScreen() {
 
   // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
   useEffect(() => {
-    if (finished) markWarmupGamePlayed('order', `${total}/${total}`);
-  }, [finished, total]);
+    if (!finished || !task) return;
+    markWarmupGamePlayed('order', `${total}/${total}`);
+    // зачем (D207, владелец 11.11: «слух тут при чём?»): собранный диалог — «Грамматика» +2
+    noteSkillAction({ action: 'order_correct', itemKey: `order:${task.id}` });
+  }, [finished, task, total]);
 
   return (
     <ScreenGradient>

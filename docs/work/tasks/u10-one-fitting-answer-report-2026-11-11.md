@@ -726,3 +726,105 @@ button, price). «My bike does not have lights» оставлена, перев�
 
 Правило части 3 нашло одно новое нарушение не из этой задачи: в 04.32 «She starts working only at nine» соблазном к «She»
 стоял «He» (фразу изменил коммит 89f253b2d другой сессии). Заменён на «Him» тем же скриптом — сторож части 3 без этого красный.
+
+---
+
+# Часть 5 (ответы владельца на пункты 5, 4, 1 первого отчёта)
+
+## 5.А. Пункт 5 «Заменить на настоящие слова» — сделано
+
+В зачёте урока (`app/exam.tsx`, 191 задание) и входном тесте (`app/diagnostic_test.tsx`, 215 заданий) просмотрены все
+варианты ответов. Выдуманные словоформы и невозможные связки найдены в 43 заданиях (27 и 16); все заменены настоящими словами,
+которые в этом месте неверны по правилу. В четырёх заданиях «исправь ошибку» выдуманное слово стояло в самом вопросе —
+вопрос переписан с настоящим неверным словом и, где нужно, с указанием времени («yesterday»). Номер верного варианта, порядок
+и число заданий не менялись; дублей вариантов нет. Сторож: `tests/u10_exam_banks_real_words_guard.test.ts`.
+
+Что считалось выдуманным: wills, haves, cans, mays, shoulds, woulds, coulds, musts, goed, readed, sended, spended, plaied,
+stoped, buyed, taked, gaved, hisself, himselves, theirselves, look afters; связки «модальный + to» (should to, can to, must to,
+would to, could to, will to) и «be + модальный» (am will, is can, is could, are should, am should).
+
+Оставлено как было: неверные сочетания настоящих слов, которые сами и есть проверяемая ошибка («more hard», «most tall»,
+«doesn't not», «is became», «should went»).
+
+| Банк | Задание | Было | Стало |
+|---|---|---|---|
+| зачёт урока | I ___ a car. | has / have / haves / having | has / have / are / having |
+| зачёт урока | She ___ two children. | have / has / haves / having | have / has / are / having |
+| зачёт урока | Correct: He [have] a new car. | has / have / haves / having | has / have / are / having |
+| зачёт урока | You ___ speak louder. | shoulds / should to / should / are should | does / are / should / has |
+| зачёт урока | She ___ swim very well. | can / cans / can to / is can | can / is / has / are |
+| зачёт урока | Which sentence is correct? | She can to swim. / You should to stop. / He must to go. / She can swim. | She can swims. / You should stopping. / He must goes. / She can swim. |
+| зачёт урока | Correct: You [must to] leave now. => Correct: You [are] leave now. | must / must to / should to / can to | must / are / has / does |
+| зачёт урока | Which sentence is correct? | She sended the email. / They plaied well. / He walked to school. / We stoped there. | She send the email yesterday. / They playing well. / He walked to school. / We stops there. |
+| зачёт урока | Correct: She [sended] a letter. => Correct: She [send] a letter yesterday. | sent / sended / send / sending | sent / sends / send / sending |
+| зачёт урока | She ___ the book last week. | read / reads / readed / reading | read / reads / has read / reading |
+| зачёт урока | Which sentence is correct? | He goed to Paris. / She buyed a dress. / They came home late. / We taked the bus. | He go to Paris yesterday. / She buy a dress last week. / They came home late. / We takes the bus. |
+| зачёт урока | Correct: She [goed] to school. => Correct: She [go] to school yesterday. | went / goed / going / go | went / goes / going / go |
+| зачёт урока | She ___ come tomorrow. | will / wills / is going / shall be | will / is / is going / shall be |
+| зачёт урока | I ___ not be late. | will / wills / am will / am | will / has / are / am |
+| зачёт урока | It ___ rain tomorrow. | will / wills / are / is | will / were / are / is |
+| зачёт урока | Which sentence is correct? | He wills help. / She will helps. / They will come. / We will to go. | He will helping. / She will helps. / They will come. / We will went. |
+| зачёт урока | Correct: He [look after] his parents. | looks after / look after / looking after / look afters | looks after / look after / looking after / to look after |
+| зачёт урока | She told me she ___ leave. | wills / would / would to / woulds | is / would / has / are |
+| зачёт урока | Which sentence is correct? | He said he are tired. / She told me she would leave. / He asked where do I lived. / She said she wills come. | He said he are tired. / She told me she would leave. / He asked where do I lived. / She said she would comes. |
+| зачёт урока | Correct: She said she [will] go. | would / will / woulds / would to | would / will / is / has |
+| зачёт урока | Which sentence is correct? | She did it herself. / He hurt hisself. / They enjoyed theirselves. / I saw me in the mirror. | She did it herself. / He hurt themselves. / They enjoyed himself. / I saw me in the mirror. |
+| зачёт урока | Correct: He hurt [hisself] playing. => Correct: He hurt [herself] playing. | himself / hisself / himselves / his | himself / herself / themselves / his |
+| зачёт урока | She ___ not have come so early. | should / shoulds / should to / is | should / has / are / is |
+| зачёт урока | We ___ dinner at 7 p.m. every day. | has / have / having / haves | has / have / having / is |
+| зачёт урока | It ___ rain later; take an umbrella. | mays / is / may / ought | are / is / may / ought |
+| зачёт урока | I think you ___ like this book. | will / are / is / wills | will / are / is / has |
+| входной тест | She ___ a new car. | have / has / haves / having | have / has / are / having |
+| входной тест | I ___ two brothers. | have / has / haves / having | have / has / are / having |
+| входной тест | She ___ come tomorrow. | will / wills / are / is | will / has / are / is |
+| входной тест | It ___ rain tomorrow. | will / wills / are / is | will / were / are / is |
+| входной тест | We ___ speak tomorrow. | will / wills / are / did | will / has / are / did |
+| входной тест | They ___ a lot of money. | spended / spends / spent / spending | to spend / spends / spent / spending |
+| входной тест | She ___ the book last week. | read / reads / has read / readed | read / reads / has read / reading |
+| входной тест | You ___ wear a seatbelt. | shoulds / should / should to / are should | has / should / are / does |
+| входной тест | She ___ speak three languages. | cans / can to / can / is can | is / has / can / are |
+| входной тест | You ___ eat less sugar. | shoulds / should to / should / are should | has / are / should / does |
+| входной тест | She ___ wait for you. | will / wills / are / is | will / has / are / is |
+| входной тест | I ___ not do this. | should / shoulds / should to / am should | should / has / is / am |
+| входной тест | He ___ have helped. | could / coulds / could to / is could | could / is / has / does |
+| входной тест | You look tired. You ___ to bed early. | should go / should to go / should going / should went | should go / should goes / should going / should went |
+| входной тест | She told me she ___ leave. | wills / would / would to / woulds | is / would / has / are |
+| входной тест | She ___ have been waiting for hours. | must / can / musts / must to | must / can / is / has |
+| зачёт урока | Which sentence is correct? (урок 16) | …She gaved up smoke. | …She gives up smoked. |
+
+## 5.Б. Пункт 4 «Удалить, если нигде не нужен» — НЕ удалено, нужен ответ
+
+Факты по коду:
+- `app/level_exam.tsx` — это сам маршрут `/level_exam`, он живой: на него ведёт кнопка зачёта на вкладке уроков
+  (`app/(tabs)/lessons.tsx`), он зарегистрирован в `app/_layout.tsx`, участвует в «назад» (`app/navigation_back.ts`).
+  Файл проверяет доступ (Plus, уровень, энергия) и рисует новый экран `components/level-exam/LevelExamV2.tsx`.
+- Старый встроенный экран внутри этого файла (банк `QUESTION_POOL`, 96 заданий, и его разметка) сейчас недостижим:
+  для всех пяти курсов файл возвращает новый экран, а при закрытом курсе — пустой экран и тихий выход назад.
+  Банк никто, кроме этого файла, не читает; зачёты ES / DE / IT / FR и сохранённый прогресс его не используют.
+- Но в самом файле сегодня (сессия F01, 11.11) оставлена пометка: «Старый экран остаётся в коде до проверки нового на
+  телефоне» и выключатель `LEVEL_EXAM_V2_FOR_ALL_COURSES`. То есть его держат как запасной путь до проверки.
+- Удаление — это вырезать около тысячи строк из файла, который сегодня правят сессии экзаменов, и пересмотреть 24 теста,
+  читающих текст этого файла (энергия, пейвол, запись ошибок, оливковая тема, звуки наград и др.).
+
+Поэтому файл не тронут. Вопрос владельцу / сессиям экзаменов: новый экран на телефоне уже проверен — можно вырезать старый?
+
+## 5.В. Пункт 1 «Да, перевести» — уже сделано другой сессией, проверено
+
+- Экзамен уровня английского с версии сборщика 5 берёт фразы из классического курса — те же, что показывает урок
+  (`app/level_exam_blueprint.ts`, функция `lessonPhrases`; версия 5 включена в `app/level_exam_types.ts`, коммит d8a0a685a,
+  доработки f5c12829e и f1fc38aa9). Мне менять нечего.
+- Уровни и уроки: A1 — уроки 1–8, A2 — 9–18, B1 — 19–28, B2 — 29–32.
+- Сохранённые попытки: в попытке хранится номер версии сборщика; попытки версий 3 и 4 восстанавливаются из прежнего набора
+  фраз теми же заданиями, сданные результаты не пересчитываются (сторож `level_exam_active_attempt_compatibility`).
+- Правило U10 «ровно один доказуемо верный вариант» в версии 5 — единственный источник заданий с пропуском.
+  Сколько фраз классического курса дают такой пропуск (нужно 2–4 на попытку плюс новые механики):
+
+| Уровень | Уроки | Фраз | С доказуемым пропуском | По правилам |
+|---|---|---|---|---|
+| A1 | 1–8 | 400 | 229 | do 78, артикль 48, be 46, время (in / on / at) 43, how 8, have 6 |
+| A2 | 9–18 | 500 | 115 | артикль 49, be 49, время 7, have 5, do 3, how 2 |
+| B1 | 19–28 | 500 | 168 | артикль 66, have 36, прошедшее 31, be 15, время 12, do 4, how 2, подлежащее 2 |
+| B2 | 29–32 | 200 | 50 | артикль 25, be 11, время 4, прошедшее 3, have 3, do 2, how 2 |
+
+  Эталон владельца держится на фразах курса: «The shop opens ___ nine» → at / in / on / to, «He worked from home ___ Monday»
+  → on / in / at / to. Подсчёт — без разметки классов слов (в классическом курсе её нет), поэтому правило «глагол» в счёт не вошло.

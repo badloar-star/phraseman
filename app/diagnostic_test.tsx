@@ -428,8 +428,8 @@ const POOL: Question[] = [
   {phrase:'He ___ not smoke.',             hintRU:'Он ___ не курит.',             hintUK:'Він ___ не курить.',        hintES:'Él no fuma.', opts:['do','does','is','doing'],             correct:1, level:'A2'},
   {phrase:'They ___ in London.',           hintRU:'Они ___ в Лондоне.',           hintUK:'Вони ___ у Лондоні.',       hintES:'Ellos ___ en Londres.', opts:['live','lives','to live','living'],        correct:0, level:'A2'},
   // A2: Have/Has
-  {phrase:'She ___ a new car.',            hintRU:'У неё ___ новая машина.',      hintUK:'У неї ___ нова машина.',    hintES:'Ella ___ un coche nuevo.', opts:['have','has','haves','having'],           correct:1, level:'A2'},
-  {phrase:'I ___ two brothers.',           hintRU:'У меня ___ два брата.',        hintUK:'У мене ___ два брати.',     hintES:'Yo ___ dos hermanos.', opts:['have','has','haves','having'],           correct:0, level:'A2'},
+  {phrase:'She ___ a new car.',            hintRU:'У неё ___ новая машина.',      hintUK:'У неї ___ нова машина.',    hintES:'Ella ___ un coche nuevo.', opts:['have','has','are','having'],           correct:1, level:'A2'},
+  {phrase:'I ___ two brothers.',           hintRU:'У меня ___ два брата.',        hintUK:'У мене ___ два брати.',     hintES:'Yo ___ dos hermanos.', opts:['have','has','are','having'],           correct:0, level:'A2'},
   // A2: There is/are
   {phrase:'There ___ a book on the table.',hintRU:'___ книга на столе.',          hintUK:'___ книга на столі.',       hintES:'___ un libro en la mesa.', opts:['are','am','is','be'],                  correct:2, level:'A2'},
   {phrase:'There ___ many people here.',   hintRU:'___ много людей здесь.',       hintUK:'___ багато людей тут.',     hintES:'___ mucha gente aquí.', opts:['is','am','are','be'],                  correct:2, level:'A2'},
@@ -442,9 +442,9 @@ const POOL: Question[] = [
   {phrase:'She was born ___ Monday.',      hintRU:'Она родилась ___ понедельник.',hintUK:'Вона народилася ___ понеділок.',hintES:'Nació ___ un lunes.',opts:['in','on','at','to'],               correct:1, level:'A2'},
   {phrase:'He lives ___ London.',          hintRU:'Он живёт ___ Лондоне.',        hintUK:'Він живе ___ Лондоні.',     hintES:'Vive ___ Londres.', opts:['in','on','at','to'],                  correct:0, level:'A2'},
   // A2: Future (will/going to)
-  {phrase:'She ___ come tomorrow.',        hintRU:'Она придёт завтра.',            hintUK:'Вона прийде завтра.',       hintES:'Ella ___ venir mañana.', opts:['will','wills','are','is'],           correct:0, level:'A2'},
+  {phrase:'She ___ come tomorrow.',        hintRU:'Она придёт завтра.',            hintUK:'Вона прийде завтра.',       hintES:'Ella ___ venir mañana.', opts:['will','has','are','is'],           correct:0, level:'A2'},
   {phrase:'I ___ going to study tonight.', hintRU:'Сегодня вечером я ___ подучиться.', hintUK:'Сьогодні ввечері я ___ повчитися.', hintES:'I ___ going to… → «am» (be going to).', opts:['am','is','are','be'],            correct:0, level:'A2'},
-  {phrase:'It ___ rain tomorrow.',         hintRU:'Завтра пойдёт дождь.',         hintUK:'Завтра йтиме дощ.',          hintES:'Mañana lloverá.', opts:['will','wills','are','is'],  correct:0, level:'A2'},
+  {phrase:'It ___ rain tomorrow.',         hintRU:'Завтра пойдёт дождь.',         hintUK:'Завтра йтиме дощ.',          hintES:'Mañana lloverá.', opts:['will','were','are','is'],  correct:0, level:'A2'},
   // A2: Match vocabulary
   {phrase:'What does "tired" mean?',       hintRU:'Что значит «tired»?',          hintUK:'Що значить «tired»?',       hintES:'¿Qué significa «tired»?', opts:['голодный','радостный','усталый','злой'],   optsUK:['голодний','радісний','втомлений','злий'],   optsES:['hambriento','alegre','cansado','enfadado'],   correct:2, level:'A2', type:'match'},
   {phrase:'What does "quickly" mean?',     hintRU:'Что значит «quickly»?',        hintUK:'Що значить «quickly»?',     hintES:'¿Qué significa «quickly»?', opts:['медленно','громко','тихо','быстро'],        optsUK:['повільно','гучно','тихо','швидко'],         optsES:['despacio','en voz alta','en voz baja','rápido'],         correct:3, level:'A2', type:'match'},
@@ -471,12 +471,12 @@ const POOL: Question[] = [
 
   // ── B1: Past Simple ───────────────────────────────────────────────────────
   {phrase:'She did not ___.',              hintRU:'Она не ___.',                  hintUK:'Вона не ___.',              hintES:'Ella no ___ (forma base después de did).', opts:['tell','told','tells','telling'],       correct:0, level:'B1'},
-  {phrase:'We ___ speak tomorrow.',        hintRU:'Мы ___ говорить завтра.',      hintUK:'Ми ___ говорити завтра.',   hintES:'Mañana ___ hablar.', opts:['will','wills','are','did'],       correct:0, level:'B1'},
+  {phrase:'We ___ speak tomorrow.',        hintRU:'Мы ___ говорить завтра.',      hintUK:'Ми ___ говорити завтра.',   hintES:'Mañana ___ hablar.', opts:['will','has','are','did'],       correct:0, level:'B1'},
   {phrase:'She ___ when I called.',        hintRU:'Она ___ когда я позвонил.',    hintUK:'Вона ___, коли я зателефонував.',hintES:'Acción en curso en el pasado cuando llamaste → past continuous.',opts:['sleep','were sleeping','was sleeping','is sleep'],correct:2,level:'B1'},
   {phrase:'He ___ to London last year.',   hintRU:'Он ___ в Лондон в прошлом году.',hintUK:'Він ___ до Лондона минулого року.',hintES:'El año pasado ___ a Londres.',opts:['go','goes','went','gone'],   correct:2, level:'B1'},
   {phrase:'I ___ not see her last night.', hintRU:'Я ___ не видел её вчера.',     hintUK:'Я ___ не бачив її вчора.',  hintES:'Anoche no ___ verla.',  opts:['do','did','does','doing'],             correct:1, level:'B1'},
-  {phrase:'They ___ a lot of money.',      hintRU:'Они ___ много денег.',         hintUK:'Вони ___ багато грошей.',   hintES:'Gastaron mucho dinero (past simple).',   opts:['spended','spends','spent','spending'],   correct:2, level:'B1'},
-  {phrase:'She ___ the book last week.',   hintRU:'Она ___ книгу на прошлой неделе.',hintUK:'Вона ___ книгу минулого тижня.',hintES:'La semana pasada ___ el libro.',opts:['read','reads','has read','readed'],correct:0, level:'B1'},
+  {phrase:'They ___ a lot of money.',      hintRU:'Они ___ много денег.',         hintUK:'Вони ___ багато грошей.',   hintES:'Gastaron mucho dinero (past simple).',   opts:['to spend','spends','spent','spending'],   correct:2, level:'B1'},
+  {phrase:'She ___ the book last week.',   hintRU:'Она ___ книгу на прошлой неделе.',hintUK:'Вона ___ книгу минулого тижня.',hintES:'La semana pasada ___ el libro.',opts:['read','reads','has read','reading'],correct:0, level:'B1'},
   // B1: Present Perfect
   {phrase:'They ___ already left.',        hintRU:'Они ___ уже ушли.',            hintUK:'Вони ___ вже пішли.',       hintES:'Ellos ya ___ ido (= present perfect).', opts:['have','has','is','did'],              correct:0, level:'B1'},
   {phrase:"I ___ never been to Paris.",    hintRU:'Я ___ никогда не был в Париже.',hintUK:'Я ___ ніколи не був у Парижі.',hintES:'Nunca he estado en París.',opts:['have','has','am','was'],          correct:0, level:'B1'},
@@ -487,13 +487,13 @@ const POOL: Question[] = [
   {phrase:'The letter ___ sent yesterday.',hintRU:'Письмо ___ отправлено вчера.', hintUK:'Лист ___ надіслано вчора.', hintES:'La carta ___ enviada ayer.', opts:['was','were','is','been'],              correct:0, level:'B1'},
   {phrase:'Cars ___ made in factories.',   hintRU:'Машины ___ делают на заводах (пассив).',hintUK:'Машини ___, як правило, збирають на заводах (пас.).',hintES:'Los coches se fabrican en fábricas (voz pasiva).',opts:['is','am','are','be'],            correct:2, level:'B1'},
   // B1: Modal verbs
-  {phrase:'You ___ wear a seatbelt.',      hintRU:'Ты ___ пристегнуться.',        hintUK:'Ти ___ пристебнутися.',     hintES:'Es norma / recomendación: «should» + infinitivo.', opts:['shoulds','should','should to','are should'],        correct:1, level:'B1'},
-  {phrase:'She ___ speak three languages.',hintRU:'Она ___ говорить на трёх языках.',hintUK:'Вона ___ говорити трьома мовами.',hintES:'Ella puede hablar tres idiomas.',opts:['cans','can to','can','is can'],correct:2, level:'B1'},
-  {phrase:'You ___ eat less sugar.',       hintRU:'Тебе ___ есть меньше сахара.', hintUK:'Тобі ___ їсти менше цукру.', hintES:'Deberías comer menos azúcar.', opts:['shoulds','should to','should','are should'],       correct:2, level:'B1'},
+  {phrase:'You ___ wear a seatbelt.',      hintRU:'Ты ___ пристегнуться.',        hintUK:'Ти ___ пристебнутися.',     hintES:'Es norma / recomendación: «should» + infinitivo.', opts:['has','should','are','does'],        correct:1, level:'B1'},
+  {phrase:'She ___ speak three languages.',hintRU:'Она ___ говорить на трёх языках.',hintUK:'Вона ___ говорити трьома мовами.',hintES:'Ella puede hablar tres idiomas.',opts:['is','has','can','are'],correct:2, level:'B1'},
+  {phrase:'You ___ eat less sugar.',       hintRU:'Тебе ___ есть меньше сахара.', hintUK:'Тобі ___ їсти менше цукру.', hintES:'Deberías comer menos azúcar.', opts:['has','are','should','does'],       correct:2, level:'B1'},
   {phrase:'If I knew, I ___.',             hintRU:'Если бы я знал, я бы ___.',    hintUK:'Якби я знав, я б ___.',     hintES:'Si lo supiera, lo ___ (condicional).', opts:['say','said','would say','will say'],   correct:2, level:'B1'},
-  {phrase:'She ___ wait for you.',         hintRU:'Она ___ ждать тебя.',          hintUK:'Вона ___ чекати тебе.',     hintES:'Ella esperará/te esperará.', opts:['will','wills','are','is'],           correct:0, level:'B1'},
-  {phrase:'I ___ not do this.',            hintRU:'Я не ___ этого делать.',       hintUK:'Я не ___ цього робити.',    hintES:'No haré/no voy a hacer esto.', opts:['should','shoulds','should to','am should'],       correct:0, level:'B1'},
-  {phrase:'He ___ have helped.',           hintRU:'Он ___ помочь.',               hintUK:'Він ___ допомогти.',        hintES:'Podría haber ayudado.', opts:['could','coulds','could to','is could'],         correct:0, level:'B1'},
+  {phrase:'She ___ wait for you.',         hintRU:'Она ___ ждать тебя.',          hintUK:'Вона ___ чекати тебе.',     hintES:'Ella esperará/te esperará.', opts:['will','has','are','is'],           correct:0, level:'B1'},
+  {phrase:'I ___ not do this.',            hintRU:'Я не ___ этого делать.',       hintUK:'Я не ___ цього робити.',    hintES:'No haré/no voy a hacer esto.', opts:['should','has','is','am'],       correct:0, level:'B1'},
+  {phrase:'He ___ have helped.',           hintRU:'Он ___ помочь.',               hintUK:'Він ___ допомогти.',        hintES:'Podría haber ayudado.', opts:['could','is','has','does'],         correct:0, level:'B1'},
   // B1: Conditional type 1
   {phrase:'If it rains, I ___ stay home.', hintRU:'Если будет дождь, я ___ дома.', hintUK:'Якщо буде дощ, я ___ вдома.',hintES:'Si llueve, me quedaré en casa.',opts:['will','would have','am','was'],      correct:0, level:'B1'},
   {phrase:'If you work hard, you ___ succeed.',hintRU:'Если ты будешь стараться, ты ___.', hintUK:'Якщо ти будеш старатися, ти ___.',hintES:'Condicional 1: resultado en futuro probable → «will».',opts:['will','would have','are','were'],correct:0, level:'B1'},
@@ -518,7 +518,7 @@ const POOL: Question[] = [
   {phrase:'The police ___ the thief yesterday.',       hintRU:'Полиция ___. (поймала вора)',  hintUK:'Поліція ___. (злодія)',  hintES:'La policía ___ al ladrón ayer.', opts:['catches',"caught","has caught","was catching"], correct:1, level:'B1'},
   {phrase:'I have never ___ a horse.',  hintRU:'Никогда не ___. (ездил верхом)', hintUK:'Ніколи не ___. (їздив верхи)', hintES:'Nunca he ___ a caballo (participio)', opts:['ride','rode','rides','ridden'],   correct:3, level:'B1'},
   {phrase:'This is the first time I ___ here.',  hintRU:'Первый раз, как я ___. (здесь)', hintUK:'Перший раз, як я ___. (тут)', hintES:'Es la primera vez que ___ aquí (present perfect).', opts:['am','was','have been',"has been"], correct:2, level:'B1'},
-  {phrase:'You look tired. You ___ to bed early.',  hintRU:'___ спать раньше.',  hintUK:'___ спати раніше.',     hintES:'Consejo: «should go» (deberías irte).', opts:['should go','should to go','should going','should went'],     correct:0, level:'B1'},
+  {phrase:'You look tired. You ___ to bed early.',  hintRU:'___ спать раньше.',  hintUK:'___ спати раніше.',     hintES:'Consejo: «should go» (deberías irte).', opts:['should go','should goes','should going','should went'],     correct:0, level:'B1'},
   {phrase:'The kitchen ___ at the moment.',  hintRU:'Сейчас ___. (пасс. — сейчас покрашено)',  hintUK:'Зараз ___. (пас. — сейчас «красят» кухню)', hintES:'La cocina se está pintando → pasiva progresiva.', opts:['paints',"is being painted","is painting","painted"], correct:1, level:'B1'},
   {phrase:'He asked what time the train ___.',  hintRU:'Спросил, во сколько ___. (поезд)', hintUK:'Запитав, о котрій ___. (потяг)', hintES:'Horario fijo → present simple → «leaves».', opts:['leaves','leave','leaving','to leave'], correct:0, level:'B1'},
   {phrase:'If I ___ you, I would not say that.',  hintRU:'Будь ___, не сказал бы.',  hintUK:'Будь ___, не сказав би цього.', hintES:'Si yo fuera tú ... (If I ___ you)', opts:['am','am not','is','were'],  correct:3, level:'B1'},
@@ -539,7 +539,7 @@ const POOL: Question[] = [
   {phrase:'English ___ spoken worldwide.', hintRU:'На английском ___ говорят по всему миру.',hintUK:'Англійською ___ говорять у всьому світі.',hintES:'Presente pasivo (hecho general) → «is».',opts:['is','are','am','were'],correct:0, level:'B2'},
   // B2: Reported speech
   {phrase:'He said he ___ tired.',         hintRU:'Он сказал, что ___ устал.',    hintUK:'Він сказав, що ___ втомлений.',hintES:'Estilo indirecto: «was» (backshift).',opts:['am','was','were','be'],             correct:1, level:'B2'},
-  {phrase:'She told me she ___ leave.',    hintRU:'Она сказала, что ___ уйдёт.',  hintUK:'Вона сказала, що ___ піде.',hintES:'Futuro en el pasado → «would».',opts:['wills','would','would to','woulds'],        correct:1, level:'B2'},
+  {phrase:'She told me she ___ leave.',    hintRU:'Она сказала, что ___ уйдёт.',  hintUK:'Вона сказала, що ___ піде.',hintES:'Futuro en el pasado → «would».',opts:['is','would','has','are'],        correct:1, level:'B2'},
   {phrase:'He asked where I ___.',         hintRU:'Он спросил, где я ___.',       hintUK:'Він запитав, де я ___.',    hintES:'Pasado en estilo indirecto → «lived».', opts:['am live','lived','living','lives'],        correct:1, level:'B2'},
   // B2: Conditional type 2
   {phrase:'If I ___ rich, I would travel.',hintRU:'Если бы я ___ богат, путешествовал бы.',hintUK:'Якби я ___ багатий, подорожував би.',hintES:'If II: contrafactual con «were».',opts:['am','is','were','be'],correct:2, level:'B2'},
@@ -599,7 +599,7 @@ const POOL: Question[] = [
   // C1: Complex passive/perfect
   {phrase:'The project ___ completed by next month.',hintRU:'Проект ___ завершён к следующему месяцу.',hintUK:'Проект ___ завершено до наступного місяця.',hintES:'Futuro + pasiva: «will be» + participio.',opts:['will be','would be','is being','has been'],correct:0,level:'C1'},
   {phrase:'By the time she arrived, he ___ everything.',hintRU:'К тому времени он ___ всё.',hintUK:'На той час він ___ все.',hintES:'Antes de un hecho pasado → past perfect → «had finished».',opts:['finish','has finished','had finished','is finishing'],correct:2,level:'C1'},
-  {phrase:'She ___ have been waiting for hours.',hintRU:'Она ___ ждать часами.',     hintUK:'Вона ___ чекати годинами.',   hintES:'Deducción fuerte: «must have been» + -ing.',   opts:['must','can','musts','must to'],        correct:0, level:'C1'},
+  {phrase:'She ___ have been waiting for hours.',hintRU:'Она ___ ждать часами.',     hintUK:'Вона ___ чекати годинами.',   hintES:'Deducción fuerte: «must have been» + -ing.',   opts:['must','can','is','has'],        correct:0, level:'C1'},
   // C1: Cleft sentences / inversion
   {phrase:'Not only ___ she sing, she also dances.',hintRU:'Она не только поёт...',hintUK:'Вона не тільки співає...',      hintES:'Inversión: «Not only» + auxiliar/modal + sujeto → «can».',      opts:['do','does','is','has'],             correct:1, level:'C1'},
   {phrase:'___ had I left when it started raining.',hintRU:'Как только я вышел...',hintUK:'Щойно я вийшов...',             hintES:'Patrón «Hardly» + inversión + past perfect.',             opts:['Hardly','Hard','No sooner','Hardest'],correct:0,level:'C1'},

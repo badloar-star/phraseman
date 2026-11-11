@@ -60,7 +60,7 @@ export const STORY_INSTEAD_TEMPLATE_SAMPLES: Readonly<{ [I in StoryInsteadTempla
   instead_nudge: { id: 'instead_nudge', missedDays: 3, endMs: day(2025, 10, 26) },
   instead_plus_expired: { id: 'instead_plus_expired', untilLabel: '10 ноября', freezesPerMonth: 3 },
   instead_ref_welcome: { id: 'instead_ref_welcome', friendName: 'Анна', friendRank: 7, giftDays: 7 },
-  instead_ref_ended: { id: 'instead_ref_ended', endedLabel: '10 ноября' },
+  instead_ref_ended: { id: 'instead_ref_ended', windowEndMs: day(2026, 11, 10) },
   instead_perfect: { id: 'instead_perfect', lessonNo: 12, correct: 45, total: 45, coins: 120 },
   instead_lesson_open: { id: 'instead_lesson_open', lessonNo: 12, nextLessonNo: 13, topic: 'планы на выходные' },
   instead_rate: { id: 'instead_rate', lessonsDone: 30 },
@@ -87,7 +87,7 @@ export function isStoryInsteadTemplate(tpl: Readonly<{ id: string }>): tpl is St
 /** Действия кнопок кадров «вместо окон». `open_plus` — готовое действие; остальные получают переходы на шаге 2. */
 export type StoryInsteadCtaAction =
   | 'open_plus' | 'start_first_lesson' | 'review_cards' | 'upgrade_coin' | 'update_app' | 'reply_team' | 'enable_reminder'
-  | 'enter_referral_code' | 'invite_friend' | 'start_lesson' | 'rate_app' | 'claim_pack_prize' | 'play_peak';
+  | 'enter_referral_code' | 'share_link' | 'start_lesson' | 'rate_app' | 'claim_pack_prize' | 'play_peak';
 
 /** Кнопка кадра: действие, готовая подпись на языке интерфейса и глиф Ionicons (те же, что в макете). */
 export type StoryInsteadCta = Readonly<{ action: StoryInsteadCtaAction; text: string; icon: 'play' | 'layers' | 'trending-up' | 'refresh' | 'chatbubble' | 'time' | 'sparkles' | 'key' | 'person-add' | 'star' | 'wallet' | 'flash' }>;
@@ -103,7 +103,8 @@ export function storyInsteadCta(tpl: StoryInsteadTemplate, lang: Lang): StoryIns
     case 'instead_nudge': return { action: 'enable_reminder', text: insteadText(lang, 'ctaEnableReminder'), icon: 'time' };
     case 'instead_plus_expired': return { action: 'open_plus', text: insteadText(lang, 'ctaRestorePlus'), icon: 'sparkles' };
     case 'instead_ref_welcome': return { action: 'enter_referral_code', text: insteadText(lang, 'ctaEnterCode'), icon: 'key' };
-    case 'instead_ref_ended': return { action: 'invite_friend', text: insteadText(lang, 'ctaInviteFriend'), icon: 'person-add' };
+    // зачем: «Пригласить друга» в окне открывала отправку приглашения — у историй это готовое действие share_link (use_story_cta_action)
+    case 'instead_ref_ended': return { action: 'share_link', text: insteadText(lang, 'ctaInviteFriend'), icon: 'person-add' };
     case 'instead_lesson_open': return { action: 'start_lesson', text: insteadText(lang, 'ctaStartLesson', { lessonNo: tpl.nextLessonNo }), icon: 'play' };
     case 'instead_rate': return { action: 'rate_app', text: insteadText(lang, 'ctaRate'), icon: 'star' };
     case 'instead_pack_prize': return { action: 'claim_pack_prize', text: insteadText(lang, 'ctaClaim', { coins: tpl.coins }), icon: 'wallet' };

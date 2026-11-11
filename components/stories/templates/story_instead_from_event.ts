@@ -4,7 +4,7 @@
 // зачем (владелец 11.11, шаг 2): кадр показывает только то, что лежит в событии, и только если данные целы. Битое событие
 // (нет числа, отрицательное, ранг вне таблицы) кадра не даёт — лучше пропустить историю, чем показать «0 дней перерыва».
 // Подключены четыре вида: `back` («С возвращением»), `rank_enough` («Хватает на ранг»), `legacy` («Бонусы стали монетами»),
-// `plus_expired` («Plus закончился»); остальные 13 — следующими партиями.
+// `plus_expired` («Plus закончился»), `ref_ended` («Доступ можно открыть снова»); остальные 12 — следующими партиями.
 // Числа проверяются строго: строка '6' и дробное 6.9 не превращаются в 6 — так уже маскировался битый payload у ранга монеты.
 // ═══════════════════════════════════════════════════════════════════════════
 import { isValidCoinRank } from '../../../app/coin_rank_table_v1';
@@ -18,7 +18,7 @@ function count(value: unknown): number | null {
 }
 
 /** Виды событий `instead`, у которых уже есть источник. */
-export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired'] as const;
+export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended'] as const;
 
 export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | null {
   switch (p.kind) {
@@ -52,6 +52,11 @@ export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | n
       if (freezesPerMonth === null || freezesPerMonth < 1) return null;
       // дату окончания хост истёкшей подписки не знает — кадр идёт без строки с датой
       return { id: 'instead_plus_expired', untilLabel: null, freezesPerMonth };
+    }
+    case 'ref_ended': {
+      const windowEndMs = count(p.windowEndMs);
+      if (windowEndMs === null || windowEndMs < 1) return null;
+      return { id: 'instead_ref_ended', windowEndMs };
     }
     default:
       return null;

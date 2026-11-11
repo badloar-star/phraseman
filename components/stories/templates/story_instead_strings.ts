@@ -29,7 +29,7 @@ const S = {
   ctaEnableReminder: ['Включить напоминание', 'Увімкнути нагадування', 'Turn on reminder', 'Activar recordatorio', 'Ativar lembrete', 'Bật nhắc nhở', 'Aktifkan pengingat', 'Hatırlatıcıyı aç', 'Włącz przypomnienie'],
   ctaRestorePlus: ['Вернуть Plus', 'Повернути Plus', 'Get Plus back', 'Recuperar Plus', 'Recuperar Plus', 'Lấy lại Plus', 'Aktifkan Plus lagi', 'Plus’ı geri al', 'Odzyskaj Plus'],
   ctaEnterCode: ['Ввести код', 'Ввести код', 'Enter code', 'Ingresar código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod'],
-  ctaInviteFriend: ['Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego'],
+  ctaInviteFriend: ['Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời một người bạn', 'Ajak teman', 'Arkadaş davet et', 'Zaproś znajomego'], // дословно как кнопка окна
   ctaStartLesson: ['Начать урок {lessonNo}', 'Почати урок {lessonNo}', 'Start lesson {lessonNo}', 'Empezar la lección {lessonNo}', 'Começar a lição {lessonNo}', 'Bắt đầu bài {lessonNo}', 'Mulai pelajaran {lessonNo}', '{lessonNo}. derse başla', 'Zacznij lekcję {lessonNo}'],
   ctaRate: ['Оценить', 'Оцінити', 'Rate', 'Calificar', 'Avaliar', 'Đánh giá', 'Beri nilai', 'Puan ver', 'Oceń'],
   ctaClaim: ['Забрать {coins} {cw}', 'Забрати {coins} {cw}', 'Claim {coins} {cw}', 'Recibir {coins} {cw}', 'Resgatar {coins} {cw}', 'Nhận {coins} {cw}', 'Ambil {coins} {cw}', '{coins} {cw} al', 'Odbierz {coins} {cw}'],
@@ -125,14 +125,12 @@ const S = {
     'Wpisz kod znajomego, a Plus włączy się od razu. {name} też dostanie nagrodę.',
   ],
 
-  // ── 10 · подарок закончился ──
-  refEndedOverline: ['Подарок по приглашению', 'Подарунок за запрошенням', 'Gift by invitation', 'Regalo por invitación', 'Presente por convite', 'Quà từ lời mời', 'Hadiah dari undangan', 'Davet hediyesi', 'Prezent z zaproszenia'],
-  refEndedTitle: ['Подарочный Plus закончился', 'Подарунковий Plus закінчився', 'Your gift Plus has ended', 'Tu Plus de regalo terminó', 'Seu Plus de presente terminou', 'Plus quà tặng đã hết', 'Plus hadiah telah berakhir', 'Hediye Plus sona erdi', 'Prezentowy Plus się skończył'],
-  refEndedText: [
-    'Доступ действовал до {date}. Уроки и прогресс остались с тобой.', 'Доступ діяв до {date}. Уроки й прогрес залишилися з тобою.', 'Access lasted until {date}. Your lessons and progress stay with you.',
-    'El acceso duró hasta el {date}. Tus lecciones y tu progreso siguen contigo.', 'O acesso durou até {date}. Suas lições e seu progresso continuam com você.', 'Quyền truy cập kéo dài đến {date}. Bài học và tiến độ vẫn còn nguyên.',
-    'Akses berlaku hingga {date}. Pelajaran dan progresmu tetap ada.', 'Erişim {date} tarihine kadar sürdü. Derslerin ve ilerlemen seninle.', 'Dostęp trwał do {date}. Lekcje i postępy zostają z tobą.',
-  ],
+  // ── 10 · доступ можно открыть снова ──
+  // зачем: текст — дословно из окна «реферальный доступ закончился» (app/referral_access_ended_modal.tsx), он уже выверен Переводчиком;
+  // придуманные в макете «7 дней Plus закончились» и дата окончания убраны — таких обещаний и такой даты в приложении нет
+  refEndedTitle: ['Доступ можно открыть снова', 'Доступ можна відкрити знову', 'You can unlock access again', 'Puedes volver a abrir el acceso', 'Você pode abrir o acesso de novo', 'Bạn có thể mở lại quyền truy cập', 'Akses bisa dibuka lagi', 'Erişimi yeniden açabilirsin', 'Dostęp możesz otworzyć ponownie'],
+  refEndedKeep: ['Всё, что ты открыл — осталось с тобой.', 'Все, що ти відкрив — залишилось з тобою.', 'Everything you unlocked stays with you.', 'Todo lo que abriste sigue siendo tuyo.', 'Tudo o que você abriu continua com você.', 'Mọi thứ bạn đã mở khoá vẫn là của bạn.', 'Semua yang kamu buka tetap milikmu.', 'Açtığın her şey seninle kalmaya devam ediyor.', 'Wszystko, co otworzyłeś, wciąż jest Twoje.'],
+  refEndedRestore: ['Позови ещё друга — и доступ вернётся.', 'Запроси ще друга — і доступ повернеться.', 'Invite one more friend and access will return.', 'Invita a otro amigo y el acceso regresará.', 'Convide mais um amigo e o acesso voltará.', 'Mời thêm một người bạn và quyền truy cập sẽ trở lại.', 'Ajak satu teman lagi dan aksesmu akan kembali.', 'Bir arkadaşını daha davet et, erişim geri gelsin.', 'Zaproś kolejnego znajomego — dostęp wróci.'],
 
   // ── 11 · идеальный урок ──
   lessonOverline: ['Урок {lessonNo}', 'Урок {lessonNo}', 'Lesson {lessonNo}', 'Lección {lessonNo}', 'Lição {lessonNo}', 'Bài {lessonNo}', 'Pelajaran {lessonNo}', '{lessonNo}. ders', 'Lekcja {lessonNo}'],

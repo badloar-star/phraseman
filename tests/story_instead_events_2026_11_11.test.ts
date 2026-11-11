@@ -88,8 +88,20 @@ describe('событие instead → данные кадра', () => {
     expect(insteadTemplateFromPayload({ kind: 'plus_expired', key: 'premium:2026-11-11', plan: 'premium' })).toBeNull();
   });
 
-  it('список видов с источником — четыре; остальные 13 кадров ждут своих партий', () => {
-    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired']);
+  it('«Доступ можно открыть снова»: ключ — конец окна доступа; без него кадра нет', () => {
+    expect(insteadTemplateFromPayload({ kind: 'ref_ended', key: '1762768800000', windowEndMs: 1762768800000 })).toEqual({ id: 'instead_ref_ended', windowEndMs: 1762768800000 });
+    expect(insteadTemplateFromPayload({ kind: 'ref_ended', key: '0', windowEndMs: 0 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'ref_ended', key: 'x' })).toBeNull();
+  });
+
+  it('список видов с источником — пять; остальные 12 кадров ждут своих партий', () => {
+    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended']);
+  });
+
+  it('вкладка «Друзья»: при выключенных историях окно как раньше, «видел» — после записи', () => {
+    const friends = read('app/(tabs)/friends.tsx');
+    expect(friends).toContain('setAccessEndedOpen(true);');
+    expect(friends.indexOf('if (insteadStoryLanded(record)) {')).toBeLessThan(friends.indexOf('await markReferralAccessEndedSeen(windowEnd);\n          } else {'));
   });
 
   it('истёкшая подписка и старые бонусы: при выключенных историях прежний путь, «показано» — после записи', () => {

@@ -55,6 +55,11 @@ export function recordPlusExpiredStory(input: Readonly<{ kind: 'premium' | 'vip'
   return record('plus_expired', `${input.kind}:${input.dayKey}`, { plan: input.kind, freezesPerMonth: input.freezesPerMonth }, accountToken);
 }
 
+/** «Доступ можно открыть снова» (взамен окна на вкладке «Друзья»): ключ — момент конца окна доступа, одно окно доступа — одна история. */
+export function recordReferralEndedStory(input: Readonly<{ windowEndMs: number }>): Promise<StoryRecordResult> {
+  return record('ref_ended', String(input.windowEndMs), { windowEndMs: input.windowEndMs });
+}
+
 /** «Хватает на ранг N»: ключ — номер следующего ранга, один раз на ранг (как у окна). */
 export function recordRankEnoughStory(input: Readonly<{ rank: number; nextRank: number; balance: number; price: number }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
   return record('rank_enough', String(input.nextRank), { rank: input.rank, nextRank: input.nextRank, balance: input.balance, price: input.price }, accountToken);

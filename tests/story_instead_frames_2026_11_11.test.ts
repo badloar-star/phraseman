@@ -33,7 +33,10 @@ describe('тексты кадров «истории вместо окон»', (
     expect(ru('perkShield')).toBe('Защита серии, 3 в месяц');
     expect(ru('refInvites')).toBe('Анна приглашает');
     expect(ru('refTitle')).toBe('7 дней Plus в подарок');
-    expect(ru('refEndedTitle')).toBe('Подарочный Plus закончился');
+    // текст окна «реферальный доступ закончился» — дословно
+    expect(ru('refEndedTitle')).toBe('Доступ можно открыть снова');
+    expect(ru('refEndedKeep')).toBe('Всё, что ты открыл — осталось с тобой.');
+    expect(ru('refEndedRestore')).toBe('Позови ещё друга — и доступ вернётся.');
     expect(ru('perfectTitle')).toBe('Без единой ошибки');
     expect(ru('plusCoins', { coins: 120 })).toBe('+120 монет');
     expect(ru('openTitle', { next: 13 })).toBe('Открыт урок 13');
@@ -135,11 +138,11 @@ describe('кадры «истории вместо окон» — разметк
     expect(registry).toContain('...STORY_INSTEAD_TEMPLATE_SAMPLES,');
   });
 
-  it('шаг 2: у четырёх кадров есть источник — событие instead; остальные 13 ждут своих партий', () => {
+  it('шаг 2: у пяти кадров есть источник — событие instead; остальные 12 ждут своих партий', () => {
     const fromEvent = read('components/stories/templates/story_template_from_event.ts');
     expect(fromEvent).toContain("case 'instead': return insteadTemplateFromPayload(p);");
     const own = read('components/stories/templates/story_instead_from_event.ts');
-    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired'] as const;");
+    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended'] as const;");
   });
 });
 
@@ -148,7 +151,7 @@ describe('макет и код говорят одно и то же', () => {
 
   it('в макете 17 кадров и тексты, приведённые к коду', () => {
     expect((mock.match(/\{ id: '/g) ?? [])).toHaveLength(17);
-    for (const text of ['карточки на повтор', 'фраз выучено', 'уроков позади', 'Анна приглашает', 'Подарочный Plus закончился', 'Набор месяца за октябрь', 'сохранений: 214', 'Марк обходит тебя']) {
+    for (const text of ['карточки на повтор', 'фраз выучено', 'уроков позади', 'Анна приглашает', 'Доступ можно открыть снова', 'Набор месяца за октябрь', 'сохранений: 214', 'Марк обходит тебя']) {
       expect(mock).toContain(text);
     }
   });

@@ -27,7 +27,8 @@ import { insteadText } from './story_instead_strings';
 
 /** Данные кадров — только то, что событие уже знает. При подключении переезжают в story_template_registry. */
 export type ReferralWelcomeStory = Readonly<{ friendName: string; friendRank: number | null; giftDays: number }>;
-export type ReferralEndedStory = Readonly<{ endedLabel: string }>;
+/** Момент конца окна доступа (его хранит трекер) — только ключ повтора; текст кадра от него не зависит. */
+export type ReferralEndedStory = Readonly<{ windowEndMs: number }>;
 export type PerfectLessonStory = Readonly<{ lessonNo: number; correct: number; total: number; coins: number }>;
 export type LessonOpenStory = Readonly<{ lessonNo: number; nextLessonNo: number; topic: string | null }>;
 export type RateAppStory = Readonly<{ lessonsDone: number }>;
@@ -62,13 +63,13 @@ export const ReferralWelcomeFrame = memo(function ReferralWelcomeFrame({ tpl, la
 
 // ── 10 · подарок закончился (взамен окна «Реферальный доступ закончился» на вкладке «Друзья») ────────
 
-export const ReferralEndedFrame = memo(function ReferralEndedFrame({ tpl, lang }: FrameProps<ReferralEndedStory>) {
+export const ReferralEndedFrame = memo(function ReferralEndedFrame({ lang }: FrameProps<ReferralEndedStory>) {
   return (
     <FrameRoot testID="story-tpl-instead-ref-ended">
       <Art><IconDisc icon="hourglass" /></Art>
-      <Ov text={insteadText(lang, 'refEndedOverline')} d={380} />
-      <H1 text={insteadText(lang, 'refEndedTitle')} d0={460} small />
-      <P text={insteadText(lang, 'refEndedText', { date: tpl.endedLabel })} d={800} />
+      <H1 text={insteadText(lang, 'refEndedTitle')} d0={380} small />
+      <P text={insteadText(lang, 'refEndedKeep')} d={760} />
+      <P text={insteadText(lang, 'refEndedRestore')} d={900} />
     </FrameRoot>
   );
 });

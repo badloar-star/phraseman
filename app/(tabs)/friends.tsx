@@ -112,6 +112,7 @@ import { createPendingFriendOps } from '../friends_pending_ops';
 import { emitAppEvent, onAppEvent } from '../events';
 import { checkAchievements } from '../achievements';
 import { ReferralAccessEndedModal } from '../referral_access_ended_modal';
+import { insteadStoryLanded, recordReferralEndedStory, storiesReplaceWindows } from '../../modules/story_events/story_instead_sources';
 import {
   getClaimableReferralState,
   peekClaimableReferralState,
@@ -1341,7 +1342,23 @@ export default function FriendsTabScreen() {
       const plan = vip?.vip_plan ?? '';
       const until = Number(vip?.vip_until ?? '0') || 0;
       const show = await shouldShowReferralAccessEnded(plan, until);
-      if (show && isCurrentRequest()) setAccessEndedOpen(true);
+      if (show && isCurrentRequest()) {
+        // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): это окно шло мимо очереди окон и могло
+        // наложиться на другое. При включённых историях факт пишется кадром; «видел» для этого окна доступа — только после записи.
+        // Истории выключены (флаг stories_v1) — окно как раньше.
+        if (storiesReplaceWindows()) {
+          const windowEnd = await getTrackedReferralWindowEnd();
+          const record = await recordReferralEndedStory({ windowEndMs: windowEnd });
+          if (insteadStoryLanded(record)) {
+            DebugLogger.info('[REFERRAL-ENDED]', `история вместо окна: конец окна доступа=${windowEnd}`);
+            await markReferralAccessEndedSeen(windowEnd);
+          } else {
+            DebugLogger.warn('[REFERRAL-ENDED]', `история не записана (${record.recorded ? 'ok' : record.reason}) — «видел» не ставим`);
+          }
+        } else {
+          setAccessEndedOpen(true);
+        }
+      }
     } catch (e) {
       // нет данных — пропускаем
       DebugLogger.error('friends:show', e instanceof Error ? e : new Error(String(e)), 'warning');

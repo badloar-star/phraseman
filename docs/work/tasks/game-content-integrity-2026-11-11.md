@@ -47,3 +47,13 @@ No architecture change: тест читает данные через публи
 ## Rollback
 
 Удалить `tests/game_content_integrity.test.ts`; правки банков откатываются `git revert` своих коммитов.
+
+## Дополнение 11.11, 23:20 — пометки урока в вариантах «Потока»
+
+Governance-ID: TG-2F1262DD7748
+
+Задача от сессии макетов (срок 23:40): в вариантах ответа «Потока» не должно остаться пометок урока ни на одном
+языке интерфейса. Scope: `modules/games/flow_core.ts` (только `cleanFlowTranslation`, файл на эту задачу передан
+сессией макетов), `tests/game_flow_translation.test.ts`, `tests/game_content_integrity.test.ts`. Данные уроков не
+меняются. Architecture, Security: без изменений, статические тексты. Debt: нет. Verification: три теста через
+светофор. Rollback: `git revert` коммита.

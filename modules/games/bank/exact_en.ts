@@ -72,7 +72,7 @@ export const EXACT_BANK_EN: Readonly<Record<number, readonly QuizRound[]>> = {
     round(7, 1, 'She ___ a ticket', 'has', ['have'], 1, 'С she идёт has.'),
     round(7, 2, 'They ___ a car', 'have', ['has'], 0, 'С they идёт have.'),
     round(7, 3, 'Does he ___ any change?', 'have', ['has'], 1, 'После does идёт have.'),
-    round(7, 4, 'We have ___ appointment', 'an', ['a'], 0, 'Appointment начинается на «а» — перед ним an.'),
+    round(7, 4, 'We have ___ appointment', 'an', ['a'], 0, 'Перед appointment говорят an — так легче произнести.'),
     round(7, 5, 'We have ___', 'time', ['a time'], 1, 'Time здесь не считают штуками — a не нужно.'),
     round(7, 6, '___ you have a pen?', 'Do', ['Does', 'Are'], 0, 'С you вопрос начинается с do.'),
   ],

@@ -26,8 +26,10 @@ describe('выдача экзамена: каждый пропуск доказ�
         expect(task.acceptedOptionIds).toEqual([task.correctOptionId]);
         expect(task.prompt).toContain('___');
         // соблазны задания обязаны совпасть с доказанно неверными соблазнами хотя бы одного правила
+        // для правила окончания -s сторожу нужен «словарь глаголов»: каждое слово задания вместе с парной формой (speak ↔ speaks)
+        const verbForms = [answer, ...distractors].flatMap((word) => [word, `${word}s`, word.replace(/s$/u, ''), word.replace(/es$/u, '')]);
         const proven = GAP_RULE_ORDER.some((rule) => {
-          const result = provableGapByRule(rule, { sentence, answer, category: 'verb', authored: distractors, categoryPool: [answer, ...distractors, ...distractors.map((word) => `${word}s`), answer.replace(/e?s$/u, '')], isKnown: known });
+          const result = provableGapByRule(rule, { sentence, answer, category: 'verb', authored: distractors, categoryPool: verbForms, isKnown: known });
           return !!result && lower(result.distractors).join('|') === lower(distractors).join('|');
         });
         expect([`${level}/${seed}`, sentence, answer, distractors, proven]).toEqual([`${level}/${seed}`, sentence, answer, distractors, true]);

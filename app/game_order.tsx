@@ -139,7 +139,9 @@ export default function GameOrderScreen() {
 
   const onClose = useCallback(() => safeRouterBack(router, '/(tabs)/home' as never), [router]);
   const total = task ? task.lines.length : 0;
-  const finished = total > 0 && game.placed >= total;
+  // зачем (прогон на телефоне 11.11): у урока без диалога экран открывался пустым тупиком «0 / 0» без кнопки —
+  // теперь сразу показывается «Готово», и человек выходит одним нажатием
+  const finished = !task || (total > 0 && game.placed >= total);
 
   // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
   useEffect(() => {

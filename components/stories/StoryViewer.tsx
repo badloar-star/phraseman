@@ -143,6 +143,8 @@ function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: even
 
   // ── таймер полосы ────────────────────────────────────────────────────────
   const goRef = useRef<(k: number) => void>(() => undefined);
+  // снятие зависшего касания (fingerLifted объявлен ниже, вместе с удержанием) — через ref, чтобы go мог позвать его при смене кадра
+  const releaseTouchRef = useRef<(why: string) => void>(() => undefined);
   const advance = useCallback(() => { goRef.current(indexRef.current + 1); }, []);
   const runBar = useCallback((from: number) => {
     // зачем (макет stories-templates-v1, владелец 28.10: «Уменьшить движение — всё стоит сразу в конечном состоянии, автопереход выключен»): полоса полная, листание — тапом
@@ -162,6 +164,10 @@ function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: even
     const k = nextLiveStoryIndex(events, target, indexRef.current, liveIdsRef.current, liveHomeStoryIdsRef.current);
     if(k<0){DebugLogger.info(LOG,`go: назад некуда (k=${k} цель=${target} индекс=${indexRef.current})`);return;}
     if(k>=count){close('finished');return;}
+    // зачем (владелец 11.11: «иногда паузу и ничего не воспроизводится»; та же причина, что в журнале 17:44–17:47): кадр под пальцем снимается при ЛЮБОЙ смене кадра,
+    // не только по тапу (кадр сам уходит, когда его объявление сняли с показа) — «палец поднят» от снятого кадра уже не придёт. Смена кадра = старое касание недействительно:
+    // новый кадр не имеет права стартовать на паузе из-за касания, начатого на прежнем. Настоящее удержание жестом (long-press) этим не снимается.
+    releaseTouchRef.current('slide_change');
     if (k !== indexRef.current) tryPlayV2Event('story', 'story_viewer'); // зачем (координатор 14.10): звук перелистывания сторис V2; флаг выключен — тишина
     indexRef.current = k;
     setIndex(k);
@@ -228,6 +234,7 @@ function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: even
     DebugLogger.info(LOG, `палец поднят (${why}): касание снято, не дожидаясь touch_end`);
     applyHold(why);
   }, [applyHold]);
+  releaseTouchRef.current = fingerLifted;
   useEffect(() => { runtimeRef.current = runtimeActive; syncPause(); }, [runtimeActive, syncPause]);
 
   // старт: раскрытие из аватара и первый кадр; диктор — без автоперехода
@@ -319,6 +326,18 @@ function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: even
   // зачем (Сайт 28.10): часы кадра идут столько же, сколько полоса (runBar): у объявления 12/15 с кадр иначе шёл бы медленнее макета
   const frameDurationMs = event?.type === 'announcement' ? Math.max(STORY_SLIDE_MS, Number(event.payload.durationMs) || STORY_SLIDE_MS) : STORY_SLIDE_MS;
   const clock = useMemo<StoryFrameClock>(() => ({ progress, durationMs: frameDurationMs, final: reduceMotion || screenReader }), [progress, frameDurationMs, reduceMotion, screenReader]);
+  // ВРЕМЕННАЯ ТРАССИРОВКА (владелец 11.11: «иногда паузу и ничего не воспроизводится»; он не уверен, повторялось ли после починки 18:07 — убрать, когда журнал подтвердит):
+  // чем нарисован кадр (шаблон / объявление по макету / прежний кадр) и идут ли его часы через секунду после показа; стоят — в строке видно, что именно держит паузу.
+  useEffect(() => {
+    if (!event) { DebugLogger.info(LOG, `рисунок кадра ${index + 1}/${count}: события нет — кадр пустой`); return; }
+    const drawnBy = tpl ? `tpl:${tpl.id}` : annV2 ? `ann:${String(annV2.design)}` : `old:${event.type}`;
+    DebugLogger.info(LOG, `рисунок кадра ${index + 1}/${count} id=${event.id.slice(0, 48)} чем=${drawnBy} кнопка=${cta ? cta.action : 'нет'} длит=${frameDurationMs} пауза=${String(pausedRef.current)} палец=${String(heldRef.current)} активно=${String(runtimeRef.current)} полоса=${progress.value.toFixed(3)}`);
+    // через секунду все входы кадра (самый поздний стартует до 900 мс) должны идти: полоса ≈ 1000/длит. Меньше — часы кадра стоят, и на экране только то, что успело появиться
+    const timer = setTimeout(() => {
+      DebugLogger.info(LOG, `кадр ${index + 1} через 1 с: полоса=${progress.value.toFixed(3)} (ждём ≈${(1000 / frameDurationMs).toFixed(3)}) пауза=${String(pausedRef.current)} палец=${String(heldRef.current)} касание=${String(touchHeldRef.current)} жест=${String(gestureHeldRef.current)} активно=${String(runtimeRef.current)} диктор=${String(screenReaderRef.current)}`);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [annV2, count, cta, event, frameDurationMs, index, progress, tpl]);
   const onCtaAction = useStoryCtaAction(lang, studio, close);
   const onCta = useCallback(() => {
     if (!cta) return;

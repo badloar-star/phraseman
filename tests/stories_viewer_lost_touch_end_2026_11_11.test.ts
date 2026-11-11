@@ -30,6 +30,16 @@ describe('просмотр историй: потерянное «палец п�
     expect(viewer).toContain(".onEnd((_e, ok) => { if (ok) runOnJS(fingerLifted)('hold_end'); })");
   });
 
+  it('любая смена кадра снимает касание, начатое на прежнем кадре, — до показа нового кадра и запуска его полосы', () => {
+    const go = /const go = useCallback\(\(target: number\) => \{([\s\S]*?)\}, \[appear, close, count, events, progress, reduceMotion, runBar\]\);/u.exec(viewer)?.[1] ?? '';
+    expect(go).not.toBe('');
+    const released = go.indexOf("releaseTouchRef.current('slide_change')");
+    expect(released).toBeGreaterThanOrEqual(0);
+    expect(released).toBeLessThan(go.indexOf('indexRef.current = k;'));
+    expect(released).toBeLessThan(go.indexOf('runBar(0)'));
+    expect(viewer).toContain('releaseTouchRef.current = fingerLifted;');
+  });
+
   it('снятие сбрасывает именно касание и пересчитывает паузу; без зависшего касания — ничего не делает', () => {
     const body = /const fingerLifted = useCallback\(\(why: string\) => \{([\s\S]*?)\}, \[applyHold\]\);/u.exec(viewer)?.[1] ?? '';
     expect(body).toContain('if (!touchHeldRef.current) return;');

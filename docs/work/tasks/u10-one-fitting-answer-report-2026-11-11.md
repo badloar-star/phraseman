@@ -204,3 +204,295 @@
 
 Перегенерировать нечего: ни у экзамена уровня, ни у зачёта урока, ни у входного теста нет записанных
 аудиофайлов. Тексты фраз курса не менялись.
+
+---
+
+# Часть 2 (ответ владельца «Да, проверить»): плитки уроков и зачёты ES/DE/IT/FR
+
+Коммит: `b758456ce`. Пакет: `docs/work/tasks/u10-classic-tiles-one-fitting-answer-2026-11-11.md`.
+Скрипт и решения: `scripts/u10_apply_tile_distractor_fixes.cjs`, `docs/work/u10_tiles_2026_11_11/decisions_<язык>.json`.
+
+## Сколько проверено
+
+| Курс | Фраз | Плиток | Подстановок | Различных пар «верное → соблазн» | Пар-кандидатов | Исправлено плиток |
+|---|---|---|---|---|---|---|
+| EN | 1600 | 9 276 | 46 380 | 11 599 | 243 | 50 |
+| ES | 1600 | 7 821 | 39 105 | 9 616 | 140 | 1 |
+| FR | 1600 | 8 761 | 43 805 | 13 094 | 204 | 76 |
+| DE | 1600 | 8 907 | 44 535 | 13 094 | 305 | 47 |
+| IT | 1600 | 7 851 | 39 255 | 13 276 | 163 | 45 |
+| Всего | 8000 | 42 616 | 213 080 | 60 679 | 1 055 | 219 |
+
+Как проверялось: все 60 679 различных пар просмотрены целиком (по одному полному проходу на язык, словарь пар делился на две половины);
+каждая пара-кандидат выведена во ВСЕ свои фразы с подстановкой и переводом, решение принималось по подстановке.
+Зачёт урока ES/DE/IT/FR (`app/classic_final_exam_bank.ts`) своего контента не имеет — он берёт пропуск и варианты из
+этих же плиток, поэтому исправлен тем же коммитом; сам файл не менялся (чужих незакоммиченных правок в нём не было).
+
+## Граница: «грамматично, но перевод отсекает» — НЕ правилось
+
+Пары-кандидаты встречаются в 15 792 местах; исправлено 219, остальные ~15,5 тыс. — либо неграмматичны (род, число,
+лицо), либо грамматичны, но показанный перевод их однозначно исключает. Крупнейшие группы второй категории:
+
+| Группа | Мест | Пример | Почему не правилось |
+|---|---|---|---|
+| EN the → this / that | 1 764 | «[This] door is open» при переводе «Дверь открыта» | в переводе нет «эта» |
+| EN a / an → this / that / each / every | ~570 | «We share [this] kitchen» — «Мы делим кухню» | в переводе нет «эту» |
+| EN this → the / a | 107 | «I like [the] seat» — «Мне нравится это место» | в переводе есть «это» |
+| EN if → when | 61 | «[When] it rains we will stay inside» — «Если пойдёт дождь…» | «если» ≠ «когда» |
+| EN here → nearby, nearby → here | 53 | «I work [here]» — «Я работаю неподалеку» | пример владельца: по переводу верен один |
+| FR le / la / les → ce / cette / ces | ~350 | «[Cette] fenêtre est ouverte» — «Окно открыто» | в переводе нет «это» |
+| FR voudrais ↔ veux | 19 | «Je [veux] du riz» — «Я бы хотел риса» | «хочу» ≠ «хотел бы» |
+| ES el / la → este / ese / esta | ~170 | «[Este] móvil está en el coche» — «Телефон в машине» | в переводе нет «этот» |
+| ES ayer ↔ anoche | 43 | «Llamé a Ana [anoche]» — «Я вчера позвонил Ане» | «вчера» ≠ «вчера вечером» |
+| DE als → wenn | 42 | «[Wenn] ich ankam, war die Tür offen» | для одного события в прошлом нужен als |
+| IT dei / delle → molte и т. п. | — | «ci sono [molte] pile» — «лежат батарейки» | «много» в переводе нет |
+
+Решение за владельцем: если и эту категорию считать нарушением, придётся менять сам принцип соблазнов
+(сейчас соблазн — слово той же части речи; тогда нужны слова другой части речи или заведомо неверные формы).
+
+## Спорные случаи (исправлены «в пользу ученика», но граница тонкая)
+
+- EN `must ↔ should` («должны» / «следует»), `bought → got`, `carry → take`, `evening → night`;
+- FR `acheté → pris` (в магазине «взял» = «купил»), `à → dans` перед местом — снято во всех 63 фразах с «à la / à l’»,
+  включая «à la maison», где «dans la maison» значит скорее «в доме»;
+- DE `passt → funktioniert`, `stimmt → passt`, `schön → gut`;
+- IT `dei / delle → alcuni / alcune`, `ricevuto → preso`.
+
+Оставлены без правки, но близки к границе: EN `could → might` («мог бы»), `put → leave`, `chair → seat`;
+FR `pourrait → peut`; DE `sollen → müssen`; IT `vorrebbe → vuole`.
+
+## Что ещё видно
+
+- Несколько замен получились неуклюжими, потому что замена обязана быть уже пройденным словом из соблазнов того же
+  верного слова: FR «Nous aimerions [à] prolonger…», FR «à l’arrêt [chambre] bus», EN «before → how». Они заведомо
+  неверны, но выглядят случайными — можно подобрать вручную.
+- `tests/classic_glossary_lesson_integrity.test.ts` (незакоммиченный тест соседней сессии про словарь) красный для
+  es/de/it — к плиткам не относится, словари правит другая сессия.
+
+## Озвучка
+
+Перегенерировать нечего: у классических курсов записанной озвучки нет (системный TTS), тексты фраз не менялись.
+
+## Таблица «курс / урок → было → стало» (219 плиток)
+
+| Курс | Урок | Фраза — перевод | Было | Стало | Почему |
+|---|---|---|---|---|---|
+| en | 04 | This machine does not accept coins. — Этот автомат не принимает монеты. | **accept** / ~~take~~ | **accept** / meet | machine does not take coins — обычная фраза |
+| en | 08 | She studies in the evening. — Она учится вечером. | **evening** / ~~night~~ | **evening** / midnight | Friday night / that night = «в пятницу вечером», «в тот вечер» |
+| en | 08 | The last class is on Friday evening. — Последнее занятие в пятницу вечером. | **evening** / ~~night~~ | **evening** / midnight | Friday night / that night = «в пятницу вечером», «в тот вечер» |
+| en | 08 | We take a break in the evening. — Мы делаем перерыв вечером. | **evening** / ~~night~~ | **evening** / noon | Friday night / that night = «в пятницу вечером», «в тот вечер» |
+| en | 10 | You should keep the receipt. — Вам следует сохранить чек. | **should** / ~~must~~ | **should** / is | must — тоже «следует/должен» |
+| en | 10 | He should get some rest. — Ему стоит отдохнуть. | **get** / ~~take~~ | **get** / wait | take some rest — тоже «отдохнуть» |
+| en | 10 | He should get some rest. — Ему стоит отдохнуть. | **some** / ~~a~~ | **some** / many | get a rest — та же фраза по-русски |
+| en | 10 | She should call the office. — Ей следует позвонить в офис. | **should** / ~~must~~ | **should** / is | must — тоже «следует/должен» |
+| en | 10 | You must wear a helmet. — Вы должны надеть шлем. | **must** / ~~should~~ | **must** / is | should wear — тоже «должны надеть» |
+| en | 12 | They bought the last two tickets. — Они купили последние два билета. | **bought** / ~~got~~ | **bought** / fell | got = купил в разговорной речи |
+| en | 12 | She brought a spare key. — Она принесла запасной ключ. | **brought** / ~~got~~ | **brought** / told | I got you a towel = «принёс тебе полотенце» |
+| en | 12 | I brought you a towel. — Я принес тебе полотенце. | **brought** / ~~got~~ | **brought** / think | I got you a towel = «принёс тебе полотенце» |
+| en | 12 | I forgot my password. — Я забыл свой пароль. | **forgot** / ~~left~~ | **forgot** / opened | left their bags = «забыли сумки» |
+| en | 12 | Did they catch the bus? — Они успели на автобус? | **catch** / ~~take~~ | **catch** / open | take the bus — тоже «сядем на автобус» |
+| en | 12 | Who did you meet at the station? — Кого ты встретил на вокзале? | **at** / ~~in~~ | **at** / before | in the station / in the harbour / in the cinema — тот же перевод |
+| en | 13 | I will carry the heavy box. — Я понесу тяжелую коробку. | **carry** / ~~take~~ | **carry** / stop | take the box — «понесу/донести» так же естественно |
+| en | 15 | We brought our own cups. — Мы принесли свои чашки. | **brought** / ~~got~~ | **brought** / need | I got you a towel = «принёс тебе полотенце» |
+| en | 15 | They forgot their own bags. — Они забыли свои сумки. | **forgot** / ~~left~~ | **forgot** / found | left their bags = «забыли сумки» |
+| en | 16 | She gets up before six. — Она встает до шести. | **before** / ~~by~~ | **before** / how | by six / by lunch — тоже «до шести», «до обеда» |
+| en | 16 | We set off for the harbour before lunch. — Мы отправились в порт до обеда. | **before** / ~~by~~ | **before** / how | by six / by lunch — тоже «до шести», «до обеда» |
+| en | 16 | We set off for the harbour before lunch. — Мы отправились в порт до обеда. | **for** / ~~by~~ | **for** / after | то же слово снято в соседней плитке этой фразы |
+| en | 20 | We bought an umbrella. — Мы купили зонт. | **bought** / ~~got~~ | **bought** / fell | got = купил в разговорной речи |
+| en | 20 | I bought a lamp. The lamp is broken. — Я купил лампу. Лампа сломана. | **bought** / ~~got~~ | **bought** / fell | got = купил в разговорной речи |
+| en | 20 | She bought an alarm clock. The clock is loud. — Она купила будильник. Часы громкие. | **bought** / ~~got~~ | **bought** / need | got = купил в разговорной речи |
+| en | 21 | Do you need anything else? — Вам что-нибудь еще нужно? | **anything** / ~~something~~ | **anything** / everyone | Do you need something else? — тот же перевод «что-нибудь» |
+| en | 21 | Is anything missing? — Что-нибудь пропало? | **anything** / ~~something~~ | **anything** / nothing | Do you need something else? — тот же перевод «что-нибудь» |
+| en | 21 | Have you got anything smaller? — У вас есть что-нибудь поменьше? | **anything** / ~~something~~ | **anything** / everyone | Do you need something else? — тот же перевод «что-нибудь» |
+| en | 21 | She did not buy anything today. — Она сегодня ничего не купила. | **anything** / ~~something~~ | **anything** / nothing | Do you need something else? — тот же перевод «что-нибудь» |
+| en | 22 | They complained about waiting in the rain. — Они жаловались на ожидание под дождем. | **about** / ~~of~~ | **about** / under | complained of / told you of — допустимо |
+| en | 22 | They complained about waiting in the rain. — Они жаловались на ожидание под дождем. | **in** / ~~of~~ | **in** / before | то же слово снято в соседней плитке этой фразы |
+| en | 22 | We stopped to buy water, then carried on walking. — Мы остановились, чтобы купить воды, а затем продолжили идти. | **buy** / ~~get~~ | **buy** / work | get water / get tickets = купить |
+| en | 25 | The lights were not working that evening. — В тот вечер не работал свет. | **evening** / ~~night~~ | **evening** / morning | Friday night / that night = «в пятницу вечером», «в тот вечер» |
+| en | 26 | If we leave now, we will catch the bus. — Если мы сейчас уйдем, мы сядем на автобус. | **catch** / ~~take~~ | **catch** / check | take the bus — тоже «сядем на автобус» |
+| en | 26 | If we leave now, we will catch the bus. — Если мы сейчас уйдем, мы сядем на автобус. | **leave** / ~~take~~ | **leave** / need | то же слово снято в соседней плитке этой фразы |
+| en | 27 | They said they might be late. — Они сказали, что могут опоздать. | **might** / ~~can~~ | **might** / were | they can be late — тоже «могут опоздать» |
+| en | 28 | She poured herself some water. — Она налила себе воды. | **some** / ~~a~~ | **some** / each | get a rest — та же фраза по-русски |
+| en | 28 | They helped each other carry the boxes. — Они помогали друг другу нести коробки. | **carry** / ~~take~~ | **carry** / keep | take the box — «понесу/донести» так же естественно |
+| en | 28 | They helped each other carry the boxes. — Они помогали друг другу нести коробки. | **helped** / ~~take~~ | **helped** / need | то же слово снято в соседней плитке этой фразы |
+| en | 29 | Where did you use to buy your tickets? — Где вы раньше покупали билеты? | **buy** / ~~get~~ | **buy** / work | get water / get tickets = купить |
+| en | 29 | Was this the shop you used to visit? — Это был тот магазин, в который вы раньше ходили? | **the** / ~~that~~ | **the** / no | перевод «тот магазин», «то письмо» — that подходит |
+| en | 30 | The bike that he bought needs new tyres. — Велосипеду, который он купил, нужны новые шины. | **bought** / ~~got~~ | **bought** / need | got = купил в разговорной речи |
+| en | 30 | Is this the letter you were waiting for? — Это то письмо, которое вы ждали? | **the** / ~~that~~ | **the** / no | перевод «тот магазин», «то письмо» — that подходит |
+| en | 32 | The niece I told you about is waiting at the harbour. — Племянница, о которой я вам рассказывал, ждет в порту. | **about** / ~~of~~ | **about** / under | complained of / told you of — допустимо |
+| en | 32 | The niece I told you about is waiting at the harbour. — Племянница, о которой я вам рассказывал, ждет в порту. | **at** / ~~in~~ | **at** / before | in the station / in the harbour / in the cinema — тот же перевод |
+| en | 32 | The niece I told you about is waiting at the harbour. — Племянница, о которой я вам рассказывал, ждет в порту. | **about** / ~~in~~ | **about** / with | то же слово снято в соседней плитке этой фразы |
+| en | 32 | The niece I told you about is waiting at the harbour. — Племянница, о которой я вам рассказывал, ждет в порту. | **at** / ~~of~~ | **at** / with | то же слово снято в соседней плитке этой фразы |
+| en | 32 | We helped each other carry the suitcases. — Мы помогли друг другу донести чемоданы. | **carry** / ~~take~~ | **carry** / check | take the box — «понесу/донести» так же естественно |
+| en | 32 | We helped each other carry the suitcases. — Мы помогли друг другу донести чемоданы. | **helped** / ~~take~~ | **helped** / heard | то же слово снято в соседней плитке этой фразы |
+| en | 32 | We can avoid the queue at the cinema by booking online. — Мы можем избежать очереди в кинотеатр, забронировав билеты онлайн. | **at** / ~~in~~ | **at** / after | in the station / in the harbour / in the cinema — тот же перевод |
+| en | 32 | We can avoid the queue at the cinema by booking online. — Мы можем избежать очереди в кинотеатр, забронировав билеты онлайн. | **by** / ~~in~~ | **by** / before | то же слово снято в соседней плитке этой фразы |
+| es | 04 | Soy el médico. — Я тот самый врач. | **el** / ~~ese~~ | **el** / las | перевод «Я тот самый врач» — «Soy ese médico» подходит |
+| fr | 01 | Je suis à la maison. — Я дома. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 01 | Tu es à la maison. — Ты дома. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 01 | Paul est à la maison. — Поль дома. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 01 | Nous sommes à la gare. — Мы на вокзале. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 01 | Vous êtes à la gare. — Вы на вокзале. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 01 | Le sac est à la maison. — Сумка дома. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 02 | Nous ne sommes pas à la gare. — Нас нет на станции. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 02 | Vous n’êtes pas à la maison. — Вас нет дома. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 02 | Je ne suis pas encore à la maison. — Меня ещё нет дома. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 03 | Léa est à la gare ? — Леа на вокзале? | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 03 | Vous êtes à la maison ? — Вы дома? | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 03 | Est-ce que tu es à la gare ? — Ты на вокзале? | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 03 | Est-ce que le train est à l’heure ? — Поезд идёт по расписанию? | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 03 | Est-ce que le vélo est à la maison ? — Велосипед дома? | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 05 | Tu as mal à la tête. — У тебя болит голова. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 05 | J’ai mal à la gorge. — У меня болит горло. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 06 | Les chambres sont à l’étage. — Номера наверху. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 07 | Nous habitons à la campagne. — Мы живём в сельской местности. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 07 | Tu rentres à la maison. — Ты возвращаешься домой. | **à** / ~~dans~~ | **à** / vers | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 08 | Qui est à la porte ? — Кто стоит у двери? | **à** / ~~dans~~ | **à** / avec | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 09 | Elle prépare ses affaires. — Она собирает свои вещи. | **affaires** / ~~bagages~~ | **affaires** / clés | prépare ses bagages — «собирает свои вещи» |
+| fr | 09 | Je laisse mon numéro à la réception. — Я оставляю свой номер на ресепшене. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 10 | Il y a un colis à la réception. — На ресепшене лежит посылка. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Je vais à la gare. — Я иду на вокзал. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Tu vas à la gare. — Ты идешь на вокзал. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Nous allons à l’école. — Мы идём в школу. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Vous allez à l’école. — Вы идёте в школу. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Elles vont à la banque. — Они идут в банк. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Tu vas à la piscine. — Ты идёшь в бассейн. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Je vais à la pharmacie. — Я иду в аптеку. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Elle va à l’hôpital. — Она идёт в больницу. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Tu vas à la gare en voiture. — Ты едешь на вокзал на машине. | **à** / ~~dans~~ | **à** / avec | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Tu vas à la gare en voiture. — Ты едешь на вокзал на машине. | **en** / ~~dans~~ | **en** / de | то же слово снято в соседней плитке этой фразы |
+| fr | 11 | Vous allez à la plage en train ? — Вы едете на пляж на поезде? | **à** / ~~dans~~ | **à** / avec | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Vous allez à la plage en train ? — Вы едете на пляж на поезде? | **en** / ~~dans~~ | **en** / sur | то же слово снято в соседней плитке этой фразы |
+| fr | 11 | Nous allons à la mairie demain. — Завтра мы идём в мэрию. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Est-ce que tu vas à la poste ? — Ты идёшь на почту? | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Paul ne va pas à la réunion. — Поль не идёт на собрание. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Vous allez à l’accueil ou au guichet ? — Вы идёте к стойке информации или в кассу? | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Elle va à l’arrêt de bus. — Она идёт на автобусную остановку. | **à** / ~~dans~~ | **à** / avec | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 11 | Elle va à l’arrêt de bus. — Она идёт на автобусную остановку. | **de** / ~~dans~~ | **de** / chambre | то же слово снято в соседней плитке этой фразы |
+| fr | 12 | Il achète un kilo de pommes. — Он покупает килограмм яблок. | **achète** / ~~prend~~ | **achète** / mangent | il prend un kilo de pommes — «покупает» |
+| fr | 14 | Demain, je dois passer à la pharmacie. — Завтра мне нужно зайти в аптеку. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 15 | On va passer à la banque. — Мы собираемся зайти в банк. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 15 | Je vais laisser la clé à l’accueil. — Я оставлю ключ на ресепшене. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 16 | Ne touchez pas à la vitre ! — Не прикасайтесь к стеклу! | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 18 | J’ai acheté du pain. — Я купил хлеб. | **acheté** / ~~pris~~ | **acheté** / goûté | j’ai pris du pain — в магазине значит «купил» |
+| fr | 18 | Nous avons acheté deux billets. — Мы купили два билета. | **acheté** / ~~pris~~ | **acheté** / signé | j’ai pris du pain — в магазине значит «купил» |
+| fr | 19 | Paul est allé à la gare. — Поль пошел на вокзал. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 19 | Léa est allée à la banque. — Леа пошла в банк. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 20 | Nous habitions à la campagne. — Мы жили в сельской местности. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 20 | À l’époque, on payait en espèces. — Тогда мы расплачивались наличными. | **À** / ~~Dans~~ | **À** / Avec | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 20 | À l’époque, on payait en espèces. — Тогда мы расплачивались наличными. | **en** / ~~dans~~ | **en** / contre | то же слово снято в соседней плитке этой фразы |
+| fr | 20 | Tu allais à l’école à pied. — Ты ходил в школу пешком. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 20 | Tu allais à l’école à pied. — Ты ходил в школу пешком. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 21 | J’étais à la gare quand tu as écrit. — Я был на вокзале, когда ты написал. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 21 | Paul allait au garage quand son vélo a déraillé. — Поль ехал в мастерскую, когда на его велосипеде слетела цепь. | **quand** / ~~lorsque~~ | **quand** / car | lorsque — синоним quand |
+| fr | 23 | Je lui laisse ma clé à la réception. — Я оставляю ей свой ключ на ресепшене. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 24 | Je vais à la gare et Léa y va aussi. — Я иду на вокзал, и Леа тоже. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 25 | Nous devons en commander davantage. — Нам нужно заказать ещё. | **davantage** / ~~plus~~ | **davantage** / bien | en commander plus — «заказать ещё» |
+| fr | 27 | Tu passeras à l’atelier après l’exposition. — Ты зайдёшь в мастерскую после выставки. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 27 | Tu passeras à l’atelier après l’exposition. — Ты зайдёшь в мастерскую после выставки. | **après** / ~~dans~~ | **après** / derrière | то же слово снято в соседней плитке этой фразы |
+| fr | 27 | Je serai à la maison à six heures. — Я буду дома в шесть часов. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 27 | Je serai à la maison à six heures. — Я буду дома в шесть часов. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 28 | Je souhaiterais déplacer mon rendez-vous. — Я хотел бы перенести встречу. | **souhaiterais** / ~~voudrais~~ | **souhaiterais** / ai | Je voudrais… — тот же перевод «я хотел бы» |
+| fr | 28 | Nous aimerions prolonger notre séjour. — Мы хотели бы продлить наше пребывание. | **aimerions** / ~~voudrions~~ | **aimerions** / avons | Nous voudrions… — тот же перевод «мы хотели бы» |
+| fr | 28 | Nous aimerions prolonger notre séjour. — Мы хотели бы продлить наше пребывание. | **prolonger** / ~~voudrions~~ | **prolonger** / à | то же слово снято в соседней плитке этой фразы |
+| fr | 29 | C’est le bus qui va à la gare. — Это автобус, который едет до вокзала. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 29 | Je connais un café qui sert du thé à la menthe. — Я знаю кафе, где подают мятный чай. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 29 | La dame qui a trouvé mes clés est à l’accueil. — Женщина, которая нашла мои ключи, у стойки регистрации. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 30 | Il faut que nous soyons à l’heure. — Нам нужно быть вовремя. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 30 | Il faut que j’aille à la poste. — Мне нужно сходить на почту. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 30 | Il faut que tu ailles à la banque. — Тебе нужно сходить в банк. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 30 | Il faut que vous alliez à l’accueil. — Вам нужно подойти к стойке регистрации. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| fr | 31 | Le pain que j’avais acheté était encore chaud. — Хлеб, который я купил, был ещё тёплым. | **acheté** / ~~pris~~ | **acheté** / achetons | j’ai pris du pain — в магазине значит «купил» |
+| fr | 31 | Elle avait préparé du thé à la menthe et mon plat préféré. — Она заварила мятный чай и приготовила мое любимое блюдо. | **à** / ~~dans~~ | **à** / derrière | dans la gare / dans la pharmacie — тот же перевод «на вокзале», «в аптеку» |
+| de | 08 | Der Schlüssel passt nicht. — Ключ не подходит. | **passt** / ~~funktioniert~~ | **passt** / kocht | Der Schlüssel funktioniert nicht — близко к «ключ не подходит» |
+| de | 10 | Mit einem Freund gehe ich ins Kino. — Я иду в кино с другом. | **ins** / ~~zum~~ | **ins** / in | zum Kino gehen — тоже «иду в кино» |
+| de | 17 | Die Gäste sind angekommen. — Гости приехали. | **angekommen** / ~~gekommen~~ | **angekommen** / abgefahren | Die Gäste sind gekommen — «гости приехали» |
+| de | 17 | Anna ist mit dem Bus gefahren. — Анна поехала на автобусе. | **gefahren** / ~~abgefahren~~ | **gefahren** / eingestiegen | mit dem Bus abgefahren — «поехала на автобусе» |
+| de | 17 | Bist du zu Fuß gekommen? — Ты пришёл пешком? | **gekommen** / ~~angekommen~~ | **gekommen** / gegessen | angekommen — тоже «пришёл/приехал» |
+| de | 17 | Ist Anna mit dem Zug gefahren? — Анна ездила на поезде? | **gefahren** / ~~abgefahren~~ | **gefahren** / eingestiegen | mit dem Bus abgefahren — «поехала на автобусе» |
+| de | 17 | Wohin seid ihr gefahren? — Куда вы ездили? | **gefahren** / ~~abgefahren~~ | **gefahren** / aufgestanden | mit dem Bus abgefahren — «поехала на автобусе» |
+| de | 18 | Damals hatte ich kein Auto. — Тогда у меня не было машины. | **Damals** / ~~Früher~~ | **Damals** / In | Früher hatte ich kein Auto — «тогда/раньше не было машины» |
+| de | 20 | Diese Jacke passt besser. — Эта куртка лучше сидит. | **passt** / ~~funktioniert~~ | **passt** / warten | Der Schlüssel funktioniert nicht — близко к «ключ не подходит» |
+| de | 21 | Wir gehen zur Post, weil ein Paket angekommen ist. — Мы идём на почту, потому что пришла посылка. | **angekommen** / ~~gekommen~~ | **angekommen** / ausgestiegen | Die Gäste sind gekommen — «гости приехали» |
+| de | 22 | Ich hoffe, dass der Schlüssel passt. — Надеюсь, ключ подойдёт. | **passt** / ~~funktioniert~~ | **passt** / warten | Der Schlüssel funktioniert nicht — близко к «ключ не подходит» |
+| de | 22 | Ich weiß, dass der Brief angekommen ist. — Я знаю, что письмо пришло. | **angekommen** / ~~gekommen~~ | **angekommen** / eingezogen | Die Gäste sind gekommen — «гости приехали» |
+| de | 25 | Der rote Mantel passt. — Красное пальто подходит. | **passt** / ~~funktioniert~~ | **passt** / beginnt | Der Schlüssel funktioniert nicht — близко к «ключ не подходит» |
+| de | 25 | Die rote Jacke passt. — Красная куртка подходит. | **passt** / ~~funktioniert~~ | **passt** / braucht | Der Schlüssel funktioniert nicht — близко к «ключ не подходит» |
+| de | 25 | Das rote Kleid passt. — Красное платье подходит. | **passt** / ~~funktioniert~~ | **passt** / braucht | Der Schlüssel funktioniert nicht — близко к «ключ не подходит» |
+| de | 25 | Der neue Schlüssel passt. — Новый ключ подходит. | **passt** / ~~funktioniert~~ | **passt** / bezahlen | Der Schlüssel funktioniert nicht — близко к «ключ не подходит» |
+| de | 26 | Es ist schön, dich zu sehen. — Приятно тебя видеть. | **schön** / ~~gut~~ | **schön** / leer | Es ist gut, dich zu sehen — «приятно тебя видеть» |
+| de | 28 | Die Adresse kann noch geändert werden. — Адрес ещё можно изменить. | **kann** / ~~könnte~~ | **kann** / möchte | Die Adresse könnte noch geändert werden — «адрес ещё можно изменить» |
+| de | 29 | Ich hätte gern ein Wasser. — Я хотел бы воды. | **gern** / ~~bitte~~ | **gern** / langsamer | Ich hätte bitte ein Wasser — та же просьба |
+| de | 29 | Anna hätte gern die Rechnung. — Анна хотела бы получить счёт. | **gern** / ~~bitte~~ | **gern** / kurz | Ich hätte bitte ein Wasser — та же просьба |
+| de | 29 | Könnte ich den Mantel anprobieren? — Можно мне примерить пальто? | **Könnte** / ~~Darf~~ | **Könnte** / Kannst | Darf ich den Mantel anprobieren? — тот же перевод «можно мне примерить» |
+| de | 29 | Könnte ich mit Karte bezahlen? — Можно было бы заплатить картой? | **Könnte** / ~~Darf~~ | **Könnte** / Kannst | Darf ich den Mantel anprobieren? — тот же перевод «можно мне примерить» |
+| de | 29 | Könnte ich mit Karte bezahlen? — Можно было бы заплатить картой? | **Könnte** / ~~Kann~~ | **Könnte** / Müssen | Kann ich mit Karte bezahlen? — та же просьба |
+| de | 29 | Könnte die Firma den Schrank morgen liefern? — Могла бы фирма доставить шкаф завтра? | **Könnte** / ~~Darf~~ | **Könnte** / Kannst | Darf ich den Mantel anprobieren? — тот же перевод «можно мне примерить» |
+| de | 29 | Könnte die Firma den Schrank morgen liefern? — Могла бы фирма доставить шкаф завтра? | **Könnte** / ~~Kann~~ | **Könnte** / Müssen | Kann ich mit Karte bezahlen? — та же просьба |
+| de | 29 | Ich würde gern einen Tisch reservieren. — Я хотел бы забронировать столик. | **gern** / ~~bitte~~ | **gern** / langsamer | Ich hätte bitte ein Wasser — та же просьба |
+| de | 29 | Wir würden gern länger bleiben. — Мы хотели бы остаться подольше. | **gern** / ~~bitte~~ | **gern** / zuerst | Ich hätte bitte ein Wasser — та же просьба |
+| de | 29 | Tom würde gern früher anfangen. — Том хотел бы начать пораньше. | **gern** / ~~bitte~~ | **gern** / freundlich | Ich hätte bitte ein Wasser — та же просьба |
+| de | 29 | Anna würde gern den Kurs wechseln. — Анна хотела бы перейти на другой курс. | **gern** / ~~bitte~~ | **gern** / möglich | Ich hätte bitte ein Wasser — та же просьба |
+| de | 29 | Dürfte ich hier parken? — Можно было бы мне здесь припарковаться? | **Dürfte** / ~~Kann~~ | **Dürfte** / Muss | Kann ich mich hier hinsetzen? — тот же перевод «можно мне…» |
+| de | 29 | Dürfte ich hier parken? — Можно было бы мне здесь припарковаться? | **Dürfte** / ~~Könnte~~ | **Dürfte** / Dürft | Könnte ich hier parken? — «можно было бы мне…» |
+| de | 29 | Dürfte ich hier parken? — Можно было бы мне здесь припарковаться? | **Dürfte** / ~~Darf~~ | **Dürfte** / Kannst | Darf ich hier parken? — та же просьба |
+| de | 29 | Dürften wir kurz telefonieren? — Можно нам ненадолго позвонить? | **Dürften** / ~~Könnten~~ | **Dürften** / Sind | Könnten wir kurz telefonieren? — «можно нам позвонить?» |
+| de | 29 | Dürften wir kurz telefonieren? — Можно нам ненадолго позвонить? | **telefonieren** / ~~anrufen~~ | **telefonieren** / anprobieren | kurz anrufen — «ненадолго позвонить» |
+| de | 29 | Dürfte ich mich hier hinsetzen? — Можно мне сюда присесть? | **Dürfte** / ~~Kann~~ | **Dürfte** / Dürft | Kann ich mich hier hinsetzen? — тот же перевод «можно мне…» |
+| de | 29 | Dürften die Kinder im Hof spielen? — Можно было бы детям поиграть во дворе? | **Dürften** / ~~Könnten~~ | **Dürften** / Sind | Könnten wir kurz telefonieren? — «можно нам позвонить?» |
+| de | 29 | Man könnte die Kisten hier abstellen. — Можно было бы поставить ящики здесь. | **könnte** / ~~darf~~ | **könnte** / darfst | Darf ich den Mantel anprobieren? — тот же перевод «можно мне примерить» |
+| de | 29 | Man könnte die Kisten hier abstellen. — Можно было бы поставить ящики здесь. | **könnte** / ~~kann~~ | **könnte** / möchte | Kann ich mit Karte bezahlen? — та же просьба |
+| de | 30 | Anna fragt, ob die Rechnung stimmt. — Анна спрашивает, правильный ли счёт. | **stimmt** / ~~passt~~ | **stimmt** / merkst | ob die Rechnung passt — разговорное «верен ли счёт» |
+| de | 30 | Ich weiß nicht, welche Größe mir passt. — Я не знаю, какой размер мне подходит. | **passt** / ~~funktioniert~~ | **passt** / beginnt | Der Schlüssel funktioniert nicht — близко к «ключ не подходит» |
+| de | 32 | Wenn der Laden offen wäre, könnte ich Brot kaufen. — Если бы магазин был открыт, я мог бы купить хлеб. | **könnte** / ~~kann~~ | **könnte** / darfst | Kann ich mit Karte bezahlen? — та же просьба |
+| de | 32 | Wenn ich die Gegend besser kennen würde, könnte ich dir den Weg zeigen. — Если бы я лучше знал этот район, я мог бы показать тебе дорогу. | **könnte** / ~~kann~~ | **könnte** / darfst | Kann ich mit Karte bezahlen? — та же просьба |
+| de | 32 | Wenn das Taxi früher gekommen wäre, hätten wir den Anschluss geschafft. — Если бы такси приехало пораньше, мы бы успели на пересадку. | **gekommen** / ~~angekommen~~ | **gekommen** / gegessen | angekommen — тоже «пришёл/приехал» |
+| de | 32 | Hätte ich die Nummer gespeichert, könnte ich jetzt anrufen. — Если бы я сохранил номер, я мог бы сейчас позвонить. | **könnte** / ~~kann~~ | **könnte** / darfst | Kann ich mit Karte bezahlen? — та же просьба |
+| de | 32 | Mit einem zweiten Schlüssel wäre ich ins Haus gekommen. — Со вторым ключом я бы тогда смог попасть домой. | **gekommen** / ~~angekommen~~ | **gekommen** / gegessen | angekommen — тоже «пришёл/приехал» |
+| de | 32 | Wenn ich noch einmal wählen könnte, würde ich diesmal den direkten Zug nehmen. — Если бы я мог выбрать ещё раз, на этот раз я бы поехал прямым поездом. | **könnte** / ~~darf~~ | **könnte** / müssen | Darf ich den Mantel anprobieren? — тот же перевод «можно мне примерить» |
+| de | 32 | Wenn ich noch einmal wählen könnte, würde ich diesmal den direkten Zug nehmen. — Если бы я мог выбрать ещё раз, на этот раз я бы поехал прямым поездом. | **könnte** / ~~kann~~ | **könnte** / darfst | Kann ich mit Karte bezahlen? — та же просьба |
+| it | 01 | Siamo alla stazione. — Мы на вокзале. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 02 | Non siamo alla stazione. — Нас нет на станции. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 03 | Lea è alla stazione? — Леа на вокзале? | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 03 | Sei alla stazione? — Ты на вокзале? | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 03 | La sala è libera? — Зал свободен? | **libera** / ~~vuota~~ | **libera** / buio | camera vuota — «свободная комната» |
+| it | 03 | L’uscita è vicino alla biglietteria? — Выход находится рядом с билетной кассой? | **alla** / ~~nella~~ | **alla** / ai | nella stazione — тот же перевод «на вокзале» |
+| it | 04 | Questi sono dei vicini. — Это соседи. | **dei** / ~~alcuni~~ | **dei** / del | alcuni libri — тот же перевод без артикля |
+| it | 04 | Queste sono delle foto. — Это фотографии. | **delle** / ~~alcune~~ | **delle** / del | alcune pile — тот же перевод без артикля |
+| it | 05 | Ha degli spiccioli? — У вас есть мелочь? | **degli** / ~~alcuni~~ | **degli** / del | alcuni spiccioli — тот же перевод |
+| it | 06 | L’indirizzo è sulla mappa. — Адрес указан на карте. | **sulla** / ~~nella~~ | **sulla** / dalla | nella mappa — «на карте» |
+| it | 08 | Chi è alla porta? — Кто стоит у двери? | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 09 | Il mio indirizzo è sulla mappa. — Мой адрес указан на карте. | **sulla** / ~~nella~~ | **sulla** / dalla | nella mappa — «на карте» |
+| it | 09 | Lascio il mio numero alla reception. — Я оставляю свой номер на ресепшене. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 10 | Ci sono dei libri sul tavolo. — На столе лежат книги. | **dei** / ~~alcuni~~ | **dei** / molte | alcuni libri — тот же перевод без артикля |
+| it | 10 | Nel cassetto ci sono delle pile. — В ящике лежат батарейки. | **delle** / ~~alcune~~ | **delle** / molte | alcune pile — тот же перевод без артикля |
+| it | 10 | Ci sono dei bagni? — Есть ли здесь туалеты? | **dei** / ~~alcuni~~ | **dei** / molte | alcuni libri — тот же перевод без артикля |
+| it | 10 | C’è una camera libera? — Есть ли свободная комната? | **libera** / ~~vuota~~ | **libera** / buio | camera vuota — «свободная комната» |
+| it | 10 | C’è un pacco alla reception. — На ресепшене есть посылка. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 10 | Ci sono dei posti liberi sulla banchina. — На платформе есть свободные места. | **dei** / ~~alcuni~~ | **dei** / molte | alcuni libri — тот же перевод без артикля |
+| it | 11 | Paolo non va alla riunione. — Паоло не идёт на собрание. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 11 | Va alla reception o alla biglietteria? — Вы идёте к стойке информации или в кассу? | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 11 | Va alla reception o alla biglietteria? — Вы идёте к стойке информации или в кассу? | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 11 | Lei va alla fermata dell’autobus. — Она идёт на автобусную остановку. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 11 | Andiamo in fondo alla strada. — Мы идём до конца улицы. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 12 | Mangiano delle fragole. — Они едят клубнику. | **delle** / ~~alcune~~ | **delle** / molte | alcune pile — тот же перевод без артикля |
+| it | 13 | Lui porta dei pantaloni blu. — На ней синие брюки. | **dei** / ~~alcuni~~ | **dei** / delle | alcuni libri — тот же перевод без артикля |
+| it | 16 | Non aggiunga sale! — Не добавляйте соль! | **aggiunga** / ~~metta~~ | **aggiunga** / a | Non metta sale — «не добавляйте соль» |
+| it | 16 | Accendi la lampada accanto al letto! — Включи лампу у кровати! | **accanto** / ~~vicino~~ | **accanto** / po’ | vicino al letto — «у кровати» |
+| it | 17 | I bambini si svegliano alla stessa ora. — Дети просыпаются одновременно. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 17 | Non mi alzo prima delle sei. — Я не встаю раньше шести часов. | **delle** / ~~alcune~~ | **delle** / molte | alcune pile — тот же перевод без артикля |
+| it | 18 | Ho ricevuto il pacco. — Я получил посылку. | **ricevuto** / ~~preso~~ | **ricevuto** / chiuso | Ho preso il pacco — «получил/забрал посылку» |
+| it | 19 | Paolo è andato alla stazione ferroviaria. — Паоло пошел на вокзал. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 20 | La stazione ferroviaria era in fondo alla strada. — Железнодорожный вокзал находился в конце улицы. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 21 | Erano in viaggio quando ho ricevuto la notizia. — Они были в пути, когда я получил известие. | **ricevuto** / ~~preso~~ | **ricevuto** / arrivato | Ho preso il pacco — «получил/забрал посылку» |
+| it | 24 | Conosci questa città e ci hai dei parenti. — Ты знаешь этот город, и у тебя там родственники. | **dei** / ~~alcuni~~ | **dei** / delle | alcuni libri — тот же перевод без артикля |
+| it | 25 | Ci servono dei cavi per il palco; dobbiamo ordinarne tre. — Нам нужны кабели для сцены; нужно заказать три. | **dei** / ~~alcuni~~ | **dei** / delle | alcuni libri — тот же перевод без артикля |
+| it | 25 | Mancano dei bicchieri: vado a prenderne altri. — Не хватает стаканов, я пойду возьму ещё. | **dei** / ~~alcuni~~ | **dei** / delle | alcuni libri — тот же перевод без артикля |
+| it | 25 | Ci sono delle chiatte sul canale e ne vedo due. — На канале баржи, и я вижу две. | **delle** / ~~alcune~~ | **delle** / il | alcune pile — тот же перевод без артикля |
+| it | 28 | Potrebbe richiamarmi dopo le dieci? — Не могли бы вы перезвонить мне после 10:00? | **richiamarmi** / ~~chiamarmi~~ | **richiamarmi** / a | Potrebbe chiamarmi dopo le dieci — та же просьба позвонить |
+| it | 29 | Questo è l’autobus che va alla stazione ferroviaria. — Это автобус, который едет до вокзала. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 29 | La signora che ha trovato le mie chiavi è alla reception. — Женщина, которая нашла мои ключи, у стойки регистрации. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 30 | È necessario che Lei vada alla reception. — Вам нужно подойти к стойке регистрации. | **alla** / ~~nella~~ | **alla** / mia | nella stazione — тот же перевод «на вокзале» |
+| it | 31 | Lei ha riletto la lettera che aveva ricevuto. — Она перечитала письмо, которое до этого получила. | **ricevuto** / ~~avuto~~ | **ricevuto** / dimenticato | la lettera che aveva avuto — «которое получила» |
+| it | 31 | Non avevamo ricevuto il codice. — Мы не получили код. | **ricevuto** / ~~preso~~ | **ricevuto** / abbassato | Ho preso il pacco — «получил/забрал посылку» |
+| it | 32 | Prenderemmo un taxi se avessimo dei bagagli. — Мы бы взяли такси, если бы у нас был багаж. | **dei** / ~~alcuni~~ | **dei** / delle | alcuni libri — тот же перевод без артикля |

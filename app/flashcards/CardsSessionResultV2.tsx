@@ -34,6 +34,7 @@ import { useLineScale } from '../../hooks/useLineScale';
 import { inferExpoSpeechLanguage, useAudio } from '../../hooks/use-audio';
 import { CardFlipV2 } from './CardFlipV2';
 import type { CardsResultMistake } from './session_result_mistakes';
+import SkillsSessionGrowth from '../../components/skills/SkillsSessionGrowth';
 
 export type { CardsResultMistake };
 
@@ -198,6 +199,9 @@ function CardsSessionResultV2Impl(props: CardsSessionResultV2Props) {
             </View>
           </View>
         </View>
+
+        {/* зачем (D207, владелец 11.11): блок «Навыки растут» — прирост за это занятие; нет прироста — блок не рисуется */}
+        <SkillsSessionGrowth style={{ marginTop: 22 }} />
 
         {!perfect && mistakes.length > 0 ? (
           <>

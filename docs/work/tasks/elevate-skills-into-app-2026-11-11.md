@@ -167,6 +167,21 @@ Security and privacy: новых данных нет. Technical debt: нет.
 Verification: `tests/skills_store.test.ts` и существующие проверки затронутых режимов — через светофор.
 Rollback: убрать добавленные строки из четырёх файлов.
 
+## Этап 3г — «Навыки растут» на итоге карточек (11.11, владелец: «у тебя приоритет, делай всё с макетов»)
+
+Governance-ID: TG-DC501950984C
+
+Outcome: итог тренировки карточек показывает блок «Навыки растут» с приростом именно за это занятие.
+Scope: `modules/skills/skill_store.ts` (снимок итогов перед первым начислением занятия, в памяти, с истечением),
+новый `components/skills/SkillsSessionGrowth.tsx`, две строки в `app/flashcards/CardsSessionResultV2.tsx`
+(импорт и блок перед списком ошибок), тесты `tests/skills_store.test.ts`, `tests/skills_session.test.ts`.
+Architecture: начало занятия не размечается вручную в каждом режиме — хранилище само запоминает итоги перед
+первым начислением после прошлого показа итога; экран итога забирает снимок один раз. Снимок не сохраняется на
+диск (празднование не durable) и считается устаревшим через 20 минут без начислений.
+Security and privacy: новых данных нет. Technical debt: нет.
+Verification: тесты выше и существующие проверки итога карточек — через светофор. Rollback: убрать две строки
+из экрана итога и удалить новый файл.
+
 ## Этап 3в — блок «Навыки растут» как отдельная деталь (11.11)
 
 Scope: новые `modules/skills/skill_session.ts`, `components/skills/SkillsGrowthPanel.tsx`, `tests/skills_session.test.ts`.

@@ -67,6 +67,10 @@ const DEFAULT_DEPS: SkillsDeps = Object.freeze({ now: () => Date.now(), ownerSta
 let deps: SkillsDeps = DEFAULT_DEPS;
 let current: SkillsState | null = null;
 let unsaved = false;
+// зачем: итог занятия показывает прирост «по факту» — итоги перед первым начислением занятия живут только в памяти
+// (празднование не durable) и устаревают без начислений, чтобы брошенное занятие не приписалось следующему.
+const SESSION_BASE_TTL_MS = 20 * 60 * 1000;
+let sessionBase: { totals: SkillTotals; touchedAt: number } | null = null;
 let queue: Promise<unknown> = Promise.resolve();
 const listeners = new Set<(state: SkillsState | null) => void>();
 
@@ -76,6 +80,7 @@ onAccountOwnerChanged('skills', () => {
   if (unsaved && previous) void persist(previous).then((ok) => log('owner_change:unsaved_flushed', { ok }));
   unsaved = false;
   current = null;
+  sessionBase = null;
   listeners.forEach((listener) => listener(null));
 });
 
@@ -216,6 +221,11 @@ export function recordSkillAction(event: SkillActionEvent): Promise<SkillRecordR
     if (!changed && !unsaved) {
       return { skill: award.skill, points: 0, skipped: award.skipped, levelUps: [], saved: true };
     }
+    if (award.points > 0) {
+      const nowMs = deps.now();
+      const fresh = sessionBase !== null && nowMs - sessionBase.touchedAt <= SESSION_BASE_TTL_MS;
+      sessionBase = { totals: fresh && sessionBase ? sessionBase.totals : before.totals, touchedAt: nowMs };
+    }
     const next: SkillsState = { ownerKey: before.ownerKey, totals, ledger: award.ledger, week: before.week };
     publish(next);
     const saved = await persist(next);
@@ -246,6 +256,14 @@ export function refreshSkills(): Promise<SkillsState> {
   });
 }
 
+/** Итоги перед первым начислением текущего занятия; отдаются один раз. null — за занятие ничего не начислено. */
+export function takeSkillSessionBase(): SkillTotals | null {
+  const base = sessionBase;
+  sessionBase = null;
+  if (!base || deps.now() - base.touchedAt > SESSION_BASE_TTL_MS) return null;
+  return base.totals;
+}
+
 /** Мгновенное чтение для первого кадра; null — диск ещё не читали. */
 export function peekSkills(): SkillsState | null {
   return current;
@@ -263,6 +281,7 @@ export const __skillStoreTestHooks = Object.freeze({
     deps = DEFAULT_DEPS;
     current = null;
     unsaved = false;
+    sessionBase = null;
     queue = Promise.resolve();
     listeners.clear();
   },

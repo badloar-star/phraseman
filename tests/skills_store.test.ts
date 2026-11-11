@@ -5,7 +5,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
-  __skillStoreTestHooks as hooks, parseSkillsState, peekSkills, recordSkillAction, refreshSkills, skillWeekGains, subscribeSkills,
+  __skillStoreTestHooks as hooks, parseSkillsState, peekSkills, recordSkillAction, refreshSkills, skillWeekGains, subscribeSkills, takeSkillSessionBase,
 } from '../modules/skills/skill_store';
 
 const NOON = new Date(2026, 10, 11, 12, 0, 0).getTime();
@@ -114,6 +114,19 @@ it('прирост за неделю считается с понедельни�
   expect(rolled.week.key).toBe('2026-11-16');
   expect(skillWeekGains(rolled).vocab).toBe(0);
   expect(rolled.totals.vocab).toBe(42);
+});
+
+it('итог занятия: снимок «до» берётся перед первым начислением, отдаётся один раз и устаревает', async () => {
+  expect(takeSkillSessionBase()).toBeNull();
+  await recordSkillAction({ action: 'theory_task', itemKey: 't1' });
+  await recordSkillAction({ action: 'theory_task', itemKey: 't2' });
+  expect(takeSkillSessionBase()?.grammar).toBe(0);
+  expect(takeSkillSessionBase()).toBeNull();
+  await recordSkillAction({ action: 'theory_task', itemKey: 't3' });
+  expect(takeSkillSessionBase()?.grammar).toBe(4);
+  await recordSkillAction({ action: 'theory_task', itemKey: 't4' });
+  now = NOON + 21 * 60 * 1000;
+  expect(takeSkillSessionBase()).toBeNull();
 });
 
 it('мусор на диске не ломает чтение', () => {

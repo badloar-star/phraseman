@@ -4,7 +4,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const ROOT = path.join(__dirname, '..');
-const js = fs.readFileSync(path.join(ROOT, 'admin/v2/scripts/pages/story_announcements_v2.js'), 'utf8').replace(/\r\n/g, '\n');
+const html = fs.readFileSync(path.join(ROOT, 'admin/v2/legacy.html'), 'utf8');
+const js = html.split('<script id="admin-story-announcements-editor">')[1]?.split('</script>')[0] ?? '';
 
 describe('редактор объявлений 2.0 — выбор шаблона', () => {
   it('«Новое объявление» открывает галерею, а не пустую карточку', () => {
@@ -21,5 +22,9 @@ describe('редактор объявлений 2.0 — выбор шаблон�
   });
   it('превью ждёт список шаблонов и пишет его размер в журнал [ANN2-ADMIN]', () => {
     expect(js).toContain("log('предпросмотр готов', { designs: S.designs.length");
+  });
+  it('не предлагает шаблон опроса и исключает старые опросы из списка', () => {
+    expect(js).toContain("design.id !== 'poll'");
+    expect(js).toContain("(row.content ?? row).design !== 'poll'");
   });
 });

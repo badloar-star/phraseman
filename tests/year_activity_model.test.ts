@@ -50,10 +50,12 @@ describe('модель «Активность за год»', () => {
 });
 
 describe('маршрут «Активность за год»', () => {
-  it('полоска открывает экран, а не окно месяца; экран зарегистрирован; логи [YEAR-ACTIVITY]', () => {
+  // зачем (владелец 06.11 «Год → сразу месяцы» + U03 11.11 «одно окно»): полоска больше НЕ ведёт на экран —
+  // она открывает единственное окно календаря; прежнее ожидание router.push сторожило отменённое поведение.
+  it('полоска открывает одно окно календаря, а не экран; экран зарегистрирован; логи [YEAR-ACTIVITY]', () => {
     const strip = read('components/ActivityHeatmap365.tsx');
-    expect(strip).toContain("router.push('/year_activity' as never)");
-    expect(strip).toContain('[YEAR-ACTIVITY]');
+    expect(strip).not.toContain('year_activity');
+    expect(strip).toContain('[STATS-PERIOD] open');
     expect(strip).toContain('export function MonthExplorerModal');
     expect(read('app/_layout.tsx')).toContain('<Stack.Screen name="year_activity" />');
     expect(read('app/product_analytics_screen_registry.ts')).toContain("'year_activity'");

@@ -171,11 +171,11 @@ export function heatPalette(themeMode: ThemeMode, themeAccent: string): readonly
 function CanonicalYearHeatmap({
   model,
   statusText,
-  onOpenMonth,
+  onOpenDay,
 }: {
   model: CanonicalYearModel;
   statusText: string | null;
-  onOpenMonth: (monthKey: string) => void;
+  onOpenDay: (dateKey: string) => void;
 }) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang(); // зачем: подпись клетки для скринридера на языке интерфейса
@@ -214,7 +214,7 @@ function CanonicalYearHeatmap({
             accessibilityLabel={day ? heatmapDaySpokenLabel(day.date, day.minutes, lang) : undefined}
             activeOpacity={0.76}
             disabled={!day}
-            onPress={() => day && onOpenMonth(day.date.slice(0, 7))}
+            onPress={() => day && onOpenDay(day.date)}
             style={{
               width: cellSize,
               height: cellSize,
@@ -451,6 +451,7 @@ export function MonthExplorerModal({
   days,
   monthKeys,
   monthKey,
+  initialDayKey = null,
   visible,
   onMonthChange,
   onClose,
@@ -458,6 +459,8 @@ export function MonthExplorerModal({
   days: readonly Activity365Day[];
   monthKeys: readonly string[];
   monthKey: string | null;
+  /** День, нажатый на полоске года: окно открывается уже с ним. */
+  initialDayKey?: string | null;
   visible: boolean;
   onMonthChange: (monthKey: string) => void;
   onClose: () => void;
@@ -506,9 +509,16 @@ export function MonthExplorerModal({
   );
   const minutesShort = copy(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min', en: 'min' });
 
+  // зачем (U03, 11.11): квадрат года открывает это же окно сразу с выбранным днём — без второго окна и второго тапа.
+  // Листание стрелками уводит в другой месяц — выбор снимается, чтобы плашка не показывала день не с этой сетки.
   useEffect(() => {
-    setSelectedDay(null);
-  }, [monthKey, visible]);
+    const initial = visible && initialDayKey && monthKey && initialDayKey.startsWith(`${monthKey}-`)
+      ? monthGrid.cells.find((cell) => cell.day?.date === initialDayKey)?.day ?? null
+      : null;
+    setSelectedDay(initial && !initial.future ? initial : null);
+    // monthGrid намеренно вне зависимостей: тихое обновление данных не должно сбрасывать выбор пользователя.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [monthKey, visible, initialDayKey]);
 
   const shiftComparisonMonth = (
     current: string | null,
@@ -645,7 +655,10 @@ export function MonthExplorerModal({
                     accessibilityState={{ selected: isSelected, disabled: cell.day.future }}
                     disabled={cell.day.future}
                     activeOpacity={0.78}
-                    onPress={() => setSelectedDay(cell.day)}
+                    onPress={() => {
+                      console.log(`[STATS-PERIOD] day {date: '${cell.day!.date}', minutes: ${cell.day!.minutes}, level: ${cell.day!.level}}`); // guard-ok: действие пользователя, одна строка на тап
+                      setSelectedDay(cell.day);
+                    }}
                     style={{
                       width: daySize,
                       height: daySize,
@@ -791,8 +804,10 @@ function ActivityHeatmap365() {
 
   const days = currentSnapshot.analytics?.days ?? [];
   const yearModel = useMemo(() => buildCanonicalYear(days), [days]);
-  // зачем (владелец 06.11: «Год → сразу сетка месяцев»): тап по полоске открывает MonthExplorerModal, без экрана /year_activity
+  // зачем (U03, 11.11): одно окно календаря на весь год. Тап по клетке года открывает его на месяце этой клетки
+  // и сразу с этим днём; закрытие одно — сразу обратно в «Статистику».
   const [monthOpen, setMonthOpen] = useState<string | null>(null);
+  const [dayOpen, setDayOpen] = useState<string | null>(null);
   const hasActivity = days.some((day) => day.active && !day.future);
   // зачем (владелец 01.10): никаких «Загружаем/Данные недоступны/Пока нет данных» —
   // сетка рисуется сразу из локальных данных, пустые дни — просто пустые клетки.
@@ -800,24 +815,28 @@ function ActivityHeatmap365() {
 
   return (
     <View testID="stats-activity-365">
-      {/* зачем (владелец 13.10, вопрос 17; results-009): тап по полоске «Год» открывает отдельный экран «Активность за год» (окно месяца теперь на нём); данные те же, из кэша. */}
       <CanonicalYearHeatmap
         model={yearModel}
         statusText={statusText}
-        onOpenMonth={() => {
-          const current = yearModel.monthKeys[yearModel.monthKeys.length - 1] ?? null;
-          console.log(`[STATS-PERIOD] open {from: 'year_strip', to: '${current}'}`); // guard-ok: действие пользователя, одна строка на тап
-          setMonthOpen(current);
+        onOpenDay={(dateKey) => {
+          const monthKey = dateKey.slice(0, 7);
+          console.log(`[STATS-PERIOD] open {from: 'year_strip', to: '${monthKey}', day: '${dateKey}', months: ${yearModel.monthKeys.length}}`); // guard-ok: действие пользователя, одна строка на тап
+          setDayOpen(dateKey);
+          setMonthOpen(monthKey);
         }}
       />
-      {/* зачем (владелец 06.11): месяцы открываются сразу по тапу на полоску года, без промежуточного экрана /year_activity */}
       <MonthExplorerModal
         days={days}
         monthKeys={yearModel.monthKeys}
         monthKey={monthOpen}
+        initialDayKey={dayOpen}
         visible={monthOpen !== null}
         onMonthChange={setMonthOpen}
-        onClose={() => setMonthOpen(null)}
+        onClose={() => {
+          console.log(`[STATS-PERIOD] close {from: '${monthOpen}'}`); // guard-ok: действие пользователя, одна строка на закрытие
+          setMonthOpen(null);
+          setDayOpen(null);
+        }}
       />
     </View>
   );

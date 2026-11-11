@@ -68,7 +68,8 @@ export default function SkillsScreen() {
     if (now - lastNavAt.current < NAV_GUARD_MS) return; // защита от двойного тапа
     lastNavAt.current = now;
     console.log(`${LOG} screen:improve ${weak}`); // guard-ok: одна строка на нажатие кнопки
-    router.push('/flashcards' as never);
+    // зачем: «Подтянуть» ведёт в разминку — три игры без выбора (владелец: «чтобы юзеру особо не надо было выбирать»)
+    router.push('/warmup' as never);
   }, [router, weak]);
 
   const hint = active === null ? triLang(lang, SKILLS_SCREEN_COPY.hint) : triLang(lang, SKILL_SOURCE[rows[active].id]);

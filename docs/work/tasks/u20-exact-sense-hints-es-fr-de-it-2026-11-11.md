@@ -1,5 +1,18 @@
 # Task packet: U20 — точный смысл подсказок в курсах испанского, французского, немецкого и итальянского
 
+Governance-ID: TG-0226D05C3C20
+Governance-ID: TG-12A938A8E5DC
+Governance-ID: TG-8565C2AAD457
+Governance-ID: TG-828F9A0A805E
+Governance-ID: TG-AFD649EA218D
+Governance-ID: TG-A9D3DDC528EA
+Governance-ID: TG-961E10EA66F0
+Governance-ID: TG-4E149933A653
+Governance-ID: TG-3E3C28FA18EF
+Governance-ID: TG-BD9326ECB519
+Governance-ID: TG-D0C818766CCF
+Governance-ID: TG-7CEC560FD037
+Governance-ID: TG-834245CD50B0
 Governance-ID: TG-93FC0B43BB71
 Governance-ID: TG-741761F05E1E
 Governance-ID: TG-CCBFAC997C18

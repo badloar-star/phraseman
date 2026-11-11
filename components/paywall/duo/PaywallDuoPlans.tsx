@@ -44,7 +44,8 @@ const SHEEN_COLORS = ['#FFFFFF00', '#FFFFFF61', '#FFFFFF00'] as const;
 /** Подпись месячного тарифа, когда пробного у него нет (макет: «без пробного»). */
 const NO_TRIAL = LP('без пробного', 'без пробного', 'no free trial', 'sin prueba', 'sem teste grátis', 'không dùng thử', 'tanpa uji coba', 'deneme yok', 'bez okresu próbnego');
 
-const Sheen = memo(function Sheen({ width }: { width: number }) {
+// зачем (владелец 11.11): тот же блик нужен кнопке покупки вкладки Plus и карточке подписки — один источник таймингов макета
+export const Sheen = memo(function Sheen({ width }: { width: number }) {
   const reduceMotion = useReduceMotion();
   const run = useRef(new Animated.Value(0)).current;
   // зачем (владелец 11.11, аудит скорости): блик крутился вечно, даже когда поверх пейвола открыт другой экран или приложение

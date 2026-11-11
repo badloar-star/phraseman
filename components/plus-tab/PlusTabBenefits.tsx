@@ -3,12 +3,19 @@ import { StyleSheet, Text, View } from 'react-native';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { GlassTokens } from '../../constants/liquidGlassThemePalette';
 import { PLUS_TAB_FREE_LABEL, PLUS_TAB_PLUS_LABEL, PLUS_TAB_SUBLINE, type PlusTabCopy, type PlusTabItem } from './plus_tab_items';
+import type { SubscriptionTier } from '../../app/subscription_tier';
+import { PlusTabCompareTable } from './PlusTabCompareTable';
 
 const word = (lang: Lang, copy: PlusTabCopy): string => triLang(lang, copy) ?? copy.ru;
 
-export const PlusTabBenefits = memo(function PlusTabBenefits({ lang, g, items }: {
+export const PlusTabBenefits = memo(function PlusTabBenefits({ lang, g, items, layout = 'cards', tier = 'plus' }: {
   lang: Lang; g: GlassTokens; items: readonly PlusTabItem[];
+  /** 'table' — таблица в стиле пейвола «Два пути» (вкладка Plus, владелец 11.11); 'cards' — прежние карточки (окно оплаты без «Двух путей»). */
+  layout?: 'cards' | 'table';
+  /** Уровень, чьим цветом подсвечена колонка таблицы. */
+  tier?: SubscriptionTier;
 }) {
+  if (layout === 'table') return <PlusTabCompareTable lang={lang} g={g} items={items} tier={tier} />;
   return (
     <View testID="plus-benefits">
       <Text testID="plus-tab-subtitle" style={[S.sub, { color: g.secondary }]}>{word(lang, PLUS_TAB_SUBLINE)}</Text>

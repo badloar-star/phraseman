@@ -1,7 +1,7 @@
 // Governance-ID: TG-BF6A8ECE6C57
 
 import React, { useCallback, useEffect, useMemo } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { usePaywallPurchase, type PaywallPlan } from '../../app/paywall_purchase';
 import { DebugLogger } from '../../app/debug-logger';
 import { animateNextLayoutTransition } from '../../app/smooth_layout';
@@ -15,10 +15,13 @@ import { useTheme } from '../ThemeContext';
 import V2Pressable from '../v2/V2Pressable';
 import { PaywallPlusPlansSkeleton, PaywallPlusPriceNote } from '../paywall/PaywallPlus';
 import { PlusTabBenefits } from './PlusTabBenefits';
-import { PlusTabPlans } from './PlusTabPlans';
 import { PlusTabLegalRow } from './PlusTabLegalRow';
 import { plusTabRenewsLine } from './plus_tab_disclosure';
 import { PaywallTierScope } from '../paywall/paywall_tier_context';
+import { DUO_TIER_COLORS, DUO_TIER_INK, PaywallDuoGlow, PaywallDuoHero, useDuoTierMix } from '../paywall/duo/PaywallDuoHero';
+import { PaywallDuoPlans, Sheen } from '../paywall/duo/PaywallDuoPlans';
+import { LinearGradient } from '../SafeLinearGradient';
+import type { SubscriptionTier } from '../../app/subscription_tier';
 import {
   PLUS_TAB_HEADLINE,
   plusTabItems,
@@ -63,7 +66,7 @@ export default function PlusTabScreen() {
     DebugLogger.info(LOG, `экран: состояние=${state} план=${p.selected} год=${p.yearlyPrice || '—'} месяц=${p.monthlyPrice || '—'} пробныйГода=${yearlyTrialDays ?? 'нет'} пробныйМесяца=${monthlyTrialDays ?? 'нет'} источникЦены=${p.priceSource} пунктов=${items.length} ползунки=${THEME_SLIDERS_V1_ENABLED}`);
   }, [items.length, monthlyTrialDays, p.monthlyPrice, p.priceSource, p.selected, p.yearlyPrice, state, yearlyTrialDays]);
 
-  const { selected, selectPlan: selectPlanInHook } = p;
+  const { selected, selectPlan: selectPlanInHook, handlePurchase } = p;
   const selectPlan = useCallback((plan: PaywallPlan) => {
     if (plan === selected) return;
     animateNextLayoutTransition();
@@ -73,25 +76,37 @@ export default function PlusTabScreen() {
   const ctaBusy = p.purchasing || p.restoring;
   const ultra = p.selected === 'yearly';
   const ctaShown = ultra ? ULTRA_CTA_FALLBACK[lang] ?? ULTRA_CTA_FALLBACK.en : PLUS_CTA_FALLBACK[lang] ?? PLUS_CTA_FALLBACK.en;
-  const ctaBackground = g.ctaFill;
-  const ctaInk = g.ctaFillInk;
+  // зачем (владелец 11.11, макет plus-screens-duo-2026-11-11, «в точности как на макете»): вкладка в стиле пейвола «Два пути» —
+  // знак и свечение уровня, две кнопки-тарифа, кнопка покупки градиентом уровня. Цвета уровней — из макета, темой не красятся.
+  const tier: SubscriptionTier = ultra ? 'ultra' : 'plus';
+  const tierMix = useDuoTierMix(tier);
+  const tierColors = DUO_TIER_COLORS[tier];
+  const ctaInk = DUO_TIER_INK[tier];
+  const { width: windowWidth } = useWindowDimensions();
+  const buySelected = useCallback(() => {
+    DebugLogger.info(LOG, `тап покупки по выбранному тарифу: план=${selected} состояние=${state}`);
+    void handlePurchase();
+  }, [handlePurchase, selected, state]);
 
   return (
-    <PaywallTierScope tier={ultra ? 'ultra' : 'plus'}>
+    <PaywallTierScope tier={tier}>
       <ScrollView decelerationRate="fast"
         testID="plus-tab-scroll"
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[S.content, { paddingBottom: bottomPad }]}
+        contentContainerStyle={S.content}
       >
+        <View style={S.top}>
+        <PaywallDuoGlow mix={tierMix} isLight={g.isLight} height={420} />
+        <View style={S.mark}><PaywallDuoHero mix={tierMix} /></View>
         <Text accessibilityRole="header" testID="plus-tab-title" style={[S.h2, { color: g.text }]}>{word(lang, PLUS_TAB_HEADLINE)}</Text>
         <View style={S.plans}>
-          {state === 'loading' ? <PaywallPlusPlansSkeleton g={g} stacked={false} /> : null}
+          {state === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
           {state === 'error' ? <PaywallPlusPriceNote lang={lang} g={g} reason={p.storeUnavailableReason} /> : null}
           {state === 'ready' ? (
-            <PlusTabPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} disabled={ctaBusy}
-              monthlyPrice={p.monthlyPrice} yearlyPrice={p.yearlyPrice} yearlyPerMonth={p.yearlyPerMonth}
-              monthlyApprox={p.monthlyPriceSource === 'reference'} yearlyApprox={p.yearlyPriceSource === 'reference'}
-              monthlyTrialDays={monthlyTrialDays} yearlyTrialDays={yearlyTrialDays} />
+            // зачем: как в пейволе — нажатие на невыбранный тариф перекрашивает экран, на выбранный — открывает оплату (paywall_duo_tap)
+            <PaywallDuoPlans lang={lang} g={g} selected={p.selected} onSelect={selectPlan} onBuy={buySelected} busy={ctaBusy}
+              yearlyPrice={p.yearlyPrice} monthlyPrice={p.monthlyPrice} yearlyTrialDays={yearlyTrialDays} monthlyTrialDays={monthlyTrialDays}
+              yearlyPromo={pricesReady ? p.storePromo.yearly : null} monthlyPromo={pricesReady ? p.storePromo.monthly : null} savingsPct={p.savingsPct} />
           ) : null}
         </View>
 
@@ -106,19 +121,25 @@ export default function PlusTabScreen() {
           onPress={() => { DebugLogger.info(LOG, `тап покупки: план=${p.selected} состояние=${state}`); void p.handlePurchase(); }}
           withHaptic={false}
           scaleTo={0.97}
-          style={[S.cta, { backgroundColor: ctaBackground }]}
+          style={[S.cta, { backgroundColor: tierColors[1], shadowColor: tierColors[1] }]}
         >
+          <LinearGradient pointerEvents="none" colors={[...tierColors]} locations={[0, 0.48, 1]} start={{ x: 0, y: 0.2 }} end={{ x: 1, y: 0.8 }} style={StyleSheet.absoluteFill} />
+          {p.purchasing ? null : <Sheen width={windowWidth} />}
           {p.purchasing
             ? <ActivityIndicator color={ctaInk} />
             : <Text style={[S.ctaText, { color: ctaInk }]}>{ctaShown}</Text>}
         </V2Pressable>
-        <Text style={[S.fine, { color: g.secondary }]}>{p.tapNotice ? TRY_LATER[lang] ?? TRY_LATER.en : (STORE_NOTE[lang] ?? STORE_NOTE.en)}</Text>
+        <Text style={[S.fine, { color: g.mutedText }]}>{p.tapNotice ? TRY_LATER[lang] ?? TRY_LATER.en : (STORE_NOTE[lang] ?? STORE_NOTE.en)}</Text>
         {/* зачем (владелец ~19:40 05.11, вариант Б; Apple 3.1.2 / Google Play): подпись макета выше НЕ меняется; под ней — автопродление выбранного плана и ряд «Условия · Конфиденциальность · Восстановить» */}
-        <Text testID="plus-tab-renews" style={[S.fineRenews, { color: g.secondary }]}>{plusTabRenewsLine(lang, p.selected)}</Text>
+        <Text testID="plus-tab-renews" style={[S.fineRenews, { color: g.mutedText }]}>{plusTabRenewsLine(lang, p.selected)}</Text>
+        </View>
 
-        <PlusTabBenefits lang={lang} g={g} items={items} />
+        {/* зачем (макет .more): подробности — на отдельной подложке со скруглённым верхом; она доходит до низа экрана под панель вкладок */}
+        <View style={[S.more, { backgroundColor: g.opaqueCard, paddingBottom: bottomPad }]}>
+          <PlusTabBenefits lang={lang} g={g} items={items} layout="table" tier={tier} />
 
-        <PlusTabLegalRow lang={lang} color={g.secondary} restoring={p.restoring} disabled={ctaBusy} onRestore={() => { void p.handleRestore(); }} />
+          <PlusTabLegalRow lang={lang} color={g.mutedText} restoring={p.restoring} disabled={ctaBusy} onRestore={() => { void p.handleRestore(); }} />
+        </View>
       </ScrollView>
     </PaywallTierScope>
   );
@@ -146,12 +167,16 @@ const TRY_LATER: Readonly<Record<string, string>> = {
 };
 
 const S = StyleSheet.create({
-  content: { paddingHorizontal: 16, paddingTop: 6 },
-  // зачем (макет): h2 25/800, подзаголовок 13,5, карточки r16 с зазором 6, плитки планов, кнопка r16
-  h2: { fontSize: 30, lineHeight: 35, fontWeight: '800', letterSpacing: -0.4 },
-  plans: { marginTop: 14 },
-  cta: { marginTop: 12, borderRadius: 16, paddingVertical: 15, alignItems: 'center', justifyContent: 'center', minHeight: 50 },
-  ctaText: { fontSize: 16, lineHeight: 20, fontWeight: '800' },
-  fine: { fontSize: 13, lineHeight: 18, textAlign: 'center', marginTop: 8 },
+  // зачем: размеры — из макета plus-screens-duo-2026-11-11 (.tabtop, .hl, .buys, .cta, .fine, .more)
+  content: { flexGrow: 1 },
+  top: { paddingHorizontal: 22, paddingTop: 20, paddingBottom: 22 },
+  // знак несёт свой нижний отступ 26 (пейвол); в макете вкладки — 22
+  mark: { marginBottom: -4 },
+  h2: { fontSize: 33, lineHeight: 37, fontWeight: '900', letterSpacing: -1 },
+  plans: { marginTop: 24 },
+  cta: { overflow: 'hidden', marginTop: 12, borderRadius: 18, paddingVertical: 15, alignItems: 'center', justifyContent: 'center', minHeight: 56, shadowOpacity: 0.65, shadowRadius: 17, shadowOffset: { width: 0, height: 14 }, elevation: 8 },
+  ctaText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
+  fine: { fontSize: 13, lineHeight: 18, textAlign: 'center', marginTop: 10 },
   fineRenews: { fontSize: 13, lineHeight: 18, textAlign: 'center', marginTop: 2 },
+  more: { flexGrow: 1, paddingHorizontal: 22, paddingTop: 6, borderTopLeftRadius: 28, borderTopRightRadius: 28 },
 });

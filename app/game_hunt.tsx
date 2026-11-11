@@ -1,25 +1,34 @@
 /**
  * Игра «Охота на ошибку» — перенос утверждённого макета (docs/design/v2-app/elevate-games.js, `hunt()`).
  * В диалоге одно слово неверное: нажатие на него заменяет слово верным и показывает объяснение;
- * нажатие на другое слово — короткая дрожь.
+ * нажатие на другое слово — красный тон на 700 мс (дрожи в макете здесь нет).
+ * Движение — из макета в точности: реплики поднимаются лесенкой по 140 мс; по диалогу сверху вниз идёт «сканер»
+ * (2600 мс, линейно, по кругу) и останавливается, когда ошибка найдена; тон слова меняется за 260 мс; исправленное
+ * слово поднимается (520 мс); объяснение проявляется за 360 мс и встаёт со сдвига 14 за 520 мс. Числа — в constants/gameMotion.ts.
  * зачем так: правила и задания — в modules/games/dialogue_core; экран только рисует и исполняет нажатия.
  * Найденная ошибка даёт «Грамматику» +2 (строка таблицы добавлена владельцем 11.11).
  */
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Reanimated, { FadeInDown, cancelAnimation, useAnimatedStyle, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
+import { LinearGradient } from 'expo-linear-gradient';
+import Reanimated, { Easing, cancelAnimation, interpolate, interpolateColor, useAnimatedStyle, useSharedValue, withRepeat, withTiming } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import GameReveal from '../components/games/GameReveal';
+import GameRise from '../components/games/GameRise';
 import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
+import { GAME_EASE, GAME_MOTION } from '../constants/gameMotion';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { hapticTap } from '../hooks/use-haptics';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { isHuntHit } from '../modules/games/dialogue_core';
 import { huntTasksFor } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
@@ -35,22 +44,72 @@ const COPY = {
   close: { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', en: 'Close' },
 } as const;
 
-type WordProps = Readonly<{ text: string; tappable: boolean; fixed: boolean; shakeKey: number; onPress: () => void; ink: string; chip: string; good: string; disabled: boolean }>;
+const bezier = (c: readonly number[]) => Easing.bezier(c[0], c[1], c[2], c[3]);
 
-const HuntWord = memo(function HuntWord({ text, tappable, fixed, shakeKey, onPress, ink, chip, good, disabled }: WordProps) {
-  const x = useSharedValue(0);
+type WordProps = Readonly<{ text: string; tappable: boolean; fixed: boolean; missed: boolean; onPress: () => void; ink: string; good: string; bad: string; disabled: boolean }>;
+
+const HuntWord = memo(function HuntWord({ text, tappable, fixed, missed, onPress, ink, good, bad, disabled }: WordProps) {
+  const reduceMotion = useReduceMotion();
+  // 0 — обычное слово, 1 — исход (промах или исправлено); цвет исхода запоминается, чтобы гаснуть своим же тоном
+  const outcome = useSharedValue(0);
+  const rise = useSharedValue(1);
+  const tone = useRef(bad);
+  if (fixed) tone.current = good;
+  else if (missed) tone.current = bad;
+  const tint = tone.current;
+
   useEffect(() => {
-    if (shakeKey === 0) return undefined;
-    x.value = withSequence(withTiming(-5, { duration: 60 }), withTiming(5, { duration: 80 }), withTiming(0, { duration: 80 }));
-    return () => cancelAnimation(x);
-  }, [shakeKey, x]);
-  const style = useAnimatedStyle(() => ({ transform: [{ translateX: x.value }] }));
+    outcome.value = withTiming(fixed || missed ? 1 : 0, { duration: reduceMotion ? 0 : GAME_MOTION.tileColorMs, easing: bezier(GAME_EASE.ease) });
+  }, [fixed, missed, outcome, reduceMotion]);
+
+  useEffect(() => {
+    if (!fixed || reduceMotion) return undefined;
+    // макет: `again(el, 'rise')` — исправленное слово поднимается заново
+    rise.value = 0;
+    rise.value = withTiming(1, { duration: GAME_MOTION.riseMs, easing: bezier(GAME_EASE.out) });
+    return () => cancelAnimation(rise);
+  }, [fixed, reduceMotion, rise]);
+
+  const wrapStyle = useAnimatedStyle(() => ({ opacity: rise.value, transform: [{ translateY: (1 - rise.value) * GAME_MOTION.riseShift }] }));
+  // `--ok-bg` / `--no-bg` макета: тон исхода на 20 % — отдельным слоем, чтобы не зависеть от записи цвета темы
+  const chipStyle = useAnimatedStyle(() => ({ opacity: outcome.value * GAME_MOTION.tileTintOpacity }));
+  const textStyle = useAnimatedStyle(() => ({ color: interpolateColor(outcome.value, [0, 1], [ink, tint]) }));
+
   if (!tappable) return <Text style={[s.word, { color: ink }]}>{text}</Text>;
   return (
-    <Reanimated.View style={style}>
-      <Pressable accessibilityRole="button" accessibilityLabel={text} accessibilityState={{ disabled }} disabled={disabled} onPressIn={() => { void hapticTap(); }} onPress={onPress} style={[s.tap, { backgroundColor: chip }]}>
-        <Text style={[s.word, { color: fixed ? good : ink }]}>{text}</Text>
+    <Reanimated.View style={wrapStyle}>
+      <Pressable accessibilityRole="button" accessibilityLabel={text} accessibilityState={{ disabled }} disabled={disabled} hitSlop={6} onPressIn={() => { void hapticTap(); }} onPress={onPress}>
+        <Reanimated.View style={s.tap}>
+          <Reanimated.View pointerEvents="none" style={[s.tapTint, { backgroundColor: tint }, chipStyle]} />
+          <Reanimated.Text style={[s.word, textStyle]}>{text}</Reanimated.Text>
+        </Reanimated.View>
       </Pressable>
+    </Reanimated.View>
+  );
+});
+
+/** «Сканер» над диалогом — `.scan` макета: полоса 70 с переливом к белому, идёт от −70 до нижнего края ленты. */
+const HuntScan = memo(function HuntScan({ height, running }: Readonly<{ height: number; running: boolean }>) {
+  const reduceMotion = useReduceMotion();
+  const active = useRuntimeActive(running) && !reduceMotion && height > 0;
+  const t = useSharedValue(0);
+  useEffect(() => {
+    if (!active) {
+      cancelAnimation(t);
+      t.value = 0;
+      return undefined;
+    }
+    t.value = 0;
+    t.value = withRepeat(withTiming(1, { duration: GAME_MOTION.huntScanMs, easing: Easing.linear }), -1, false);
+    return () => cancelAnimation(t);
+  }, [active, t]);
+  const style = useAnimatedStyle(() => ({
+    opacity: active ? interpolate(t.value, [0, GAME_MOTION.huntScanFadeIn, GAME_MOTION.huntScanFadeOut, 1], [0, 1, 1, 0]) : 0,
+    transform: [{ translateY: interpolate(t.value, [0, 1], [-GAME_MOTION.huntScanHeight, height]) }],
+  }));
+  return (
+    <Reanimated.View pointerEvents="none" style={[s.scan, style]}>
+      <LinearGradient colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.16)', 'rgba(255,255,255,0.5)']} locations={[0, 0.8, 1]} style={StyleSheet.absoluteFill} />
     </Reanimated.View>
   );
 });
@@ -64,18 +123,26 @@ export default function GameHuntScreen() {
   const tasks = useMemo(() => huntTasksFor(studyTarget), [studyTarget]);
   const [index, setIndex] = useState(0);
   const [found, setFound] = useState(false);
-  const [shake, setShake] = useState<{ id: string; key: number }>({ id: '', key: 0 });
+  const [missId, setMissId] = useState('');
+  const [chatHeight, setChatHeight] = useState(0);
   const lock = useRef(false);
+  const missTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => { if (missTimer.current) clearTimeout(missTimer.current); }, []);
   const task = tasks[Math.min(index, Math.max(0, tasks.length - 1))];
   const isLast = index >= tasks.length - 1;
 
   const onTap = useCallback((line: number, word: number) => {
     if (lock.current || !task) return;
     if (!isHuntHit(task, line, word)) {
-      setShake((prev) => ({ id: `${line}:${word}`, key: prev.key + 1 }));
+      setMissId(`${line}:${word}`);
+      // макет: красный тон снимается через 700 мс
+      if (missTimer.current) clearTimeout(missTimer.current);
+      missTimer.current = setTimeout(() => setMissId(''), GAME_MOTION.huntMissHoldMs);
       return;
     }
     lock.current = true;
+    if (missTimer.current) clearTimeout(missTimer.current);
+    setMissId('');
     setFound(true);
     // зачем (D207, владелец 11.11): найденная ошибка — «Грамматика» +2
     noteSkillAction({ action: 'hunt_correct', itemKey: `hunt:${task.id}` });
@@ -114,9 +181,10 @@ export default function GameHuntScreen() {
           <Text style={[s.ask, { color: p.textSecondary }]}>{triLang(lang, COPY.ask)}</Text>
 
           {task ? (
-            <View style={s.chat}>
+            <View style={s.chat} onLayout={(e) => setChatHeight(e.nativeEvent.layout.height)}>
+              <HuntScan height={chatHeight} running={!found} />
               {task.lines.map((line, li) => (
-                <Reanimated.View key={`${task.id}-${li}`} entering={FadeInDown.duration(320).delay(li * 140)} style={[s.bubbleRow, line.right && s.bubbleRowRight]}>
+                <GameRise key={`${task.id}-${li}`} delayMs={li * GAME_MOTION.huntStaggerMs} style={[s.bubbleRow, line.right && s.bubbleRowRight]}>
                   <V2Card seed={li} style={s.bubble}>
                     {line.words.map((word, wi) => {
                       const isWrong = isHuntHit(task, li, wi);
@@ -126,29 +194,33 @@ export default function GameHuntScreen() {
                           text={found && isWrong ? task.fix : word}
                           tappable={line.tappable.includes(wi)}
                           fixed={found && isWrong}
-                          shakeKey={shake.id === `${li}:${wi}` ? shake.key : 0}
+                          missed={missId === `${li}:${wi}`}
                           disabled={found}
                           ink={p.text}
-                          chip={p.glassRaised}
                           good={p.correct}
+                          bad={p.wrong}
                           onPress={() => onTap(li, wi)}
                         />
                       );
                     })}
                   </V2Card>
-                </Reanimated.View>
+                </GameRise>
               ))}
             </View>
           ) : null}
 
           {task ? (
-            <V2Card seed={2} style={[s.why, { opacity: found ? 1 : 0 }]}>
-              <Ionicons name="checkmark-circle" size={20} color={p.correct} />
+            <GameReveal shown={found} style={s.whyWrap}>
+            <V2Card seed={2} style={s.why}>
+              <View style={[s.whyIcon, { backgroundColor: p.track }]}>
+                <Ionicons name="checkmark" size={20} color={p.text} />
+              </View>
               <View style={s.whyCopy}>
                 <Text style={[s.whyTitle, { color: p.text }]}>{`${task.lines[task.wrong.line].words[task.wrong.word]} → ${task.fix}`}</Text>
                 <Text style={[s.whyBody, { color: p.textSecondary }]}>{task.why}</Text>
               </View>
             </V2Card>
+            </GameReveal>
           ) : null}
 
           <View style={s.flex} />
@@ -167,12 +239,16 @@ const s = StyleSheet.create({
   pillText: { fontSize: 14, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
   ask: { marginTop: 22, textAlign: 'center', fontSize: 15, lineHeight: 20, fontWeight: '500' },
   chat: { marginTop: 22, gap: 10 },
+  scan: { position: 'absolute', top: 0, left: -GAME_MOTION.huntScanBleed, right: -GAME_MOTION.huntScanBleed, height: GAME_MOTION.huntScanHeight, zIndex: 2 },
   bubbleRow: { flexDirection: 'row', justifyContent: 'flex-start' },
   bubbleRowRight: { justifyContent: 'flex-end' },
   bubble: { maxWidth: '86%', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 6, rowGap: 4, paddingVertical: 12, paddingHorizontal: 14 },
   word: { fontSize: 18, lineHeight: 26, fontWeight: '600' },
-  tap: { paddingHorizontal: 8, borderRadius: 10, minHeight: 32, justifyContent: 'center' },
-  why: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, padding: 16, marginTop: 20 },
+  tap: { paddingHorizontal: 3, marginHorizontal: -3, borderRadius: 7, justifyContent: 'center' },
+  tapTint: { ...StyleSheet.absoluteFillObject, borderRadius: 7 },
+  whyWrap: { marginTop: 20 },
+  why: { flexDirection: 'row', alignItems: 'flex-start', gap: 12, paddingVertical: 14, paddingHorizontal: 16 },
+  whyIcon: { width: 36, height: 36, borderRadius: 11, alignItems: 'center', justifyContent: 'center' },
   whyCopy: { flex: 1, gap: 2 },
   whyTitle: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   whyBody: { fontSize: 15, lineHeight: 20, fontWeight: '400' },

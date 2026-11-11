@@ -10,9 +10,15 @@ import Reanimated, { Easing, cancelAnimation, useAnimatedStyle, useSharedValue, 
 import { GAME_EASE, GAME_MOTION } from '../../constants/gameMotion';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 
-type Props = Readonly<{ value: string; style?: StyleProp<TextStyle> }>;
+type Props = Readonly<{
+  value: string;
+  /** Если задан — подскок запускает смена этого числа, а не значения (серия подскакивает при росте, но не при обнулении). */
+  trigger?: number;
+  style?: StyleProp<TextStyle>;
+}>;
 
-function GameBumpText({ value, style }: Props) {
+function GameBumpText({ value, trigger, style }: Props) {
+  const pulse = trigger ?? value;
   const reduceMotion = useReduceMotion();
   const t = useSharedValue(0);
   const first = useRef(true);
@@ -31,7 +37,7 @@ function GameBumpText({ value, style }: Props) {
       withTiming(0, { duration: GAME_MOTION.bumpMs * (1 - GAME_MOTION.bumpPeakAt), easing: spring }),
     );
     return () => cancelAnimation(t);
-  }, [reduceMotion, t, value]);
+  }, [pulse, reduceMotion, t]);
 
   const animated = useAnimatedStyle(() => ({ transform: [{ translateY: GAME_MOTION.bumpShift * t.value }, { scale: 1 + (GAME_MOTION.bumpScale - 1) * t.value }] }));
   return <Reanimated.Text style={[style, animated]}>{value}</Reanimated.Text>;

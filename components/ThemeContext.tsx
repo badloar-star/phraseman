@@ -884,14 +884,26 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 // красил по черновику только карточку «Цвет», а фон, сегмент и кнопка «назад» читали общий ThemeContext и перекрашивались рывком при отпускании.
 // Общий контекст во время жеста трогать нельзя (🔴 06.11: перерисовка всего приложения = лаги), поэтому черновик подаётся ЛОКАЛЬНО: вложенный
 // провайдер подменяет тему только для своих детей. themeId = null — значение родителя без изменений (тот же объект, лишних перерисовок нет).
-export function ThemeDraftScope({ themeId, children }: Readonly<{ themeId: LiquidGlassThemeId | null; children: React.ReactNode }>): React.JSX.Element {
+// зачем (владелец 11.11, сразу после первой версии: «оно теперь подтормаживает — ползунки»): пятна света фона — полноэкранный SVG с радиальными
+// градиентами, его перерисовка на каждый шаг ползунка — самое тяжёлое на экране. Поэтому у пятен свой, более редкий черновик (glowThemeId):
+// градиент фона, карточки и текст идут за пальцем каждый кадр, а мягкие пятна догоняют несколько раз в секунду (на глаз незаметно — они размытые).
+const ThemeGlowDraftContext = createContext<LiquidGlassThemeId | null>(null);
+/** Черновая тема для пятен света фона (V2Backdrop); null — пятна рисуются по теме контекста. */
+export const useThemeGlowDraftId = (): LiquidGlassThemeId | null => useContext(ThemeGlowDraftContext);
+
+export function ThemeDraftScope({ themeId, glowThemeId, children }: Readonly<{ themeId: LiquidGlassThemeId | null; glowThemeId?: LiquidGlassThemeId | null; children: React.ReactNode }>): React.JSX.Element {
   const parent = useContext(ThemeContext);
+  const glowId = themeId === null ? null : (glowThemeId === undefined ? themeId : glowThemeId);
   const value = useMemo<ThemeCtx>(() => {
     if (themeId === null || themeId === parent.liquidGlassThemeId) return parent;
     const variant = { level: parent.liquidGlassColorLevel, appearance: parent.liquidGlassAppearance, intensity: parent.liquidGlassIntensity };
     return { ...parent, liquidGlassThemeId: themeId, theme: makeLiquidGlassTheme(themeId, DARK, variant) };
   }, [parent, themeId]);
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider value={value}>
+      <ThemeGlowDraftContext.Provider value={glowId}>{children}</ThemeGlowDraftContext.Provider>
+    </ThemeContext.Provider>
+  );
 }
 
 export const useTheme = () => {

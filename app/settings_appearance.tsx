@@ -9,7 +9,7 @@
 // зачем (владелец 05.11 ~20:55 «КАК ПО МАКЕТУ»): размеры, значки и подписи — 1:1 с макетом (☀/☾ в сегменте, замок у «Plus», значок у «Вернуть стандартный»,
 // кромка дорожки, 15 px у чисел). Круг «назад» остаётся на общем месте приложения (правило владельца «назад везде в одной точке»), заголовок — под ним.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { Profiler, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
@@ -39,6 +39,8 @@ import { openPremiumPaywall } from './paywall_navigation';
 const LOG = '[THEME-SLIDERS]';
 const HUE_MAX = 359;
 const SAT_MAX = 100;
+/** Как часто во время жеста перекрашиваются пятна света фона (мс). Остальной экран — каждый кадр. */
+const GLOW_PREVIEW_MS = 140;
 
 const T = {
   title: { ru: 'Оформление', uk: 'Оформлення', en: 'Appearance', es: 'Apariencia', 'pt-BR': 'Aparência', vi: 'Giao diện', id: 'Tampilan', tr: 'Görünüm', pl: 'Wygląd' },
@@ -98,7 +100,21 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
   // ThemeContext и диск — ОДИН раз при отпускании (commit → setLiquidGlassThemeId; запись на диск — фоном в persister ThemeContext).
   const pendingRef = useRef<ThemeTune | null>(null);
   const rafRef = useRef<number | null>(null);
-  useEffect(() => () => { if (rafRef.current !== null) cancelAnimationFrame(rafRef.current); }, []);
+  // зачем (владелец 11.11 «оно теперь подтормаживает — ползунки»): пятна света фона (полноэкранный SVG) красятся по отдельному черновику не чаще
+  // раза в GLOW_PREVIEW_MS; последний шаг догоняет таймером, чтобы при остановке пальца пятна не оставались от прошлого цвета.
+  const [glowDraft, setGlowDraft] = useState<ThemeTune | null>(null);
+  const glowAtRef = useRef(0);
+  const glowTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // зачем (правило «сперва логи»): куда уходит время шага — расчёт цветов и перерисовка экрана — одной строкой на жест ([THEME-SLIDERS] perf_split)
+  const splitRef = useRef({ commits: 0, commitSumMs: 0, commitMaxMs: 0, glowUpdates: 0 });
+  const onProfile = useCallback((_id: string, _phase: string, actualMs: number) => {
+    const s = splitRef.current;
+    splitRef.current = { ...s, commits: s.commits + 1, commitSumMs: s.commitSumMs + actualMs, commitMaxMs: Math.max(s.commitMaxMs, actualMs) };
+  }, []);
+  useEffect(() => () => {
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    if (glowTimerRef.current) clearTimeout(glowTimerRef.current);
+  }, []);
   const preview = useCallback((next: ThemeTune, target: string) => {
     perfRef.current?.preview(target);
     pendingRef.current = next;
@@ -106,14 +122,31 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
     rafRef.current = requestAnimationFrame(() => {
       rafRef.current = null;
       const n = pendingRef.current;
-      if (n) setDraft(n);
+      if (!n) return;
+      setDraft(n);
+      const pushGlow = () => {
+        glowTimerRef.current = null;
+        const latest = pendingRef.current;
+        if (!latest) return;
+        glowAtRef.current = performance.now();
+        splitRef.current = { ...splitRef.current, glowUpdates: splitRef.current.glowUpdates + 1 };
+        setGlowDraft(latest);
+      };
+      const wait = GLOW_PREVIEW_MS - (performance.now() - glowAtRef.current);
+      if (wait <= 0) pushGlow();
+      else if (glowTimerRef.current === null) glowTimerRef.current = setTimeout(pushGlow, wait);
     });
   }, []);
   const commit = useCallback((next: ThemeTune, why: string) => {
     const id = themeTuneId(next);
     console.log(LOG, 'commit', JSON.stringify({ why, from: String(liquidGlassThemeId), to: id, appearance: liquidGlassAppearance })); // guard-ok: одна строка на запись
     if (rafRef.current !== null) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
+    if (glowTimerRef.current) { clearTimeout(glowTimerRef.current); glowTimerRef.current = null; }
+    const split = splitRef.current;
+    splitRef.current = { commits: 0, commitSumMs: 0, commitMaxMs: 0, glowUpdates: 0 };
+    console.log(LOG, 'perf_split', JSON.stringify({ why, screenCommits: split.commits, commitAvgMs: split.commits ? Math.round((split.commitSumMs / split.commits) * 10) / 10 : 0, commitMaxMs: Math.round(split.commitMaxMs * 10) / 10, glowUpdates: split.glowUpdates })); // guard-ok: одна строка на жест
     pendingRef.current = null;
+    setGlowDraft(null);
     setDraft(null);
     setLiquidGlassThemeId(id);
     perfRef.current?.end(why, true);
@@ -182,7 +215,8 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
   // зачем (владелец 11.11: «ползунок должен реально играть роль ползунка»): раньше за пальцем красилась только карточка, фон и остальное — рывком
   // при отпускании. ThemeDraftScope подаёт черновик всему ЭТОМУ экрану (фон, сегмент, «назад», шторка) — цвет течёт за пальцем; остальное приложение не трогается.
   return (
-    <ThemeDraftScope themeId={draft ? themeTuneId(draft) : null}>
+    <ThemeDraftScope themeId={draft ? themeTuneId(draft) : null} glowThemeId={glowDraft ? themeTuneId(glowDraft) : null}>
+    <Profiler id="settings_appearance" onRender={onProfile}>
     <ScreenGradient>
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
@@ -238,6 +272,7 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
       <AppearancePlusSheet lang={lang} visible={plusSheet} onPlus={onSheetPlus} onDismiss={onSheetDismiss} />
       <ScreenBackButton screen="settings_appearance" testID="appearance-back" accessibilityLabel={triLang(lang, T.title)} onPress={() => safeRouterBack(router, '/(tabs)/settings' as never)} />
     </ScreenGradient>
+    </Profiler>
     </ThemeDraftScope>
   );
 }

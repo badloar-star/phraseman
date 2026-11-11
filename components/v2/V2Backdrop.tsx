@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 import { LinearGradient } from '../SafeLinearGradient';
-import { useTheme } from '../ThemeContext';
+import { useTheme, useThemeGlowDraftId } from '../ThemeContext';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import Animated, { Easing, FadeIn, useReducedMotion } from 'react-native-reanimated';
 import { useAfterFirstFrame } from '../../hooks/use-after-first-frame';
@@ -82,7 +82,13 @@ function V2Backdrop({ deferGlow = false }: V2BackdropProps) {
   // градиентные темы (04.10, пятна видны при любой насыщенности). Решает сама палитра:
   // есть непрозрачное пятно — рисуем один статичный слой, нет — слоя нет вовсе.
   const tokens = liquidGlassTokens(liquidGlassThemeId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity });
-  const glow = tokens.bgGlow.some(c => opacityOf(c) > 0) ? tokens.bgGlow : null;
+  // зачем (владелец 11.11 «ползунки подтормаживают»): на экране «Оформление» пятна красятся по своему, более редкому черновику — полноэкранный SVG
+  // не перерисовывается на каждый шаг ползунка (ThemeDraftScope в ThemeContext). Вне этого экрана черновика нет и всё работает как раньше.
+  const glowDraftId = useThemeGlowDraftId();
+  const glowTokens = glowDraftId !== null && glowDraftId !== liquidGlassThemeId
+    ? liquidGlassTokens(glowDraftId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity })
+    : tokens;
+  const glow = glowTokens.bgGlow.some(c => opacityOf(c) > 0) ? glowTokens.bgGlow : null;
   // зачем (ускорение первого кадра Главной; координатор 22.10: «пятна НЕ убирать — на первом кадре их нет, со 2-го тихо проявляются
   // тем же FadeIn, что и герой»): SVG трёх радиалов не растеризуется на первом кадре; смонтирован один раз — смена вкладок его не трогает
   const glowReady = useAfterFirstFrame('backdrop:glow', deferGlow && glow !== null);

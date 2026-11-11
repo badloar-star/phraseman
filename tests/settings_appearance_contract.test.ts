@@ -37,11 +37,20 @@ describe('settings_appearance: контракт', () => {
   // зачем (владелец 11.11: «ползунки меняют цвет резко… хочу, чтобы ползунок реально играл роль ползунка»): черновик красит ВЕСЬ экран
   // (фон, сегмент, «назад»), а не одну карточку — через локальный ThemeDraftScope; общий ThemeContext во время жеста по-прежнему не трогается.
   it('жест: черновик подаётся всему экрану локально (ThemeDraftScope), общий контекст не меняется', () => {
-    expect(src).toContain('<ThemeDraftScope themeId={draft ? themeTuneId(draft) : null}>');
+    expect(src).toContain('<ThemeDraftScope themeId={draft ? themeTuneId(draft) : null} glowThemeId={glowDraft ? themeTuneId(glowDraft) : null}>');
+    // зачем (владелец 11.11 «оно теперь подтормаживает — ползунки»): пятна света фона (полноэкранный SVG) — по своему редкому черновику, не на каждый шаг
+    const previewBody = src.slice(src.indexOf('const preview = useCallback'), src.indexOf('const commit = useCallback'));
+    expect(src).toContain('const GLOW_PREVIEW_MS = 140;');
+    expect(previewBody).toContain('const wait = GLOW_PREVIEW_MS - (performance.now() - glowAtRef.current);');
+    expect(previewBody).toContain('else if (glowTimerRef.current === null) glowTimerRef.current = setTimeout(pushGlow, wait);');
+    expect(src).toContain("console.log(LOG, 'perf_split'");
+    const backdrop = fs.readFileSync(path.join(__dirname, '..', 'components/v2/V2Backdrop.tsx'), 'utf8').replace(/\r\n/g, '\n');
+    expect(backdrop).toContain('const glowDraftId = useThemeGlowDraftId();');
+    expect(backdrop).toContain('const glow = glowTokens.bgGlow.some(c => opacityOf(c) > 0) ? glowTokens.bgGlow : null;');
     expect(src.indexOf('<ThemeDraftScope')).toBeLessThan(src.indexOf('<ScreenGradient>'));
     expect(src.indexOf('</ScreenGradient>')).toBeLessThan(src.indexOf('</ThemeDraftScope>'));
     const ctx = fs.readFileSync(path.join(__dirname, '..', 'components/ThemeContext.tsx'), 'utf8').replace(/\r\n/g, '\n');
-    const scope = ctx.slice(ctx.indexOf('export function ThemeDraftScope'), ctx.indexOf('export const useTheme'));
+    const scope = ctx.slice(ctx.indexOf('export function ThemeDraftScope'), ctx.indexOf('export const useTheme = '));
     expect(scope).toContain('if (themeId === null || themeId === parent.liquidGlassThemeId) return parent;');
     expect(scope).toContain('makeLiquidGlassTheme(themeId, DARK, variant)');
     expect(scope).not.toMatch(/setPreviewLiquidGlassThemeId|setLiquidGlassThemeId|useState/);

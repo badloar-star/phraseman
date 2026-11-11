@@ -5,7 +5,7 @@
 // переносилась на 3–4 строки и вылезала за карточку. Правило то же, что у карточек (владелец 18.10): длиннее текст или уже место —
 // кегль меньше, перенос по словам, без «…» и без adjustsFontSizeToFit. То, что помещается, остаётся 34 и 22 — вид совпадает с макетом.
 import { effectiveFontScale } from '../../constants/font_scale_cap';
-import { estimateWrappedLines, fitPhraseFontSize } from './fit_phrase_font';
+import { estimateWrappedLines } from './fit_phrase_font';
 
 export const TRUE_FALSE_WORD_SIZE = 34;
 export const TRUE_FALSE_WORD_LINE = 40;
@@ -17,9 +17,6 @@ export const TRUE_FALSE_TRANSLATION_MIN = 15;
 export const TRUE_FALSE_SIDE_PADDING = 40;
 /** Высота под оба текста: зона 210 − поля 40 − черта с отступами 29. */
 export const TRUE_FALSE_TEXT_HEIGHT = 141;
-/** Перевод получает не больше двух строк макетного кегля (по оценке подгонки 22 × 1.3 × 2 с запасом). */
-export const TRUE_FALSE_TRANSLATION_MAX_HEIGHT = 60;
-
 export type TrueFalseFit = Readonly<{ wordSize: number; wordLine: number; translationSize: number; translationLine: number }>;
 
 const line = (size: number, baseSize: number, baseLine: number): number =>
@@ -28,28 +25,27 @@ const line = (size: number, baseSize: number, baseLine: number): number =>
 export function trueFalseFit(input: Readonly<{ word: string; translation: string; cardWidth: number; fontScale: number }>): TrueFalseFit {
   const scale = effectiveFontScale(input.fontScale);
   const widthPx = input.cardWidth - TRUE_FALSE_SIDE_PADDING;
-  const translationSize = fitPhraseFontSize({
-    text: input.translation,
-    baseSize: TRUE_FALSE_TRANSLATION_SIZE,
-    minSize: TRUE_FALSE_TRANSLATION_MIN,
-    widthPx,
-    maxHeightPx: TRUE_FALSE_TRANSLATION_MAX_HEIGHT,
-    fontScale: scale,
-  });
-  const translationLine = line(translationSize, TRUE_FALSE_TRANSLATION_SIZE, TRUE_FALSE_TRANSLATION_LINE);
-  // зачем: слову достаётся то, что осталось после перевода, — короткий перевод оставляет слову больше места.
-  const translationHeight = widthPx > 0 && input.translation
-    ? estimateWrappedLines(input.translation, translationSize, widthPx, scale) * translationLine * scale
-    : translationLine * scale;
-  const wordSize = fitPhraseFontSize({
-    text: input.word,
-    baseSize: TRUE_FALSE_WORD_SIZE,
-    minSize: TRUE_FALSE_WORD_MIN,
-    widthPx,
-    maxHeightPx: Math.max(TRUE_FALSE_WORD_LINE, TRUE_FALSE_TEXT_HEIGHT - translationHeight),
-    fontScale: scale,
-  });
-  return { wordSize, wordLine: line(wordSize, TRUE_FALSE_WORD_SIZE, TRUE_FALSE_WORD_LINE), translationSize, translationLine };
+  const at = (wordSize: number): TrueFalseFit => {
+    // зачем: слово и перевод уменьшаются ВМЕСТЕ, в пропорции макета 34 : 22. Раздельная подгонка давала перекос: на более узком экране
+    // перевод сжимался до минимума, освобождал место, и слово становилось крупнее, чем на широком (поймано тестом на монотонность).
+    const translationSize = Math.max(TRUE_FALSE_TRANSLATION_MIN, Math.round((wordSize * TRUE_FALSE_TRANSLATION_SIZE) / TRUE_FALSE_WORD_SIZE));
+    return {
+      wordSize,
+      wordLine: line(wordSize, TRUE_FALSE_WORD_SIZE, TRUE_FALSE_WORD_LINE),
+      translationSize,
+      translationLine: line(translationSize, TRUE_FALSE_TRANSLATION_SIZE, TRUE_FALSE_TRANSLATION_LINE),
+    };
+  };
+  if (widthPx <= 0) return at(TRUE_FALSE_WORD_SIZE);
+  for (let wordSize = TRUE_FALSE_WORD_SIZE; wordSize > TRUE_FALSE_WORD_MIN; wordSize -= 1) {
+    const fit = at(wordSize);
+    const height =
+      estimateWrappedLines(input.word, fit.wordSize, widthPx, scale) * fit.wordLine * scale +
+      estimateWrappedLines(input.translation, fit.translationSize, widthPx, scale) * fit.translationLine * scale;
+    if (height <= TRUE_FALSE_TEXT_HEIGHT) return fit;
+  }
+  // не помещается и на минимуме — минимум; дальше текст переносится как есть (без «…» и без adjustsFontSizeToFit)
+  return at(TRUE_FALSE_WORD_MIN);
 }
 
 /* expo-router: app/ files are treated as routes and need a default export. */

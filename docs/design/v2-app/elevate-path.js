@@ -129,6 +129,7 @@
       $('#hot').style.display = 'none'; later(st[4] || 600, () => go(1));
     }, true);
     ph().addEventListener('scroll', ring, true);
+    ph().addEventListener('el-done', () => { log('игра сообщила «готово» — перехожу дальше'); later(1400, () => go(1)); });
     document.addEventListener('click', (e) => {
       const th = e.target.closest('[data-theme-set]'); if (th) { document.body.dataset.theme = th.dataset.themeSet; document.querySelectorAll('[data-theme-set]').forEach((x) => x.classList.toggle('on', x === th)); return; }
       const b = e.target.closest('[data-r]'); if (b) { r = +b.dataset.r; i = 0; show(); return; }

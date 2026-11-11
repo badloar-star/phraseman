@@ -67,7 +67,11 @@
       if (ok) { n += 1; if (ghost) { $(ph, '.rn.me').style.transform = `translateX(${Math.min(1, n / 6) * W()}px)`; $(ph, '.mn').textContent = n; } }
       else { lives -= 1; $$(ph, '.hearts svg')[lives]?.classList.add('lost'); }
       log(ghost ? 'гонка:' : 'блиц:', q.q, ok ? 'верно' : 'ошибка', 'сердец', lives);
-      if (r < 5 && lives > 0) G.after(ok ? 800 : 1500, () => { r += 1; round(); });
+      // зачем (владелец 11.11: «сделал 2, дальше зависло, а время идёт»): игра обрывалась после шести ответов или трёх ошибок и молчала.
+      // Теперь вопросы идут по кругу; после восьми ответов (в гонке — ещё и после трёх ошибок) явное «Минута вышла» и сигнал «готово».
+      const over = ghost ? (lives <= 0 || r >= 7) : r >= 7;
+      if (!over) { G.after(ok ? 800 : 1500, () => { r += 1; round(); }); return; }
+      G.after(900, () => { $(ph, '.q').textContent = 'Минута вышла'; $(ph, '.qcard .k').textContent = `Верных: ${n}`; ans.innerHTML = ''; bar.getAnimations().forEach((x) => x.finish()); clearInterval(tick); $(ph, '.tm').textContent = '0:00'; log('блиц: конец, верных', n); ph.dispatchEvent(new CustomEvent('el-done', { bubbles: true })); });
     };
     ans.addEventListener('click', (e) => { const a = e.target.closest('.at'); if (a) pick(+a.dataset.i); });
     bar.animate([{ transform: 'scaleX(1)' }, { transform: 'scaleX(0)' }], { duration: 60000, fill: 'forwards', easing: 'linear' });

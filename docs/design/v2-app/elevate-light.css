@@ -7,83 +7,85 @@ body[data-look="light"] {
   --ok: #17794A; --ok-bg: #D6F2E1; --no: #C0392B; --no-bg: #FBDFDB; --acc: #2F4A6B;
   --glass: #F8F9FE; --glass-2: #FFFFFF; --soft: rgba(20,27,43,.07); --shd: 0 12px 28px -14px rgba(40,56,96,.4), 0 1px 2px rgba(40,56,96,.08);
 }
-body[data-look="light"] .ph.sky, body[data-look="light"] .ph.sky.deep { background: linear-gradient(155deg, #9FE0EA 0%, #BBD6F2 26%, #CFC3F3 50%, #B6D2EE 74%, #93DBE6 100%); color: var(--ink); }
-body[data-look="light"] .sky :is(.sun, .haze, .stars, .vig) { display: none; }
-body[data-look="light"] .sky .sb { color: var(--ink); } body[data-look="light"] .sky .sb svg { filter: invert(1); }
-body[data-look="light"] .sky .sb .bat { border-color: var(--ink); } body[data-look="light"] .sky .sb .bat::after { background: var(--ink); }
-body[data-look="light"] .sky .hi { background: var(--ink); }
+/* зачем: «ночные» экраны (визитки) остаются тёмными и в светлом оформлении — возвращаем им тёмные значения переменных, иначе стекло и текст белеют */
+body[data-look="light"] .sky.night { --ink2: rgba(255,255,255,.68); --ink3: rgba(255,255,255,.44); --glass: rgba(255,255,255,.085); --glass-2: rgba(255,255,255,.14); --ok: #8FE3B0; --ok-bg: rgba(111,208,140,.20); --no: #FFB0A6; --no-bg: rgba(242,118,107,.20); --acc: #C1C4FF; color: #fff; }
+body[data-look="light"] .ph.sky:not(.night), body[data-look="light"] .ph.sky.deep:not(.night) { background: linear-gradient(155deg, #9FE0EA 0%, #BBD6F2 26%, #CFC3F3 50%, #B6D2EE 74%, #93DBE6 100%); color: var(--ink); }
+body[data-look="light"] .sky:not(.night) :is(.sun, .haze, .stars, .vig) { display: none; }
+body[data-look="light"] .sky:not(.night) .sb { color: var(--ink); } body[data-look="light"] .sky:not(.night) .sb svg { filter: invert(1); }
+body[data-look="light"] .sky:not(.night) .sb .bat { border-color: var(--ink); } body[data-look="light"] .sky:not(.night) .sb .bat::after { background: var(--ink); }
+body[data-look="light"] .sky:not(.night) .hi { background: var(--ink); }
 
 /* поверхности: белые карточки с мягкой тенью вместо стекла */
-body[data-look="light"] .sky :is(.gl, .at, .gbtn, .gpill, .cta2, .key, .hints .hn, .bub, .sh2) { background: var(--glass); color: var(--ink); box-shadow: var(--shd); -webkit-backdrop-filter: none; backdrop-filter: none; }
-body[data-look="light"] .sky :is(.gbtn, .gpill, .at, .key, .cta2) { background: #fff; }
-body[data-look="light"] .sky .wcta { background: var(--dark); color: #fff; box-shadow: 0 14px 26px -12px rgba(20,27,43,.6); }
-body[data-look="light"] .sky .wcta.dis { background: rgba(20,27,43,.16); color: rgba(20,27,43,.45); box-shadow: none; }
-body[data-look="light"] .sky .wcta .gpill { background: rgba(255,255,255,.16) !important; color: #fff !important; box-shadow: none; }
-body[data-look="light"] .sky :is(.cell, .lt2, .tline, .seg2, .tabs3, .fld, .fld2, .slot, .exm, .stat2 div, .recs div, .steps3 div, .miles div, .lvchips div, .chipr, .tl, .hrow .ic, .lv .n) { background: var(--soft); box-shadow: none; color: var(--ink); }
-body[data-look="light"] .sky :is(.seg2 div, .tabs3 div) { background: transparent; color: var(--ink2); }
-body[data-look="light"] .sky :is(.seg2 div.on, .tabs3 div.on, .steps3 div.on, .key.hit, .gbtn.on, .acts .gpill.on, .upt, .newtag, .protag) { background: var(--dark); color: #fff; }
-body[data-look="light"] .sky :is(.cell.full, .lt2.in) { background: #fff; box-shadow: var(--shd); }
-body[data-look="light"] .sky :is(.at.ok, .steps3 div.dn, .cells.ok .cell, .tline.ok) { background: var(--ok-bg); color: var(--ok); }
-body[data-look="light"] .sky :is(.at.no, .lt2.bad) { background: var(--no-bg); color: var(--no); }
-body[data-look="light"] .sky .at.sel { background: #E7EDF8; box-shadow: inset 0 0 0 2px var(--navy); }
-body[data-look="light"] .sky .lt2.cur { box-shadow: inset 0 0 0 2px var(--navy); }
-body[data-look="light"] .sky .bin.hot { background: #E3EAF7; }
-body[data-look="light"] .sky .mem .mc.ask { background: #DCE6F6; }
-body[data-look="light"] .sky :is(.wr.say, .vrow.new, .lv.cur, .mixrow .mx.on) { background: #fff; box-shadow: 0 0 0 2px var(--navy), var(--shd); }
-body[data-look="light"] .sky .vrow.new span { color: var(--ink); }
-body[data-look="light"] .sky .bub.r { background: var(--navy); color: #fff; } body[data-look="light"] .sky .bub.r .tr { color: rgba(255,255,255,.7); }
-body[data-look="light"] .sky .bub .x.fix { background: var(--ok-bg); color: var(--ok); }
-body[data-look="light"] .sky .micb, body[data-look="light"] .sky .micw .mb { background: var(--dark); color: #fff; }
-body[data-look="light"] .sky .micw i { background: rgba(47,74,107,.25); }
-body[data-look="light"] .sky .typing i { background: var(--navy); }
-body[data-look="light"] .sky .dim2 { background: rgba(20,27,43,.35); }
-body[data-look="light"] .sky .sh2 .grab2 { background: rgba(20,27,43,.2); }
+body[data-look="light"] .sky:not(.night) :is(.gl, .at, .gbtn, .gpill, .cta2, .key, .hints .hn, .bub, .sh2) { background: var(--glass); color: var(--ink); box-shadow: var(--shd); -webkit-backdrop-filter: none; backdrop-filter: none; }
+body[data-look="light"] .sky:not(.night) :is(.gbtn, .gpill, .at, .key, .cta2) { background: #fff; }
+body[data-look="light"] .sky:not(.night) .wcta { background: var(--dark); color: #fff; box-shadow: 0 14px 26px -12px rgba(20,27,43,.6); }
+body[data-look="light"] .sky:not(.night) .wcta.dis { background: rgba(20,27,43,.16); color: rgba(20,27,43,.45); box-shadow: none; }
+body[data-look="light"] .sky:not(.night) .wcta .gpill { background: rgba(255,255,255,.16) !important; color: #fff !important; box-shadow: none; }
+body[data-look="light"] .sky:not(.night) :is(.cell, .lt2, .tline, .seg2, .tabs3, .fld, .fld2, .slot, .exm, .stat2 div, .recs div, .steps3 div, .miles div, .lvchips div, .chipr, .tl, .hrow .ic, .lv .n) { background: var(--soft); box-shadow: none; color: var(--ink); }
+body[data-look="light"] .sky:not(.night) :is(.seg2 div, .tabs3 div) { background: transparent; color: var(--ink2); }
+body[data-look="light"] .sky:not(.night) :is(.seg2 div.on, .tabs3 div.on, .steps3 div.on, .key.hit, .gbtn.on, .acts .gpill.on, .upt, .newtag, .protag) { background: var(--dark); color: #fff; }
+body[data-look="light"] .sky:not(.night) :is(.cell.full, .lt2.in) { background: #fff; box-shadow: var(--shd); }
+body[data-look="light"] .sky:not(.night) :is(.at.ok, .steps3 div.dn, .cells.ok .cell, .tline.ok) { background: var(--ok-bg); color: var(--ok); }
+body[data-look="light"] .sky:not(.night) :is(.at.no, .lt2.bad) { background: var(--no-bg); color: var(--no); }
+body[data-look="light"] .sky:not(.night) .at.sel { background: #E7EDF8; box-shadow: inset 0 0 0 2px var(--navy); }
+body[data-look="light"] .sky:not(.night) .lt2.cur { box-shadow: inset 0 0 0 2px var(--navy); }
+body[data-look="light"] .sky:not(.night) .bin.hot { background: #E3EAF7; }
+body[data-look="light"] .sky:not(.night) .mem .mc.ask { background: #DCE6F6; }
+body[data-look="light"] .sky:not(.night) :is(.wr.say, .vrow.new, .lv.cur, .mixrow .mx.on) { background: #fff; box-shadow: 0 0 0 2px var(--navy), var(--shd); }
+body[data-look="light"] .sky:not(.night) .vrow.new span { color: var(--ink); }
+body[data-look="light"] .sky:not(.night) .bub.r { background: var(--navy); color: #fff; } body[data-look="light"] .sky:not(.night) .bub.r .tr { color: rgba(255,255,255,.7); }
+body[data-look="light"] .sky:not(.night) .bub .x.fix { background: var(--ok-bg); color: var(--ok); }
+body[data-look="light"] .sky:not(.night) .micb, body[data-look="light"] .sky:not(.night) .micw .mb { background: var(--dark); color: #fff; }
+body[data-look="light"] .sky:not(.night) .micw i { background: rgba(47,74,107,.25); }
+body[data-look="light"] .sky:not(.night) .typing i { background: var(--navy); }
+body[data-look="light"] .sky:not(.night) .dim2 { background: rgba(20,27,43,.35); }
+body[data-look="light"] .sky:not(.night) .sh2 .grab2 { background: rgba(20,27,43,.2); }
 
 /* полосы, точки, шкалы */
-body[data-look="light"] .sky :is(.bar, .tbar, .beam, .segs i, .pkdots i, .dots i, .pips i, .tempo i, .race .ln) { background: rgba(20,27,43,.12); }
-body[data-look="light"] .sky :is(.bar i, .tbar i, .beam i, .segs i::after, .pkdots i.d, .dots i.on, .pips i.on, .tempo i.on) { background: var(--navy); box-shadow: none; }
-body[data-look="light"] .sky :is(.bar i.was, .rec.old .bar i, .cmp .bar.oth i, .pkdots i.c) { background: rgba(47,74,107,.4); }
-body[data-look="light"] .sky .pkdots i.m { background: var(--no); }
-body[data-look="light"] .sky .ringw .bg { stroke: rgba(20,27,43,.1); } body[data-look="light"] .sky .ringw .fg { stroke: var(--navy); filter: none; }
-body[data-look="light"] .sky :is(.inter .cnt svg, .bigring svg, .goalr svg, .curve svg) { filter: invert(1) hue-rotate(180deg); }
-body[data-look="light"] .sky .curve .pin, body[data-look="light"] .sky .curve .pin::before { background: var(--navy); box-shadow: none; }
-body[data-look="light"] .sky .heat2 i { filter: invert(1); }
-body[data-look="light"] .sky .b7 i { background: rgba(47,74,107,.3); } body[data-look="light"] .sky .b7 .best i { background: var(--navy); box-shadow: none; }
-body[data-look="light"] .sky .wave i { background: rgba(47,74,107,.35); } body[data-look="light"] .sky .wave.live i { background: var(--navy); }
-body[data-look="light"] .sky .wr .wv i { background: rgba(47,74,107,.45); } body[data-look="light"] .sky .wr.say .wv i { background: var(--navy); }
-body[data-look="light"] .sky .hearts svg { color: var(--no); }
-body[data-look="light"] .sky .trail svg path { stroke: var(--navy); } body[data-look="light"] .sky .trail svg path:first-child { stroke: rgba(20,27,43,.25); }
-body[data-look="light"] .sky .trail svg circle { fill: var(--navy); }
-body[data-look="light"] .sky .scan { background: linear-gradient(180deg, transparent, rgba(47,74,107,.12) 80%, rgba(47,74,107,.45)); }
-body[data-look="light"] .sky :is(.tk + .tk, .sk + .sk, .sk2 + .sk2)::before { background: rgba(20,27,43,.1); }
-body[data-look="light"] .sky .tk .o { box-shadow: inset 0 0 0 2px rgba(47,74,107,.45); } body[data-look="light"] .sky .tk.dn .o { background: var(--navy); box-shadow: none; } body[data-look="light"] .sky .tk .o svg { color: #fff; }
-body[data-look="light"] .sky :is(.tk .nm, .sk .nm, .sk2 .nm, .lvb b, .sk2 .lv2 b, .lvr b, .cmp b, .rec b, .miles b, .lvchips b, .why .tx b, .hrow .e) { color: var(--ink); }
-body[data-look="light"] .sky .tk:not(.hl) .nm { color: var(--ink2); }
+body[data-look="light"] .sky:not(.night) :is(.bar, .tbar, .beam, .segs i, .pkdots i, .dots i, .pips i, .tempo i, .race .ln) { background: rgba(20,27,43,.12); }
+body[data-look="light"] .sky:not(.night) :is(.bar i, .tbar i, .beam i, .segs i::after, .pkdots i.d, .dots i.on, .pips i.on, .tempo i.on) { background: var(--navy); box-shadow: none; }
+body[data-look="light"] .sky:not(.night) :is(.bar i.was, .rec.old .bar i, .cmp .bar.oth i, .pkdots i.c) { background: rgba(47,74,107,.4); }
+body[data-look="light"] .sky:not(.night) .pkdots i.m { background: var(--no); }
+body[data-look="light"] .sky:not(.night) .ringw .bg { stroke: rgba(20,27,43,.1); } body[data-look="light"] .sky:not(.night) .ringw .fg { stroke: var(--navy); filter: none; }
+body[data-look="light"] .sky:not(.night) :is(.inter .cnt svg, .bigring svg, .goalr svg, .curve svg) { filter: invert(1) hue-rotate(180deg); }
+body[data-look="light"] .sky:not(.night) .curve .pin, body[data-look="light"] .sky:not(.night) .curve .pin::before { background: var(--navy); box-shadow: none; }
+body[data-look="light"] .sky:not(.night) .heat2 i { filter: invert(1); }
+body[data-look="light"] .sky:not(.night) .b7 i { background: rgba(47,74,107,.3); } body[data-look="light"] .sky:not(.night) .b7 .best i { background: var(--navy); box-shadow: none; }
+body[data-look="light"] .sky:not(.night) .wave i { background: rgba(47,74,107,.35); } body[data-look="light"] .sky:not(.night) .wave.live i { background: var(--navy); }
+body[data-look="light"] .sky:not(.night) .wr .wv i { background: rgba(47,74,107,.45); } body[data-look="light"] .sky:not(.night) .wr.say .wv i { background: var(--navy); }
+body[data-look="light"] .sky:not(.night) .hearts svg { color: var(--no); }
+body[data-look="light"] .sky:not(.night) .trail svg path { stroke: var(--navy); } body[data-look="light"] .sky:not(.night) .trail svg path:first-child { stroke: rgba(20,27,43,.25); }
+body[data-look="light"] .sky:not(.night) .trail svg circle { fill: var(--navy); }
+body[data-look="light"] .sky:not(.night) .scan { background: linear-gradient(180deg, transparent, rgba(47,74,107,.12) 80%, rgba(47,74,107,.45)); }
+body[data-look="light"] .sky:not(.night) :is(.tk + .tk, .sk + .sk, .sk2 + .sk2)::before { background: rgba(20,27,43,.1); }
+body[data-look="light"] .sky:not(.night) .tk .o { box-shadow: inset 0 0 0 2px rgba(47,74,107,.45); } body[data-look="light"] .sky:not(.night) .tk.dn .o { background: var(--navy); box-shadow: none; } body[data-look="light"] .sky:not(.night) .tk .o svg { color: #fff; }
+body[data-look="light"] .sky:not(.night) :is(.tk .nm, .sk .nm, .sk2 .nm, .lvb b, .sk2 .lv2 b, .lvr b, .cmp b, .rec b, .miles b, .lvchips b, .why .tx b, .hrow .e) { color: var(--ink); }
+body[data-look="light"] .sky:not(.night) .tk:not(.hl) .nm { color: var(--ink2); }
 
 /* звезда навыков */
-body[data-look="light"] .sky :is(.starsvg, .radar) .grid { stroke: rgba(20,27,43,.16); } body[data-look="light"] .sky :is(.starsvg, .radar) .ax { stroke: rgba(20,27,43,.1); }
-body[data-look="light"] .sky :is(.starsvg, .radar) .shape { fill: rgba(47,74,107,.24); stroke: var(--navy); filter: none; }
-body[data-look="light"] .sky .starsvg .shape2 { fill: rgba(20,27,43,.05); stroke: rgba(20,27,43,.5); }
-body[data-look="light"] .sky :is(.starbox, .radar) .lb.on { color: var(--ink); } body[data-look="light"] .sky .radar .pt { fill: var(--navy); }
-body[data-look="light"] .sky .hugen { text-shadow: none; } body[data-look="light"] .sky .burst i { background: var(--navy); } body[data-look="light"] .sky .pulse { box-shadow: 0 0 0 2px rgba(47,74,107,.5); }
-body[data-look="light"] .sky :is(.say, .spk) span { color: rgba(20,27,43,.3); } body[data-look="light"] .sky .spk span.hit { color: var(--ink); text-shadow: none; }
-body[data-look="light"] .sky .line span { text-shadow: none; } body[data-look="light"] .sky .sent.done .w:not(.drop) { animation: none; }
-body[data-look="light"] .sky :is(.th .q em, .theory .q em, .pass mark) { background: rgba(47,74,107,.14); color: var(--ink); }
-body[data-look="light"] .sky .gap .hole { background: var(--soft); box-shadow: none; } body[data-look="light"] .sky .gap .hole.set { color: var(--ink); background: #fff; }
-body[data-look="light"] .sky .sent .w.drop { background: rgba(20,27,43,.1); }
-body[data-look="light"] .sky .rate .fld, body[data-look="light"] .sky .inp .fld2 { background: #fff; box-shadow: var(--shd); color: var(--ink3); }
-body[data-look="light"] .sky .diff u { background: var(--no-bg); }
+body[data-look="light"] .sky:not(.night) :is(.starsvg, .radar) .grid { stroke: rgba(20,27,43,.16); } body[data-look="light"] .sky:not(.night) :is(.starsvg, .radar) .ax { stroke: rgba(20,27,43,.1); }
+body[data-look="light"] .sky:not(.night) :is(.starsvg, .radar) .shape { fill: rgba(47,74,107,.24); stroke: var(--navy); filter: none; }
+body[data-look="light"] .sky:not(.night) .starsvg .shape2 { fill: rgba(20,27,43,.05); stroke: rgba(20,27,43,.5); }
+body[data-look="light"] .sky:not(.night) :is(.starbox, .radar) .lb.on { color: var(--ink); } body[data-look="light"] .sky:not(.night) .radar .pt { fill: var(--navy); }
+body[data-look="light"] .sky:not(.night) .hugen { text-shadow: none; } body[data-look="light"] .sky:not(.night) .burst i { background: var(--navy); } body[data-look="light"] .sky:not(.night) .pulse { box-shadow: 0 0 0 2px rgba(47,74,107,.5); }
+body[data-look="light"] .sky:not(.night) :is(.say, .spk) span { color: rgba(20,27,43,.3); } body[data-look="light"] .sky:not(.night) .spk span.hit { color: var(--ink); text-shadow: none; }
+body[data-look="light"] .sky:not(.night) .line span { text-shadow: none; } body[data-look="light"] .sky:not(.night) .sent.done .w:not(.drop) { animation: none; }
+body[data-look="light"] .sky:not(.night) :is(.th .q em, .theory .q em, .pass mark) { background: rgba(47,74,107,.14); color: var(--ink); }
+body[data-look="light"] .sky:not(.night) .gap .hole { background: var(--soft); box-shadow: none; } body[data-look="light"] .sky:not(.night) .gap .hole.set { color: var(--ink); background: #fff; }
+body[data-look="light"] .sky:not(.night) .sent .w.drop { background: rgba(20,27,43,.1); }
+body[data-look="light"] .sky:not(.night) .rate .fld, body[data-look="light"] .sky:not(.night) .inp .fld2 { background: #fff; box-shadow: var(--shd); color: var(--ink3); }
+body[data-look="light"] .sky:not(.night) .diff u { background: var(--no-bg); }
 
 /* то, что и в приложении остаётся цветным или тёмным */
-body[data-look="light"] .sky :is(.gc, .pcard, .flip .f2) { color: #fff; }
-body[data-look="light"] .sky .scen, body[data-look="light"] .sky .hsc { color: #fff; }
-body[data-look="light"] .sky :is(.scen, .hsc) :is(.over, .sub) { color: rgba(255,255,255,.78); }
-body[data-look="light"] .sky .vcard { background: linear-gradient(170deg, #23262D, #121419); color: #fff; box-shadow: 0 20px 40px -18px rgba(0,0,0,.6); }
-body[data-look="light"] .sky .vcard :is(.mt, .sub, .lb) { color: rgba(255,255,255,.66); } body[data-look="light"] .sky .vcard .lb.on { color: #fff; }
-body[data-look="light"] .sky .vcard .starsvg .grid { stroke: rgba(255,255,255,.16); } body[data-look="light"] .sky .vcard .starsvg .ax { stroke: rgba(255,255,255,.12); }
-body[data-look="light"] .sky .vcard .starsvg .shape { fill: rgba(190,200,255,.28); stroke: #fff; } body[data-look="light"] .sky .vcard .starsvg .shape2 { stroke: rgba(255,255,255,.6); fill: rgba(255,255,255,.07); }
-body[data-look="light"] .sky .vcard .lvchips div { background: rgba(255,255,255,.1); color: rgba(255,255,255,.66); } body[data-look="light"] .sky .vcard .lvchips b { color: #fff; }
-body[data-look="light"] .sky .vcard .protag { background: #fff; color: #0B0C0E; } body[data-look="light"] .sky .vcard .lockn { color: #fff; }
+body[data-look="light"] .sky:not(.night) :is(.gc, .pcard, .flip .f2) { color: #fff; }
+body[data-look="light"] .sky:not(.night) .scen, body[data-look="light"] .sky:not(.night) .hsc { color: #fff; }
+body[data-look="light"] .sky:not(.night) :is(.scen, .hsc) :is(.over, .sub) { color: rgba(255,255,255,.78); }
+body[data-look="light"] .sky:not(.night) .vcard { background: linear-gradient(170deg, #23262D, #121419); color: #fff; box-shadow: 0 20px 40px -18px rgba(0,0,0,.6); }
+body[data-look="light"] .sky:not(.night) .vcard :is(.mt, .sub, .lb) { color: rgba(255,255,255,.66); } body[data-look="light"] .sky:not(.night) .vcard .lb.on { color: #fff; }
+body[data-look="light"] .sky:not(.night) .vcard .starsvg .grid { stroke: rgba(255,255,255,.16); } body[data-look="light"] .sky:not(.night) .vcard .starsvg .ax { stroke: rgba(255,255,255,.12); }
+body[data-look="light"] .sky:not(.night) .vcard .starsvg .shape { fill: rgba(190,200,255,.28); stroke: #fff; } body[data-look="light"] .sky:not(.night) .vcard .starsvg .shape2 { stroke: rgba(255,255,255,.6); fill: rgba(255,255,255,.07); }
+body[data-look="light"] .sky:not(.night) .vcard .lvchips div { background: rgba(255,255,255,.1); color: rgba(255,255,255,.66); } body[data-look="light"] .sky:not(.night) .vcard .lvchips b { color: #fff; }
+body[data-look="light"] .sky:not(.night) .vcard .protag { background: #fff; color: #0B0C0E; } body[data-look="light"] .sky:not(.night) .vcard .lockn { color: #fff; }
 
 /* настоящая шапка-сцена и блоки Главной / «Сегодня» / «Карточек» */
 .hsc { position: relative; margin: -58px -20px 0; padding: 58px 20px 26px; border-radius: 0 0 40px 40px; color: #fff; flex: none; background: linear-gradient(165deg, #6E86B0 0%, #4E6C97 45%, #3C5A85 100%); }
@@ -177,18 +179,43 @@ body[data-look="dark"] .acc .ab em { color: #9CC4FF; } body[data-look="dark"] .v
 body[data-look="dark"] .okc { background: rgba(255,255,255,.18) !important; } body[data-look="dark"] .ci2 { background: rgba(255,255,255,.14); color: #fff; }
 body[data-look="dark"] .chip2 { background: rgba(255,255,255,.22); color: #fff; } body[data-look="dark"] .dash3 i, body[data-look="dark"] .dots3 i { background: rgba(255,255,255,.2); } body[data-look="dark"] .dash3 i.on, body[data-look="dark"] .dots3 i.on { background: #fff; color: #0B0C0E; }
 
-/* зачем (владелец 11.11: «навыки стали какие-то неприятные, раньше было лучше»): в светлом виде звезда лежала плоской синей
-   фигурой на белом. Возвращаю ей тёмное поле и свечение, как в первом варианте, — тёмная вставка, как у визитки. */
-body[data-look="light"] .sky .starbox { background: radial-gradient(120% 95% at 28% 8%, #6F68CE 0%, #403C8E 46%, #17183F 100%); border-radius: 30px; box-shadow: 0 20px 36px -18px rgba(38,38,110,.75), inset 1px 1.5px 0 -.2px rgba(255,255,255,.3); }
-body[data-look="light"] .sky .starrow .starbox { border-radius: 22px; }
-body[data-look="light"] .sky .starbox .starsvg .grid { stroke: rgba(255,255,255,.2); } body[data-look="light"] .sky .starbox .starsvg .ax { stroke: rgba(255,255,255,.14); }
-body[data-look="light"] .sky .starbox .starsvg .shape { fill: rgba(193,196,255,.36); stroke: #fff; filter: drop-shadow(0 0 12px rgba(193,196,255,.85)); }
-body[data-look="light"] .sky .starbox .starsvg .shape2 { fill: rgba(255,255,255,.07); stroke: rgba(255,255,255,.7); }
-body[data-look="light"] .sky .starbox .lb { color: rgba(255,255,255,.72); font-size: 12px; } body[data-look="light"] .sky .starbox .lb.on { color: #fff; }
-body[data-look="light"] .sky .starbox .burst i { background: #fff; } body[data-look="light"] .sky .starbox .pulse { box-shadow: 0 0 0 2px rgba(255,255,255,.6); }
-body[data-look="light"] .sky .vcard .starbox { background: none; box-shadow: none; }
-body[data-look="light"] .sky .toast2 .starsvg, body[data-look="light"] .sky .frow .starsvg { background: radial-gradient(circle at 30% 20%, #6F68CE, #24255E); border-radius: 12px; }
-body[data-look="light"] .sky :is(.toast2, .frow) .starsvg .shape { fill: rgba(193,196,255,.4); stroke: #fff; } body[data-look="light"] .sky :is(.toast2, .frow) .starsvg :is(.grid, .ax) { stroke: rgba(255,255,255,.2); }
-body[data-look="light"] .sky .sgr.up .upt { background: linear-gradient(90deg, #403C8E, #6F68CE); box-shadow: 0 6px 16px -6px rgba(64,60,142,.8); }
+/* зачем (владелец 11.11): в светлой теме звезда лежит без тёмной подложки — так же, как в тёмной */
 [data-ph="sk-skills"] .starbox { margin-top: 12px !important; }
 [data-ph="sk-skills"] .skl { margin-top: 14px !important; }
+
+/* ---------- визитки: обычная и шесть стилей «Про» (elevate-real4.js) ---------- */
+.pcd { --pbg: #151518; --pedge: rgba(255,255,255,.10); --pttl: #fff; --pacc: #C1C4FF; --pbadge: #fff; --pbt: #0B0C0E; position: relative; border-radius: 30px; padding: 20px 18px 18px; text-align: center; color: #fff; background: var(--pbg); box-shadow: inset 0 0 0 1.5px var(--pedge), 0 22px 40px -18px rgba(0,0,0,.75); overflow: hidden; }
+.pcd .pav { width: 76px; height: 76px; border-radius: 50%; display: block; margin: 0 auto; box-shadow: 0 0 0 3px var(--pedge), 0 12px 24px -8px rgba(0,0,0,.7); }
+.pcd .pnm { font-size: 24px; font-weight: 800; letter-spacing: -.3px; margin-top: 10px; color: var(--pttl); }
+.pcd .pbadge { display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: 12px; margin-left: 8px; vertical-align: 4px; font-size: 11px; font-weight: 800; letter-spacing: .8px; background: var(--pbadge); color: var(--pbt); }
+.pcd .prank { display: inline-flex; height: 28px; padding: 0 12px; border-radius: 14px; align-items: center; margin-top: 8px; font-size: 13px; font-weight: 700; background: rgba(255,255,255,.13); }
+.pcd .starbox { margin: 20px auto 16px; background: none !important; box-shadow: none !important; }
+.pcd .starsvg .grid { stroke: rgba(255,255,255,.18) !important; } .pcd .starsvg .ax { stroke: rgba(255,255,255,.12) !important; }
+.pcd .starsvg .shape { fill: color-mix(in srgb, var(--pacc) 28%, transparent) !important; stroke: var(--pacc) !important; filter: drop-shadow(0 0 10px color-mix(in srgb, var(--pacc) 70%, transparent)) !important; }
+.pcd .starbox .lb { color: rgba(255,255,255,.72) !important; font-size: 11px; }
+.prows { display: flex; flex-direction: column; gap: 7px; text-align: left; }
+.prow { display: grid; grid-template-columns: 92px 1fr 24px; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.75); }
+.prow b { color: #fff; font-size: 15px; font-weight: 800; text-align: right; font-variant-numeric: tabular-nums; }
+.pbar { height: 6px; border-radius: 3px; background: rgba(255,255,255,.14); overflow: hidden; } .pbar i { display: block; height: 100%; border-radius: 3px; background: var(--pacc); box-shadow: 0 0 8px color-mix(in srgb, var(--pacc) 70%, transparent); }
+.pskills.hide { filter: blur(11px); opacity: .28; pointer-events: none; }
+.plock { position: absolute; left: 0; right: 0; top: 56%; display: flex; flex-direction: column; align-items: center; gap: 6px; color: #fff; }
+.plock svg { width: 34px; height: 34px; } .plock b { font-size: 19px; font-weight: 800; } .plock span { font-size: 14px; color: rgba(255,255,255,.72); }
+.pcd-holo { --pbg: radial-gradient(60% 34% at 50% 20%, rgba(123,255,207,.34), transparent 70%), radial-gradient(55% 40% at 12% 62%, rgba(111,184,255,.30), transparent 70%), radial-gradient(55% 40% at 90% 74%, rgba(255,122,182,.30), transparent 70%), #0C0B10; --pedge: rgba(214,196,255,.55); --pacc: #B9FFE6; --pbadge: linear-gradient(100deg, #FFD36E, #7BFFCF, #6FB8FF, #FF7AB6); --pbt: #0C0B10; }
+.pcd-obs { --pbg: radial-gradient(70% 38% at 50% 18%, rgba(233,200,130,.36), transparent 70%), repeating-conic-gradient(from 0deg at 50% 18%, rgba(233,200,130,.10) 0 3deg, transparent 3deg 9deg), #0A0907; --pedge: rgba(233,200,130,.62); --pttl: #FBF3DF; --pacc: #F3E2B8; --pbadge: linear-gradient(145deg, #FFF1C9, #D9B56C 55%, #F6DC9C); --pbt: #2A1F0C; }
+.pcd-aura { --pbg: radial-gradient(62% 40% at 28% 16%, rgba(190,120,255,.55), transparent 70%), radial-gradient(60% 42% at 84% 56%, rgba(255,120,190,.40), transparent 70%), #120D1C; --pedge: rgba(255,255,255,.42); --pacc: #F0DCFF; --pbadge: #fff; --pbt: #2A1340; }
+.pcd-ice { --pbg: linear-gradient(160deg, rgba(190,236,255,.34), transparent 52%), radial-gradient(60% 40% at 72% 82%, rgba(255,214,241,.24), transparent 70%), #0D1620; --pedge: rgba(190,236,255,.60); --pacc: #BFEAFF; --pbadge: linear-gradient(135deg, #F2FDFF, #A6E4FF 60%, #FFD6F1); --pbt: #0D1620; }
+.pcd-space { --pbg: radial-gradient(1.5px 1.5px at 18% 22%, #fff, transparent), radial-gradient(1.5px 1.5px at 72% 12%, #fff, transparent), radial-gradient(1px 1px at 44% 38%, #fff, transparent), radial-gradient(1.5px 1.5px at 86% 46%, #fff, transparent), radial-gradient(1px 1px at 10% 64%, #fff, transparent), radial-gradient(1px 1px at 62% 78%, #fff, transparent), radial-gradient(62% 40% at 50% 16%, rgba(106,91,255,.48), transparent 70%), #05060F; --pedge: rgba(130,150,255,.50); --pacc: #9FB0FF; --pbadge: linear-gradient(135deg, #6A5BFF, #00B8FF); --pbt: #fff; }
+.pcd-neon { --pbg: radial-gradient(60% 38% at 16% 12%, rgba(0,229,255,.34), transparent 70%), radial-gradient(60% 40% at 88% 88%, rgba(255,79,163,.40), transparent 70%), #07030D; --pedge: rgba(0,229,255,.55); --pacc: #00E5FF; --pbadge: #00E5FF; --pbt: #07030D; }
+.pcd-neon .pnm { text-shadow: 0 0 16px rgba(255,79,163,.6); }
+.pchips { display: flex; gap: 8px; overflow-x: auto; margin: 12px -20px 0; padding: 0 20px 2px; scrollbar-width: none; flex: none; } .pchips::-webkit-scrollbar { display: none; }
+.pchips div { flex: none; height: 36px; padding: 0 14px; border-radius: 18px; background: rgba(255,255,255,.14); display: flex; align-items: center; font-size: 14px; font-weight: 700; color: rgba(255,255,255,.75); cursor: pointer; }
+.pchips div.on { background: #fff; color: #0B0C0E; }
+.pslot { margin-top: 12px; flex: none; }
+.pcta { height: 54px; border-radius: 27px; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; flex: none; background: #fff; color: #0B0C0E; cursor: pointer; box-shadow: 0 14px 28px -12px rgba(0,0,0,.7); }
+.pcta img { border-radius: 50%; }
+.pcta-holo { background: linear-gradient(100deg, #FFE7A8, #B9FFE6 50%, #C9B8FF); color: #111; } .pcta-obs { background: linear-gradient(145deg, #FFF1C9, #D9B56C 55%, #F6DC9C); color: #2A1F0C; }
+.pcta-ice { background: linear-gradient(135deg, #F2FDFF, #BFEAFF 60%, #FFE0F4); color: #0D1620; } .pcta-space { background: linear-gradient(120deg, #8B7DFF, #4FD0FF); color: #06071A; } .pcta-neon { background: linear-gradient(100deg, #00E5FF, #FF4FA3); color: #07030D; }
+.pcgal { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 22px 18px; max-width: 1340px; margin-bottom: 30px; }
+.pcgal .pcl { font-size: 14px; font-weight: 700; color: #D6D6D8; margin-bottom: 8px; }
+/* экран «Навыки» в светлом виде: цифра уровня тёмная на белой карточке */
+body[data-look="light"] .sky:not(.night) .sk .val b { color: var(--ink) !important; } body[data-look="light"] .sky:not(.night) .sk.on .nm { color: var(--ink); }

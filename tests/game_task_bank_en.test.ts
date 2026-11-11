@@ -379,7 +379,9 @@ describe('реестр банков: английский', () => {
     expect(en.listen).toBe(LISTEN_BANK_EN);
     expect(en.memory).toBe(MEMORY_BANK_EN);
     expect(en.hunt).toBe(HUNT_BANK_EN);
-    for (const lesson of LESSONS.filter((l) => l >= 2)) expect([lesson, en.order?.[lesson]]).toEqual([lesson, ORDER_BANK_EN[lesson]]);
+    // зачем (владелец 11.11, «Скрыть на уроке 1»): пример из макета на урок 1 не возвращать — в нём слова, которых ученик ещё не видел
+    expect(en.order).toBe(ORDER_BANK_EN);
+    expect(en.order?.[1]).toBeUndefined();
   });
 
   it('id заданий второй очереди не повторяются', () => {

@@ -199,12 +199,16 @@ describe('classic lesson prompt locales — F18 Phase A', () => {
     expect(loadSelector(false)(phrase, runtimeLang as Lang, 'en')).toBe('RU');
   });
 
-  it('imports one selector and retains exactly the five production prompt/mistake call surfaces', () => {
+  // зачем: мест было пять; пятое — шторка «Объясни проще» (ExplainSheet, phraseMeaning={…}) — владелец 11.11 велел
+  // удалить вместе с функцией (docs/work/tasks/remove-explain-simpler-buttons-2026-11-11.md), поэтому сторож держит
+  // ровно четыре оставшихся места. Число точное в обе стороны: новое место без записи решения тоже ломает тест.
+  it('imports one selector and retains exactly the four production prompt/mistake call surfaces', () => {
     const lessonSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'lesson1.tsx'), 'utf8');
     expect(lessonSource).toContain("import { lessonPhraseMeaningForLang } from './lesson_phrase_meaning';");
     expect(lessonSource).not.toMatch(/function\s+lessonPhraseMeaningForLang\s*\(/);
-    expect(lessonSource.match(/lessonPhraseMeaningForLang\(/g)).toHaveLength(5);
-    expect(lessonSource.match(/lessonPhraseMeaningForLang\(phrase, lang, studyTarget\)/g)).toHaveLength(3);
+    expect(lessonSource.match(/lessonPhraseMeaningForLang\(/g)).toHaveLength(4);
+    expect(lessonSource.match(/lessonPhraseMeaningForLang\(phrase, lang, studyTarget\)/g)).toHaveLength(2);
+    expect(lessonSource).not.toContain('ExplainSheet');
     expect(lessonSource).toContain('lessonPhraseMeaningForLang(p, lang, studyTarget)');
     expect(lessonSource).toContain('lessonPhraseMeaningForLang(phrase, lang, stRm)');
     expect(lessonSource).toContain('sourceLocales={phrase.sourceLocales}');

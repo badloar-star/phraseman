@@ -1,2 +1,5 @@
 knowly-www/english-level-test/data/questions.*.json text eol=lf
 functions-english-test/data/questions.*.json text eol=lf
+# зачем (11.11.2026): патчи обязаны лежать с окончаниями LF. При выгрузке с autocrlf они становились CRLF, а файлы в node_modules — LF,
+# и patch-package при установке молча не применял часть патчей (шрифт приложения, потолок системного шрифта, вход через Apple).
+patches/*.patch text eol=lf

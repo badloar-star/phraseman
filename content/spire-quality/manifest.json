@@ -1,0 +1,355 @@
+{
+ "schema": "spire-quality-pool-manifest-v1",
+ "rowSchema": "peak-quality-runtime-v1",
+ "registry": "PEAK-EDITORIAL-CURRENT-MANIFEST-2026-11-10.json",
+ "langs": {
+  "en": {
+   "tasks": 160,
+   "sha256": "382ef012e7685eb8f304562a75dd8063450c1f8d2f867311b48a10c860e29980",
+   "cells": {
+    "fill_gap:1": 22,
+    "find_oddity:1": 24,
+    "guess_phrase:2": 47,
+    "fill_gap:2": 18,
+    "find_oddity:2": 16,
+    "guess_phrase:1": 33
+   }
+  },
+  "es": {
+   "tasks": 200,
+   "sha256": "a45015c2842b410e42eb674892421f2759762f851800fa28e0cce22616a15736",
+   "cells": {
+    "fill_gap:1": 30,
+    "find_oddity:1": 38,
+    "guess_phrase:2": 72,
+    "fill_gap:2": 20,
+    "find_oddity:2": 12,
+    "guess_phrase:1": 28
+   }
+  },
+  "de": {
+   "tasks": 200,
+   "sha256": "fd26f7d6058968cc6abc4ea11a7fd0c4daa53c690373ad3e4c124f3e05441582",
+   "cells": {
+    "fill_gap:1": 23,
+    "find_oddity:1": 36,
+    "guess_phrase:2": 73,
+    "fill_gap:2": 27,
+    "find_oddity:2": 14,
+    "guess_phrase:1": 27
+   }
+  },
+  "fr": {
+   "tasks": 200,
+   "sha256": "10bd6c82187b64aa9fef71c86a49a2f5aa6e808545cbcdd7ae1a071b87333f06",
+   "cells": {
+    "fill_gap:1": 23,
+    "find_oddity:1": 34,
+    "guess_phrase:2": 74,
+    "fill_gap:2": 26,
+    "fill_gap:3": 1,
+    "find_oddity:2": 16,
+    "guess_phrase:1": 26
+   }
+  },
+  "it": {
+   "tasks": 200,
+   "sha256": "5139361fd1627d57b714767e0d5fb20555ae2d948c27b73f2de59a6323e95302",
+   "cells": {
+    "fill_gap:1": 25,
+    "find_oddity:1": 37,
+    "guess_phrase:2": 75,
+    "fill_gap:2": 25,
+    "find_oddity:2": 13,
+    "guess_phrase:1": 25
+   }
+  }
+ },
+ "skipped": {
+  "no_russian_texts": 360,
+  "pairs_mode": 350,
+  "no_difficulty": 80
+ },
+ "sources": [
+  {
+   "batch": "en-b001",
+   "file": "candidates-v2.json",
+   "sha256": "82cb8a171182e0784f30d9c9ca6b42b9e81d068a02043e1668546463df0ec4b9",
+   "records": 50,
+   "taken": 0,
+   "russianTexts": null
+  },
+  {
+   "batch": "en-b002",
+   "file": "candidates-v2.json",
+   "sha256": "02aca28d717dfa0e76832edb48e1a21e1a21e814318c5bb5c7649cd6798df96c",
+   "records": 50,
+   "taken": 0,
+   "russianTexts": null
+  },
+  {
+   "batch": "es-b001",
+   "file": "candidates-v3.json",
+   "sha256": "106396497ea5f4bc8643988e7bce32b6134e3ed6df649cf7e3b4a178e05ae02b",
+   "records": 50,
+   "taken": 0,
+   "russianTexts": null
+  },
+  {
+   "batch": "es-b002",
+   "file": "candidates-v2.json",
+   "sha256": "5a7f813f42ced9f677744c6ed751ef32b0f29fe2d397fa883d9706b0f434c730",
+   "records": 50,
+   "taken": 0,
+   "russianTexts": null
+  },
+  {
+   "batch": "de-b001",
+   "file": "candidates-v3.json",
+   "sha256": "f3b62beec47b146091bd03aec8b6d59e13cebb287f1e0f4b7cf78fc2aee10614",
+   "records": 50,
+   "taken": 0,
+   "russianTexts": null
+  },
+  {
+   "batch": "de-b002",
+   "file": "candidates-v4.json",
+   "sha256": "28595435c4b7d72c921c157c821be4a400f993cc3526dad251f6022964cb6e2d",
+   "records": 50,
+   "taken": 0,
+   "russianTexts": null
+  },
+  {
+   "batch": "fr-b001",
+   "file": "candidates-v4.json",
+   "sha256": "08b0becf28c144132d0a47a9fd357d065580a15d76fc520e3c116bcf87a4d5bc",
+   "records": 50,
+   "taken": 0,
+   "russianTexts": null
+  },
+  {
+   "batch": "fr-b002",
+   "file": "candidates-v2.json",
+   "sha256": "19bd4d797e75e3b3b0a0811980e7e064340168248cd6be71b5d22f790d8623e4",
+   "records": 50,
+   "taken": 0,
+   "russianTexts": null
+  },
+  {
+   "batch": "it-b001",
+   "file": "candidates-v2.json",
+   "sha256": "4b7035b0b56dba390f3c5140cad36fb65643198bd4e412feb7f599b5f871fc47",
+   "records": 50,
+   "taken": 0,
+   "russianTexts": null
+  },
+  {
+   "batch": "it-b002",
+   "file": "candidates-v4.json",
+   "sha256": "b7d84e4a1a10ba928b6d74645133bc64044eb7673351757adadc80938f504675",
+   "records": 50,
+   "taken": 0,
+   "russianTexts": null
+  },
+  {
+   "batch": "en-b003",
+   "file": "candidates-v3.json",
+   "sha256": "bf2c8815adafafeb7620a72075d6c68b0e295b4cb1b1b895d957d2b7deee90da",
+   "records": 50,
+   "taken": 0,
+   "russianTexts": "ui-ru-en-v3.json"
+  },
+  {
+   "batch": "de-b003",
+   "file": "candidates-v2.json",
+   "sha256": "1bd74a97df7809bcabdde94e9c334f79979dea8fc8982d6f8adc9761e3500111",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v2.json"
+  },
+  {
+   "batch": "es-b003",
+   "file": "candidates-v3.json",
+   "sha256": "2b54741cf620e6abc1148659d49917aa91124993b09c0dbc40f4ba7bdad05cfd",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v3.json"
+  },
+  {
+   "batch": "fr-b003",
+   "file": "candidates-v1.json",
+   "sha256": "9d236c67ed0625ee8468ca250caa893b12efd50495c1b65d3ed153ab550fc806",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "it-b003",
+   "file": "candidates-v1.json",
+   "sha256": "33e36926bde987b41d9d42b516195052694537ab077c6e836ee2ac1485f42715",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "en-b004",
+   "file": "candidates-v1.json",
+   "sha256": "a6e37bb3c261b6d1015c345ef25c2aa0bac7b6843ee2fd9b687510dc57c134da",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "es-b004",
+   "file": "candidates-v2.json",
+   "sha256": "c6c22fc8662ae0eb9d928387f9b1950f5ad1dbc822f2f9a83aac3803904bb203",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v2.json"
+  },
+  {
+   "batch": "de-b004",
+   "file": "candidates-v1.json",
+   "sha256": "c0ff7fb049dc4ac1bccf193195887cff945518af0b96555482ede970f4353fa5",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "fr-b004",
+   "file": "candidates-v1.json",
+   "sha256": "fcc0f45b0d68fe8df4d02c9f79fcae25f12ba3495b9caa25be704be6144cf28c",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "it-b004",
+   "file": "candidates-v1.json",
+   "sha256": "3069bce5db3011a4be20be26364c4c5e8e413ff7a9c50866e50b79466d639d29",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "en-b005",
+   "file": "candidates-v1.json",
+   "sha256": "89095d5730b9681f7360847d85c457e67ffb5b90e930c11c22736ba35c43054f",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "es-b005",
+   "file": "candidates-v1.json",
+   "sha256": "79bf9367af0f1fd3b691808e6e0ca8006471c4e14b76a1f25ae34555d316891f",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "de-b005",
+   "file": "candidates-v3.json",
+   "sha256": "307d3739d8400a37326b5e6e4dfd9b3ea418bbb8b807686cb5931b6cf68e9557",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v3.json"
+  },
+  {
+   "batch": "fr-b005",
+   "file": "candidates-v1.json",
+   "sha256": "0aceb56d46ebe55a229ed535acaf93d2fa42398b9261a930a2c2aa2c54bcdcd6",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "it-b005",
+   "file": "candidates-v1.json",
+   "sha256": "0f41a6174e2c2a9705024eaaa2b8732811eefc862befca4b94984065cdf276eb",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "es-b006",
+   "file": "candidates-v1.json",
+   "sha256": "1dba96a768fbec14d28929c94fc7bbcb26e73257b953387f9e73ef695e543c50",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "de-b006",
+   "file": "candidates-v1.json",
+   "sha256": "75a1999c25bc4ef41e1c70022e669587d0d225809ea33bd7dce5007c2657bc4e",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "fr-b006",
+   "file": "candidates-v1.json",
+   "sha256": "212b0612581824ea276062602879b12b47e0481b531dd9abd3e0c14d13160cec",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "it-b006",
+   "file": "candidates-v1.json",
+   "sha256": "e9ef4f79caacfe42e40e1005b205959a7ab3dccfb7a8da5efda636baa8bb2e50",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "en-b006",
+   "file": "candidates-v3.json",
+   "sha256": "7eaa6077f549141bc585790f4bdd5c69c643a05f956a4697a9355b0b96a82626",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v3.json"
+  },
+  {
+   "batch": "de-b007",
+   "file": "candidates-v1.json",
+   "sha256": "708ba2cddbf8ffc88a65f7346ed341068ce79cf1c6d8a2ce103dfd3249bb0331",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "en-b007",
+   "file": "candidates-v2.json",
+   "sha256": "f70ede80a4231c53380d976bb31939bbb9ac739116c1e07d73827182c26ebe61",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v2.json"
+  },
+  {
+   "batch": "es-b007",
+   "file": "candidates-v2.json",
+   "sha256": "319b79f982c6a5cc26ebaa1ca3a921499d5a38c47cbcb48f550a6da4915256cc",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v2.json"
+  },
+  {
+   "batch": "fr-b007",
+   "file": "candidates-v1.json",
+   "sha256": "5a0ee6b2384d501cfb77cc38e9ff27fd065e0b82d0b06d596afe3d448b1fcadd",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  },
+  {
+   "batch": "it-b007",
+   "file": "candidates-v1.json",
+   "sha256": "20dcd6788a6157225841dd1bfcc1c054aaf1708920298d4072e771cc365ed874",
+   "records": 50,
+   "taken": 40,
+   "russianTexts": "ui-en-ru-v1.json"
+  }
+ ]
+}

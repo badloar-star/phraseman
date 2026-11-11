@@ -50,7 +50,7 @@ echo "[DEPLOY-CLEAN] грязных путей в рабочем дереве (�
 # functions-* — прочие кодовые базы firebase.json: CLI проверяет их папки, сами они не собираются и не выкладываются.
 # зачем content/spire-expanded (11.11): пул новых механик Пика в бандл функций кладёт copy_generated_assets.js из этой папки;
 # без неё сборка в чистой копии только предупреждает, и сборщик недели уезжает на бой без заданий (overlay_skip_no_pool).
-PATHS=(functions functions-admin functions-english-test modules shared content/arena-multilingual content/spire-expanded tests scripts app components constants specs knowly-www admin/v2
+PATHS=(functions functions-admin functions-english-test modules shared content/arena-multilingual content/spire-expanded content/spire-quality tests scripts app components constants specs knowly-www admin/v2
   package.json package-lock.json app.config.js app.json tsconfig.json firebase.json .firebaserc firestore.rules firestore.indexes.json storage.rules
   legal terms.html privacy.html admin/oauth-privacy.html)
 EXIST=()

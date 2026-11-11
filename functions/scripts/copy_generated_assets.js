@@ -131,3 +131,30 @@ for (const lang of expandedLangs) {
   }
   console.log(`[assets] spire_expanded_${lang}.json → src+lib (${rows.length} заданий)`);
 }
+
+/*
+ * Пик, добавка к пулу (владелец 11.11.2026: «Добавить к нынешним»): независимо принятые задания видов «выбор» из
+ * content/spire-quality/{lang}/tasks.jsonl (кладёт scripts/import_peak_quality_pool.mjs) → spire_quality_{lang}.json.
+ * Читает spire_pack_build.ts::loadQualityPool. Нет источника — сборку не роняем, устаревшую копию убираем.
+ */
+for (const lang of expandedLangs) {
+  const jsonlPath = path.resolve(__dirname, '..', '..', 'content', 'spire-quality', lang, 'tasks.jsonl');
+  if (!fs.existsSync(jsonlPath)) {
+    for (const dir of [multilingualSrcTo, multilingualLibTo]) {
+      const stale = path.join(dir, `spire_quality_${lang}.json`);
+      if (fs.existsSync(stale)) fs.rmSync(stale);
+    }
+    console.warn(`[assets] добавка к пулу Пика ${lang} отсутствует — набор соберётся без неё`);
+    continue;
+  }
+  const rows = fs.readFileSync(jsonlPath, 'utf8')
+    .split('\n')
+    .filter((line) => line.trim())
+    .map((line) => JSON.parse(line));
+  const json = JSON.stringify({ schemaVersion: 'spire-quality-bundle-v1', rows });
+  for (const to of [multilingualSrcTo, multilingualLibTo]) {
+    fs.mkdirSync(to, { recursive: true });
+    fs.writeFileSync(path.join(to, `spire_quality_${lang}.json`), json);
+  }
+  console.log(`[assets] spire_quality_${lang}.json → src+lib (${rows.length} заданий)`);
+}

@@ -86,6 +86,7 @@ import type { StepRecordVerifier } from './spire_floor_record_verifier';
 import { prepareExistingStepRecordVerifier, writeImmutableStepRecordVerifier } from './spire_floor_record_publication';
 import { buildSpireExpandedOverlay, spireExpandedOverlayPath, SPIRE_EXPANDED_OVERLAY_PER_SET, SPIRE_EXPANDED_OVERLAY_SCHEMA } from './spire_expanded_overlay';
 import { spireExpandedPoolTaskFromAuthorRecord, type SpireExpandedPoolTask } from './spire_expanded_task';
+import { SPIRE_QUALITY_BUNDLE_SCHEMA, spireQualityPoolFromRows } from './spire_quality_pool';
 
 const LOG = '[SPIRE-PACK]';
 const DAY_MS = 86_400_000;
@@ -297,6 +298,33 @@ export function loadExpandedPool(lang: SpireLang): { tasks: SpireExpandedPoolTas
   if (rejected > 0) warn('expanded_pool_rows_rejected', { lang, rejected });
   log('expanded_pool_loaded', { lang, totalRows: rows.length, accepted: tasks.length, rejected });
   return { tasks, rejected };
+}
+
+/**
+ * Добавка к пулу языка: независимо принятые задания видов «выбор» (content/spire-quality →
+ * copy_generated_assets.js → bundled-файл), 0 чтений Firestore.
+ * зачем (владелец 11.11.2026: «Добавить к нынешним»): нынешний пул и его контракты не трогаются — задания дописываются
+ * рядом, как «на слух». Нет файла или он битый → пустой список и причина в журнале: набор собирается как раньше.
+ */
+export function loadQualityPool(lang: SpireLang): { tasks: TournamentTask[]; rejected: number; reason?: string } {
+  let rows: unknown[];
+  try {
+    // guard-ok: require одного сгенерированного файла, не Firestore-запрос.
+    const bundle = require(`./generated/spire_quality_${lang}.json`) as { schemaVersion?: unknown; rows?: unknown };
+    if (bundle?.schemaVersion !== SPIRE_QUALITY_BUNDLE_SCHEMA || !Array.isArray(bundle.rows)) {
+      throw new Error('quality_bundle_invalid');
+    }
+    rows = bundle.rows;
+  } catch (error) {
+    // guard-ok: без добавки Пик работает как раньше; причина в логе.
+    const reason = errMessage(error);
+    logger.warn('quality_pool_missing', { lang, reason });
+    return { tasks: [], rejected: 0, reason };
+  }
+  const pool = spireQualityPoolFromRows(rows, lang);
+  if (pool.rejected > 0) warn('quality_pool_rows_rejected', { lang, rejected: pool.rejected, reasons: pool.reasons });
+  log('quality_pool_loaded', { lang, totalRows: rows.length, accepted: pool.tasks.length, rejected: pool.rejected });
+  return { tasks: pool.tasks, rejected: pool.rejected };
 }
 
 /** Стабильная проекция причины прямого multilingual-пула в admin unavailableLangs. */
@@ -637,10 +665,16 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
     const basePool = resolved.ok ? await loadPool(db, resolved.publication, lang) : multilingualPool!;
     // зачем (PM-286, Q34 (а)): задания на слух добавляются к пулу языка; для es/de/fr — пусто.
     const listenDraft = loadListenDraftPool(lang);
-    const pool = { ...basePool, tasks: [...basePool.tasks, ...listenDraft.tasks] };
+    // зачем (владелец 11.11.2026: «Добавить к нынешним»): принятые задания видов «выбор» дописываются к пулу языка.
+    // Задание с номером, который уже есть в пуле, не добавляется — повтор номера ломает отчёт ступени.
+    const qualityPool = loadQualityPool(lang);
+    const baseIds = new Set([...basePool.tasks, ...listenDraft.tasks].map((task) => task.taskId));
+    const qualityTasks = qualityPool.tasks.filter((task) => !baseIds.has(task.taskId));
+    const pool = { ...basePool, tasks: [...basePool.tasks, ...listenDraft.tasks, ...qualityTasks] };
     const excludedTaskIds = flags.ids;
     poolReads += pool.reads;
     log('pool_loaded', {
+      quality: qualityTasks.length, qualityCollisions: qualityPool.tasks.length - qualityTasks.length, qualityReason: qualityPool.reason ?? null,
       lang, reads: pool.reads, accepted: pool.tasks.length, rejected: pool.rejected,
       listenDraft: listenDraft.tasks.length, listenDraftReason: listenDraft.reason ?? null,
       legacy: resolved.ok ? resolved.publication.legacy === true : false,

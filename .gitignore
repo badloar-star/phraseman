@@ -358,6 +358,7 @@ functions/src/generated/spire_multilingual_it.json
 functions/src/generated/spire_listen_draft_en.json
 # Пик, новые механики (11.11.2026): производные от content/spire-expanded/{lang}/tasks.jsonl
 functions/src/generated/spire_expanded_*.json
+functions/src/generated/spire_quality_*.json
 
 # Огрызки от упавших правок редактора (*.tsx.tmp.<pid>.<hash>) — мусор,
 # засоряют git status и grep-поиск по проекту.

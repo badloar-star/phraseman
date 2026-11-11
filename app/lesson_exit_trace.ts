@@ -22,6 +22,33 @@ export function lessonExitSupportAction(reason: string, data: LessonExitTraceDat
   return base.slice(0, 80 - id.length) + id;
 }
 
+// зачем (владелец 11.11 «убрать работу впустую», аудит расходов): трассы корня (layout:*) срабатывают на КАЖДОМ холодном старте —
+// это 3–4 серверных вызова submitClientReport на запуск (замер: 1 176 вызовов/нед по 3,8 с), хотя урока не было и улики в них нет.
+// Уликой к §126 они становятся только рядом с выходом из урока. Поэтому на сервер трасса корня уходит, лишь если в пределах окна
+// был или случился выход из урока; до тех пор она лежит в памяти. В консоль и журнал обращений — по-прежнему всегда.
+const LAYOUT_TRACE_WINDOW_MS = 60_000;
+const LAYOUT_TRACE_HELD_MAX = 8;
+type HeldLayoutTrace = Readonly<{ reason: string; data: LessonExitTraceData; atMs: number }>;
+let heldLayoutTraces: readonly HeldLayoutTrace[] = [];
+let lastLessonTraceAtMs = 0;
+
+export function resetLessonExitTraceStateForTests(): void {
+  heldLayoutTraces = [];
+  lastLessonTraceAtMs = 0;
+}
+
+function sendLessonExitActivity(reason: string, data: LessonExitTraceData): void {
+  void trackActivity(`lesson:exit_trace`, {
+    feature: 'navigation',
+    screen: 'lesson1',
+    result: 'info',
+    writeToFirestore: true,
+    tags: { reason, ...data },
+  }).catch((error: unknown) => {
+    console.warn('[LESSON-EXIT] trackActivity:catch', error instanceof Error ? error.message : String(error));
+  });
+}
+
 export function traceLessonExit(reason: string, data: LessonExitTraceData = {}): void {
   console.warn(formatLessonExitTrace(reason, data));
   // зачем (жалоба #3): console в релизе в обращения не попадает — причина выхода и id урока идут событием журнала обращений. Трассы корня (layout:*) — экран «/».
@@ -34,13 +61,22 @@ export function traceLessonExit(reason: string, data: LessonExitTraceData = {}):
   }).catch((error: unknown) => {
     console.warn('[LESSON-EXIT] supportDiagnostic:catch', error instanceof Error ? error.message : String(error)); // guard-ok: сбой записи журнала не роняет выход
   });
-  void trackActivity(`lesson:exit_trace`, {
-    feature: 'navigation',
-    screen: 'lesson1',
-    result: 'info',
-    writeToFirestore: true,
-    tags: { reason, ...data },
-  }).catch((error: unknown) => {
-    console.warn('[LESSON-EXIT] trackActivity:catch', error instanceof Error ? error.message : String(error));
-  });
+  const nowMs = Date.now();
+  if (reason.startsWith('layout:')) {
+    if (nowMs - lastLessonTraceAtMs <= LAYOUT_TRACE_WINDOW_MS) {
+      sendLessonExitActivity(reason, data);
+      return;
+    }
+    // Урока рядом не было: придерживаем (свежие, не больше LAYOUT_TRACE_HELD_MAX) — уйдут вместе с ближайшим выходом из урока.
+    heldLayoutTraces = [...heldLayoutTraces, { reason, data, atMs: nowMs }]
+      .filter((held) => nowMs - held.atMs <= LAYOUT_TRACE_WINDOW_MS)
+      .slice(-LAYOUT_TRACE_HELD_MAX);
+    return;
+  }
+  const fresh = heldLayoutTraces.filter((held) => nowMs - held.atMs <= LAYOUT_TRACE_WINDOW_MS);
+  heldLayoutTraces = [];
+  lastLessonTraceAtMs = nowMs;
+  // heldMs — сколько трасса корня ждала выхода из урока: по нему восстанавливается исходный порядок событий.
+  for (const held of fresh) sendLessonExitActivity(held.reason, { ...held.data, heldMs: nowMs - held.atMs });
+  sendLessonExitActivity(reason, data);
 }

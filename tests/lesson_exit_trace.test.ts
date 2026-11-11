@@ -4,7 +4,9 @@ jest.mock('../app/app_activity', () => ({ trackActivity: (...args: unknown[]) =>
 const mockRecordSupport = jest.fn();
 jest.mock('../app/support_diagnostics', () => ({ recordSupportDiagnostic: (...args: unknown[]) => mockRecordSupport(...args) }));
 
-import { formatLessonExitTrace, lessonExitSupportAction, traceLessonExit } from '../app/lesson_exit_trace';
+import {
+  formatLessonExitTrace, lessonExitSupportAction, resetLessonExitTraceStateForTests, traceLessonExit,
+} from '../app/lesson_exit_trace';
 import { sanitizeSupportDiagnosticEvent } from '../app/support_diagnostic_schema';
 
 describe('lesson exit trace', () => {
@@ -14,6 +16,60 @@ describe('lesson exit trace', () => {
     mockRecordSupport.mockResolvedValue(undefined);
     mockTrackActivity.mockResolvedValue(undefined);
     jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    resetLessonExitTraceStateForTests();
+  });
+
+  // зачем (аудит расходов 11.11): трассы корня (layout:*) срабатывают на КАЖДОМ холодном старте — 3–4 серверных вызова на запуск
+  // без единого урока. Уликой они становятся только рядом с выходом из урока; там они обязаны дойти до сервера все.
+  describe('трассы корня уходят на сервер только рядом с выходом из урока', () => {
+    const sentReasons = () => mockTrackActivity.mock.calls.map((call) => (call[1] as { tags: { reason: string } }).tags.reason);
+
+    it('холодный старт без урока: в консоль и журнал обращений — да, серверной записи — нет', () => {
+      traceLessonExit('layout:rootIndex_replace_home', { ready: true });
+      traceLessonExit('layout:pathname_root_or_empty', { lastPath: 'null' });
+      expect(console.warn).toHaveBeenCalledWith('[LESSON-EXIT] layout:rootIndex_replace_home ready=true');
+      expect(mockRecordSupport).toHaveBeenCalledTimes(2);
+      expect(mockTrackActivity).not.toHaveBeenCalled();
+    });
+
+    it('трасса корня ПЕРЕД выходом из урока досылается вместе с ним, в исходном порядке и с возрастом', () => {
+      const now = jest.spyOn(Date, 'now');
+      now.mockReturnValue(1_000_000);
+      traceLessonExit('layout:pathname_root_or_empty', { lastPath: '/lesson1' });
+      now.mockReturnValue(1_000_400);
+      traceLessonExit('unmount', { lessonId: 9 });
+      expect(sentReasons()).toEqual(['layout:pathname_root_or_empty', 'unmount']);
+      expect(mockTrackActivity.mock.calls[0][1]).toEqual(expect.objectContaining({
+        writeToFirestore: true,
+        tags: { reason: 'layout:pathname_root_or_empty', lastPath: '/lesson1', heldMs: 400 },
+      }));
+    });
+
+    it('трасса корня сразу ПОСЛЕ выхода из урока уходит без задержки', () => {
+      const now = jest.spyOn(Date, 'now');
+      now.mockReturnValue(2_000_000);
+      traceLessonExit('unmount', { lessonId: 9 });
+      now.mockReturnValue(2_030_000);
+      traceLessonExit('layout:rootIndex_replace_home', { ready: true });
+      expect(sentReasons()).toEqual(['unmount', 'layout:rootIndex_replace_home']);
+    });
+
+    it('устаревшие трассы корня (старше окна) с выходом из урока не досылаются', () => {
+      const now = jest.spyOn(Date, 'now');
+      now.mockReturnValue(3_000_000);
+      traceLessonExit('layout:rootIndex_replace_home', { ready: true });
+      now.mockReturnValue(3_000_000 + 61_000);
+      traceLessonExit('unmount', { lessonId: 9 });
+      expect(sentReasons()).toEqual(['unmount']);
+    });
+
+    it('придержанных трасс не больше восьми — остаются самые свежие', () => {
+      const now = jest.spyOn(Date, 'now');
+      now.mockReturnValue(4_000_000);
+      for (let i = 0; i < 12; i += 1) traceLessonExit(`layout:step_${i}`, {});
+      traceLessonExit('unmount', { lessonId: 9 });
+      expect(sentReasons()).toEqual([...Array.from({ length: 8 }, (_, i) => `layout:step_${i + 4}`), 'unmount']);
+    });
   });
 
   it('formats reason and every value that decided the branch', () => {

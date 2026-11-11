@@ -1472,7 +1472,10 @@ export const accountMergeOutboxWorker = onDocumentCreated({
 export const accountMergeOutboxRetryCron = onSchedule({
   // зачем (владелец 17.10, расходы): повтор упавших задач слияния — основной путь accountMergeOutboxWorker
   // срабатывает сразу при создании задачи. 5 мин → 30 мин: −7 тыс. запусков в месяц.
-  schedule: 'every 30 minutes',
+  // зачем (владелец 11.11 «убрать работу впустую», замер Cloud Monitoring за 7 суток): 336 запусков = 336 холодных стартов,
+  // каждый ≈ 31 vCPU-с (ускорение старта: 2 vCPU × (старт 6,3 с + 10 с)) — 10 474 vCPU-с/нед, 4-е место по расходу, а работы
+  // почти никогда нет. 30 → 60 мин вдвое режет стоимость; цена — упавшее слияние повторится не позже чем через час, а не полчаса.
+  schedule: 'every 60 minutes',
   timeZone: 'UTC',
   region: 'us-central1',
   memory: '256MiB',

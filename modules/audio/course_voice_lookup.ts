@@ -59,8 +59,32 @@ function hasKey(keys: string, shortKey: string): boolean {
 
 /** Ссылка на запись фразы курса или undefined, если такая фраза не записана. */
 export function courseVoiceUrl(text: string, lang: CourseVoiceLang): string | undefined {
-  const key = courseVoiceKey(lang, text);
+  const key = recordedKey(lang, text);
   if (!key) return undefined;
-  if (!hasKey(indexKeys(lang), key.slice(0, INDEX_KEY_LENGTH))) return undefined;
   return `${BASE}${COURSE_VOICE_GENERATION}%2F${lang}%2F${key}.mp3?alt=media`;
+}
+
+const END_MARK = /[.?!…]$/;
+const END_MARKS_TO_TRY = ['.', '!', '?'] as const;
+
+/**
+ * Ключ записанной фразы или ''.
+ *
+ * зачем (владелец 11.11.2026, игра «На слух»: «Да, ElevenLabs»): банки игр держат фразу урока БЕЗ знака конца
+ * («She is busy»), а записана она со знаком («She is busy.»). Замер 11.11: из 240 фраз игры точно находилось 68,
+ * остальные 172 — только с точкой. Текст без знака конца сначала ищется как есть, затем с точкой, «!» и «?» —
+ * запись уже есть, платить за второй дубль той же фразы незачем. Текст со своим знаком конца не подменяется:
+ * утверждение и вопрос по-прежнему разные записи.
+ */
+function recordedKey(lang: CourseVoiceLang, text: string): string {
+  const keys = indexKeys(lang);
+  const own = courseVoiceKey(lang, text);
+  if (!own) return '';
+  if (hasKey(keys, own.slice(0, INDEX_KEY_LENGTH))) return own;
+  if (END_MARK.test(text.trim())) return '';
+  for (const mark of END_MARKS_TO_TRY) {
+    const candidate = courseVoiceKey(lang, `${text}${mark}`);
+    if (candidate && hasKey(keys, candidate.slice(0, INDEX_KEY_LENGTH))) return candidate;
+  }
+  return '';
 }

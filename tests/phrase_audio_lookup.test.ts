@@ -42,6 +42,26 @@ describe('phrase audio lookup — новая озвучка курса без к
     expect(courseVoiceUrl('¿Estás en casa?', 'es')).not.toBe(courseVoiceUrl('Estás en casa.', 'es'));
   });
 
+  // зачем (владелец 11.11.2026, игра «На слух»: «Да, ElevenLabs»): банки игр держат фразу урока без знака конца.
+  // До правки точно находилось 68 фраз из 240 — остальные читал бы голос телефона, хотя запись уже лежит на сервере.
+  it('фраза без знака конца находит запись той же фразы с точкой; свой знак конца не подменяется', () => {
+    expect(courseVoiceUrl('She is busy', 'en')).toBe(courseVoiceUrl('She is busy.', 'en'));
+    expect(courseVoiceUrl('She is busy', 'en')).toBeDefined();
+    expect(courseVoiceUrl('zzz такой фразы в курсе нет?', 'en')).toBeUndefined();
+    expect(courseVoiceUrl('Estás en casa.', 'es')).not.toBe(courseVoiceUrl('Estás en casa?', 'es'));
+  });
+
+  it('каждая фраза игры «На слух» на каждом языке уже записана — доплачивать за запись не нужно', () => {
+    for (const lang of COURSE_VOICE_LANGS) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const bank = require(`../modules/games/bank/listen_${lang}`)[`LISTEN_BANK_${lang.toUpperCase()}`] as Record<string, { prompt?: { kind: string; text: string } }[]>;
+      const texts = Object.values(bank).flat().map((round) => (round.prompt?.kind === 'audio' ? round.prompt.text : '')).filter(Boolean);
+      const missing = texts.filter((text) => !courseVoiceUrl(text, lang));
+      expect(texts.length).toBeGreaterThan(0);
+      expect({ lang, missing: missing.slice(0, 5), count: missing.length }).toEqual({ lang, missing: [], count: 0 });
+    }
+  });
+
   it('один и тот же текст в разных языках — разные записи', () => {
     expect(courseVoiceKey('es', 'no')).not.toBe(courseVoiceKey('it', 'no'));
   });

@@ -18,7 +18,9 @@ function PeakTopRow({ lang, row, coinSize = 40, onPress }: Props) {
   const coin = <SpireRankCoin rank={row.coinRank} size={coinSize} plus={row.isPremium} plusTier={row.plusTier ?? 'plus'} />;
   const body = (
     <>
-      {row.isMe ? (
+      {/* зачем (владелец 11.11: «серая рамка на аватарке» у себя на Пике → «Да, убрать»): у подписчика кольцо Plus/Ultra почти того же диаметра ложилось поверх серого кольца «это ты»,
+          от серого оставался обломок дуги. Одно кольцо на монете (как замок Главной 28.10): есть кольцо подписки — серое не рисуется. Раскладка не меняется: серое кольцо и так не занимало места (отрицательные поля). */}
+      {row.isMe && !row.isPremium ? (
         // кольцо без рамки (замок «без обводок»): внешний круг цвета кольца, внутренний — цвет экрана, поверх монета
         <View style={[s.ringOuter, { width: coinSize + 12, height: coinSize + 12, borderRadius: (coinSize + 12) / 2, backgroundColor: p.textSecondary }]}>
           <View style={[s.ringInner, { width: coinSize + 7, height: coinSize + 7, borderRadius: (coinSize + 7) / 2, backgroundColor: p.bg }]}>{coin}</View>

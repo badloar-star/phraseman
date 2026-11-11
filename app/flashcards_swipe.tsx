@@ -35,6 +35,7 @@ import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHu
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { noteSkillAction } from '../modules/skills/skill_store';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
 import { buildOwnedVideoPackMeta, videoIdFromOwnedCommunityId } from './flashcards/my_packs_video_meta'; // зачем: аудит #3 глубокое — набор ролика без документа
@@ -3272,6 +3273,9 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
 
       void hapticSuccess();
       playCorrect();
+      // зачем (D207, владелец 11.11): очки навыков — по таблице modules/skills; от монет не зависят, экран не меняют
+      // обычный свайп в таблице не значится — очки даёт только «Правда / ложь»
+      if (trainingMode === 'truefalse') noteSkillAction({ action: 'true_false_correct', itemKey: key });
       const needsRecovery = cardProgress.wrong > 0 || cardProgress.hints > 0;
       if (needsRecovery) cardProgress.recoveryCorrect += 1;
       const mastered = !needsRecovery || cardProgress.recoveryCorrect >= 2;

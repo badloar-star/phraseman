@@ -994,6 +994,13 @@
   "neu": "Zapytała, czy chcieliśmy zamiennik."
  },
  {
+  "id": "en-classic-r1:27.37",
+  "loc": "pl",
+  "target": "She asked whether we wanted a replacement.",
+  "old": "Zapytała, czy chcemy zamiennik.",
+  "neu": "Zapytała, czy chcieliśmy zamiennik."
+ },
+ {
   "id": "en-classic-r1:27.49",
   "loc": "id",
   "target": "She told me the parcel would arrive the next day.",

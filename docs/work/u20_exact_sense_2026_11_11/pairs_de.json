@@ -3050,5 +3050,439 @@
   "target": "Mit einem zweiten Schlüssel wäre ich ins Haus gekommen.",
   "old": "Z drugim kluczem mógłbym dostać się do budynku.",
   "neu": "Z drugim kluczem mógłbym dostać się do domu."
+ },
+ {
+  "id": "de:03:17",
+  "loc": "tr",
+  "target": "Du kaufst Milch.",
+  "old": "Süt alıyorsunuz.",
+  "neu": "Süt alıyorsun."
+ },
+ {
+  "id": "de:03:37",
+  "loc": "tr",
+  "target": "Du wartest draußen.",
+  "old": "Dışarıda bekliyorsunuz.",
+  "neu": "Dışarıda bekliyorsun."
+ },
+ {
+  "id": "de:05:01",
+  "loc": "pt-BR",
+  "target": "Bist du hier?",
+  "old": "Você está aí?",
+  "neu": "Você está aqui?"
+ },
+ {
+  "id": "de:05:02",
+  "loc": "pt-BR",
+  "target": "Ist Anna hier?",
+  "old": "A Anna está aí?",
+  "neu": "A Anna está aqui?"
+ },
+ {
+  "id": "de:07:25",
+  "loc": "pt-BR",
+  "target": "Ihr nehmt die Treppe.",
+  "old": "Vocês vão subir as escadas.",
+  "neu": "Vocês pegam a escada."
+ },
+ {
+  "id": "de:07:40",
+  "loc": "id",
+  "target": "Ihr öffnet die Tasche.",
+  "old": "Kamu membuka tas itu.",
+  "neu": "Kalian membuka tas."
+ },
+ {
+  "id": "de:11:07",
+  "loc": "pl",
+  "target": "Das Bild hängt an der Wand.",
+  "old": "Zdjęcie wisi na ścianie.",
+  "neu": "Obraz wisi na ścianie."
+ },
+ {
+  "id": "de:11:34",
+  "loc": "pl",
+  "target": "Hängt das Bild im Büro?",
+  "old": "Czy zdjęcie wisi w biurze?",
+  "neu": "Czy obraz wisi w biurze?"
+ },
+ {
+  "id": "de:12:40",
+  "loc": "id",
+  "target": "Setzt du dich auf die Bank?",
+  "old": "Apakah kamu sedang duduk di bangku?",
+  "neu": "Apakah kamu duduk di bangku?"
+ },
+ {
+  "id": "de:15:45",
+  "loc": "ru",
+  "target": "Steh morgen früh auf!",
+  "old": "Встань завтра пораньше!",
+  "neu": "Встань завтра рано!"
+ },
+ {
+  "id": "de:17:19",
+  "loc": "pl",
+  "target": "Der Ball ist ins Wasser gerollt.",
+  "old": "Piłka wpadła do wody.",
+  "neu": "Piłka stoczyła się do wody."
+ },
+ {
+  "id": "de:18:20",
+  "loc": "vi",
+  "target": "Das Taxi war schon da.",
+  "old": "Xe taxi đã đến rồi.",
+  "neu": "Xe taxi đã ở đó rồi."
+ },
+ {
+  "id": "de:19:12",
+  "loc": "en",
+  "target": "Du setzt dich ans Fenster.",
+  "old": "You're sitting by the window.",
+  "neu": "You sit down by the window."
+ },
+ {
+  "id": "de:19:13",
+  "loc": "en",
+  "target": "Anna setzt sich neben Tom.",
+  "old": "Anna is sitting next to Tom.",
+  "neu": "Anna sits down next to Tom."
+ },
+ {
+  "id": "de:19:14",
+  "loc": "en",
+  "target": "Wir setzen uns ins Café.",
+  "old": "We're sitting in the café.",
+  "neu": "We sit down in the café."
+ },
+ {
+  "id": "de:19:45",
+  "loc": "vi",
+  "target": "Wir merken uns die Nummer.",
+  "old": "Chúng ta nhớ số nhà.",
+  "neu": "Chúng ta ghi nhớ con số đó."
+ },
+ {
+  "id": "de:19:48",
+  "loc": "tr",
+  "target": "Sie hat sich gut erholt.",
+  "old": "İyileşti.",
+  "neu": "İyi dinlendi."
+ },
+ {
+  "id": "de:19:48",
+  "loc": "pl",
+  "target": "Sie hat sich gut erholt.",
+  "old": "Wyzdrowiała.",
+  "neu": "Dobrze wypoczęła."
+ },
+ {
+  "id": "de:21:45",
+  "loc": "ru",
+  "target": "Weil wir Zeit haben, gehen wir zu Fuß.",
+  "old": "Раз у нас есть время, пойдём пешком.",
+  "neu": "Раз у нас есть время, мы идём пешком."
+ },
+ {
+  "id": "de:21:45",
+  "loc": "uk",
+  "target": "Weil wir Zeit haben, gehen wir zu Fuß.",
+  "old": "Раз у нас є час, підемо пішки.",
+  "neu": "Раз у нас є час, ми йдемо пішки."
+ },
+ {
+  "id": "de:22:09",
+  "loc": "vi",
+  "target": "Sie sagt, dass das Essen warm ist.",
+  "old": "Cô ấy nói rằng thức ăn còn nóng.",
+  "neu": "Cô ấy nói rằng thức ăn còn ấm."
+ },
+ {
+  "id": "de:22:21",
+  "loc": "vi",
+  "target": "Anna schreibt, dass sie später kommt.",
+  "old": "Anna nhắn tin rằng cô ấy sẽ đến muộn.",
+  "neu": "Anna nhắn tin rằng cô ấy sẽ đến muộn hơn."
+ },
+ {
+  "id": "de:22:46",
+  "loc": "vi",
+  "target": "Es ist gut, dass du fragst.",
+  "old": "Thật tốt khi bạn đã hỏi.",
+  "neu": "Thật tốt khi bạn hỏi."
+ },
+ {
+  "id": "de:23:14",
+  "loc": "vi",
+  "target": "Tom nimmt ein Taxi, wenn es spät ist.",
+  "old": "Tom sẽ bắt taxi nếu trời đã muộn.",
+  "neu": "Tom bắt taxi nếu trời đã muộn."
+ },
+ {
+  "id": "de:23:14",
+  "loc": "id",
+  "target": "Tom nimmt ein Taxi, wenn es spät ist.",
+  "old": "Tom akan naik taksi jika sudah larut malam.",
+  "neu": "Tom naik taksi jika sudah larut malam."
+ },
+ {
+  "id": "de:23:18",
+  "loc": "vi",
+  "target": "Sie bringt Brot mit, wenn sie einkauft.",
+  "old": "Cô ấy sẽ mang bánh mì khi đi mua sắm.",
+  "neu": "Cô ấy mang bánh mì khi đi mua sắm."
+ },
+ {
+  "id": "de:23:18",
+  "loc": "id",
+  "target": "Sie bringt Brot mit, wenn sie einkauft.",
+  "old": "Dia akan membawa roti saat berbelanja.",
+  "neu": "Dia membawa roti saat berbelanja."
+ },
+ {
+  "id": "de:23:19",
+  "loc": "vi",
+  "target": "Ich höre Musik, wenn ich koche.",
+  "old": "Tôi sẽ nghe nhạc trong khi nấu ăn.",
+  "neu": "Tôi nghe nhạc khi nấu ăn."
+ },
+ {
+  "id": "de:23:19",
+  "loc": "id",
+  "target": "Ich höre Musik, wenn ich koche.",
+  "old": "Aku akan mendengarkan musik sambil memasak.",
+  "neu": "Aku mendengarkan musik saat memasak."
+ },
+ {
+  "id": "de:23:20",
+  "loc": "vi",
+  "target": "Wir lüften, wenn das Wetter gut ist.",
+  "old": "Chúng ta sẽ mở cửa thông gió phòng khi thời tiết đẹp.",
+  "neu": "Chúng ta mở cửa thông gió khi thời tiết đẹp."
+ },
+ {
+  "id": "de:23:20",
+  "loc": "id",
+  "target": "Wir lüften, wenn das Wetter gut ist.",
+  "old": "Kita akan mengangin-anginkan ruangan saat cuaca bagus.",
+  "neu": "Kita mengangin-anginkan ruangan saat cuaca bagus."
+ },
+ {
+  "id": "de:23:22",
+  "loc": "uk",
+  "target": "Wenn es klingelt, öffne bitte die Tür!",
+  "old": "Якщо зателефонують у двері, відчини, будь ласка!",
+  "neu": "Якщо подзвонять у двері, відчини, будь ласка!"
+ },
+ {
+  "id": "de:23:46",
+  "loc": "id",
+  "target": "Wenn die Tür klemmt, drück sie leicht nach oben!",
+  "old": "Jika pintunya macet, dorong perlahan!",
+  "neu": "Jika pintunya macet, dorong perlahan ke atas!"
+ },
+ {
+  "id": "de:23:50",
+  "loc": "id",
+  "target": "Wenn die Bahn pünktlich ist, schaffen wir den Anschluss.",
+  "old": "Jika kereta tepat waktu, kami melanjutkan perjalanan.",
+  "neu": "Jika kereta tepat waktu, kami sempat mengejar kereta sambungan."
+ },
+ {
+  "id": "de:25:38",
+  "loc": "vi",
+  "target": "Wir teilen die frischen Brötchen.",
+  "old": "Chúng tôi cùng nhau ăn bánh mì tươi.",
+  "neu": "Chúng tôi chia nhau bánh mì tươi."
+ },
+ {
+  "id": "de:27:49",
+  "loc": "vi",
+  "target": "Kennst du die Frau, die gerade eingestiegen ist?",
+  "old": "Bạn có biết người phụ nữ vừa lên máy bay không?",
+  "neu": "Bạn có biết người phụ nữ vừa mới lên tàu không?"
+ },
+ {
+  "id": "de:27:49",
+  "loc": "tr",
+  "target": "Kennst du die Frau, die gerade eingestiegen ist?",
+  "old": "Az önce uçağa binen kadını tanıyor musunuz?",
+  "neu": "Az önce binen kadını tanıyor musunuz?"
+ },
+ {
+  "id": "de:28:15",
+  "loc": "id",
+  "target": "Die Milch wird kühl gelagert.",
+  "old": "Susu disimpan di lemari pendingin.",
+  "neu": "Susu disimpan di tempat sejuk."
+ },
+ {
+  "id": "de:28:15",
+  "loc": "tr",
+  "target": "Die Milch wird kühl gelagert.",
+  "old": "Süt buzdolabında saklanıyor.",
+  "neu": "Süt serin yerde saklanıyor."
+ },
+ {
+  "id": "de:28:15",
+  "loc": "pl",
+  "target": "Die Milch wird kühl gelagert.",
+  "old": "Mleko jest przechowywane w lodówce.",
+  "neu": "Mleko jest przechowywane w chłodnym miejscu."
+ },
+ {
+  "id": "de:28:22",
+  "loc": "pt-BR",
+  "target": "Im Flur wird nicht geraucht.",
+  "old": "Não é permitido fumar no corredor.",
+  "neu": "No corredor não se fuma."
+ },
+ {
+  "id": "de:28:22",
+  "loc": "vi",
+  "target": "Im Flur wird nicht geraucht.",
+  "old": "Cấm hút thuốc trong hành lang.",
+  "neu": "Ở hành lang không hút thuốc."
+ },
+ {
+  "id": "de:28:22",
+  "loc": "id",
+  "target": "Im Flur wird nicht geraucht.",
+  "old": "Merokok tidak diperbolehkan di lorong.",
+  "neu": "Di lorong orang tidak merokok."
+ },
+ {
+  "id": "de:28:22",
+  "loc": "tr",
+  "target": "Im Flur wird nicht geraucht.",
+  "old": "Koridorda sigara içmek yasaktır.",
+  "neu": "Koridorda sigara içilmez."
+ },
+ {
+  "id": "de:28:22",
+  "loc": "pl",
+  "target": "Im Flur wird nicht geraucht.",
+  "old": "Palenie jest zabronione na korytarzu.",
+  "neu": "Na korytarzu się nie pali."
+ },
+ {
+  "id": "de:29:07",
+  "loc": "vi",
+  "target": "Ein ruhiges Zimmer wäre schön.",
+  "old": "Một phòng yên tĩnh thì tốt hơn.",
+  "neu": "Một phòng yên tĩnh sẽ thật tuyệt."
+ },
+ {
+  "id": "de:29:07",
+  "loc": "id",
+  "target": "Ein ruhiges Zimmer wäre schön.",
+  "old": "Kamar yang tenang akan lebih baik.",
+  "neu": "Kamar yang tenang akan menyenangkan."
+ },
+ {
+  "id": "de:29:10",
+  "loc": "vi",
+  "target": "Wäre es auch am Freitag möglich?",
+  "old": "Thứ Sáu có được không?",
+  "neu": "Thứ Sáu cũng được không?"
+ },
+ {
+  "id": "de:29:21",
+  "loc": "id",
+  "target": "Würden Sie bitte das Fenster schließen?",
+  "old": "Bisakah Anda menutup jendela?",
+  "neu": "Tolong, bisakah Anda menutup jendela?"
+ },
+ {
+  "id": "de:29:21",
+  "loc": "pl",
+  "target": "Würden Sie bitte das Fenster schließen?",
+  "old": "Czy mógłbyś zamknąć okno?",
+  "neu": "Czy mógłbyś zamknąć okno, proszę?"
+ },
+ {
+  "id": "de:30:26",
+  "loc": "vi",
+  "target": "Zeig mir, wie das Gerät funktioniert.",
+  "old": "Hãy chỉ cho tôi cách sử dụng máy.",
+  "neu": "Hãy chỉ cho tôi máy này hoạt động như thế nào."
+ },
+ {
+  "id": "de:30:29",
+  "loc": "es",
+  "target": "Wir fragen, an welcher Haltestelle wir umsteigen müssen.",
+  "old": "Queremos saber en qué parada tenemos que cambiar de autobús.",
+  "neu": "Preguntamos en qué parada tenemos que cambiar de autobús."
+ },
+ {
+  "id": "de:30:40",
+  "loc": "vi",
+  "target": "Sie fragt, ob ihr Antrag bestätigt wurde.",
+  "old": "Cô ấy hỏi đơn xin việc của mình đã được chấp thuận chưa.",
+  "neu": "Cô ấy hỏi đơn của mình đã được chấp thuận chưa."
+ },
+ {
+  "id": "de:32:42",
+  "loc": "en",
+  "target": "Ohne deine Hilfe hätte ich die Kiste nicht getragen.",
+  "old": "Without your help, I wouldn't have been able to carry the box.",
+  "neu": "Without your help, I wouldn't have carried the box."
+ },
+ {
+  "id": "de:32:42",
+  "loc": "es",
+  "target": "Ohne deine Hilfe hätte ich die Kiste nicht getragen.",
+  "old": "Sin tu ayuda, no habría podido cargar la caja.",
+  "neu": "Sin tu ayuda, no habría cargado la caja."
+ },
+ {
+  "id": "de:32:42",
+  "loc": "pt-BR",
+  "target": "Ohne deine Hilfe hätte ich die Kiste nicht getragen.",
+  "old": "Sem a sua ajuda, eu não teria conseguido carregar a caixa.",
+  "neu": "Sem a sua ajuda, eu não teria carregado a caixa."
+ },
+ {
+  "id": "de:32:42",
+  "loc": "vi",
+  "target": "Ohne deine Hilfe hätte ich die Kiste nicht getragen.",
+  "old": "Nếu không có sự giúp đỡ của bạn, tôi đã không thể mang được chiếc hộp.",
+  "neu": "Nếu không có sự giúp đỡ của bạn, tôi đã không mang chiếc hộp."
+ },
+ {
+  "id": "de:32:42",
+  "loc": "id",
+  "target": "Ohne deine Hilfe hätte ich die Kiste nicht getragen.",
+  "old": "Tanpa bantuan Anda, saya tidak akan mampu membawa kotak itu.",
+  "neu": "Tanpa bantuan Anda, saya tidak akan membawa kotak itu."
+ },
+ {
+  "id": "de:32:42",
+  "loc": "tr",
+  "target": "Ohne deine Hilfe hätte ich die Kiste nicht getragen.",
+  "old": "Yardımınız olmasaydı, kutuyu taşıyamazdım.",
+  "neu": "Yardımınız olmasaydı, kutuyu taşımazdım."
+ },
+ {
+  "id": "de:32:42",
+  "loc": "pl",
+  "target": "Ohne deine Hilfe hätte ich die Kiste nicht getragen.",
+  "old": "Bez Twojej pomocy nie byłbym w stanie unieść pudełka.",
+  "neu": "Bez Twojej pomocy nie zaniósłbym pudełka."
+ },
+ {
+  "id": "de:32:45",
+  "loc": "vi",
+  "target": "Hätte ich die Nummer gespeichert, könnte ich jetzt anrufen.",
+  "old": "Nếu tôi đã lưu số điện thoại, giờ tôi đã gọi được rồi.",
+  "neu": "Nếu tôi đã lưu số điện thoại, bây giờ tôi có thể gọi điện."
+ },
+ {
+  "id": "de:32:50",
+  "loc": "tr",
+  "target": "Wenn ich noch einmal wählen könnte, würde ich diesmal den direkten Zug nehmen.",
+  "old": "Tekrar seçme şansım olsaydı, bu sefer direkt treni tercih ederdim.",
+  "neu": "Tekrar seçme şansım olsaydı, bu sefer direkt trene binerdim."
  }
 ]

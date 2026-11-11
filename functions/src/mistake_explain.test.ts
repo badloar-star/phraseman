@@ -230,7 +230,9 @@ function mockProviderAnswers(...answers: string[]) {
 
 // зачем (11.11): ответ модели — поля по схеме, а не два текста между маркерами. Пустое `rule` даёт
 // старым сборкам текст, равный `why`, — так прежние проверки текста остаются точными.
-function bundleOutput(full: string, eli5: string, extra: DocData = {}): string {
+// зачем (владелец 11.11: «убери кнопку объяснить проще и функцию», затем «Да, убери» про сервер): поля `simple` в ответе модели больше нет.
+// Второй аргумент оставлен, чтобы не переписывать десятки вызовов; в ответ модели он не попадает.
+function bundleOutput(full: string, _legacySimple: string, extra: DocData = {}): string {
   return JSON.stringify({
     verdict: 'one',
     wrong: 'has',
@@ -240,7 +242,6 @@ function bundleOutput(full: string, eli5: string, extra: DocData = {}): string {
     you_said: '',
     pair: [],
     also: [],
-    simple: eli5,
     ...extra,
   });
 }
@@ -592,14 +593,10 @@ describe('explainMistake', () => {
     expect(await claimMistakePendingLock(hash, firstClaim)).toBe(true);
     expect(await claimMistakePendingLock(hash, winnerClaim)).toBe(true);
 
-    const winner = {
-      full: 'Winner full explanation',
-      eli5: 'Winner simple explanation',
-    };
-    const loser = {
-      full: 'Stale full explanation',
-      eli5: 'Stale simple explanation',
-    };
+    // зачем (владелец 11.11: «убери кнопку объяснить проще и функцию», «Да, убери» про сервер):
+    // разбор публикуется без упрощённого текста, поэтому сторожим только сам разбор.
+    const winner = { full: 'Winner full explanation' };
+    const loser = { full: 'Stale full explanation' };
     const meta = {
       lang: validPayload.interfaceLang,
       targetEn: validPayload.targetAnswer,
@@ -611,6 +608,7 @@ describe('explainMistake', () => {
     expect(await (writeReadyMistakeExplanationBundle as any)(hash, loser, meta, firstClaim)).toBe(false);
     expect(await (writeRejectedMistakeExplanation as any)(hash, 'stale_rejection', firstClaim)).toBe(false);
     expect(docs.get(`${MISTAKE_COLLECTION}/${hash}`)).toMatchObject(winner);
+    expect(docs.get(`${MISTAKE_COLLECTION}/${hash}`)?.eli5).toBeUndefined();
   });
 
   it('does not persist raw target or learner answers in new cache documents', async () => {
@@ -808,8 +806,8 @@ describe('explainMistake', () => {
     const second = await secondPromise;
 
     expect(global.fetch).toHaveBeenCalledTimes(1);
-    expect(first).toMatchObject({ text: full, eli5Text: eli5, fromCache: false });
-    expect(second).toMatchObject({ text: full, eli5Text: eli5, fromCache: true });
+    expect(first).toMatchObject({ text: full, fromCache: false });
+    expect(second).toMatchObject({ text: full, fromCache: true });
   });
 
   it('ELI5 waits for a live full bundle instead of starting duplicate generation', async () => {
@@ -827,7 +825,9 @@ describe('explainMistake', () => {
     expect(cacheDocs().some((d) => d.status === 'pending' && d.eli5)).toBe(false);
   });
 
-  it('a late legacy ELI5 result cannot overwrite a completed full bundle', async () => {
+  // зачем (владелец 11.11: «убери кнопку объяснить проще и функцию», затем «Да, убери» про сервер): разбор больше не несёт упрощённый текст, поэтому идущий
+  // запрос старой сборки не теряет аренду и сохраняет свой оплаченный ответ рядом с готовым разбором.
+  it('a late legacy ELI5 result is kept next to a completed full breakdown without touching it', async () => {
     const bundleFull = 'После "I" здесь нужно "have". Скажи "I have a reservation."';
     const bundleEli5 = 'Почти! После "I" поставь "have". Скажи "I have a reservation."';
     const lateLegacyEli5 = 'Поздний отдельный простой ответ, который не должен победить.';
@@ -863,18 +863,22 @@ describe('explainMistake', () => {
     expect(global.fetch).toHaveBeenCalledTimes(1);
 
     const full = await callExplain(validPayload, 'auth-2');
-    expect(full.eli5Text).toBe(bundleEli5);
+    expect(full.text).toBe(bundleFull);
+    expect(full.eli5Text).toBeUndefined();
 
     if (!legacyGate.release) throw new Error('legacy provider was not waiting');
     legacyGate.release();
     const legacy = await legacyPromise;
 
-    expect(legacy.text).toBe(bundleEli5);
-    expect(docs.get(`${MISTAKE_COLLECTION}/${hashFor(validPayload)}`)?.eli5).toBe(bundleEli5);
-    expect(JSON.stringify(cacheDocs())).not.toContain(lateLegacyEli5);
+    expect(legacy.text).toBe(lateLegacyEli5);
+    expect(docs.get(`${MISTAKE_COLLECTION}/${hashFor(validPayload)}`)).toMatchObject({
+      status: 'ready',
+      full: bundleFull,
+      eli5: lateLegacyEli5,
+    });
   });
 
-  it('FULL bundle generates and caches both variants in one provider call', async () => {
+  it('FULL breakdown is generated and cached without a simplified text', async () => {
     const full = 'После "I" здесь нужно "have". "I have a reservation."';
     const eli5 = 'Почти! После "I" поставь "have". "I have a reservation."';
     mockOkProvider(bundleOutput(full, eli5));
@@ -884,19 +888,13 @@ describe('explainMistake', () => {
     expect(first).toMatchObject({
       text: full,
       fullText: full,
-      eli5Text: eli5,
       variant: 'full',
       fromCache: false,
     });
-    expect(cacheDocs()).toContainEqual(expect.objectContaining({
-      status: 'ready',
-      full,
-      eli5,
-    }));
-    expect(global.fetch).toHaveBeenCalledTimes(1);
-
-    const simple = await callExplain({ ...validPayload, variant: 'eli5' }, 'auth-2');
-    expect(simple).toMatchObject({ text: eli5, variant: 'eli5', fromCache: true });
+    expect(first.eli5Text).toBeUndefined();
+    expect(cacheDocs()).toContainEqual(expect.objectContaining({ status: 'ready', full }));
+    expect(cacheDocs().some((d) => Boolean(d.eli5))).toBe(false);
+    expect(JSON.stringify(cacheDocs())).not.toContain(eli5);
     expect(global.fetch).toHaveBeenCalledTimes(1);
   });
 
@@ -911,7 +909,7 @@ describe('explainMistake', () => {
 
     const result = await callExplain(validPayload);
 
-    expect(result).toMatchObject({ text: full, fullText: full, eli5Text: eli5 });
+    expect(result).toMatchObject({ text: full, fullText: full });
     expect(global.fetch).toHaveBeenCalledTimes(3);
     expect(billingDocs()).toHaveLength(1);
     expect(billingDocs()[0]).toMatchObject({
@@ -919,11 +917,7 @@ describe('explainMistake', () => {
       completionTokens: 66,
       totalTokens: 198,
     });
-    expect(cacheDocs()).toContainEqual(expect.objectContaining({
-      status: 'ready',
-      full,
-      eli5,
-    }));
+    expect(cacheDocs()).toContainEqual(expect.objectContaining({ status: 'ready', full }));
     expect(JSON.stringify(cacheDocs())).not.toContain('Today you should');
     expect(JSON.stringify(cacheDocs())).not.toContain('Формат без обязательных секций');
   });
@@ -994,7 +988,6 @@ describe('explainMistake', () => {
       you_said: '',
       pair: ['I have a reservation', 'He has a reservation'],
       also: [],
-      simple: 'С "I" говорим "have". Вот и всё.',
     }));
 
     const first = await callExplain(validPayload);
@@ -1002,7 +995,7 @@ describe('explainMistake', () => {
     expect(first.breakdown).toMatchObject({ verdict: 'one', wrong: 'has', right: 'have', rule: 'С "I" всегда "have"' });
     // Старые сборки получают обычный текст: правило + пояснение, без дубля правильной фразы.
     expect(first.text).toBe('С "I" всегда "have". Почти! "has" говорят про него или неё, а с "I" нужно "have".');
-    expect(first.eli5Text).toBe('С "I" говорим "have". Вот и всё.');
+    expect(first.eli5Text).toBeUndefined();
     const body = JSON.parse((global.fetch as jest.Mock).mock.calls[0][1].body as string);
     expect(body.response_format).toMatchObject({ type: 'json_schema' });
 

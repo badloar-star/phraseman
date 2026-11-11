@@ -707,9 +707,8 @@ function validateMistakeBundle(
   }
   const full = renderBreakdownFullText(breakdown);
   assertMistakeGeneratedText(full, payload, 'full');
-  assertMistakeGeneratedText(breakdown.simple, payload, 'eli5');
   if (breakdown.youSaid) assertMistakeGeneratedText(breakdown.youSaid, payload, 'you_said');
-  return { full, eli5: breakdown.simple, breakdown };
+  return { full, breakdown };
 }
 
 async function generateCheckedMistakeBundle(
@@ -1141,8 +1140,8 @@ export const explainMistake = onCall({
     throw finalError;
   }
 
-  // Publish the two validated sections together: a reader can never observe a ready full
-  // explanation without the ELI5 text generated in the same provider response.
+  // зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… они не нужны», затем «Да, убери» про сервер): свежий разбор публикуется без упрощённого текста.
+  // Уже лежащий в кэше упрощённый текст по-прежнему отдаётся при чтении из кэша — он бесплатен и нужен старым сборкам.
   await recordPaidUsageOrHold(
     db,
     { stableUid, authUid, payload, model, mistakeHash, usage: gen.usage },
@@ -1162,11 +1161,9 @@ export const explainMistake = onCall({
       if (
         latest?.status === 'ready'
         && latest.full
-        && latest.eli5
         && isMistakeGeneratedTextSafe(latest.full, payload)
-        && isMistakeGeneratedTextSafe(latest.eli5, { ...payload, variant: 'eli5' })
       ) {
-        resultBundle = { full: latest.full, eli5: latest.eli5, breakdown: coerceStoredBreakdown(latest.breakdown) };
+        resultBundle = { full: latest.full, breakdown: coerceStoredBreakdown(latest.breakdown) };
       } else {
         explainPending('full_2', payload.variant);
       }
@@ -1190,7 +1187,6 @@ export const explainMistake = onCall({
     ok: true,
     text: resultBundle.full,
     fullText: resultBundle.full,
-    eli5Text: resultBundle.eli5,
     breakdown: resultBundle.breakdown,
     remainingQuota: RQ,
     model,

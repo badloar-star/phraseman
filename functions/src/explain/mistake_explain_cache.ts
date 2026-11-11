@@ -9,8 +9,9 @@
  *
  * Each doc holds TWO texts:
  *   - full: the careful breakdown (every wrong word + the mini-rule + why).
- *   - eli5: the "explain like I'm five" version shown in the modal. New full
- *     generations publish it together; legacy full-only entries fill it lazily.
+ *   - eli5: the "explain like I'm five" text. Only already-installed app builds ask for it
+ *     (variant 'eli5'); it is generated lazily on their request. New full generations no longer
+ *     carry it (владелец 11.11: кнопки «Объяснить проще» в приложении больше нет).
  *
  * SECURITY: only callable/Admin SDK code reads or writes this cache. firestore.rules denies
  * direct client reads and writes; authenticated admin clients retain delete-only reset access.
@@ -267,10 +268,15 @@ export async function writeReadyMistakeExplanation(
   });
 }
 
-/** Publish both validated variants atomically so readers never observe a partial bundle. */
+/**
+ * Publish the validated breakdown (text + fields) atomically.
+ * зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… они не нужны», затем «Да, убери» про сервер): упрощённый текст сюда больше не пишется.
+ * Поля `eli5` / `eli5PendingAtMs` намеренно НЕ трогаем: их ведёт отдельный запрос старых сборок, и идущая
+ * у него генерация не должна терять свою аренду из-за публикации разбора (иначе оплаченный ответ пропадёт).
+ */
 export async function writeReadyMistakeExplanationBundle(
   mistakeHash: string,
-  bundle: { full: string; eli5: string; breakdown?: MistakeBreakdown },
+  bundle: { full: string; breakdown?: MistakeBreakdown },
   meta: MistakeReadyMeta,
   claimedAtMs: number,
 ): Promise<boolean> {
@@ -282,10 +288,8 @@ export async function writeReadyMistakeExplanationBundle(
       status: 'ready',
       schemaVersion: MISTAKE_SCHEMA_VERSION,
       full: bundle.full,
-      eli5: bundle.eli5,
       // зачем: поля и текст публикуются одной транзакцией — читатель не увидит текст без полей.
       breakdown: bundle.breakdown ?? admin.firestore.FieldValue.delete(),
-      eli5PendingAtMs: null,
       createdAtMs: admin.firestore.FieldValue.delete(),
       lang: meta.lang,
       targetEn: admin.firestore.FieldValue.delete(),

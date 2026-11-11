@@ -20,7 +20,6 @@ function answer(overrides: Record<string, unknown> = {}): string {
     you_said: '',
     pair: ['I have some money', "I don't have any money"],
     also: [],
-    simple: 'Нет денег — "any".',
     ...overrides,
   });
 }
@@ -54,7 +53,6 @@ describe('structured mistake breakdown: parsing', () => {
       youSaid: '',
       pair: ['I have some money', "I don't have any money"],
       also: [],
-      simple: 'Нет денег — "any".',
     });
   });
 
@@ -63,7 +61,6 @@ describe('structured mistake breakdown: parsing', () => {
     ['an array', '[]'],
     ['unknown verdict', answer({ verdict: 'maybe' })],
     ['empty why', answer({ why: '  ' })],
-    ['empty simple', answer({ simple: '' })],
     ['non-string field', answer({ rule: 7 })],
     ['pair is not a list', answer({ pair: 'I have some money' })],
   ])('rejects %s', (_name, raw) => {
@@ -120,11 +117,18 @@ describe('structured mistake breakdown: legacy text and cache shape', () => {
     expect(coerceStoredBreakdown(undefined)).toBeUndefined();
     expect(coerceStoredBreakdown({ verdict: 'one' })).toBeUndefined();
     expect(coerceStoredBreakdown({ verdict: 'one', why: 'текст', pair: 'x', also: [{ wrong: 1 }] }))
-      .toMatchObject({ pair: [], also: [], simple: '' });
+      .toMatchObject({ pair: [], also: [] });
   });
 });
 
 describe('structured mistake breakdown: prompt', () => {
+  // зачем (владелец 11.11: «убери кнопку объяснить проще и функцию», затем «Да, убери» про сервер): модель не пишет упрощённый пересказ.
+  it('does not ask the model for a simplified retelling', () => {
+    expect(Object.keys(MISTAKE_BREAKDOWN_RESPONSE_FORMAT.json_schema.schema.properties)).not.toContain('simple');
+    expect(buildStructuredMistakeMessages(promptInput())[0].content).not.toMatch(/\bsimple\b/);
+    expect(parseMistakeBreakdown(answer({ simple: 'лишнее поле' }), SENTENCES).breakdown).not.toHaveProperty('simple');
+  });
+
   it('asks for a strict JSON schema with every field required', () => {
     const schema = MISTAKE_BREAKDOWN_RESPONSE_FORMAT.json_schema;
     expect(schema.strict).toBe(true);

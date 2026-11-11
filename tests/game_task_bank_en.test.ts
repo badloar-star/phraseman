@@ -9,8 +9,14 @@ import * as path from 'path';
 
 import { EXACT_BANK_EN } from '../modules/games/bank/exact_en';
 import { FORMS_BANK_EN } from '../modules/games/bank/forms_en';
+import { HUNT_BANK_EN } from '../modules/games/bank/hunt_en';
+import { GAME_BANKS } from '../modules/games/bank/index';
+import { LISTEN_BANK_EN } from '../modules/games/bank/listen_en';
+import { MEMORY_BANK_EN } from '../modules/games/bank/memory_en';
 import { ODD_WORD_BANK_EN } from '../modules/games/bank/odd_word_en';
+import { ORDER_BANK_EN } from '../modules/games/bank/order_en';
 import { SORT_BANK_EN } from '../modules/games/bank/sort_en';
+import { huntFixedLines, isHuntHit, isValidHuntTask, isValidOrderTask } from '../modules/games/dialogue_core';
 import { isValidOddWordTask } from '../modules/games/odd_word_core';
 import { isValidQuizRound } from '../modules/games/quiz_core';
 
@@ -219,7 +225,179 @@ describe('«Три формы»', () => {
   });
 });
 
+const wordsOutsideCourseSoFar = wordsNeverSeen;
+
+describe('«На слух»', () => {
+  const all = LESSONS.flatMap((lesson) => (LISTEN_BANK_EN[lesson] ?? []).map((round) => ({ lesson, round })));
+
+  it('по 6 заданий на урок, каждое проходит isValidQuizRound: звук, обычная скорость, три варианта, перевод', () => {
+    for (const lesson of LESSONS) expect([lesson, LISTEN_BANK_EN[lesson]?.length]).toEqual([lesson, 6]);
+    for (const { round } of all) {
+      expect([round.id, isValidQuizRound(round), round.prompt.kind, round.options.length]).toEqual([round.id, true, 'audio', 3]);
+      expect([round.id, round.prompt.kind === 'audio' ? round.prompt.rate : 0]).toEqual([round.id, 1]);
+      expect([round.id, Boolean(round.note?.trim())]).toEqual([round.id, true]);
+    }
+  });
+
+  it('произносится дословная фраза урока, она же верный вариант', () => {
+    for (const { lesson, round } of all) {
+      const text = round.prompt.kind === 'audio' ? round.prompt.text : '';
+      expect([round.id, targetsByLesson.get(lesson)?.has(norm(text))]).toEqual([round.id, true]);
+      expect([round.id, round.options[round.correctIndex]]).toEqual([round.id, text]);
+    }
+  });
+
+  it('неверный вариант отличается ровно одним словом и собран из знакомых слов', () => {
+    for (const { lesson, round } of all) {
+      const said = tokens(round.options[round.correctIndex]);
+      round.options.forEach((option, i) => {
+        if (i === round.correctIndex) return;
+        const other = tokens(option);
+        const differs = other.length === said.length ? other.filter((w, k) => w !== said[k]).length : -1;
+        expect([round.id, option, differs]).toEqual([round.id, option, 1]);
+        expect([round.id, option, wordsOutsideCourseSoFar(lesson, option)]).toEqual([round.id, option, []]);
+        // зачем: вопрос остаётся вопросом и в неверном варианте — иначе ответ выдаёт знак, а не слух
+        expect([round.id, option, option.endsWith('?')]).toEqual([round.id, option, round.options[round.correctIndex].endsWith('?')]);
+      });
+    }
+  });
+
+  it('верный ответ не стоит всегда на одном месте', () => {
+    for (const lesson of LESSONS) expect([lesson, new Set(LISTEN_BANK_EN[lesson].map((r) => r.correctIndex)).size]).toEqual([lesson, 3]);
+  });
+});
+
+describe('«Память»', () => {
+  const all = LESSONS.flatMap((lesson) => (MEMORY_BANK_EN[lesson] ?? []).map((round) => ({ lesson, round })));
+
+  it('по 2 раунда на урок, в каждом 4 пары и 3 варианта, раунд проходит isValidQuizRound', () => {
+    for (const lesson of LESSONS) expect([lesson, MEMORY_BANK_EN[lesson]?.length]).toEqual([lesson, 2]);
+    for (const { round } of all) {
+      expect([round.id, isValidQuizRound(round), round.prompt.kind, round.options.length]).toEqual([round.id, true, 'pairs', 3]);
+      expect([round.id, round.prompt.kind === 'pairs' ? round.prompt.pairs.length : 0]).toEqual([round.id, 4]);
+    }
+  });
+
+  it('слово пары — из фраз урока; слова и переводы в наборе не повторяются', () => {
+    for (const { lesson, round } of all) {
+      if (round.prompt.kind !== 'pairs') continue;
+      for (const [word, translation] of round.prompt.pairs) {
+        expect([round.id, word, tokens(word).filter((w) => !vocabByLesson.get(lesson)?.has(w))]).toEqual([round.id, word, []]);
+        expect([round.id, word, translation.trim().length > 0]).toEqual([round.id, word, true]);
+      }
+      expect([round.id, new Set(round.prompt.pairs.map(([w]) => norm(w))).size]).toEqual([round.id, 4]);
+      expect([round.id, new Set(round.prompt.pairs.map(([, t]) => norm(t))).size]).toEqual([round.id, 4]);
+    }
+  });
+
+  it('верный вариант — перевод спрошенной пары, неверные — переводы других пар набора, вопрос называет слово', () => {
+    for (const { round } of all) {
+      if (round.prompt.kind !== 'pairs') continue;
+      const { pairs, askIndex } = round.prompt;
+      expect([round.id, round.options[round.correctIndex]]).toEqual([round.id, pairs[askIndex][1]]);
+      expect([round.id, round.ask]).toEqual([round.id, `Что значит «${pairs[askIndex][0]}»?`]);
+      const translations = pairs.map(([, t]) => t);
+      expect([round.id, round.options.filter((o) => !translations.includes(o))]).toEqual([round.id, []]);
+    }
+  });
+
+  it('два раунда урока учат разные слова', () => {
+    for (const lesson of LESSONS) {
+      const words = MEMORY_BANK_EN[lesson].flatMap((r) => (r.prompt.kind === 'pairs' ? r.prompt.pairs.map(([w]) => norm(w)) : []));
+      expect([lesson, new Set(words).size]).toEqual([lesson, 8]);
+    }
+  });
+});
+
+describe('«Охота на ошибку»', () => {
+  const all = LESSONS.flatMap((lesson) => (HUNT_BANK_EN[lesson] ?? []).map((task) => ({ lesson, task })));
+
+  it('по 2 диалога на урок из 3 реплик, каждый проходит isValidHuntTask и несёт объяснение', () => {
+    for (const lesson of LESSONS) expect([lesson, HUNT_BANK_EN[lesson]?.length]).toEqual([lesson, 2]);
+    for (const { task } of all) {
+      expect([task.id, isValidHuntTask(task), task.lines.length]).toEqual([task.id, true, 3]);
+      expect([task.id, task.why.trim().length > 0]).toEqual([task.id, true]);
+    }
+  });
+
+  it('после исправления каждая реплика — из слов пройденных уроков, а реплика с ошибкой — нет', () => {
+    for (const { lesson, task } of all) {
+      for (const line of huntFixedLines(task)) {
+        expect([task.id, wordsOutsideCourseSoFar(lesson, line.words.join(' '))]).toEqual([task.id, []]);
+      }
+      const wrongWord = task.lines[task.wrong.line].words[task.wrong.word];
+      expect([task.id, norm(wrongWord) === norm(task.fix)]).toEqual([task.id, false]);
+      expect([task.id, allTargets.has(norm(task.lines[task.wrong.line].words.join(' ')))]).toEqual([task.id, false]);
+    }
+  });
+
+  it('нажимаемых слов два: ошибка и одна обманка в другой реплике', () => {
+    for (const { task } of all) {
+      const tappable = task.lines.flatMap((line, i) => line.tappable.map((word) => ({ line: i, word })));
+      expect([task.id, tappable.length]).toEqual([task.id, 2]);
+      const decoy = tappable.find((t) => !isHuntHit(task, t.line, t.word));
+      expect([task.id, decoy !== undefined && decoy.line !== task.wrong.line]).toEqual([task.id, true]);
+    }
+  });
+
+  it('реплики чередуются: слева, справа, слева', () => {
+    for (const { task } of all) expect([task.id, task.lines.map((l) => l.right)]).toEqual([task.id, [false, true, false]]);
+  });
+});
+
+describe('«Собери диалог»', () => {
+  const ORDER_LESSONS = LESSONS.filter((lesson) => lesson >= 2);
+  const all = ORDER_LESSONS.flatMap((lesson) => (ORDER_BANK_EN[lesson] ?? []).map((task) => ({ lesson, task })));
+
+  it('по 2 диалога из 4 реплик на уроки 2–8, каждый проходит isValidOrderTask', () => {
+    // зачем: в уроке 1 одни утверждения — однозначный порядок собрать не из чего; урок 1 в банк не входит намеренно
+    expect(Object.keys(ORDER_BANK_EN).map(Number)).toEqual([...ORDER_LESSONS]);
+    for (const lesson of ORDER_LESSONS) expect([lesson, ORDER_BANK_EN[lesson]?.length]).toEqual([lesson, 2]);
+    for (const { task } of all) expect([task.id, isValidOrderTask(task), task.lines.length]).toEqual([task.id, true, 4]);
+  });
+
+  it('реплики — только из слов пройденных уроков', () => {
+    for (const { lesson, task } of all) {
+      for (const line of task.lines) expect([task.id, line, wordsOutsideCourseSoFar(lesson, line)]).toEqual([task.id, line, []]);
+    }
+  });
+
+  it('порядок держит схема: вопрос с названным предметом, ответ, вопрос с it/he/she/they, ответ', () => {
+    const PRONOUNS = new Set(['it', 'he', 'she', 'they']);
+    for (const { task } of all) {
+      const [q1, a1, q2, a2] = task.lines;
+      expect([task.id, q1.endsWith('?'), a1.endsWith('?'), q2.endsWith('?'), a2.endsWith('?')]).toEqual([task.id, true, false, true, false]);
+      expect([task.id, 'первый вопрос называет предмет', tokens(q1).some((w) => PRONOUNS.has(w))]).toEqual([task.id, 'первый вопрос называет предмет', false]);
+      expect([task.id, 'второй вопрос ссылается на первый', tokens(q2).some((w) => PRONOUNS.has(w))]).toEqual([task.id, 'второй вопрос ссылается на первый', true]);
+    }
+  });
+});
+
+describe('реестр банков: английский', () => {
+  it('четыре игры второй очереди подключены банками, а не примерами из макета', () => {
+    const en = GAME_BANKS.en;
+    expect(en.listen).toBe(LISTEN_BANK_EN);
+    expect(en.memory).toBe(MEMORY_BANK_EN);
+    expect(en.hunt).toBe(HUNT_BANK_EN);
+    for (const lesson of LESSONS.filter((l) => l >= 2)) expect([lesson, en.order?.[lesson]]).toEqual([lesson, ORDER_BANK_EN[lesson]]);
+  });
+
+  it('id заданий второй очереди не повторяются', () => {
+    const ids = [
+      ...LESSONS.flatMap((l) => LISTEN_BANK_EN[l].map((t) => t.id)),
+      ...LESSONS.flatMap((l) => MEMORY_BANK_EN[l].map((t) => t.id)),
+      ...LESSONS.flatMap((l) => HUNT_BANK_EN[l].map((t) => t.id)),
+      ...LESSONS.flatMap((l) => (ORDER_BANK_EN[l] ?? []).map((t) => t.id)),
+    ];
+    expect(ids.filter((id, i) => ids.indexOf(id) !== i)).toEqual([]);
+  });
+});
+
 describe('тексты для ученика', () => {
+  it('в объяснениях «Охоты на ошибку» нет грамматических терминов', () => {
+    expect(LESSONS.flatMap((l) => HUNT_BANK_EN[l].map((t) => t.why)).filter((t) => FORBIDDEN_TERMS.test(t))).toEqual([]);
+  });
+
   it('в объяснениях и подсказках нет грамматических терминов', () => {
     const texts = [
       ...LESSONS.flatMap((l) => ODD_WORD_BANK_EN[l].flatMap((t) => [t.whyTitle, t.whyText])),

@@ -7,8 +7,12 @@
 import React, { memo, useEffect } from 'react';
 import type { Lang } from '../../../constants/i18n';
 import { DebugLogger } from '../../../app/debug-logger';
-import { AchFrame, LevelFrame, Streak100Frame, Streak7Frame } from './frames_streak';
-import { ExamFrame, LessonFrame, PeakWeekFrame, SummitFrame } from './frames_progress';
+import { LevelFrame, Streak100Frame, Streak7Frame } from './frames_streak';
+import { ExamFrame, LessonFrame, SummitFrame } from './frames_progress';
+// зачем (владелец 11.11, U36 «За что дали награду»: «Подключить сейчас»): кадры ачивки и итога недели теперь рисует frames_reward —
+// статуэтка лиги на сцене со светом, два вида кадра недели выбираются случайно. Прежние AchFrame и PeakWeekFrame остаются в своих
+// файлах (их держат сторожа и фотостудия прежнего макета); вернуть прежний вид — заменить две строки ниже обратно.
+import { AchRewardFrame, PeakWeekRewardFrame } from './frames_reward';
 import { DuelFrame, FriendFrame, InviteFrame, OvertakenFrame } from './frames_social';
 import { DialogFrame, MistakesFrame, PackFrame, PackPopFrame, PhraseFrame } from './frames_cards';
 import { CoinsFrame, HolidayFrame, MonthFrame, RankFrame, ThemeFrame, WeekFrame } from './frames_recap';
@@ -36,12 +40,12 @@ function StoryTemplateSlide({ tpl, lang, myRank }: Props) {
   switch (tpl.id) {
     case 'streak7': return <Streak7Frame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'streak100': return <Streak100Frame tpl={tpl} lang={lang} myRank={myRank} />;
-    case 'ach': return <AchFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'ach': return <AchRewardFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'level': return <LevelFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'lesson': return <LessonFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'exam': return <ExamFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'summit': return <SummitFrame tpl={tpl} lang={lang} myRank={myRank} />;
-    case 'peakweek': return <PeakWeekFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'peakweek': return <PeakWeekRewardFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'duel': return <DuelFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'overtaken': return <OvertakenFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'friend': return <FriendFrame tpl={tpl} lang={lang} myRank={myRank} />;

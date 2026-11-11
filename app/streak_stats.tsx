@@ -2504,6 +2504,11 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     );
                   })()}
                 </View>
+                {/* зачем (владелец 11.11: «как в макете, после „Твоей недели“»; макет elevate-real2 «Навыки»): блок навыков доступен всем;
+                    он самодостаточный — сам читает очки с устройства и сам ведёт на экран «Навыки». */}
+                <Reanimated.View entering={FadeInDown.duration(420).delay(120)}>
+                  <SkillsStatsCard />
+                </Reanimated.View>
                 <Pressable
                   testID="stats-rhythm-row"
                   accessibilityRole="button"
@@ -2544,12 +2549,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 />
                 </Reanimated.View>
                 ) : null}
-
-                {/* зачем (владелец 11.11, макет elevate-real2 «Навыки»): блок навыков доступен всем, поэтому стоит
-                    до аналитики Plus; он самодостаточный — сам читает очки с устройства и сам ведёт на экран «Навыки». */}
-                <Reanimated.View entering={FadeInDown.duration(420).delay(260)}>
-                  <SkillsStatsCard />
-                </Reanimated.View>
 
                 {/* Ниже — аналитика Plus. У обычного аккаунта каждый блок целиком под
                     существующим замком StatsPremiumBlur (lock + gold CTA), без PlusBadge

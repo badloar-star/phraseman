@@ -5,50 +5,50 @@
  "langs": {
   "en": {
    "tasks": 160,
-   "sha256": "382ef012e7685eb8f304562a75dd8063450c1f8d2f867311b48a10c860e29980",
+   "sha256": "f1ef93048f65ed40557dbb78bee55537655c7d3ebc05e8e83c30ba1950316bd9",
    "cells": {
-    "fill_gap:1": 22,
-    "find_oddity:1": 24,
+    "fill_gap:1": 20,
+    "fill_gap:2": 20,
+    "find_oddity:1": 18,
+    "find_oddity:2": 22,
     "guess_phrase:2": 47,
-    "fill_gap:2": 18,
-    "find_oddity:2": 16,
     "guess_phrase:1": 33
    }
   },
   "es": {
    "tasks": 200,
-   "sha256": "a45015c2842b410e42eb674892421f2759762f851800fa28e0cce22616a15736",
+   "sha256": "c5af02c7bb23027478590f3c5c364b7cce4dc77b0f04daeb73071ae0e1876e71",
    "cells": {
-    "fill_gap:1": 30,
-    "find_oddity:1": 38,
+    "fill_gap:1": 29,
+    "find_oddity:1": 32,
     "guess_phrase:2": 72,
-    "fill_gap:2": 20,
-    "find_oddity:2": 12,
+    "fill_gap:2": 21,
+    "find_oddity:2": 18,
     "guess_phrase:1": 28
    }
   },
   "de": {
    "tasks": 200,
-   "sha256": "fd26f7d6058968cc6abc4ea11a7fd0c4daa53c690373ad3e4c124f3e05441582",
+   "sha256": "adc43da81c8c63dc43672744f8386bb84b50f0546e69e8833713a1e243e74d6a",
    "cells": {
-    "fill_gap:1": 23,
-    "find_oddity:1": 36,
+    "fill_gap:1": 19,
+    "find_oddity:1": 33,
     "guess_phrase:2": 73,
-    "fill_gap:2": 27,
-    "find_oddity:2": 14,
+    "fill_gap:2": 31,
+    "find_oddity:2": 17,
     "guess_phrase:1": 27
    }
   },
   "fr": {
    "tasks": 200,
-   "sha256": "10bd6c82187b64aa9fef71c86a49a2f5aa6e808545cbcdd7ae1a071b87333f06",
+   "sha256": "174ec90bfb597713c1f2faf27a2fe525c60bdc28293d7b04f1e558d59bdc9573",
    "cells": {
-    "fill_gap:1": 23,
-    "find_oddity:1": 34,
+    "fill_gap:1": 21,
+    "find_oddity:1": 32,
     "guess_phrase:2": 74,
-    "fill_gap:2": 26,
+    "fill_gap:2": 28,
+    "find_oddity:2": 18,
     "fill_gap:3": 1,
-    "find_oddity:2": 16,
     "guess_phrase:1": 26
    }
   },

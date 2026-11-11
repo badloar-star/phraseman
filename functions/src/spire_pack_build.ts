@@ -84,7 +84,13 @@ import { verifyTournamentPoolTaskProof, type ArenaPublication } from './tourname
 import { compileStepRecordVerifier, stepRecordVerifierPath } from './spire_floor_record_verifier';
 import type { StepRecordVerifier } from './spire_floor_record_verifier';
 import { prepareExistingStepRecordVerifier, writeImmutableStepRecordVerifier } from './spire_floor_record_publication';
-import { buildSpireExpandedOverlay, spireExpandedOverlayPath, SPIRE_EXPANDED_OVERLAY_PER_SET, SPIRE_EXPANDED_OVERLAY_SCHEMA } from './spire_expanded_overlay';
+import {
+  buildSpireExpandedOverlay,
+  spireExpandedOverlayPath,
+  SPIRE_EXPANDED_OVERLAY_PER_SET,
+  SPIRE_EXPANDED_OVERLAY_RULE,
+  SPIRE_EXPANDED_OVERLAY_SCHEMA,
+} from './spire_expanded_overlay';
 import { spireExpandedPoolTaskFromAuthorRecord, type SpireExpandedPoolTask } from './spire_expanded_task';
 import { SPIRE_QUALITY_BUNDLE_SCHEMA, spireQualityPoolFromRows } from './spire_quality_pool';
 
@@ -478,8 +484,13 @@ async function existingOverlayBase(path: string): Promise<string | null> {
   const [exists] = await file.exists();
   if (!exists) return null;
   const [metadata] = await file.getMetadata();
-  const raw = (metadata?.metadata as Record<string, unknown> | undefined)?.basePackHash;
-  return typeof raw === 'string' && raw.length > 0 ? raw : 'present_without_base';
+  const custom = metadata?.metadata as Record<string, unknown> | undefined;
+  const raw = custom?.basePackHash;
+  if (typeof raw !== 'string' || raw.length === 0) return 'present_without_base';
+  // зачем (владелец 11.11.2026: задания по сложности от этажа): накладка, собранная по прежнему правилу подбора, — устаревшая,
+  // её надо пересобрать; привязка к пакету та же, сам пакет не трогается
+  if (custom?.overlayRule !== SPIRE_EXPANDED_OVERLAY_RULE) return `stale_rule:${String(custom?.overlayRule ?? 'none')}`;
+  return raw;
 }
 
 /**
@@ -542,6 +553,7 @@ async function ensureExpandedOverlays(
         }
         await writePack(overlayPath, built.json, {
           schema: SPIRE_EXPANDED_OVERLAY_SCHEMA,
+          overlayRule: SPIRE_EXPANDED_OVERLAY_RULE,
           basePackHash,
           weekId,
           lang,

@@ -17,8 +17,18 @@
 import { createHash } from 'crypto';
 
 import { SPIRE_EXPANDED_KIND, spireExpandedPoolTaskProblem, type SpireExpandedPoolTask } from './spire_expanded_task';
+import { spireHardness } from './spire_pack_contract';
 
 export const SPIRE_EXPANDED_OVERLAY_SCHEMA = 'spire-expanded-overlay-v1' as const;
+/**
+ * Правило подбора заданий в накладку; пишется в метаданные файла. Накладка с другим правилом — устаревшая и пересобирается
+ * (пакет недели при этом не меняется). Менять строку при каждом изменении подбора.
+ */
+export const SPIRE_EXPANDED_OVERLAY_RULE = 'rank-by-hardness-v1' as const;
+/** Окно подбора вокруг трудности места: не меньше стольких заданий… */
+const RANK_WINDOW_MIN = 48;
+/** …и не меньше такой доли пула языка. */
+const RANK_WINDOW_SHARE = 0.15;
 /**
  * Сколько заданий «выбор» в каждом наборе ступени заменяется новой механикой. 0 — накладка не собирается.
  * зачем «все» (владелец 11.11.2026, на вопрос о плотности: «Все подходящие места»): при двух на набор новые механики
@@ -66,7 +76,12 @@ export type SpireExpandedOverlayInput = Readonly<{
 }>;
 
 export type SpireExpandedOverlayResult =
-  | Readonly<{ ok: true; overlay: SpireExpandedOverlay; json: string; stats: Readonly<{ slots: number; uniqueTasks: number; poolTasks: number }> }>
+  | Readonly<{
+    ok: true;
+    overlay: SpireExpandedOverlay;
+    json: string;
+    stats: Readonly<{ slots: number; uniqueTasks: number; poolTasks: number; meanRankLowFloor: number | null; meanRankTopFloor: number | null }>;
+  }>
   | Readonly<{ ok: false; reason: string; detail?: Record<string, unknown> }>;
 
 type Raw = Readonly<Record<string, unknown>>;
@@ -89,17 +104,30 @@ function seededOrder<T extends { taskId: string }>(items: readonly T[], seed: st
     .map((entry) => entry.item);
 }
 
-/** Очередь заданий одной трудности: выдаёт по кругу, пропуская уже занятые в текущей ступени. */
-type Queue = { order: SpireExpandedPoolTask[]; pos: number };
+/** Ключ сортировки пула по сложности фразы: оценка автора; нет её — середина корзины трудности 1..3. */
+function rankOf(task: SpireExpandedPoolTask): number {
+  return typeof task.rank === 'number' && Number.isFinite(task.rank) ? task.rank : 20 + (task.difficulty - 0.5) * 10;
+}
 
-function takeFrom(queue: Queue | undefined, usedInStep: ReadonlySet<string>): SpireExpandedPoolTask | null {
-  if (!queue || queue.order.length === 0) return null;
-  for (let tries = 0; tries < queue.order.length; tries += 1) {
-    const task = queue.order[queue.pos % queue.order.length];
-    queue.pos += 1;
-    if (!usedInStep.has(task.taskId)) return task;
-  }
-  return null;
+/**
+ * Порядок кандидатов для одной ступени: сначала окно пула вокруг трудности места (перемешано детерминированно, чтобы ступени
+ * одного этажа не повторяли друг друга), затем остальные — по близости к центру, чтобы при нехватке брать ближайшие по
+ * сложности, а не случайные.
+ * зачем (владелец 11.11.2026: «первый этаж самой первой башни должно быть изи-пизи, а потом сложнее и сложнее»).
+ */
+export function spireExpandedStepCandidates(sorted: readonly SpireExpandedPoolTask[], hardness: number, seed: string): SpireExpandedPoolTask[] {
+  const n = sorted.length;
+  if (n === 0) return [];
+  const width = Math.min(n, Math.max(RANK_WINDOW_MIN, Math.round(n * RANK_WINDOW_SHARE)));
+  const center = Math.round(Math.max(0, Math.min(1, hardness)) * (n - 1));
+  const start = Math.max(0, Math.min(n - width, center - Math.floor(width / 2)));
+  const window = seededOrder(sorted.slice(start, start + width), seed);
+  const rest = sorted
+    .map((task, index) => ({ task, index }))
+    .filter(({ index }) => index < start || index >= start + width)
+    .sort((a, b) => Math.abs(a.index - center) - Math.abs(b.index - center) || a.index - b.index)
+    .map(({ task }) => task);
+  return [...window, ...rest];
 }
 
 /**
@@ -128,27 +156,25 @@ export function buildSpireExpandedOverlay(input: SpireExpandedOverlayInput): Spi
   if (pool.length === 0) return { ok: false, reason: 'expanded_pool_empty' };
 
   const seed = `spire-expanded-overlay:${input.weekId}:${input.lang}:${input.tier}`;
-  const queues = new Map<number, Queue>();
-  for (const difficulty of [1, 2, 3]) {
-    queues.set(difficulty, { order: seededOrder(pool.filter((task) => task.difficulty === difficulty), `${seed}|${difficulty}`), pos: 0 });
-  }
-  const pick = (difficulty: number, usedInStep: ReadonlySet<string>): SpireExpandedPoolTask | null => {
-    // сначала та же трудность, что у подменяемого задания, затем ближайшие — слот не пропадает из-за пустой корзины
-    for (const level of [difficulty, difficulty - 1, difficulty + 1, difficulty - 2, difficulty + 2]) {
-      const task = takeFrom(queues.get(level), usedInStep);
-      if (task) return task;
-    }
-    return null;
-  };
+  // зачем (владелец 11.11.2026: «не по механикам, а по самим фразам»): пул упорядочен по оценке сложности фразы, место в
+  // наборе получает фразу той же доли пула, что и трудность места по формуле набора недели (шпиль + этаж)
+  const sorted = [...pool].sort((a, b) => rankOf(a) - rankOf(b) || (a.taskId < b.taskId ? -1 : a.taskId > b.taskId ? 1 : 0));
 
   const tasks: Record<string, SpireExpandedOverlayTask> = {};
   const slots: SpireExpandedOverlaySlot[] = [];
   for (const floor of input.pack.floors) {
     if (!isRecord(floor) || typeof floor.floor !== 'number' || !Array.isArray(floor.steps)) return { ok: false, reason: 'pack_floor_shape' };
     if (floor.floor < fromFloor) continue;
+    const hardness = spireHardness(input.tier, floor.floor);
     for (const step of floor.steps) {
       if (!isRecord(step) || typeof step.step !== 'number' || !Array.isArray(step.sets)) return { ok: false, reason: 'pack_step_shape' };
       const usedInStep = new Set<string>();
+      const candidates = spireExpandedStepCandidates(sorted, hardness, `${seed}|${floor.floor}|${step.step}`);
+      let cursor = 0;
+      const pick = (): SpireExpandedPoolTask | null => {
+        while (cursor < candidates.length && usedInStep.has(candidates[cursor].taskId)) cursor += 1;
+        return cursor < candidates.length ? candidates[cursor++] : null;
+      };
       for (let setIndex = 0; setIndex < step.sets.length; setIndex += 1) {
         const set = step.sets[setIndex];
         if (!isRecord(set) || !Array.isArray(set.tasks)) return { ok: false, reason: 'pack_set_shape' };
@@ -156,8 +182,7 @@ export function buildSpireExpandedOverlay(input: SpireExpandedOverlayInput): Spi
         for (let taskIndex = 0; taskIndex < set.tasks.length && left > 0; taskIndex += 1) {
           const base = set.tasks[taskIndex];
           if (!isRecord(base) || base.kind !== REPLACEABLE_KIND) continue;
-          const difficulty = typeof base.difficulty === 'number' && Number.isInteger(base.difficulty) ? base.difficulty : 1;
-          const chosen = pick(difficulty, usedInStep);
+          const chosen = pick();
           if (!chosen) break;
           usedInStep.add(chosen.taskId);
           tasks[chosen.taskId] = { taskId: chosen.taskId, mode: chosen.mode, kind: SPIRE_EXPANDED_KIND, difficulty: chosen.difficulty, payload: chosen.payload };
@@ -178,5 +203,23 @@ export function buildSpireExpandedOverlay(input: SpireExpandedOverlayInput): Spi
     tasks,
     slots,
   };
-  return { ok: true, overlay, json: JSON.stringify(overlay), stats: { slots: slots.length, uniqueTasks: Object.keys(tasks).length, poolTasks: pool.length } };
+  // зачем (сперва логи): средняя оценка фраз на нижнем и верхнем этаже — раскладку «от лёгкого к трудному» видно в журнале сборки
+  const rankById = new Map(pool.map((task) => [task.taskId, rankOf(task)]));
+  const floors = slots.map(([floorNo]) => floorNo);
+  const meanRankAt = (floorNo: number): number | null => {
+    const ranks = slots.filter(([f]) => f === floorNo).map(([, , , , id]) => rankById.get(id) ?? 0);
+    return ranks.length === 0 ? null : Number((ranks.reduce((sum, r) => sum + r, 0) / ranks.length).toFixed(2));
+  };
+  return {
+    ok: true,
+    overlay,
+    json: JSON.stringify(overlay),
+    stats: {
+      slots: slots.length,
+      uniqueTasks: Object.keys(tasks).length,
+      poolTasks: pool.length,
+      meanRankLowFloor: meanRankAt(Math.min(...floors)),
+      meanRankTopFloor: meanRankAt(Math.max(...floors)),
+    },
+  };
 }

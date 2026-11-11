@@ -66,12 +66,16 @@ function collectBatches() {
 
 function narrowRecord(record) {
   const week = record?.level && typeof record.level.week === 'number' ? record.level.week : 1;
+  // зачем (владелец 11.11.2026: «первый этаж первой башни — изи-пизи»): оценка сложности фразы и этаж автора нужны сборщику,
+  // чтобы ставить задание на свой этаж; без них осталась бы одна грубая «неделя»
+  const floor = typeof record?.level?.floor === 'number' ? record.level.floor : null;
+  const target = typeof record?.level?.target === 'number' ? record.level.target : null;
   return {
     schema: SCHEMA,
     candidateId: record.candidateId,
     studyTarget: record.studyTarget,
     format: record.format,
-    level: { week },
+    level: { week, floor, target },
     exercise: record.exercise,
     ui: record.ui,
     feedback: record.feedback,

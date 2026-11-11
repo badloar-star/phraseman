@@ -112,7 +112,35 @@ function convert(record, lang, ru) {
   };
 }
 
+/**
+ * Оценки сложности фраз автора (target, ≈21…49): из встроенного level записи и из файлов base-placements.
+ * зачем (владелец 11.11.2026: «первый этаж самой первой башни — изи-пизи … по самим фразам»): метка автора D1 у части
+ * заданий не совпадает с его же оценкой фразы — такие задания попадали бы на нижние этажи.
+ */
+const HARDER_FROM_TARGET = 30;
+function authorTargets(registryEntries) {
+  const targets = new Map();
+  for (const entry of registryEntries) {
+    const parsed = JSON.parse(fs.readFileSync(entry.path, 'utf8'));
+    for (const record of (Array.isArray(parsed) ? parsed : parsed.candidates ?? [])) {
+      if (typeof record?.level?.target === 'number') targets.set(record.candidateId, record.level.target);
+    }
+  }
+  const placementsDir = path.join(path.dirname(path.dirname(registryEntries[0].path)), 'authoring-continuation', 'base-placements');
+  const dirs = [placementsDir, path.join(path.dirname(registryEntries[0].path), '..', 'base-placements')];
+  for (const dir of dirs) {
+    if (!fs.existsSync(dir)) continue;
+    for (const name of fs.readdirSync(dir).filter((file) => file.endsWith('.json'))) {
+      const parsed = JSON.parse(fs.readFileSync(path.join(dir, name), 'utf8'));
+      for (const row of parsed.rows ?? []) if (typeof row?.target === 'number' && !targets.has(row.candidateId)) targets.set(row.candidateId, row.target);
+    }
+  }
+  return targets;
+}
+
 const registry = JSON.parse(fs.readFileSync(registryPath, 'utf8'));
+const targets = authorTargets(registry);
+let raised = 0;
 const rowsByLang = Object.fromEntries(LANGS.map((lang) => [lang, []]));
 const skipped = {};
 const sources = [];
@@ -145,10 +173,16 @@ for (const entry of registry) {
       skipped.shape = (skipped.shape ?? 0) + 1;
       continue;
     }
-    const result = convert(record, lang, ui.byId[record.candidateId]);
+    let result = convert(record, lang, ui.byId[record.candidateId]);
     if (result.skip) {
       skipped[result.skip] = (skipped[result.skip] ?? 0) + 1;
       continue;
+    }
+    const target = targets.get(record.candidateId);
+    if (typeof target === 'number' && target >= HARDER_FROM_TARGET && result.row.difficulty < 2) {
+      // трудность не ниже метки автора; по оценке фразы — выше, если фраза заметно труднее «лёгкой»
+      result.row = { ...result.row, difficulty: 2 };
+      raised += 1;
     }
     if (seenIds.has(result.row.taskId)) {
       skipped.duplicate_id = (skipped.duplicate_id ?? 0) + 1;
@@ -179,3 +213,4 @@ for (const lang of LANGS) {
 }
 fs.writeFileSync(path.join(outRoot, 'manifest.json'), `${JSON.stringify(manifest, null, 1)}\n`);
 console.log(`[peak-quality-import] отложено: ${JSON.stringify(skipped)}`);
+console.log(`[peak-quality-import] поднято на ступень трудности по оценке фразы автора: ${raised} (оценок найдено: ${targets.size})`);

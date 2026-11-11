@@ -27,6 +27,11 @@ export type SpireExpandedPoolTask = Readonly<{
   mode: SpireExpandedMode;
   /** 1 — лёгкое, 3 — трудное: та же шкала, что у заданий пула Арены. */
   difficulty: number;
+  /**
+   * Оценка сложности САМОЙ фразы автором (level.target Кодекса, ≈21…49; больше — труднее). По ней накладка ставит задание
+   * на этаж: первый этаж первой башни — самые лёгкие фразы (владелец 11.11.2026). Нет оценки — место по `difficulty`.
+   */
+  rank?: number;
   payload: Readonly<{
     exercise: Readonly<Record<string, unknown>>;
     /** Тексты задания по языкам интерфейса; английский обязателен — на него падают языки без перевода. */
@@ -154,11 +159,13 @@ export function spireExpandedPoolTaskFromAuthorRecord(record: unknown): SpireExp
   if (!isRecord(record) || record.schema !== 'peak-expanded-author-v1') return null;
   if (!isText(record.candidateId) || !isText(record.studyTarget) || !isSpireExpandedMode(record.format)) return null;
   const week = isRecord(record.level) && typeof record.level.week === 'number' ? record.level.week : 1;
+  const target = isRecord(record.level) && typeof record.level.target === 'number' && Number.isFinite(record.level.target) ? record.level.target : null;
   const task = {
     taskId: record.candidateId,
     lang: record.studyTarget,
     mode: record.format,
     difficulty: week <= 4 ? 1 : week <= 8 ? 2 : 3,
+    ...(target === null ? {} : { rank: target }),
     payload: { exercise: record.exercise, ui: record.ui, feedback: record.feedback },
   };
   return spireExpandedPoolTaskProblem(task, record.studyTarget) === null ? (task as SpireExpandedPoolTask) : null;

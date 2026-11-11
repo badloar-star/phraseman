@@ -152,6 +152,35 @@ describe('Пик: накладка новых механик поверх пак
     expect(overlay.stats.slots).toBe(choiceSlots);
   });
 
+  it('сложность по фразам: первый этаж первой башни — самые лёгкие, дальше по этажам и башням труднее (владелец 11.11)', () => {
+    // зачем: владелец на первом этаже первой башни получил фразы уровня B1–B2 — накладка брала задания из трёх грубых корзин
+    for (const lang of LANGS) {
+      const pool = realPool(lang);
+      expect([lang, pool.every((task) => typeof task.rank === 'number')]).toEqual([lang, true]);
+      const ranks = pool.map((task) => task.rank as number).sort((a, b) => a - b);
+      const easyBound = ranks[Math.floor(ranks.length * 0.2)];
+      const meanAt = (tier: number) => {
+        const input = { ...INPUT, lang, tier, weekId: '2026-W46' };
+        const pack = buildSpirePack(input);
+        if (!pack.ok) throw new Error(`pack_build_failed:${pack.reason}`);
+        const built = buildSpireExpandedOverlay({ pack: JSON.parse(pack.json) as unknown, weekId: input.weekId, lang, tier, basePackHash: pack.pack.packHash, tasks: pool });
+        if (!built.ok) throw new Error(`overlay_failed:${built.reason}`);
+        const rankOf = new Map(pool.map((task) => [task.taskId, task.rank as number]));
+        const byFloor = new Map<number, number[]>();
+        for (const [floor, , , , id] of built.overlay.slots) byFloor.set(floor, [...(byFloor.get(floor) ?? []), rankOf.get(id) as number]);
+        const mean = (floor: number) => { const list = byFloor.get(floor) ?? []; return list.reduce((s, r) => s + r, 0) / list.length; };
+        return { byFloor, mean, top: Math.max(...byFloor.keys()) };
+      };
+      const first = meanAt(0);
+      // первый этаж первой башни: КАЖДОЕ задание — из самой лёгкой пятой части пула языка
+      expect([lang, (first.byFloor.get(1) ?? []).filter((rank) => rank > easyBound)]).toEqual([lang, []]);
+      expect(first.mean(first.top)).toBeGreaterThan(first.mean(1));
+      const last = meanAt(11);
+      expect(last.mean(1)).toBeGreaterThan(first.mean(1));
+      expect(last.mean(last.top)).toBeGreaterThan(first.mean(first.top));
+    }
+  });
+
   it('сервер собирает накладку детерминированно: по заданному числу в наборе, без повторов в ступени', () => {
     const built = builtPack();
     const first = overlayFor(built.json, built.pack.packHash);

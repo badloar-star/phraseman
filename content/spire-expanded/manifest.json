@@ -7,7 +7,7 @@
   "langs": {
     "en": {
       "tasks": 350,
-      "sha256": "c3971c7b55238aabd2975ed33550d63d98a046c2e5a288db140425a0db2b3dd0",
+      "sha256": "94a49e96574e5a4415d952450591c08f0e88ad98d6b7a878396fccad2fd482bd",
       "formats": {
         "classify_function": 28,
         "context_choice": 35,
@@ -25,7 +25,7 @@
     },
     "es": {
       "tasks": 300,
-      "sha256": "9f48d2f1b3b7b780e791e55de3adb8fbb6c27a26c201c6778e752459569b74f3",
+      "sha256": "6acbc84db5118e716d4b29e1f623bd3272018f1e893464130ed5fb41d47d722e",
       "formats": {
         "classify_function": 24,
         "context_choice": 30,
@@ -43,7 +43,7 @@
     },
     "de": {
       "tasks": 300,
-      "sha256": "b8d2ea0cc1ed05eaf54eaffc5af70688fd2a3de56e1e037f42d920c68eeb4350",
+      "sha256": "c395144f0a72f92cb068f00359ed7d20fe0ff73f8bdf7211163c2c24f4cf24d1",
       "formats": {
         "classify_function": 24,
         "context_choice": 30,
@@ -61,7 +61,7 @@
     },
     "fr": {
       "tasks": 300,
-      "sha256": "3e0e3727f7bb2721b8008733c3071f23db31ced201b6d970f7dfc9b6193d4c95",
+      "sha256": "4a08d725d19ca59b381064edac8b7289c01a86e035494db657ebd6d5add5ecf0",
       "formats": {
         "classify_function": 24,
         "context_choice": 30,
@@ -79,7 +79,7 @@
     },
     "it": {
       "tasks": 300,
-      "sha256": "1d35afc1145d917f66ae5f8ff7396b9dc5594b7f25e3e9ace441a41455c1d8ae",
+      "sha256": "df23940c6aa976b212fffcaf6e714022934003c8e2c771057215a02ffa26a4c0",
       "formats": {
         "classify_function": 24,
         "context_choice": 30,

@@ -74,8 +74,32 @@ describe('событие instead → данные кадра', () => {
     }
   });
 
-  it('список видов с источником — ровно два; остальные 15 кадров ждут своих партий', () => {
-    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough']);
+  it('«Бонусы стали монетами»: что было и сколько стало; нулевой итог тоже показывается', () => {
+    expect(insteadTemplateFromPayload({ kind: 'legacy', key: 'v2:1240', coins: 1240, xpBefore: 3100, pearlsBefore: 4, spinsBefore: 0 }))
+      .toEqual({ id: 'instead_legacy', coins: 1240, xpBefore: 3100, pearlsBefore: 4, spinsBefore: 0 });
+    expect(insteadTemplateFromPayload({ kind: 'legacy', key: 'v2:0', coins: 0, xpBefore: 0, pearlsBefore: 0, spinsBefore: 0 })).toMatchObject({ id: 'instead_legacy', coins: 0 });
+    expect(insteadTemplateFromPayload({ kind: 'legacy', key: 'v2:1', coins: 1, xpBefore: 1, pearlsBefore: 1 })).toBeNull();
+  });
+
+  it('«Plus закончился»: кадр без даты, число защит — из события', () => {
+    expect(insteadTemplateFromPayload({ kind: 'plus_expired', key: 'premium:2026-11-11', plan: 'premium', freezesPerMonth: 3 }))
+      .toEqual({ id: 'instead_plus_expired', untilLabel: null, freezesPerMonth: 3 });
+    expect(insteadTemplateFromPayload({ kind: 'plus_expired', key: 'premium:2026-11-11', plan: 'premium', freezesPerMonth: 0 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'plus_expired', key: 'premium:2026-11-11', plan: 'premium' })).toBeNull();
+  });
+
+  it('список видов с источником — четыре; остальные 13 кадров ждут своих партий', () => {
+    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired']);
+  });
+
+  it('истёкшая подписка и старые бонусы: при выключенных историях прежний путь, «показано» — после записи', () => {
+    const expired = read('components/EntitlementExpiredHost.tsx');
+    expect(expired).toContain("useOverlayVisible('entitlementExpired', pending !== null && !devOverlaysOff && !billingOpen && !storiesInstead);");
+    expect(expired).toContain('openPremiumPaywall(router, {');
+    expect(expired.indexOf('if (!insteadStoryLanded(record))')).toBeLessThan(expired.indexOf("noteSwallowedHandler('EntitlementExpiredHost:story_last_shown')"));
+    const legacy = read('components/legacy_bonus/LegacyBonusWelcomeInner.tsx');
+    expect(legacy).toContain("const slot = useOverlayVisible('legacyBonusWelcome', frozen !== null);");
+    expect(legacy.indexOf('if (!insteadStoryLanded(record))')).toBeLessThan(legacy.indexOf('dismissLegacyBonusWelcome();\n      })'));
   });
 });
 

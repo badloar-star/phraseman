@@ -66,11 +66,13 @@ const S = {
   legacyOverline: same('PhraseMan 2.0'),
   legacyTitle: ['Бонусы стали монетами', 'Бонуси стали монетами', 'Bonuses are now coins', 'Los bonos ahora son monedas', 'Os bônus viraram moedas', 'Phần thưởng đã thành xu', 'Bonus kini menjadi koin', 'Bonuslar jetona dönüştü', 'Bonusy stały się monetami'],
   legacyText: [
-    'Осколки и жемчуг пересчитаны. Ничего не потеряно.', 'Уламки й перли перераховано. Нічого не втрачено.', 'Shards and pearls were converted. Nothing was lost.',
-    'Los fragmentos y las perlas se convirtieron. No se perdió nada.', 'Fragmentos e pérolas foram convertidos. Nada se perdeu.', 'Mảnh vỡ và ngọc trai đã được quy đổi. Không mất gì cả.',
-    'Kepingan dan mutiara sudah dikonversi. Tidak ada yang hilang.', 'Kırıklar ve inciler dönüştürüldü. Hiçbir şey kaybolmadı.', 'Odłamki i perły zostały przeliczone. Nic nie przepadło.',
+    // пересчитывались опыт, жемчуг и вращения (legacy_bonus_view) — «осколков» среди них нет
+    'Опыт, жемчуг и вращения пересчитаны. Ничего не потеряно.', 'Досвід, перли й обертання перераховано. Нічого не втрачено.', 'Experience, pearls and spins were converted. Nothing was lost.',
+    'La experiencia, las perlas y los giros se convirtieron. No se perdió nada.', 'Experiência, pérolas e giros foram convertidos. Nada se perdeu.', 'Kinh nghiệm, ngọc trai và lượt quay đã được quy đổi. Không mất gì cả.',
+    'Pengalaman, mutiara, dan putaran sudah dikonversi. Tidak ada yang hilang.', 'Deneyim, inciler ve çevirmeler dönüştürüldü. Hiçbir şey kaybolmadı.', 'Doświadczenie, perły i obroty zostały przeliczone. Nic nie przepadło.',
   ],
-  legacyShardsLabel: ['осколков было', 'уламків було', 'shards before', 'fragmentos antes', 'fragmentos antes', 'mảnh vỡ trước đây', 'kepingan sebelumnya', 'önceki kırık', 'odłamków wcześniej'],
+  legacyXpLabel: ['опыта было', 'досвіду було', 'experience before', 'experiencia antes', 'experiência antes', 'kinh nghiệm trước đây', 'pengalaman sebelumnya', 'önceki deneyim', 'doświadczenia wcześniej'],
+  legacySpinsLabel: ['вращений было', 'обертань було', 'spins before', 'giros antes', 'giros antes', 'lượt quay trước đây', 'putaran sebelumnya', 'önceki çevirme', 'obrotów wcześniej'],
   legacyPearlsLabel: ['жемчуга было', 'перлів було', 'pearls before', 'perlas antes', 'pérolas antes', 'ngọc trai trước đây', 'mutiara sebelumnya', 'önceki inci', 'pereł wcześniej'],
 
   // ── 4 · хватает на ранг ──

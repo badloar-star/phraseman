@@ -39,6 +39,22 @@ export function recordWelcomeBackStory(input: Readonly<{ dayKey: string; daysAwa
   });
 }
 
+/**
+ * «Бонусы стали монетами» (взамен окна «Встречайте PhraseMan 2.0»): сколько монет начислил сервер и сколько было опыта, жемчуга и вращений.
+ * Ключ — итог начисления: пересчёт разовый, повторный вход с тем же итогом второй истории не создаёт.
+ */
+export function recordLegacyCoinsStory(input: Readonly<{ coins: number; xpBefore: number; pearlsBefore: number; spinsBefore: number }>): Promise<StoryRecordResult> {
+  return record('legacy', `v2:${input.coins}`, { coins: input.coins, xpBefore: input.xpBefore, pearlsBefore: input.pearlsBefore, spinsBefore: input.spinsBefore });
+}
+
+/**
+ * «Plus закончился» (взамен автоперехода на экран оплаты): вид подписки и сколько защит серии в месяц давал Plus (число — из правил приложения,
+ * пишется в событие, чтобы кадр не зависел от модуля подписки). Ключ — вид и день: хост и так показывает не чаще раза в 7 дней.
+ */
+export function recordPlusExpiredStory(input: Readonly<{ kind: 'premium' | 'vip'; dayKey: string; freezesPerMonth: number }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
+  return record('plus_expired', `${input.kind}:${input.dayKey}`, { plan: input.kind, freezesPerMonth: input.freezesPerMonth }, accountToken);
+}
+
 /** «Хватает на ранг N»: ключ — номер следующего ранга, один раз на ранг (как у окна). */
 export function recordRankEnoughStory(input: Readonly<{ rank: number; nextRank: number; balance: number; price: number }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
   return record('rank_enough', String(input.nextRank), { rank: input.rank, nextRank: input.nextRank, balance: input.balance, price: input.price }, accountToken);

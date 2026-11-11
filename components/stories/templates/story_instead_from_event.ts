@@ -3,7 +3,8 @@
 //
 // зачем (владелец 11.11, шаг 2): кадр показывает только то, что лежит в событии, и только если данные целы. Битое событие
 // (нет числа, отрицательное, ранг вне таблицы) кадра не даёт — лучше пропустить историю, чем показать «0 дней перерыва».
-// Пока подключены два вида: `back` («С возвращением») и `rank_enough` («Хватает на ранг»); остальные 15 — следующими партиями.
+// Подключены четыре вида: `back` («С возвращением»), `rank_enough` («Хватает на ранг»), `legacy` («Бонусы стали монетами»),
+// `plus_expired` («Plus закончился»); остальные 13 — следующими партиями.
 // Числа проверяются строго: строка '6' и дробное 6.9 не превращаются в 6 — так уже маскировался битый payload у ранга монеты.
 // ═══════════════════════════════════════════════════════════════════════════
 import { isValidCoinRank } from '../../../app/coin_rank_table_v1';
@@ -17,7 +18,7 @@ function count(value: unknown): number | null {
 }
 
 /** Виды событий `instead`, у которых уже есть источник. */
-export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough'] as const;
+export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired'] as const;
 
 export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | null {
   switch (p.kind) {
@@ -36,6 +37,21 @@ export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | n
       // зачем: кадр обещает «хватает» — если в событии баланс меньше цены, это битые данные, а не повод показать неправду
       if (balance === null || price === null || price < 1 || balance < price) return null;
       return { id: 'instead_rank', rank: p.rank, nextRank: p.nextRank, balance, price };
+    }
+    case 'legacy': {
+      const coins = count(p.coins);
+      const xpBefore = count(p.xpBefore);
+      const pearlsBefore = count(p.pearlsBefore);
+      const spinsBefore = count(p.spinsBefore);
+      // зачем (владелец 15.10): окно показывалось и при нулевом итоге — человек должен узнать, что пересчёт был; кадр ведёт себя так же
+      if (coins === null || xpBefore === null || pearlsBefore === null || spinsBefore === null) return null;
+      return { id: 'instead_legacy', coins, xpBefore, pearlsBefore, spinsBefore };
+    }
+    case 'plus_expired': {
+      const freezesPerMonth = count(p.freezesPerMonth);
+      if (freezesPerMonth === null || freezesPerMonth < 1) return null;
+      // дату окончания хост истёкшей подписки не знает — кадр идёт без строки с датой
+      return { id: 'instead_plus_expired', untilLabel: null, freezesPerMonth };
     }
     default:
       return null;

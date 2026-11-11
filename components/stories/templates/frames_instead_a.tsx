@@ -28,13 +28,14 @@ import { insteadText } from './story_instead_strings';
 /** Данные кадров — только то, что событие уже знает. При подключении переезжают в story_template_registry. */
 export type HelloNewStory = Readonly<{ coinRank: number }>;
 export type WelcomeBackStory = Readonly<{ coinRank: number | null; daysAway: number; dueCards: number; phrasesLearned: number }>;
-export type LegacyCoinsStory = Readonly<{ coins: number; shardsBefore: number; pearlsBefore: number }>;
+/** Сколько было старого: опыт, жемчуг, вращения — то, что сервер пересчитал в монеты (legacy_bonus_view: from). */
+export type LegacyCoinsStory = Readonly<{ coins: number; xpBefore: number; pearlsBefore: number; spinsBefore: number }>;
 export type RankEnoughStory = Readonly<{ rank: number; nextRank: number; balance: number; price: number }>;
 export type AppUpdateStory = Readonly<{ version: string; changes: readonly string[] }>;
 export type TeamMessageStory = Readonly<{ text: string; whenLabel: string }>;
 export type NotifNudgeStory = Readonly<{ missedDays: number; endMs: number }>;
-/** `freezesPerMonth` — из PREMIUM_FREE_FREEZES_PER_MONTH, `untilLabel` — готовая дата на языке интерфейса. */
-export type PlusStateStory = Readonly<{ untilLabel: string; freezesPerMonth: number }>;
+/** `freezesPerMonth` — из PREMIUM_FREE_FREEZES_PER_MONTH, `untilLabel` — готовая дата на языке интерфейса; null — дата неизвестна, строки с датой нет. */
+export type PlusStateStory = Readonly<{ untilLabel: string | null; freezesPerMonth: number }>;
 
 type FrameProps<D> = Readonly<{ tpl: D; lang: Lang }>;
 
@@ -82,16 +83,23 @@ export const WelcomeBackFrame = memo(function WelcomeBackFrame({ tpl, lang }: Fr
 
 export const LegacyCoinsFrame = memo(function LegacyCoinsFrame({ tpl, lang }: FrameProps<LegacyCoinsStory>) {
   const pal = useStoryTemplatePalette();
+  const before = useMemo(() => ([
+    { key: 'xp', value: tpl.xpBefore, label: 'legacyXpLabel' },
+    { key: 'pearls', value: tpl.pearlsBefore, label: 'legacyPearlsLabel' },
+    { key: 'spins', value: tpl.spinsBefore, label: 'legacySpinsLabel' },
+  ] as const).filter((row) => row.value > 0), [tpl.xpBefore, tpl.pearlsBefore, tpl.spinsBefore]);
   return (
     <FrameRoot testID="story-tpl-instead-legacy" layer={<CoinRain />} layerClip={false}>
       <Enter d={300}><CountUp to={tpl.coins} d={500} dur={1100} style={[k.bigM, { color: pal.tx }]} /></Enter>
       <Ov text={insteadText(lang, 'legacyOverline')} d={700} />
       <H1 text={insteadText(lang, 'legacyTitle')} d0={780} small />
       <P text={insteadText(lang, 'legacyText')} d={1100} />
-      <Stats>
-        <Stat d={1250} value={tplNumber(tpl.shardsBefore)} label={insteadText(lang, 'legacyShardsLabel')} />
-        <Stat d={1330} value={tplNumber(tpl.pearlsBefore)} label={insteadText(lang, 'legacyPearlsLabel')} />
-      </Stats>
+      {/* зачем: плитка — только у того, что реально было (ноль опыта или вращений строкой не показываем); задержки 1250 / 1330 / 1410 */}
+      {before.length > 0 ? (
+        <Stats>
+          {before.map((row, i) => <Stat key={row.key} d={1250 + i * 80} value={tplNumber(row.value)} label={insteadText(lang, row.label)} />)}
+        </Stats>
+      ) : null}
     </FrameRoot>
   );
 });
@@ -176,7 +184,7 @@ export const PlusExpiredFrame = memo(function PlusExpiredFrame({ tpl, lang }: Fr
   return (
     <FrameRoot testID="story-tpl-instead-plus-expired">
       <Art><BigPlusMark off id="expired" /></Art>
-      <Ov text={insteadText(lang, 'untilOverline', { date: tpl.untilLabel })} d={380} />
+      {tpl.untilLabel ? <Ov text={insteadText(lang, 'untilOverline', { date: tpl.untilLabel })} d={380} /> : null}
       <H1 text={insteadText(lang, 'expiredTitle')} d0={460} />
       <PerkRows items={[perks.shield, perks.dialogs, perks.lessons]} locked d0={700} />
     </FrameRoot>
@@ -190,7 +198,7 @@ export const PlusOnFrame = memo(function PlusOnFrame({ tpl, lang }: FrameProps<P
   return (
     <FrameRoot testID="story-tpl-instead-plus-on" layer={<Confetti n={18} d0={600} />}>
       <Art><BigPlusMark id="on" /></Art>
-      <Ov text={insteadText(lang, 'untilOverline', { date: tpl.untilLabel })} d={380} />
+      {tpl.untilLabel ? <Ov text={insteadText(lang, 'untilOverline', { date: tpl.untilLabel })} d={380} /> : null}
       <H1 text={insteadText(lang, 'plusOnTitle')} d0={460} />
       <PerkRows items={[perks.lessons, perks.dialogs, perks.shield]} d0={700} />
     </FrameRoot>

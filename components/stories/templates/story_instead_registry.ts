@@ -52,7 +52,7 @@ const MY_RANK = 5;
 export const STORY_INSTEAD_TEMPLATE_SAMPLES: Readonly<{ [I in StoryInsteadTemplateId]: Extract<StoryInsteadTemplate, { id: I }> }> = {
   instead_hello: { id: 'instead_hello', coinRank: 0 },
   instead_back: { id: 'instead_back', coinRank: 6, daysAway: 9, dueCards: 24, phrasesLearned: 186 },
-  instead_legacy: { id: 'instead_legacy', coins: 1240, shardsBefore: 310, pearlsBefore: 4 },
+  instead_legacy: { id: 'instead_legacy', coins: 1240, xpBefore: 3100, pearlsBefore: 4, spinsBefore: 0 },
   instead_rank: { id: 'instead_rank', rank: 4, nextRank: 5, balance: 2400, price: 2000 },
   instead_update: { id: 'instead_update', version: '2.1', changes: ['Истории вместо окон', 'Новые сценарии диалогов', 'Уроки открываются быстрее'] },
   instead_message: { id: 'instead_message', text: 'Plus на 30 дней уже на аккаунте. Спасибо, что написали про ошибку в уроке 14.', whenLabel: 'Сегодня, 14:20' },

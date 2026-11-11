@@ -17,9 +17,9 @@ const TPL = [
     render: () => `<div class="art"><div class="pop" style="--d:120ms">${coin(6, 112, 'breathe')}</div></div><div class="ov a" style="--d:380ms">9 дней перерыва</div><div class="h1">${words('С возвращением', 460)}</div><div class="p a" style="--d:640ms">Серия начнётся заново с сегодняшнего занятия.</div>
       <div class="stats"><div class="stt a" style="--d:800ms">${cnt(24, 900, 800)}<span>карточки на повтор</span></div><div class="stt a" style="--d:880ms">${cnt(186, 980, 800)}<span>фраз выучено</span></div></div>` },
 
-  { id: 'legacy_coins', name: 'Бонусы стали монетами', group: 'Запуск', kind: 'new', ev: 'legacy_bonus_converted (новое)', when: 'взамен окна «Встречайте PhraseMan 2.0» · один раз после пересчёта старых бонусов', data: 'coins, shardsBefore, pearlsBefore', motion: 'монеты падают сверху, сумма досчитывается',
-    render: () => `${coinRain(9)}<div class="big m a" style="--d:300ms">${cnt(1240, 500, 1100)}</div><div class="ov a" style="--d:700ms">PhraseMan 2.0</div><div class="h1 s">${words('Бонусы стали монетами', 780)}</div><div class="p a" style="--d:1100ms">Осколки и жемчуг пересчитаны. Ничего не потеряно.</div>
-      <div class="stats"><div class="stt a" style="--d:1250ms"><b>310</b><span>осколков было</span></div><div class="stt a" style="--d:1330ms"><b>4</b><span>жемчуга было</span></div></div>` },
+  { id: 'legacy_coins', name: 'Бонусы стали монетами', group: 'Запуск', kind: 'new', ev: 'legacy_bonus_converted (новое)', when: 'взамен окна «Встречайте PhraseMan 2.0» · один раз после пересчёта старых бонусов', data: 'coins, xpBefore, pearlsBefore, spinsBefore', motion: 'монеты падают сверху, сумма досчитывается',
+    render: () => `${coinRain(9)}<div class="big m a" style="--d:300ms">${cnt(1240, 500, 1100)}</div><div class="ov a" style="--d:700ms">PhraseMan 2.0</div><div class="h1 s">${words('Бонусы стали монетами', 780)}</div><div class="p a" style="--d:1100ms">Опыт, жемчуг и вращения пересчитаны. Ничего не потеряно.</div>
+      <div class="stats"><div class="stt a" style="--d:1250ms"><b>3 100</b><span>опыта было</span></div><div class="stt a" style="--d:1330ms"><b>4</b><span>жемчуга было</span></div></div>` },
 
   { id: 'rank_enough', name: 'Хватает на ранг', group: 'Монета', kind: 'new', ev: 'coin_rank_enough (новое)', when: 'взамен окна «Хватает на ранг N» · монет стало достаточно для следующего ранга', data: 'rank, nextRank, balance, price', motion: 'монета переворачивается на новый ранг, вокруг расходится свечение',
     cta: { label: 'Улучшить монету', icon: 'trend' },

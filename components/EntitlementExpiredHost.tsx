@@ -21,6 +21,9 @@ import { useOverlayVisible } from './OverlayArbiter';
 import { DebugLogger } from '../app/debug-logger';
 import { getDevOverlaysSnapshot, subscribeDevOverlays } from '../app/dev_overlays_off';
 import { readRealPremiumSnapshotForGeneration } from '../app/premium_real_storage';
+import { getLocalDayKey } from '../app/local_date';
+import { PREMIUM_FREE_FREEZES_PER_MONTH } from '../app/premium_freeze_allowance';
+import { insteadStoryLanded, recordPlusExpiredStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
 
 import { noteSwallowedHandler, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -58,7 +61,10 @@ function EntitlementExpiredHost() {
   const devOverlaysSnapshot = useSyncExternalStore(subscribeDevOverlays, getDevOverlaysSnapshot, getDevOverlaysSnapshot);
   const devOverlaysOff = devOverlaysSnapshot.startsWith('1');
   const billingOpen = pathname === '/premium_modal' || pathname === '/manage_subscription' || pathname === '/promo_code_entry';
-  const overlayVisible = useOverlayVisible('entitlementExpired', pending !== null && !devOverlaysOff && !billingOpen);
+  // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях слот очереди не просим —
+  // факт уходит кадром «Plus закончился» (эффект ниже), экран оплаты сам не открывается
+  const storiesInstead = storiesReplaceWindows();
+  const overlayVisible = useOverlayVisible('entitlementExpired', pending !== null && !devOverlaysOff && !billingOpen && !storiesInstead);
 
   const maybeShow = useCallback(async (k: Kind, expectedAccount: AccountGenerationToken) => {
     if (!entitlementAccountIsCurrent(expectedAccount)) return;
@@ -227,6 +233,28 @@ function EntitlementExpiredHost() {
     }
     })();
   }, [lang]);
+
+  // Истории включены: вместо автоперехода на экран оплаты — кадр с кнопкой «Вернуть Plus». Отметка «показано» (раз в 7 дней) — после записи.
+  useEffect(() => {
+    if (!pending || !storiesInstead || devOverlaysOff || opened.current === pending) return;
+    if (!entitlementAccountIsCurrent(pending.account)) { setPending(null); return; }
+    const stableId = pending.account.stableId;
+    const current = pending;
+    opened.current = current;
+    const lastShownKey = accountEntitlementStorageKey(LAST_SHOWN_KEY[current.kind], stableId);
+    // зачем: maybeShow уже снял отметку «подписка была» — если история не легла, возвращаем её, чтобы факт не потерялся до следующей проверки
+    const restoreWasActive = (): void => {
+      void AsyncStorage.setItem(accountEntitlementStorageKey(WAS_ACTIVE_KEY[current.kind], stableId), '1').catch(noteSwallowedHandler('EntitlementExpiredHost:story_restore_was_active'));
+    };
+    void recordPlusExpiredStory({ kind: current.kind, dayKey: getLocalDayKey(), freezesPerMonth: PREMIUM_FREE_FREEZES_PER_MONTH }, current.account)
+      .then((record) => {
+        if (!insteadStoryLanded(record)) { DebugLogger.warn('[ENTITLEMENT-EXPIRED]', `история не записана (${record.recorded ? 'ok' : record.reason}) — «показано» не ставим`); restoreWasActive(); return; }
+        DebugLogger.info('[ENTITLEMENT-EXPIRED]', `история вместо экрана оплаты: вид=${current.kind}`);
+        void AsyncStorage.setItem(lastShownKey, String(Date.now())).catch(noteSwallowedHandler('EntitlementExpiredHost:story_last_shown'));
+      })
+      .catch((error: unknown) => { restoreWasActive(); DebugLogger.error('EntitlementExpiredHost:story', error instanceof Error ? error : new Error(String(error)), 'warning'); })
+      .finally(() => { setPending((prev) => (prev === current ? null : prev)); });
+  }, [devOverlaysOff, pending, storiesInstead]);
 
   useEffect(() => {
     if (!pending || !overlayVisible || billingOpen || devOverlaysOff || opened.current === pending) return;

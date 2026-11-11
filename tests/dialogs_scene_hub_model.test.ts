@@ -76,6 +76,13 @@ describe('Сцена Диалогов: контракт подключения',
     for (const src of [hook, hub]) expect(src).not.toMatch(/setAiDialogConsent|recordAiDialogConsent/);
     expect(hook).toMatch(/dayDone: peekDialogueV2DoneToday()/);
   });
+  it('хаб не показывает «Включить AI-диалоги»: согласие спрашивает один раз лист на брифинге (владелец 11.11)', () => {
+    expect(hook).toMatch(/^ {4}consent: null,$/m);
+    expect(hook).not.toMatch(/ai_dialog_consent/);
+    const briefing = read('app/dialogue_v2_briefing.tsx');
+    expect(briefing).toMatch(/if \(consent !== 'granted'\) \{[\s\S]{0,300}setConsentAsk\(true\)/);
+    expect(briefing).toMatch(/<AiDialogConsentModal visible=\{consentAsk\}/);
+  });
   it('действия обёртки: лимит — premium_modal, остальное — брифинг следующего диалога', () => {
     expect(hub).toMatch(/pathname: '\/premium_modal'/);
     // зачем (faf515267, пейвол «М»): params входа строит dialogLimitPaywallParams — тот же context 'dialog_limit' и source + итог первого разговора

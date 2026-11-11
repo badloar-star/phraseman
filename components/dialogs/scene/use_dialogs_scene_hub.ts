@@ -4,14 +4,14 @@
 // зачем (координатор 22.10: «без второго чтения каталога: один источник, общий кэш»): каталог в сеть ходит контейнер хаба (после анимации входа, окно 12 ч, клиент каталога).
 // Здесь — тот же путь чтения: peekDialogueV2Catalogue (кэш этого запуска или встроенный снимок, без сети) и та же проекция projectAuthorizedDialogueV2Catalogue; после анимации
 // входа один раз зовём fetchReleasedDialogueV2Catalogue — клиент отдаёт ТОТ ЖЕ запрос (общий in-flight) или кэш в окне 12 ч, второго обращения к серверу нет.
-// Остальное сцена берёт из того, что телефон уже знает: согласие (память процесса, читается с диска один раз), сеть, остаток ответов (зеркало), Plus, пройденные диалоги (локальное хранилище).
+// Остальное сцена берёт из того, что телефон уже знает: сеть, остаток ответов (зеркало), Plus, пройденные диалоги (локальное хранилище).
+// Согласие на ИИ сцена НЕ показывает (владелец 11.11): о нём спрашивает один раз лист на брифинге, перед стартом диалога.
 // «Диалог засчитан сегодня» (dayDone): источника на телефоне нет — вход null, состояние day_done не включается вслепую; причина пишется в журнал [DIALOGS-SCENE].
 // ready=false — каталога для сцены нет (язык без проверенных диалогов, пусто): хаб оставляет прежнюю шапку и карточку языка, сцену не рисует.
 // ═══════════════════════════════════════════════════════════════════════════
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { InteractionManager } from 'react-native';
 
-import { getAiDialogConsentState, hydrateAiDialogConsentFromStorage, isAiDialogConsentHydrated, subscribeAiDialogConsent } from '../../../app/ai_dialog_consent';
 import {
   fetchReleasedDialogueV2Catalogue, getEmbeddedDialogueV2Catalogue, peekDialogueV2Catalogue,
   type DialogueV2CatalogueReleaseEnvelope, type DialogueV2CatalogueStudyTarget,
@@ -67,15 +67,10 @@ export function useDialogsSceneHub(): DialogsSceneHubData {
   const { offline, retry: retryNet } = useDialogsSceneOffline(true);
   const voice = useVoiceDailyAllowance();
   const dayVersion = useSyncExternalStore(subscribeDialogueV2DoneToday, getDialogueV2DoneTodayVersion, getDialogueV2DoneTodayVersion);
-  const consentState = useSyncExternalStore(subscribeAiDialogConsent, getAiDialogConsentState, getAiDialogConsentState);
   const doneVersion = useSyncExternalStore(subscribeDialogueV2Done, getDialogueV2DoneVersion, getDialogueV2DoneVersion);
   const supported = supportedTarget(studyTarget);
   const [envelope, setEnvelope] = useState<DialogueV2CatalogueReleaseEnvelope | null>(() => (supportedTarget(studyTarget) ? peekDialogueV2Catalogue(studyTarget) : null));
 
-  useEffect(() => {
-    // согласие читается с диска один раз за процесс; до этого consent=null (не решаем «нет согласия» вслепую)
-    void hydrateAiDialogConsentFromStorage();
-  }, []);
   useEffect(() => {
     if (!supportedTarget(studyTarget)) return;
     void hydrateDialogueV2DoneIds(studyTarget);
@@ -149,9 +144,11 @@ export function useDialogsSceneHub(): DialogsSceneHubData {
   }, [supported, envelope, lang, studyTarget, localCoinRank, hasPremiumAccess, doneVersion]);
 
   const plus = accessResolved && hasPremiumAccess;
-  const consent = isAiDialogConsentHydrated() ? consentState === 'granted' : null;
   const input = useMemo<DialogsSceneInput>(() => ({
-    consent,
+    // зачем (владелец 11.11: «сначала нажимаем включить, а потом оно повторно спрашивает… пусть будет только 1 раз»): сцена с кнопкой
+    // «Включить AI-диалоги» вела на брифинг, где «Начать» открывал лист «Включить AI-диалоги?» — два «Включить» подряд. Согласие с текстом
+    // про OpenAI записывает только лист (dialogue_v2_briefing), поэтому лишняя — сцена: хаб всегда показывает обычное состояние.
+    consent: null,
     offline,
     plus,
     quotaRemaining: quota ? quota.remaining : null,
@@ -160,7 +157,7 @@ export function useDialogsSceneHub(): DialogsSceneHubData {
     // локальная отметка (app/dialogue_v2_day_mark.ts); null — диск ещё не читали, состояние вслепую не включаем
     dayDone: peekDialogueV2DoneToday(),
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: dayVersion будит пересчёт, когда отметка поменялась
-  }), [consent, offline, plus, quota, model, dayVersion]);
+  }), [offline, plus, quota, model, dayVersion]);
   const month = new Date().getFullYear() * 12 + new Date().getMonth();
   // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: дата считается раз за месяц, а не на каждый рендер
   const resetDate = useMemo(() => new Date(Math.floor(month / 12), month % 12 + 1, 1), [month]);

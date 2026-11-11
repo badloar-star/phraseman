@@ -786,7 +786,11 @@ function GlobalLevelUpRewards() {
   pathnameRef.current = pathname;
 
   /**
-   * Разовый апселл премиума на 5-м уровне.
+   * Апселл премиума на 5-м, 10-м и 20-м уровне.
+   *
+   * зачем (владелец 2026-11-11, аудит мотивации к Plus: «Уровни кроме 5-го» — делать): раньше окно Plus на повышении
+   * уровня открывалось один раз за всё время — на 5-м. Теперь ещё на 10-м и 20-м; пауза 36 часов между показами и
+   * правило «не в день окна про серию» остаются (after_win_upsell_gate), вид окна прежний.
    *
    * зачем: механика монетизации, которая раньше висела на кнопке «Готово»
    * удалённой модалки поздравления. Модалки нет — но апселл терять нельзя,
@@ -796,7 +800,7 @@ function GlobalLevelUpRewards() {
    */
   useEffect(() => {
     const sub = onAppEvent('home_level_up_celebrated', ({ level }) => {
-      if (level !== 5 || hasPremiumAccess) return;
+      if (!LEVEL_UP_UPSELL_LEVELS.has(level) || hasPremiumAccess) return;
       const accountToken = captureAccountGeneration();
       void withAccountTransitionLock(async () => {
         if (!isLevelUpAccountTokenCurrent(accountToken)) return;
@@ -861,6 +865,9 @@ function bootCommitProfilerOnRender(id: string, phase: string, actualDuration: n
 
 // R58 #21: замок «Включить напоминания» от двойного тапа (AppContent — единственный экземпляр)
 let notifNudgeConfirmInFlight = false;
+
+/** Уровни, на которых бесплатному аккаунту после праздника уровня открывается окно Plus (владелец 11.11: 5, 10 и 20). */
+const LEVEL_UP_UPSELL_LEVELS: ReadonlySet<number> = new Set([5, 10, 20]);
 
 function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   const [ready, setReady]           = useState(false);

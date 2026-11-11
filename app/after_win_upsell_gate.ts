@@ -37,7 +37,10 @@ export async function canShowAfterWinUpsell({ isPremium, nowMs }: CanShowAfterWi
     if (nowMs - last < AFTER_WIN_UPSELL_COOLDOWN_MS) return false;
     if (streakShown && streakShown === todayKeyFor(nowMs)) return false;
     return true;
-  } catch {
+  } catch (e) {
+    // зачем (правило «немой catch запрещён»; аудит мотивации к Plus 11.11): сбой чтения хранилища молча отменял окно Plus —
+    // потерянный показ без следа. Поведение прежнее (не показываем), но причина теперь в журнале.
+    DebugLogger.error('after_win_upsell_gate:canShowAfterWinUpsell', e instanceof Error ? e : new Error(String(e)), 'warning');
     return false;
   }
 }

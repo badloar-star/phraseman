@@ -303,7 +303,7 @@ export default function AccountDetailsScreen() {
         <ContentWrap>
           {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки до прокрутки — контент под круг не заезжает */}
           <ScreenBackZone />
-          <BouncyScrollView
+          <BouncyScrollView softTopEdge
             contentContainerStyle={{ paddingHorizontal: 15, paddingBottom: 28 }}
             decelerationRate="fast"
             showsVerticalScrollIndicator={false}

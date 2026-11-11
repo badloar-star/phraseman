@@ -1534,7 +1534,7 @@ function HintScreen() {
           </Text>
         </View>
       </View>
-      <BouncyScrollView decelerationRate="fast" contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
+      <BouncyScrollView softTopEdge decelerationRate="fast" contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
         {hint.render(t, lang, f)}
         {/* зачем: у экрана две ветки. Через TheoryLessonView флаг есть, а
             «Шпаргалка» рисует правило урока напрямую — и там пожаловаться

@@ -3,6 +3,8 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { KIT_MOTION } from '../constants/motionHybrid';
 import Reanimated, { FadeInDown, FadeOut, useSharedValue, useAnimatedStyle, withTiming, withDelay, cancelAnimation, Easing } from 'react-native-reanimated';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
+import ScrollTopEdgeFade from '../components/ScrollTopEdgeFade';
+import { useSoftTopEdge } from '../components/useSoftTopEdge';
 import { AppState, View, Text, ScrollView, Pressable, TouchableOpacity, Share, StyleSheet, } from 'react-native';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -1973,7 +1975,9 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         void AsyncStorage.setItem(statsPrimaryMetricKey(studyTarget), nextMetric).catch(noteSwallowedHandler('streak_stats:useCallback.setItem_2'));
     }, [studyTarget]);
     const scrollRef = useRef<any>(null);
-    const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
+    // зачем (владелец 11.11: «в разделе статистика тоже надо сделать» — размытый верхний край вместо резкого): свой признак прокрутки экрана
+    const softEdge = useSoftTopEdge();
+    const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy({ onScrollWorklet: softEdge.onScrollWorklet });
     const bouncyStyle = useBouncyStyle(bouncyStretch);
     const chartScrollRef = useRef<any>(null);
     const [detailsOpen, setDetailsOpen] = useState(false);
@@ -2443,6 +2447,8 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                   <SkeletonBlock width="100%" height={90} borderRadius={22} />
                 </View>
               ) : null}
+              {/* зачем (владелец 11.11): блоки уходят под полосу «Назад» с мягким краем; во вкладке край даёт общая маска оболочки */}
+              <ScrollTopEdgeFade cover={softEdge.cover} enabled={!embedded}>
               <BouncyWrap>
               <Reanimated.ScrollView ref={scrollRef} decelerationRate="fast" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16, paddingBottom: embedded ? 140 : 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
                 {/* шапка в прокрутке: компенсируем поля контейнера 16, зазор до первой карточки прежний (4 + 16) */}
@@ -2787,6 +2793,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 </View>
               </Reanimated.ScrollView>
               </BouncyWrap>
+              </ScrollTopEdgeFade>
               </Reanimated.View>
               </ContentWrap>
 

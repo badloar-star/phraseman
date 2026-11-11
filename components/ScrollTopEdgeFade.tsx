@@ -30,10 +30,16 @@ type Props = Readonly<{
    * сцены («Пик»), держит обёртку постоянно — иначе смена режима перемонтировала бы весь раздел.
    */
   enabled?: boolean;
+  /**
+   * Своя накладка маски (1 — покой, 0 — прокручено) вместо общего признака вкладок.
+   * зачем (владелец 11.11: «во всех экранах… с размытым фейд краем»): отдельный экран вне оболочки вкладок считает прокрутку сам (useSoftTopEdge).
+   */
+  cover?: Animated.Value;
 }>;
 
-export default function ScrollTopEdgeFade({ children, enabled = true }: Props) {
-  const restCover = useTopFadeScrolled({ rest: 1, stepOnAndroid: true });
+export default function ScrollTopEdgeFade({ children, enabled = true, cover }: Props) {
+  const sharedCover = useTopFadeScrolled({ rest: 1, stepOnAndroid: true });
+  const restCover = cover ?? sharedCover;
   return (
     <MaskedView
       style={styles.fill}

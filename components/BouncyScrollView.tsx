@@ -57,6 +57,8 @@ import Animated, {
 
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { edgePull, BOUNCE_SPRING } from './bounceMath';
+import ScrollTopEdgeFade from './ScrollTopEdgeFade';
+import { useSoftTopEdge } from './useSoftTopEdge';
 
 const ACCESSIBLE_BOUNCE_SPRING = { ...BOUNCE_SPRING, reduceMotion: ReduceMotion.System } as const;
 
@@ -67,6 +69,12 @@ export interface BouncyScrollViewProps extends ScrollViewProps {
   onScrollWorklet?: (y: number) => void;
   /** Shares the Android bounce translation with a backdrop that draws above the scroll viewport. */
   androidStretch?: SharedValue<number>;
+  /**
+   * Мягкий верхний край: после начала прокрутки верхние 20 px списка растворяются (в покое вид прежний).
+   * зачем (владелец 11.11: «во всех экранах… всё что под сейф зону уходит так же должно с размытым фейд краем быть»):
+   * отдельный экран включает край одним словом, без своей проводки прокрутки. Вкладкам не ставить — у них общая маска оболочки.
+   */
+  softTopEdge?: boolean;
 }
 
 type BouncyScroll = {
@@ -299,9 +307,12 @@ export function useBouncyStyle(stretch: SharedValue<number>) {
 }
 
 const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function BouncyScrollView(
-  { children, onScroll, onScrollWorklet, androidStretch, dimension, style, decelerationRate = 'fast', ...rest },
+  { children, onScroll, onScrollWorklet: onScrollWorkletProp, androidStretch, dimension, style, softTopEdge = false, decelerationRate = 'fast', ...rest },
   ref,
 ) {
+  const softEdge = useSoftTopEdge(onScrollWorkletProp);
+  // зачем: без softTopEdge компонент работает как раньше — свой worklet экрана идёт напрямую, признак края не считается
+  const onScrollWorklet = softTopEdge ? softEdge.onScrollWorklet : onScrollWorkletProp;
   const { stretch, onBouncyScroll, onAnimatedScroll, GestureWrap } = useBouncy({ dimension, onScrollWorklet, androidStretch });
   const animatedStyle = useBouncyStyle(stretch);
   const androidBackdropStyle = useAnimatedStyle(() => ({
@@ -316,9 +327,10 @@ const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function 
     },
     [onScroll, onBouncyScroll],
   );
-  const effectiveOnScroll = onScrollWorklet ? onAnimatedScroll : typeof onScroll === 'function' ? handleScroll : onAnimatedScroll;
+  // зачем: выбор обработчика — по пропу экрана, а не по внутреннему worklet края: иначе softTopEdge отключил бы onScroll экрана
+  const effectiveOnScroll = onScrollWorkletProp ? onAnimatedScroll : typeof onScroll === 'function' ? handleScroll : onAnimatedScroll;
 
-  return (
+  const scroll = (
     <GestureWrap style={animatedStyle}>
       <Animated.ScrollView
         ref={ref as any}
@@ -335,6 +347,8 @@ const BouncyScrollView = forwardRef<ScrollView, BouncyScrollViewProps>(function 
       </Animated.ScrollView>
     </GestureWrap>
   );
+  // зачем: маска снаружи обёртки резинки; обе обёртки flex: 1 — раскладка экрана не меняется
+  return softTopEdge ? <ScrollTopEdgeFade cover={softEdge.cover}>{scroll}</ScrollTopEdgeFade> : scroll;
 });
 
 export default BouncyScrollView;

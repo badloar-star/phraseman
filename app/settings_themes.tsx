@@ -363,7 +363,7 @@ export default function SettingsThemes() {
         <ContentWrap>
           {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): полоса кнопки до прокрутки — контент под круг не заезжает */}
           <ScreenBackZone />
-          <BouncyScrollView ref={scrollRef} onLayout={onScrollLayout} onContentSizeChange={onContentSizeChange} decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 24 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+          <BouncyScrollView softTopEdge ref={scrollRef} onLayout={onScrollLayout} onContentSizeChange={onContentSizeChange} decelerationRate="fast" contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 24 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             <View style={styles.head}>
               <Text maxFontSizeMultiplier={1.15} accessibilityRole="header" style={[styles.title, { color: glass.text, lineHeight: lh(styles.title.lineHeight) }]}>
                 {triLang(lang, { ru: 'Темы', uk: 'Теми', en: 'Themes', es: 'Temas', 'pt-BR': 'Temas', vi: 'Chủ đề', id: 'Tema', tr: 'Temalar', pl: 'Motywy' })}

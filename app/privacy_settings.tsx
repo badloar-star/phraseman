@@ -248,7 +248,7 @@ export default function PrivacySettings() {
     <ScreenGradient artBackdrop="settings">
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
-          <BouncyScrollView
+          <BouncyScrollView softTopEdge
             decelerationRate="fast"
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 20 /* зачем: паритет profile.html (13.10): поля экрана 20 */, paddingBottom: 40 }}

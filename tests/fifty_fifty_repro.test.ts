@@ -155,4 +155,14 @@ describe('50/50 dim resets when the tile bank changes', () => {
     expect(deps).toContain('phraseWordIdx');
     expect(deps).toContain('shuffled');
   });
+
+  it('does not replace an empty dim set with another empty one on every tap', () => {
+    // зачем (повторный аудит микрофризов, владелец 11.11): эффект сброса срабатывает после каждого тапа по
+    // плитке; новый пустой Set = новое состояние = вторая полная перерисовка блока урока. Сброс обязан
+    // выполняться только когда есть что гасить.
+    expect(source).toMatch(
+      /setFiftyFiftyActive\(false\);\s*\n\s*if \(fiftyFiftyDimmedRef\.current\.size === 0\) return;\s*\n\s*setFiftyFiftyDimmed\(new Set\(\)\);/,
+    );
+    expect(source).toContain('fiftyFiftyDimmedRef.current = fiftyFiftyDimmed;');
+  });
 });

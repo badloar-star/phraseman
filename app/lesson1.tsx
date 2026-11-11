@@ -727,8 +727,14 @@ const LessonContent = React.memo(function LessonContent({
   // плиток (shuffled, в т.ч. новая фраза). КРИТИЧНО: fiftyFiftyDimmed — это набор
   // ИНДЕКСОВ плиток; без сброса при смене банка старые индексы падают на новые
   // плитки и гасят в т.ч. ПРАВИЛЬНУЮ. Раньше зависело только от status → баг.
+  // зачем (повторный аудит микрофризов, владелец 11.11): эффект срабатывает после КАЖДОГО тапа по плитке.
+  // Новый пустой Set — это новое значение состояния, и блок урока перерисовывался второй раз целиком,
+  // даже когда «50 на 50» не включали. Гасить нечего — выходим, лишнего кадра нет.
+  const fiftyFiftyDimmedRef = useRef(fiftyFiftyDimmed);
+  fiftyFiftyDimmedRef.current = fiftyFiftyDimmed;
   useEffect(() => {
     setFiftyFiftyActive(false);
+    if (fiftyFiftyDimmedRef.current.size === 0) return;
     setFiftyFiftyDimmed(new Set());
   }, [status, phraseWordIdx, contrExpanded, shuffled]);
   // зачем (владелец 11.11: «убери кнопку объяснить проще и функцию… обе удалить», плюс лампочку «Объяснить»): плитки «Объяснить» и её шторки в уроке больше нет;

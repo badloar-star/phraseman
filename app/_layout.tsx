@@ -146,7 +146,7 @@ import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { startupSplashPalette, STARTUP_SPLASH_DARK_BG } from '../constants/startup_splash_palette';
 import UpdateModal from '../components/UpdateModal';
-import { recordAppUpdateStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
+import { recordAppUpdateStory, recordNotifNudgeStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
 import AppMessageAnnouncementModal from '../components/AppMessageAnnouncementModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import ReleaseNotesV2Modal from '../components/ReleaseNotesV2Modal';
@@ -2983,6 +2983,26 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
     finishAccountDeleteUiTrace('onboarding_visible');
   }, [accountDeletionNavigationEpoch, showOnboarding]);
 
+  // зачем (истории вместо окон, 11.11): кнопка «Включить напоминания» кадра истории должна делать РОВНО то же, что кнопка окна. Логика
+  // не копируется: обработчик кнопки окна запоминается при рендере, и просьба кадра (событие notif_nudge_enable_request) вызывает его же.
+  const notifNudgeConfirmRef = useRef<(() => Promise<void>) | null>(null);
+  const rememberNotifNudgeConfirm = (confirm: () => Promise<void>): (() => Promise<void>) => {
+    notifNudgeConfirmRef.current = confirm;
+    return confirm;
+  };
+  useEffect(() => {
+    const sub = onAppEvent('notif_nudge_enable_request', ({ source }) => {
+      const confirm = notifNudgeConfirmRef.current;
+      if (!confirm) {
+        console.warn(`[SMART-REMINDER] notifNudge:story_request source=${source} — обработчик окна ещё не готов, пропуск`); // guard-ok: ранний выход с причиной
+        return;
+      }
+      console.warn(`[SMART-REMINDER] notifNudge:story_request source=${source} → тот же путь, что кнопка окна`); // guard-ok: одно нажатие, warn нужен в релизе
+      void confirm();
+    });
+    return () => sub.remove();
+  }, []);
+
   useEffect(() => {
     const sub = onAppEvent('notif_permission_nudge', async ({ missedDays }) => {
       if (missedDays <= 0) return;
@@ -2996,8 +3016,15 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       if (status || enabled === 'true') return;
       const todayKey = new Date().toISOString().split('T')[0];
       if (lastShownRaw === todayKey) return;
-      setNotifNudgeMissedDays(missedDays);
-      setNotifNudgeVisible(true);
+      // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях просьба
+      // включить напоминания приходит кадром истории — окно не поднимаем; истории выключены (флаг stories_v1) — окно как раньше
+      if (storiesReplaceWindows()) {
+        void recordNotifNudgeStory({ dayKey: todayKey, missedDays })
+          .catch((e: unknown) => { DebugLogger.error('_layout:recordNotifNudgeStory', e instanceof Error ? e : new Error(String(e)), 'warning'); });
+      } else {
+        setNotifNudgeMissedDays(missedDays);
+        setNotifNudgeVisible(true);
+      }
       await AsyncStorage.setItem('notif_permission_nudge_last_day', todayKey).catch(noteSwallowedHandler('_layout:useEffect.setItem'));
     });
     return () => sub.remove();
@@ -3540,7 +3567,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
       confirmLabel={notifNudgeCopy(lang, notifNudgeMissedDays).confirmLabel}
       cancelLabel={notifNudgeCopy(lang, notifNudgeMissedDays).cancelLabel}
       onCancel={() => setNotifNudgeVisible(false)}
-      onConfirm={async () => {
+      onConfirm={rememberNotifNudgeConfirm(async () => {
         // зачем (R58 #21, аудит кнопок 15.10): двойной тап «Включить» запускал два запроса разрешения, а сбой любого шага
         // (разрешение, планирование) уходил в никуда — окно оставалось и молчало. Замок + общий catch с причиной.
         if (notifNudgeConfirmInFlight) {
@@ -3589,7 +3616,7 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
         } finally {
           notifNudgeConfirmInFlight = false;
         }
-      }}
+      })}
     />
 
     {/* Модальник обновления — поверх всего приложения */}

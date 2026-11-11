@@ -123,6 +123,14 @@ export function recordAppUpdateStory(input: Readonly<{ dayKey: string; message: 
   return record('update', input.dayKey, { message: input.message ?? '' });
 }
 
+/**
+ * «Включить напоминания» (взамен окна после пропущенных дней): сколько дней без занятий.
+ * Ключ — день показа: сигнал и так срабатывает не чаще раза в день.
+ */
+export function recordNotifNudgeStory(input: Readonly<{ dayKey: string; missedDays: number }>): Promise<StoryRecordResult> {
+  return record('nudge', input.dayKey, { missedDays: input.missedDays });
+}
+
 /** «Хватает на ранг N»: ключ — номер следующего ранга, один раз на ранг (как у окна). */
 export function recordRankEnoughStory(input: Readonly<{ rank: number; nextRank: number; balance: number; price: number }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
   return record('rank_enough', String(input.nextRank), { rank: input.rank, nextRank: input.nextRank, balance: input.balance, price: input.price }, accountToken);

@@ -11,20 +11,18 @@
 // шагом после её коммита; тогда типы пропсов ниже переезжают в реестр. Пакет: docs/work/tasks/stories-instead-of-modals-frames-2026-11-11.md
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useMemo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../../constants/i18n';
 import SpireRankCoin from '../../spire/SpireRankCoin';
 import { Art, Chip, Confetti, FrameRoot, H1, Ov, P, Stat, Stats, k, statNumberStyle } from './story_template_kit';
-import { streakWeekCells } from './story_template_layout';
 import { CoinFlip, CoinRain } from './story_template_layers';
 import { CountUp, Enter } from './story_template_motion';
 import { Breathe } from './story_template_parts';
-import { mix, useStoryTemplatePalette } from './story_template_palette';
+import { useStoryTemplatePalette } from './story_template_palette';
 import { tplNumber } from './story_template_strings';
 import { BigPlusMark, Bubbles, IconDisc, PerkRows } from './story_instead_parts';
 import { insteadText } from './story_instead_strings';
 import { pickUpdateText } from '../../UpdateModal';
+import { notifNudgeCopy } from '../../../app/notif_nudge_copy';
 
 /** Данные кадров — только то, что событие уже знает. При подключении переезжают в story_template_registry. */
 export type HelloNewStory = Readonly<{ coinRank: number }>;
@@ -35,7 +33,8 @@ export type RankEnoughStory = Readonly<{ rank: number; nextRank: number; balance
 /** Текст из настроек обновления (его показывало окно) или null — тогда стандартный текст окна. Номера версии и списка изменений проверка обновления не знает. */
 export type AppUpdateStory = Readonly<{ message: string | null }>;
 export type TeamMessageStory = Readonly<{ text: string; whenLabel: string }>;
-export type NotifNudgeStory = Readonly<{ missedDays: number; endMs: number }>;
+/** Сколько дней без занятий — единственное, что знает сигнал; занимался ли человек в дни до этого, приложение не знает. */
+export type NotifNudgeStory = Readonly<{ missedDays: number }>;
 /** `freezesPerMonth` — из PREMIUM_FREE_FREEZES_PER_MONTH, `untilLabel` — готовая дата на языке интерфейса; null — дата неизвестна, строки с датой нет. */
 export type PlusStateStory = Readonly<{ untilLabel: string | null; freezesPerMonth: number }>;
 
@@ -154,29 +153,14 @@ export const TeamMessageFrame = memo(function TeamMessageFrame({ tpl, lang }: Fr
 // ── 7 · напоминания выключены (взамен окна «Включить уведомления») ───────────────────────────────────
 
 export const NotifNudgeFrame = memo(function NotifNudgeFrame({ tpl, lang }: FrameProps<NotifNudgeStory>) {
-  const pal = useStoryTemplatePalette();
-  // буквы дней недели — тем же помощником, что у кадра «Серия · 7 дней»; последние missedDays дней остаются пустыми
-  const cells = useMemo(() => streakWeekCells(lang, tpl.endMs, 7), [lang, tpl.endMs]);
-  const missed = Math.max(0, Math.min(7, Math.round(tpl.missedDays)));
+  // зачем (шаг 2к, 11.11): слова — те же, что у окна «Включи напоминания» (app/notif_nudge_copy). Неделя с галочками из макета убрана:
+  // сигнал знает только число пропущенных дней, а галочки «занимался» за дни до этого были бы выдумкой — вместо неё знак в круге
+  const copy = notifNudgeCopy(lang, tpl.missedDays);
   return (
     <FrameRoot testID="story-tpl-instead-nudge">
-      <View style={f.cal7}>
-        {cells.map((c, i) => {
-          const on = i < cells.length - missed;
-          return (
-            <Enter key={c.key} kind="pop" d={160 + i * 80}>
-              <View style={[f.day, { backgroundColor: on ? pal.accG : mix(pal.tx, 0.1) }]}>
-                <Text style={[f.dayT, { color: on ? pal.accInk : pal.sec }]}>{c.letter}</Text>
-                {/* зачем: у пустого дня место галочки сохранено (в макете она прозрачная) — клетки одной высоты */}
-                <Ionicons name="checkmark" size={16} color={on ? pal.accInk : mix(pal.tx, 0)} style={f.dayI} />
-              </View>
-            </Enter>
-          );
-        })}
-      </View>
-      <Ov text={insteadText(lang, 'nudgeOverline')} d={760} />
-      <H1 text={insteadText(lang, 'nudgeTitle', { days: missed })} d0={840} />
-      <P text={insteadText(lang, 'nudgeText')} d={1080} />
+      <Art><IconDisc icon="time" /></Art>
+      <H1 text={copy.title} d0={380} />
+      <P text={copy.body} d={760} />
     </FrameRoot>
   );
 });
@@ -207,12 +191,4 @@ export const PlusOnFrame = memo(function PlusOnFrame({ tpl, lang }: FrameProps<P
       <PerkRows items={[perks.lessons, perks.dialogs, perks.shield]} d0={700} />
     </FrameRoot>
   );
-});
-
-const f = StyleSheet.create({
-  // .cal7 в этом кадре стоит НАД текстом: отступ снизу 22; клетка 38 × 50, радиус 12, буква 12/700 (строка 21), галочка 16, зазор 4
-  cal7: { flexDirection: 'row', gap: 8, marginBottom: 22 },
-  day: { width: 38, height: 50, borderRadius: 12, alignItems: 'center', justifyContent: 'center', gap: 4 },
-  dayT: { fontSize: 12, lineHeight: 21, fontWeight: '700' }, // guard-ok: буква дня недели в клетке календаря, как у кадра «Серия · 7 дней» (не подпись под названием)
-  dayI: { lineHeight: 16 },
 });

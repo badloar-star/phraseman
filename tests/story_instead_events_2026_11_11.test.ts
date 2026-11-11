@@ -104,8 +104,29 @@ describe('событие instead → данные кадра', () => {
     expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 })).toBeNull();
   });
 
-  it('список видов с источником — четырнадцать; остальные 6 кадров ждут своих партий', () => {
-    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update']);
+  it('список видов с источником — пятнадцать; остальные 5 кадров ждут своих партий', () => {
+    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge']);
+  });
+
+  it('«Включить напоминания»: число пропущенных дней → кадр; кнопка кадра вызывает тот же обработчик, что кнопка окна', () => {
+    expect(storyEventKey('instead', { kind: 'nudge', key: '2026-11-11', missedDays: 3 })).toBe('instead:nudge:2026-11-11');
+    expect(insteadTemplateFromPayload({ kind: 'nudge', key: 'k', missedDays: 3 })).toEqual({ id: 'instead_nudge', missedDays: 3 });
+    expect(insteadTemplateFromPayload({ kind: 'nudge', key: 'k', missedDays: 0 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'nudge', key: 'k' })).toBeNull();
+    const layout = read('app/_layout.tsx');
+    // история — только при включённых историях; окно остаётся прежним путём
+    const nudge = layout.indexOf("onAppEvent('notif_permission_nudge', async ({ missedDays }) => {");
+    const branch = layout.indexOf('if (storiesReplaceWindows()) {', nudge);
+    expect(branch).toBeGreaterThan(nudge);
+    expect(layout.indexOf('void recordNotifNudgeStory({ dayKey: todayKey, missedDays })', branch)).toBeGreaterThan(branch);
+    expect(layout.indexOf('setNotifNudgeVisible(true);', branch)).toBeGreaterThan(branch);
+    // логика разрешения не копируется: обработчик окна запоминается и вызывается по просьбе кадра
+    expect(layout).toContain('onConfirm={rememberNotifNudgeConfirm(async () => {');
+    expect(layout).toContain("onAppEvent('notif_nudge_enable_request', ({ source }) => {");
+    expect(layout).toContain('void confirm();');
+    const cta = read('components/stories/templates/use_story_cta_action.ts');
+    expect(cta).toContain("emitAppEvent('notif_nudge_enable_request', { source: ctx.source });");
+    expect(cta).not.toContain('requestNotificationPermission');
   });
 
   it('«Вышло обновление»: текст из настроек необязателен; окно — прежний путь при выключенных историях; адрес магазина — только из настроек приложения', () => {

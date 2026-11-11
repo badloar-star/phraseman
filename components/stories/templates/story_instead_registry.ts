@@ -15,6 +15,7 @@ import type { LessonMedalStory, LevelExamOpenStory, LingmanExamOpenStory } from 
 import { insteadText } from './story_instead_strings';
 import { celebrationShareLabel } from '../../lesson_moments/lesson_notif_copy';
 import { reviewStoreCta } from '../../review_prompt_copy';
+import { notifNudgeCopy } from '../../../app/notif_nudge_copy';
 
 /** Порядок — как в макете (кадры 1…17). */
 export const STORY_INSTEAD_TEMPLATE_IDS = [
@@ -65,8 +66,8 @@ export const STORY_INSTEAD_TEMPLATE_SAMPLES: Readonly<{ [I in StoryInsteadTempla
   // пример — без текста из настроек: кадр показывает стандартный текст окна
   instead_update: { id: 'instead_update', message: null },
   instead_message: { id: 'instead_message', text: 'Plus на 30 дней уже на аккаунте. Спасибо, что написали про ошибку в уроке 14.', whenLabel: 'Сегодня, 14:20' },
-  // макет: четыре дня с занятиями и три пропущенных в конце недели
-  instead_nudge: { id: 'instead_nudge', missedDays: 3, endMs: day(2025, 10, 26) },
+  // пример окна: «Без практики: 3 дня»
+  instead_nudge: { id: 'instead_nudge', missedDays: 3 },
   instead_plus_expired: { id: 'instead_plus_expired', untilLabel: '10 ноября', freezesPerMonth: 3 },
   instead_ref_welcome: { id: 'instead_ref_welcome', needsCodeEntry: true },
   instead_ref_ended: { id: 'instead_ref_ended', windowEndMs: day(2026, 11, 10) },
@@ -124,7 +125,8 @@ export function storyInsteadCta(tpl: StoryInsteadTemplate, lang: Lang): StoryIns
     case 'instead_rank': return { action: 'upgrade_coin', text: insteadText(lang, 'ctaUpgradeCoin'), icon: 'trending-up' };
     case 'instead_update': return { action: 'update_app', text: insteadText(lang, 'ctaUpdate'), icon: 'refresh' };
     case 'instead_message': return { action: 'reply_team', text: insteadText(lang, 'ctaReply'), icon: 'chatbubble' };
-    case 'instead_nudge': return { action: 'enable_reminder', text: insteadText(lang, 'ctaEnableReminder'), icon: 'time' };
+    // подпись — та же, что у главной кнопки окна: «Включить напоминания»
+    case 'instead_nudge': return { action: 'enable_reminder', text: notifNudgeCopy(lang, tpl.missedDays).confirmLabel, icon: 'time' };
     case 'instead_plus_expired': return { action: 'open_plus', text: insteadText(lang, 'ctaRestorePlus'), icon: 'sparkles' };
     // кнопка — только когда код ещё не введён; у окна это была вторая кнопка «У меня есть код приглашения»
     case 'instead_ref_welcome': return tpl.needsCodeEntry ? { action: 'enter_referral_code', text: insteadText(lang, 'ctaEnterCode'), icon: 'key' } : null;

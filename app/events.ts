@@ -217,6 +217,8 @@ export type AppEventMap = {
    */
   bug_hunt_eligible_check: undefined;
   notif_permission_nudge: { missedDays: number };
+  /** Кнопка «Включить напоминания» кадра истории (взамен окна): _layout вызывает тот же обработчик, что у кнопки окна. */
+  notif_nudge_enable_request: { source: string };
   /** Диалог завершён (или прогресс сброшен) — список диалогов обновляет состояния «Пройдено» и hero «Продолжить». */
   dialogs_progress_changed: undefined;
   /**

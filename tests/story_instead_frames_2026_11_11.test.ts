@@ -27,7 +27,6 @@ describe('тексты кадров «истории вместо окон»', (
     expect(ru('rankText')).toBe('На счёте 2 400 монет. Ранг 5 стоит 2 000.');
     expect(ru('rankLeft')).toBe('останется 400');
     expect(ru('msgTitle')).toBe('Ответ от команды');
-    expect(ru('nudgeTitle', { days: 3 })).toBe('3 дня без занятий');
     expect(ru('expiredTitle')).toBe('Plus закончился');
     expect(ru('perkShield')).toBe('Защита серии, 3 в месяц');
     // текст реферального окна — дословно
@@ -103,8 +102,10 @@ describe('кадры «истории вместо окон» — разметк
     // хватает на ранг: обзор 500, заголовок 580, текст 800, плашка 950
     expect(a).toContain("d={950} />");
     // напоминания: дни 160 + 80·i, обзор 760, заголовок 840, текст 1080
-    expect(a).toContain('d={160 + i * 80}');
-    expect(a).toContain("<P text={insteadText(lang, 'nudgeText')} d={1080} />");
+    // кадр напоминаний говорит словами окна (app/notif_nudge_copy), недели с галочками в нём нет
+    expect(a).toContain('const copy = notifNudgeCopy(lang, tpl.missedDays);');
+    expect(a).toContain('<P text={copy.body} d={760} />');
+    expect(a).not.toContain('streakWeekCells');
     // идеальный урок: звёзды 160 / 280 / 400, счёт 520, конфетти 18 с 700
     expect(b).toContain('<Confetti n={18} d0={700} />');
     expect(b).toContain('<Enter d={520}>');
@@ -136,11 +137,11 @@ describe('кадры «истории вместо окон» — разметк
     expect(registry).toContain('...STORY_INSTEAD_TEMPLATE_SAMPLES,');
   });
 
-  it('шаг 2: у четырнадцати кадров есть источник — событие instead; остальные 6 ждут своих партий', () => {
+  it('шаг 2: у пятнадцати кадров есть источник — событие instead; остальные 5 ждут своих партий', () => {
     const fromEvent = read('components/stories/templates/story_template_from_event.ts');
     expect(fromEvent).toContain("case 'instead': return insteadTemplateFromPayload(p);");
     const own = read('components/stories/templates/story_instead_from_event.ts');
-    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update'] as const;");
+    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge'] as const;");
   });
 });
 
@@ -183,7 +184,7 @@ describe('макет и код говорят одно и то же', () => {
 
   it('в макете 17 кадров и тексты, приведённые к коду', () => {
     expect((mock.match(/\{ id: '/g) ?? [])).toHaveLength(17);
-    for (const text of ['карточки на повтор', 'фраз выучено', '100%. Ты вообще оставил уроку шанс?', 'Оценить в Google Play', 'Это Компас. У меня кое-что новое', 'Доступна новая версия — быстрее и удобнее.', 'Тебя пригласили', 'Первый разговор по-английски — есть!', 'Доступ можно открыть снова', 'Набор месяца за октябрь', 'сохранений: 214', 'Марк обходит тебя']) {
+    for (const text of ['карточки на повтор', 'фраз выучено', '100%. Ты вообще оставил уроку шанс?', 'Оценить в Google Play', 'Это Компас. У меня кое-что новое', 'Доступна новая версия — быстрее и удобнее.', 'Без практики: 3 дня', 'Включить напоминания', 'Тебя пригласили', 'Первый разговор по-английски — есть!', 'Доступ можно открыть снова', 'Набор месяца за октябрь', 'сохранений: 214', 'Марк обходит тебя']) {
       expect(mock).toContain(text);
     }
   });

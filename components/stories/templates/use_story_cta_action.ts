@@ -13,6 +13,7 @@ import { Linking, Platform, Share } from 'react-native';
 import { useRouter } from 'expo-router';
 import type { Lang } from '../../../constants/i18n';
 import { DebugLogger } from '../../../app/debug-logger';
+import { emitAppEvent } from '../../../app/events';
 import { openPremiumPaywall } from '../../../app/paywall_navigation';
 import { isPremiumThemeId } from '../../../app/premium_theme_catalog';
 import { isPremiumThemeUnlocked } from '../../../app/premium_theme_entitlements';
@@ -108,6 +109,15 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
       DebugLogger.info(LOG, `код приглашения: закрываем просмотр и открываем ввод кода (кадр=${ctx.source})`);
       closeViewer('cta_enter_referral_code');
       router.push('/referrals?enter=1' as never);
+      return;
+    }
+    if (cta.action === 'enable_reminder') {
+      // зачем (истории вместо окон, 11.11): то же, что кнопка «Включить напоминания» окна — запрос разрешения и планирование. Логика одна и
+      // живёт в app/_layout.tsx (с замком от двойного тапа и журналом [SMART-REMINDER]); кадр только просит её выполнить. Просмотр закрываем,
+      // чтобы системный запрос разрешения не оказался под ним
+      DebugLogger.info(LOG, `напоминания: закрываем просмотр и просим включить (кадр=${ctx.source})`);
+      closeViewer('cta_enable_reminder');
+      emitAppEvent('notif_nudge_enable_request', { source: ctx.source });
       return;
     }
     if (cta.action === 'update_app') {

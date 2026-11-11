@@ -26,7 +26,6 @@ const S = {
   ctaUpgradeCoin: ['Улучшить монету', 'Покращити монету', 'Upgrade coin', 'Mejorar la moneda', 'Melhorar a moeda', 'Nâng cấp đồng xu', 'Tingkatkan koin', 'Jetonu yükselt', 'Ulepsz monetę'],
   ctaUpdate: ['Обновить', 'Оновити', 'Update', 'Actualizar', 'Atualizar', 'Cập nhật', 'Perbarui', 'Güncelle', 'Zaktualizuj'],
   ctaReply: ['Ответить', 'Відповісти', 'Reply', 'Responder', 'Responder', 'Trả lời', 'Balas', 'Yanıtla', 'Odpowiedz'],
-  ctaEnableReminder: ['Включить напоминание', 'Увімкнути нагадування', 'Turn on reminder', 'Activar recordatorio', 'Ativar lembrete', 'Bật nhắc nhở', 'Aktifkan pengingat', 'Hatırlatıcıyı aç', 'Włącz przypomnienie'],
   ctaRestorePlus: ['Вернуть Plus', 'Повернути Plus', 'Get Plus back', 'Recuperar Plus', 'Recuperar Plus', 'Lấy lại Plus', 'Aktifkan Plus lagi', 'Plus’ı geri al', 'Odzyskaj Plus'],
   ctaEnterCode: ['У меня есть код приглашения', 'У мене є код запрошення', 'I have an invite code', 'Tengo un código de invitación', 'Tenho um código de convite', 'Tôi có mã mời', 'Saya punya kode undangan', 'Davet kodum var', 'Mam kod zaproszenia'], // дословно как кнопка окна
   ctaInviteFriend: ['Пригласить друга', 'Запросити друга', 'Invite a friend', 'Invitar a un amigo', 'Convidar um amigo', 'Mời một người bạn', 'Ajak teman', 'Arkadaş davet et', 'Zaproś znajomego'], // дословно как кнопка окна
@@ -87,15 +86,6 @@ const S = {
   // ── 6 · личное сообщение (текст и время приходят из события) ──
   msgOverline: ['Личное сообщение', 'Особисте повідомлення', 'Personal message', 'Mensaje personal', 'Mensagem pessoal', 'Tin nhắn riêng', 'Pesan pribadi', 'Kişisel mesaj', 'Wiadomość osobista'],
   msgTitle: ['Ответ от команды', 'Відповідь від команди', 'A reply from the team', 'Respuesta del equipo', 'Resposta da equipe', 'Phản hồi từ đội ngũ', 'Balasan dari tim', 'Ekipten yanıt', 'Odpowiedź od zespołu'],
-
-  // ── 7 · напоминания выключены ──
-  nudgeOverline: ['Напоминания выключены', 'Нагадування вимкнено', 'Reminders are off', 'Recordatorios desactivados', 'Lembretes desativados', 'Nhắc nhở đang tắt', 'Pengingat nonaktif', 'Hatırlatıcılar kapalı', 'Przypomnienia wyłączone'],
-  nudgeTitle: ['{days} {days_w} без занятий', '{days} {days_w} без занять', '{days} {days_w} without practice', '{days} {days_w} sin practicar', '{days} {days_w} sem praticar', '{days} {days_w} chưa học', '{days} {days_w} tanpa latihan', '{days} {days_w} çalışma yok', '{days} {days_w} bez nauki'],
-  nudgeText: [
-    'Одно напоминание в день, в то время, которое выберешь.', 'Одне нагадування на день, у час, який обереш.', 'One reminder a day, at the time you choose.',
-    'Un recordatorio al día, a la hora que elijas.', 'Um lembrete por dia, no horário que você escolher.', 'Một lời nhắc mỗi ngày, vào giờ bạn chọn.',
-    'Satu pengingat sehari, pada jam yang kamu pilih.', 'Günde bir hatırlatma, seçtiğin saatte.', 'Jedno przypomnienie dziennie, o wybranej porze.',
-  ],
 
   // ── 8 и 16 · Plus закончился / Plus подключён (дата приходит готовой строкой) ──
   untilOverline: ['До {date}', 'До {date}', 'Until {date}', 'Hasta el {date}', 'Até {date}', 'Đến {date}', 'Hingga {date}', '{date} tarihine kadar', 'Do {date}'],

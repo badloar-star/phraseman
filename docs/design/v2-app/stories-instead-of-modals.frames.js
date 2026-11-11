@@ -33,9 +33,9 @@ const TPL = [
     cta: { label: 'Ответить', icon: 'chat' },
     render: () => `<div class="bubs"><div class="b a" style="--d:240ms;max-width:100%">Plus на 30 дней уже на аккаунте. Спасибо, что написали про ошибку в уроке 14.</div></div><div class="ov a" style="--d:620ms">Личное сообщение</div><div class="h1">${words('Ответ от команды', 700)}</div><div class="p a" style="--d:940ms">Сегодня, 14:20</div>` },
 
-  { id: 'notif_nudge', name: 'Напоминания выключены', group: 'Сообщения', kind: 'new', ev: 'notif_nudge (новое)', when: 'взамен окна «Включить уведомления» · были пропущенные дни, уведомления выключены', data: 'missedDays, week[7]', motion: 'дни недели встают по одному, пропущенные остаются пустыми',
-    cta: { label: 'Включить напоминание', icon: 'time' },
-    render: () => `<div class="cal7" style="margin:0 0 22px">${DAYS.map((d, i) => i < 4 ? `<div class="c on pop" style="--d:${160 + i * 80}ms">${d}${io('check', 16)}</div>` : `<div class="c pop" style="--d:${160 + i * 80}ms">${d}${io('check', 16)}</div>`).join('')}</div><div class="ov a" style="--d:760ms">Напоминания выключены</div><div class="h1">${words('3 дня без занятий', 840)}</div><div class="p a" style="--d:1080ms">Одно напоминание в день, в то время, которое выберешь.</div>` },
+  { id: 'notif_nudge', name: 'Напоминания выключены', group: 'Сообщения', kind: 'new', ev: 'notif_nudge (новое)', when: 'взамен окна «Включить уведомления» · были пропущенные дни, уведомления выключены', data: 'missedDays', motion: 'знак появляется, заголовок встаёт по словам',
+    cta: { label: 'Включить напоминания', icon: 'time' },
+    render: () => `<div class="art">${icn('time')}</div><div class="h1">${words('Без практики: 3 дня', 380)}</div><div class="p a" style="--d:760ms">Чтобы не срывать серию, включи напоминания. Мы напомним вовремя и без спама.</div>` },
 
   { id: 'plus_expired', name: 'Plus закончился', group: 'Plus', kind: 'new', ev: 'plus_expired (новое)', when: 'взамен автоперехода на экран оплаты · подписка истекла', data: 'expiredAt, kind', motion: 'знак Plus гаснет, три возможности закрываются замком',
     cta: { label: 'Вернуть Plus', icon: 'sparkles' },

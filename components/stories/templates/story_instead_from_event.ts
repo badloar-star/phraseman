@@ -8,7 +8,7 @@
 // `ref_welcome` («Тебя пригласили»), `first_dialog` («Первый разговор»), `rate` («Оцените приложение»),
 // `perfect` («Идеальный урок»), `lesson_open` («Открыт урок N»),
 // `medal` («Медаль урока»), `level_exam` и `lingman_exam` (открытие экзаменов),
-// `update` («Вышло обновление»); остальные 6 — следующими партиями.
+// `update` («Вышло обновление»), `nudge` («Включить напоминания»); остальные 5 — следующими партиями.
 // Числа проверяются строго: строка '6' и дробное 6.9 не превращаются в 6 — так уже маскировался битый payload у ранга монеты.
 // ═══════════════════════════════════════════════════════════════════════════
 import { isValidCoinRank } from '../../../app/coin_rank_table_v1';
@@ -24,7 +24,7 @@ function count(value: unknown): number | null {
 }
 
 /** Виды событий `instead`, у которых уже есть источник. */
-export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update'] as const;
+export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge'] as const;
 
 const RATE_CONTEXTS = ['perfect_lesson', 'level_exam_pass', 'streak_milestone'] as const;
 const RATE_STREAK_DAYS = [7, 14, 30] as const;
@@ -129,6 +129,12 @@ export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | n
       // текст из настроек необязателен: нет строки или она пустая — кадр покажет стандартный текст окна
       const message = typeof p.message === 'string' && p.message.trim().length > 0 ? p.message : null;
       return { id: 'instead_update', message };
+    }
+    case 'nudge': {
+      const missedDays = count(p.missedDays);
+      // окно показывалось только при пропущенных днях — ноль дней кадра не даёт
+      if (missedDays === null || missedDays < 1) return null;
+      return { id: 'instead_nudge', missedDays };
     }
     default:
       return null;

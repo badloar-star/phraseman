@@ -1106,3 +1106,8 @@ export { storyPollVote } from './story_poll_vote';
 // Admin Hosting uses this bounded read-only projection. The separate admin codebase is not configured for deployment yet.
 export { adminListOpsLog } from './admin_ops_log';
 
+
+// зачем (владелец 11.11 «да, начинай», план docs/work/tasks/firebase-cold-start-router-2026-11-11.md): общая точка входа в
+// europe-west1 против холодных стартов — 63 пользовательские функции будятся 5 328 раз в неделю, это ≈ 70 % процессорного
+// времени. Приложение зовёт её только при remote_config numbers.api_router_stage_v1 >= 1; старые функции остаются.
+export { api } from './api_router';

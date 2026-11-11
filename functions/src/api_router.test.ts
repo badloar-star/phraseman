@@ -26,6 +26,34 @@ function request(data: unknown, extra: Partial<CallableRequest<unknown>> = {}): 
   } as unknown as CallableRequest<unknown>;
 }
 
+// зачем: api_router.ts — проводка (список функций, опции, экспорт). Импорт тянет firebase-admin и все обработчики, поэтому
+// сторожим по тексту исходника: ошибка здесь стоит денег (minInstances) или впускает лишнюю функцию в общий вход.
+describe('api router: проводка', () => {
+  const fs = jest.requireActual<typeof import('fs')>('fs');
+  const path = jest.requireActual<typeof import('path')>('path');
+  const source = fs.readFileSync(path.join(__dirname, 'api_router.ts'), 'utf8');
+  const index = fs.readFileSync(path.join(__dirname, 'index.ts'), 'utf8');
+
+  it('белый список первой очереди — ровно четыре читающие функции', () => {
+    const start = source.indexOf('API_ROUTER_ROUTES');
+    const block = source.slice(source.indexOf('Object.freeze({', start), source.indexOf('});', start));
+    const names = block.split('\n').map((line) => line.trim().replace(/,$/, '')).filter((line) => /^[A-Za-z]\w*$/.test(line));
+    expect(names.sort()).toEqual(['getActiveShardSurvey', 'globalBroadcastListActive', 'premiumThemeEntitlementsGet', 'storyAnnouncementsGet']);
+  });
+
+  it('опции: Европа рядом с базой, без постоянно включённого экземпляра, с потолком экземпляров', () => {
+    expect(source).toMatch(/region: 'europe-west1'/);
+    expect(source).toMatch(/minInstances: 0/);
+    expect(source).toMatch(/maxInstances: 10/);
+    expect(source).toMatch(/concurrency: 80/);
+    expect(source).toMatch(/enforceAppCheck: ENFORCE_APP_CHECK/);
+  });
+
+  it('функция экспортируется из index.ts ровно один раз — иначе в деплой не попадёт', () => {
+    expect(index.match(/export \{ api \} from '\.\/api_router';/g)).toHaveLength(1);
+  });
+});
+
 describe('api router', () => {
   it('передаёт обработчику его data, а auth и rawRequest — без изменений; возвращает ответ как есть', async () => {
     const seen: CallableRequest<unknown>[] = [];

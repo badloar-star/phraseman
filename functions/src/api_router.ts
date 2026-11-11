@@ -2,8 +2,8 @@
 // рядом с базой. Замер Cloud Monitoring за 7 суток: холодный старт стоит 2 vCPU × (старт + 10 с) ≈ 31–43 vCPU-с, а
 // пользовательские функции будятся 5 328 раз в неделю. Общий сервис занят почти непрерывно (пустых 15-минутных окон 12 из 672).
 //
-// ПОДКЛЮЧЕНИЕ: функция попадёт в деплой только после строки `export { api } from './api_router';` в index.ts.
-// 11.11 index.ts редактировался в другой сессии — строка намеренно НЕ добавлена, см. план, раздел 6.
+// Экспортируется из index.ts (`export { api } from './api_router'`). Приложение зовёт её только при включённой стадии
+// (app/api_router_client.ts, remote_config numbers.api_router_stage_v1) — сам деплой ничего не меняет для пользователей.
 import { onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { createApiRouterHandler, type ApiRoute } from './api_router_core';

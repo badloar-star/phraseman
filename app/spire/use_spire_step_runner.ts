@@ -27,6 +27,7 @@ import {
   resumeSpireStep,
   skipReportedSpireTask,
   submitSpireAnswer,
+  submitSpireVerdict,
   tickSpireBudget,
   type SpireStepState,
 } from '../../modules/spire/step_machine';
@@ -320,6 +321,24 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [afterAnswer, pick, phase, feedback, exitOpen]);
 
+  /**
+   * Задание новой механики (вид 'expanded'): экран уже проверил ответ общей проверкой и передаёт вердикт.
+   * зачем (владелец 11.11.2026): ввод с клавиатуры и разбор допущенной ошибки по отпечатку не проверить — вердикт
+   * считает modules/expanded-formats, раннер только ведёт сердца, серию и показ верного ответа.
+   */
+  const submitExpanded = useCallback((result: Readonly<{ correct: boolean; given: string; correctText: string }>) => {
+    if (!canAnswer()) return;
+    const cur = stateRef.current;
+    const next = submitSpireVerdict(cur, pick.plan, result.correct, cur.elapsedBudgetMs);
+    if (next === cur) {
+      DebugLogger.warn(LOG, `step: вердикт новой механики отклонён — задание ${cur.taskIndex + 1} не вида expanded (${pick.plan.tasks[cur.taskIndex]?.kind ?? 'нет задания'})`);
+      return;
+    }
+    DebugLogger.info(LOG, `step: задание ${cur.taskIndex + 1} новая механика ${pick.tasks[cur.taskIndex]?.mode ?? '?'} ok=${String(result.correct)}`);
+    afterAnswer(next, { taskIndex: cur.taskIndex, ok: result.correct, picked: null, itemIndex: null, correctIndex: null, correctText: result.correctText, mistakeSaved: null }, result.given, result.correctText);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [afterAnswer, pick, phase, feedback, exitOpen]);
+
   /** Пары/подвопросы: selections — выбранный вариант по каждому пункту (все пункты заполнены). */
   const submitItems = useCallback((selections: readonly number[]) => {
     if (!canAnswer()) return;
@@ -391,7 +410,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
 
   return {
     phase, state, clock, feedback, exitOpen, displayTaskIndex, countdownDigit, streakHeart: streakHeart.view, gold: gold.view,
-    submitChoice, submitTokens, submitItems, reportCurrentTask, requestExit, cancelExit, confirmExit, continueAfterReveal,
+    submitChoice, submitTokens, submitItems, submitExpanded, reportCurrentTask, requestExit, cancelExit, confirmExit, continueAfterReveal,
   };
 }
 

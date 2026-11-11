@@ -17,6 +17,7 @@
  */
 
 import type { ArenaAnswerCheckTask } from '../arena/answer_check';
+import type { ExpandedFormat } from '../expanded-formats/types';
 import { arenaAnswerIsCorrect, arenaPairIsCorrect } from '../arena/answer_check';
 
 export const SPIRE_STEP_SCHEMA_VERSION = 'spire-step-local.v1' as const;
@@ -34,10 +35,24 @@ export const SPIRE_VOICE_MAX_RETRIES = 2;
 /** Пауза перед следующим заданием после показа правильного ответа (T20). */
 export const SPIRE_STEP_REVEAL_MS = 1_200;
 
-export type SpireStepTask = ArenaAnswerCheckTask & Readonly<{
+/**
+ * зачем (владелец 11.11.2026): двенадцать новых механик — вид задания 'expanded'. Его правильность считает общая
+ * проверка modules/expanded-formats, а не отпечаток: сюда приходит уже готовый вердикт (submitSpireVerdict).
+ */
+export type SpireExpandedStepTask = Readonly<{
+  taskId: string;
+  mode: ExpandedFormat;
+  kind: 'expanded';
+  answerFingerprints: readonly string[];
+  taskIndex: number;
+}>;
+
+export type SpireClassicStepTask = ArenaAnswerCheckTask & Readonly<{
   taskIndex: number;
   /** Отдельная соль от Арены: пакет недели, не matchId — см. preflight §1. */
 }>;
+
+export type SpireStepTask = SpireClassicStepTask | SpireExpandedStepTask;
 
 export type SpireStepPlan = Readonly<{
   packHash: string;
@@ -174,7 +189,25 @@ export function submitSpireAnswer(
   if (state.phase !== 'active') return state;
   const task = plan.tasks[state.taskIndex];
   if (!task) return state;
+  // зачем: у задания новой механики ответа-отпечатка нет — принять его здесь значило бы всегда засчитать «неверно»
+  if (task.kind === 'expanded') return state;
   const correct = arenaAnswerIsCorrect(plan.saltId, task, answer);
+  return withOutcome(state, { taskIndex: state.taskIndex, correct, elapsedMs, skippedNoPenalty: false });
+}
+
+/**
+ * Готовый вердикт задания новой механики: экран проверил ответ общей проверкой и сообщает «верно / неверно».
+ * Только для заданий вида 'expanded' — прежние виды обязаны идти через отпечатки (submitSpireAnswer).
+ */
+export function submitSpireVerdict(
+  state: SpireStepState,
+  plan: SpireStepPlan,
+  correct: boolean,
+  elapsedMs: number,
+): SpireStepState {
+  if (state.phase !== 'active') return state;
+  const task = plan.tasks[state.taskIndex];
+  if (!task || task.kind !== 'expanded') return state;
   return withOutcome(state, { taskIndex: state.taskIndex, correct, elapsedMs, skippedNoPenalty: false });
 }
 
@@ -189,6 +222,7 @@ export function submitSpirePair(
   if (state.phase !== 'active') return state;
   const task = plan.tasks[state.taskIndex];
   if (!task) return state;
+  if (task.kind === 'expanded') return state;
   const correct = arenaPairIsCorrect(plan.saltId, task, pairIndex, selectedIndex);
   return withOutcome(state, { taskIndex: state.taskIndex, correct, elapsedMs, skippedNoPenalty: false });
 }

@@ -8,6 +8,8 @@ Governance-ID: TG-C991CE51CAA9
 Governance-ID: TG-A9CC03286555
 Governance-ID: TG-1E74FE80081D
 Governance-ID: TG-C18A339627CE
+Governance-ID: TG-D0D9CA2A8B75
+Peak-wiring: client (pack decode, verdict, screen); pool not published
 Status: In progress
 Owner: сессия Claude (владелец 11.11.2026: «все механики а не 5 и всё, что ещё не в приложении для Пика, что Кодекс не добавил, — доделай и добавь ты»)
 Related epic/enabler: работа Кодекса `peak-pools-quality-2026-11-09/authoring-continuation` (вне репозитория)

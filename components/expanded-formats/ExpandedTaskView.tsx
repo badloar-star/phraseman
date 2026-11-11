@@ -38,9 +38,11 @@ type Props = Readonly<{
   onAnswer: (answer: ExpandedAnswer) => void;
   /** Есть — под разбором показывается «Дальше» (экзамен). Нет — родитель идёт дальше сам (Пик). */
   onNext?: () => void;
+  /** Пик сам показывает «Правильно: …» и «Дальше» — здесь остаётся только разбор ошибки, без заголовка. */
+  explanationOnly?: boolean;
 }>;
 
-function ExpandedTaskView({ lang, task, disabled = false, onAnswer, onNext }: Props) {
+function ExpandedTaskView({ lang, task, disabled = false, onAnswer, onNext, explanationOnly = false }: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const [response, setResponse] = useState<ExpandedResponse>(() => emptyExpandedResponse(task.exercise));
   const [verdict, setVerdict] = useState<boolean | null>(null);
@@ -131,15 +133,17 @@ function ExpandedTaskView({ lang, task, disabled = false, onAnswer, onNext }: Pr
           </V2Pressable>
           {countLine ? <Text style={[s.count, { color: p.textSecondary }]} testID="expanded-count">{countLine}</Text> : null}
         </>
-      ) : (
+      ) : explanationOnly && !explanation ? null : (
         <View
           style={[s.feedback, { backgroundColor: lv2Alpha(verdict ? p.correct : p.wrong, 0.14) }, sh.plate]}
           accessibilityLiveRegion="polite"
           testID={verdict ? 'expanded-feedback-ok' : 'expanded-feedback-no'}
         >
-          <Text style={[s.feedbackHead, { color: p.text }]}>
-            {verdict ? expandedText(lang, 'right') : expandedText(lang, 'correctIs', { x: expandedCorrectText(task.exercise) })}
-          </Text>
+          {explanationOnly ? null : (
+            <Text style={[s.feedbackHead, { color: p.text }]}>
+              {verdict ? expandedText(lang, 'right') : expandedText(lang, 'correctIs', { x: expandedCorrectText(task.exercise) })}
+            </Text>
+          )}
           {explanation ? <Text style={[s.feedbackText, { color: p.text }]}>{explanation}</Text> : null}
           {onNext ? (
             <V2Pressable

@@ -166,3 +166,47 @@ export function expandedCorrectText(exercise: ExpandedExercise): string {
       return exercise.words.filter((_word, index) => index !== exercise.key).join(' ');
   }
 }
+
+/** Ответ ученика одной строкой — для журнала «Мои ошибки» и для разбора. Незаполненное место — «…». */
+export function expandedGivenText(exercise: ExpandedExercise, response: ExpandedResponse): string {
+  if (exercise.format !== response.format) return '';
+  const blank = '…';
+  switch (exercise.format) {
+    case 'context_choice':
+    case 'evidence_choice': {
+      const picked = (response as { picked: number | null }).picked;
+      return picked === null ? blank : exercise.options[picked] ?? blank;
+    }
+    case 'dialogue_order':
+      return (response as { order: readonly number[] }).order.map((index) => exercise.bank[index] ?? blank).join(' → ');
+    case 'sentence_build_noise':
+      return (response as { order: readonly number[] }).order.map((index) => exercise.bank[index] ?? blank).join(' ');
+    case 'word_repair': {
+      const answer = response as { wordIndex: number | null; replacementIndex: number | null };
+      const replacement = answer.replacementIndex === null ? blank : exercise.replacements[answer.replacementIndex] ?? blank;
+      return exercise.words.map((word, index) => (index === answer.wordIndex ? replacement : word)).join(' ');
+    }
+    case 'multi_select':
+      return [...(response as { picked: readonly number[] }).picked].sort((a, b) => a - b).map((index) => exercise.options[index] ?? blank).join(' / ');
+    case 'linked_gaps':
+      return (response as { picked: readonly (number | null)[] }).picked
+        .map((value, slot) => (value === null ? blank : exercise.slots[slot]?.[value] ?? blank)).join(' … ');
+    case 'typed_word':
+    case 'sentence_transform':
+      return (response as { text: string }).text.trim();
+    case 'classify_function':
+      return exercise.items.map((item, index) => {
+        const group = (response as { assignments: readonly (number | null)[] }).assignments[index];
+        return `${item} — ${group === null || group === undefined ? blank : exercise.groups[group] ?? blank}`;
+      }).join('; ');
+    case 'reply_pairs':
+      return exercise.questions.map((question, index) => {
+        const reply = (response as { pairs: readonly (number | null)[] }).pairs[index];
+        return `${question} — ${reply === null || reply === undefined ? blank : exercise.replies[reply] ?? blank}`;
+      }).join('; ');
+    case 'remove_intruder': {
+      const removed = (response as { removed: number | null }).removed;
+      return exercise.words.filter((_word, index) => index !== removed).join(' ');
+    }
+  }
+}

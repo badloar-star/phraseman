@@ -77,6 +77,9 @@ export type SpireStepLayoutProps = Readonly<{
   onChoice: (index: number) => void;
   onTokens: (tokens: readonly string[]) => void;
   onItems: (selections: readonly number[]) => void;
+  /** Вердикт задания новой механики (вид 'expanded'). */
+  // необязательное: экраны-превью (dev_spire_preview) заданий новых механик не показывают и обработчик не передают
+  onExpanded?: (result: Readonly<{ correct: boolean; given: string; correctText: string }>) => void;
   /** «Пары»: верный вариант по каждому пункту — поле пар гасит пару сразу, не дожидаясь раннера. */
   pairAnswers?: readonly (number | null)[];
   onContinue: () => void;
@@ -152,6 +155,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
             onChoice={props.onChoice}
             onTokens={props.onTokens}
             onItems={props.onItems}
+            onExpanded={props.onExpanded}
             pairAnswers={props.pairAnswers}
             studyTarget={studyTarget}
           />
@@ -272,6 +276,7 @@ function StepBody({ lang, session, uid, stableId, studyTarget, showEnergy, onFin
       onChoice={runner.submitChoice}
       onTokens={runner.submitTokens}
       onItems={runner.submitItems}
+      onExpanded={runner.submitExpanded}
       pairAnswers={pairAnswers}
       onContinue={runner.continueAfterReveal}
       reportSlot={reportSlot}
@@ -316,6 +321,7 @@ function PendingStepBody({ lang, pending, studyTarget, showEnergy, onCancel, exi
       onChoice={noopAnswer}
       onTokens={noopAnswer}
       onItems={noopAnswer}
+      onExpanded={noopAnswer}
       onContinue={noopAnswer}
       reportSlot={null}
       exitSlot={null}

@@ -15,6 +15,8 @@
  */
 import type { ArenaTaskMode } from '../arena/contract';
 import { isArenaTaskMode } from '../arena/contract';
+import { isExpandedFormat, type ExpandedFormat } from '../expanded-formats/types';
+import { SPIRE_EXPANDED_KIND, spireExpandedTaskIsValid } from './expanded_pack_task';
 import type { SpireTaskTimerKind } from './config_contract';
 import type { SpireStepPlan, SpireStepTask } from './step_machine';
 import { SPIRE_STEP_TASK_COUNT } from './step_machine';
@@ -26,7 +28,7 @@ export const SPIRE_PACK_FLOORS = 15;
 const ABOVE_CLOUDS_FALLBACK = [11, 12, 13, 14, 15] as const;
 
 type TaskKind = SpireStepTask['kind'];
-const TASK_KINDS: readonly TaskKind[] = ['choice', 'translate', 'timeattack', 'voice', 'listen', 'dictate', 'match'];
+const TASK_KINDS: readonly TaskKind[] = ['choice', 'translate', 'timeattack', 'voice', 'listen', 'dictate', 'match', 'expanded'];
 
 /**
  * PM-286: режимы Шпиля «на слух» и «диктант» (Learning V2, голос телефона D47).
@@ -34,7 +36,7 @@ const TASK_KINDS: readonly TaskKind[] = ['choice', 'translate', 'timeattack', 'v
  * decodeTask отбраковал бы задание, и вместе с ним весь пакет (набор без 10 заданий).
  */
 export const SPIRE_LISTEN_PACK_MODES = ['listen_choose', 'listen_build'] as const;
-export type SpirePackTaskMode = ArenaTaskMode | typeof SPIRE_LISTEN_PACK_MODES[number];
+export type SpirePackTaskMode = ArenaTaskMode | typeof SPIRE_LISTEN_PACK_MODES[number] | ExpandedFormat;
 
 function isSpirePackTaskMode(value: unknown): value is SpirePackTaskMode {
   return isArenaTaskMode(value) || (SPIRE_LISTEN_PACK_MODES as readonly unknown[]).includes(value);
@@ -77,31 +79,39 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-function decodeTask(raw: unknown): SpirePackTask | null {
+function decodeTask(raw: unknown, lang: string): SpirePackTask | null {
   if (!isRecord(raw)) return null;
   if (typeof raw.taskId !== 'string' || raw.taskId.length === 0) return null;
-  if (!isSpirePackTaskMode(raw.mode)) return null;
   if (!TASK_KINDS.includes(raw.kind as TaskKind)) return null;
   if (!isRecord(raw.payload)) return null;
+  // зачем (владелец 11.11.2026): задание новой механики проверяется целиком уже здесь — битое задание отбраковывает набор
+  // до показа, а не превращается на экране в «нажал верно — засчитали неверно»
+  if (raw.kind === SPIRE_EXPANDED_KIND) {
+    if (!isExpandedFormat(raw.mode)) return null;
+    const candidate = { taskId: raw.taskId, mode: raw.mode, kind: SPIRE_EXPANDED_KIND, payload: raw.payload };
+    if (!spireExpandedTaskIsValid(candidate, lang)) return null;
+  } else if (!isSpirePackTaskMode(raw.mode) || isExpandedFormat(raw.mode)) {
+    return null;
+  }
   const difficulty = typeof raw.difficulty === 'number' && Number.isInteger(raw.difficulty) ? raw.difficulty : 1;
-  return { taskId: raw.taskId, mode: raw.mode, kind: raw.kind as TaskKind, difficulty, payload: raw.payload };
+  return { taskId: raw.taskId, mode: raw.mode as SpirePackTaskMode, kind: raw.kind as TaskKind, difficulty, payload: raw.payload };
 }
 
-function decodeSet(raw: unknown): SpirePackSetClient | null {
+function decodeSet(raw: unknown, lang: string): SpirePackSetClient | null {
   if (!isRecord(raw) || !Array.isArray(raw.tasks) || !Array.isArray(raw.answerFingerprints)) return null;
-  const tasks = raw.tasks.map(decodeTask);
+  const tasks = raw.tasks.map((task) => decodeTask(task, lang));
   if (tasks.length !== SPIRE_STEP_TASK_COUNT || tasks.some((t) => t === null)) return null;
   const prints = raw.answerFingerprints.map((row) => (Array.isArray(row) ? row.filter((x): x is string => typeof x === 'string') : []));
   if (prints.length !== tasks.length || prints.some((row) => row.length === 0)) return null;
   return { tasks: tasks as SpirePackTask[], answerFingerprints: prints };
 }
 
-function decodeFloor(raw: unknown): SpirePackFloorClient | null {
+function decodeFloor(raw: unknown, lang: string): SpirePackFloorClient | null {
   if (!isRecord(raw) || typeof raw.floor !== 'number' || !Array.isArray(raw.steps)) return null;
   const steps: { step: number; sets: SpirePackSetClient[] }[] = [];
   for (const rawStep of raw.steps) {
     if (!isRecord(rawStep) || typeof rawStep.step !== 'number' || !Array.isArray(rawStep.sets)) return null;
-    const sets = rawStep.sets.map(decodeSet);
+    const sets = rawStep.sets.map((set) => decodeSet(set, lang));
     if (sets.length === 0 || sets.some((s) => s === null)) return null;
     steps.push({ step: rawStep.step, sets: sets as SpirePackSetClient[] });
   }
@@ -122,7 +132,7 @@ export function spireDecodeWeekPack(raw: unknown, expect: SpirePackExpect): Spir
   if (typeof raw.packHash !== 'string' || raw.packHash.length < 8) return { ok: false, reason: 'pack_hash' };
   if (typeof raw.saltId !== 'string' || raw.saltId.length === 0) return { ok: false, reason: 'salt' };
   if (!Array.isArray(raw.floors)) return { ok: false, reason: 'floors' };
-  const floors = raw.floors.map(decodeFloor);
+  const floors = raw.floors.map((floor) => decodeFloor(floor, expect.lang));
   if (floors.length === 0 || floors.some((f) => f === null)) return { ok: false, reason: 'floor_shape' };
   const cycles = Array.isArray(raw.aboveCloudsCyclesFloors)
     ? raw.aboveCloudsCyclesFloors.filter((n): n is number => typeof n === 'number' && Number.isInteger(n))
@@ -159,7 +169,8 @@ export type SpireStepPick = Readonly<{
 
 /** Вид таймера для задания — ключ baseMsByKind конфига. */
 export function spireTimerKindOf(task: SpirePackTask): SpireTaskTimerKind {
-  return task.kind;
+  // зачем: в конфиге бюджета времени вида 'expanded' нет; по затратам времени новая механика ближе всего к сборке перевода
+  return task.kind === SPIRE_EXPANDED_KIND ? 'translate' : task.kind;
 }
 
 /**
@@ -184,7 +195,7 @@ export function spirePickStepPlan(
     kind: task.kind,
     answerFingerprints: set.answerFingerprints[taskIndex],
     taskIndex,
-  }));
+  } as SpireStepTask));
   return {
     plan: {
       packHash: pack.packHash,

@@ -25,6 +25,9 @@ import { useSpireShadow } from './useSpireShadow';
 import { spireGameText, type SpireGameStringKey } from './spire_game_strings';
 import { capitalizeSpireOddityOptions, localizeSpireOddityPrompt } from './spire_oddity_prompt';
 import SpirePairsBoard from './SpirePairsBoard';
+import ExpandedTaskView, { type ExpandedAnswer } from '../expanded-formats/ExpandedTaskView';
+import { expandedCorrectText, expandedGivenText } from '../../modules/expanded-formats/grade';
+import { SPIRE_EXPANDED_KIND, spireExpandedTaskFromPack } from '../../modules/spire/expanded_pack_task';
 
 type Props = Readonly<{
   lang: Lang;
@@ -34,6 +37,8 @@ type Props = Readonly<{
   onChoice: (index: number) => void;
   onTokens: (tokens: readonly string[]) => void;
   onItems: (selections: readonly number[]) => void;
+  /** Вердикт задания новой механики (вид 'expanded'): проверку делает общий экран ExpandedTaskView. */
+  onExpanded?: (result: Readonly<{ correct: boolean; given: string; correctText: string }>) => void;
   /** Язык обучения: для заданий «на слух» (PM-286) — на каком голосе телефона произнести фразу. */
   studyTarget?: string;
   /** «Пары»: верный вариант по каждому пункту (раннер по отпечаткам). Есть у всех пунктов — поле пар целиком, иначе прежний список по одному. */
@@ -256,9 +261,45 @@ function MatchTask(props: Props) {
   return <SpirePairsBoard taskId={props.task.taskId} items={board} answers={answers as readonly number[]} disabled={props.disabled} onItems={props.onItems} />;
 }
 
+// зачем (владелец 11.11.2026): двенадцать новых механик Пика. Задание вида 'expanded' рисует общий экран (он же в экзаменах);
+// Пик добавляет только свою полосу «Правильно: … / Дальше» под ним, поэтому у общего экрана остаётся один разбор ошибки.
+function ExpandedPeakTask({ lang, task, disabled, studyTarget, onExpanded }: Props) {
+  const parsed = useMemo(() => spireExpandedTaskFromPack(task, lang, String(studyTarget ?? 'en')), [lang, studyTarget, task]);
+  const onAnswer = useCallback((answer: ExpandedAnswer) => {
+    if (!parsed.ok) return;
+    if (!onExpanded) {
+      console.warn('[SPIRE] expanded: answer dropped — no handler', JSON.stringify({ taskId: task.taskId })); // guard-ok: ранний выход с причиной
+      return;
+    }
+    onExpanded({
+      correct: answer.correct,
+      given: expandedGivenText(parsed.task.exercise, answer.response),
+      correctText: expandedCorrectText(parsed.task.exercise),
+    });
+  }, [onExpanded, parsed, task.taskId]);
+  if (!parsed.ok) {
+    // пакет с таким заданием отбраковывается при разборе; сюда попадаем только при расхождении версий — причина в журнале
+    console.warn('[SPIRE] expanded: task rejected', JSON.stringify({ taskId: task.taskId, mode: task.mode, reason: parsed.reason })); // guard-ok
+    return null;
+  }
+  return <ExpandedTaskView lang={lang} task={parsed.task} disabled={disabled} onAnswer={onAnswer} explanationOnly />;
+}
+
 function SpireTaskView(props: Props) {
   const p = useSpirePalette(); const sh = useSpireShadow();
   const { lang, task } = props;
+  const { speak, stop } = useAudio();
+  const listenFallbackTaskId = task.taskId;
+  const listenEarly = useCallback(() => {
+    const audio = resolveSpireListenAudio(task.payload, String(props.studyTarget ?? ''));
+    if (!audio.ok) {
+      console.warn('[SPIRE] listen: no audio', { taskId: listenFallbackTaskId, reason: audio.reason, detail: audio.detail });
+      return;
+    }
+    stop();
+    speak(audio.text, undefined, { language: audio.speechLanguage });
+  }, [listenFallbackTaskId, props.studyTarget, speak, stop, task.payload]);
+  if (task.kind === SPIRE_EXPANDED_KIND) return <View testID="spire-task"><ExpandedPeakTask {...props} /></View>;
   const promptKey = PROMPT_KEY[task.mode] ?? 'promptGuess';
   const rawPhrase = typeof task.payload.phrase === 'string' ? task.payload.phrase
     : typeof task.payload.prompt === 'string' ? task.payload.prompt : '';
@@ -276,16 +317,8 @@ function SpireTaskView(props: Props) {
   const hasAudio = typeof task.payload.audioUri === 'string' && task.payload.audioUri.length > 0;
   // зачем (Ядро 01.10, сторож audio_never_permanently_silent): озвучка через общий арбитр звука —
   // уважает тумблер голоса, глушится записью микрофона и уступает другим экранам.
-  const { speak, stop } = useAudio();
-  const listen = useCallback(() => {
-    const audio = resolveSpireListenAudio(task.payload, String(props.studyTarget ?? ''));
-    if (!audio.ok) {
-      console.warn('[SPIRE] listen: no audio', { taskId: task.taskId, reason: audio.reason, detail: audio.detail });
-      return;
-    }
-    stop();
-    speak(audio.text, undefined, { language: audio.speechLanguage });
-  }, [props.studyTarget, speak, stop, task.payload, task.taskId]);
+  // зачем: хуки звука подняты над ранним выходом для новых механик (правило хуков) — см. listenEarly выше
+  const listen = listenEarly;
   const listenLabel = triLang(lang, { ru: 'Прослушать', uk: 'Прослухати', en: 'Listen', es: 'Escuchar', 'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Posłuchaj' });
   return (
     <View testID="spire-task">

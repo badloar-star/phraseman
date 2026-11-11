@@ -111,11 +111,23 @@
       ask.textContent = ok ? 'Верно — темп растёт' : 'Мимо — темп ниже, фраза уйдёт в «Ошибки»';
       lv = Math.max(0, Math.min(TEMPO.length - 1, lv + (ok ? 1 : -1))); tempo(); bump($(ph, '.tx'));
       $$(ph, '.segs i')[r].style.setProperty('--p', 1); log('поток: ответ', ok ? 'верно' : 'ошибка', 'темп →', TEMPO[lv].x);
-      if (r < FLOW.length - 1) G.after(ok ? 1500 : 2300, () => { r += 1; round(); });
+      if (r < FLOW.length - 1) G.after(ok ? 1500 : 2300, () => { r += 1; ready(round, true); });
     };
     ans.addEventListener('click', (e) => { const a = e.target.closest('.at'); if (a) pick(+a.dataset.i); });
-    round();
-    return () => { G.clear(); beam.getAnimations().forEach((a) => a.cancel()); };
+    // зачем (владелец 11.11: «не было ничего, что предупредит… не понял, когда фразы начали появляться»):
+    // сначала правило и кнопка «Начать», потом отсчёт «3-2-1» на месте фразы, и только потом слова; перед каждой следующей фразой — короткий сигнал
+    const ready = (next, short) => {
+      line.classList.add('still'); ru.classList.add('hid'); ans.innerHTML = ''; beam.parentNode.classList.add('hid'); ask.textContent = 'Смотри сюда — фраза появится здесь';
+      if (short) { line.innerHTML = '<span class="in" style="font-size:24px;opacity:.7">Следующая фраза</span>'; G.after(1100, next); return; }
+      [3, 2, 1].forEach((k, j) => G.after(j * 800, () => { line.innerHTML = `<span class="in">${k}</span>`; })); G.after(2400, next);
+    };
+    line.classList.add('still'); line.innerHTML = '<span class="in">Поток</span>'; beam.parentNode.classList.add('hid'); ask.textContent = '';
+    ru.textContent = 'Фраза появится по одному слову и исчезнет. Потом выбери, что было сказано. За верный ответ темп растёт.'; ru.classList.remove('hid');
+    ans.innerHTML = `<div class="wcta t go">${I('play')}Начать</div>`; $(ph, '.rn').textContent = `0 / ${FLOW.length}`; tempo();
+    const go = () => { if (ph.dataset.started) return; ph.dataset.started = '1'; log('поток: игрок нажал «Начать» — отсчёт'); ready(round, false); };
+    $(ans, '.go').addEventListener('click', go);
+    if (auto) G.after(1800, go);
+    return () => { G.clear(); beam.getAnimations().forEach((a) => a.cancel()); delete ph.dataset.started; };
   }
 
   /* ================= 3 · Лишнее слово (Elevate «Brevity») ================= */

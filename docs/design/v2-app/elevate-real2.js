@@ -123,14 +123,14 @@
     return () => G.clear();
   }
 
-  /* ---------- «Наборы» сообщества: набор месяца и список, как сейчас; сердечко качает «Общение» ---------- */
+  /* ---------- «Наборы» сообщества: набор месяца и список, как сейчас; сердечко качает «Социальный» ---------- */
   function setsR(ph, auto) {
     const G = timers(); const L = [['Small talk', 'Олег', '26 карточек · A2', 7], ['Офис и созвоны', 'Мария', '34 карточки · B1', 5], ['Family', 'Лидия', '20 карточек · A1', 4], ['B2 глаголы', 'Анна', '49 карточек · B2', 3]];
     $(ph, '.lay').innerHTML = `<div class="hsc" style="background:linear-gradient(170deg,#1F4468,#2F5E8E)"><div class="top"><div class="gbtn t">${I('back')}</div><div class="tabsx"><span>Пик</span><span>Друзья</span><span class="on">Наборы</span></div><span class="gpill">EN</span></div>
         <div class="over" style="margin-top:20px">Набор месяца</div><div class="big" style="margin-top:4px">Ещё 20 дней</div><span class="gpill" style="margin-top:12px">Условия участия ${I('fwd', 's16')}</span><div style="height:18px"></div></div>
       <div class="gl pan" style="margin-top:-26px;flex:1;border-radius:28px 28px 0 0;margin-left:-4px;margin-right:-4px"><div class="hd2" style="align-items:center">Наборы<span style="display:flex;gap:8px"><div class="gbtn" style="width:38px;height:38px">${I('search', 's18')}</div><div class="gbtn" style="width:38px;height:38px">${I('plus', 's18')}</div></span></div>
         ${L.map(([n, a, m, h], i) => `<div class="rw"><div class="ib s" style="width:46px;height:46px">${I('bookmark')}</div><div class="tx"><div class="e">${n}</div><div class="r">${a} · ${m}</div></div><div class="fq hrt t" data-i="${i}" style="display:flex;gap:6px;align-items:center;cursor:pointer">${I('heart', 's20')}<span>${h}</span></div></div>`).join('')}</div>${TOAST}`;
-    const like = (el) => { if (el.dataset.on) return; el.dataset.on = '1'; const s = $(el, 'span'); s.textContent = +s.textContent + 1; bump(s); $(el, 'svg').style.fill = 'currentColor'; toast(ph, G, skill('Общение')); log('наборы: сердечко → «Общение»'); };
+    const like = (el) => { if (el.dataset.on) return; el.dataset.on = '1'; const s = $(el, 'span'); s.textContent = +s.textContent + 1; bump(s); $(el, 'svg').style.fill = 'currentColor'; toast(ph, G, skill('Социальный')); log('наборы: сердечко → «Социальный»'); };
     ph.addEventListener('click', (e) => { const h = e.target.closest('.hrt'); if (h) like(h); });
     if (auto) G.after(1900, () => like($(ph, '.hrt')));
     return () => G.clear();
@@ -147,12 +147,12 @@
   set('stats', { fn: statsR, cls: '', lbl: 'Статистика: «Серия и результаты»', was: shot('stats.jpg'), note: 'Серия, неделя, «Начало положено» и «Все показатели» — как сейчас. Добавлен блок навыков; рекорды игр уходят внутрь «Всех показателей».' });
   set('d-hub', { fn: dialogsR, cls: '', lbl: 'Диалоги · раздел', was: shot('dialogs.jpg'), note: 'Шапка, свободный разговор, темы и «Все диалоги» — как сейчас. Кнопка в шапке продолжает начатый диалог.' });
   set('p-pack', { fn: packsR, cls: '', lbl: '«Мои наборы»: запуск без окна выбора режима', was: shot('modes.jpg'), note: 'Слева — нынешнее окно «Режим тренировки». Справа кнопка набора запускает все режимы подряд.' });
-  set('p-catalog', { fn: setsR, cls: '', lbl: 'Наборы сообщества', was: shot('sets.jpg'), note: 'Набор месяца и список — как сейчас. Сердечко набору качает «Общение».' });
+  set('p-catalog', { fn: setsR, cls: '', lbl: 'Наборы сообщества', was: shot('sets.jpg'), note: 'Набор месяца и список — как сейчас. Сердечко набору качает «Социальный».' });
   set('sk-pro', { was: shot('card_pro.jpg'), note: 'Слева — нынешняя визитка Pro. Справа на неё добавлены звезда и шесть уровней.' });
   set('sk-free', { was: shot('card_plain.jpg') });
   set('sk-friends', { was: shot('friends.jpg'), note: 'Слева — нынешний экран без друзей. Справа список друзей со звёздами; нажатие накладывает звезду друга на твою.' });
   if (S.stats) S.stats.lead = 'Слева — нынешний экран «Серия и результаты». Все его блоки остаются; добавлен один блок навыков, а рекорды игр и сравнение живут внутри «Всех показателей», где они уже есть.';
-  if (S.social) { S.social[0].lead = 'Раздел повторяет нынешний: шапка, свободный разговор, темы, «Все диалоги». Экраны перед разговором, сам разговор и итог я с приложения не снимал — они показаны как предложение.'; S.social[1].lead = 'Главный экран, «Мои наборы» и наборы сообщества повторяют нынешние. Добавлено: тренировка одной кнопкой, запуск набора без окна выбора режима, рост «Общения» за сердечко.'; }
+  if (S.social) { S.social[0].lead = 'Раздел повторяет нынешний: шапка, свободный разговор, темы, «Все диалоги». Экраны перед разговором, сам разговор и итог я с приложения не снимал — они показаны как предложение.'; S.social[1].lead = 'Главный экран, «Мои наборы» и наборы сообщества повторяют нынешние. Добавлено: тренировка одной кнопкой, запуск набора без окна выбора режима, рост навыка «Социальный» за сердечко.'; }
   if (S.learn) S.learn[0].lead = 'Теория, словарь и тренажёр глаголов повторяют нынешние экраны: разделы, счётчик заданий, варианты и переключатели на месте. Тренажёр предлогов и список глаголов я с приложения не снимал.';
   if (S.modes) S.modes.lead = 'Слева — настоящие снимки там, где я их снял. Правила режимов не тронуты; меняется подача.';
 })();

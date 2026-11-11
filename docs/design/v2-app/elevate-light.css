@@ -176,3 +176,19 @@ body[data-look="dark"] .acc .ab em { color: #9CC4FF; } body[data-look="dark"] .v
 [data-ph="m-blitz"] .top > .gpill:first-of-type { display: none; }
 body[data-look="dark"] .okc { background: rgba(255,255,255,.18) !important; } body[data-look="dark"] .ci2 { background: rgba(255,255,255,.14); color: #fff; }
 body[data-look="dark"] .chip2 { background: rgba(255,255,255,.22); color: #fff; } body[data-look="dark"] .dash3 i, body[data-look="dark"] .dots3 i { background: rgba(255,255,255,.2); } body[data-look="dark"] .dash3 i.on, body[data-look="dark"] .dots3 i.on { background: #fff; color: #0B0C0E; }
+
+/* зачем (владелец 11.11: «навыки стали какие-то неприятные, раньше было лучше»): в светлом виде звезда лежала плоской синей
+   фигурой на белом. Возвращаю ей тёмное поле и свечение, как в первом варианте, — тёмная вставка, как у визитки. */
+body[data-look="light"] .sky .starbox { background: radial-gradient(120% 95% at 28% 8%, #6F68CE 0%, #403C8E 46%, #17183F 100%); border-radius: 30px; box-shadow: 0 20px 36px -18px rgba(38,38,110,.75), inset 1px 1.5px 0 -.2px rgba(255,255,255,.3); }
+body[data-look="light"] .sky .starrow .starbox { border-radius: 22px; }
+body[data-look="light"] .sky .starbox .starsvg .grid { stroke: rgba(255,255,255,.2); } body[data-look="light"] .sky .starbox .starsvg .ax { stroke: rgba(255,255,255,.14); }
+body[data-look="light"] .sky .starbox .starsvg .shape { fill: rgba(193,196,255,.36); stroke: #fff; filter: drop-shadow(0 0 12px rgba(193,196,255,.85)); }
+body[data-look="light"] .sky .starbox .starsvg .shape2 { fill: rgba(255,255,255,.07); stroke: rgba(255,255,255,.7); }
+body[data-look="light"] .sky .starbox .lb { color: rgba(255,255,255,.72); font-size: 12px; } body[data-look="light"] .sky .starbox .lb.on { color: #fff; }
+body[data-look="light"] .sky .starbox .burst i { background: #fff; } body[data-look="light"] .sky .starbox .pulse { box-shadow: 0 0 0 2px rgba(255,255,255,.6); }
+body[data-look="light"] .sky .vcard .starbox { background: none; box-shadow: none; }
+body[data-look="light"] .sky .toast2 .starsvg, body[data-look="light"] .sky .frow .starsvg { background: radial-gradient(circle at 30% 20%, #6F68CE, #24255E); border-radius: 12px; }
+body[data-look="light"] .sky :is(.toast2, .frow) .starsvg .shape { fill: rgba(193,196,255,.4); stroke: #fff; } body[data-look="light"] .sky :is(.toast2, .frow) .starsvg :is(.grid, .ax) { stroke: rgba(255,255,255,.2); }
+body[data-look="light"] .sky .sgr.up .upt { background: linear-gradient(90deg, #403C8E, #6F68CE); box-shadow: 0 6px 16px -6px rgba(64,60,142,.8); }
+[data-ph="sk-skills"] .starbox { margin-top: 12px !important; }
+[data-ph="sk-skills"] .skl { margin-top: 14px !important; }

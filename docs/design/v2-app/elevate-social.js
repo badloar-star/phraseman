@@ -1,5 +1,5 @@
 /* Страница «Диалоги, наборы и друзья» (владелец 11.11: «раздел диалоги и сами диалоги… раздел наборы… в наборах карточки тоже…
-   раздел друзья, чтобы можно было смотреть статистику и навыки друзей»). Сердечко и комментарий к набору качают «Общение» —
+   раздел друзья, чтобы можно было смотреть статистику и навыки друзей»). Сердечко и комментарий к набору качают «Социальный» —
    это показано всплывающей строкой. Навыки берутся из EL.SK, как на всех остальных экранах. */
 (() => {
   const { I, $, $$, log, timers, count, bump, again, was, top, coins, SK, LVMAX, skAxes, starSvg, starLabels, starTween, mount } = EL;
@@ -57,7 +57,7 @@
       <div class="wcta t" style="margin-top:16px">Добавить себе ${I('plus', 's18')}</div>
       <div class="hl2">${[['hire', 'нанимать'], ['quit', 'уйти, бросить'], ['tend to', 'иметь склонность'], ['pitch in', 'скинуться, помочь']].map(([e, r], i) => `<div class="gl wr rise" style="--dl:${i * 60}ms"><div class="wv">${[0, 1, 2, 3].map((k) => `<i style="--k:${k}"></i>`).join('')}</div><div class="tx"><div class="e">${e}</div><div class="r">${r}</div></div></div>`).join('')}</div>
       <div class="gl toast2"></div>`;
-    const like = () => { if (liked) return; liked = true; $(ph, '.lk').classList.add('on'); const h = $(ph, '.hc'); h.textContent = 4; bump(h); toast(ph, G, `${starSvg(34, skAxes())}<span>«Общение» растёт: +1 за сердечко</span>`); log('набор: сердечко → «Общение»'); };
+    const like = () => { if (liked) return; liked = true; $(ph, '.lk').classList.add('on'); const h = $(ph, '.hc'); h.textContent = 4; bump(h); toast(ph, G, `${starSvg(34, skAxes())}<span>«Социальный» растёт: +1 за сердечко</span>`); log('набор: сердечко → «Социальный»'); };
     $(ph, '.lk').addEventListener('click', like);
     if (auto) G.after(2000, like);
     return () => G.clear();
@@ -79,7 +79,7 @@
   const pCatalog = stat(`${top({ back: true, mid: '<div class="ttl">Наборы сообщества</div>', right: `<div class="gbtn t">${I('search')}</div>` })}
     <div class="tabs3"><div class="on">Лучшее</div><div>Новые</div><div>Из видео</div></div>
     <div class="hl2">${[['Фразы для поездок', 'Тимур · 48 карточек', 40], ['Офисный английский', 'Оля · 64 карточки', 22], ['B2 глаголы', 'Анна · 126 карточек', 11], ['Small talk', 'Дима · 30 карточек', 9]].map(([e, r, u], i) => `<div class="gl hrow rise t" style="--dl:${i * 70}ms"><div class="ic">${I('layers')}</div><div class="tx"><div class="e">${e}</div><div class="r">${r}</div></div><span class="rt2" style="display:flex;gap:6px;align-items:center">${I('people', 's16')}${u}</span></div>`).join('')}</div>
-    <div class="gl panel2 rise" style="margin-top:14px;--dl:320ms"><div class="h">Опубликуй свой набор</div><div class="sub" style="margin-top:4px">Каждый, кто добавит его себе, поднимает твоё «Общение».</div></div>`);
+    <div class="gl panel2 rise" style="margin-top:14px;--dl:320ms"><div class="h">Опубликуй свой набор</div><div class="sub" style="margin-top:4px">Каждый, кто добавит его себе, поднимает твой навык «Социальный».</div></div>`);
 
   /* ---------- друзья ---------- */
   const ANNA = [14, 17, 11, 12, 8, 15].map((lv, i) => ({ nm: NAMES[i], lv, p: .4 }));
@@ -95,7 +95,7 @@
   });
   const fGoal = stat(`${top({ back: true, mid: '<div class="ttl">Цель недели вместе</div>' })}
     <div class="goalr"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="88" stroke="rgba(255,255,255,.16)"/><circle class="g2" cx="100" cy="100" r="88" stroke="rgba(255,255,255,.5)" stroke-dasharray="553" stroke-dashoffset="553" style="transition:stroke-dashoffset 1400ms cubic-bezier(.2,.8,.2,1)"/><circle class="g1" cx="100" cy="100" r="88" stroke="#fff" stroke-dasharray="553" stroke-dashoffset="553" style="transition:stroke-dashoffset 1400ms cubic-bezier(.2,.8,.2,1)"/></svg><div class="mid"><b><span class="gn">0</span> / 20</b><span>занятий на двоих</span></div></div>
-    <div class="hero2" style="margin-top:18px"><div class="t1">Ты и Анна: осталось шесть</div><div class="t2">До воскресенья. Закроете — у обоих вырастет «Общение».</div></div>
+    <div class="hero2" style="margin-top:18px"><div class="t1">Ты и Анна: осталось шесть</div><div class="t2">До воскресенья. Закроете — у обоих вырастет «Социальный».</div></div>
     <div class="hl2" style="margin-top:4px"><div class="gl frow">${K.coinImg(7, 44).replace('class="coin"', 'class="av2"')}<div class="tx"><div class="e">Ты</div><div class="r">6 занятий</div></div><span class="rt2" style="font-weight:700">6</span></div><div class="gl frow">${K.coinImg(12, 44).replace('class="coin"', 'class="av2"')}<div class="tx"><div class="e">Анна</div><div class="r">8 занятий</div></div><span class="rt2" style="font-weight:700">8</span></div></div>
     <div style="flex:1"></div><div class="wcta t">${I('play')}Внести своё занятие</div>`, (ph, G) => { G.after(400, () => { $(ph, '.g2').style.strokeDashoffset = 553 * (1 - 14 / 20); $(ph, '.g1').style.strokeDashoffset = 553 * (1 - 6 / 20); count($(ph, '.gn'), 0, 14, 1300); }); });
 
@@ -107,10 +107,10 @@
         { id: 'd-talk', fn: dTalk, cls: 'deep', lbl: 'Сам диалог', note: 'Нажатие на микрофон или подсказку отправляет следующую реплику.' },
         { id: 'd-coach', fn: dCoach, lbl: 'Итог диалога', note: 'Тот же общий итог, что у остальных режимов.' },
       ] },
-    { id: 's-packs', title: 'Наборы и карточки', lead: 'На главном экране наборов одна кнопка «Тренироваться» и число карточек к повторению. Наборы стали цветными плитками. Сердечко и комментарий к чужому набору качают «Общение».',
+    { id: 's-packs', title: 'Наборы и карточки', lead: 'На главном экране наборов одна кнопка «Тренироваться» и число карточек к повторению. Наборы стали цветными плитками. Сердечко и комментарий к чужому набору качают «Социальный».',
       screens: [
         { id: 'p-hub', fn: pHub, lbl: 'Карточки · главный экран', was: wasPHub },
-        { id: 'p-pack', fn: pPack, lbl: 'Набор: сердечко качает «Общение»', note: 'После сердечка внизу всплывает строка с ростом навыка.' },
+        { id: 'p-pack', fn: pPack, lbl: 'Набор: сердечко качает «Социальный»', note: 'После сердечка внизу всплывает строка с ростом навыка.' },
         { id: 'p-card', fn: pCard, cls: 'deep', lbl: 'Карточка: переворот', note: 'Нажатие переворачивает карточку, «Дальше» листает.' },
         { id: 'p-catalog', fn: pCatalog, lbl: 'Наборы сообщества' },
       ] },

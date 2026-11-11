@@ -138,7 +138,7 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
       <ScreenBackButton screen="spire_step" testID="spire-step-back" accessibilityLabel={spireText(lang, 'back')} onPress={props.onBack} />
       <ScrollView ref={scrollRef} style={s.scroll} contentContainerStyle={[s.content, { paddingBottom: 16 }]} showsVerticalScrollIndicator={false} bounces={false} decelerationRate="fast" onLayout={(e) => { boxes.current.viewport = e.nativeEvent.layout.height; }} onContentSizeChange={(_w, h) => { boxes.current.content = h; }}>
         <View style={s.ringWrap}>
-          <SpireTimerRing lang={lang} clock={clock} budgetMs={budgetMs} paused={paused} />
+          <SpireTimerRing lang={lang} clock={clock} budgetMs={budgetMs} paused={paused} pausedLabel={!preparing} />
           {props.ghost ? <SpireGhostLayer lang={lang} view={props.ghost} clock={clock} paused={paused} done={taskIndex} /> : null}
         </View>
         {preparing || !task ? (

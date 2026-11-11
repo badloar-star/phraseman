@@ -22,9 +22,12 @@ export const SPIRE_RING_R = R;
 const STROKE = 7;
 const CIRC = 2 * Math.PI * R;
 
-type Props = Readonly<{ lang: Lang; clock: SpireClock; budgetMs: number; paused: boolean }>;
+// зачем (владелец 11.11.2026: «убери "таймер на паузе" при начале игры»): pausedLabel=false — дуга серая, но подписи нет
+// (подготовка ступени и отсчёт 3-2-1: игра ещё не началась, «пауза» там сбивает с толку). По умолчанию подпись как раньше.
+type Props = Readonly<{ lang: Lang; clock: SpireClock; budgetMs: number; paused: boolean; pausedLabel?: boolean }>;
 
-function SpireTimerRing({ lang, clock, budgetMs, paused }: Props) {
+function SpireTimerRing({ lang, clock, budgetMs, paused, pausedLabel = true }: Props) {
+  const showLabel = paused && pausedLabel;
   const p = useSpirePalette();
   const elapsed = useSyncExternalStore(clock.subscribe, clock.get, clock.get);
   const left = Math.max(0, budgetMs - elapsed);
@@ -57,7 +60,7 @@ function SpireTimerRing({ lang, clock, budgetMs, paused }: Props) {
         <Text style={[s.time, { color: p.text }]}>{text}</Text>
       </View>
       {/* зачем (spire-gaps-states, координатор 12.10): подпись «таймер на паузе» висит под кольцом абсолютно и места в потоке не занимает — пауза не сдвигает ни кольцо, ни вопрос */}
-      <Text importantForAccessibility={paused ? 'auto' : 'no'} style={[s.paused, { color: p.textSecondary, opacity: paused ? 1 : 0 }]}>
+      <Text importantForAccessibility={showLabel ? 'auto' : 'no'} style={[s.paused, { color: p.textSecondary, opacity: showLabel ? 1 : 0 }]}>
         {spireGameText(lang, 'timerPaused')}
       </Text>
     </View>

@@ -123,12 +123,12 @@ describe('кадры «истории вместо окон» — разметк
     for (const banned of ['borderWidth', 'borderColor', 'adjustsFontSizeToFit']) expect(all).not.toContain(banned);
   });
 
-  it('шаг 1: все 17 кадров подключены к просмотру и стоят в конце общего списка', () => {
+  it('шаг 1: все 20 кадров (17 + медаль и два экзамена) подключены к просмотру и стоят в конце общего списка', () => {
     const slide = read('components/stories/templates/StoryTemplateSlide.tsx');
     const registry = read('components/stories/templates/story_template_registry.ts');
     const own = read('components/stories/templates/story_instead_registry.ts');
     const unique = [...new Set([...own.matchAll(/'(instead_[a-z_]+)'/g)].map((m) => m[1]))];
-    expect(unique).toHaveLength(17);
+    expect(unique).toHaveLength(20);
     for (const id of unique) expect(slide).toContain(`case '${id}':`);
     // новые кадры — строго в конце общего списка: номера прежних 31 в фотостудии не сдвигаются
     // зачем (11.11, правка разрешена автором сторожа): после кадров «вместо окон» в тот же массив дописаны три кадра-предложения Plus —
@@ -137,11 +137,45 @@ describe('кадры «истории вместо окон» — разметк
     expect(registry).toContain('...STORY_INSTEAD_TEMPLATE_SAMPLES,');
   });
 
-  it('шаг 2: у десяти кадров есть источник — событие instead; остальные 7 ждут своих партий', () => {
+  it('шаг 2: у тринадцати кадров есть источник — событие instead; остальные 7 ждут своих партий', () => {
     const fromEvent = read('components/stories/templates/story_template_from_event.ts');
     expect(fromEvent).toContain("case 'instead': return insteadTemplateFromPayload(p);");
     const own = read('components/stories/templates/story_instead_from_event.ts');
-    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open'] as const;");
+    expect(own).toContain("export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam'] as const;");
+  });
+});
+
+describe('кадры медали и экзаменов — по макету stories-lesson-notifs', () => {
+  const c = read('components/stories/templates/frames_instead_c.tsx');
+  const mock = read('docs/design/v2-app/stories-lesson-notifs.frames.js');
+  const copy = read('components/lesson_moments/lesson_notif_copy.ts');
+
+  it('три кадра со своими метками; конфетти — только у золота и у экзамена Lingman', () => {
+    for (const id of ['medal', 'level-exam', 'lingman-exam']) expect(c).toContain(`testID="story-tpl-instead-${id}"`);
+    expect(c).toContain("layer={tpl.tier === 'gold' ? <Confetti n={18} d0={600} /> : undefined}");
+    expect((c.match(/<Confetti n=\{18\} d0=\{600\} \/>/g) ?? [])).toHaveLength(2);
+    // картинки медалей — те же файлы, что на итоге урока
+    for (const file of ['bronza', 'serebro', 'zoloto']) expect(c).toContain(`assets/images/levels/${file}.webp`);
+  });
+
+  it('задержки появления — как в макете', () => {
+    expect(c).toContain("<Ov text={insteadText(lang, 'lessonOverline', { lessonNo: tpl.lessonNo })} d={380} />");
+    expect(c).toContain('<H1 text={lessonMedalTitle(tpl.tier, lang)} d0={460} />');
+    expect(c).toContain('<P text={lessonMedalSub(lang)} d={760} />');
+    expect(c).toContain('<P text={examOpenSub(lang)} d={800} />');
+    expect(c).toContain('<H1 text={lingmanExamOpenTitle(lang)} d0={380} />');
+    expect(mock).toContain("words('Золотая медаль!', 460)");
+    expect(mock).toContain("words('Экзамен Lingman открыт', 380)");
+  });
+
+  it('слова макета — те же, что в общем файле надписей уведомления', () => {
+    expect((mock.match(/\{ id: '/g) ?? [])).toHaveLength(5);
+    for (const text of ['Бронзовая медаль!', 'Серебряная медаль!', 'Золотая медаль!', 'Урок позади! Следующий уже стучится', 'Экзамен уровня открыт', 'Экзамен Lingman открыт', 'Проверим, что осело в голове?', 'Поделиться']) {
+      expect(mock).toContain(text);
+      expect(copy).toContain(text);
+    }
+    expect(mock).toContain('Уровень A1');
+    expect(copy).toContain('ru: `Уровень ${level}`');
   });
 });
 

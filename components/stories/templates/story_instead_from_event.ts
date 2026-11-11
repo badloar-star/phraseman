@@ -6,7 +6,8 @@
 // Подключены четыре вида: `back` («С возвращением»), `rank_enough` («Хватает на ранг»), `legacy` («Бонусы стали монетами»),
 // `plus_expired` («Plus закончился»), `ref_ended` («Доступ можно открыть снова»),
 // `ref_welcome` («Тебя пригласили»), `first_dialog` («Первый разговор»), `rate` («Оцените приложение»),
-// `perfect` («Идеальный урок»), `lesson_open` («Открыт урок N»); остальные 7 — следующими партиями.
+// `perfect` («Идеальный урок»), `lesson_open` («Открыт урок N»),
+// `medal` («Медаль урока»), `level_exam` и `lingman_exam` (открытие экзаменов); остальные 7 — следующими партиями.
 // Числа проверяются строго: строка '6' и дробное 6.9 не превращаются в 6 — так уже маскировался битый payload у ранга монеты.
 // ═══════════════════════════════════════════════════════════════════════════
 import { isValidCoinRank } from '../../../app/coin_rank_table_v1';
@@ -22,10 +23,16 @@ function count(value: unknown): number | null {
 }
 
 /** Виды событий `instead`, у которых уже есть источник. */
-export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open'] as const;
+export const STORY_INSTEAD_EVENT_KINDS = ['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam'] as const;
 
 const RATE_CONTEXTS = ['perfect_lesson', 'level_exam_pass', 'streak_milestone'] as const;
 const RATE_STREAK_DAYS = [7, 14, 30] as const;
+const MEDAL_STEPS = ['bronze', 'silver', 'gold'] as const;
+
+/** Оценка урока 0…5 (бывает дробной: 4.7); иначе null. */
+function lessonScore(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= 5 ? value : null;
+}
 
 export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | null {
   switch (p.kind) {
@@ -96,6 +103,26 @@ export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | n
       if (lessonNo === null || lessonNo < 1 || nextLessonNo !== lessonNo + 1) return null;
       // темы следующего урока уведомление не знало — кадр идёт без строки «Тема: …»
       return { id: 'instead_lesson_open', lessonNo, nextLessonNo, topic: null };
+    }
+    case 'medal': {
+      const lessonNo = count(p.lessonNo);
+      const tier = MEDAL_STEPS.find((t) => t === p.tier);
+      const score = lessonScore(p.score);
+      if (lessonNo === null || lessonNo < 1 || !tier || score === null) return null;
+      return { id: 'instead_medal', lessonNo, tier, score };
+    }
+    case 'level_exam': {
+      const lessonNo = count(p.lessonNo);
+      const score = lessonScore(p.score);
+      if (typeof p.cefrLevel !== 'string' || p.cefrLevel.length === 0) return null;
+      if (lessonNo === null || lessonNo < 1 || score === null) return null;
+      return { id: 'instead_level_exam', cefrLevel: p.cefrLevel, lessonNo, score };
+    }
+    case 'lingman_exam': {
+      const lessonNo = count(p.lessonNo);
+      const score = lessonScore(p.score);
+      if (lessonNo === null || lessonNo < 1 || score === null) return null;
+      return { id: 'instead_lingman_exam', lessonNo, score };
     }
     default:
       return null;

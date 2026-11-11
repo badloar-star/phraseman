@@ -19,6 +19,7 @@ import { isPremiumThemeUnlocked } from '../../../app/premium_theme_entitlements'
 import { THEME_SLIDERS_V1_ENABLED } from '../../../constants/theme_sliders_flag';
 import { hapticTap } from '../../../hooks/use-haptics';
 import { useTheme } from '../../ThemeContext';
+import type { StoryCelebrationShare } from './story_instead_registry';
 import type { StoryTemplateCta } from './story_template_registry';
 
 const LOG = '[STORY-TPL]';
@@ -26,7 +27,7 @@ const LOG = '[STORY-TPL]';
 const PACKS_ROUTE = '/flashcards_packs';
 
 /** Данные кадра для действия: тема для «Включить тему» (кадр «Новая тема» или объявление design=theme). */
-export type StoryCtaContext = Readonly<{ source: string; themeId: string | null }>;
+export type StoryCtaContext = Readonly<{ source: string; themeId: string | null; /** данные для «Поделиться» кадров медали и экзаменов */ share?: StoryCelebrationShare | null }>;
 
 export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (source: string) => void): (cta: StoryTemplateCta, ctx: StoryCtaContext) => void {
   const { liquidGlassThemeId, setLiquidGlassThemeId } = useTheme();
@@ -106,6 +107,23 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
       DebugLogger.info(LOG, `код приглашения: закрываем просмотр и открываем ввод кода (кадр=${ctx.source})`);
       closeViewer('cta_enter_referral_code');
       router.push('/referrals?enter=1' as never);
+      return;
+    }
+    if (cta.action === 'share_celebration') {
+      // зачем (истории вместо окон, 11.11): та же кнопка «Поделиться», что у уведомления итога урока — тот же текст (celebration_share_messages)
+      // и ссылка на магазин; пока готовится первое окно «Поделиться», второе не открываем
+      const share = ctx.share;
+      if (!share) { DebugLogger.info(LOG, `поделиться достижением: у кадра ${ctx.source} нет данных — выход`); return; }
+      if (sharingRef.current) { DebugLogger.info(LOG, 'поделиться достижением: уже открывается — повторный тап пропущен'); return; }
+      sharingRef.current = true;
+      void Promise.all([import('../../../app/celebration_share_messages'), import('../../../app/config')])
+        .then(async ([messages, config]) => {
+          const body = messages.buildCelebrationShareBody(share.kind, lang, share.lessonId, share.score, { medalTier: share.medalTier, cefrLevel: share.cefrLevel });
+          const result = await Share.share({ message: `${body}\n${config.STORE_URL}` });
+          DebugLogger.info(LOG, `поделиться достижением: окно закрыто action=${String(result.action)} (кадр=${ctx.source})`);
+        })
+        .catch((e: unknown) => { DebugLogger.info(LOG, `поделиться достижением упало: ${String(e)}`); })
+        .finally(() => { sharingRef.current = false; });
       return;
     }
     if (cta.action === 'start_lesson') {

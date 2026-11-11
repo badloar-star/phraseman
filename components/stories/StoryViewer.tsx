@@ -31,7 +31,7 @@ import StoryTemplateSlide from './templates/StoryTemplateSlide';
 import { StoryFrameClockProvider, type StoryFrameClock } from './templates/story_frame_clock';
 import { storyTemplateFromEvent } from './templates/story_template_from_event';
 import { STORY_TEMPLATE_CTA } from './templates/story_template_registry';
-import { isStoryInsteadTemplate, storyInsteadCta } from './templates/story_instead_registry';
+import { isStoryInsteadTemplate, storyCelebrationShare, storyInsteadCta } from './templates/story_instead_registry';
 import { STORY_CTA_HEIGHT, STORY_SLIDE_BOTTOM_CTA, StoryBackdrop, StoryCta, StoryPauseBadge, storyCtaBottom } from './templates/story_viewer_chrome';
 import { useStoryCtaAction } from './templates/use_story_cta_action';
 import { isAnnouncementV2Design } from './announcements_v2/AnnouncementV2Slide';
@@ -341,7 +341,7 @@ function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: even
   const onCtaAction = useStoryCtaAction(lang, studio, close);
   const onCta = useCallback(() => {
     if (!cta) return;
-    if (tpl) onCtaAction(cta, { source: tpl.id, themeId: tpl.id === 'theme' ? tpl.themeId : null });
+    if (tpl) onCtaAction(cta, { source: tpl.id, themeId: tpl.id === 'theme' ? tpl.themeId : null, share: storyCelebrationShare(tpl) });
     else if (annV2) onCtaAction(cta, { source: `announcement:${annV2.design ?? '—'}`, themeId: annV2.themeId ?? null });
   }, [annV2, cta, onCtaAction, tpl]);
   return (

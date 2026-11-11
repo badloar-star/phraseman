@@ -104,7 +104,8 @@ import { makeLessonServerAttemptId, normalizeLessonServerAttemptId } from './les
 import { prefetchLessonMenuCache } from './lesson_menu';
 import ReviewPromptModal from '../components/ReviewPromptModal';
 import { usePerfectMomentStory } from '../components/lesson_moments/use_perfect_moment_story';
-import { recordLessonOpenStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
+import { recordLessonMedalStory, recordLessonOpenStory, recordLevelExamOpenStory, recordLingmanExamOpenStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
+import { celebrationShareLabel, examOpenSub, lessonMedalSub, lessonMedalTitle, levelExamOpenTitle, lingmanExamOpenTitle } from '../components/lesson_moments/lesson_notif_copy';
 import { useOverlayVisible } from '../components/OverlayArbiter';
 import { AUTH_PROMPT_SHOWN_KEY, getLinkedAuthInfo } from './auth_provider';
 import { SETTINGS_OPEN_SIGN_IN_PARAM } from './account_switch_copy';
@@ -412,12 +413,6 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
     gold:   require('../assets/images/levels/zoloto.webp'),
   };
 
-  const medalLabel = (tier: MedalTier) => {
-    if (tier === 'bronze') return triLang(lang, { ru: 'Бронзовая медаль!', en: 'Bronze medal!', uk: 'Бронзова медаль!', es: '¡Medalla de bronce!', 'pt-BR': 'Medalha de bronze!', vi: 'Huy chương đồng!', id: 'Medali perunggu!', tr: 'Bronz madalya!', pl: 'Brązowy medal!' });
-    if (tier === 'silver') return triLang(lang, { ru: 'Серебряная медаль!', en: 'Silver medal!', uk: 'Срібна медаль!', es: '¡Medalla de plata!', 'pt-BR': 'Medalha de prata!', vi: 'Huy chương bạc!', id: 'Medali perak!', tr: 'Gümüş madalya!', pl: 'Srebrny medal!' });
-    return triLang(lang, { ru: 'Золотая медаль!', en: 'Gold medal!', uk: 'Золота медаль!', es: '¡Medalla de oro!', 'pt-BR': 'Medalha de ouro!', vi: 'Huy chương vàng!', id: 'Medali emas!', tr: 'Altın madalya!', pl: 'Złoty medal!' });
-  };
-
   const shareMessage = () => {
     const body = buildCelebrationShareBody(notif.kind, lang, lessonId, lessonScore, {
       medalTier: notif.medalTier,
@@ -430,19 +425,8 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
   let modalTitle = '';
   let modalSub: string | undefined;
   if (notif.kind === 'medal' && notif.medalTier) {
-    modalTitle = medalLabel(notif.medalTier);
-    modalSub = triLang(lang, {
-      // зачем (VOICE.md): без «Продолжай учиться» и без зашитого «английский» (язык изучения бывает любой)
-      ru: 'Урок позади! Следующий уже стучится',
-      en: 'Lesson done! The next one is already knocking',
-      uk: 'Урок позаду! Наступний уже стукає',
-      es: '¡Lección superada! La siguiente ya está tocando la puerta',
-      'pt-BR': 'Lição feita! A próxima já está batendo na porta',
-      vi: 'Xong bài rồi! Bài tiếp theo đang gõ cửa',
-      id: 'Pelajaran beres! Yang berikutnya sudah mengetuk',
-      tr: 'Ders bitti! Sıradaki kapıyı çalıyor bile',
-      pl: 'Lekcja za tobą! Następna już puka',
-    });
+    modalTitle = lessonMedalTitle(notif.medalTier === 'bronze' || notif.medalTier === 'silver' ? notif.medalTier : 'gold', lang);
+    modalSub = lessonMedalSub(lang);
   } else if (notif.kind === 'lesson_unlock') {
     // зачем (30.09, «1 в 1 с макета» overlays-specialist.html OS-ACHIEVEMENT-NOTIF-*):
     // заголовок и подпись ровно как в макете — без эмодзи и без пересказа условий.
@@ -457,32 +441,17 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
       id: 'Mampir kapan pun ada waktu semenit.', tr: 'Bir dakikan olduğunda uğra.', pl: 'Wpadnij, kiedy znajdziesz chwilę.',
     });
   } else if (notif.kind === 'level_exam_unlock') {
-    modalTitle = triLang(lang, {
-      ru: 'Экзамен уровня открыт', en: 'Level exam unlocked', uk: 'Іспит рівня відкрито', es: 'Examen de nivel abierto',
-      'pt-BR': 'Exame de nível liberado', vi: 'Đã mở bài thi cấp độ', id: 'Ujian level terbuka', tr: 'Seviye sınavı açıldı', pl: 'Egzamin poziomu otwarty',
-    });
-    modalSub = triLang(lang, {
-      ru: 'Проверим, что осело в голове?', en: "Let's see what stuck?", uk: 'Перевіримо, що осіло в голові?',
-      es: '¿Vemos qué se te quedó?', 'pt-BR': 'Vamos ver o que ficou na cabeça?', vi: 'Xem điều gì đã đọng lại nhé?',
-      id: 'Yuk cek apa yang nyangkut?', tr: 'Bakalım aklında ne kalmış?', pl: 'Sprawdzimy, co zostało w głowie?',
-    });
+    modalTitle = levelExamOpenTitle(lang);
+    modalSub = examOpenSub(lang);
   } else {
-    modalTitle = triLang(lang, {
-      ru: 'Экзамен Lingman открыт', en: 'Lingman exam unlocked', uk: 'Іспит Lingman відкрито', es: 'Examen Lingman abierto',
-      'pt-BR': 'Exame Lingman liberado', vi: 'Đã mở bài thi Lingman', id: 'Ujian Lingman terbuka', tr: 'Lingman sınavı açıldı', pl: 'Egzamin Lingman otwarty',
-    });
-    modalSub = triLang(lang, {
-      // зачем (VOICE.md): «новый срез знаний на твоём пути» — канцелярит
-      ru: 'Проверим, что осело в голове?', en: "Let's see what stuck?", uk: 'Перевіримо, що осіло в голові?',
-      es: '¿Vemos qué se te quedó?', 'pt-BR': 'Vamos ver o que ficou na cabeça?', vi: 'Xem điều gì đã đọng lại nhé?',
-      id: 'Yuk cek apa yang nyangkut?', tr: 'Bakalım aklında ne kalmış?', pl: 'Sprawdzimy, co zostało w głowie?',
-    });
+    modalTitle = lingmanExamOpenTitle(lang);
+    modalSub = examOpenSub(lang);
   }
   // зачем: владелец 2026-09-29 — Liquid Glass «1 в 1 с макета» (overlays-specialist.html
   // OS-ACHIEVEMENT-NOTIF-*): непрозрачная основа из токенов активной темы (13 тем), плитка-иконка,
   // «Поделиться» вторичной кнопкой, CTA нейтральный (не зелёный), без обводок. Прокрутка — для крупного шрифта.
   const notifIcon = notif.kind === 'lesson_unlock' ? 'layers-outline' : 'checkmark-circle-outline';
-  const shareLabel = triLang(lang, { ru: 'Поделиться', en: 'Share', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' });
+  const shareLabel = celebrationShareLabel(lang);
   const greatLabel = triLang(lang, { ru: 'Отлично!', en: 'Great!', uk: 'Чудово!', es: '¡Genial!', 'pt-BR': 'Ótimo!', vi: 'Tuyệt!', id: 'Bagus!', tr: 'Harika!', pl: 'Świetnie!' });
   return (
     <Animated.View style={{
@@ -1294,21 +1263,39 @@ export default function LessonComplete() {
             queue.push({ kind: 'lesson_unlock', unlockedLessonId: lessonId + 1 });
           }
         }
+        // зачем (владелец 11.11: «никаких модальных окон совсем»; макет stories-lesson-notifs — «Да, в приложение»): при включённых историях
+        // медаль и открытие экзаменов приходят кадром истории и в очередь уведомлений не встают; истории выключены — уведомления как раньше
+        const notifsAsStories = storiesReplaceWindows();
+        const logStoryFail = (what: string) => (e: unknown) => { DebugLogger.error(`lesson_complete:${what}`, e instanceof Error ? e : new Error(String(e)), 'warning'); };
         if (medalUpgraded) {
-          queue.push({ kind: 'medal', medalTier: newTier });
+          // зачем (владелец 11.11, «Да, исправь»): сравнение с 'none' здесь лишнее — medalUpgraded выше уже исключил «нет медали»,
+          // по типам newTier тут только gold/silver/bronze, и сторож релиза падал на TS2367, блокируя пуш всей ветки.
+          if (notifsAsStories) {
+            void recordLessonMedalStory({ studyTarget, lessonNo: lessonId, tier: newTier, score }).catch(logStoryFail('recordLessonMedalStory'));
+          } else {
+            queue.push({ kind: 'medal', medalTier: newTier });
+          }
         }
 
         // Зачёт уровня: все уроки уровня >= 4.5
         const unlockedLevel = await tryUnlockLevelExam(lessonId, studyTarget);
         if (unlockedLevel) {
-          queue.push({ kind: 'level_exam_unlock', cefrLevel: unlockedLevel });
+          if (notifsAsStories) {
+            void recordLevelExamOpenStory({ studyTarget, cefrLevel: unlockedLevel, lessonNo: lessonId, score }).catch(logStoryFail('recordLevelExamOpenStory'));
+          } else {
+            queue.push({ kind: 'level_exam_unlock', cefrLevel: unlockedLevel });
+          }
           if (!cancelled) setExamUnlockNote('level');
           console.log('[LESSON-RESULT] exam_unlock_note', JSON.stringify({ lessonId, kind: 'level', cefr: unlockedLevel })); // guard-ok: одна строка на разблокировку
         }
         // Экзамен Лингмана: все 32 урока = 5.0 + все зачёты сданы
         const lingmanUnlocked = await tryUnlockLingmanExam(studyTarget);
         if (lingmanUnlocked) {
-          queue.push({ kind: 'lingman_exam_unlock' });
+          if (notifsAsStories) {
+            void recordLingmanExamOpenStory({ studyTarget, lessonNo: lessonId, score }).catch(logStoryFail('recordLingmanExamOpenStory'));
+          } else {
+            queue.push({ kind: 'lingman_exam_unlock' });
+          }
           if (!cancelled) setExamUnlockNote('lingman');
           console.log('[LESSON-RESULT] exam_unlock_note', JSON.stringify({ lessonId, kind: 'lingman' })); // guard-ok: одна строка на разблокировку
         }

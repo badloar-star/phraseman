@@ -95,6 +95,24 @@ export function recordLessonOpenStory(input: Readonly<{ studyTarget: string; les
   return record('lesson_open', `${input.studyTarget}:${input.nextLessonNo}`, { lessonNo: input.lessonNo, nextLessonNo: input.nextLessonNo });
 }
 
+/**
+ * «Медаль урока» (взамен уведомления о медали на итоге урока): урок, ступень медали и оценка урока (оценка нужна тексту «Поделиться»).
+ * Ключ — язык, урок и ступень: каждая ступень медали урока объявляется один раз.
+ */
+export function recordLessonMedalStory(input: Readonly<{ studyTarget: string; lessonNo: number; tier: 'bronze' | 'silver' | 'gold'; score: number }>): Promise<StoryRecordResult> {
+  return record('medal', `${input.studyTarget}:${input.lessonNo}:${input.tier}`, { lessonNo: input.lessonNo, tier: input.tier, score: input.score });
+}
+
+/** «Экзамен уровня открыт» (взамен уведомления на итоге урока): ключ — язык и уровень, один раз на уровень. */
+export function recordLevelExamOpenStory(input: Readonly<{ studyTarget: string; cefrLevel: string; lessonNo: number; score: number }>): Promise<StoryRecordResult> {
+  return record('level_exam', `${input.studyTarget}:${input.cefrLevel}`, { cefrLevel: input.cefrLevel, lessonNo: input.lessonNo, score: input.score });
+}
+
+/** «Экзамен Lingman открыт» (взамен уведомления на итоге урока): ключ — язык, один раз на курс. */
+export function recordLingmanExamOpenStory(input: Readonly<{ studyTarget: string; lessonNo: number; score: number }>): Promise<StoryRecordResult> {
+  return record('lingman_exam', input.studyTarget, { lessonNo: input.lessonNo, score: input.score });
+}
+
 /** «Хватает на ранг N»: ключ — номер следующего ранга, один раз на ранг (как у окна). */
 export function recordRankEnoughStory(input: Readonly<{ rank: number; nextRank: number; balance: number; price: number }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
   return record('rank_enough', String(input.nextRank), { rank: input.rank, nextRank: input.nextRank, balance: input.balance, price: input.price }, accountToken);

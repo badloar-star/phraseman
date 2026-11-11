@@ -104,8 +104,43 @@ describe('событие instead → данные кадра', () => {
     expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 })).toBeNull();
   });
 
-  it('список видов с источником — десять; остальные 7 кадров ждут своих партий', () => {
-    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open']);
+  it('список видов с источником — тринадцать; остальные 7 кадров ждут своих партий', () => {
+    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam']);
+  });
+
+  it('медаль и экзамены: данные события → кадр; битые — нет кадра', () => {
+    expect(storyEventKey('instead', { kind: 'medal', key: 'en:12:gold', lessonNo: 12, tier: 'gold', score: 5 })).toBe('instead:medal:en:12:gold');
+    expect(insteadTemplateFromPayload({ kind: 'medal', key: 'k', lessonNo: 12, tier: 'gold', score: 5 })).toEqual({ id: 'instead_medal', lessonNo: 12, tier: 'gold', score: 5 });
+    // оценка бывает дробной — она нужна тексту «Поделиться»
+    expect(insteadTemplateFromPayload({ kind: 'medal', key: 'k', lessonNo: 12, tier: 'silver', score: 4.7 })).toEqual({ id: 'instead_medal', lessonNo: 12, tier: 'silver', score: 4.7 });
+    expect(insteadTemplateFromPayload({ kind: 'medal', key: 'k', lessonNo: 12, tier: 'none', score: 2 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'medal', key: 'k', lessonNo: 12, tier: 'gold', score: 9 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'medal', key: 'k', lessonNo: 0, tier: 'gold', score: 5 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'level_exam', key: 'en:A1', cefrLevel: 'A1', lessonNo: 8, score: 4.7 })).toEqual({ id: 'instead_level_exam', cefrLevel: 'A1', lessonNo: 8, score: 4.7 });
+    expect(insteadTemplateFromPayload({ kind: 'level_exam', key: 'en:', cefrLevel: '', lessonNo: 8, score: 4.7 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'lingman_exam', key: 'en', lessonNo: 32, score: 5 })).toEqual({ id: 'instead_lingman_exam', lessonNo: 32, score: 5 });
+    expect(insteadTemplateFromPayload({ kind: 'lingman_exam', key: 'en', lessonNo: 32 })).toBeNull();
+  });
+
+  it('итог урока: медаль и экзамены — история только при включённых историях, иначе прежняя очередь; надписи уведомления — из общего файла', () => {
+    const screen = read('app/lesson_complete.tsx');
+    expect(screen).toContain('const notifsAsStories = storiesReplaceWindows();');
+    for (const push of ["queue.push({ kind: 'medal', medalTier: newTier });", "queue.push({ kind: 'level_exam_unlock', cefrLevel: unlockedLevel });", "queue.push({ kind: 'lingman_exam_unlock' });"]) {
+      expect(screen).toContain(`} else {\n            ${push}`);
+    }
+    expect(screen).toContain('void recordLessonMedalStory({ studyTarget, lessonNo: lessonId, tier: newTier, score })');
+    expect(screen).toContain('void recordLevelExamOpenStory({ studyTarget, cefrLevel: unlockedLevel, lessonNo: lessonId, score })');
+    expect(screen).toContain('void recordLingmanExamOpenStory({ studyTarget, lessonNo: lessonId, score })');
+    // уведомление и кадр читают одни слова — в экране строк этих уведомлений больше нет
+    expect(screen).toContain('modalTitle = levelExamOpenTitle(lang);');
+    // строка «Экзамен Lingman открыт» остаётся в записке самого экрана итога — проверяем именно заголовок уведомления
+    expect(screen).toContain('modalTitle = lingmanExamOpenTitle(lang);');
+    expect(screen).not.toContain("ru: 'Бронзовая медаль!'");
+    // кнопка «Поделиться» кадра — тот же текст, что у уведомления, и защита от второго окна
+    const cta = read('components/stories/templates/use_story_cta_action.ts');
+    expect(cta).toContain('messages.buildCelebrationShareBody(share.kind, lang, share.lessonId, share.score, { medalTier: share.medalTier, cefrLevel: share.cefrLevel })');
+    expect(cta).toContain("if (sharingRef.current) { DebugLogger.info(LOG, 'поделиться достижением: уже открывается — повторный тап пропущен'); return; }");
+    expect(read('components/stories/StoryViewer.tsx')).toContain('share: storyCelebrationShare(tpl) });');
   });
 
   it('«Идеальный урок» и «Открыт урок N»: данные события → кадр; битые — нет кадра', () => {

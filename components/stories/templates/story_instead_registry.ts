@@ -11,7 +11,9 @@
 import type { Lang } from '../../../constants/i18n';
 import type { AppUpdateStory, HelloNewStory, LegacyCoinsStory, NotifNudgeStory, PlusStateStory, RankEnoughStory, TeamMessageStory, WelcomeBackStory } from './frames_instead_a';
 import type { FirstDialogStory, LessonOpenStory, PackPrizeStory, PeakOvertakeStory, PerfectLessonStory, RateAppStory, ReferralEndedStory, ReferralWelcomeStory } from './frames_instead_b';
+import type { LessonMedalStory, LevelExamOpenStory, LingmanExamOpenStory } from './frames_instead_c';
 import { insteadText } from './story_instead_strings';
+import { celebrationShareLabel } from '../../lesson_moments/lesson_notif_copy';
 import { reviewStoreCta } from '../../review_prompt_copy';
 
 /** Порядок — как в макете (кадры 1…17). */
@@ -19,6 +21,8 @@ export const STORY_INSTEAD_TEMPLATE_IDS = [
   'instead_hello', 'instead_back', 'instead_legacy', 'instead_rank', 'instead_update', 'instead_message', 'instead_nudge', 'instead_plus_expired',
   'instead_ref_welcome', 'instead_ref_ended', 'instead_perfect', 'instead_lesson_open', 'instead_rate', 'instead_pack_prize', 'instead_first_dialog',
   'instead_plus_on', 'instead_peak_overtake',
+  // зачем (владелец 11.11, макет stories-lesson-notifs — «Да, в приложение»): три уведомления итога урока; строго в конце — номера прежних 17 не сдвигаются
+  'instead_medal', 'instead_level_exam', 'instead_lingman_exam',
 ] as const;
 export type StoryInsteadTemplateId = (typeof STORY_INSTEAD_TEMPLATE_IDS)[number];
 
@@ -42,7 +46,10 @@ export type StoryInsteadTemplate =
   | T<'instead_pack_prize', PackPrizeStory>
   | T<'instead_first_dialog', FirstDialogStory>
   | T<'instead_plus_on', PlusStateStory>
-  | T<'instead_peak_overtake', PeakOvertakeStory>;
+  | T<'instead_peak_overtake', PeakOvertakeStory>
+  | T<'instead_medal', LessonMedalStory>
+  | T<'instead_level_exam', LevelExamOpenStory>
+  | T<'instead_lingman_exam', LingmanExamOpenStory>;
 
 // зачем: даты примеров — локальное время устройства, как у событий
 const day = (y: number, m: number, d: number): number => new Date(y, m - 1, d, 12).getTime();
@@ -78,19 +85,35 @@ export const STORY_INSTEAD_TEMPLATE_SAMPLES: Readonly<{ [I in StoryInsteadTempla
   instead_first_dialog: { id: 'instead_first_dialog', studyTarget: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 },
   instead_plus_on: { id: 'instead_plus_on', untilLabel: '11 декабря', freezesPerMonth: 3 },
   instead_peak_overtake: { id: 'instead_peak_overtake', tier: 0, rivalName: 'Марк', rivalRank: 8, rivalScore: 1240, myScore: 1200, daysLeft: 3 },
+  // макет stories-lesson-notifs: золотая медаль за урок 12, экзамен уровня A1, экзамен Lingman
+  instead_medal: { id: 'instead_medal', lessonNo: 12, tier: 'gold', score: 5 },
+  instead_level_exam: { id: 'instead_level_exam', cefrLevel: 'A1', lessonNo: 8, score: 4.7 },
+  instead_lingman_exam: { id: 'instead_lingman_exam', lessonNo: 32, score: 5 },
 };
 
 export function isStoryInsteadTemplate(tpl: Readonly<{ id: string }>): tpl is StoryInsteadTemplate {
   return (STORY_INSTEAD_TEMPLATE_IDS as readonly string[]).includes(tpl.id);
 }
 
+/** Данные для кнопки «Поделиться» кадров медали и экзаменов — те же, что уходили в «Поделиться» уведомления. */
+export type StoryCelebrationShare = Readonly<{ kind: 'medal' | 'level_exam_unlock' | 'lingman_exam_unlock'; lessonId: number; score: number; medalTier?: 'bronze' | 'silver' | 'gold'; cefrLevel?: string }>;
+
+/** Что отдать в «Поделиться» для кадра; null — у кадра такой кнопки нет. */
+export function storyCelebrationShare(tpl: Readonly<{ id: string }>): StoryCelebrationShare | null {
+  if (!isStoryInsteadTemplate(tpl)) return null;
+  if (tpl.id === 'instead_medal') return { kind: 'medal', lessonId: tpl.lessonNo, score: tpl.score, medalTier: tpl.tier };
+  if (tpl.id === 'instead_level_exam') return { kind: 'level_exam_unlock', lessonId: tpl.lessonNo, score: tpl.score, cefrLevel: tpl.cefrLevel };
+  if (tpl.id === 'instead_lingman_exam') return { kind: 'lingman_exam_unlock', lessonId: tpl.lessonNo, score: tpl.score };
+  return null;
+}
+
 /** Действия кнопок кадров «вместо окон». `open_plus` — готовое действие; остальные получают переходы на шаге 2. */
 export type StoryInsteadCtaAction =
   | 'open_plus' | 'start_first_lesson' | 'review_cards' | 'upgrade_coin' | 'update_app' | 'reply_team' | 'enable_reminder'
-  | 'enter_referral_code' | 'share_link' | 'start_lesson' | 'rate_app' | 'claim_pack_prize' | 'play_peak';
+  | 'enter_referral_code' | 'share_link' | 'start_lesson' | 'rate_app' | 'claim_pack_prize' | 'play_peak' | 'share_celebration';
 
 /** Кнопка кадра: действие, готовая подпись на языке интерфейса и глиф Ionicons (те же, что в макете). */
-export type StoryInsteadCta = Readonly<{ action: StoryInsteadCtaAction; text: string; icon: 'play' | 'layers' | 'trending-up' | 'refresh' | 'chatbubble' | 'time' | 'sparkles' | 'key' | 'person-add' | 'star' | 'wallet' | 'flash' }>;
+export type StoryInsteadCta = Readonly<{ action: StoryInsteadCtaAction; text: string; icon: 'play' | 'layers' | 'trending-up' | 'refresh' | 'chatbubble' | 'time' | 'sparkles' | 'key' | 'person-add' | 'star' | 'wallet' | 'flash' | 'share-social' }>;
 
 /** Кнопка кадра по его данным; `null` — у кадра кнопки нет (бонусы стали монетами, идеальный урок, первый разговор, Plus подключён). */
 export function storyInsteadCta(tpl: StoryInsteadTemplate, lang: Lang): StoryInsteadCta | null {
@@ -111,6 +134,11 @@ export function storyInsteadCta(tpl: StoryInsteadTemplate, lang: Lang): StoryIns
     case 'instead_rate': return { action: 'rate_app', text: reviewStoreCta(lang), icon: 'star' };
     case 'instead_pack_prize': return { action: 'claim_pack_prize', text: insteadText(lang, 'ctaClaim', { coins: tpl.coins }), icon: 'wallet' };
     case 'instead_peak_overtake': return { action: 'play_peak', text: insteadText(lang, 'ctaPlayPeak'), icon: 'flash' };
+    // «Поделиться» — единственная кнопка, как у уведомления
+    case 'instead_medal':
+    case 'instead_level_exam':
+    case 'instead_lingman_exam':
+      return { action: 'share_celebration', text: celebrationShareLabel(lang), icon: 'share-social' };
     case 'instead_legacy':
     case 'instead_perfect':
     case 'instead_first_dialog':

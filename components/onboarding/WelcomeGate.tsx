@@ -21,6 +21,7 @@ import type { Lang } from '../../constants/i18n';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import { ApprovedWelcome } from './ApprovedWelcome';
 import { welcomeDimColor } from './welcome_dim';
+import { insteadStoryLanded, recordHelloStory, storiesReplaceWindows } from '../../modules/story_events/story_instead_sources';
 
 /**
  * Отметка «приветствие показано» — НА АККАУНТ (владелец 04.11): удаление аккаунта, выход и второй человек на том же телефоне не наследуют чужую отметку.
@@ -101,7 +102,28 @@ export function WelcomeGate({ force = false }: Readonly<{ force?: boolean }> = {
       console.log('[WELCOME-STORY]', 'show_decision', JSON.stringify({ condition: show ? 'new_user_not_shown_yet' : verdict.isNew ? 'already_shown' : 'not_new_user', show, isNew: verdict.isNew, reason: verdict.reason, alreadyShown: shown !== null, attempt })); // guard-ok: условие показа истории приветствия (владелец 06.11: приветствие — только формат истории)
       console.log('[WELCOME-B3]', JSON.stringify({ show, isNew: verdict.isNew, reason: verdict.reason, alreadyShown: shown !== null, attempt, retryInMs })); // guard-ok: одна строка на проверку
       if (cancelled) return;
-      if (show) { setWants(true); return; }
+      if (show) {
+        // зачем (владелец 11.11: «только история! ничего поверх главной!»): при включённых историях приветствие не открывается само —
+        // новичку приходит кадр в «Истории», у монеты загорается кольцо. «Показано» ставим после записи: не записалось — приветствие
+        // не теряется, шлюз попробует при следующем входе. Истории выключены (флаг stories_v1) — три экрана, как раньше.
+        if (storiesReplaceWindows()) {
+          const record = await recordHelloStory();
+          if (cancelled) return;
+          if (!insteadStoryLanded(record)) {
+            console.warn('[WELCOME-B3] история приветствия не записана', record.recorded ? 'ok' : record.reason, '— «показано» не ставим'); // guard-ok: ранний выход называет причину
+            return;
+          }
+          console.log('[WELCOME-STORY]', 'as_story', JSON.stringify({ recorded: record.recorded, persistedForever: true })); // guard-ok: одна строка на аккаунт
+          // «показано» — тот же ключ аккаунта, что ставит закрытие трёх экранов; здесь показом считается записанная история
+          const shownKey = welcomeB3ShownKey(owner);
+          await AsyncStorage.setItem(shownKey, String(Date.now())).catch((error: unknown) => {
+            console.warn('[WELCOME-B3] shown mark failed', error instanceof Error ? error.message : String(error));
+          });
+          return;
+        }
+        setWants(true);
+        return;
+      }
       if (retryInMs !== null) {
         retryTimer = setTimeout(() => {
           retryTimer = null;

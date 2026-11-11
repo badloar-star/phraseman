@@ -131,6 +131,14 @@ export function recordNotifNudgeStory(input: Readonly<{ dayKey: string; missedDa
   return record('nudge', input.dayKey, { missedDays: input.missedDays });
 }
 
+/**
+ * «Добро пожаловать» (взамен приветствия новичка поверх Главной; владелец 11.11: «только история! ничего поверх главной!»):
+ * один раз на аккаунт, как отметка «показано» у приветствия. Монета — начального ранга: новичок ещё ничего не улучшал.
+ */
+export function recordHelloStory(): Promise<StoryRecordResult> {
+  return record('hello', 'once', { coinRank: 0 }); // guard-ok: ранг монеты для показа в кадре (начальный), ранг и баланс не меняются
+}
+
 /** «Хватает на ранг N»: ключ — номер следующего ранга, один раз на ранг (как у окна). */
 export function recordRankEnoughStory(input: Readonly<{ rank: number; nextRank: number; balance: number; price: number }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
   return record('rank_enough', String(input.nextRank), { rank: input.rank, nextRank: input.nextRank, balance: input.balance, price: input.price }, accountToken);

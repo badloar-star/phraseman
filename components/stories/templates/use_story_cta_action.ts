@@ -153,8 +153,8 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
         .finally(() => { sharingRef.current = false; });
       return;
     }
-    if (cta.action === 'start_lesson') {
-      // зачем (истории вместо окон, 11.11): кнопка кадра «Открыт урок N» ведёт в список уроков, а не в сам урок — проверки энергии и Plus
+    if (cta.action === 'start_lesson' || cta.action === 'start_first_lesson') {
+      // зачем (истории вместо окон, 11.11): кнопки кадров «Открыт урок N» и «Добро пожаловать» ведут в список уроков (туда же вела «Начать занятие» приветствия), а не в сам урок — проверки энергии и Plus
       // живут в списке, обходить их из истории нельзя; просмотр (Modal) закрываем, иначе экран открылся бы под ним
       DebugLogger.info(LOG, `урок: закрываем просмотр и открываем список уроков (кадр=${ctx.source})`);
       closeViewer('cta_start_lesson');

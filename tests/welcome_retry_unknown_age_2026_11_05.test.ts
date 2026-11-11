@@ -36,5 +36,11 @@ describe('подключение', () => {
     expect(src).toContain('nextWelcomeRetryDelayMs(verdict.reason, attempt)');
     expect(src).toContain('if (retryTimer) clearTimeout(retryTimer)');
     expect(src.indexOf('welcomeB3ShownKey(owner), String(Date.now())')).toBeGreaterThan(src.indexOf('const close = useCallback'));
+    // зачем (владелец 11.11: «только история! ничего поверх главной!»): при включённых историях показом считается записанная история —
+    // второе место записи «показано» стоит строго ПОСЛЕ проверки, что история записалась; других мест записи нет
+    const storyMark = src.indexOf('AsyncStorage.setItem(shownKey, String(Date.now()))');
+    expect(storyMark).toBeGreaterThan(src.indexOf('if (!insteadStoryLanded(record)) {'));
+    expect(storyMark).toBeLessThan(src.indexOf('const close = useCallback'));
+    expect(src.match(/AsyncStorage\.setItem\(/g)).toHaveLength(2);
   });
 });

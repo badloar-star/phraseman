@@ -104,8 +104,33 @@ describe('событие instead → данные кадра', () => {
     expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 })).toBeNull();
   });
 
-  it('список видов с источником — пятнадцать; остальные 5 кадров ждут своих партий', () => {
-    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge']);
+  it('список видов с источником — шестнадцать; остальные 4 кадра ждут своих партий', () => {
+    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update', 'nudge', 'hello']);
+  });
+
+  it('приветствие новичка: при включённых историях — кадр, «показано» после записи; три экрана остаются путём для выключенных историй', () => {
+    expect(storyEventKey('instead', { kind: 'hello', key: 'once', coinRank: 0 })).toBe('instead:hello:once');
+    expect(insteadTemplateFromPayload({ kind: 'hello', key: 'once', coinRank: 0 })).toEqual({ id: 'instead_hello', coinRank: 0 });
+    expect(insteadTemplateFromPayload({ kind: 'hello', key: 'once', coinRank: 99 })).toBeNull();
+    expect(insteadTemplateFromPayload({ kind: 'hello', key: 'once' })).toBeNull();
+    const gate = read('components/onboarding/WelcomeGate.tsx');
+    const branch = gate.indexOf('if (storiesReplaceWindows()) {');
+    expect(branch).toBeGreaterThan(gate.indexOf("console.log('[WELCOME-B3]', JSON.stringify({ show, isNew: verdict.isNew"));
+    expect(gate.indexOf('if (!insteadStoryLanded(record)) {', branch)).toBeLessThan(gate.indexOf('await AsyncStorage.setItem(shownKey, String(Date.now()))', branch));
+    expect(gate.indexOf('setWants(true);', branch)).toBeGreaterThan(branch);
+    // кнопка «Начать первый урок» ведёт туда же, куда «Начать занятие» приветствия
+    expect(read('components/stories/templates/use_story_cta_action.ts')).toContain("if (cta.action === 'start_lesson' || cta.action === 'start_first_lesson') {");
+  });
+
+  it('приз «Набора месяца»: окно не всплывает при включённых историях, а награда не теряется — забирается тем же вызовом сервера', () => {
+    const host = read('components/packs/CommunityMonthRewardHost.tsx');
+    expect(host).toContain('winner={active && !storiesInstead ? winner : null}');
+    expect(host).toContain('if (!storiesInstead || !active || !winner || winner.claimed) return;');
+    expect(host).toContain('if (autoClaimRef.current === winner.rewardId) return;');
+    expect(host).toContain('void claim()');
+    // выдача по-прежнему одна — серверная; клиент сам монеты не начисляет
+    expect(host.match(/callCommunityMonthClaimReward\(/g)).toHaveLength(1);
+    expect(host).toContain('autoClaimRef.current = null;');
   });
 
   it('«Включить напоминания»: число пропущенных дней → кадр; кнопка кадра вызывает тот же обработчик, что кнопка окна', () => {

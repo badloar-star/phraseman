@@ -31,6 +31,7 @@ import type { Lang } from '../constants/i18n';
 import { resolveNotificationLang } from '../app/notification_lang';
 import { energyCountdownClock } from './energy_countdown_clock';
 import { useLang } from './LangContext';
+import { usePremium } from './PremiumContext';
 import { isFeatureFreeForEveryone } from '../app/feature_gates';
 import type { EnergyStartResult } from './energy_start_confirmation';
 import { chargesEnergyOnMistake, isFreeInMistakeMode, peekEnergyMode } from '../app/energy_mode';
@@ -351,6 +352,38 @@ async function readUnlimited(): Promise<boolean> {
   return false;
 }
 
+/** Потолок повторной проверки Pro перед отказом «нет энергии»: дольше ждать нельзя — человек смотрит на экран. */
+const LATE_UNLIMITED_RECHECK_CEILING_MS = 1500;
+
+/**
+ * Последняя проверка «а не Pro ли это» перед тем, как отказать в старте из-за энергии.
+ *
+ * зачем (чек-лист U22 «Pro и энергия», 11.11: при активном Pro Пик открывает игру без ожидания и без предложения
+ * купить Plus — в т.ч. после смены аккаунта): безлимит читается один раз в runLoad. Сразу после входа/смены аккаунта
+ * проверка доступа может честно ответить «нет, облако ещё не подтвердило» (ответ не кэшируется), а подтверждение
+ * доезжает позже. До следующего load() Pro-игрок с пустой шкалой получал отказ «нет энергии». Отказ — редкий путь,
+ * поэтому повторная проверка стоит только здесь: у обычного старта задержки нет, сети сверх уже идущей — нет.
+ */
+async function recheckUnlimitedBeforeRefusal(where: string): Promise<boolean> {
+  const startedAt = Date.now();
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  try {
+    const ceiling = new Promise<'ceiling'>((resolve) => {
+      timer = setTimeout(() => resolve('ceiling'), LATE_UNLIMITED_RECHECK_CEILING_MS);
+    });
+    const verdict = await Promise.race([readUnlimited(), ceiling]);
+    console.warn('[ENERGY-PRO-SYNC] refusal_recheck', JSON.stringify({ // guard-ok: редкий путь — только перед отказом старта
+      where, verdict, reason: verdict === 'ceiling' ? 'ceiling' : _lastUnlimitedReason, ms: Date.now() - startedAt,
+    }));
+    return verdict === true;
+  } catch (e) {
+    console.warn('[ENERGY-PRO-SYNC] refusal_recheck_failed', JSON.stringify({ where, message: e instanceof Error ? e.message.slice(0, 120) : String(e), ms: Date.now() - startedAt })); // guard-ok: catch называет причину
+    return false;
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
+}
+
 async function readRecoveryIntervalMs(): Promise<number> {
   return getRecoveryIntervalMs();
 }
@@ -580,6 +613,8 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const [recoveryEndsAtMs, setRecoveryEndsAtMs] = useState(0);
   const [timeUntilNextMs, setTimeUntilNextMs] = useState(0);
   const [isUnlimited, setIsUnlimited] = useState(false);
+  // зачем (U22): тот же статус, по которому экраны решают «Pro» — для сверки с безлимитом энергии (эффект ниже).
+  const { hasPremiumAccess } = usePremium();
   const [restoringPremium, setRestoringPremium] = useState(false);
   // Peek уже показывает последнее известное значение, поэтому энергия не
   // "прыгнет" от MAX к реальной. energyReady остаётся честным по факту первого
@@ -856,6 +891,19 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // Load on mount
   useEffect(() => { load(); }, [load]);
 
+  // зачем (чек-лист U22 «Pro и энергия», 11.11): статус Pro у экранов (PremiumContext) и безлимит энергии считаются
+  // в разное время. Экран уже знает «Pro», а энергия прочитала «нет» раньше подтверждения (вход, смена аккаунта,
+  // холодный старт) и больше не перечитывала — событий об этом PremiumContext не шлёт. Расхождение «Pro есть, а
+  // энергия с лимитом» лечим одним перечитыванием. Петли нет: эффект срабатывает только на смену одного из трёх
+  // значений; если проверка доступа и после этого говорит «нет» — повторов не будет, причина в журнале runLoad.
+  useEffect(() => {
+    if (!energyReady || !hasPremiumAccess || isUnlimited) return;
+    console.warn('[ENERGY-PRO-SYNC] mismatch_reload', JSON.stringify({ // guard-ok: раз на расхождение
+      hasPremiumAccess, isUnlimited, energy: energyRef.current, lastReason: _lastUnlimitedReason,
+    }));
+    void load();
+  }, [energyReady, hasPremiumAccess, isUnlimited, load]);
+
   // Foreground/events reload. Recovery polling lives in a separate gated effect below.
   useEffect(() => {
     let resumeTimer: ReturnType<typeof setTimeout> | null = null;
@@ -970,6 +1018,18 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       if (decision === 'insufficient' || decision === 'cancelled') releaseReason('energy', reason, decision === 'insufficient' ? 'blocked' : 'error');
     };
     console.log('[ENERGY-GATE] start enter', JSON.stringify({ ...gateSnapshot(), mistakeCharge: options?.mistakeCharge === true })); // guard-ok: вход старта
+    // зачем (U22): перед отказом «нет энергии» — одна повторная проверка Pro. Подтвердился — старт проходит как у Pro,
+    // шкала догоняет фоном (load). Аккаунт сменился за время проверки — ответ чужой, отказ остаётся.
+    const lateProSavesStart = async (where: string, cost: number): Promise<boolean> => {
+      const recheckToken = captureAccountGeneration();
+      const nowUnlimited = await recheckUnlimitedBeforeRefusal(where);
+      if (!nowUnlimited || !isCurrentAccountGeneration(recheckToken)) return false;
+      isUnlimitedRef.current = true;
+      setIsUnlimited(true);
+      void load();
+      gateDecision('unlimited', `late_pro_recheck:${where}:${_lastUnlimitedReason}`, { cost });
+      return true;
+    };
     try {
       const cost = activityEnergyCost(activity);
       if (cost === 0) {
@@ -1015,6 +1075,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       if (!options?.mistakeCharge && chargesEnergyOnMistake(activity)) {
         const available = bonusRef.current + refundCreditRef.current + energyRef.current;
         if (available < 1) {
+          if (await lateProSavesStart('mode_b_no_energy_for_start', cost)) return 'unlimited';
           console.warn(`[ENERGY-MODE] старт отклонён: режим Б, энергии нет (activity=${activity}, available=${available})`); // guard-ok: ранний выход логируется
           gateDecision('insufficient', 'mode_b_no_energy_for_start', { cost });
           return 'insufficient';
@@ -1024,6 +1085,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         return 'unlimited';
       }
       if (bonusRef.current + refundCreditRef.current + energyRef.current < cost) {
+        if (await lateProSavesStart('mode_a_available_below_cost', cost)) return 'unlimited';
         gateDecision('insufficient', 'mode_a_available_below_cost', { cost });
         return 'insufficient';
       }

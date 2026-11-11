@@ -1,6 +1,8 @@
 # Task packet: старая озвучка удалена, фразы и карточки читает голос телефона
 
 Governance-ID: TG-33B8B41E0D6B
+Governance-ID: TG-042218AEACE9
+Governance-ID: TG-41710A2257A8
 Status: In progress
 Owner: сессия Claude «удали всю озвучку» (владелец 11.11.2026)
 Related epic/enabler: none
@@ -34,6 +36,21 @@ Out of scope (файлы правит другая сессия либо реш�
 - заготовка «голос собеседника» в диалогах (записей в ней нет);
 - звук Learning V2 (удаляет другая сессия);
 - скрипты генерации озвучки и их тесты — возвращены как были, нужны для новой озвучки.
+
+Дополнение 11.11 (владелец: «дочисти что надо»), после освобождения файлов другой сессией:
+- `hooks/use-audio.ts` — ветка «сначала клип карточки» убрана, карточка сразу идёт в голос устройства;
+- `hooks/phrase_audio_player.ts` — убран `playCardClipUrl` (игрался только клип карточки);
+- `app/flashcards/card_tts_audio.ts` — убраны пустые заглушки клипа и памяти промахов;
+- тесты `tests/use_audio_system_tts_only.test.tsx`, `tests/card_device_voice_only.test.ts`.
+Плеер, кэш и докачка клипов ФРАЗ не трогаются: через них подключается новая озвучка курсов
+(`docs/work/tasks/course-voice-elevenlabs-2026-11-11.md`, следующая задача владельца).
+Остаются вне объёма: `functions/src/index.ts` и `admin/v2/legacy.html` (в них чужие правки) — значит
+серверный воркер клипов карточек и его кнопка в админке; голос онбординга; заготовка голоса собеседника.
+
+Дополнение 11.11 (release-gate, TS2307): возвращённый `scripts/card_tts_voice_all.ts` импортировал удалённую
+карту `app/phrase_audio_url_map.generated`. Импорт переведён на единую точку поиска записи
+`modules/audio/phrase_audio_lookup.ts` (`getPlayablePhraseAudioUrl`) — смысл прежний: «английская карточка
+уже покрыта записью фразы». Карта не возвращается.
 
 ## Architecture
 

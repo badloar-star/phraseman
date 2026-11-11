@@ -25,7 +25,8 @@
  */
 import path from 'node:path';
 import { SYSTEM_CARDS } from '../app/flashcards/system-cards';
-import { getPhraseAudioUrl } from '../app/phrase_audio_url_map.generated';
+// зачем (11.11.2026): карта старых клипов удалена; «есть ли запись фразы» отвечает единая точка поиска.
+import { getPlayablePhraseAudioUrl } from '../modules/audio/phrase_audio_lookup';
 import {
   CARD_TTS_CONCURRENCY,
   CARD_TTS_DEFAULT_BUCKET,
@@ -60,7 +61,7 @@ function officialSources(): { sources: Source[]; coveredByCorpus: number } {
   for (const card of SYSTEM_CARDS) {
     const text = cardTtsTextOfCard(card);
     if (!text) continue;
-    if (getPhraseAudioUrl(text)) { coveredByCorpus += 1; continue; }
+    if (getPlayablePhraseAudioUrl(text)) { coveredByCorpus += 1; continue; }
     texts.push(text);
   }
   return { sources: [{ label: 'official:system-cards', language: 'en', texts }], coveredByCorpus };

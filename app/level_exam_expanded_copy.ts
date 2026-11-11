@@ -7,7 +7,7 @@
 import type { ExpandedFormat } from '../modules/expanded-formats/types';
 
 /** Какие две группы у задания «разложи по группам» (авторский банк называет вид, подписи — здесь). */
-export type AuthoredGroupKind = 'when_where' | 'one_many' | 'past_future' | 'now_past' | 'person_thing';
+export type AuthoredGroupKind = 'when_where' | 'one_many' | 'past_future' | 'now_past' | 'person_thing' | 'now_later';
 
 export type LevelExamExpandedCopy = Readonly<{
   /** Подпись над заданием: что сделать. */
@@ -59,6 +59,11 @@ const GROUPS: Readonly<Record<AuthoredGroupKind, Readonly<{ prompt: Row; first: 
     prompt: ['Человек или предмет?', 'Людина чи предмет?', 'Person or thing?', '¿Persona o cosa?', 'Pessoa ou coisa?', 'Người hay vật?', 'Orang atau benda?', 'Kişi mi, nesne mi?', 'Osoba czy rzecz?'],
     first: ['Человек', 'Людина', 'Person', 'Persona', 'Pessoa', 'Người', 'Orang', 'Kişi', 'Osoba'],
     second: ['Предмет', 'Предмет', 'Thing', 'Cosa', 'Coisa', 'Vật', 'Benda', 'Nesne', 'Rzecz'],
+  },
+  now_later: {
+    prompt: ['Сейчас или потом?', 'Зараз чи потім?', 'Now or later?', '¿Ahora o después?', 'Agora ou depois?', 'Bây giờ hay sau này?', 'Sekarang atau nanti?', 'Şimdi mi, sonra mı?', 'Teraz czy później?'],
+    first: ['Сейчас', 'Зараз', 'Now', 'Ahora', 'Agora', 'Bây giờ', 'Sekarang', 'Şimdi', 'Teraz'],
+    second: ['Потом', 'Потім', 'Later', 'Después', 'Depois', 'Sau này', 'Nanti', 'Sonra', 'Później'],
   },
   one_many: {
     prompt: ['Один или несколько?', 'Один чи кілька?', 'One or several?', '¿Uno o varios?', 'Um ou vários?', 'Một hay nhiều?', 'Satu atau beberapa?', 'Bir mi, birkaç mı?', 'Jeden czy kilka?'],

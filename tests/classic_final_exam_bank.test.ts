@@ -145,11 +145,14 @@ describe('банк итогового экзамена классических 
     expect(source).not.toContain('loadFrenchRemoteFinalExamQuestions');
   });
 
-  it('экран зачёта: не-английский язык не получает ни английский банк, ни английский движок', () => {
+  it('экран зачёта: не-английский язык не получает английский банк, а в движок идёт со своим языком курса', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'level_exam.tsx'), 'utf8');
     expect(source).toContain('const questions = classicExamTarget ? classicQuestions : englishQuestions;');
     expect(source).toMatch(/const englishQuestions = useMemo\(\(\) => \{\s*if \(frenchExamBlocked \|\| classicExamTarget\) return \[\];/);
-    expect(source).toMatch(/if \(!classicExamTarget && !frenchExamBlocked\) \{\s*return \(\s*<LevelExamV2/);
+    // зачем (владелец 11.11.2026, позже в тот же день: «Перевести на новые механики»): экзамен уровня всех пяти курсов идёт через
+    // новый движок, но каждый — СО СВОИМ языком. Прежнее правило «движок только английскому» заменено: суть та же —
+    // не-английский курс не получает английских заданий, — только теперь её держит передача языка курса в движок.
+    expect(source).toMatch(/if \(!frenchExamBlocked\) \{\s*return \(\s*<LevelExamV2[\s\S]{0,300}?studyTarget=\{classicExamTarget \?\? 'en'\}/);
     expect(source).not.toContain('loadFrenchRemoteLevelExamQuestions');
   });
 });

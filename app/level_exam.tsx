@@ -994,11 +994,17 @@ export default function LevelExam() {
   const silentLeaveFrench = frenchExamBlocked || (classicExamTarget !== null && accessState === 'blocked' && accessBlockKind === 'error');
   useSilentLeave(silentLeaveFrench, 'level_exam', frenchExamBlocked ? 'french_gate_closed' : 'access_check_failed', () => safeRouterBack(router, '/(tabs)/lessons' as any));
 
-  if (!classicExamTarget && !frenchExamBlocked) {
+  // зачем (владелец 11.11.2026, «перевести на новые механики»): экзамен уровня всех пяти курсов идёт через новый движок —
+  // те же механики Пика и задания из фраз своего курса. Раньше es/de/fr/it шли через встроенный экран ниже с одним видом заданий.
+  // Язык курса передаётся движку: задания, попытка, прогресс и достижения пишутся под ключами своего курса.
+  // key — смена курса пересоздаёт экран, чтобы попытка одного курса не досталась другому.
+  if (!frenchExamBlocked) {
     return (
       <LevelExamV2
+        key={classicExamTarget ?? 'en'}
         level={lvl as CourseLevel}
         lang={lang}
+        studyTarget={classicExamTarget ?? 'en'}
         accessState={accessState}
         blockedText={blockedText}
         accessBlockKind={accessBlockKind}

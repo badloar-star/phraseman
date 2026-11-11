@@ -35,6 +35,7 @@ import {
   type LevelExamBlueprint,
   type LevelExamExpandedTask,
   type LevelExamLevel,
+  type LevelExamStudyTarget,
   type LevelExamTask,
 } from '../../app/level_exam_types';
 import { emptyExpandedResponse, isExpandedResponseComplete } from '../../modules/expanded-formats/grade';
@@ -77,6 +78,11 @@ const ENERGY_COST = activityEnergyCost('level_exam');
 type Props = {
   level: LevelExamLevel;
   lang: Lang;
+  /**
+   * Язык курса. зачем (владелец 11.11.2026): экзамен уровня — для всех пяти курсов; задания, попытка, прогресс и достижения
+   * идут под ключами своего курса. Не задан — английский, как было.
+   */
+  studyTarget?: LevelExamStudyTarget;
   accessState: 'checking' | 'allowed' | 'blocked';
   blockedText: string;
   /** Почему закрыт: замок Plus/уровня показываем, а «не проверился» (error) — тихий уход. */
@@ -131,7 +137,7 @@ function taskPrompt(task: LevelExamTask, lang: Lang): string {
   });
 }
 
-export default function LevelExamV2({ level, lang, accessState, blockedText, accessBlockKind = 'level' }: Props) {
+export default function LevelExamV2({ level, lang, studyTarget = 'en', accessState, blockedText, accessBlockKind = 'level' }: Props) {
   // зачем: sourceLocale читает контент фраз экзамена — английского source нет
   // (см. app/source_locales.ts), сужаем на RU, как остальные контентные
   // фолбэки без en в проекте.
@@ -205,8 +211,8 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
     setPhase('result');
 
     try {
-      const previousPassed = await AsyncStorage.getItem(levelExamKey(level, 'passed', 'en'));
-      const previousPctRaw = Number(await AsyncStorage.getItem(levelExamKey(level, 'pct', 'en')) ?? 0);
+      const previousPassed = await AsyncStorage.getItem(levelExamKey(level, 'passed', studyTarget));
+      const previousPctRaw = Number(await AsyncStorage.getItem(levelExamKey(level, 'pct', studyTarget)) ?? 0);
       // Повреждённое/устаревшее значение не должно превращать новый честный
       // результат в строку `NaN` и визуально снова закрывать уровень.
       const previousPct = Number.isFinite(previousPctRaw)
@@ -216,26 +222,26 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
         ownerStableUid,
         level,
         finishing.finishToken,
-        'en',
+        studyTarget,
       );
       await AsyncStorage.multiSet([
-        [levelExamKey(level, 'pct', 'en'), String(Math.max(previousPct, scored.pct))],
+        [levelExamKey(level, 'pct', studyTarget), String(Math.max(previousPct, scored.pct))],
         // Keep local 1/0 for older clients. Compatible readers also accept the
         // canonical true/false strings restored from cloud progress events.
-        [levelExamKey(level, 'passed', 'en'), storedProgressFlagIsTrue(previousPassed) || scored.passed ? '1' : '0'],
+        [levelExamKey(level, 'passed', studyTarget), storedProgressFlagIsTrue(previousPassed) || scored.passed ? '1' : '0'],
       ]);
       if (scored.passed) {
         const nextLevel = getNextCourseLevel(level);
         if (nextLevel) {
-          await markPremiumCourseLevelReached(nextLevel, 'en');
-          await unlockLesson(getFirstLessonForLevel(nextLevel), 'en');
+          await markPremiumCourseLevelReached(nextLevel, studyTarget);
+          await unlockLesson(getFirstLessonForLevel(nextLevel), studyTarget);
         }
       }
-      const progress = await saveExamProgress(level, scored.pct, 'en', finishing.finishToken);
+      const progress = await saveExamProgress(level, scored.pct, studyTarget, finishing.finishToken);
       const gemMap: Record<number, 'ruby' | 'emerald' | 'diamond'> = { 2: 'ruby', 3: 'emerald', 4: 'diamond' };
       const gem = gemMap[progress.newPassCount];
-      if (gem) void checkAchievements({ type: 'gem', level, gem, studyTarget: 'en' });
-      void checkAchievements({ type: 'exam', pct: scored.pct, studyTarget: 'en' });
+      if (gem) void checkAchievements({ type: 'gem', level, gem, studyTarget });
+      void checkAchievements({ type: 'exam', pct: scored.pct, studyTarget });
       const firstPass = !storedProgressFlagIsTrue(previousPassed);
       setRewardState(scored.passed ? (firstPass ? 'earned' : 'already_claimed') : 'none');
       void trackFeatureSuccess('level_exam', 'complete', {
@@ -252,7 +258,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
     } finally {
       const completed = completeLevelExamAttempt(finishing, Date.now());
       await persistActiveLevelExamAttempt(completed).catch(noteSwallowedHandler('LevelExamV2:useCallback.persistActiveLevelExamAttempt_2'));
-      await clearActiveLevelExamAttempt(ownerStableUid, level, 'en').catch(noteSwallowedHandler('LevelExamV2:useCallback.clearActiveLevelExamAttempt'));
+      await clearActiveLevelExamAttempt(ownerStableUid, level, studyTarget).catch(noteSwallowedHandler('LevelExamV2:useCallback.clearActiveLevelExamAttempt'));
     }
   }, [lang, level, ownerStableUid]);
 
@@ -267,12 +273,12 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
       if (cancelled) return;
       setOwnerStableUid(owner);
       setIdentityUnavailable(!owner);
-      const storedBest = Number(await AsyncStorage.getItem(levelExamKey(level, 'pct', 'en')) ?? Number.NaN);
+      const storedBest = Number(await AsyncStorage.getItem(levelExamKey(level, 'pct', studyTarget)) ?? Number.NaN);
       if (!cancelled) setBestScore(Number.isFinite(storedBest) ? storedBest : null);
       if (!owner) {
         return;
       }
-      const stored = await loadActiveLevelExamAttempt(owner, level, 'en');
+      const stored = await loadActiveLevelExamAttempt(owner, level, studyTarget);
       if (cancelled || !stored) {
         if (!cancelled) setPhase('intro');
         return;
@@ -280,18 +286,18 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
       const decision = restoreLevelExamAttempt(stored, {
         ownerStableUid: owner,
         level,
-        studyTarget: 'en',
+        studyTarget,
         sourceLocale: examSourceLocale,
         blueprintVersion: stored.blueprintVersion,
         nowMs: Date.now(),
       });
       if (decision.kind === 'quarantine') {
-        await clearActiveLevelExamAttempt(owner, level, 'en');
+        await clearActiveLevelExamAttempt(owner, level, studyTarget);
         if (!cancelled) setPhase('intro');
         return;
       }
       if (decision.kind === 'completed') {
-        await clearActiveLevelExamAttempt(owner, level, 'en');
+        await clearActiveLevelExamAttempt(owner, level, studyTarget);
         if (!cancelled) setPhase('intro');
         return;
       }
@@ -299,7 +305,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
       try {
         restoredBlueprint = buildLevelExamBlueprint({
           level,
-          studyTarget: 'en',
+          studyTarget,
           sourceLocale: examSourceLocale,
           seed: decision.attempt.seed,
           blueprintVersion: decision.attempt.blueprintVersion,
@@ -370,7 +376,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
       try {
         nextBlueprint = buildLevelExamBlueprint({
           level,
-          studyTarget: 'en',
+          studyTarget,
           sourceLocale: examSourceLocale,
           seed: `${ownerStableUid}:${level}:${startToken}`,
           blueprintVersion: CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION,
@@ -393,7 +399,7 @@ export default function LevelExamV2({ level, lang, accessState, blockedText, acc
         ownerStableUid,
         startToken,
         level,
-        studyTarget: 'en',
+        studyTarget,
         sourceLocale: examSourceLocale,
         blueprintVersion: nextBlueprint.version,
         seed: nextBlueprint.seed,

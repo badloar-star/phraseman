@@ -68,7 +68,11 @@ describe('Gustav French exam target gate', () => {
     expect(levelExamSource).toContain('loadClassicLevelExamQuestions(classicExamTarget, lang, lvl as CourseLevel, INTRO_Q_COUNT)');
     expect(levelExamSource).toContain('const questions = classicExamTarget ? classicQuestions : englishQuestions;');
     expect(levelExamSource).toContain('if (frenchExamBlocked || classicExamTarget) return [];');
-    expect(levelExamSource).toContain('if (!classicExamTarget && !frenchExamBlocked) {');
+    // зачем (владелец 11.11.2026, позже в тот же день: «Перевести на новые механики»): экзамен уровня всех пяти курсов идёт через
+    // новый движок, но каждый — СО СВОИМ языком. Прежнее правило «движок только английскому» заменено: суть та же —
+    // не-английский курс не получает английских заданий, — только теперь её держит передача языка курса в движок.
+    expect(levelExamSource).toContain('if (!frenchExamBlocked) {');
+    expect(levelExamSource).toContain("studyTarget={classicExamTarget ?? 'en'}");
     expect(levelExamSource).toContain("'exam_questions_unavailable'");
     expect(levelExamSource).toContain("useSilentLeave(silentLeaveFrench, 'level_exam', frenchExamBlocked ? 'french_gate_closed'");
     // та же переписанная система, что и в финальном экзамене: ошибка уровня

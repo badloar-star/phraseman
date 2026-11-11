@@ -110,12 +110,13 @@ function withGap(sentence: string, answers: readonly string[]): string | null {
 
 type Built = Readonly<{ format: ExpandedFormat; prompt: string; context: string; exercise: ExpandedExercise }>;
 
-function strict(format: ExpandedFormat, raw: Record<string, unknown>, prompt: string, context: string): Built | null {
-  const parsed = parseExpandedExercise(format, raw, 'en');
+function strict(format: ExpandedFormat, raw: Record<string, unknown>, prompt: string, context: string, lang: string): Built | null {
+  const parsed = parseExpandedExercise(format, raw, lang);
   return parsed.ok ? { format, prompt, context, exercise: parsed.exercise } : null;
 }
 
-function buildOne(format: PhraseBuiltFormat, seeds: readonly ExpandedSeed[], seedKey: string): Built | null {
+function buildOne(format: PhraseBuiltFormat, seeds: readonly ExpandedSeed[], seedKey: string, lang: string): Built | null {
+  const strictFor = (kind: ExpandedFormat, raw: Record<string, unknown>, prompt: string, context: string): Built | null => strict(kind, raw, prompt, context, lang);
   const rng = (salt: string) => createLevelExamRng(`${seedKey}:${salt}`);
   const main = seeds[0];
   const gap = main.gaps[0];
@@ -128,7 +129,7 @@ function buildOne(format: PhraseBuiltFormat, seeds: readonly ExpandedSeed[], see
       if (!broken) return null;
       const at = soleIndex(tokensOf(sentence), gap.answer);
       const replacements = shuffled([gap.answer, ...gap.distractors.slice(1, 3)], rng('replacements'));
-      return strict(format, { words: tokensOf(broken), replacements, key: { word: at, replacement: replacements.indexOf(gap.answer) } }, broken, main.sourceText);
+      return strictFor(format, { words: tokensOf(broken), replacements, key: { word: at, replacement: replacements.indexOf(gap.answer) } }, broken, main.sourceText);
     }
     case 'remove_intruder': {
       if (!gap) return null;
@@ -145,7 +146,7 @@ function buildOne(format: PhraseBuiltFormat, seeds: readonly ExpandedSeed[], see
       const words = before
         ? [...tokens.slice(0, at), intruder, ...tokens.slice(at)]
         : [...tokens.slice(0, at + 1), intruder, ...tokens.slice(at + 1)];
-      return strict(format, { words, key: before ? at : at + 1 }, words.join(' '), main.sourceText);
+      return strictFor(format, { words, key: before ? at : at + 1 }, words.join(' '), main.sourceText);
     }
     case 'sentence_build_noise': {
       if (!gap) return null;
@@ -154,12 +155,12 @@ function buildOne(format: PhraseBuiltFormat, seeds: readonly ExpandedSeed[], see
       const tiles = [...words.map((text, index) => ({ text, at: index })), ...gap.distractors.slice(0, 2).map((text) => ({ text, at: -1 }))];
       const bank = shuffled(tiles, rng('bank'));
       const key = words.map((_word, index) => bank.findIndex((tile) => tile.at === index));
-      return strict(format, { bank: bank.map((tile) => tile.text), need: words.length, key }, main.sourceText, '');
+      return strictFor(format, { bank: bank.map((tile) => tile.text), need: words.length, key }, main.sourceText, '');
     }
     case 'typed_word': {
       if (!gap) return null;
       const prompt = withGap(sentence, [gap.answer]);
-      return prompt ? strict(format, { acceptedAnswers: [gap.answer] }, prompt, main.sourceText) : null;
+      return prompt ? strictFor(format, { acceptedAnswers: [gap.answer] }, prompt, main.sourceText) : null;
     }
     case 'linked_gaps': {
       const [first, second] = main.gaps;
@@ -170,11 +171,11 @@ function buildOne(format: PhraseBuiltFormat, seeds: readonly ExpandedSeed[], see
       // зачем: пропуски нумеруются слева направо, как их видит ученик
       const ordered = [first, second].sort((a, b) => soleIndex(tokens, a.answer) - soleIndex(tokens, b.answer));
       const slots = ordered.map((item, slot) => shuffled([item.answer, ...item.distractors.slice(0, 2)], rng(`slot${slot}`)));
-      return strict(format, { slots, key: ordered.map((item, slot) => slots[slot].indexOf(item.answer)) }, prompt, main.sourceText);
+      return strictFor(format, { slots, key: ordered.map((item, slot) => slots[slot].indexOf(item.answer)) }, prompt, main.sourceText);
     }
     case 'sentence_transform': {
       if (tokensOf(sentence).length > MAX_TRANSFORM_WORDS) return null;
-      return strict(format, { acceptedAnswers: [sentence, ...main.alternatives] }, main.sourceText, '');
+      return strictFor(format, { acceptedAnswers: [sentence, ...main.alternatives] }, main.sourceText, '');
     }
     case 'multi_select': {
       const pair = seeds.slice(0, 2);
@@ -182,7 +183,7 @@ function buildOne(format: PhraseBuiltFormat, seeds: readonly ExpandedSeed[], see
       if (wrong.some((value) => value === null)) return null;
       const right = pair.map((seed) => seed.english.trim());
       const options = shuffled([...right, ...(wrong as string[])], rng('options'));
-      return strict(format, { options, key: right.map((value) => options.indexOf(value)) }, '', '');
+      return strictFor(format, { options, key: right.map((value) => options.indexOf(value)) }, '', '');
     }
   }
 }
@@ -196,9 +197,11 @@ export function buildExpandedExamDraft(
   seeds: readonly ExpandedSeed[],
   seedKey: string,
   sourceLocale: string,
+  /** Язык курса — по нему приводится регистр вводимого ответа. */
+  studyTarget: string = 'en',
 ): ExpandedExamDraft | null {
   if (seeds.length < EXPANDED_SEED_NEEDS[format].seeds) return null;
-  const built = buildOne(format, seeds, seedKey);
+  const built = buildOne(format, seeds, seedKey, studyTarget);
   if (!built) return null;
   const copy = levelExamExpandedCopy(sourceLocale);
   return {

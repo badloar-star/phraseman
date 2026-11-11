@@ -21,7 +21,7 @@ import type { ExpandedExercise, ExpandedResponse } from '../modules/expanded-for
 
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
 
-const TARGETS = ['en'] as const;
+const TARGETS = ['en', 'es', 'de', 'fr', 'it'] as const;
 const LEVELS: CourseLevel[] = ['A1', 'A2', 'B1', 'B2'];
 
 function tokens(text: string): string[] {
@@ -92,7 +92,7 @@ describe.each(TARGETS)('авторский банк экзамена, язык %
     it('каждое задание собирается при любом сиде, и засчитывается ровно задуманный ответ', () => {
       for (const item of items) {
         for (const seed of ['a', 'b', 'c']) {
-          const draft = buildAuthoredExamDraft(item, seed, 'ru');
+          const draft = buildAuthoredExamDraft(item, seed, 'ru', target);
           expect([item.id, draft !== null]).toEqual([item.id, true]);
           if (!draft) continue;
           const response = keyResponse(draft.exercise);

@@ -17,6 +17,7 @@ import {
   type LevelExamChoiceTask,
   type LevelExamExpandedTask,
   type LevelExamLevel,
+  type LevelExamStudyTarget,
   type LevelExamPhraseBuilderTask,
   type LevelExamSpeedMatchPair,
   type LevelExamTask,
@@ -279,6 +280,47 @@ function provableGapsOf(reference: PhraseReference, ctx: VocabContext): Expanded
   return found;
 }
 
+/**
+ * Пропуски фразы курса, у которого нет своих правил грамматики (испанский, немецкий, французский, итальянский).
+ *
+ * зачем: правила «доказуемого пропуска» написаны только для английского. У остальных курсов неверные варианты берутся из
+ * плитки урока — это те же соблазны, на которых ученик собирал эту фразу в уроке. Правила отбора — те, что уже выверены
+ * в банке итогового экзамена (classic_final_exam_bank): слово стоит во фразе целым словом ровно один раз; из неверных
+ * убраны слова, которые встречаются в принятых вариантах фразы («qui / qua», «Estoy / Yo estoy») — иначе «неверный» верен;
+ * неверные — только из слов уже пройденных уроков.
+ */
+function tileGapsOf(reference: PhraseReference, ctx: VocabContext): ExpandedSeedGap[] {
+  const sentence = reference.phrase.english.trim();
+  const alsoCorrect = new Set(wordTokens(sentence));
+  for (const alternative of reference.phrase.alternatives || []) wordTokens(alternative).forEach((token) => alsoCorrect.add(token));
+  for (const sequence of reference.phrase.classic?.accepted || []) for (const token of sequence) wordTokens(token).forEach((part) => alsoCorrect.add(part));
+  const found: ExpandedSeedGap[] = [];
+  for (const word of targetWords(reference.phrase)) {
+    const answer = (word.correct || word.text || '').trim();
+    if (!answer || /\s/u.test(answer) || found.some((gap) => normalized(gap.answer) === normalized(answer))) continue;
+    if (!replaceUniqueWord(sentence, answer, '___')) continue;
+    const seen = new Set([normalized(answer)]);
+    const wrong: string[] = [];
+    for (const raw of knownOnly(ctx, (word.distractors || []).map((value) => value.trim()).filter(Boolean))) {
+      const key = normalized(raw);
+      if (/\s/u.test(raw) || seen.has(key) || alsoCorrect.has(key)) continue;
+      seen.add(key);
+      wrong.push(raw);
+    }
+    if (wrong.length >= 3) found.push({ answer, distractors: wrong.slice(0, 3) });
+  }
+  return found;
+}
+
+/**
+ * Перевод фразы на язык ученика. Если интерфейс совпал с языком курса (испанский курс при испанском интерфейсе),
+ * «перевод» был бы самой фразой — тогда берётся английский, затем русский перевод курса.
+ */
+function sourceTextFor(phrase: LessonPhrase, locale: SourceLocale, studyTarget: LevelExamStudyTarget): string {
+  if ((locale as string) !== studyTarget) return explicitSourceText(phrase, locale);
+  return phrase.classic?.sourceLocales?.en?.trim() || phrase.russian.trim();
+}
+
 /** provable=false — прежний отбор версии 3 (там засчитывается любой вариант смыслового пропуска); его не трогаем, чтобы начатые попытки восстанавливались. */
 function safeGapCandidate(reference: PhraseReference, ctx: VocabContext, provable: boolean): GapCandidate | null {
   if (provable) return provableGapCandidate(reference, ctx);
@@ -381,7 +423,7 @@ function shuffledWithoutIdentity<T extends { id: string }>(values: readonly T[],
     : result;
 }
 
-function builderTokens(reference: PhraseReference, taskId: string, seed: string, ctx: VocabContext): {
+function builderTokens(reference: PhraseReference, taskId: string, seed: string, ctx: VocabContext, wordPattern: RegExp): {
   tokens: { id: string; text: string; isDistractor?: boolean }[];
   correctTokenIds: string[];
 } {
@@ -393,7 +435,7 @@ function builderTokens(reference: PhraseReference, taskId: string, seed: string,
   const decoys = knownOnly(ctx, targetWords(reference.phrase)
     .flatMap((word) => word.distractors || [])
     .map((text) => text.trim())
-    .filter((text) => /^[A-Za-z']+$/u.test(text) && !correctText.has(normalized(text))));
+    .filter((text) => wordPattern.test(text) && !correctText.has(normalized(text))));
   const uniqueDecoys = [...new Map(decoys.map((text) => [normalized(text), text])).values()].slice(0, 2);
   if (uniqueDecoys.length < 2) {
     // зачем: не хватило соблазнов из пройденных уроков — берём близкие по классу слова того же словаря (грамматические классы не трогаем: подмена даёт вторую верную фразу)
@@ -412,10 +454,10 @@ function builderTokens(reference: PhraseReference, taskId: string, seed: string,
   };
 }
 
-function hasBuilderDistractor(reference: PhraseReference, ctx: VocabContext): boolean {
+function hasBuilderDistractor(reference: PhraseReference, ctx: VocabContext, wordPattern: RegExp): boolean {
   const correctText = new Set(targetWords(reference.phrase).map((word) => normalized(word.text)));
   return targetWords(reference.phrase).some((word) => (word.distractors || []).some((text) => (
-    /^[A-Za-z']+$/u.test(text.trim()) && !correctText.has(normalized(text)) && isKnownWord(ctx, text)
+    wordPattern.test(text.trim()) && !correctText.has(normalized(text)) && isKnownWord(ctx, text)
   )));
 }
 
@@ -423,14 +465,19 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   const blueprintVersion = input.blueprintVersion ?? CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION;
   const [fromLesson, toLesson] = COURSE_LEVEL_RANGES[input.level];
   // зачем: loud считает отброшенное/добранное только для РЕАЛЬНО выданных заданий; quiet — для проб кандидатов (иначе счёт раздувается)
-  const courseTarget: StudyTargetLang | undefined = blueprintVersion >= 5 ? input.studyTarget : undefined;
+  const target = input.studyTarget;
+  // зачем: до версии 5 движок знал только английский; у остальных курсов прежних попыток этого движка не бывает
+  if (target !== 'en' && blueprintVersion < 5) throw new Error(`level_exam_version_unsupported:${target}:${blueprintVersion}`);
+  // зачем: слова с диакритикой (está, über, déjà) английской маской [A-Za-z] отбрасывались бы; английскую маску не трогаем — от неё зависят прежние версии
+  const wordPattern = target === 'en' ? /^[A-Za-z']+$/u : /^[\p{L}'’-]+$/u;
+  const courseTarget: StudyTargetLang | undefined = blueprintVersion >= 5 ? target : undefined;
   const vocab = levelVocab(toLesson, courseTarget);
   const loud: VocabContext = { vocab, stats: { filtered: 0, backfilled: 0 } };
   const quiet: VocabContext = { vocab, stats: { filtered: 0, backfilled: 0 } };
   const references: PhraseReference[] = [];
   for (let lessonId = fromLesson; lessonId <= toLesson; lessonId += 1) {
     for (const phrase of lessonPhrases(lessonId, courseTarget)) {
-      const sourceText = explicitSourceText(phrase, input.sourceLocale);
+      const sourceText = sourceTextFor(phrase, input.sourceLocale, target);
       if (phrase.english.trim() && sourceText) references.push({ lessonId, phraseId: String(phrase.id), phrase, sourceText });
     }
   }
@@ -469,7 +516,7 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
     const key = `${reference.lessonId}:${reference.phraseId}`;
     const cached = gapCache.get(key);
     if (cached) return cached;
-    const gaps = provableGapsOf(reference, quiet);
+    const gaps = target === 'en' ? provableGapsOf(reference, quiet) : tileGapsOf(reference, quiet);
     gapCache.set(key, gaps);
     return gaps;
   };
@@ -502,8 +549,15 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
     // начатая на версии 4, после обновления восстановится с другими заданиями. Доказуемые пропуски (U10) меняют отбор фраз,
     // поэтому живут только в версии 5; версия 4 сохраняет прежний отбор, подсказку-перевод и один засчитываемый вариант.
     const provableGaps = blueprintVersion >= 5;
-    const reference = next((item) => safeGapCandidate(item, quiet, provableGaps) !== null);
-    const candidate = safeGapCandidate(reference, loud, provableGaps)!;
+    // зачем: у курса без правил грамматики пропуск берётся из плитки урока (tileGapsOf); у английского — прежний путь
+    const gapCandidateOf = (item: PhraseReference, ctx: VocabContext): GapCandidate | null => {
+      if (target === 'en') return safeGapCandidate(item, ctx, provableGaps);
+      const gap = gapsOf(item)[0];
+      const cut = gap ? replaceUniqueWord(item.phrase.english.trim(), gap.answer, '___') : null;
+      return gap && cut ? { reference: item, word: { text: gap.answer, correct: gap.answer, distractors: [...gap.distractors] }, gap: cut, options: [gap.answer, ...gap.distractors] } : null;
+    };
+    const reference = next((item) => gapCandidateOf(item, quiet) !== null);
+    const candidate = gapCandidateOf(reference, loud)!;
     const id = `${input.level}:fill_gap:${reference.lessonId}:${reference.phraseId}`;
     const choices = choiceOptions(id, candidate.word.text.trim(), candidate.options.slice(1), input.seed);
     const category = String(candidate.word.category ?? '').trim().toLocaleLowerCase();
@@ -533,9 +587,9 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   }
 
   for (let index = 0; index < mix.classic.translate_build; index += 1) {
-    const reference = next((item) => targetWords(item.phrase).length >= 2 && hasBuilderDistractor(item, quiet));
+    const reference = next((item) => targetWords(item.phrase).length >= 2 && hasBuilderDistractor(item, quiet, wordPattern));
     const id = `${input.level}:translate_build:${reference.lessonId}:${reference.phraseId}`;
-    const tokenData = builderTokens(reference, id, input.seed, loud);
+    const tokenData = builderTokens(reference, id, input.seed, loud, wordPattern);
     tasks.push({
       id, scoreUnitId: id, lessonId: reference.lessonId, phraseId: reference.phraseId,
       format: 'translate_build', prompt: reference.sourceText,
@@ -550,7 +604,11 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
     phraseId: reference.phraseId,
     english: reference.phrase.english.trim(),
     sourceText: reference.sourceText,
-    alternatives: (reference.phrase.alternatives || []).map((value) => value.trim()).filter(Boolean),
+    // принятые в уроке варианты: и готовые фразы, и последовательности плиток курса
+    alternatives: [
+      ...(reference.phrase.alternatives || []),
+      ...(reference.phrase.classic?.accepted || []).map((sequence) => sequence.join(' ')),
+    ].map((value) => value.trim()).filter(Boolean),
     gaps: gapsOf(reference),
   });
   const release = (picked: readonly PhraseReference[]): void => {
@@ -569,7 +627,7 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
         release(picked);
         return null;
       }
-      const draft = buildExpandedExamDraft(format, picked.map(seedOf), `${input.seed}:${format}:${serial}:${attemptIndex}`, input.sourceLocale);
+      const draft = buildExpandedExamDraft(format, picked.map(seedOf), `${input.seed}:${format}:${serial}:${attemptIndex}`, input.sourceLocale, target);
       if (draft) {
         const main = picked[0];
         const id = `${input.level}:${format}:${main.lessonId}:${main.phraseId}`;
@@ -613,7 +671,7 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
       let task: LevelExamExpandedTask | null = null;
       for (const item of authoredPool) {
         if (item.format !== format || authoredUsed.has(item.id)) continue;
-        const draft = buildAuthoredExamDraft(item, input.seed, input.sourceLocale);
+        const draft = buildAuthoredExamDraft(item, input.seed, input.sourceLocale, target);
         if (!draft) {
           DebugLogger.warn(LOG, `authored item rejected id=${item.id} format=${format}`);
           continue;
@@ -652,9 +710,9 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
 
   const orderedTasks = shuffled(tasks, createLevelExamRng(`${input.seed}:tasks`));
   // зачем (сперва логи): сколько соблазнов вне пройденных уроков отброшено и сколько добрано близкими по классу
-  DebugLogger.info(LOG, `lang=en level=${input.level} lessons=1-${toLesson} locale=${input.sourceLocale} vocab=${vocab.tokens.size} filtered=${loud.stats.filtered} backfilled=${loud.stats.backfilled} tasks=${tasks.length} v=${blueprintVersion} course=${courseTarget ?? 'legacy'} expandedFallbacks=${expandedFallbacks} authoredSubstituted=${authoredSubstituted}`);
+  DebugLogger.info(LOG, `lang=${target} level=${input.level} lessons=1-${toLesson} locale=${input.sourceLocale} vocab=${vocab.tokens.size} filtered=${loud.stats.filtered} backfilled=${loud.stats.backfilled} tasks=${tasks.length} v=${blueprintVersion} course=${courseTarget ?? 'legacy'} expandedFallbacks=${expandedFallbacks} authoredSubstituted=${authoredSubstituted}`);
   return {
-    version: blueprintVersion, level: input.level, studyTarget: 'en', sourceLocale: input.sourceLocale, seed: input.seed,
+    version: blueprintVersion, level: input.level, studyTarget: target, sourceLocale: input.sourceLocale, seed: input.seed,
     tasks: orderedTasks,
     scoredUnitIds: orderedTasks.flatMap((task) => task.format === 'speed_match' ? task.pairs.map((pair) => pair.scoreUnitId) : [task.scoreUnitId]),
     durationMs: EXAM_DURATION_MS[input.level], passScore: levelExamPassScore(input.level, blueprintVersion),

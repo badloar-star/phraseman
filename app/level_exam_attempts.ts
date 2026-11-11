@@ -4,13 +4,15 @@ import {
   parseLevelExamAttemptSnapshot,
   type LevelExamAttemptSnapshot,
 } from './level_exam_attempt_state';
-import type { LevelExamLevel } from './level_exam_types';
+import { isLevelExamStudyTarget, type LevelExamLevel } from './level_exam_types';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const storageQueues = new Map<string, Promise<void>>();
 
 function targetSegment(studyTarget: RuntimeStudyTarget): string {
-  return studyTarget === 'fr' ? 'fr' : 'en';
+  // зачем (владелец 11.11.2026): у каждого курса свой ключ попытки. Раньше es/de/it писались в английский сегмент —
+  // начатая английская попытка и испанская делили одно место в хранилище.
+  return isLevelExamStudyTarget(studyTarget) ? studyTarget : 'en';
 }
 
 function ownerSegment(ownerStableUid: string): string {

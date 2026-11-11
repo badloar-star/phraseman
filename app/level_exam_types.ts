@@ -20,6 +20,18 @@ export type LevelExamClassicFormat =
 export type LevelExamFormat = LevelExamClassicFormat | ExpandedFormat;
 
 /**
+ * зачем (владелец 11.11.2026, «перевести на новые механики»): экзамен уровня работает для всех пяти курсов. Язык курса идёт
+ * в набор заданий, в сохранённую попытку и в ключи прогресса — раньше движок считал язык английским, и прогресс остальных
+ * курсов писался бы под английскими ключами.
+ */
+export const LEVEL_EXAM_STUDY_TARGETS = ['en', 'es', 'fr', 'de', 'it'] as const;
+export type LevelExamStudyTarget = (typeof LEVEL_EXAM_STUDY_TARGETS)[number];
+
+export function isLevelExamStudyTarget(value: unknown): value is LevelExamStudyTarget {
+  return typeof value === 'string' && (LEVEL_EXAM_STUDY_TARGETS as readonly string[]).includes(value);
+}
+
+/**
  * зачем (владелец 11.11.2026, «растущий порог»): с версии 5 порог сдачи растёт с уровнем — A1 и A2 21, B1 22, B2 23 из 30.
  * Попытка, начатая на версии 3 или 4, досдаётся по прежнему порогу 21: правила посреди попытки не меняются.
  */
@@ -97,7 +109,7 @@ export type LevelExamTask =
 export type LevelExamBlueprint = {
   version: LevelExamBlueprintVersion;
   level: LevelExamLevel;
-  studyTarget: 'en';
+  studyTarget: LevelExamStudyTarget;
   sourceLocale: SourceLocale;
   seed: string;
   tasks: readonly LevelExamTask[];
@@ -108,7 +120,7 @@ export type LevelExamBlueprint = {
 
 export type BuildLevelExamBlueprintInput = {
   level: LevelExamLevel;
-  studyTarget: 'en';
+  studyTarget: LevelExamStudyTarget;
   sourceLocale: SourceLocale;
   seed: string;
   blueprintVersion?: LevelExamBlueprintVersion;

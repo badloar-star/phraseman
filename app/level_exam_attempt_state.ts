@@ -2,6 +2,8 @@ import { isPersistedExpandedResponse } from '../modules/expanded-formats/respons
 import type { ExpandedResponse } from '../modules/expanded-formats/types';
 import {
   SUPPORTED_LEVEL_EXAM_BLUEPRINT_VERSIONS,
+  isLevelExamStudyTarget,
+  type LevelExamStudyTarget,
   type LevelExamBlueprint,
   type LevelExamBlueprintVersion,
   type LevelExamLevel,
@@ -24,7 +26,7 @@ export type LevelExamAttemptSnapshot = {
   attemptId: string;
   finishToken: string;
   level: LevelExamLevel;
-  studyTarget: 'en';
+  studyTarget: LevelExamStudyTarget;
   sourceLocale: SourceLocale;
   blueprintVersion: LevelExamBlueprintVersion;
   seed: string;
@@ -45,7 +47,7 @@ export type CreateLevelExamAttemptInput = {
   ownerStableUid: string;
   startToken: string;
   level: LevelExamLevel;
-  studyTarget: 'en';
+  studyTarget: LevelExamStudyTarget;
   sourceLocale: SourceLocale;
   blueprintVersion: LevelExamBlueprintVersion;
   seed: string;
@@ -58,7 +60,7 @@ export type CreateLevelExamAttemptInput = {
 export type RestoreLevelExamAttemptContext = {
   ownerStableUid: string;
   level: LevelExamLevel;
-  studyTarget: 'en';
+  studyTarget: LevelExamStudyTarget;
   sourceLocale: SourceLocale;
   blueprintVersion: LevelExamBlueprintVersion;
   nowMs: number;
@@ -106,7 +108,7 @@ function isAttemptSnapshot(value: unknown): value is LevelExamAttemptSnapshot {
     || typeof attempt.attemptId !== 'string' || attempt.attemptId.trim() === ''
     || typeof attempt.finishToken !== 'string' || attempt.finishToken !== `${attempt.attemptId}:finish`
     || !['A1', 'A2', 'B1', 'B2'].includes(String(attempt.level))
-    || attempt.studyTarget !== 'en'
+    || !isLevelExamStudyTarget(attempt.studyTarget)
     || typeof attempt.sourceLocale !== 'string'
     || !isSupportedBlueprintVersion(attempt.blueprintVersion)
     || typeof attempt.seed !== 'string' || attempt.seed.trim() === ''

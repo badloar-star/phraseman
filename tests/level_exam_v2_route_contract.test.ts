@@ -8,7 +8,11 @@ describe('level exam v2 route contract', () => {
     const route = read('app/level_exam.tsx');
     expect(route).toContain('<LevelExamV2');
     // зачем (владелец 11.11, «Да, зачёты тоже»): новый движок — только английскому; у fr/es/de/it свой банк из курса языка.
-    expect(route).toContain('if (!classicExamTarget && !frenchExamBlocked)');
+    // зачем (владелец 11.11.2026, позже в тот же день: «Перевести на новые механики»): экзамен уровня всех пяти курсов идёт через
+    // новый движок, но каждый — СО СВОИМ языком. Прежнее правило «движок только английскому» заменено: суть та же —
+    // не-английский курс не получает английских заданий, — только теперь её держит передача языка курса в движок.
+    expect(route).toContain('if (!frenchExamBlocked) {');
+    expect(route).toContain("studyTarget={classicExamTarget ?? 'en'}");
     expect(route).toContain('loadClassicLevelExamQuestions');
   });
 

@@ -30,6 +30,7 @@ import {
   INITIAL_ODD_WORD_STATE, ODD_WORD_DURATION_SEC, ODD_WORD_SEED_TASKS, ODD_WORD_TRAIL_H, ODD_WORD_TRAIL_PATH, ODD_WORD_TRAIL_W,
   isValidOddWordTask, nextOddWordRound, oddWordTrail, tapOddWord,
 } from '../modules/games/odd_word_core';
+import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { safeRouterBack } from './navigation_back';
 
@@ -103,6 +104,11 @@ export default function GameOddWordScreen() {
       setFinished('time');
     }
   }, [finished, secondsLeft]);
+
+  // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
+  useEffect(() => {
+    if (finished) markWarmupGamePlayed('odd_word', `${game.solved}/${tasks.length}`);
+  }, [finished, game.solved, tasks.length]);
 
   const onTap = useCallback((index: number) => {
     if (lock.current || finished || !task) return;

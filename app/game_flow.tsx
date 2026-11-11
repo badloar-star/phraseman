@@ -27,6 +27,7 @@ import {
   FLOW_DEFAULT_ROUNDS, FLOW_TEMPO, buildFlowRounds, flowRoundTimings, isFlowHighTempo, nextFlowTempoLevel,
   type FlowItem, type FlowRound,
 } from '../modules/games/flow_core';
+import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { getClassicLessonPhrases, isClassicCourseLang } from './classic_course_phrases';
 import { safeRouterBack } from './navigation_back';
@@ -139,6 +140,11 @@ export default function GameFlowScreen() {
     clearTimers();
     cancelAnimation(beam);
   }, [beam, clearTimers]);
+
+  // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
+  useEffect(() => {
+    if (phase === 'done') markWarmupGamePlayed('flow', `${correctCount}/${rounds.length}`);
+  }, [correctCount, phase, rounds.length]);
 
   const round = rounds[Math.min(roundIndex, Math.max(0, rounds.length - 1))];
   const tempo = FLOW_TEMPO[tempoLevel];

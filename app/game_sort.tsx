@@ -26,6 +26,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import {
   INITIAL_SORT_STATE, SORT_HOT_THRESHOLD, SORT_SEED_DECK, dropSortCard, sortSideFromSwipe, type SortBin, type SortSide,
 } from '../modules/games/sort_core';
+import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { safeRouterBack } from './navigation_back';
 
@@ -86,6 +87,11 @@ export default function GameSortScreen() {
 
   const finished = game.index >= deck.tasks.length;
   const task = deck.tasks[game.index];
+
+  // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
+  useEffect(() => {
+    if (finished) markWarmupGamePlayed('sort', `${deck.tasks.length}/${deck.tasks.length}`);
+  }, [deck.tasks.length, finished]);
 
   const afterFly = useCallback((next: typeof game) => {
     setGame(next);

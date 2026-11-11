@@ -88,7 +88,8 @@ function Prompt({ round, phase, picked, onReplay }: Readonly<{ round: QuizRound;
         {prompt.before ? <Text style={[s.gapText, { color: p.text }]}>{prompt.before}</Text> : null}
         <View style={[s.hole, { backgroundColor: p.track }]}>
           {/* зачем: в пропуск всегда встаёт верное слово — его и красим по исходу ответа */}
-          <Text style={[s.gapText, { color: answered ? (ok ? p.correct : p.wrong) : 'transparent' }]}>{round.options[round.correctIndex]}</Text>
+          {/* зачем (найдено на эмуляторе 11.11): «прозрачный цвет» на телефоне оставался читаемым и выдавал ответ — до ответа слово скрыто прозрачностью слоя, место под него сохраняется */}
+          <Text accessible={answered} importantForAccessibility={answered ? 'auto' : 'no-hide-descendants'} style={[s.gapText, { color: ok ? p.correct : p.wrong, opacity: answered ? 1 : 0 }]}>{round.options[round.correctIndex]}</Text>
         </View>
         {prompt.after ? <Text style={[s.gapText, { color: p.text }]}>{prompt.after}</Text> : null}
       </View>
@@ -103,7 +104,7 @@ function Prompt({ round, phase, picked, onReplay }: Readonly<{ round: QuizRound;
         </Reanimated.View>
       ))}
       <Reanimated.View entering={FadeInDown.duration(320).delay(240)} style={[s.cell, s.cellHole, { backgroundColor: p.track }]}>
-        <Text style={[s.cellText, { color: answered ? p.correct : 'transparent' }]}>{round.options[round.correctIndex]}</Text>
+        <Text accessible={answered} importantForAccessibility={answered ? 'auto' : 'no-hide-descendants'} style={[s.cellText, { color: p.correct, opacity: answered ? 1 : 0 }]}>{round.options[round.correctIndex]}</Text>
       </Reanimated.View>
     </View>
   );

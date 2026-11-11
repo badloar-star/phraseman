@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Главная: новый вид</title>
+<style>
+/* ───────── PhraseMan · Главная «дорогой металл» (макет 11.11) ─────────
+   зачем (слово владельца 11.11): показать Главную, где сцена, фон, карточки и плитки сделаны глубокими градиентами и металлом,
+   всё в цветах текущей темы, с теми же ползунками, что на экране «Оформление».
+   Цвета НЕ придуманы для макета: pm_theme.js — это настоящие модули приложения (liquidGlassThemePalette, theme_tune, scene_palette,
+   liquidGlassShadowStyle), собранные esbuild из pm_entry.ts. Слева «Сейчас» — раскладка и размеры по коду компонентов Главной 1:1;
+   справа «Новый вид» — та же раскладка, меняется только материал поверхностей. */
+@font-face { font-family: Inter; src: url(fonts/Inter-Regular.ttf); font-weight: 400 500; }
+@font-face { font-family: Inter; src: url(fonts/Inter-SemiBold.ttf); font-weight: 600; }
+@font-face { font-family: Inter; src: url(fonts/Inter-Bold.ttf); font-weight: 700; }
+@font-face { font-family: Inter; src: url(fonts/Inter-Black.ttf); font-weight: 800 900; }
+@font-face { font-family: IoniconsApp; src: url(Ionicons.ttf); }
+:root { --ease-out: cubic-bezier(.23, 1, .32, 1); --pg: #0A0B0E; --pgx: #EEF1F6; --pgs: #9BA2AF; --pgc: #15171C; }
+:root[data-ap="light"] { --pg: #DCE0E7; --pgx: #14161B; --pgs: #555C6A; --pgc: #F4F6F9; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; background: var(--pg); color: var(--pgx); font-family: Inter, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.page { max-width: 1320px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 24px; line-height: 30px; margin: 0 0 6px; font-weight: 700; letter-spacing: -.4px; text-wrap: balance; }
+.lead { font-size: 15px; line-height: 22px; color: var(--pgs); margin: 0 0 22px; max-width: 70ch; }
+.wrap { display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; justify-content: center; }
+.cell { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+.cap { font-size: 15px; font-weight: 700; color: var(--pgx); height: 22px; display: flex; align-items: center; gap: 8px; }
+.cap span { font-weight: 500; color: var(--pgs); font-size: 13px; }
+
+/* ═════ панель «Оформление»: размеры как в app/settings_appearance.tsx и TuneSlider ═════ */
+.panel { width: 340px; position: sticky; top: 16px; display: flex; flex-direction: column; gap: 16px; }
+.seg { position: relative; height: 48px; border-radius: 16px; background: var(--pgc); padding: 4px; display: flex; box-shadow: 0 14px 26px -16px rgba(0, 0, 0, .5); }
+.seg i.th { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 12px; background: color-mix(in srgb, var(--pgx) 12%, var(--pgc)); transition: transform 240ms var(--ease-out); }
+.seg[data-v="dark"] i.th { transform: translateX(100%); }
+.seg button { position: relative; flex: 1; border: 0; background: none; color: var(--pgs); font: 700 16px Inter, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; border-radius: 12px; }
+.seg button[aria-pressed="true"] { color: var(--pgx); }
+.seg button .io { font-size: 18px; }
+.ocard { border-radius: 28px; background: var(--pgc); padding: 16px 16px 14px; box-shadow: 0 14px 26px -16px rgba(0, 0, 0, .5); }
+.ocard > b { display: block; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; margin-bottom: 4px; }
+.sl .lb { display: flex; justify-content: space-between; align-items: baseline; min-height: 22px; margin-top: 10px; }
+.sl .lb b { font-size: 16px; line-height: 22px; font-weight: 700; }
+.sl .lb span { font-size: 15px; color: var(--pgs); font-weight: 500; font-variant-numeric: tabular-nums; }
+.trk { position: relative; height: 34px; margin-top: 6px; touch-action: none; cursor: pointer; border-radius: 17px; outline: none; }
+.trk .bar { position: absolute; left: 0; right: 0; top: 7px; height: 20px; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(128, 128, 128, .18); }
+.trk .kn { position: absolute; top: 1px; left: 16px; width: 32px; height: 32px; margin-left: -16px; border-radius: 16px; background: #fff; box-shadow: 0 2px 10px rgba(0, 0, 0, .35), 0 0 0 1px rgba(0, 0, 0, .06); display: flex; align-items: center; justify-content: center; transition: transform 160ms var(--ease-out); }
+.trk .kn i { width: 22px; height: 22px; border-radius: 11px; display: block; }
+.trk:active .kn { transform: scale(1.08); }
+.trk:focus-visible .kn { box-shadow: 0 0 0 3px var(--pgx), 0 2px 10px rgba(0, 0, 0, .35); }
+.reset { margin-top: 12px; height: 44px; border-radius: 22px; border: 0; width: 100%; background: color-mix(in srgb, var(--pgx) 12%, var(--pgc)); color: var(--pgx); font: 700 16px Inter, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: transform 160ms var(--ease-out); }
+.reset:active { transform: scale(.97); }
+.reset[disabled] { opacity: .45; cursor: default; }
+.note { font-size: 13px; line-height: 19px; color: var(--pgs); margin: 0; }
+.note b { color: var(--pgx); font-weight: 600; }
+
+/* ═════ телефон 411 × 914 dp ═════ */
+.zw { position: relative; }
+.ph { position: relative; width: 411px; height: 914px; border-radius: 36px; overflow: hidden; background: var(--bg); color: var(--tx); box-shadow: 0 0 0 7px #000, 0 0 0 8px #2b2d33, 0 30px 70px -20px rgba(0, 0, 0, .6); transform-origin: 0 0; }
+.scr { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; background: linear-gradient(180deg, var(--bgTop), var(--bgBottom)); }
+.scr::-webkit-scrollbar { display: none; }
+.feed { position: relative; padding: 0 12px 118px; display: flex; flex-direction: column; gap: 12px; }
+.sbar { position: absolute; left: 0; right: 0; top: 0; height: 28px; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 0 22px 0 28px; font-size: 14px; font-weight: 600; color: #fff; pointer-events: none; }
+.sbar .r { display: flex; gap: 6px; align-items: center; } .sbar .bat { width: 20px; height: 10px; border-radius: 2.5px; background: currentColor; }
+.gest { position: absolute; left: 50%; bottom: 8px; width: 108px; height: 4px; border-radius: 2px; background: var(--tx); opacity: .8; transform: translateX(-50%); z-index: 40; }
+.press { transition: transform 160ms var(--ease-out); cursor: pointer; }
+.press:active { transform: scale(.97); }
+
+/* ── Сцена (HomeScene + HomeSceneStage): во всю ширину, низ r28, карточки наезжают на 32 ── */
+.scene { position: relative; margin: 0 -12px -44px; border-radius: 0 0 28px 28px; overflow: hidden; background: var(--scNow); }
+.scene .sky, .scene .stars, .scene .grain { position: absolute; inset: 0; pointer-events: none; }
+.scene .stars { width: 100%; height: 100%; }
+.hdr { position: relative; z-index: 2; padding: 40px 20px 0; display: flex; align-items: center; gap: 8px; }
+.hdr .stats { flex: 1; display: flex; gap: 8px; min-width: 0; }
+.pill { min-height: 36px; border-radius: 18px; padding: 0 12px; display: flex; align-items: center; gap: 4px; background: rgba(255, 255, 255, .16); color: #fff; font-size: 13px; line-height: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.pill .io { font-size: 20px; width: 20px; text-align: center; } .pill img { width: 20px; height: 20px; }
+.pill .dv { width: 1px; height: 18px; background: #fff; opacity: .22; margin: 0 4px; } .pill .io.sm { font-size: 16px; width: 16px; }
+.hdr .act { display: flex; align-items: center; gap: 7px; }
+.bell { width: 44px; height: 44px; border-radius: 22px; background: rgba(255, 255, 255, .16); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 22px; }
+.ava { position: relative; width: 56px; height: 56px; border-radius: 28px; padding: 3px; background: conic-gradient(from 200deg, var(--g1), var(--g3), var(--g2), var(--g1)); }
+.ava i { display: block; width: 100%; height: 100%; border-radius: 50%; background: var(--scNow); padding: 2px; }
+.ava i b { display: flex; width: 100%; height: 100%; border-radius: 50%; background: linear-gradient(160deg, var(--g1), var(--g3)); align-items: center; justify-content: center; color: var(--ctaInk); font-size: 19px; font-weight: 800; }
+.body { position: relative; z-index: 2; padding: 24px 20px 44px; }
+.kick { color: #fff; font-size: 13px; line-height: 17px; text-shadow: 0 1px 10px rgba(0, 0, 0, .38); }
+.ttl { color: #fff; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -.5px; margin-top: 4px; text-shadow: 0 1px 10px rgba(0, 0, 0, .38); }
+.lrow { display: flex; align-items: center; gap: 10px; margin-top: 10px; color: rgba(255, 255, 255, .88); font-size: 13px; line-height: 17px; font-variant-numeric: tabular-nums; }
+.lrow .pb { width: 72px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; } .lrow .pb i { display: block; height: 100%; width: 24%; background: #fff; border-radius: 2px; }
+.week { display: flex; align-items: center; min-height: 48px; margin-top: 8px; padding: 4px 0; }
+.week div { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 13px; color: rgba(255, 255, 255, .78); }
+.week i { width: 18px; height: 18px; border-radius: 9px; border: 1.5px solid rgba(255, 255, 255, .78); display: block; }
+.week .on i { background: #fff; border-color: #fff; } .week .now { color: #fff; } .week .now i { border-color: #fff; }
+.cta { position: relative; margin-top: 16px; min-height: 50px; border-radius: 25px; background: #fff; color: #121318; font-size: 16px; line-height: 21px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; overflow: hidden; }
+.cta .io { font-size: 18px; }
+
+/* ── Плитки (HomeV2FeatureTiles, ряд из четырёх) ── */
+.tiles { position: relative; z-index: 3; display: flex; gap: 10px; }
+.tile { position: relative; flex: 1; border-radius: 20px; padding: 6px 4px 10px; display: flex; flex-direction: column; align-items: center; background: var(--card); box-shadow: var(--shP); }
+.tile .art { position: relative; width: 100%; height: 58px; } .tile .art canvas { position: absolute; left: 50%; top: 0; height: 58px; width: 58px; transform: translateX(-50%); }
+.tile b { position: relative; font-size: 13px; line-height: 17px; font-weight: 700; text-align: center; }
+
+/* ── «Сегодня» (HomeV2TodayCard, вид со сценой) ── */
+.today { position: relative; z-index: 3; border-radius: 28px; padding: 14px 16px 6px; background: var(--card); box-shadow: var(--shP); }
+.today .th { position: relative; display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+.today .th b { flex: 1; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; } .today .th span { font-size: 13px; line-height: 17px; color: var(--sec); }
+.row { position: relative; min-height: 52px; padding: 8px 0; display: flex; align-items: center; gap: 12px; }
+.row + .row { border-top: 1px solid var(--hair); }
+.row .ri { width: 36px; height: 36px; border-radius: 12px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--tx); flex: none; }
+.row .rt { flex: 1; min-width: 0; } .row .rt b { display: block; font-size: 16px; line-height: 20px; font-weight: 700; } .row .rt i { display: block; font-style: normal; font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 1px; }
+.row .rc { font-size: 13px; line-height: 17px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
+.row .tick { font-size: 18px; color: var(--acc); }
+
+/* ── Видео (HomeV2VideoRail): 246 × 138, шаг 9 ── */
+.vid > b { display: block; font-size: 16px; line-height: 20px; font-weight: 700; min-height: 26px; margin-bottom: 2px; padding-top: 3px; }
+.rail { display: flex; gap: 9px; overflow-x: auto; margin-right: -12px; padding-right: 20px; padding-bottom: 2px; scrollbar-width: none; } .rail::-webkit-scrollbar { display: none; }
+.vc { position: relative; flex: none; width: 246px; height: 138px; overflow: hidden; background: var(--plate50); display: flex; align-items: flex-end; padding: 8px; color: #fff; }
+.vc .poster { position: absolute; inset: 0; }
+.vc .io { position: relative; font-size: 26px; } .vc span { position: absolute; left: 12px; right: 12px; top: 12px; font-size: 16px; line-height: 20px; font-weight: 700; text-shadow: 0 1px 10px rgba(0, 0, 0, .4); }
+
+/* ── «Фраза дня» (DailyPhraseCard homeV2 со сценой) ── */
+.pod { position: relative; min-height: 80px; border-radius: 18px; padding: 10px 14px; display: flex; align-items: center; gap: 12px; background: var(--plate50); box-shadow: var(--shP); overflow: hidden; }
+.pod canvas { position: relative; width: 52px; height: 52px; flex: none; }
+.pod .pt { position: relative; flex: 1; min-width: 0; } .pod small { display: block; font-size: 13px; line-height: 17px; color: var(--sec); } .pod b { display: block; font-size: 16px; line-height: 21px; font-weight: 700; margin-top: 2px; } .pod em { display: block; font-style: normal; font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 2px; }
+.pod > .io { position: relative; font-size: 18px; color: var(--sec); }
+
+/* ── Таб-бар ── */
+.tabbar { position: absolute; left: 12px; right: 12px; bottom: 30px; height: 66px; border-radius: 33px; background: var(--tabNow); box-shadow: var(--shP); z-index: 20; display: flex; align-items: center; padding: 0 9px; }
+.tabbar .tb { flex: 1; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--sec); }
+.tabbar .tb.on { background: var(--capNow); color: var(--accB); }
+
+/* ═════════ НОВЫЙ ВИД: тот же каркас, другой материал ═════════ */
+/* фон экрана: глубокий градиент темы + два мягких света (bgGlow темы) */
+.lux .scr { background: radial-gradient(90% 34% at 0% 46%, var(--glow1), transparent 70%), radial-gradient(80% 30% at 100% 78%, var(--glow2), transparent 72%), linear-gradient(180deg, var(--bgTop) 0%, var(--bg) 62%, var(--bgBottom) 100%); }
+/* сцена: трёхтоновый градиент оттенка темы, свет слева сверху, второй тон справа снизу, полоса блика, зерно металла */
+.lux .scene { background: var(--scA); box-shadow: 0 22px 40px -22px var(--scShadow); }
+.lux .scene .sky { background: radial-gradient(120% 72% at 10% -10%, var(--scLight), transparent 62%), radial-gradient(95% 62% at 104% 108%, var(--scSecond), transparent 66%), linear-gradient(112deg, transparent 28%, rgba(255, 255, 255, .075) 44%, rgba(255, 255, 255, .02) 52%, transparent 62%), linear-gradient(168deg, var(--scA) 0%, var(--scB) 46%, var(--scC) 100%); }
+.lux .scene .grain { opacity: .5; mix-blend-mode: soft-light; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>"); }
+.lux .scene::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .34) 30%, rgba(255, 255, 255, .1) 70%, transparent); z-index: 2; }
+/* стекло шапки: перелив и блик кромки вместо ровных 16 % */
+.lux .pill, .lux .bell { background: linear-gradient(180deg, rgba(255, 255, 255, .26), rgba(255, 255, 255, .10)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .34), inset 0 -1px 0 rgba(0, 0, 0, .10), 0 8px 18px -10px rgba(0, 0, 0, .45); }
+.lux .ava { box-shadow: 0 8px 20px -8px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .5); }
+.lux .ava i { background: var(--scA); }
+.lux .lrow .pb i { background: linear-gradient(90deg, #fff, var(--tint)); }
+.lux .week .on i { background: linear-gradient(160deg, #fff 20%, var(--tint)); border-color: transparent; box-shadow: 0 2px 6px -1px rgba(0, 0, 0, .4), inset 0 1px 0 #fff; }
+/* главная кнопка: полированный металл в оттенок темы */
+.lux .cta { background: linear-gradient(180deg, #fff 0%, var(--metalMid) 54%, var(--metalLow) 100%); box-shadow: inset 0 1px 0 #fff, inset 0 -1px 0 rgba(0, 0, 0, .10), 0 16px 28px -14px var(--scShadow); }
+.lux .cta::after { content: ''; position: absolute; top: 0; bottom: 0; left: -40%; width: 34%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .85), transparent); transform: skewX(-18deg); animation: sweep 7s var(--ease-out) 1.2s infinite; }
+@keyframes sweep { 0% { left: -40%; } 16%, 100% { left: 120%; } }
+/* поверхности: вертикальный градиент плашки темы + блик угла + тонкая металлическая кромка (не рамка: 1 px, полупрозрачная, градиентом) */
+.lux .tabbar, .lux .vc { background: linear-gradient(180deg, var(--pfA), var(--pfB)); box-shadow: var(--shP), inset 0 1px 0 var(--rim); }
+/* блик угла лежит в самом фоне, ПОД текстом (отдельный слой поверх обесцвечивал заголовки в светлом оформлении) */
+.lux .tile, .lux .today { background: linear-gradient(132deg, var(--sheen), transparent 36%), linear-gradient(180deg, var(--pfA), var(--pfB)); box-shadow: var(--shP), inset 0 1px 0 var(--rim); }
+.lux .pod { background: radial-gradient(60% 120% at 0% 50%, var(--accWash), transparent 70%), linear-gradient(132deg, var(--sheen), transparent 36%), linear-gradient(180deg, var(--pfA), var(--pfB)); box-shadow: var(--shP), inset 0 1px 0 var(--rim); }
+.lux .tile::before, .lux .today::before, .lux .pod::before, .lux .tabbar::before, .lux .vc::before { content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(140deg, var(--rimHi), transparent 34%, transparent 62%, var(--rimAcc)); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; z-index: 4; }
+.lux .tile .art::before { content: ''; position: absolute; left: 12%; right: 12%; bottom: -2px; height: 26px; border-radius: 50%; background: radial-gradient(closest-side, var(--accGlow), transparent); }
+.lux .row .ri { background: linear-gradient(150deg, var(--rfA), var(--ctl)); box-shadow: inset 0 1px 0 var(--rim), 0 6px 12px -7px var(--chipSh); color: var(--acc); }
+.lux .row .tick { width: 26px; height: 26px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 15px; color: var(--ctaInk); background: linear-gradient(160deg, var(--g1), var(--g3)); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .45), 0 6px 12px -6px var(--accGlow); }
+.lux .vc { border-radius: 18px; box-shadow: var(--shP); }
+.lux .vc .poster { background: radial-gradient(90% 90% at 16% 0%, var(--scLight), transparent 60%), linear-gradient(150deg, var(--scB), var(--scA)); }
+.lux .vc:nth-child(2) .poster { background: radial-gradient(90% 90% at 90% 10%, var(--scSecond), transparent 60%), linear-gradient(200deg, var(--scC), var(--scA)); }
+.lux .vc:nth-child(3) .poster { background: radial-gradient(80% 90% at 50% 110%, var(--scLight), transparent 60%), linear-gradient(120deg, var(--scA), var(--scB)); }
+.lux .pod { border-radius: 22px; }
+.lux .tabbar .tb.on { background: linear-gradient(180deg, var(--capA), var(--capB)); box-shadow: inset 0 1px 0 var(--rim); }
+.now .vc .poster { background: linear-gradient(150deg, var(--ctl), var(--card)); }
+.now .vc { color: var(--tx); } .now .vc span { text-shadow: none; }
+
+@media (prefers-reduced-motion: reduce) { .lux .cta::after { animation: none; display: none; } .press, .seg i.th, .trk .kn, .reset { transition: none; } }
+@media (max-width: 760px) { .panel { position: static; width: min(411px, 100%); } }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Главная: новый вид поверхностей</h1>
+  <p class="lead">Слева Главная как в приложении сейчас, справа та же раскладка с градиентами и металлом. Оба экрана красятся настоящим кодом темы приложения: двигайте ползунки, как на экране «Оформление».</p>
+  <div class="wrap">
+    <div class="panel">
+      <div class="seg" id="seg" data-v="dark"><i class="th"></i><button data-ap="light" aria-pressed="false"><i class="io" data-io="sunny"></i>Светлая</button><button data-ap="dark" aria-pressed="true"><i class="io" data-io="moon"></i>Тёмная</button></div>
+      <div class="ocard"><b>Цвет</b>
+        <div class="sl"><div class="lb"><b>Оттенок</b><span id="hueV"></span></div><div class="trk" id="hueT" role="slider" tabindex="0" aria-label="Оттенок" aria-valuemin="0" aria-valuemax="359"><div class="bar" id="hueB"></div><div class="kn" id="hueK"><i></i></div></div></div>
+        <div class="sl"><div class="lb"><b>Насыщенность</b><span id="satV"></span></div><div class="trk" id="satT" role="slider" tabindex="0" aria-label="Насыщенность" aria-valuemin="0" aria-valuemax="100"><div class="bar" id="satB"></div><div class="kn" id="satK"><i></i></div></div></div>
+        <button class="reset" id="reset"><i class="io" data-io="refresh"></i>Вернуть стандартный</button>
+      </div>
+      <p class="note" id="note"></p>
+    </div>
+    <div class="cell"><div class="cap">Сейчас <span>по коду приложения</span></div><div class="zw"><div class="ph now" id="phNow"></div></div></div>
+    <div class="cell"><div class="cap">Новый вид <span>градиенты и металл</span></div><div class="zw"><div class="ph lux" id="phLux"></div></div></div>
+  </div>
+</div>
+<script src="pm_theme.js"></script>
+<script>
+(() => {
+'use strict';
+const LOG = '[HOME-LUXE]';
+/* значки Ionicons — коды из glyphmap приложения (@expo/vector-icons) */
+const CODE = { book: 61861, 'book-outline': 61862, 'chat': 61971, check: 61981, next: 62011, copy: 62096, flame: 62227, flash: 62230, home: 62338, moon: 62560, bell: 62591, people: 62623, play: 62662, 'play-circle': 62669, refresh: 62740, settings: 62827, sunny: 62893, trend: 62972, videocam: 62989 };
+const io = (n, cls = '') => `<i class="io ${cls}">${String.fromCharCode(CODE[n])}</i>`;
+document.querySelectorAll('[data-io]').forEach((e) => { e.textContent = String.fromCharCode(CODE[e.dataset.io]); });
+
+const STD = PM.THEME_TUNE_STANDARD; // { H: 250, S: 35 } — «Стандартный» приложения
+const st = { ap: 'dark', H: STD.H, S: STD.S };
+/* размер сцены в dp: ширина экрана × фактическая высота блока (шапка 52 + текст + неделя + кнопка), как меряет HomeSceneStage */
+const SCENE_W = 411; const SCENE_H = 354; const DP = 2.625;
+
+/* ───────── цвет: помощники ───────── */
+const ok = (L, C, H) => PM.oklchToHex(L, Math.max(0, C), ((H % 360) + 360) % 360);
+const rgbOf = (hex) => { const n = parseInt(hex.slice(1, 7), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; };
+const hexA = (hex, a) => { const [r, g, b] = rgbOf(hex); return `rgba(${r},${g},${b},${a})`; };
+const lum = (c) => { const s = c.map((v) => { const x = v / 255; return x <= .03928 ? x / 12.92 : Math.pow((x + .055) / 1.055, 2.4); }); return .2126 * s[0] + .7152 * s[1] + .0722 * s[2]; };
+const whiteOn = (hex) => 1.05 / (lum(rgbOf(hex)) + .05);
+const mix = (a, b, k) => { const x = rgbOf(a); const y = rgbOf(b); return '#' + x.map((v, i) => Math.round(v + (y[i] - v) * k).toString(16).padStart(2, '0')).join(''); };
+const shadowCss = (layers) => layers.length ? layers.map((l) => `${l.offsetX}px ${l.offsetY}px ${l.blurRadius}px ${l.spreadDistance}px ${l.color}`).join(',') : 'none';
+
+/* ───────── все цвета двух экранов из (оформление, оттенок, насыщенность) ───────── */
+function compute() {
+  const id = PM.themeTuneId({ H: st.H, S: st.S });
+  const g = PM.liquidGlassTokens(id, { appearance: st.ap, intensity: 1 }); // насыщенность поверхностей 1 — значение по умолчанию приложения (theme_first_run_default)
+  const gMax = PM.liquidGlassTokens(id, { level: 'max', appearance: st.ap }); // сцена всегда считается от уровня «Максимум» (HOME_SCENE_THEME_LEVEL)
+  const sc = PM.approvedScene(gMax, st.ap, 'home', Math.round(SCENE_W * DP), Math.round(SCENE_H * DP), { dp: DP });
+  const dark = st.ap === 'dark';
+  const P = sc.palette; const Ct = P.Ct; const SH = P.H;
+  // «Сейчас»: тёмное — один тон неба (SceneBackdrop), светлое — градиент верх → середина и два света
+  let scNow; let skyNow;
+  if (PM.isSkyPalette(sc)) { scNow = PM.skyToneHex(sc); skyNow = `linear-gradient(145deg, rgba(255,255,255,.07), transparent 70%), ${scNow}`; }
+  else { const s = sc.spec; const hx = (c) => '#' + c.map((v) => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, '0')).join(''); const top = hx(s.top); const mid = mix(top, hx(s.bot), .5); scNow = top;
+    skyNow = s.lights.map((l) => `radial-gradient(${l.rx * 100 * l.fade}% ${l.ry * 100 * l.fade}% at ${l.cx * 100}% ${l.cy * 100}%, ${hexA(hx(l.color), l.a)}, transparent)`).join(',') + `, linear-gradient(158deg, ${top} 0%, ${mid} 50%, ${mid} 100%)`; }
+  // «Новый вид»: три тона того же оттенка; низ сцены (зона текста) держит белый ≥ 4,6 — страж как у приложения
+  const second = ok(dark ? .66 : .70, Math.min(Ct, .13), SH + 40);
+  const secondA = dark ? .24 : .22;
+  let Lc = dark ? .46 : .50; let scC = ok(Lc, Ct, SH + 12);
+  while (whiteOn(mix(scC, second, secondA)) < 4.6 && Lc > .2) { Lc -= .01; scC = ok(Lc, Ct, SH + 12); }
+  const scA = ok(dark ? .21 : .30, Ct * .78, SH - 14); const scB = ok(dark ? .33 : .40, Ct * .95, SH);
+  const grad = g.accentGradient.length >= 3 ? g.accentGradient : [g.accentGradient[0], g.accent, g.accentGradient[g.accentGradient.length - 1]];
+  const v = {
+    bg: g.bg, bgTop: g.bgTop, bgBottom: g.bgBottom, card: g.opaqueCard, ctl: g.opaqueControl, tx: g.text, sec: g.secondary, hair: g.text.slice(0, 7) + '12',
+    acc: g.accentGraphic, accB: g.accentBright, ctaInk: g.accentInk, g1: grad[0], g2: grad[1], g3: grad[2],
+    shP: shadowCss(PM.plateShadowStyle(g)), plate50: hexA(g.plateFillFrom, .5),
+    tabNow: hexA(g.opaqueControl, .9), capNow: hexA(g.accentCap.slice(0, 7), .32),
+    scNow, skyNow,
+    // новый вид
+    pfA: g.plateFillFrom, pfB: g.plateFillTo, rfA: g.raisedFillFrom,
+    glow1: hexA(g.bgGlow[0].slice(0, 7), dark ? .34 : .55), glow2: hexA((g.bgGlow[1] || g.bgGlow[0]).slice(0, 7), dark ? .26 : .45),
+    scA, scB, scC, scLight: hexA(ok(.80, Math.min(Ct, .12), SH + 8), dark ? .40 : .46), scSecond: hexA(second, secondA), scShadow: hexA(scA, dark ? .95 : .55),
+    tint: ok(.90, Math.min(Ct, .07), SH), metalMid: ok(.955, .012, SH), metalLow: ok(.875, .032, SH),
+    rim: dark ? 'rgba(255,255,255,.07)' : 'rgba(255,255,255,.95)', rimHi: dark ? 'rgba(255,255,255,.30)' : 'rgba(255,255,255,1)', rimAcc: hexA(g.accentGraphic, dark ? .30 : .22),
+    sheen: dark ? 'rgba(255,255,255,.055)' : 'rgba(255,255,255,.75)', accGlow: hexA(g.accentGraphic, dark ? .30 : .20), accWash: hexA(g.accentGraphic, dark ? .13 : .09),
+    chipSh: dark ? 'rgba(0,0,0,.7)' : hexA(g.accentGraphic, .35), capA: hexA(grad[1], dark ? .40 : .22), capB: hexA(grad[2], dark ? .20 : .12),
+  };
+  return { id, g, sc, v, checks: { whiteTitleLux: +whiteOn(mix(scC, second, secondA)).toFixed(2), whiteTitleNow: +whiteOn(scNow).toFixed(2), textOnCard: +(((lum(rgbOf(g.text)) + .05) / (lum(rgbOf(g.plateFillTo)) + .05)) ** (dark ? 1 : -1)).toFixed(2) } };
+}
+
+/* ───────── звёзды сцены: те же точки, что считает scene_palette (сид 3, 70 шт., верхние 40 %) + нижние как в SceneBackdrop ───────── */
+function starsSvg(sc) {
+  if (!PM.isSkyPalette(sc)) return '';
+  let s2 = 0x9e3779b9; const rnd = () => { s2 ^= s2 << 13; s2 >>>= 0; s2 ^= s2 >>> 17; s2 ^= s2 << 5; s2 >>>= 0; return s2 / 4294967296; };
+  const low = []; for (let i = 0; i < 102; i += 1) low.push({ x: rnd(), y: .4 + rnd() * .58, r: .9 + rnd() * .9, a: .3 + rnd() * .35 });
+  const W = sc.size.W; const H = sc.size.H;
+  return `<svg class="stars" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${[...sc.stars.list, ...low].map((s) => `<circle cx="${(s.x * W).toFixed(1)}" cy="${(s.y * H).toFixed(1)}" r="${s.r.toFixed(2)}" fill="#fff" fill-opacity="${s.a.toFixed(2)}"/>`).join('')}</svg>`;
+}
+
+/* ───────── разметка Главной: порядок блоков как в renderHomeV2 (сцена → плитки → «Сегодня» → видео → «Фраза дня») ───────── */
+const WEEK = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+const TASKS = [['book-outline', 'Пройди урок', 'Один шаг в обычном курсе', 'done'], ['chat', 'Потренировать диалог', '', '0/1'], ['copy', 'Повторить карточки', 'Не менее 10 слов', '4/10']];
+const TILES = [['lessons', 'Уроки'], ['cards', 'Карточки'], ['dialogs', 'Диалоги'], ['spire_tile', 'Пик']];
+const VIDEOS = ['Как звучит живой английский', '10 фраз для кафе', 'Small talk без пауз'];
+function homeHTML(lux) {
+  return `<div class="scr"><div class="feed">
+    <div class="scene"><div class="sky" data-sky></div><div data-stars></div>${lux ? '<div class="grain"></div>' : ''}
+      <div class="hdr"><div class="stats"><div class="pill press">${io('flame')}5 дней</div><div class="pill press"><img src="art/coin.webp" alt="">690<i class="dv"></i>${io('flash', 'sm')}∞</div></div>
+        <div class="act"><div class="bell press">${io('bell')}</div><div class="ava press"><i><b>A</b></i></div></div></div>
+      <div class="body"><div class="kick">Урок 1</div><div class="ttl">Местоимения и глагол To Be</div>
+        <div class="lrow"><div class="pb"><i></i></div>12 из 50</div>
+        <div class="week">${WEEK.map((d, i) => `<div class="${i < 3 ? 'on' : ''}${i === 3 ? ' now' : ''}"><i></i>${d}</div>`).join('')}</div>
+        <div class="cta press">${io('play')}Продолжить</div></div></div>
+    <div class="tiles">${TILES.map(([k, n]) => `<div class="tile press"><div class="art"><canvas data-tile="${k}"></canvas></div><b>${n}</b></div>`).join('')}</div>
+    <div class="today"><div class="th"><b>Сегодня</b><span>Все задания</span></div>${TASKS.map(([ic, t, s, c]) => `<div class="row press"><div class="ri">${io(ic)}</div><div class="rt"><b>${t}</b>${s ? `<i>${s}</i>` : ''}</div>${c === 'done' ? `<div class="tick">${io('check')}</div>` : `<div class="rc">${c}</div>`}</div>`).join('')}</div>
+    <div class="vid"><b>Видео</b><div class="rail">${VIDEOS.map((t) => `<div class="vc press"><div class="poster"></div><span>${t}</span>${io('play-circle')}</div>`).join('')}</div></div>
+    <div class="pod press"><canvas data-tile="phrase_of_day"></canvas><div class="pt"><small>Фраза дня</small><b>Break the ice</b><em>Растопить лёд</em></div>${io('next')}</div>
+  </div></div>
+  <div class="tabbar">${['home', 'book', 'videocam', 'people', 'settings'].map((n, i) => `<div class="tb${i === 0 ? ' on' : ''}">${io(n)}</div>`).join('')}</div>
+  <div class="sbar"><span>9:41</span><span class="r">${io('flash')}<span class="bat"></span></span></div><div class="gest"></div>`;
+}
+
+/* ───────── картинки плиток: основа + слой .accent в цвет темы (как ThemedArtLayers) ───────── */
+const IMG = {}; const imgOf = (src) => IMG[src] || (IMG[src] = new Promise((res) => { const im = new Image(); im.onload = () => res(im); im.onerror = () => { console.warn(LOG, 'нет картинки', src); res(null); }; im.src = src; }));
+async function drawTile(cv, ap, tint) {
+  const name = cv.dataset.tile; const key = `${ap}|${tint}`; if (cv.dataset.key === key) return; cv.dataset.key = key;
+  const hasAccent = !(name === 'phrase_of_day' && ap === 'dark'); // у тёмной «Фразы дня» слоя .accent в наборе нет
+  const [base, acc] = await Promise.all([imgOf(`art/${ap}/${name}.webp`), hasAccent ? imgOf(`art/${ap}/${name}.accent.webp`) : null]);
+  if (cv.dataset.key !== key) return; // поздний ответ не затирает свежий цвет
+  cv.width = 192; cv.height = 192; const c = cv.getContext('2d'); if (base) c.drawImage(base, 0, 0, 192, 192);
+  if (!acc) return;
+  const tmp = document.createElement('canvas'); tmp.width = 192; tmp.height = 192; const tg = tmp.getContext('2d'); tg.drawImage(acc, 0, 0, 192, 192); tg.globalCompositeOperation = 'source-in'; tg.fillStyle = tint; tg.fillRect(0, 0, 192, 192); c.drawImage(tmp, 0, 0);
+}
+
+/* ───────── отрисовка ───────── */
+const phNow = document.getElementById('phNow'); const phLux = document.getElementById('phLux');
+phNow.innerHTML = homeHTML(false); phLux.innerHTML = homeHTML(true);
+const phones = [phNow, phLux]; let lastStarsKey = '';
+function render() {
+  let r; try { r = compute(); } catch (err) { console.error(LOG, 'расчёт палитры упал', { H: st.H, S: st.S, ap: st.ap, err: String(err) }); return; }
+  const { v, g, sc, checks } = r;
+  document.documentElement.dataset.ap = st.ap;
+  for (const ph of phones) {
+    for (const k in v) ph.style.setProperty('--' + k, v[k]);
+    if (ph === phNow) ph.querySelector('[data-sky]').style.background = v.skyNow;
+    ph.querySelectorAll('[data-tile]').forEach((cv) => { drawTile(cv, st.ap, g.accentGraphic); });
+  }
+  const starsKey = st.ap; if (starsKey !== lastStarsKey) { lastStarsKey = starsKey; const svg = starsSvg(sc); phones.forEach((ph) => { ph.querySelector('[data-stars]').innerHTML = svg; }); }
+  // панель
+  const hueL = st.ap === 'dark' ? .7 : .62; const satL = st.ap === 'dark' ? .7 : .6;
+  document.getElementById('hueB').style.background = `linear-gradient(90deg,${Array.from({ length: 13 }, (_, i) => ok(hueL, .14, i * 30)).join(',')})`;
+  document.getElementById('satB').style.background = `linear-gradient(90deg,${ok(satL, .004, st.H)},${ok(satL, PM.THEME_TUNE_CMAX, st.H)})`;
+  const place = (id, f) => { const k = document.getElementById(id); k.style.left = `calc(16px + (100% - 32px) * ${f})`; };
+  place('hueK', st.H / 359); place('satK', st.S / 100);
+  document.querySelector('#hueK i').style.background = ok(hueL, .14, st.H); document.querySelector('#satK i').style.background = g.accentGraphic;
+  document.getElementById('hueV').textContent = `${st.H}°`; document.getElementById('satV').textContent = `${st.S} %`;
+  document.getElementById('hueT').setAttribute('aria-valuenow', st.H); document.getElementById('satT').setAttribute('aria-valuenow', st.S);
+  document.getElementById('reset').disabled = st.H === STD.H && st.S === STD.S;
+  const seg = document.getElementById('seg'); seg.dataset.v = st.ap; seg.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.ap === st.ap)));
+  document.getElementById('note').innerHTML = `Тема приложения <b>${r.id}</b>. Белый заголовок на новой сцене: <b>${checks.whiteTitleLux}:1</b> (нужно от 4,5), на нынешней: <b>${checks.whiteTitleNow}:1</b>. Текст на карточке: <b>${checks.textOnCard}:1</b>.`;
+  console.log(LOG, JSON.stringify({ id: r.id, ap: st.ap, mode: sc.mode, accent: g.accentGraphic, card: [g.plateFillFrom, g.plateFillTo], scene: [v.scA, v.scB, v.scC], checks }));
+}
+let raf = 0; const schedule = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; render(); }); };
+
+/* ───────── ввод: ползунки (указатель и стрелки), сегмент, сброс ───────── */
+function slider(id, max, set, get) {
+  const tr = document.getElementById(id); let on = false;
+  const move = (e) => { const r = tr.getBoundingClientRect(); const f = Math.max(0, Math.min(1, (e.clientX - r.left - 16) / Math.max(1, r.width - 32))); set(Math.round(f * max)); schedule(); };
+  tr.addEventListener('pointerdown', (e) => { on = true; tr.setPointerCapture(e.pointerId); move(e); });
+  tr.addEventListener('pointermove', (e) => { if (on) move(e); });
+  const end = () => { on = false; }; tr.addEventListener('pointerup', end); tr.addEventListener('pointercancel', end);
+  tr.addEventListener('keydown', (e) => { const d = e.key === 'ArrowRight' || e.key === 'ArrowUp' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowDown' ? -1 : 0; if (!d) return; e.preventDefault(); set(Math.max(0, Math.min(max, get() + d * (e.shiftKey ? 10 : 1)))); schedule(); });
+}
+slider('hueT', 359, (x) => { st.H = x; }, () => st.H); slider('satT', 100, (x) => { st.S = x; }, () => st.S);
+document.querySelectorAll('#seg button').forEach((b) => b.addEventListener('click', () => { st.ap = b.dataset.ap; schedule(); }));
+document.getElementById('reset').addEventListener('click', () => { st.H = STD.H; st.S = STD.S; schedule(); });
+
+/* телефон целиком на узком экране: масштаб вместо горизонтальной прокрутки */
+function fit() { const z = Math.min(1, (Math.min(window.innerWidth, 1320) - 48) / 411); document.querySelectorAll('.zw').forEach((w) => { w.style.width = `${411 * z}px`; w.style.height = `${914 * z}px`; w.firstElementChild.style.transform = z < 1 ? `scale(${z})` : ''; }); }
+window.addEventListener('resize', fit); fit();
+const q = new URLSearchParams(location.search); if (q.get('H')) st.H = Math.max(0, Math.min(359, +q.get('H') | 0)); if (q.get('S')) st.S = Math.max(0, Math.min(100, +q.get('S') | 0)); if (q.get('ap') === 'light' || q.get('ap') === 'dark') st.ap = q.get('ap');
+(document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(render);
+})();
+</script>
+</body>
+</html>

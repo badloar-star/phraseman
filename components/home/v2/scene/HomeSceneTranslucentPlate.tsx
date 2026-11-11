@@ -11,7 +11,7 @@
 import React, { memo } from 'react';
 import { View, type ViewStyle } from 'react-native';
 
-import { useShadowGlass } from '../../../v2/ShadowSurface';
+import { PlateFill, useShadowGlass } from '../../../v2/ShadowSurface';
 import { HOME_LIGHT_SHADOW_BOOST, boostColorAlpha, homePlateFill } from '../homePlate';
 import HomeScenePlateShadow from './HomeScenePlateShadow';
 
@@ -31,7 +31,8 @@ function HomeSceneTranslucentPlate({ kind, radius }: Props) {
   return (
     <>
       <HomeScenePlateShadow kind={kind} isLight={g.isLight} shadow={boostColorAlpha(g.plateShadow, boost)} shadowSoft={boostColorAlpha(g.plateShadowSoft, boost)} />
-      <View pointerEvents="none" style={[FILL, { borderRadius: radius, backgroundColor: homePlateFill(g) }]} />
+      {/* зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): у «Авроры» плашка плотная, градиентом материала; у остальных тем — прежняя заливка 50 % */}
+      {g.aurora ? <PlateFill g={g} radius={radius} /> : <View pointerEvents="none" style={[FILL, { borderRadius: radius, backgroundColor: homePlateFill(g) }]} />}
     </>
   );
 }

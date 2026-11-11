@@ -11,7 +11,7 @@ import React, { memo, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import Svg, { Defs, G, LinearGradient, Path, RadialGradient, Rect, Stop } from 'react-native-svg';
 
-import { isSkyPalette, SCENE_SKY_TONE_MIX, type ScenePaletteResult } from './scene_palette';
+import { isRassvetPalette, isSkyPalette, RASSVET_ANGLE_DEG, RASSVET_MID_AT, SCENE_SKY_TONE_MIX, type ScenePaletteResult } from './scene_palette';
 import SceneStarTwinkle, { SCENE_TWINKLE_EVERY } from './SceneStarTwinkle';
 import { groupStarsByAlpha } from './scene_star_paths';
 
@@ -114,6 +114,33 @@ function SceneBackdrop({ palette, idPrefix, active = true }: Props) {
       </Svg>
       <SceneStarTwinkle stars={ALL_STARS(p.stars.list)} active={active} />
       </>
+    );
+  }
+  if (isRassvetPalette(palette)) {
+    // зачем (владелец 11.11, макет «1 в 1»): сцена «Рассвет» — градиент 168° в три тона и тёплый свет снизу справа; линия градиента считается как у CSS (через центр области)
+    const r = palette;
+    const rad = (RASSVET_ANGLE_DEG * Math.PI) / 180;
+    const dx = Math.sin(rad);
+    const dy = -Math.cos(rad);
+    const half = (Math.abs(W * dx) + Math.abs(H * dy)) / 2;
+    const sun = r.lights[0]!;
+    return (
+      <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
+        <Defs>
+          <LinearGradient id={id('Dawn')} gradientUnits="userSpaceOnUse" x1={W / 2 - dx * half} y1={H / 2 - dy * half} x2={W / 2 + dx * half} y2={H / 2 + dy * half}>
+            <Stop offset="0" stopColor={r.gradient.top.hex} stopOpacity="1" />
+            <Stop offset={RASSVET_MID_AT} stopColor={r.gradient.mid.hex} stopOpacity="1" />
+            <Stop offset="1" stopColor={r.gradient.bottom.hex} stopOpacity="1" />
+          </LinearGradient>
+          <RadialGradient id={id('DawnSun')} gradientUnits="userSpaceOnUse" cx={sun.cx * W} cy={sun.cy * H} rx={sun.rx * W} ry={sun.ry * H} fx={sun.cx * W} fy={sun.cy * H}>
+            <Stop offset="0" stopColor={sun.color.hex} stopOpacity={r.spec.lights[0]!.a} />
+            <Stop offset={sun.fade} stopColor={sun.color.hex} stopOpacity="0" />
+            <Stop offset="1" stopColor={sun.color.hex} stopOpacity="0" />
+          </RadialGradient>
+        </Defs>
+        <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Dawn')})`} />
+        <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('DawnSun')})`} />
+      </Svg>
     );
   }
   const p = palette;

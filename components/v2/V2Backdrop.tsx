@@ -17,10 +17,33 @@ const GLOW_SPOTS = [
   { id: 'v2bgGlow3', cx: '26%', cy: '108%', rx: '80%', ry: '28%', end: 0.76 },
 ] as const;
 
+// зачем (владелец 11.11, макет «Аврора» 1 в 1): у «Авроры» четыре тихих пятна света по углам страницы — те же места и размеры, что в макете (.plain-bg)
+const AURORA_SPOTS = [
+  { id: 'v2bgAur1', cx: '0%', cy: '0%', rx: '90%', ry: '22%', end: 0.72, color: 1 },
+  { id: 'v2bgAur2', cx: '100%', cy: '4%', rx: '90%', ry: '24%', end: 0.72, color: 0 },
+  { id: 'v2bgAur3', cx: '0%', cy: '54%', rx: '70%', ry: '26%', end: 0.72, color: 0 },
+  { id: 'v2bgAur4', cx: '100%', cy: '84%', rx: '80%', ry: '30%', end: 0.72, color: 1 },
+] as const;
+
 const solid = (hex: string) => (hex.length === 9 ? hex.slice(0, 7) : hex);
 const opacityOf = (hex: string) => (hex.length === 9 ? parseInt(hex.slice(7), 16) / 255 : 1);
 
-const ThemeGlow = memo(function ThemeGlow({ colors }: { colors: readonly [string, string, string] }) {
+const ThemeGlow = memo(function ThemeGlow({ colors, aurora = false }: { colors: readonly [string, string, string]; aurora?: boolean }) {
+  if (aurora) {
+    return (
+      <Svg pointerEvents="none" width="100%" height="100%" style={StyleSheet.absoluteFill}>
+        <Defs>
+          {AURORA_SPOTS.map((spot) => (
+            <RadialGradient key={spot.id} id={spot.id} cx={spot.cx} cy={spot.cy} rx={spot.rx} ry={spot.ry} fx={spot.cx} fy={spot.cy}>
+              <Stop offset="0" stopColor={solid(colors[spot.color]!)} stopOpacity={opacityOf(colors[spot.color]!)} />
+              <Stop offset={String(spot.end)} stopColor={solid(colors[spot.color]!)} stopOpacity={0} />
+            </RadialGradient>
+          ))}
+        </Defs>
+        {AURORA_SPOTS.map((spot) => <Rect key={spot.id} x="0" y="0" width="100%" height="100%" fill={`url(#${spot.id})`} />)}
+      </Svg>
+    );
+  }
   return (
     <Svg pointerEvents="none" width="100%" height="100%" style={StyleSheet.absoluteFill}>
       <Defs>
@@ -68,7 +91,7 @@ function V2Backdrop({ deferGlow = false }: V2BackdropProps) {
     <>
       <LinearGradient
         pointerEvents="none"
-        colors={[p.bgTop, p.bg]}
+        colors={tokens.aurora ? [tokens.aurora.bgTop, tokens.aurora.bg] : [p.bgTop, p.bg]}
         start={{ x: 0.5, y: 0 }}
         end={{ x: 0.5, y: 0.6 }}
         style={StyleSheet.absoluteFill}
@@ -76,9 +99,9 @@ function V2Backdrop({ deferGlow = false }: V2BackdropProps) {
       {glow && glowReady ? (
         deferGlow && !reduceMotion ? (
           <Animated.View pointerEvents="none" entering={FadeIn.duration(280).easing(GLOW_EASE)} style={StyleSheet.absoluteFill}>
-            <ThemeGlow colors={glow} />
+            <ThemeGlow colors={glow} aurora={Boolean(tokens.aurora)} />
           </Animated.View>
-        ) : <ThemeGlow colors={glow} />
+        ) : <ThemeGlow colors={glow} aurora={Boolean(tokens.aurora)} />
       ) : null}
     </>
   );

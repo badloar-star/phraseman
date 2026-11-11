@@ -7,6 +7,7 @@ import { ThemeGlassSmoke } from '../v2/ThemeGlassSmoke';
 import { RowDivider } from '../v2/RowDivider';
 import { KitGlassLayer } from '../v2/KitLiquidGlass';
 import { nestedBoxShadow, plateBoxShadow } from '../v2/ShadowSurface';
+import { LinearGradient } from '../SafeLinearGradient';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 
 // зачем (владелец 2026-09-29): корневой экран «Настройки» переносится 1 в 1 по макету
@@ -91,6 +92,15 @@ export function SettingsGlassList({ children, marginTop }: { children: React.Rea
 }
 
 export function SettingsGlassTile({ glass, children }: { glass: SettingsGlass; children: React.ReactNode }) {
+  // зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): у «Авроры» значок строки белый на цветной подложке-градиенте материала (150°) с мягкой цветной тенью
+  if (glass.aurora) {
+    return (
+      <LinearGradient colors={[glass.aurora.chipFrom, glass.aurora.chipTo]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
+        style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', boxShadow: [{ offsetX: 0, offsetY: 8, blurRadius: 14, spreadDistance: -8, color: glass.aurora.chipTo }] }}>
+        {children}
+      </LinearGradient>
+    );
+  }
   return (
     // зачем (стиль «Тень»): плитка значка — вложенная плашка: тон и малая тень, без кромки и без слоя стекла.
     <View style={{ width: 41, height: 41, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: glass.dividerTone, boxShadow: nestedBoxShadow(glass) }}>
@@ -164,7 +174,7 @@ export function SettingsGlassRow({ glass, testID, title, sub, value, icon, leadi
       {leading ?? (icon ? (
         <SettingsGlassTile glass={glass}>
           {/* зачем (темы 2.0): значок плитки в цвете темы в «Акценте/Максимуме»; в «Спокойно» — как было. */}
-          <Ionicons name={icon} size={20} color={glass.level === 'accent' || glass.level === 'max' ? glass.accentText : glass.lightTint} />
+          <Ionicons name={icon} size={20} color={glass.aurora ? '#FFFFFF' /* theme-exempt: значок на цветной подложке материала — белый в любой теме (как в макете) */ : glass.level === 'accent' || glass.level === 'max' ? glass.accentText : glass.lightTint} />
         </SettingsGlassTile>
       ) : null)}
       <View style={{ flex: 1, minWidth: 0 }}>

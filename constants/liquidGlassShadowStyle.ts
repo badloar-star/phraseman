@@ -16,7 +16,7 @@ export const RAISED_LIFT = -3;
 
 type Tokens = Pick<GlassTokens,
   'isLight' | 'accent' | 'plateFillFrom' | 'plateFillTo' | 'raisedFillFrom' | 'raisedFillTo'
-  | 'plateShadow' | 'plateShadowSoft' | 'nestedShadow' | 'raisedShadow' | 'raisedShadowSoft'>;
+  | 'plateShadow' | 'plateShadowSoft' | 'nestedShadow' | 'raisedShadow' | 'raisedShadowSoft'> & Partial<Pick<GlassTokens, 'aurora'>>;
 
 // зачем (координатор 14.10, гипотеза падения qemu на размытых тенях): dev-рубильник «тени выкл» — только в памяти процесса, ссылка
 // dev_state?shadows=off. Все четыре функции ниже при включённом флаге отдают пустой список слоёв. В стор-сборке сеттер не срабатывает (__DEV__).
@@ -41,6 +41,8 @@ const gradient180 = (from: string, to: string): VerticalGradient =>
 
 /** Плашка: градиент 180°. */
 export function plateGradient(g: Tokens): VerticalGradient {
+  // зачем (владелец 11.11, макет «Аврора» 1 в 1): у плашки «Авроры» градиент идёт наискось (148°) и доходит до нижнего тона на 62 % пути — дальше ровный тон
+  if (g.aurora) return { colors: [g.plateFillFrom, g.plateFillTo], start: { x: 0, y: 0 }, end: { x: 0.4, y: 0.62 } };
   return gradient180(g.plateFillFrom, g.plateFillTo);
 }
 
@@ -52,6 +54,8 @@ export function raisedGradient(g: Tokens): VerticalGradient {
 /** Тень плашки: тёмная `0 16 28 −14`, светлая `0 14 26 −14` + мягкий `0 1 3`. */
 export function plateShadowStyle(g: Tokens): readonly ShadowLayer[] {
   if (devShadowsOff || isLiteModeOn()) return NO_SHADOW;
+  // «Аврора» (макет 1 в 1): тёмное `0 18 30 −14`, светлое `0 14 26 −12` + мягкий `0 1 3`; цвет — из материала (plateShadow / plateShadowSoft)
+  if (g.aurora) return g.isLight ? [layer(14, 26, -12, g.plateShadow), layer(1, 3, 0, g.plateShadowSoft)] : [layer(18, 30, -14, g.plateShadow)];
   return g.isLight
     ? [layer(14, 26, -14, g.plateShadow), layer(1, 3, 0, g.plateShadowSoft)]
     : [layer(16, 28, -14, g.plateShadow)];

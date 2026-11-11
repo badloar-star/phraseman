@@ -10,6 +10,8 @@
 // Чистый модуль без React и сети; вход — токены темы уровня «Максимум» (liquidGlassTokens), выход — числа (rgb 0…255 дробные, как в эталоне).
 // ═══════════════════════════════════════════════════════════════════════════
 import { liquidGlassTokens, type GlassTokens } from '../../constants/liquidGlassThemePalette';
+// зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»: «сцена всех разделов, где есть сцена, будет "Рассвет"»): цвета рассвета — из материала темы-ползунка
+import { auroraMaterialForTheme, type AuroraMaterial } from '../../constants/aurora_material';
 
 export type Rgb = readonly number[];
 export type SceneAppearance = 'dark' | 'light';
@@ -389,7 +391,38 @@ export function darkSky(t: SceneTokens, screen: SceneScreen, W: number, H: numbe
   };
 }
 
-export type ScenePaletteResult = ReturnType<typeof lightA> | ReturnType<typeof darkSky>;
+/** Геометрия сцены «Рассвет» (как в макете): градиент 168°, средний тон на 55 %; тёплый свет — эллипс 78 % × 76 % с центром (84 %, 104 %), гаснет к 70 % радиуса. */
+export const RASSVET_ANGLE_DEG = 168;
+export const RASSVET_MID_AT = 0.55;
+export const RASSVET_SUN = Object.freeze({ cx: 0.84, cy: 1.04, rx: 0.78, ry: 0.76, fade: 0.7 });
+
+/**
+ * 5. Сцена «Рассвет» — утверждена владельцем 11.11 для тем-ползунков в обоих оформлениях и на всех экранах со сценой (Главная, Диалоги, Пик, Сезон).
+ * Три тона вокруг оттенка темы и тёплый свет снизу справа; звёзд, лент и затемнения низа нет. Белый текст в зоне подписей держит страж материала (≥ 4,6).
+ * Форма результата — как у светлого «А» (градиент, света, без затемнения), поэтому экраны, читающие верх/низ сцены, работают без правок; средний тон — в gradient.mid.
+ */
+export function rassvetScene(m: AuroraMaterial, tokens: SceneTokens, appearance: SceneAppearance, screen: SceneScreen, W: number, H: number) {
+  const p = paletteA(tokens, appearance);
+  const top = hx(m.scene.top);
+  const mid = hx(m.scene.mid);
+  const bot = hx(m.scene.bottom);
+  const sun = hx(m.scene.sun);
+  const light: SceneLight = { cx: RASSVET_SUN.cx, cy: RASSVET_SUN.cy, rx: RASSVET_SUN.rx, ry: RASSVET_SUN.ry, color: sun, a: m.scene.sunAlpha, fade: RASSVET_SUN.fade };
+  const spec: SceneFormulaSpec = { top, bot, start: [0.4, 0], end: [0.6, 1], lights: [light], scrim: null, guardSteps: { scrim: 0, top: 0 } };
+  return {
+    version: SCENE_APPROVED_VERSION, mode: 'rassvet' as const, name: 'Рассвет', screen, size: { W, H }, palette: p, spec, warmEdge: null,
+    gradient: { start: [0.4, 0] as [number, number], end: [0.6, 1] as [number, number], top: col(top), mid: col(mid), bottom: col(bot) },
+    lights: [{ cx: light.cx, cy: light.cy, rx: light.rx, ry: light.ry, color: col(sun), a: +light.a.toFixed(2), fade: light.fade }],
+    scrim: null as { color: string; a: number; h: number; note: string } | null,
+    guard: spec.guardSteps!,
+    whiteContrast: m.scene.whiteContrast,
+    order: ['gradient', 'sun'] as const,
+  };
+}
+
+export type ScenePaletteResult = ReturnType<typeof lightA> | ReturnType<typeof darkSky> | ReturnType<typeof rassvetScene>;
+/** Палитра «Рассвет» (тема-ползунок с материалом «Аврора»). */
+export const isRassvetPalette = (p: ScenePaletteResult): p is ReturnType<typeof rassvetScene> => p.mode === 'rassvet';
 /** Палитра «Глубокое небо» (в том числе вечерняя «небо + тёплый край»). */
 export const isSkyPalette = (p: ScenePaletteResult): p is ReturnType<typeof darkSky> => p.mode === 'dark-sky' || p.mode === 'dark-sky-evening';
 
@@ -401,6 +434,9 @@ export function approvedScene(tokens: SceneTokens, appearance: SceneAppearance, 
 /** Единый вход экранов. Токены — всегда уровня «Максимум» (сцена не зависит от ползунка яркости). W, H — px области сцены экрана. */
 export function scenePalette(themeId: string, appearance: SceneAppearance, screen: SceneScreen, W: number, H: number, opts?: SceneOpts): ScenePaletteResult {
   const tokens = liquidGlassTokens(themeId, { level: 'max', appearance });
+  // «Рассвет» — у тем-ползунков; у именных и премиальных тем материала нет (null) — их сцены прежние
+  const aurora = auroraMaterialForTheme(themeId, appearance);
+  if (aurora) return rassvetScene(aurora, tokens, appearance, screen, W, H);
   return approvedScene(tokens, appearance, screen, W, H, opts);
 }
 
@@ -450,6 +486,7 @@ export function sceneTopHex(p: ScenePaletteResult): string {
  */
 export function sceneFrameToneHex(p: ScenePaletteResult): string {
   if (isSkyPalette(p)) return skyToneHex(p);
+  if (isRassvetPalette(p)) return p.gradient.bottom.hex; // рассвет к низу уходит в нижний тон — рамка блока того же цвета, шва под кнопкой нет
   const top = p.gradient.top.rgb; const bot = p.gradient.bottom.rgb;
   return hex(top.map((v, i) => (v + bot[i]!) / 2));
 }
@@ -465,6 +502,7 @@ export function sceneBottomHex(p: ScenePaletteResult): string {
  */
 export function sceneTextZoneWhiteContrast(p: ScenePaletteResult): number {
   const { W, H } = p.size;
+  if (isRassvetPalette(p)) return p.whiteContrast; // страж материала уже посчитал зону подписей с тёплым светом
   if (!isSkyPalette(p)) {
     const paint = painter(p.spec, W, H);
     let mn = 99;

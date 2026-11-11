@@ -55,7 +55,7 @@ const VideoRailCards = memo(function VideoRailCards({ videos, title, plateColor,
           accessibilityRole="button"
           accessibilityLabel={`${title}: ${video.title}`}
           onPress={() => onSelect(video.id)}
-          style={({ pressed }) => [s.card, { backgroundColor: plateColor, opacity: pressed ? 0.92 : 1 }]} // зачем (отклик нажатия, координатор 22.10): видимое нажатие карточки видео без хаптика (плитка)
+          style={({ pressed }) => [s.card, glass.aurora ? s.cardAurora : null, { backgroundColor: plateColor, opacity: pressed ? 0.92 : 1 }]} // зачем (отклик нажатия, координатор 22.10): видимое нажатие карточки видео без хаптика (плитка)
         >
           {/* зачем (координатор 12.10, [THUMB] + запасной вид): превью — через общий VideoThumb; при ошибке/пустом адресе вместо серой пустой плитки — название на собственной плашке ленты,
               ▶ остаётся тот же внизу слева, новых запросов и повторов нет */}
@@ -159,6 +159,7 @@ const s = StyleSheet.create({
   headingText: { fontSize: 16, lineHeight: 20, fontWeight: '700' },
   rail: { gap: 9, paddingRight: V2.screenPad, paddingBottom: 2 },
   card: { width: 246, height: 138, borderRadius: 0, overflow: 'hidden' },
+  cardAurora: { borderRadius: 18 }, // зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): у «Авроры» обложки видео скруглены, как все плашки
   cardContent: { flex: 1, justifyContent: 'flex-end', alignItems: 'flex-start', padding: 8 },
   placeholderRow: { height: 138, flexDirection: 'row', gap: 9, overflow: 'hidden' },
   placeholderCard: { width: 246, height: 138, borderRadius: 0 },

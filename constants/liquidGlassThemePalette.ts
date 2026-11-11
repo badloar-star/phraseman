@@ -28,6 +28,8 @@ import { premiumThemeTokenOverrides } from './premiumThemeVisualSpecs';
 // зачем (флаг theme_sliders_v1, слово владельца 05.11): тема = Светлая/Тёмная + Оттенок + Насыщенность, идентификатор `tune:H:S`; основа считается в theme_tune.ts
 import { parseThemeTuneId, tunedBaseTokens, type ThemeTuneId } from './theme_tune';
 import { THEME_SLIDERS_V1_ENABLED } from './theme_sliders_flag';
+// зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): материал «Аврора» — фон, плашки и вложенные плашки тем-ползунков
+import { auroraMaterialForTheme, type AuroraMaterial } from './aurora_material';
 
 export {
   DEFAULT_LIQUID_GLASS_VARIANT,
@@ -81,7 +83,7 @@ type BaseGlassTokens = LiquidGlassBaseTokens;
  * `intensity` — положение ползунка (0…1, шаг 0.05), `level` — его корзина для старых ветвлений.
  */
 // зачем (замечание владельца 10.10): + токены поверхностей для экранов с зашитыми под макет цветами (liquidGlassSurfaceRoles.ts).
-export type GlassTokens = LiquidGlassBaseTokens & LiquidGlassAccentRoles & LiquidGlassSurfaceRoles & LiquidGlassPaletteRoles & LiquidGlassButtonRoles & Readonly<{ intensity: number; /** Цвет ГРАФИКИ цвета темы (кольца, полосы, точки, кромки, значки): `accent`, а где он слился бы с фоном — глубже в сторону текста темы, ≥ 3:1 на фоне/карточке/шторке. */ accentGraphic: string; /** Текст и значки цвета темы на поверхности: в светлом `accentText` (глубокий, ≥ 4,5), в тёмном ровно `accent` (тёмный вид не меняется). */ accentTextSafe: string; /** Утверждённый отдельный пигмент нижней навигации премиальной темы. */ premiumDock?: string; premiumDockInk?: string; premiumEdge?: string }>;
+export type GlassTokens = LiquidGlassBaseTokens & LiquidGlassAccentRoles & LiquidGlassSurfaceRoles & LiquidGlassPaletteRoles & LiquidGlassButtonRoles & Readonly<{ intensity: number; /** Цвет ГРАФИКИ цвета темы (кольца, полосы, точки, кромки, значки): `accent`, а где он слился бы с фоном — глубже в сторону текста темы, ≥ 3:1 на фоне/карточке/шторке. */ accentGraphic: string; /** Текст и значки цвета темы на поверхности: в светлом `accentText` (глубокий, ≥ 4,5), в тёмном ровно `accent` (тёмный вид не меняется). */ accentTextSafe: string; /** Утверждённый отдельный пигмент нижней навигации премиальной темы. */ premiumDock?: string; premiumDockInk?: string; premiumEdge?: string; /** Материал «Аврора» темы-ползунка (цветные значки, градиент главной кнопки, стекло плиток, сцена «Рассвет»); null/нет — тема рисуется прежними токенами. */ aurora?: AuroraMaterial | null }>;
 
 /** Вариант с проверенными полями: интенсивность квантована, уровень — её корзина. */
 function normalizeVariant(requested: LiquidGlassVariant): Required<LiquidGlassVariant> {
@@ -232,6 +234,31 @@ function premiumLegibleRoles(
   const accentBright = brightRaw ? legibleOn(brightRaw, text, [pill, glass], 3.2) : undefined;
   return { good, bad, accentInk: pickInk(inkFills), ctaInk, ...(accentBright ? { accentBright } : {}) };
 }
+/** rgba(r,g,b,a) → #RRGGBBAA (так пятна фона читает V2Backdrop); другой формат — как есть. */
+const rgbaToHex8 = (c: string): string => {
+  const m = /^rgba((d+),(d+),(d+),([d.]+))$/.exec(c);
+  if (!m) return c;
+  const h = (v: number): string => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, '0').toUpperCase();
+  return `#${h(Number(m[1]))}${h(Number(m[2]))}${h(Number(m[3]))}${h(Number(m[4]) * 255)}`;
+};
+
+/**
+ * зачем (владелец 11.11, «точно как на макетах, 1 в 1»): пигменты «Авроры» закрепляются ПОСЛЕДНИМ слоем поверх расчёта темы-ползунка — тем же приёмом,
+ * что у премиум-коллекции (pickPremiumPigments). Закрепляются только поверхности: фон экрана, пятна света, плашка (градиент cardFrom → cardTo), вложенная
+ * плашка и тень плашки. Текст, акцент, «верно/неверно» и остальные роли считает общий конвейер уже ОТ этих поверхностей (см. auroraBase в liquidGlassTokens).
+ */
+function auroraPigments(m: AuroraMaterial | null): Partial<GlassTokens> {
+  if (!m) return {};
+  return {
+    bg: m.bg, bgTop: m.bgTop, bgBottom: m.bgBottom,
+    bgGlow: Object.freeze([rgbaToHex8(m.bgGlow1), rgbaToHex8(m.bgGlow2), rgbaToHex8(m.bgGlow1)]) as unknown as GlassTokens['bgGlow'],
+    opaqueCard: m.cardTo, card: `${m.cardTo}E6`, opaqueControl: m.control,
+    plateFillFrom: m.cardFrom, plateFillTo: m.cardTo,
+    plateShadow: m.shadow, ...(m.shadowSoft ? { plateShadowSoft: m.shadowSoft } : {}),
+    aurora: m,
+  };
+}
+
 const contrastHex = (a: string, b: string): number => {
   const l = (h: string): number => { const n = Number.parseInt(h.slice(1, 7), 16); const c = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => { const x = v / 255; return x <= 0.04045 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4; }); return 0.2126 * c[0]! + 0.7152 * c[1]! + 0.0722 * c[2]!; };
   const la = l(a); const lb = l(b);
@@ -261,9 +288,16 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   // зачем (сторож theme_max_button_matrix, 24.10): у всех тем градиент главной кнопки = [accent, accent]; премиум-коллекция подменяет accent, а градиент
   // оставался от базовой темы — в storm_violet светлом тёмный акцент и сиреневая кнопка, и ни одни чернила не читались на обоих. Градиент идёт за акцентом коллекции.
   const premiumAccent = premiumOverrides?.accent;
+  // зачем (владелец 11.11, материал «Аврора»): поверхности «Авроры» (фон, плашка, вложенная плашка, вторичный текст) подставляются ДО расчёта ролей —
+  // иначе «верно/неверно», текст и графика цвета темы считались бы от прежних тёмных плашек и на посветлевших плашках не читались
+  // (замер до правки: «неверно» на плашке 2,82, текст цвета темы 4,07). Сами пигменты закрепляются последним слоем ниже (auroraPigments).
+  const aurora = auroraMaterialForTheme(themeId, variant.appearance);
+  const auroraBase = aurora
+    ? { bg: aurora.bg, bgTop: aurora.bgTop, bgBottom: aurora.bgBottom, opaqueCard: aurora.cardTo, opaqueControl: aurora.control, ...(aurora.secondary ? { secondary: aurora.secondary, mutedText: aurora.secondary } : {}) }
+    : null;
   const built = premiumOverrides
     ? { ...rawBuilt, ...premiumOverrides, ...(premiumAccent ? { accentGradient: Object.freeze([premiumAccent, premiumAccent]) } : {}) }
-    : rawBuilt;
+    : auroraBase ? { ...rawBuilt, ...auroraBase } : rawBuilt;
   const surfaceRoles = deriveLiquidGlassSurfaceRoles(built);
   // зачем (проверка тем на новых экранах, 14.10): приглушённый текст (счётчики, номера, подписи) в светлом оформлении ≥ 4,5 на ВСЕХ
   // поверхностях — фон, карточка, шторка, плашка, низ плашки и выбранного «Тени». Тёмное оформление уже ≥ 6,3 и не трогается.
@@ -314,6 +348,7 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
     // прежний полный спред перетирал их сырыми значениями, и в светлом оформлении кнопка пейвола сливалась с листом (1,01–1,15).
     ...pickPremiumPigments(premiumOverrides),
     ...premiumLegibleRoles(premiumOverrides, built, paletteRoles),
+    ...auroraPigments(aurora),
     intensity: variant.intensity,
   });
   variantCache.set(key, tokens);

@@ -13,6 +13,7 @@ import type { HomeFeatureTile } from './home_v2_types';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { useShadowGlass } from '../../v2/ShadowSurface';
 import HomeScenePlateShadow from './scene/HomeScenePlateShadow';
+import AuroraTileFrost from './AuroraTileFrost';
 import { useSpireHomePlace } from '../../../app/spire/spire_home_place';
 // зачем (координатор 18.10): подпись бейджа — из лёгкого модуля, а не из components/spire/moments (сторож запрещает; модуль моментов не нужен в холодном старте Главной)
 import { spirePlaceBadgeText } from './home_spire_place_badge';
@@ -113,13 +114,14 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
           >
             {/* зачем (шаг 2 ускорения первого кадра Главной): тень — запечённой маской позади заливки, заливка — отдельным слоем */}
             <HomeScenePlateShadow kind="tile" isLight={g.isLight} shadow={g.plateShadow} shadowSoft={g.plateShadowSoft} />
-            <View pointerEvents="none" style={[s.sceneTileFill, { backgroundColor: g.opaqueCard }]} />
+            {/* зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): плитка «Авроры» — матовое стекло без размытия (AuroraTileFrost); у остальных тем — прежняя ровная заливка */}
+            {g.aurora ? <AuroraTileFrost material={g.aurora} radius={20} idPrefix={`homeTile_${tile.key}`} /> : <View pointerEvents="none" style={[s.sceneTileFill, { backgroundColor: g.opaqueCard }]} />}
             {/* зачем (Сверка home4, scenes-compact `.tile`; координатор: «подпись ВНУТРИ плитки, без подписи снизу»): плитка — карточка r20, картинка 58 сверху, подпись 13/700 внутри; поля 6/4/10 */}
             <View pointerEvents="none" style={s.sceneArt}>
               {/* зачем (замечание координатора 06.11, кадр home_newbie_3tiles): светлый арт «Фразы из видео» (cards_from_video) нарисован с полями —
                   видимая часть 450×395 из 512 против ~499×446 у «Уроков»/«Сохранённых», плитка выглядела мельче и выше; выравниваем посадку
                   масштабом по измеренной рамке видимой части (assets v2art/light), тёмный арт заполняет рамку как соседи */}
-              <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={tile.key === 'video_packs' && g.isLight ? [s.sceneArtImage, { transform: [{ scale: VIDEO_PACKS_LIGHT_ART_SCALE }] }] : s.sceneArtImage} />
+              <ThemedArtLayers source={tile.art} accent={tile.artAccent} tintAccent={!(tile.key === 'spire' && g.aurora) /* зачем (владелец 11.11: «сделай так, чтобы Пик-корона не красилась под цвет темы») */} style={tile.key === 'video_packs' && g.isLight ? [s.sceneArtImage, { transform: [{ scale: VIDEO_PACKS_LIGHT_ART_SCALE }] }] : s.sceneArtImage} />
               {tile.key === 'spire' && spirePlace !== null ? (
                 <View style={[s.badge, { backgroundColor: g.ctaFill }]}>
                   <Text style={[s.badgeText, { color: g.ctaFillInk }]}>{spirePlaceBadgeText(uiLang, spirePlace)}</Text>

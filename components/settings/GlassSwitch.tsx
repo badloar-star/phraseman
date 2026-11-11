@@ -10,6 +10,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { switchOffTrackTone, switchOnTone } from './switch_chrome';
+import { LinearGradient } from '../SafeLinearGradient';
 
 /** Длительность переключения (мс): короткая, отклик мгновенный. */
 export const GLASS_SWITCH_MS = 180;
@@ -52,8 +53,11 @@ export function GlassSwitch({ value, onValueChange, accessibilityLabel, glass, d
       contentStyle={{ width: 48, minHeight: 36, justifyContent: 'center', alignItems: 'center' }}
     >
       <View style={{ width: 48, height: 29, borderRadius: 16, padding: 3, justifyContent: 'center', backgroundColor: offTone.track }}>
-        <Animated.View pointerEvents="none" style={[{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: 16, backgroundColor: onTone.track }, onTrackStyle]} />
-        <Animated.View style={[{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? onTone.knob : offTone.knob }, knobStyle]} />
+        {/* зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): у «Авроры» включённая дорожка — градиент главной кнопки, бегунок — её тёмные чернила; у остальных тем — как было */}
+        <Animated.View pointerEvents="none" style={[{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: 16, overflow: 'hidden', backgroundColor: glass.aurora ? 'transparent' : onTone.track }, onTrackStyle]}>
+          {glass.aurora ? <LinearGradient colors={[glass.aurora.ctaFrom, glass.aurora.ctaTo]} start={{ x: 0, y: 0.5 }} end={{ x: 1, y: 0.5 }} style={{ flex: 1 }} /> : null}
+        </Animated.View>
+        <Animated.View style={[{ width: 21, height: 21, borderRadius: 11, backgroundColor: value ? (glass.aurora ? glass.aurora.ctaInk : onTone.knob) : offTone.knob }, knobStyle]} />
       </View>
     </PressableHybrid>
   );

@@ -42,7 +42,7 @@ import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation'
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { levelExamKey, storageStudyTarget, storedProgressFlagIsTrue } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
-import { loadFrenchRemoteLevelExamQuestions } from './french_exam_remote_runtime';
+import { classicFinalExamTarget, loadClassicLevelExamQuestions } from './classic_final_exam_bank';
 import { recordLevelExamAttempt } from './level_exam_attempts';
 import { dismissToTabRoute, safeRouterBack } from './navigation_back';
 import { canShowReview } from './review_utils';
@@ -83,6 +83,10 @@ interface LevelQ {
   opts:    string[];
   correct: number;
   type?:   QType;
+  /** Перевод предложения — только у банков ES/DE/IT/FR (без него пропуск неоднозначен). */
+  hint?: string;
+  /** id фразы курса — только у банков ES/DE/IT/FR; тема у таких заданий уже на языке интерфейса во всех полях. */
+  phraseId?: string;
 }
 
 const LEVEL_TOPIC_PLANNED: Record<string, Record<PlannedInterfaceLang, string>> = {
@@ -321,6 +325,7 @@ const LEVEL_TOPIC_UNAVAILABLE: Record<PlannedInterfaceLang, string> = {
 };
 
 function levelTopicPlanned(q: LevelQ, locale: PlannedInterfaceLang): string {
+  if (q.phraseId) return q.topic; // зачем: у банков курса тема уже переведена, словари ниже — только для английского банка
   const planned = LEVEL_TOPIC_PLANNED[q.topicES]?.[locale];
   return planned && planned.trim().length > 0 ? planned : LEVEL_TOPIC_UNAVAILABLE[locale];
 }
@@ -364,6 +369,7 @@ const LEVEL_TOPIC_EN: Record<string, string> = {
 };
 
 function levelTopicEn(q: LevelQ): string {
+  if (q.phraseId) return q.topic;
   const en = LEVEL_TOPIC_EN[q.topicES];
   return en && en.trim().length > 0 ? en : 'Level test topic unavailable';
 }
@@ -571,8 +577,9 @@ export default function LevelExam() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const frenchExamBlocked = !examContentAvailableForTarget(studyTarget);
-  const isFrenchExam = storageStudyTarget(studyTarget) === 'fr';
-  const frenchExamSourceLocale = lang === 'uk' ? 'uk' : 'ru';
+  // зачем (владелец 11.11, «Да, зачёты тоже»): у ES/DE/IT/FR зачёт уровня собирается из фраз курса этого языка.
+  // Раньше es/de/it уходили в английский LevelExamV2, а fr получал пустой список. null = английский (LevelExamV2, без изменений).
+  const classicExamTarget = classicFinalExamTarget(storageStudyTarget(studyTarget));
   const { level } = useLocalSearchParams<{ level: string }>();
   const validLevels = ['A1', 'A2', 'B1', 'B2'];
   const lvl = validLevels.includes(level) ? level : 'A1';
@@ -609,34 +616,41 @@ export default function LevelExam() {
   const [noEnergy, setNoEnergy] = useState(false);
 
   const englishQuestions = useMemo(() => {
-    if (frenchExamBlocked) return [];
+    if (frenchExamBlocked || classicExamTarget) return [];
     const [from, to] = LEVEL_RANGES[lvl] ?? [1, 8];
     return QUESTION_POOL.filter(q => q.lessonNum >= from && q.lessonNum <= to);
-  }, [frenchExamBlocked, lvl]);
-  const [frenchQuestions, setFrenchQuestions] = useState<LevelQ[]>([]);
-  const [examQuestionsLoading, setExamQuestionsLoading] = useState(false);
-  const questions = isFrenchExam ? frenchQuestions : englishQuestions;
+  }, [classicExamTarget, frenchExamBlocked, lvl]);
+  const [classicQuestions, setClassicQuestions] = useState<LevelQ[]>([]);
+  const [examQuestionsLoading, setExamQuestionsLoading] = useState(() => classicExamTarget !== null);
+  const questions = classicExamTarget ? classicQuestions : englishQuestions;
 
   useEffect(() => {
     let cancelled = false;
-    if (!isFrenchExam || frenchExamBlocked) {
-      setFrenchQuestions([]);
+    if (!classicExamTarget || frenchExamBlocked) {
+      console.log(`[LEVEL-EXAM] банк: target=${storageStudyTarget(studyTarget)} classic=${String(classicExamTarget)} закрыт=${frenchExamBlocked} level=${lvl} → английский зачёт`); // guard-ok: ранний выход называет причину
+      setClassicQuestions([]);
       setExamQuestionsLoading(false);
       return () => { cancelled = true; };
     }
     setExamQuestionsLoading(true);
-    loadFrenchRemoteLevelExamQuestions(lvl, frenchExamSourceLocale, INTRO_Q_COUNT)
+    loadClassicLevelExamQuestions(classicExamTarget, lang, lvl as CourseLevel, INTRO_Q_COUNT)
       .then((rows) => {
-        if (!cancelled) setFrenchQuestions(rows);
+        if (cancelled) {
+          console.log(`[LEVEL-EXAM] банк ${classicExamTarget}/${lvl}: ответ опоздал (экран закрыт/язык сменён) — отброшен`); // guard-ok: ранний выход называет причину
+          return;
+        }
+        if (rows.length === 0) console.warn(`[LEVEL-EXAM] банк ${classicExamTarget}/${lvl} пуст — зачёт не стартует, английский банк не подставляется`); // guard-ok: причина пустого зачёта
+        setClassicQuestions(rows);
       })
-      .catch(() => {
-        if (!cancelled) setFrenchQuestions([]);
+      .catch((error: unknown) => {
+        console.warn(`[LEVEL-EXAM] вопросы не загрузились target=${classicExamTarget} level=${lvl} ui=${lang}: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch пишет причину
+        if (!cancelled) setClassicQuestions([]);
       })
       .finally(() => {
         if (!cancelled) setExamQuestionsLoading(false);
       });
     return () => { cancelled = true; };
-  }, [frenchExamBlocked, frenchExamSourceLocale, isFrenchExam, lvl]);
+  }, [classicExamTarget, frenchExamBlocked, lang, lvl, studyTarget]);
 
   useEffect(() => {
     setIdx(0);
@@ -793,13 +807,21 @@ export default function LevelExam() {
   const q = idx < questions.length ? questions[idx] : undefined;
   const chosen = choices[idx] ?? null;
 
+  const startWhenReadyRef = React.useRef(false);
   const startExam = useCallback(async () => {
     if (examStarting) return; // двойной тап — игнор
     if (frenchExamBlocked) {
       void trackFeatureBlocked('level_exam', 'start', 'exam_content_gate_disabled', { level: lvl, studyTarget }, 'level_exam');
       return;
     }
-    if (examQuestionsLoading || questions.length === 0) {
+    if (examQuestionsLoading) {
+      // зачем (Optimistic UI): банк языка ещё собирается (доли секунды) — тап не теряем, зачёт начнётся сам по готовности.
+      startWhenReadyRef.current = true;
+      console.log(`[LEVEL-EXAM] старт: банк ${String(classicExamTarget)}/${lvl} ещё собирается — запомнил тап`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    if (questions.length === 0) {
+      console.warn(`[LEVEL-EXAM] старт отклонён: заданий нет target=${String(studyTarget)} level=${lvl}`); // guard-ok: ранний выход называет причину
       void trackFeatureBlocked('level_exam', 'start', 'exam_questions_unavailable', {
         level: lvl,
         studyTarget,
@@ -840,7 +862,16 @@ export default function LevelExam() {
     } finally {
       setExamStarting(false);
     }
-  }, [acknowledgeSessionStart, bonusEnergy, confirmSpendAmount, energy, examQuestionsLoading, examStarting, frenchExamBlocked, levelExamEnergyIntent, lvl, questions.length, studyTarget]);
+  }, [acknowledgeSessionStart, bonusEnergy, classicExamTarget, confirmSpendAmount, energy, examQuestionsLoading, examStarting, frenchExamBlocked, levelExamEnergyIntent, lvl, questions.length, studyTarget]);
+
+  // зачем: отложенный тап «Начать» — срабатывает один раз, когда банк языка собран.
+  const startExamRef = React.useRef(startExam);
+  startExamRef.current = startExam;
+  useEffect(() => {
+    if (examQuestionsLoading || !startWhenReadyRef.current) return;
+    startWhenReadyRef.current = false;
+    if (questions.length > 0) void startExamRef.current();
+  }, [examQuestionsLoading, questions.length]);
 
   const { flashKey, flash } = useWordFlash();
   const mistakeCaptureRunRef = React.useRef(`level-exam-${Date.now().toString(36)}`);
@@ -865,9 +896,10 @@ export default function LevelExam() {
           objective: true,
           content: {
             sourceKind: 'level_exam',
-            sourceId: `${lvl}:${q.lessonNum}:${q.q}`,
+            // зачем: у ES/DE/IT/FR один и тот же пропуск бывает у разных фраз — различаем по id фразы курса; смысл — перевод фразы.
+            sourceId: q.phraseId ? `${lvl}:${q.phraseId}:${q.q}` : `${lvl}:${q.lessonNum}:${q.q}`,
             canonicalTarget,
-            sourceMeaning: q.topic,
+            sourceMeaning: q.hint ?? q.topic,
             // зачем (владелец 11.11, «Мои ошибки 3.0», этап 1): сам вопрос — без него ошибку нельзя ни показать, ни объяснить.
             sourcePrompt: q.q,
             lessonId: String(q.lessonNum),
@@ -959,10 +991,10 @@ export default function LevelExam() {
 
   // зачем (владелец 18.10 07:45: «экранов-ошибок нигде»): французский зачёт закрыт или доступ не проверился —
   // тихо назад к урокам вместо заглушки «…ещё готовится» / «не проверился». Замок Plus/уровня — не ошибка, остаётся.
-  const silentLeaveFrench = frenchExamBlocked || (isFrenchExam && accessState === 'blocked' && accessBlockKind === 'error');
+  const silentLeaveFrench = frenchExamBlocked || (classicExamTarget !== null && accessState === 'blocked' && accessBlockKind === 'error');
   useSilentLeave(silentLeaveFrench, 'level_exam', frenchExamBlocked ? 'french_gate_closed' : 'access_check_failed', () => safeRouterBack(router, '/(tabs)/lessons' as any));
 
-  if (!isFrenchExam && !frenchExamBlocked) {
+  if (!classicExamTarget && !frenchExamBlocked) {
     return (
       <LevelExamV2
         level={lvl as CourseLevel}
@@ -1385,6 +1417,8 @@ export default function LevelExam() {
 
           {/* Вопрос */}
           <View style={[examCardStyle(glass), { marginTop: 14, paddingVertical: 22, paddingHorizontal: 22 }]}>
+            {/* зачем: перевод предложения у банков ES/DE/IT/FR — тот же вид, что на итоговом экзамене. */}
+            {q.hint ? <Text testID="level-exam-question-hint" style={{ color: glass.secondary, fontSize: 16, lineHeight: 21, marginBottom: 8 }}>{q.hint}</Text> : null}
             <ClozeGapText text={q.q} style={{ color: glass.text, fontSize: 24, fontWeight: '600', lineHeight: 30 }} />
           </View>
 

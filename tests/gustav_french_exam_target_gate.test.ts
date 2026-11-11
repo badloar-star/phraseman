@@ -31,7 +31,6 @@ describe('Gustav French exam target gate', () => {
   it('loads final and level exam screens from French remote runtime before any English question bank can render', () => {
     const finalExamSource = fs.readFileSync(path.join(ROOT, 'app', 'exam.tsx'), 'utf8');
     const levelExamSource = fs.readFileSync(path.join(ROOT, 'app', 'level_exam.tsx'), 'utf8');
-    const runtimeSource = fs.readFileSync(path.join(ROOT, 'app', 'french_exam_remote_runtime.ts'), 'utf8');
 
     expect(finalExamSource).toContain('const frenchExamBlocked = !examContentAvailableForTarget(studyTarget)');
     // зачем (владелец 11.11, F01): итоговый экзамен французского (и es/de/it) берёт СВОЙ банк из фраз курса;
@@ -62,10 +61,14 @@ describe('Gustav French exam target gate', () => {
     );
 
     expect(levelExamSource).toContain('const frenchExamBlocked = !examContentAvailableForTarget(studyTarget)');
-    expect(levelExamSource).toContain("import { loadFrenchRemoteLevelExamQuestions } from './french_exam_remote_runtime'");
-    expect(levelExamSource).toContain('const isFrenchExam = storageStudyTarget(studyTarget) === \'fr\'');
-    expect(levelExamSource).toContain('loadFrenchRemoteLevelExamQuestions(lvl, frenchExamSourceLocale, INTRO_Q_COUNT)');
-    expect(levelExamSource).toContain('const questions = isFrenchExam ? frenchQuestions : englishQuestions;');
+    // зачем (владелец 11.11, «Да, зачёты тоже»): зачёт уровня fr/es/de/it берёт СВОЙ банк из фраз курса;
+    // английский движок (LevelExamV2) и английский банк остаются только английскому.
+    expect(levelExamSource).toContain("import { classicFinalExamTarget, loadClassicLevelExamQuestions } from './classic_final_exam_bank'");
+    expect(levelExamSource).toContain('const classicExamTarget = classicFinalExamTarget(storageStudyTarget(studyTarget))');
+    expect(levelExamSource).toContain('loadClassicLevelExamQuestions(classicExamTarget, lang, lvl as CourseLevel, INTRO_Q_COUNT)');
+    expect(levelExamSource).toContain('const questions = classicExamTarget ? classicQuestions : englishQuestions;');
+    expect(levelExamSource).toContain('if (frenchExamBlocked || classicExamTarget) return [];');
+    expect(levelExamSource).toContain('if (!classicExamTarget && !frenchExamBlocked) {');
     expect(levelExamSource).toContain("'exam_questions_unavailable'");
     expect(levelExamSource).toContain("useSilentLeave(silentLeaveFrench, 'level_exam', frenchExamBlocked ? 'french_gate_closed'");
     // та же переписанная система, что и в финальном экзамене: ошибка уровня
@@ -77,13 +80,11 @@ describe('Gustav French exam target gate', () => {
       levelExamSource.indexOf("if (accessState !== 'allowed')"),
     );
 
-    expect(runtimeSource).toContain('French exams previously reused the retired Quiz delivery surface');
-    expect(runtimeSource).not.toContain('loadFrenchRemoteFinalExamQuestions');
-    expect(runtimeSource).toMatch(/loadFrenchRemoteLevelExamQuestions[\s\S]*?return \[\];/);
-    expect(runtimeSource).toContain('loadFrenchRemoteLevelExamQuestions');
-    expect(runtimeSource).toContain("type?: 'choice4'");
-    expect(runtimeSource).not.toContain('EXAM_POOL');
-    expect(runtimeSource).not.toContain('QUESTION_POOL');
+    // пустой удалённый загрузчик французских экзаменов снят целиком — ни один экран его больше не зовёт
+    expect(fs.existsSync(path.join(ROOT, 'app', 'french_exam_remote_runtime.ts'))).toBe(false);
+    const bankSource = fs.readFileSync(path.join(ROOT, 'app', 'classic_final_exam_bank.ts'), 'utf8');
+    expect(bankSource).not.toContain('EXAM_POOL');
+    expect(bankSource).not.toContain('QUESTION_POOL');
   });
 
   it('gates lesson-tab level exam cards before routing to English level exams for French', () => {

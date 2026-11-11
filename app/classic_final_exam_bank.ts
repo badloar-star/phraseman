@@ -1,6 +1,6 @@
 /**
  * зачем (владелец 11.11, F01 «Иностранные финальные экзамены»): итоговый экзамен ES/DE/IT открывал АНГЛИЙСКИЙ банк
- * (exam.tsx: всё, что не fr, шло в EXAM_POOL), а французский получал пустой список. Здесь — свой банк для каждого
+ * (exam.tsx: всё, что не fr, шло в английский банк экрана), а французский получал пустой список. Здесь — свой банк для каждого
  * из четырёх языков: задания собираются из фраз классического курса ЭТОГО языка (modules/classic-courses/<lang>,
  * 32 урока × 50 фраз, D202). Ничего не сочиняется: предложение, верное слово и неверные варианты — те же, что
  * ученик уже видел в уроках. Перевод показывается подсказкой — без него пропуск неоднозначен («___ aquí.»).
@@ -8,6 +8,7 @@
  */
 import type { Lang } from '../constants/i18n';
 import { classicCourseActiveFor, getClassicLessonPhrases, type ClassicCourseLang } from './classic_course_phrases';
+import { COURSE_LEVEL_RANGES, type CourseLevel } from './course_levels';
 import type { LessonPhrase } from './lesson_data_types';
 import { classicLessonNumberTitle, classicLessonTopic } from './lesson_titles_for_study_target';
 
@@ -44,7 +45,7 @@ export type ClassicFinalExamQuestion = {
 
 type Rng = () => number;
 
-/** Язык с собственным банком итогового экзамена; `null` — английский (свой EXAM_POOL) или курс выключен. */
+/** Язык с собственным банком итогового экзамена; `null` — английский (у него свой банк в экране) или курс выключен. */
 export function classicFinalExamTarget(target: unknown): ClassicFinalExamTarget | null {
   if (target === 'en') return null;
   return classicCourseActiveFor(target) ? (target as ClassicFinalExamTarget) : null;
@@ -162,13 +163,14 @@ export function classicExamQuestionFromPhrase(
   return null;
 }
 
-/** До двух заданий урока: [обязательное, запасное]. Одинаковые «пропуск + перевод» в один экзамен не попадают. */
+/** До `max` заданий урока (итоговый экзамен: [обязательное, запасное]). Одинаковые «пропуск + перевод» в один экзамен не попадают. */
 function lessonCandidates(
   lessonNum: number,
   target: ClassicFinalExamTarget,
   lang: Lang,
   rng: Rng,
   usedKeys: Set<string>,
+  max = 2,
 ): ClassicFinalExamQuestion[] {
   const found: ClassicFinalExamQuestion[] = [];
   for (const phrase of shuffledCopy(getClassicLessonPhrases(lessonNum, target), rng)) {
@@ -178,7 +180,7 @@ function lessonCandidates(
     if (usedKeys.has(key)) continue;
     usedKeys.add(key);
     found.push(question);
-    if (found.length === 2) break;
+    if (found.length >= max) break;
   }
   return found;
 }
@@ -238,6 +240,72 @@ export async function loadClassicFinalExamQuestions(
     console.warn(`${LOG} неполный банк target=${target} ui=${lang} собрано=${questions.length}/${count} уроки_без_заданий=[${emptyLessons.join(',')}] источник=сборка:classic-courses`);
   }
   console.log(`${LOG} готов target=${target} ui=${lang} заданий=${questions.length} уроков=${CLASSIC_FINAL_EXAM_LESSON_COUNT - emptyLessons.length} мс=${Date.now() - startedAt}`); // guard-ok: итог сборки банка
+  return questions;
+}
+
+// ─── Зачёт уровня (A1–B2) ────────────────────────────────────────────────────────────────────────────────────────────
+// зачем (владелец 11.11, «Да, зачёты тоже»): зачёт уровня у ES/DE/IT показывал английские задания, у FR был закрыт пустым
+// банком. Без своих зачётов до итогового экзамена своего языка честно не дойти (он открывается после четырёх зачётов).
+// Тот же источник и те же правила, что у итогового: фразы курса языка, но только уроки этого уровня, поровну с каждого.
+
+export const CLASSIC_LEVEL_EXAM_QUESTION_COUNT = 30;
+
+function assembleLevel(perLesson: readonly ClassicFinalExamQuestion[][], count: number, rng: Rng): ClassicFinalExamQuestion[] {
+  // зачем: по кругу — сначала по одному заданию с каждого урока, потом по второму… так ни один урок уровня не выпадает.
+  const picked: ClassicFinalExamQuestion[] = [];
+  for (let round = 0; picked.length < count; round++) {
+    const layer = perLesson.flatMap((list) => list.slice(round, round + 1));
+    if (layer.length === 0) break;
+    picked.push(...shuffledCopy(layer, rng).slice(0, count - picked.length));
+  }
+  return shuffledCopy(picked, rng);
+}
+
+function levelLessons(level: CourseLevel): number[] {
+  const [from, to] = COURSE_LEVEL_RANGES[level];
+  return Array.from({ length: to - from + 1 }, (_, i) => from + i);
+}
+
+/** Синхронная сборка зачёта уровня — для тестов и сторожей. */
+export function buildClassicLevelExamQuestions(
+  target: ClassicFinalExamTarget,
+  lang: Lang,
+  level: CourseLevel,
+  count = CLASSIC_LEVEL_EXAM_QUESTION_COUNT,
+  rng: Rng = Math.random,
+): ClassicFinalExamQuestion[] {
+  const lessons = levelLessons(level);
+  const perLessonMax = Math.ceil(count / lessons.length);
+  const usedKeys = new Set<string>();
+  return assembleLevel(lessons.map((lessonNum) => lessonCandidates(lessonNum, target, lang, rng, usedKeys, perLessonMax)), count, rng);
+}
+
+/** Банк зачёта уровня для экрана: уроки читаются по одному с уступкой кадра. Пусто = зачёт не стартует (английский банк НЕ подставляется). */
+export async function loadClassicLevelExamQuestions(
+  target: ClassicFinalExamTarget,
+  lang: Lang,
+  level: CourseLevel,
+  count = CLASSIC_LEVEL_EXAM_QUESTION_COUNT,
+  rng: Rng = Math.random,
+): Promise<ClassicFinalExamQuestion[]> {
+  const startedAt = Date.now();
+  const lessons = levelLessons(level);
+  const perLessonMax = Math.ceil(count / lessons.length);
+  const usedKeys = new Set<string>();
+  const perLesson: ClassicFinalExamQuestion[][] = [];
+  const emptyLessons: number[] = [];
+  for (const lessonNum of lessons) {
+    const list = lessonCandidates(lessonNum, target, lang, rng, usedKeys, perLessonMax);
+    if (list.length === 0) emptyLessons.push(lessonNum);
+    perLesson.push(list);
+    await nextTick();
+  }
+  const questions = assembleLevel(perLesson, count, rng);
+  if (emptyLessons.length > 0 || questions.length < count) {
+    // guard-ok: неполный банк — причина в журнале
+    console.warn(`${LOG} зачёт: неполный банк target=${target} level=${level} ui=${lang} собрано=${questions.length}/${count} уроки_без_заданий=[${emptyLessons.join(',')}] источник=сборка:classic-courses`);
+  }
+  console.log(`${LOG} зачёт готов target=${target} level=${level} ui=${lang} заданий=${questions.length} уроки=${lessons[0]}–${lessons[lessons.length - 1]} мс=${Date.now() - startedAt}`); // guard-ok: итог сборки банка
   return questions;
 }
 

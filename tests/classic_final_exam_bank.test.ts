@@ -4,12 +4,14 @@ import fs from 'fs';
 import path from 'path';
 import {
   buildClassicFinalExamQuestions,
+  buildClassicLevelExamQuestions,
   classicExamQuestionFromPhrase,
   classicFinalExamTarget,
   soleWholeWordIndex,
   type ClassicFinalExamTarget,
 } from '../app/classic_final_exam_bank';
 import { getClassicLessonPhrases } from '../app/classic_course_phrases';
+import { COURSE_LEVEL_RANGES, type CourseLevel } from '../app/course_levels';
 import type { Lang } from '../constants/i18n';
 
 const ROOT = path.join(__dirname, '..');
@@ -83,6 +85,27 @@ describe('банк итогового экзамена классических 
       }
     });
 
+    it.each(['A1', 'A2', 'B1', 'B2'] as CourseLevel[])('зачёт %s: 30 заданий своего языка, только уроки уровня, каждый урок представлен', (level) => {
+      const [from, to] = COURSE_LEVEL_RANGES[level];
+      for (const lang of ['ru', 'es', 'en'] as Lang[]) {
+        for (const seed of [5, 99]) {
+          const questions = buildClassicLevelExamQuestions(target, lang, level, 30, seeded(seed));
+          expect(questions).toHaveLength(30);
+          expect(new Set(questions.map((q) => q.lessonNum)).size).toBe(to - from + 1);
+          expect(new Set(questions.map((q) => `${q.q}|${q.hint}`)).size).toBe(30);
+          for (const q of questions) {
+            const source = phraseById.get(q.phraseId);
+            expect(q.lessonNum).toBeGreaterThanOrEqual(from);
+            expect(q.lessonNum).toBeLessThanOrEqual(to);
+            expect(source?.lesson).toBe(q.lessonNum);
+            expect(q.q.replace('___', q.opts[q.correct])).toBe(source?.sentence);
+            expect(new Set(q.opts.map((o) => o.toLocaleLowerCase())).size).toBe(4);
+            expect(q.hint.trim().toLocaleLowerCase()).not.toBe(source?.sentence.trim().toLocaleLowerCase());
+          }
+        }
+      }
+    });
+
     it('запаса хватает: в каждом уроке не меньше 10 фраз, из которых собирается задание', () => {
       const rng = seeded(42);
       const weakest = { lesson: 0, usable: Infinity };
@@ -120,5 +143,13 @@ describe('банк итогового экзамена классических 
     expect(source).toMatch(/const englishQuestions = React\.useMemo\(\(\) => \{\s*if \(frenchExamBlocked \|\| classicExamTarget\) return \[\];/);
     expect(source).toContain("'exam_questions_unavailable'");
     expect(source).not.toContain('loadFrenchRemoteFinalExamQuestions');
+  });
+
+  it('экран зачёта: не-английский язык не получает ни английский банк, ни английский движок', () => {
+    const source = fs.readFileSync(path.join(ROOT, 'app', 'level_exam.tsx'), 'utf8');
+    expect(source).toContain('const questions = classicExamTarget ? classicQuestions : englishQuestions;');
+    expect(source).toMatch(/const englishQuestions = useMemo\(\(\) => \{\s*if \(frenchExamBlocked \|\| classicExamTarget\) return \[\];/);
+    expect(source).toMatch(/if \(!classicExamTarget && !frenchExamBlocked\) \{\s*return \(\s*<LevelExamV2/);
+    expect(source).not.toContain('loadFrenchRemoteLevelExamQuestions');
   });
 });

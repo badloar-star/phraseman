@@ -286,6 +286,14 @@
         "C:/appsprojects/phraseman/docs/design/v2-app"
       ],
       "port": 8851
+    },
+    {
+      "name": "queue-board",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/appsprojects/phraseman/docs/work/mockups/queue-board-2026-11-11/serve.cjs"
+      ],
+      "port": 4790
     }
   ]
 }

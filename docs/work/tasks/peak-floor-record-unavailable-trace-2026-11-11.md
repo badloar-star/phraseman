@@ -11,6 +11,17 @@ Related epic/enabler: none
 вызова `spireFloorRecords` и ни одного `[SPIRE-RECORD]` — загрузка обрывается на немом раннем выходе.
 Цель: лог называет причину, по факту чиним первое звено.
 
+## Diagnosis (факты, 11.11)
+
+- Эмулятор работает на старой сборке: бандлер не слушает 8081, зеркало лога стоит с 16:19, logcat не содержит новых строк — живой лог снять нельзя.
+- По коду цепочка закрыта в двух местах: клиентский флаг `SPIRE_FLOOR_RECORD_ENABLED = false`
+  (app/spire/spire_floor_record_flag.ts, «держи вход за флагом, пока сервер не выложен») и серверный замок
+  `FLOOR_RECORD_AUTHORITY_READY = false` (functions/src/spire_floor_record_gate.ts) — сервер на любое чтение отвечает `record_disabled`.
+- Прежний вид Пика (spire_record_slot) этот флаг уважает и карточку не создаёт; новый хук листа (`use_peak_floor_records`) флаг не читал —
+  отсюда постоянное «Временно недоступен», ровно то, от чего флаг защищал.
+- Починка: хук читает тот же флаг (статус `off`, в сеть не ходит), лист при `off` не показывает ни ступеней, ни карточки рекорда.
+  Сторож — tests/spire_floor_record_flag.test.ts.
+
 ## Scope
 
 In scope: `components/spire/peak/use_peak_floor_records.ts` — лог `[SPIRE-RECORD]` на каждом раннем выходе

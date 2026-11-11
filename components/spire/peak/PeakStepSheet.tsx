@@ -26,7 +26,8 @@ type Props = Readonly<{
   /** Выбранная ступень — для подписи «Рекорд ступени N». */
   step?: number;
   record: PeakSheetRecord | null;
-  recordStatus?: 'loading' | 'unavailable' | 'ready';
+  /** off — рекорд этажа выключен флагом (не выпущен): ни ступеней, ни карточки рекорда. */
+  recordStatus?: 'loading' | 'unavailable' | 'ready' | 'off';
   /** Кто сейчас на этаже; null — комната ещё читается; undefined — блок не показываем. */
   occupants?: readonly SpireRival[] | null;
   /** uid текущего пользователя: его монета стоит первой, с кольцом и подписью «Ты». */
@@ -53,17 +54,18 @@ function PeakStepSheet({ lang, visible, title, step, record, recordStatus = 'rea
         <View style={[s.handle, { backgroundColor: p.textMuted }]} />
         <ScrollView style={s.content} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
           <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{title}</Text>
-          {stepper ? <View style={s.stepper}>{stepper}</View> : null}
-          <View style={[s.rec, { backgroundColor: p.cardRaised }]} testID="peak-step-record">
+          {/* зачем (владелец 11.11): пока рекорд не выпущен, ступени выбирать не для чего — лист показывает только тех, кто на этаже */}
+          {stepper && recordStatus !== 'off' ? <View style={s.stepper}>{stepper}</View> : null}
+          {recordStatus === 'off' ? null : <View style={[s.rec, { backgroundColor: p.cardRaised }]} testID="peak-step-record">
             {hasRecord && record ? <SpireRankCoin rank={record.coinRank ?? null} size={48} plus={false} /> : null}
             <View style={s.recWho}>
               {hasRecord && record ? (
                 <>
                   <View style={s.recLabel}>
                     <Ionicons name="trophy-outline" size={18} color={p.accentTextSafe} />
-                    <Text numberOfLines={1} style={[s.recLabelText, { color: p.accentTextSafe }]}>{spireGameText(lang, 'peakStepRecordN', { n: step ?? 1 })}</Text>
+                    <Text style={[s.recLabelText, { color: p.accentTextSafe }]}>{spireGameText(lang, 'peakStepRecordN', { n: step ?? 1 })}</Text>
                   </View>
-                  <Text numberOfLines={2} style={[s.recName, { color: p.text }]}>{record.name?.trim() || '—'}</Text>
+                  <Text style={[s.recName, { color: p.text }]}>{record.name?.trim() || '—'}</Text>
                 </>
               ) : (
                 <Text style={[s.recName, { color: p.text }]}>
@@ -72,7 +74,7 @@ function PeakStepSheet({ lang, visible, title, step, record, recordStatus = 'rea
               )}
             </View>
             <Text style={[s.recTime, { color: hasRecord ? p.accentTextSafe : p.textMuted }]}>{hasRecord ? time : '—'}</Text>
-          </View>
+          </View>}
           {people !== undefined ? (
             <View style={s.occupants} testID="peak-floor-occupants">
               <View style={s.occHead}>
@@ -92,7 +94,7 @@ function PeakStepSheet({ lang, visible, title, step, record, recordStatus = 'rea
                         <View style={[s.coinWrap, isMe ? { backgroundColor: p.accentGraphic } : null]}>
                           <SpireRankCoin rank={member.coinRank} size={PEAK_SHEET_OCCUPANT_COIN} plus={false} />
                         </View>
-                        <Text numberOfLines={1} style={[s.cellName, { color: isMe ? p.text : p.textSecondary }]}>{isMe ? spireText(lang, 'you') : member.name}</Text>
+                        <Text style={[s.cellName, { color: isMe ? p.text : p.textSecondary }]}>{isMe ? spireText(lang, 'you') : member.name}</Text>
                       </View>
                     );
                   })}
@@ -129,7 +131,8 @@ const s = StyleSheet.create({
   cell: { width: `${100 / OCCUPANT_COLUMNS}%`, alignItems: 'center', gap: 6, paddingHorizontal: 3 },
   // зачем (макет): своя монета — кольцом цвета темы (подложка на 3 dp шире), без обводки-рамки
   coinWrap: { padding: 3, borderRadius: PEAK_SHEET_OCCUPANT_COIN / 2 + 3 },
-  cellName: { fontSize: 14, lineHeight: 17, fontWeight: '600', maxWidth: '100%' },
+  // зачем (правило владельца, lint text-integrity): длинное имя не обрезается многоточием — переносится по центру ячейки
+  cellName: { fontSize: 14, lineHeight: 17, fontWeight: '600', maxWidth: '100%', textAlign: 'center' },
 });
 
 export default memo(PeakStepSheet);

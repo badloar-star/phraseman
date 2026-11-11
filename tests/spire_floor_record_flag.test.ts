@@ -40,4 +40,15 @@ describe('Рекорд этажа: вход за флагом', () => {
     expect(src).toContain('if (a.preview || !SPIRE_FLOOR_RECORD_ENABLED) return undefined;');
     expect(src).toContain('<SpireFloorRecord ');
   });
+
+  // владелец 11.11: лист этажа Пика показывал «Временно недоступен», хотя рекорд просто не выпущен
+  it('лист этажа Пика при выключенном флаге: в сеть не ходит, статус off, карточки рекорда и ступеней нет', () => {
+    const hook = read('components/spire/peak/use_peak_floor_records.ts');
+    expect(hook).toContain("import { SPIRE_FLOOR_RECORD_ENABLED } from '../../../app/spire/spire_floor_record_flag';");
+    expect(hook).toMatch(/if \(!SPIRE_FLOOR_RECORD_ENABLED\) \{\s*console\.warn\('\[SPIRE-RECORD\] peak_off'/);
+    expect(hook).toContain("status: !SPIRE_FLOOR_RECORD_ENABLED ? 'off' as const");
+    const sheet = read('components/spire/peak/PeakStepSheet.tsx');
+    expect(sheet).toContain("{stepper && recordStatus !== 'off' ? ");
+    expect(sheet).toContain("{recordStatus === 'off' ? null : <View style={[s.rec,");
+  });
 });

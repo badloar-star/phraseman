@@ -68,7 +68,8 @@ function CoinRankCatalog({ glass, lang, currentRank, showTitle = true }: Props) 
               <Text maxFontSizeMultiplier={1.2} style={[styles.label, { color: on ? glass.text : glass.secondary }]}>
                 {`${copy.rank} ${row.rank}`}
               </Text>
-              <Text numberOfLines={1} maxFontSizeMultiplier={1.15} style={[styles.price, { color: on ? glass.text : glass.secondary }]}>
+              {/* зачем (Lint text-integrity, 11.11): цену не обрезаем — при крупном шрифте она переносится, плитка растёт по minHeight */}
+              <Text maxFontSizeMultiplier={1.15} style={[styles.price, { color: on ? glass.text : glass.secondary }]}>
                 {price}
               </Text>
             </View>

@@ -31,36 +31,6 @@
       }
     },
     {
-      "file": "components/AppMessagesInbox.tsx",
-      "ownerName": "renderPoll",
-      "ownerPath": "AppMessagesInbox>renderPoll",
-      "ancestorPath": [
-        "View",
-        "View",
-        "KitTouchable",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "3",
-      "testID": null,
-      "fingerprint": "044e17b201c2f5bee354082cb89bcef6d3f125426cef5d7ed4db0b7134d055ca",
-      "count": 1,
-      "lineHints": [
-        950
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/youtube/YoutubeVideoGridCard.tsx",
       "ownerName": "YoutubeVideoGridCardBase",
       "ownerPath": "YoutubeVideoGridCardBase",

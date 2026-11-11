@@ -212,7 +212,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
             scaleTo={0.97}
             style={[s.row, { borderTopColor: separator, borderTopWidth: 1 }]} // shadow-ok: разделитель строк (верхняя линия 1, как у строк заданий; не обводка контейнера)
           >
-            <LinearGradient colors={['#8E7CFF', '#6FA8FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={s.ic}><Ionicons name="diamond" size={18} color="#FFFFFF" /></LinearGradient> /* theme-exempt: бриллиант Plus как на бейдже аватарки */
+            <LinearGradient colors={['#8E7CFF', '#6FA8FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={s.ic}><Ionicons name="diamond" size={18} color="#FFFFFF" /></LinearGradient>{/* theme-exempt: бриллиант Plus как на бейдже аватарки */}
             <View style={s.tx}>
               <Text style={[s.rowTitle, { color: card.text }]} numberOfLines={1}>{trialRow.title}</Text>
               <Text style={[s.rowSub, { color: card.secondary }]} numberOfLines={1}>{trialRow.subtitle}</Text>

@@ -182,7 +182,7 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, tr
             scaleTo={0.98}
             style={[s.sceneRow, { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: `${g.text.slice(0, 7)}12` }]} // shadow-ok: разделитель строк
           >
-            <LinearGradient colors={['#8E7CFF', '#6FA8FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={s.sceneIcon}><Ionicons name="diamond" size={18} color="#FFFFFF" /></LinearGradient> /* theme-exempt: бриллиант Plus как на бейдже аватарки */
+            <LinearGradient colors={['#8E7CFF', '#6FA8FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={s.sceneIcon}><Ionicons name="diamond" size={18} color="#FFFFFF" /></LinearGradient>{/* theme-exempt: бриллиант Plus как на бейдже аватарки */}
             <View style={s.copy}>
               <Text numberOfLines={1} style={[s.taskTitle, { color: g.text }]}>{trialRow.title}</Text>
               {trialRow.subtitle ? <Text numberOfLines={1} style={[s.taskSubtitle, { color: g.secondary }]}>{trialRow.subtitle}</Text> : null}

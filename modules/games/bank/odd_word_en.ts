@@ -49,11 +49,12 @@ export const ODD_WORD_BANK_EN: Readonly<Record<number, readonly OddWordTask[]>> 
     task(3, 1, 'I walk [to] home', 'Я иду пешком домой', 'Home обходится без to.'),
     task(3, 2, 'The cafe closes [at] early', 'Кафе закрывается рано', 'At ставят перед часом: at nine. Early обходится без него.'),
     task(3, 3, 'She walks to [the] work', 'Она идёт пешком на работу', 'To work — «на работу», без the.'),
-    task(3, 4, 'I [am] need help', 'Мне нужна помощь', 'Need справляется сам, am тут не нужно.'),
+    // зачем (владелец 11.11, «Да, принять»): прежние «I am need help» и «He is checks his phone» давали гладкую бессмыслицу, если убрать соседнее слово
+    task(3, 4, 'The class starts at [on] ten', 'Занятие начинается в десять', 'Перед часом ставят at: at ten.'),
     task(3, 5, 'He [is] wants tea', 'Он хочет чай', 'Wants справляется сам, is тут не нужно.'),
     task(3, 6, 'My shift starts [at] soon', 'Моя смена скоро начинается', 'At ставят перед часом: at ten. Soon обходится без него.'),
     task(3, 7, 'This key opens [it] the gate', 'Этот ключ открывает ворота', 'The gate уже названы — it их повторяет.'),
-    task(3, 8, 'He [is] checks his phone', 'Он проверяет свой телефон', 'Checks справляется сам, is тут не нужно.'),
+    task(3, 8, 'The shop opens at [the] nine', 'Магазин открывается в девять', 'Перед часом the не ставят: at nine.'),
   ],
   4: [
     task(4, 1, 'She does [do] not smoke', 'Она не курит', 'С she идёт does, do тут лишнее.'),
@@ -88,7 +89,8 @@ export const ODD_WORD_BANK_EN: Readonly<Record<number, readonly OddWordTask[]>> 
   7: [
     task(7, 1, 'She [have] has a ticket', 'У неё есть билет', 'С she идёт has, а не have.'),
     task(7, 2, 'They [has] have a car', 'У них есть машина', 'С they идёт have, а не has.'),
-    task(7, 3, 'I [am] have a question', 'У меня есть вопрос', '«У меня есть» — это I have, am тут не нужно.'),
+    // зачем (владелец 11.11, «Да, принять»): прежнее «I am have a question» без have давало гладкое «I am a question»
+    task(7, 3, 'Do you [are] have a pen?', 'У вас есть ручка?', 'Помощник здесь уже есть — это do.'),
     task(7, 4, 'We have [a] time', 'У нас есть время', 'Time здесь не считают штуками — a не нужно.'),
     task(7, 5, 'The form has [a] three pages', 'У анкеты три страницы', 'Страниц три, a ставят только перед одной.'),
     task(7, 6, 'Does she [has] have her passport?', 'У неё с собой паспорт?', 'После does идёт have, а не has.'),

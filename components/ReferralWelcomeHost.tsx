@@ -22,6 +22,7 @@ import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import KitTouchable from './KitTouchable';
 import { useOverlayVisible } from './OverlayArbiter';
+import { useActiveAccountOwner } from '../hooks/use_active_account_owner';
 import { insteadStoryLanded, recordReferralWelcomeStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
 import { triLang, type Lang } from '../constants/i18n';
 import {
@@ -64,9 +65,13 @@ export default function ReferralWelcomeHost() {
   const wantShow = rouletteOn && (welcomeDecision?.show ?? false);
   const visible = useOverlayVisible('referralWelcome', wantShow);
 
-  // Один раз при монтировании решаем, надо ли показывать (читает только AsyncStorage).
+  // зачем (F17, аудит, владелец 11.11): хост живёт весь запуск — решение принималось один раз, и после смены аккаунта новый
+  // приглашённый приветствия не получал, а решение прошлого оставалось. Владелец в зависимостях: решаем заново для каждого.
+  const welcomeOwner = useActiveAccountOwner();
+  // Решаем, надо ли показывать (читает только AsyncStorage): при монтировании и при смене владельца.
   useEffect(() => {
     let alive = true;
+    setWelcomeDecision(null);
     if (!rouletteOn) {
       setWelcomeDecision(null);
       return;
@@ -95,7 +100,7 @@ export default function ReferralWelcomeHost() {
     return () => {
       alive = false;
     };
-  }, [rouletteOn]);
+  }, [rouletteOn, welcomeOwner]);
 
   const scale = useRef(new Animated.Value(0.9)).current;
   const opacity = useRef(new Animated.Value(0)).current;

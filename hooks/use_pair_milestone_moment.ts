@@ -11,6 +11,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useOverlayVisible } from '../components/OverlayArbiter';
+import { useActiveAccountOwner } from './use_active_account_owner';
 import { NATIVE_MODAL_DISMISS_GAP_MS } from '../app/safe_modal_navigation';
 import { getLocalDayKey } from '../app/local_date';
 import { maskUid } from '../app/diagnostic_mask';
@@ -72,6 +73,18 @@ export function usePairMilestoneMoment({ active, snapshot, blocked }: PairMilest
   const busyRef = useRef(false);
   // зачем: проверки по очереди — снимок с диска и сразу снимок из сети не возьмут две вехи разом (вторая потерялась бы)
   const queueRef = useRef<Promise<void>>(Promise.resolve());
+  // зачем (F17, аудит, владелец 11.11): вкладка «Друзья» не перемонтируется при смене аккаунта. Веха, взятая у прошлого игрока
+  // и ждавшая показа (вкладка была скрыта), открывалась у нового: «Серия вдвоём 30 дней» с чужим другом.
+  const owner = useActiveAccountOwner();
+  const ownerRef = useRef(owner);
+  useEffect(() => {
+    if (ownerRef.current === owner) return; // guard-ok: владелец тот же — веху не трогаем
+    ownerRef.current = owner;
+    log(`milestone:owner_changed dropped=${momentRef.current ? `${maskUid(momentRef.current.candidate.friendUid)}:${momentRef.current.milestone}:${momentRef.current.phase}` : 'none'}`);
+    busyRef.current = false;
+    checkedRef.current = null;
+    setMoment(null);
+  }, [owner]);
 
   useEffect(() => {
     if (!active || !snapshot || checkedRef.current === snapshot) return;

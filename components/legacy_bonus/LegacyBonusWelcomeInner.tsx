@@ -10,6 +10,7 @@ import { dismissLegacyBonusWelcome, markLegacyBonusWelcomeShown, useLegacyBonusW
 import type { Lang } from '../../constants/i18n';
 import type { LegacyBonusViewInput } from '../../modules/legacy_bonus/legacy_bonus_view';
 import { useOverlayVisible } from '../OverlayArbiter';
+import { useActiveAccountOwner } from '../../hooks/use_active_account_owner';
 import { insteadStoryLanded, recordLegacyCoinsStory, storiesReplaceWindows } from '../../modules/story_events/story_instead_sources';
 
 const LegacyBonusWelcomeSheet = lazy(() => import('./LegacyBonusWelcomeSheet'));
@@ -24,6 +25,17 @@ function LegacyBonusWelcomeInner({ lang, coinRank }: Readonly<{ lang: Lang; coin
   // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях результат пересчёта
   // пишется кадром — шторка не открывается и слот очереди окон не просится. Истории выключены (флаг stories_v1) — шторка как раньше.
   const storyRecordedRef = useRef(false);
+  // зачем (F17, аудит, владелец 11.11): замороженная копия результата (начисленные монеты) жила до закрытия шторки — после смены
+  // аккаунта новому игроку показались бы цифры прошлого. Клиент Ядра сам привязан к владельцу; сбрасываем только копию хоста.
+  const hostOwner = useActiveAccountOwner(); const hostOwnerRef = useRef(hostOwner);
+  useEffect(() => {
+    if (hostOwnerRef.current === hostOwner) return; // guard-ok: владелец тот же
+    hostOwnerRef.current = hostOwner;
+    console.log('[LEGACY-BONUS] хост: владелец сменился — копия результата прошлого игрока снята'); // guard-ok: одна строка на смену владельца
+    storyRecordedRef.current = false;
+    setFrozen(null);
+    setClosing(false);
+  }, [hostOwner]);
   useEffect(() => {
     if (!incoming || frozen || storyRecordedRef.current || !storiesReplaceWindows()) return;
     storyRecordedRef.current = true;

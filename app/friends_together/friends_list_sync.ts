@@ -7,6 +7,7 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { onAccountOwnerChanged } from '../account_owner_change';
 import { getCanonicalUserId } from '../user_id_policy';
 import { maskUid } from '../diagnostic_mask';
 
@@ -18,6 +19,10 @@ const memory = new Map<string, number>();
 const writtenAt = new Map<string, number>();
 
 const errText = (e: unknown): string => (e instanceof Error ? e.message : String(e));
+
+// зачем (F17, аудит, владелец 11.11): peek отдаёт время «последнего» владельца в памяти — после смены аккаунта полоса
+// «список сохранён в 18:40» показывала время прошлого игрока. Сами времена хранятся по uid и остаются.
+onAccountOwnerChanged('friends_list_sync', () => { lastScope = ''; });
 
 /** Снимок списка друзей пришёл с сервера (не из кэша Firestore). scope — свой uid. */
 export function noteFriendsListServerSnapshot(scope: string, atMs: number = Date.now()): void {

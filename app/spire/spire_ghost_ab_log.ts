@@ -5,12 +5,16 @@
 // Пишется ТОЛЬКО когда проба идёт (флаг «Пульта» ghost_friend_ab включён и у человека есть id): при выключенном флаге ступень как раньше, ни строчки. Один раз за процесс
 // на действие: событий журнал хранит ≤ 200 и ступеней за день много. Идентификаторов в событии нет — корзина восстанавливается формулой из uid (docs/work/spire-ghost-ab-2026-10-29.md).
 // Префикс [SPIRE] — сторож spire_game_source_contract: весь код в app/spire/ пишет с ним; метка задачи [SPIRE-GHOST-AB].
+import { onAccountOwnerChanged } from '../account_owner_change';
 import { recordSupportDiagnostic } from '../support_diagnostics';
 import type { SpireGhostDecision } from '../../components/spire/spire_ghost_flag';
 
 const SPIRE = '[SPIRE]';
 const TAG = '[SPIRE-GHOST-AB]';
 const noted = new Set<string>();
+// зачем (F17, аудит, владелец 11.11): «уже записано» считалось по действию без игрока — событие пробы второго аккаунта
+// в том же запуске терялось, и сравнение групп недосчитывало людей
+onAccountOwnerChanged('spire_ghost_ab_log', () => { noted.clear(); });
 
 export function spireGhostAbAction(decision: Pick<SpireGhostDecision, 'shown' | 'bucket'>): string | null {
   if (decision.bucket === null) return null;

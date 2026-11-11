@@ -13,6 +13,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useOverlayVisible } from '../components/OverlayArbiter';
+import { useActiveAccountOwner } from './use_active_account_owner';
 import { runAfterHomeFirstFrame } from '../app/first_frame_deferred_warmups';
 import type { WelcomeBackDecision } from '../modules/welcome_back/welcome_back_model';
 import { markWelcomeBackShown, resolveWelcomeBack } from '../modules/welcome_back/welcome_back_gate';
@@ -44,6 +45,19 @@ export function useWelcomeBackMoment(input: UseWelcomeBackMomentInput): UseWelco
   const [signalTick, setSignalTick] = useState(0);
   const visible = useOverlayVisible('welcomeBack', decision !== null);
   const markedRef = useRef(false);
+  // зачем (F17, аудит, владелец 11.11): Главная не перемонтируется при смене аккаунта. Решение «С возвращением» прошлого
+  // игрока (его дни отсутствия, серия, монеты), ждавшее за другим окном, показалось бы новому. Владелец стоит и в зависимостях
+  // эффекта решения ниже — идущий расчёт прошлого игрока отменяется.
+  const owner = useActiveAccountOwner();
+  const ownerRef = useRef(owner);
+  useEffect(() => {
+    if (ownerRef.current === owner) return; // guard-ok: владелец тот же — решение не трогаем
+    ownerRef.current = owner;
+    console.log(`[WELCOME-BACK] владелец сменился — решение прошлого игрока снято (было=${decision ? 'да' : 'нет'})`); // guard-ok: одна строка на смену владельца
+    markedRef.current = false;
+    setDecision(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- decision читается только для журнала
+  }, [owner]);
 
   // Снимок возвращения появился, пока Главная открыта (возврат из фона) — решаем заново.
   useEffect(() => subscribeWelcomeBackReturnGap((gap) => { if (gap) setSignalTick((n) => n + 1); }), []);
@@ -87,7 +101,7 @@ export function useWelcomeBackMoment(input: UseWelcomeBackMomentInput): UseWelco
       console.warn('[WELCOME-BACK] решение упало — окно не показываем', String(error)); // guard-ok: catch пишет причину
     }), { holdDuringOnboarding: true });
     return () => { cancelled = true; cancelTask(); };
-  }, [active, coinRank, decision, energyCurrent, energyMax, signalTick, studyTarget]);
+  }, [active, coinRank, decision, energyCurrent, energyMax, signalTick, studyTarget, owner]);
 
   useEffect(() => {
     if (!visible || !decision || markedRef.current) return;

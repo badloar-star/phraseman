@@ -45,12 +45,14 @@ function acceptedDecision(entry: SpirePendingEntry, localSeq: number | null, now
 }
 
 let inFlight: Promise<number> | null = null;
+/** Чей проход идёт: проход прошлого игрока не должен «засчитываться» новому как его собственный (F17, аудит). */
+let inFlightOwner: string | null = null;
 
 /** Снять сирот владельца. Возвращает число снятых строк. Никогда не бросает: причина — в журнале. */
 export function reconcileSpirePendingOrphans(owner: string | null | undefined, trigger: string, injected?: SpirePendingOrphanDeps, nowMs: number = Date.now()): Promise<number> {
   if (!owner) return Promise.resolve(0);
   if (peekSpirePendingEntries(owner).length === 0) return Promise.resolve(0);
-  if (inFlight && !injected) return inFlight;
+  if (inFlight && !injected && inFlightOwner === owner) return inFlight;
   const run = (async (): Promise<number> => {
     const entries = peekSpirePendingEntries(owner);
     let deps: SpirePendingOrphanDeps;
@@ -119,8 +121,8 @@ export function reconcileSpirePendingOrphans(owner: string | null | undefined, t
       keptAccepted,
     })}`); // guard-ok: из чего складывались ожидающие и что снято
     return removed;
-  })().finally(() => { if (!injected) inFlight = null; });
-  if (!injected) inFlight = run;
+  })().finally(() => { if (!injected && inFlight === run) { inFlight = null; inFlightOwner = null; } });
+  if (!injected) { inFlight = run; inFlightOwner = owner; }
   return run;
 }
 

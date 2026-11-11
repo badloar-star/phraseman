@@ -37,13 +37,14 @@ const seenKey = (uid: string, lang: string): string => `spire_position_seen_v1:$
 const lastChanceKey = (uid: string, lang: string): string => `spire_last_chance_shown_v1:${uid}:${lang}`;
 
 /**
- * «Тебя обогнали» — не чаще раза за сессию (процесс приложения) НА АККАУНТ: здесь uid, которому окно уже показано.
+ * «Тебя обогнали» — не чаще раза за сессию (процесс приложения) НА АККАУНТ: здесь uid, которым окно уже показано
+ * (множество: возврат A → B → A не показывает окно A второй раз).
  * зачем (F17, владелец 11.11): общий флаг процесса глушил окно аккаунту B, если его в этой сессии уже видел A.
  */
-let overtakeShownForUid: string | null = null;
+const overtakeShownForUids = new Set<string>();
 
 export function __resetSpirePositionMomentsForTests(): void {
-  overtakeShownForUid = null;
+  overtakeShownForUids.clear();
 }
 
 /** Владелец окон: аккаунт + язык обучения (у каждого языка своя комната). null — никого (вышел / Пик закрыт). */
@@ -163,7 +164,7 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
       const seen = readSeen(raw);
       if (seen && seen.roomFetchedAtMs !== snapshot.roomFetchedAtMs) {
         const d = spireDecideOvertake(seen, snapshot, rows, rankBy);
-        const shownThisSession = overtakeShownForUid === uid;
+        const shownThisSession = overtakeShownForUids.has(uid);
         if (d.show && shownThisSession) console.log(`${LOG} overtake skip: уже показывали в этой сессии этому аккаунту (${d.why})`);
         else console.log(`${LOG} overtake ${d.show ? 'show' : 'skip'}: ${d.why}`);
         if (d.show && !shownThisSession && !consumedRef.current.has(`overtake:${d.show.key}`)) setOvertake({ owner, show: d.show });
@@ -203,7 +204,7 @@ export function useSpirePositionMomentsWith(input: SpirePositionMomentsInput): S
   const consume = useCallback((kind: SpirePositionMomentKind, key: string) => {
     consumedRef.current.add(`${kind}:${key}`);
     console.log(`${LOG} consume kind=${kind} key=${key}`);
-    if (kind === 'overtake') overtakeShownForUid = uid;
+    if (kind === 'overtake' && uid) overtakeShownForUids.add(uid);
     if (kind === 'lastChance' && uid && lang) {
       const week = key.split(':')[0] ?? '';
       setLastChanceMark({ owner: ownerOf(uid, lang), show: week });

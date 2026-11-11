@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState } from 'react-native';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
+import { onAccountOwnerChanged } from '../account_owner_change';
 import { isSameAccountOwner, markAccountOwner } from '../account_same_owner';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getLocalDayKey } from '../local_date';
@@ -84,6 +85,11 @@ async function writeNudgedToday(owner: string, dayKey: string, map: NudgedTodayM
 let _memoryOwner: string | null = null;
 let _memoryDayKey = '';
 let _memoryMap: NudgedTodayMap = {};
+
+// зачем (F17, аудит, владелец 11.11): синхронная проверка «позвано сегодня» читает память до первого ensureOwner — у нового
+// игрока кнопки общих друзей показывали «позвано». Чистим только отметки дня; владельца памяти НЕ трогаем: по его смене
+// ensureOwner сам сбрасывает очередь и номера повторов прошлого игрока.
+onAccountOwnerChanged('friends_nudged_today', () => { _memoryDayKey = ''; _memoryMap = {}; });
 
 /** Владелец — stableId аккаунта на телефоне (читается без сети). Сбой чтения — пустой владелец: такой зов в очередь не встанет. */
 async function readOwner(): Promise<string> {

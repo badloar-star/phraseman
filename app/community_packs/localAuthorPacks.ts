@@ -22,6 +22,7 @@ import { communityPackCardsToCardItems } from './communityFirestore';
 import type { CommunityPackCardPayload, CommunityPackSubmissionPayload } from './schema';
 import { normalizePackLanguage, type PackLanguage } from '../flashcards/pack_languages';
 import { captureAccountGeneration, isCurrentAccountGeneration, withAccountTransitionLock, type AccountGenerationToken } from '../account_generation';
+import { onAccountOwnerChanged } from '../account_owner_change';
 import { accountScopeKey } from '../account_scope_key';
 import { normalizePackLevel, packPreviewWords, type PackLevel } from '../flashcards/pack_deck_meta';
 import { BoundedScopeCache, parseStrictArrayJson } from '../flashcards/myPacksDataIntegrity';
@@ -54,6 +55,8 @@ export function authorPackQuotaFor(count: number, isPremium: boolean): AuthorPac
 
 /** Последнее известное число своих наборов (процесс) — мгновенный первый кадр; null — ещё не считали. */
 let lastKnownAuthorPackCount: number | null = null;
+// зачем (F17, аудит, владелец 11.11): число наборов прошлого игрока давало новому «3 из 3» и предложение Plus на первом кадре
+onAccountOwnerChanged('author_pack_count', () => { lastKnownAuthorPackCount = null; });
 export function peekAuthorPackCount(): number | null {
   return lastKnownAuthorPackCount;
 }

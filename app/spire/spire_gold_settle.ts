@@ -11,6 +11,7 @@
  *   - ступень отвергнута — снимаем золото вместе с ней (reason=rejected), без отдельного тоста: ступень и так откатилась.
  * Сторож — tests/spire_gold_settle.test.ts (все ветки отказа).
  */
+import { captureAccountGeneration } from '../account_generation';
 import { emitAppEvent, actionToastTri } from '../events';
 import { DebugLogger } from '../debug-logger';
 import { removeSpirePendingCoins, settleSpirePendingCoins, spireGoldPendingId, spirePendingCoinsHas } from './spire_pending_coins';
@@ -23,7 +24,12 @@ const TAG = '[SPIRE-GOLD]';
 type Verdict = Readonly<{ reportId: string; verdict: string; reason?: string }>;
 type GoldWire = Readonly<{ accepted?: unknown; skipped?: unknown }>;
 
-function toast(kind: 'daily_cap' | 'not_counted'): void {
+function toast(kind: 'daily_cap' | 'not_counted', owner: string): void {
+  // зачем (F17, аудит, владелец 11.11): ответ сервера по ступени прошлого игрока мог прийти уже при новом — тому показывалось
+  // «золото не засчитано» про чужую ступень. Сами монеты считаются по владельцу и не страдали; гасим только сообщение.
+  const current = captureAccountGeneration().stableId?.trim() || null;
+  // гасим только при ДРУГОМ определённом владельце: «владелец ещё не известен» (ранний старт) сообщение не глушит
+  if (current !== null && current !== owner) { DebugLogger.info(SPIRE, `${TAG} toast skip kind=${kind} reason=account_changed`); return; }
   emitAppEvent('action_toast', actionToastTri('info', kind === 'daily_cap' ? SPIRE_GOLD_TOAST_DAILY_CAP : SPIRE_GOLD_TOAST_NOT_COUNTED));
 }
 
@@ -65,7 +71,7 @@ export function settleSpireGoldFromFlush(
     toastKind = reason === 'daily_cap' ? 'daily_cap' : (toastKind ?? 'not_counted');
   }
   if (settle.length > 0) settleSpirePendingCoins(owner, settle, true, balanceBefore, balanceAfter);
-  if (toastKind) toast(toastKind);
+  if (toastKind) toast(toastKind, owner);
 }
 
 /* expo-router: служебный модуль, не экран. */

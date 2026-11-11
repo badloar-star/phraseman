@@ -3,6 +3,7 @@ import {
   isPremiumAccessDecisionConfirmedForCurrentAccount,
   isTesterNoLimitsActive,
 } from './premium_guard';
+import { onAccountOwnerChanged } from './account_owner_change';
 import { isAlwaysOpenLesson } from './main_course_access';
 import {
   lessonPaywallContext,
@@ -83,6 +84,10 @@ export async function shouldBlockLessonAccess(lessonId: number, studyTarget?: Ru
  * Последнее решение охранника lesson1 по уроку — чтобы меню при своём замке могло сверить, не разошлись ли два решения (Ревизор 3bed5434c: расхождение = риск петли по нажатиям).
  */
 const lastGateDecisions = new Map<number, { gate: string; atMs: number; source?: 'list'; studyTarget?: string }>();
+
+// зачем (F17, аудит, владелец 11.11): меню 60 секунд доверяет решению списка «урок открыт» — решения прошлого игрока
+// (у него Plus) не должны открывать урок следующему в первую минуту после смены аккаунта
+onAccountOwnerChanged('lesson_gate_decisions', () => { lastGateDecisions.clear(); });
 
 export function peekLessonGateDecision(lessonId: number): { gate: string; ageMs: number; source?: 'list' } | null {
   const saved = lastGateDecisions.get(lessonId);

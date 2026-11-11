@@ -12,6 +12,7 @@ import {
   isCurrentAccountGeneration,
   type AccountGenerationToken,
 } from '../account_generation';
+import { onAccountOwnerChanged } from '../account_owner_change';
 import { DebugLogger } from '../debug-logger';
 import { actionToastTri, emitAppEvent } from '../events';
 
@@ -26,6 +27,27 @@ export type SpireWeekRemindAvailability = Readonly<
 >;
 
 const log = (msg: string): void => DebugLogger.info('[SPIRE]', `${TAG} ${msg}`);
+
+/**
+ * Снять поставленное напоминание и забыть его id. Никогда не бросает: причина — в журнале.
+ * зачем (F17, аудит, владелец 11.11): id напоминания хранится на телефоне без игрока. A нажал «Напомнить вечером», вышел,
+ * вошёл B — в 19:00 «Пик ждёт, лига снова твоя» приходило B, который этого не просил и в лиге A не состоит.
+ */
+export async function cancelSpireWeekRemind(why: string): Promise<boolean> {
+  try {
+    const id = await AsyncStorage.getItem(ID_KEY);
+    if (!id) { log(`снимать нечего (${why}): напоминание не стояло`); return false; }
+    const notifications = await import('../notifications');
+    await notifications.cancelScheduledLocalNotificationById(id);
+    await AsyncStorage.removeItem(ID_KEY);
+    log(`снято (${why}): id=${id}`);
+    return true;
+  } catch (error) {
+    log(`не сняли (${why}): сбой (${error instanceof Error ? error.message.slice(0, 120) : String(error).slice(0, 120)})`);
+    return false;
+  }
+}
+onAccountOwnerChanged('spire_week_remind', () => { void cancelSpireWeekRemind('owner_changed'); });
 
 /** Сегодня 19:00 по местному времени устройства; null — уже позже 18:30 (кнопку не показываем). */
 export function spireWeekRemindTriggerAt(nowMs: number): number | null {

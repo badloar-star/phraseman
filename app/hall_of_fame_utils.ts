@@ -28,6 +28,7 @@ import { resolveNotificationLang } from './notification_lang';
 import type { AccountGenerationToken } from './account_generation';
 import { DebugLogger } from './debug-logger';
 import { onAccountOwnerChanged } from './account_owner_change';
+import { isSameAccountOwner, markAccountOwner } from './account_same_owner';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // зачем (§AUTH-0110): прежде `uk ? uk : es ? es : ru` — пуш «серия потеряна» по-русски для 6 языков интерфейса.
@@ -172,6 +173,9 @@ let streakPassiveInFlight: Promise<number> | null = null;
 onAccountOwnerChanged('streak_day_marks', () => {
   streakTouchedDayKey = null;
   streakSweptDayKey = null;
+  // зачем (F17, аудит, владелец 11.11): идущее засчитывание прошлого игрока новому не отдаём — его первое действие считается своим проходом
+  streakCountInFlight = null;
+  streakPassiveInFlight = null;
 });
 export function touchStreakForToday(reason: string): Promise<number> | null {
   const day = getLocalDayKey();
@@ -183,17 +187,19 @@ export function touchStreakForToday(reason: string): Promise<number> | null {
     // зачем: учебное действие, пришедшее во время сверки, не теряется — засчитываем после неё.
     const afterPassive: Promise<unknown> = streakPassiveInFlight ?? Promise.resolve();
     streakCountInFlight = afterPassive
-      .then(() => countStreakDay(reason, day))
-      .finally(() => { streakCountInFlight = null; });
-    return streakCountInFlight;
+      .then(() => countStreakDay(reason, day));
+    const countRun = streakCountInFlight;
+    void countRun.finally(() => { if (streakCountInFlight === countRun) streakCountInFlight = null; }).catch(noteSwallowedHandler('streak:count_in_flight_release'));
+    return countRun;
   }
   if (streakCountInFlight) return streakCountInFlight;
   if (streakPassiveInFlight) return streakPassiveInFlight;
   console.log(`[STREAK-DAY] touch reason=${reason} mode=passive day=${day}`);
   streakPassiveInFlight = resolveLegacyRuleDay(day)
-    .then((legacy) => (legacy ? countStreakDay(`migration:${reason}`, day) : sweepStreakOnce(reason, day)))
-    .finally(() => { streakPassiveInFlight = null; });
-  return streakPassiveInFlight;
+    .then((legacy) => (legacy ? countStreakDay(`migration:${reason}`, day) : sweepStreakOnce(reason, day)));
+  const passiveRun = streakPassiveInFlight;
+  void passiveRun.finally(() => { if (streakPassiveInFlight === passiveRun) streakPassiveInFlight = null; }).catch(noteSwallowedHandler('streak:passive_in_flight_release'));
+  return passiveRun;
 }
 
 function sweepStreakOnce(reason: string, day: string): Promise<number> {
@@ -210,6 +216,7 @@ function sweepStreakOnce(reason: string, day: string): Promise<number> {
 
 function countStreakDay(reason: string, day: string): Promise<number> {
   let wasCountedBefore = false;
+  const owner = markAccountOwner(); // зачем (F17): отметка аккаунта до первого ожидания
   return readStoredItem('last_active_date')
     .then((lastActive) => { wasCountedBefore = lastActive === day; })
     .catch((error: unknown) => console.warn('[STREAK-DAY] count:read_last_failed', error instanceof Error ? error.message : String(error)))
@@ -220,6 +227,12 @@ function countStreakDay(reason: string, day: string): Promise<number> {
         // попробует снова) и «засчитано» не публикуем, иначе тост врёт.
         console.warn(`[STREAK-DAY] count:not_saved reason=${reason} day=${day} — день не помечен, повтор при следующем действии`);
         return -1;
+      }
+      if (!isSameAccountOwner(owner)) {
+        // зачем (F17, аудит): засчитывание начал прошлый игрок, а закончилось оно при новом — «день отмечен», серия и веха
+        // прошлого не публикуются новому; его день засчитает его собственное действие
+        console.warn(`[STREAK-DAY] count:owner_changed reason=${reason} day=${day} days=${streak} — отметку и сигнал не публикуем`);
+        return streak;
       }
       streakTouchedDayKey = day;
       streakSweptDayKey = day;

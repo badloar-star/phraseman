@@ -9,6 +9,7 @@
 // или человек тапнул по аватару с событиями. Флаг выключен / событий нет → слот не грузит ни одного модуля сторис, кроме лёгких констант, строк и хука данных.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useActiveAccountOwner } from '../../hooks/use_active_account_owner';
 import { InteractionManager, TouchableOpacity, View, type GestureResponderEvent, type ImageSourcePropType } from 'react-native';
 import { Image } from 'expo-image';
 import type { Lang } from '../../constants/i18n';
@@ -74,6 +75,9 @@ function StoryAvatarSlot({ lang, coinRank, coinSource, placeholderColor, onOpenP
   const buttonRef = useRef<React.ElementRef<typeof TouchableOpacity> | null>(null);
   const [viewer, setViewer] = useState<ViewerState | null>(null);
   const [seenHomeIds, setSeenHomeIds] = useState<ReadonlySet<string>>(() => new Set());
+  // зачем (F17, аудит, владелец 11.11): id историй Главной общие (состояние + день) — просмотр у прошлого игрока гасил кольцо у нового
+  const storyOwner = useActiveAccountOwner(); const storyOwnerRef = useRef(storyOwner);
+  useEffect(() => { if (storyOwnerRef.current === storyOwner) return; storyOwnerRef.current = storyOwner; setSeenHomeIds(new Set()); setViewer(null); }, [storyOwner]);
   const sceneStories = useMemo(() => (homeStories ?? []).filter((event) =>
     event.type === 'home_activity' && typeof event.payload.state === 'string' && typeof event.payload.status === 'string'
   ), [homeStories]);

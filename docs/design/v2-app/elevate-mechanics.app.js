@@ -263,7 +263,7 @@
     const G = timers(); let raf = 0, sel = -1; const cx = 165, cy = 140, R = 96, N = SK.length;
     const ang = (i) => -Math.PI / 2 + i * 2 * Math.PI / N, pt = (i, k) => [cx + Math.cos(ang(i)) * R * k, cy + Math.sin(ang(i)) * R * k];
     const poly = (k) => SK.map((_, i) => pt(i, typeof k === 'function' ? k(i) : k).map((n) => n.toFixed(1)).join(',')).join(' ');
-    const weak = SK.reduce((a, b) => (b.v < a.v ? b : a));
+    const weak = SK.filter((s) => s.nm !== 'Социальный').reduce((a, b) => (b.v < a.v ? b : a));
     $(ph, '.lay').innerHTML = `
       <div class="top"><div class="gbtn t">${I('back')}</div><div class="ttl">Навыки</div><span class="gpill">${I('trend', 's18')}за неделю</span></div>
       <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:20px;flex:none"><div><div class="over">Индекс речи</div><div class="big idx" style="margin-top:4px;font-variant-numeric:tabular-nums">0</div></div><span class="gpill" style="margin-bottom:4px">Уверенный · A2</span></div>

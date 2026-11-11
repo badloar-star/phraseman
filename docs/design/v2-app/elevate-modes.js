@@ -106,20 +106,29 @@
   /* ---------- 6 · вспомни и напиши ---------- */
   const TYPE = { ru: 'Он готовит ужин', en: 'he is cooking dinner', slip: [10, 'c'] };
   function write(ph, auto) {
-    const G = timers(); let pos = 0; const L = TYPE.en.replace(/ /g, '');
+    // зачем: владелец 11.11 — «проверка кнопкой, как сейчас»: любая буква принимается, вердикт только после «Проверить»
+    const G = timers(); let typed = [], done = false; const L = TYPE.en.replace(/ /g, '');
     $(ph, '.lay').innerHTML = `${top({ mid: segs(4, 1, 'flex:1;margin:0 6px'), right: `<span class="gpill">${I('boltF', 's16')}<span class="num">4</span></span>` })}
-      <div class="stage"><div style="flex:.5"></div><div class="ask">Напиши по-английски</div><div class="big" style="text-align:center;margin-top:10px;font-size:30px;line-height:36px">${TYPE.ru}</div>
-        <div class="lets">${TYPE.en.split(' ').map((w) => `<div class="wd">${[...w].map(() => '<div class="lt2"></div>').join('')}</div>`).join('')}</div><div class="verd" style="margin-top:18px"></div>
-        <div style="flex:1"></div><div class="kb">${['qwertyuiop', 'asdfghjkl', 'zxcvbnm'].map((r) => `<div class="r">${[...r].map((c) => `<div class="key" data-c="${c}">${c}</div>`).join('')}</div>`).join('')}</div></div>`;
-    const cells = $$(ph, '.lt2'), verd = $(ph, '.verd'); const cur = () => cells.forEach((c, i) => c.classList.toggle('cur', i === pos));
+      <div class="stage"><div style="flex:.4"></div><div class="ask">Напиши по-английски</div><div class="big" style="text-align:center;margin-top:10px;font-size:30px;line-height:36px">${TYPE.ru}</div>
+        <div class="lets">${TYPE.en.split(' ').map((w) => `<div class="wd">${[...w].map(() => '<div class="lt2"></div>').join('')}</div>`).join('')}</div><div class="verd" style="margin-top:14px;min-height:22px"></div>
+        <div style="flex:1"></div><div class="kb">${['qwertyuiop', 'asdfghjkl', 'zxcvbnm<'].map((r) => `<div class="r">${[...r].map((c) => `<div class="key" data-c="${c}"${c === '<' ? ' style="width:48px"' : ''}>${c === '<' ? '⌫' : c}</div>`).join('')}</div>`).join('')}</div>
+        <div class="wcta t dis wchk" style="margin-top:12px">Проверить</div></div>`;
+    const cells = $$(ph, '.lt2'), verd = $(ph, '.verd'), chk = $(ph, '.wchk');
+    const draw = () => { cells.forEach((c, i) => { c.textContent = typed[i] || ''; c.classList.toggle('in', i < typed.length); c.classList.toggle('cur', !done && i === typed.length); c.classList.remove('bad'); }); chk.classList.toggle('dis', done || typed.length < L.length); };
     const press = (c) => {
-      if (pos >= L.length) return; const key = $(ph, `.key[data-c="${c}"]`), cell = cells[pos]; key.classList.add('hit'); setTimeout(() => key.classList.remove('hit'), 170);
-      if (c !== L[pos]) { cell.textContent = c; again(cell, 'bad'); verd.textContent = 'Не та буква — попробуй ещё'; log('напиши: мимо', c, 'нужна', L[pos]); G.after(520, () => { cell.textContent = ''; cell.classList.remove('bad'); }); return; }
-      cell.textContent = c; cell.classList.add('in'); verd.textContent = ''; pos += 1; cur(); if (pos === L.length) { verd.textContent = 'Верно, по памяти'; $$(ph, '.segs i')[1].style.setProperty('--p', 1); log('напиши: фраза набрана'); }
+      if (done) return; const key = $(ph, `.key[data-c="${c}"]`); key.classList.add('hit'); setTimeout(() => key.classList.remove('hit'), 170);
+      if (c === '<') typed = typed.slice(0, -1); else if (typed.length < L.length) typed = [...typed, c]; else return;
+      verd.textContent = ''; draw();
+    };
+    const check = () => {
+      if (done || typed.length < L.length) return; const miss = typed.map((c, i) => c !== L[i]);
+      if (miss.some(Boolean)) { cells.forEach((c, i) => { if (miss[i]) again(c, 'bad'); }); verd.textContent = `Правильно: ${TYPE.en}`; log('напиши: проверка — есть ошибки', miss.filter(Boolean).length); return; }
+      done = true; draw(); verd.textContent = 'Верно, по памяти'; $$(ph, '.segs i')[1].style.setProperty('--p', 1); log('напиши: фраза набрана и проверена');
     };
     $(ph, '.kb').addEventListener('click', (e) => { const k = e.target.closest('.key'); if (k) press(k.dataset.c); });
-    cur();
-    if (auto) { let t = 1200; [...L].forEach((c, i) => { if (i === TYPE.slip[0]) { G.after(t, () => press(TYPE.slip[1])); t += 900; } G.after(t, () => press(c)); t += 230; }); }
+    chk.addEventListener('click', check);
+    draw();
+    if (auto) { let t = 1200; [...L].forEach((c, i) => { if (i === TYPE.slip[0]) { G.after(t, () => press(TYPE.slip[1])); t += 700; G.after(t, () => press('<')); t += 500; } G.after(t, () => press(c)); t += 230; }); G.after(t + 600, check); }
     return () => G.clear();
   }
 
@@ -144,7 +153,7 @@
         { id: 'm-blitz', fn: (ph, a) => blitz(ph, a, false), cls: 'deep', lbl: 'Карточки · Блиц', was: W.blitz, note: 'Время — светящаяся полоса, сердца гаснут с анимацией. Очков и комбо по-прежнему нет.' },
         { id: 'm-speak', fn: speak, cls: 'deep', lbl: 'Карточки · Устно', was: W.speak, note: 'Слова загораются по мере того, как их распознали; неясное слово подсвечено отдельно.' },
         { id: 'm-truth', fn: truth, cls: 'deep', lbl: 'Карточки · Правда / ложь', was: W.truth, note: 'Те же два ответа, но смахиванием. Карту можно тащить мышью или нажать на корзину.' },
-        { id: 'm-write', fn: write, cls: 'deep', lbl: 'Карточки · Вспомни и напиши', was: EL.shot('write.jpg'), note: 'Ячейка на каждую букву. Неверная буква не принимается сразу, а не после кнопки «Проверить».' },
+        { id: 'm-write', fn: write, cls: 'deep', lbl: 'Карточки · Вспомни и напиши', was: EL.shot('write.jpg'), note: 'Ячейка на каждую букву. Проверка по кнопке «Проверить», как сейчас в приложении: буква сразу не отклоняется.' },
       ] },
   ];
   window.ELS = Object.assign(window.ELS || {}, { modes: S[0] });

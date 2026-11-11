@@ -28,7 +28,7 @@
         <div class="bar" style="height:8px;margin-top:16px"><i style="--p:${s.p}"></i></div><div class="sub" style="margin-top:8px">До уровня ${s.lv + 1} осталось ${left(s)} очков</div>
         <div class="over" style="margin-top:18px">От чего растёт</div><div style="font-size:16px;line-height:22px;margin-top:4px;font-weight:500">${PUMP[s.nm]}</div>
         <div class="miles">${[10, 20, 30].map((m) => `<div class="${s.lv >= m ? 'got' : ''}"><b>${m}</b>${m === 30 ? 'мастер' : 'рубеж'}</div>`).join('')}</div>
-        <div class="wcta t" style="margin-top:18px">${I('play')}Подтянуть · ${s.nm}</div>`;
+        ${s.nm === 'Социальный' ? '' : `<div class="wcta t" style="margin-top:18px">${I('play')}Подтянуть · ${s.nm}</div>`}`;
       sh.classList.add('on'); dim.classList.add('on'); log('навыки: открыт', s.nm);
     };
     const close = () => { sh.classList.remove('on'); dim.classList.remove('on'); $$(ph, '.starbox .lb').forEach((l) => l.classList.remove('on')); };

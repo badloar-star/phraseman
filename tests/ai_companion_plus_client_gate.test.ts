@@ -76,17 +76,39 @@ describe('free-form dialogue Plus client boundary', () => {
     expect(warm).toBeGreaterThan(guard);
   });
 
-  test('rechecks uncached Plus before optimistic append and provider work', () => {
+  // зачем (владелец 11.11, «сообщение Тео — мгновенно»): прежний порядок «перепроверка → реплика» заменён решением владельца:
+  // реплика появляется по тапу. Неизменным остаётся главное — на СЕРВЕР реплика уходит только после некэшированной
+  // перепроверки Plus, а ответ «Plus нет» сначала откатывает реплику и только потом открывает оплату.
+  test('shows the turn instantly but rechecks uncached Plus before provider work', () => {
     const send = between('const send = useCallback(', '// Приветствие уже в начальном состоянии.');
-    const recheck = send.indexOf('await getVerifiedPremiumAccessStatus({');
     const append = send.indexOf("setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);");
+    const recheck = send.indexOf('await getVerifiedPremiumAccessStatus({');
     const provider = send.indexOf('sendToTheo(trimmed, history)');
+    const history = send.indexOf('const history = buildHistory();');
 
     expect(send).toContain('bypassCache: true');
     expect(send).toContain('allowCloudRefresh: false');
-    expect(recheck).toBeGreaterThanOrEqual(0);
-    expect(append).toBeGreaterThan(recheck);
-    expect(provider).toBeGreaterThan(append);
+    expect(append).toBeGreaterThanOrEqual(0);
+    expect(history).toBeGreaterThanOrEqual(0);
+    expect(history).toBeLessThan(append);
+    expect(recheck).toBeGreaterThan(append);
+    expect(provider).toBeGreaterThan(recheck);
+  });
+
+  test('a confirmed "no Plus" recheck rolls the instant turn back before the paywall; a failed recheck never opens it', () => {
+    const send = between('const send = useCallback(', '// Приветствие уже в начальном состоянии.');
+    const noPlusBranch = send.indexOf('if (!stillHasPlus && !recheck.failed) {');
+    const rollback = send.indexOf('prev.slice(0, -1)', noPlusBranch);
+    const restoreInput = send.indexOf('setInput(trimmed);', noPlusBranch);
+    const paywall = send.indexOf('openCompanionPlusPaywall()', noPlusBranch);
+    const provider = send.indexOf('sendToTheo(trimmed, history)');
+
+    expect(noPlusBranch).toBeGreaterThanOrEqual(0);
+    expect(rollback).toBeGreaterThan(noPlusBranch);
+    expect(restoreInput).toBeGreaterThan(rollback);
+    expect(paywall).toBeGreaterThan(restoreInput);
+    expect(paywall).toBeLessThan(provider);
+    expect(send).toContain('recheck.failed = true;');
   });
 
   test('removes the unanswered optimistic turn when the server denies Plus', () => {

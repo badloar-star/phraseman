@@ -256,6 +256,16 @@ function AiCompanionSession() {
       let optimisticTurnAppended = false;
       try {
         const generation = captureAccountGeneration();
+        // зачем (владелец 11.11, «сообщение Тео — мгновенно»): реплика появляется по тапу, а не после перепроверки Plus —
+        // раньше человек жал «отправить» и ничего не видел, пока шла проверка. На сервер реплика уходит ТОЛЬКО после
+        // перепроверки; ответ «Plus нет» откатывает реплику, возвращает текст в поле и открывает оплату.
+        // history собирается ДО добавления реплики — в замыкании ещё прежний список сообщений.
+        const history = buildHistory();
+        setLastErrorMessage('');
+        setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
+        optimisticTurnAppended = true;
+        setInput('');
+        hapticTap();
         // зачем (аудит загрузок 11.11, ошибка № 1): раньше СБОЙ перепроверки превращался в «Plus нет» и платному человеку
         // открывался экран оплаты. Упавшая проверка — не ответ «нет»: экран уже пустил сюда по подтверждённому Plus
         // (hasPremiumAccess выше), а сервер остаётся судьёй — его отказ plus_required ниже откатит реплику и откроет оплату.
@@ -273,19 +283,20 @@ function AiCompanionSession() {
         const recheckOutcome = recheck.failed ? 'failed_proceed' : stillHasPlus ? 'plus' : 'no_plus_paywall';
         console.log('[THEO-SEND] plus_recheck', JSON.stringify({ outcome: recheckOutcome, ms: Date.now() - recheckStartedAt, contextHasPlus: hasPremiumAccess })); // guard-ok: одна строка на отправку, исход решает ветку
         if (!stillHasPlus && !recheck.failed) {
+          // откат мгновенной реплики: подписки нет — сообщение не отправлено, текст возвращается в поле ввода
+          setMessages((prev) => {
+            const last = prev[prev.length - 1];
+            return last?.role === 'user' && last.text === trimmed ? prev.slice(0, -1) : prev;
+          });
+          setInput(trimmed);
+          optimisticTurnAppended = false;
           openCompanionPlusPaywall();
           return;
         }
 
-        hapticTap();
         const exchangeIndex = userTurns + 1;
         void trackEvent('ai_dialog_message_sent', { scenarioId: 'companion', exchangeIndex });
 
-        const history = buildHistory();
-        setLastErrorMessage('');
-        setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
-        optimisticTurnAppended = true;
-        setInput('');
         const res = await sendToTheo(trimmed, history);
         setMessages((prev) => [...prev, { role: 'assistant', text: res.assistantMessage }]);
         if (res.quality) {

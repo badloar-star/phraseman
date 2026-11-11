@@ -45,6 +45,7 @@ import {
   webhookUrlHost,
   type ParsedTelegramInvoicePayload,
 } from './telegram_premium_invoice_payload';
+import { starsTopUpHintRu, starsTopUpKeyboardRow } from './telegram_premium_stars_hint';
 
 // зачем (жалоба №9, владелец 29.10 «Да, чинить + логи»): единый префикс журнала платёжного пути бота — одна выборка по [TG-PAY]
 // показывает весь путь человека (хэш id вместо id, токен не пишется никогда).
@@ -484,11 +485,33 @@ async function sendMonthlyInvoiceLink(token: string, chatId: number | string, in
     return;
   }
   const link = await createInvoiceLink(token, input);
-  await sendMessage(token, chatId, `Месяц: подписка с автопродлением каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`, {
+  // зачем: подсказка о пополнении Stars стоит в одном сообщении с кнопкой оплаты — человек из России видит её до ошибки Telegram
+  const text = [
+    `Месяц: подписка с автопродлением каждые 30 дней. ${CANCEL_SUBSCRIPTION_MESSAGE_RU}`,
+    '',
+    starsTopUpHintRu(starsForPlan('monthly')),
+  ].join('\n');
+  await sendMessage(token, chatId, text, {
     reply_markup: {
-      inline_keyboard: [[{ text: 'Оплатить месяц', url: link }]],
+      inline_keyboard: [
+        [{ text: 'Оплатить месяц', url: link }],
+        starsTopUpKeyboardRow(),
+      ],
     },
   });
+}
+
+// зачем: у годового счёта своя кнопка Telegram, текст в неё не добавить — подсказка идёт следом отдельным сообщением.
+// Счёт уже у человека, поэтому сбой подсказки оплату не роняет: пишем причину в журнал и идём дальше.
+async function sendStarsTopUpHint(token: string, chatId: number | string, plan: PremiumPlan, userId: unknown): Promise<void> {
+  try {
+    await sendMessage(token, chatId, starsTopUpHintRu(starsForPlan(plan)), {
+      reply_markup: { inline_keyboard: [starsTopUpKeyboardRow()] },
+    });
+  } catch (error) {
+    const message = (error instanceof Error ? error.message : String(error)).slice(0, 200);
+    console.error(TG_PAY, 'stars_hint:failed', JSON.stringify({ plan, user: hashTelegramUserId(userId), message }));
+  }
 }
 
 const db = admin.firestore();
@@ -1026,6 +1049,7 @@ async function handleCallbackQuery(token: string, callbackQuery: TelegramCallbac
         return;
       }
       await sendInvoice(token, chatId, { plan, userId, chatId, appNickname });
+      await sendStarsTopUpHint(token, chatId, plan, userId);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       const reason = /payload too long/.test(message) ? 'payload_too_long' : /^Telegram /.test(message) ? 'telegram_api' : 'other';

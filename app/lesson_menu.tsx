@@ -97,7 +97,7 @@ import {
 import { DebugLogger } from './debug-logger';
 import LessonMenuGateSkeleton from '../components/lessons/LessonMenuGateSkeleton'; // зачем (координатор 13.10): скелет вместо пустого первого кадра, пока идёт fail-closed проверка доступа
 import { captureAccountGeneration } from './account_generation'; // зачем: stableId в ключ подтверждения доступа (Ревизор 7d564d137)
-import { LOAD_GATE_TOTAL_MS } from './load_gate_config';
+import { LOAD_GATE_BACKOFF_MS, LOAD_GATE_TOTAL_MS } from './load_gate_config';
 import { navOnce } from './nav_once'; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по «Начать/Продолжить» открывал два урока
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { useLineScale } from '../hooks/useLineScale';
@@ -474,6 +474,9 @@ function LessonMenu() {
   // зачем (владелец 11.11, «платный урок, подписка не подтвердилась за 12 с → пускать в меню»): для какого ключа (аккаунт|урок|язык)
   // потолок ожидания уже сработал. Пока он стоит, повторная неподтверждённая проверка не возвращает скелет — меню остаётся видимым.
   const pendingCeilingKeyRef = useRef<string | null>(null);
+  // зачем (владелец 11.11, «Да, добавь» тихие повторы): после потолка меню видно, а запуск закрыт — без повторов кнопка не включалась,
+  // пока человек не уйдёт с экрана и не вернётся. null — повторы не идут; число — сколько тихих перепроверок уже сделано.
+  const [pendingCeilingRetry, setPendingCeilingRetry] = useState<number | null>(null);
   // зачем (координатор 13.10): сколько мс длится проверка доступа, пока на экране скелет, и чем она кончилась. Только журнал: решения гейта это не касается.
   const lockCheckStartedAtRef = useRef(Date.now());
   const [lockReason, setLockReason] = useState<'pending' | 'premium' | 'level' | 'progress'>('progress');
@@ -679,6 +682,8 @@ function LessonMenu() {
       setLockRevalidating(true);
     } else {
       setLockStateLoaded(false);
+      // новый урок/аккаунт — повторы после потолка прежнего урока больше не нужны
+      setPendingCeilingRetry(null);
       // Ревалидация тоже fail-closed: прежний успешный результат не даёт короткого
       // окна запуска, пока новый lessonId/аккаунт ещё не проверен.
       setIsLessonLocked(true);
@@ -843,6 +848,7 @@ function LessonMenu() {
             setLockStateLoaded(false);
           } else {
             pendingCeilingKeyRef.current = null;
+            setPendingCeilingRetry(null); // доступ решён — тихие повторы после потолка прекращаются
             lockConfirmedKeyRef.current = lockKey;
             setLockStateLoaded(true);
           }
@@ -870,6 +876,7 @@ function LessonMenu() {
       console.warn(`[LESSON-MENU] lock:pending_ceiling ${JSON.stringify({ lessonId, studyTarget, waitedMs: Date.now() - lockCheckStartedAtRef.current, shown: 'menu', launchBlocked: true })}`); // guard-ok: потолок сработал — что увидел человек
       pendingCeilingKeyRef.current = key;
       lockConfirmedKeyRef.current = key;
+      setPendingCeilingRetry(0);
       setLockRevalidating(true);
       setIsLessonLocked(false);
       setLockReason('progress');
@@ -877,6 +884,24 @@ function LessonMenu() {
     }, LOAD_GATE_TOTAL_MS);
     return () => clearTimeout(timer);
   }, [lockStateLoaded, lockReason, lessonId, studyTarget]);
+
+  // зачем (владелец 11.11, «Да, добавь»): после потолка меню само тихо перепроверяет доступ с паузами LOAD_GATE_BACKOFF_MS (1/3/8 с).
+  // Проверка та же (loadLockState), идёт без скелета — ключ подтверждён потолком. Не больше трёх повторов на вход: дальше остаются
+  // прежние поводы (смена статуса подписки, возврат на экран). Запуск открывает только решённая проверка — повтор сам ничего не разрешает.
+  useEffect(() => {
+    if (pendingCeilingRetry === null) return;
+    if (pendingCeilingRetry >= LOAD_GATE_BACKOFF_MS.length) {
+      console.warn(`[LESSON-MENU] lock:pending_retry_exhausted ${JSON.stringify({ lessonId, studyTarget, retries: pendingCeilingRetry, launchBlocked: true })}`); // guard-ok: повторы кончились — запуск остаётся закрытым
+      return;
+    }
+    const waitMs = LOAD_GATE_BACKOFF_MS[pendingCeilingRetry];
+    const timer = setTimeout(() => {
+      console.log(`[LESSON-MENU] lock:pending_retry ${JSON.stringify({ lessonId, studyTarget, attempt: pendingCeilingRetry + 1, afterMs: waitMs })}`); // guard-ok: одна строка на повтор
+      setPendingCeilingRetry((prev) => (prev === null ? null : prev + 1));
+      loadLockState();
+    }, waitMs);
+    return () => clearTimeout(timer);
+  }, [pendingCeilingRetry, loadLockState, lessonId, studyTarget]);
 
   // зачем (координатор 13.10; сперва логи): начало и конец ожидания проверки доступа — пока `lockStateLoaded` ложно, на экране скелет, а не пустой фон. Итог проверки (закрыто/открыто, причина) читается из состояния, решение не принимается здесь.
   useEffect(() => {

@@ -16,6 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 import { V2AnswerOption, V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
@@ -27,11 +28,13 @@ import {
   INITIAL_QUIZ_STATE, QUIZ_SEED_DECKS, answerQuiz, isQuizKind, isValidQuizRound, nextQuizRound, type QuizRound,
 } from '../modules/games/quiz_core';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
+import { currentGameLesson, dailyPortion, quizDeckFor } from '../modules/games/task_source';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { safeRouterBack } from './navigation_back';
 
 const AFTER_OK_MS = 1500;
 const AFTER_MISS_MS = 2300;
+const ROUNDS = 6;
 
 const COPY = {
   of: { ru: 'из', uk: 'із', es: 'de', en: 'of' },
@@ -112,8 +115,11 @@ export default function GameQuizScreen() {
   const { lang } = useLang();
   const params = useLocalSearchParams<{ kind?: string }>();
   const kind = isQuizKind(params.kind) ? params.kind : 'memory';
-  const deck = QUIZ_SEED_DECKS[kind];
-  const rounds = useMemo(() => deck.rounds.filter(isValidQuizRound), [deck]);
+  const { studyTarget } = useStudyTarget();
+  // зачем (владелец 11.11: «фразы должны корректно подбираться»): задания — из банка по уроку, на котором сейчас человек,
+  // и только для языка, который он учит; порция меняется от дня к дню и не тасуется при повторном рендере
+  const deck = useMemo(() => quizDeckFor(kind, studyTarget, currentGameLesson(studyTarget)) ?? { ...QUIZ_SEED_DECKS[kind], rounds: [] }, [kind, studyTarget]);
+  const rounds = useMemo(() => dailyPortion(deck.rounds.filter(isValidQuizRound), ROUNDS, Math.floor(Date.now() / 86400000)), [deck]);
 
   const [game, setGame] = useState(INITIAL_QUIZ_STATE);
   const [phase, setPhase] = useState<Phase>(rounds.length > 0 ? 'show' : 'done');

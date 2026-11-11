@@ -19,6 +19,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
 import { MyRankCoin } from '../components/rank/MyRankCoin';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
@@ -27,9 +28,10 @@ import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { hapticTap } from '../hooks/use-haptics';
 import {
-  INITIAL_ODD_WORD_STATE, ODD_WORD_DURATION_SEC, ODD_WORD_SEED_TASKS, ODD_WORD_TRAIL_H, ODD_WORD_TRAIL_PATH, ODD_WORD_TRAIL_W,
-  isValidOddWordTask, nextOddWordRound, oddWordTrail, tapOddWord,
+  INITIAL_ODD_WORD_STATE, ODD_WORD_DURATION_SEC, ODD_WORD_TRAIL_H, ODD_WORD_TRAIL_PATH, ODD_WORD_TRAIL_W,
+  nextOddWordRound, oddWordTrail, tapOddWord,
 } from '../modules/games/odd_word_core';
+import { currentGameLesson, dailyPortion, oddWordTasksFor } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { safeRouterBack } from './navigation_back';
@@ -37,6 +39,7 @@ import { safeRouterBack } from './navigation_back';
 const REVEAL_MS = 480;
 const NEXT_MS = 2900;
 const COIN = 44;
+const ROUNDS = 4;
 const AnimatedPath = Reanimated.createAnimatedComponent(Path);
 
 const COPY = {
@@ -71,13 +74,16 @@ export default function GameOddWordScreen() {
   const router = useRouter();
   const p = useV2Palette();
   const { lang } = useLang();
-  const tasks = useMemo(() => ODD_WORD_SEED_TASKS.filter(isValidOddWordTask), []);
+  const { studyTarget } = useStudyTarget();
+  // зачем (владелец 11.11: «фразы должны корректно подбираться»): задания — из банка по уроку, на котором сейчас человек,
+  // и только для языка, который он учит; порция меняется от дня к дню и не тасуется при повторном рендере
+  const tasks = useMemo(() => dailyPortion(oddWordTasksFor(studyTarget, currentGameLesson(studyTarget)), ROUNDS, Math.floor(Date.now() / 86400000)), [studyTarget]);
   const trail = useMemo(() => oddWordTrail(tasks.length), [tasks.length]);
 
   const [game, setGame] = useState(INITIAL_ODD_WORD_STATE);
   const [removed, setRemoved] = useState(false);
   const [revealed, setRevealed] = useState(false);
-  const [finished, setFinished] = useState<'done' | 'time' | null>(null);
+  const [finished, setFinished] = useState<'done' | 'time' | null>(tasks.length === 0 ? 'done' : null);
   const [shake, setShake] = useState<{ index: number; key: number }>({ index: -1, key: 0 });
   const [secondsLeft, setSecondsLeft] = useState(ODD_WORD_DURATION_SEC);
   const [trailWidth, setTrailWidth] = useState(0);
@@ -107,7 +113,7 @@ export default function GameOddWordScreen() {
 
   // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
   useEffect(() => {
-    if (finished) markWarmupGamePlayed('odd_word', `${game.solved}/${tasks.length}`);
+    if (finished && tasks.length > 0) markWarmupGamePlayed('odd_word', `${game.solved}/${tasks.length}`);
   }, [finished, game.solved, tasks.length]);
 
   const onTap = useCallback((index: number) => {

@@ -7,7 +7,9 @@
  * каждый день) — за три дня человек встречает каждую игру, и ни одного экрана выбора не появляется.
  * Состояние «какие игры сегодня сыграны» живёт в памяти процесса и привязано к дню.
  */
+import { peekStudyTargetRaw } from '../../app/app_snapshot_bootstrap';
 import type { SkillId } from '../skills/skill_points_table';
+import { currentGameLesson, isGameAvailable } from './task_source';
 
 export type WarmupGameId = 'flow' | 'odd_word' | 'sort' | 'listen' | 'memory' | 'exact' | 'forms' | 'hunt' | 'order';
 
@@ -75,6 +77,8 @@ export const WARMUP_GAMES_PER_DAY = 3;
 
 export interface WarmupState {
   readonly day: string;
+  /** Язык обучения, для которого собрана тройка. */
+  readonly target: string;
   /** Три игры этого дня — в порядке прохождения. */
   readonly games: readonly WarmupGame[];
   /** Результат сыгранной игры для метки на карте: «4/4». */
@@ -92,14 +96,36 @@ function dayNumber(dayKey: string): number {
   return Math.floor(Date.UTC(y, (m || 1) - 1, d || 1) / 86400000);
 }
 
-/** Три игры дня: окно по общему списку, каждый день сдвигается на три позиции. */
-export function warmupGamesForDay(dayKey: string): readonly WarmupGame[] {
-  const start = (((dayNumber(dayKey) * WARMUP_GAMES_PER_DAY) % WARMUP_POOL.length) + WARMUP_POOL.length) % WARMUP_POOL.length;
-  return Array.from({ length: WARMUP_GAMES_PER_DAY }, (_, i) => WARMUP_POOL[(start + i) % WARMUP_POOL.length]);
+/**
+ * Игры дня: окно по списку доступных игр, каждый день сдвигается на три позиции.
+ * зачем `pool`: в разминку попадают только игры, у которых есть задания для языка обучения, — человек, который учит
+ * испанский, не получит английские задания. Если доступных игр меньше трёх, день состоит из тех, что есть.
+ */
+export function warmupGamesForDay(dayKey: string, pool: readonly WarmupGame[] = WARMUP_POOL): readonly WarmupGame[] {
+  if (pool.length <= WARMUP_GAMES_PER_DAY) return pool;
+  const start = (((dayNumber(dayKey) * WARMUP_GAMES_PER_DAY) % pool.length) + pool.length) % pool.length;
+  return Array.from({ length: WARMUP_GAMES_PER_DAY }, (_, i) => pool[(start + i) % pool.length]);
+}
+
+/** Язык обучения из памяти процесса; сбой чтения не ломает разминку — берётся английский. */
+function currentTarget(): string {
+  try {
+    const raw: unknown = peekStudyTargetRaw();
+    return typeof raw === 'string' && raw ? raw : 'en';
+  } catch (error) {
+    console.warn(`[WARMUP] target:peek_failed ${error instanceof Error ? error.message : String(error)}`);
+    return 'en';
+  }
+}
+
+export function availableWarmupGames(target: string): readonly WarmupGame[] {
+  const lesson = currentGameLesson(target);
+  return WARMUP_POOL.filter((game) => isGameAvailable(game.id, target, lesson));
 }
 
 function freshState(dayKey: string): WarmupState {
-  return { day: dayKey, games: warmupGamesForDay(dayKey), results: {} };
+  const target = currentTarget();
+  return { day: dayKey, target, games: warmupGamesForDay(dayKey, availableWarmupGames(target)), results: {} };
 }
 
 let now: () => number = () => Date.now();
@@ -108,7 +134,8 @@ const listeners = new Set<() => void>();
 
 function rollDay(): void {
   const day = localDayKey(now());
-  if (state.day !== day) state = freshState(day);
+  // зачем: смена языка обучения посреди дня пересобирает тройку — иначе остались бы игры прежнего языка
+  if (state.day !== day || state.target !== currentTarget()) state = freshState(day);
 }
 
 export function peekWarmup(): WarmupState {

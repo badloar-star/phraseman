@@ -6,7 +6,7 @@
  * улетает в корзину, счётчик растёт; мимо — карта возвращается, показывает подсказку, корзина вздрагивает.
  * зачем так: правила — в modules/games/sort_core; экран получает готовую колоду и исполняет жесты.
  */
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Reanimated, {
@@ -17,6 +17,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
@@ -27,10 +28,13 @@ import {
   INITIAL_SORT_STATE, SORT_HOT_THRESHOLD, SORT_SEED_DECK, dropSortCard, sortSideFromSwipe, type SortBin, type SortSide,
 } from '../modules/games/sort_core';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
+import { currentGameLesson, sortDeckFor } from '../modules/games/task_source';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { safeRouterBack } from './navigation_back';
 
 const FLY_MS = 420;
+/** Колоды для языка нет — экран открывается сразу итогом, без чужих заданий. */
+const EMPTY_DECK = { ...SORT_SEED_DECK, id: 'empty', tasks: [] };
 const COPY = {
   ask: { ru: 'Смахни фразу в свою сторону', uk: 'Змахни фразу у свій бік', es: 'Desliza la frase a su lado', en: 'Swipe the phrase to its side' },
   of: { ru: 'из', uk: 'із', es: 'de', en: 'of' },
@@ -68,7 +72,10 @@ export default function GameSortScreen() {
   const router = useRouter();
   const p = useV2Palette();
   const { lang } = useLang();
-  const deck = SORT_SEED_DECK;
+  const { studyTarget } = useStudyTarget();
+  // зачем (владелец 11.11: «фразы должны корректно подбираться»): задания — из банка по уроку, на котором сейчас человек,
+  // и только для языка, который он учит; порция меняется от дня к дню и не тасуется при повторном рендере
+  const deck = useMemo(() => sortDeckFor(studyTarget, currentGameLesson(studyTarget)) ?? EMPTY_DECK, [studyTarget]);
 
   const [game, setGame] = useState(INITIAL_SORT_STATE);
   const [showHint, setShowHint] = useState(false);
@@ -90,7 +97,7 @@ export default function GameSortScreen() {
 
   // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
   useEffect(() => {
-    if (finished) markWarmupGamePlayed('sort', `${deck.tasks.length}/${deck.tasks.length}`);
+    if (finished && deck.tasks.length > 0) markWarmupGamePlayed('sort', `${deck.tasks.length}/${deck.tasks.length}`);
   }, [deck.tasks.length, finished]);
 
   const afterFly = useCallback((next: typeof game) => {

@@ -14,12 +14,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { hapticTap } from '../hooks/use-haptics';
-import { HUNT_SEED_TASKS, isHuntHit, isValidHuntTask } from '../modules/games/dialogue_core';
+import { isHuntHit } from '../modules/games/dialogue_core';
+import { huntTasksFor } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { safeRouterBack } from './navigation_back';
 
@@ -55,7 +57,8 @@ export default function GameHuntScreen() {
   const router = useRouter();
   const p = useV2Palette();
   const { lang } = useLang();
-  const tasks = useMemo(() => HUNT_SEED_TASKS.filter(isValidHuntTask), []);
+  const { studyTarget } = useStudyTarget();
+  const tasks = useMemo(() => huntTasksFor(studyTarget), [studyTarget]);
   const [index, setIndex] = useState(0);
   const [found, setFound] = useState(false);
   const [shake, setShake] = useState<{ id: string; key: number }>({ id: '', key: 0 });

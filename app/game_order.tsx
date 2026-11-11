@@ -13,12 +13,14 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { hapticTap } from '../hooks/use-haptics';
-import { INITIAL_ORDER_STATE, ORDER_SEED_TASKS, isValidOrderTask, shuffledOrder, tapOrderLine } from '../modules/games/dialogue_core';
+import { INITIAL_ORDER_STATE, shuffledOrder, tapOrderLine } from '../modules/games/dialogue_core';
+import { orderTasksFor } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { safeRouterBack } from './navigation_back';
 
@@ -53,7 +55,8 @@ export default function GameOrderScreen() {
   const router = useRouter();
   const p = useV2Palette();
   const { lang } = useLang();
-  const task = useMemo(() => ORDER_SEED_TASKS.filter(isValidOrderTask)[0] ?? null, []);
+  const { studyTarget } = useStudyTarget();
+  const task = useMemo(() => orderTasksFor(studyTarget)[0] ?? null, [studyTarget]);
   // порядок кнопок фиксируется на вход: повторный рендер не перетасовывает их под пальцем
   const buttons = useMemo(() => (task ? shuffledOrder(task.lines.length) : []), [task]);
   const [game, setGame] = useState(INITIAL_ORDER_STATE);

@@ -1,0 +1,47 @@
+/**
+ * Банк игры «Память» — испанский классический курс, уроки 1–8 (D207). 2 раунда на урок, в каждом 4 пары.
+ * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
+ * Правила вычитки: слева слово или выражение урока, справа его перевод; спрашивается одна пара,
+ * неверные варианты — переводы двух других пар того же набора (так проверяется память, а не догадка).
+ * Проверка: tests/game_task_bank_es_it.test.ts.
+ */
+import type { QuizRound } from '../quiz_core';
+import { memoryRound, type MemoryPair } from './make_es_it';
+
+const round = (lesson: number, n: number, pairs: readonly MemoryPair[], askIndex: number, wrongPairs: readonly [number, number], at: number): QuizRound =>
+  memoryRound('es', lesson, n, pairs, askIndex, wrongPairs, at);
+
+export const MEMORY_BANK_ES: Readonly<Record<number, readonly QuizRound[]>> = {
+  1: [
+    round(1, 1, [['aquí', 'здесь'], ['allí', 'вон там'], ['cerca', 'рядом'], ['lejos', 'далеко']], 2, [3, 0], 1),
+    round(1, 2, [['la llave', 'ключ'], ['el móvil', 'телефон'], ['la mochila', 'рюкзак'], ['el coche', 'машина']], 1, [0, 2], 0),
+  ],
+  2: [
+    round(2, 1, [['el bolso', 'сумка'], ['el bolsillo', 'карман'], ['la tienda', 'магазин'], ['la oficina', 'офис']], 1, [0, 2], 2),
+    round(2, 2, [['la farmacia', 'аптека'], ['en clase', 'на занятии'], ['en casa', 'дома'], ['en el coche', 'в машине']], 0, [3, 1], 1),
+  ],
+  3: [
+    round(3, 1, [['la parada', 'остановка'], ['la salida', 'выход'], ['el hotel', 'отель'], ['el pasaporte', 'паспорт']], 1, [0, 2], 0),
+    round(3, 2, [['el billete', 'билет'], ['la estación', 'станция'], ['la mochila', 'рюкзак'], ['el bolsillo', 'карман']], 0, [3, 2], 2),
+  ],
+  4: [
+    round(4, 1, [['médico', 'врач'], ['profesor', 'преподаватель'], ['estudiante', 'студент'], ['guía', 'гид']], 3, [1, 2], 1),
+    round(4, 2, [['enfermera', 'медсестра'], ['profesora', 'преподавательница'], ['enfermero', 'медбрат'], ['estudiantes', 'студенты']], 2, [0, 3], 0),
+  ],
+  5: [
+    round(5, 1, [['¿Dónde?', 'Где?'], ['¿Quién?', 'Кто?'], ['¿Qué?', 'Что?'], ['¿Cuánto cuesta?', 'Сколько стоит?']], 1, [0, 2], 2),
+    round(5, 2, [['el aeropuerto', 'аэропорт'], ['el baño', 'туалет'], ['el ascensor', 'лифт'], ['el banco', 'банк']], 2, [1, 3], 1),
+  ],
+  6: [
+    round(6, 1, [['la maleta', 'чемодан'], ['el abrigo', 'пальто'], ['la botella', 'бутылка'], ['el mapa', 'карта']], 1, [0, 3], 0),
+    round(6, 2, [['el tren', 'поезд'], ['la foto', 'фотография'], ['las tiendas', 'магазины'], ['los bolsos', 'сумки']], 3, [2, 0], 2),
+  ],
+  7: [
+    round(7, 1, [['agua', 'вода'], ['leche', 'молоко'], ['café', 'кофе'], ['azúcar', 'сахар']], 3, [1, 0], 1),
+    round(7, 2, [['hay', 'есть'], ['no hay', 'нет'], ['gente', 'люди'], ['hoy', 'сегодня']], 2, [3, 0], 0),
+  ],
+  8: [
+    round(8, 1, [['mi hermana', 'моя сестра'], ['mi hermano', 'мой брат'], ['mi madre', 'моя мама'], ['mi gente', 'мои люди']], 2, [0, 3], 2),
+    round(8, 2, [['el cargador', 'зарядка'], ['el reloj', 'часы'], ['la bicicleta', 'велосипед'], ['las hermanas', 'сёстры']], 0, [1, 2], 1),
+  ],
+};

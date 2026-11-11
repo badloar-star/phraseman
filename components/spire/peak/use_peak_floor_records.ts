@@ -28,16 +28,29 @@ export function usePeakFloorRecords(source: PeakRecordSource | undefined, open: 
   const fresh = current !== null && current.records !== null && Date.now() - current.at < CACHE_MS;
 
   useEffect(() => {
-    if (!open || fresh || !key || !stableId || !groupId || !weekId || !lang || !config) return;
+    if (!open) return;
+    // зачем (владелец 11.11: «Временно недоступен» на листе этажа, а вызова рекордов в логе нет): каждый ранний выход говорит причину
+    if (!key || !stableId || !groupId || !weekId || !lang || !config) {
+      console.warn('[SPIRE-RECORD] peak_skip', JSON.stringify({
+        hasSource: source !== undefined, flag: config?.floorRecordsEnabled ?? null, hasUid: !!uid, hasStableId: !!stableId,
+        roomUidMatches: room ? room.uid === uid : null, hasRoom: !!room, groupId: !!groupId, weekId: weekId ?? null, lang: lang ?? null,
+      }));
+      return;
+    }
+    if (fresh) return;
     const gate = spireOpenLiveGate(config, 'peak_floor_records');
     if (!gate) {
+      console.warn('[SPIRE-RECORD] peak_gate_closed', JSON.stringify({ enabled: config.enabled }));
       setEntry({ key, at: Date.now(), records: null });
       return;
     }
     let cancelled = false;
     const request = { action: 'read', stableId, groupId, weekId, lang } as const;
     void spireCall<typeof request, FloorRecordSnapshot>(gate, 'spireFloorRecords', request)
-      .then(({ records }) => { if (!cancelled) setEntry({ key, at: Date.now(), records }); })
+      .then(({ records }) => {
+        console.warn('[SPIRE-RECORD] peak_read_ok', JSON.stringify({ cancelled, steps: records ? Object.keys(records).length : null }));
+        if (!cancelled) setEntry({ key, at: Date.now(), records });
+      })
       .catch((error: unknown) => {
         if (cancelled) return;
         console.warn('[SPIRE-RECORD] peak_read_failed', String(error));

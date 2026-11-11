@@ -89,6 +89,7 @@ Out of scope: любые правки поведения старта и Гла�
 ## Правка 11.11 (по слову владельца «да, правь»)
 
 Governance-ID: TG-E7FBE1905354
+Governance-ID: TG-3936CD5D5BF2
 
 `getVerifiedRealPremiumStatus` делит одно вычисление между одновременными проверками одного поколения аккаунта. Не делятся
 вызовы с `bypassCache` и `lease`. Общее чтение отцепляется при `invalidatePremiumCache()` и при начале любой записи снимка

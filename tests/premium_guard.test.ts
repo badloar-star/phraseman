@@ -744,3 +744,106 @@ test('a failed shared read is not handed to the next check', async () => {
   }
   await guard.__waitForPremiumBackgroundRefreshForTests();
 });
+
+// зачем (владелец 11.11 «да, исправь»; ревью советника): проверка, начатая ДО продления и прочитавшая «истекла», дорабатывала ПОСЛЕ
+// него — писала active:false поверх продлённого снимка и кэшировала «нет» на 5 минут. Заплативший человек выглядел бесплатным.
+test('a check that read an expired snapshot does not revoke a renewal committed while it was running', async () => {
+  await writeRealPremiumForCurrentTestAccount({
+    plan: 'yearly',
+    rcExpiryMs: Date.now() - 24 * 60 * 60 * 1000,
+    rcLastSeenAtMs: 0,
+    evidenceSource: 'server_projection',
+  });
+  const guard = require('../app/premium_guard');
+  const storage = require('@react-native-async-storage/async-storage');
+  const getItem = storage.getItem as jest.Mock;
+  const plainGetItem = getItem.getMockImplementation() as (key: string) => Promise<string | null>;
+  const snapshotKey = 'premium_real_snapshot_v1:premium-guard-test';
+  let releaseStaleRead: () => void = () => undefined;
+  const staleReadGate = new Promise<void>((resolve) => { releaseStaleRead = resolve; });
+  let gated = false;
+  getItem.mockImplementation(async (key: string) => {
+    if (!gated && key === snapshotKey) {
+      gated = true;
+      const stale = await plainGetItem(key);
+      await staleReadGate;
+      return stale;
+    }
+    return plainGetItem(key);
+  });
+  const flush = () => new Promise<void>((resolve) => setImmediate(resolve));
+  try {
+    const staleCheck = guard.getVerifiedRealPremiumStatus();
+    await flush();
+    // Устаревшее чтение обязано уже стоять на воротах: иначе оно прочитало бы продлённый снимок и тест был бы зелёным без правки.
+    expect(gated).toBe(true);
+    // Продление: снимок записан и кэш сброшен — как после покупки в persistRevenueCatPremium.
+    await writeRealPremiumForCurrentTestAccount();
+    guard.invalidatePremiumCache();
+    releaseStaleRead();
+    await staleCheck;
+    await guard.__waitForPremiumBackgroundRefreshForTests();
+
+    expect(JSON.parse(asyncStore[snapshotKey]).active).toBe(true);
+    expect(asyncStore.premium_active).not.toBe('false');
+    // Следующая проверка идёт через кэш: устаревшее «нет» не должно было в него попасть.
+    await expect(guard.getVerifiedRealPremiumStatus()).resolves.toBe(true);
+  } finally {
+    releaseStaleRead();
+    getItem.mockImplementation(plainGetItem);
+  }
+  await guard.__waitForPremiumBackgroundRefreshForTests();
+});
+
+test('an expired snapshot that was not renewed is still deactivated', async () => {
+  await writeRealPremiumForCurrentTestAccount({
+    plan: 'yearly',
+    rcExpiryMs: Date.now() - 24 * 60 * 60 * 1000,
+    rcLastSeenAtMs: 0,
+    evidenceSource: 'server_projection',
+  });
+  const guard = require('../app/premium_guard');
+  await expect(guard.getVerifiedRealPremiumStatus()).resolves.toBe(false);
+  await guard.__waitForPremiumBackgroundRefreshForTests();
+  expect(JSON.parse(asyncStore['premium_real_snapshot_v1:premium-guard-test']).active).toBe(false);
+  expect(asyncStore.premium_active).toBe('false');
+});
+
+// зачем (ревью советника 11.11): вторая половина правки — проверка, начатая ДО покупки и прочитавшая «подписки нет», не должна
+// положить это «нет» в кэш на 5 минут, если за время её работы прошла покупка и кэш сбросили.
+test('a check that started before a purchase does not cache "no" after the cache was invalidated', async () => {
+  const guard = require('../app/premium_guard');
+  const storage = require('@react-native-async-storage/async-storage');
+  const getItem = storage.getItem as jest.Mock;
+  const plainGetItem = getItem.getMockImplementation() as (key: string) => Promise<string | null>;
+  const snapshotKey = 'premium_real_snapshot_v1:premium-guard-test';
+  let releaseStaleRead: () => void = () => undefined;
+  const staleReadGate = new Promise<void>((resolve) => { releaseStaleRead = resolve; });
+  let gated = false;
+  getItem.mockImplementation(async (key: string) => {
+    if (!gated && key === snapshotKey) {
+      gated = true;
+      const stale = await plainGetItem(key);
+      await staleReadGate;
+      return stale;
+    }
+    return plainGetItem(key);
+  });
+  const flush = () => new Promise<void>((resolve) => setImmediate(resolve));
+  try {
+    const staleCheck = guard.getVerifiedRealPremiumStatus();
+    await flush();
+    expect(gated).toBe(true);
+    await writeRealPremiumForCurrentTestAccount();
+    guard.invalidatePremiumCache();
+    releaseStaleRead();
+    // Сама устаревшая проверка честно отвечает «нет» — на момент её чтения подписки не было.
+    await expect(staleCheck).resolves.toBe(false);
+    // Следующая проверка без bypassCache: ответ из кэша был бы «нет», свежее чтение даёт «да».
+    await expect(guard.getVerifiedRealPremiumStatus()).resolves.toBe(true);
+  } finally {
+    releaseStaleRead();
+    getItem.mockImplementation(plainGetItem);
+  }
+  await guard.__waitForPremiumBackgroundRefreshForTests();
+});

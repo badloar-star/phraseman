@@ -56,6 +56,7 @@ let _realCacheGeneration = -1;
 // через мгновение отдал бы кэш результата, — новой устарелости нет. Не делятся: bypassCache (просят свежее) и lease (идут внутри записи).
 // writeEpoch: началась любая запись снимка — к чтению, начатому до неё, больше не присоединяются (ревью советника 11.11).
 let _realStatusInFlight: { readonly generation: number; readonly writeEpoch: number; readonly promise: Promise<boolean> } | null = null;
+let _premiumCacheEpoch = 0;
 let _cachedVipResult: boolean | null = null;
 let _vipCacheTime = 0;
 let _vipCacheGeneration = -1;
@@ -99,6 +100,8 @@ export function invalidatePremiumCache(): void {
   _accessCacheGeneration = -1;
   // Сброс кэша отцепляет и общее чтение «в полёте»: проверка, начатая после сброса, читает хранилище заново.
   _realStatusInFlight = null;
+  // Вычисление, начатое до сброса, по этому счётчику узнаёт, что его ответ в кэш класть нельзя.
+  _premiumCacheEpoch += 1;
 }
 
 /** True only when the current account has a cache entry produced by a conclusive access decision. */
@@ -330,18 +333,51 @@ function accountGenerationIsCurrent(generation: AccountGenerationToken): boolean
   return !!generation.stableId && isCurrentAccountGeneration(generation, generation.stableId);
 }
 
-async function setRealPremiumActiveForGeneration(
+/** Локальное решение «доступ по подписке есть» — одно правило и для проверки статуса, и для перепроверки перед отключением. */
+function realSnapshotGrantsLocalAccess(snapshot: RealPremiumSnapshotV1, now: number): boolean {
+  if (!snapshot.active || !snapshot.plan) return false;
+  const premiumExpiryExpired = snapshot.premiumExpiryMs > 0 && snapshot.premiumExpiryMs <= now;
+  const rcExpiryExpired = snapshot.rcExpiryMs > 0 && snapshot.rcExpiryMs <= now;
+  const lastSeenFresh = snapshot.rcLastSeenAtMs > 0 && now - snapshot.rcLastSeenAtMs <= RC_STALE_GRACE_MS;
+  return !premiumExpiryExpired && !rcExpiryExpired && (
+    snapshot.plan === 'lifetime'
+    || snapshot.premiumExpiryMs > now
+    || snapshot.rcExpiryMs > now
+    || lastSeenFresh
+  );
+}
+
+/** deactivated — снимок выключен; kept — снимок на момент записи уже не подлежит отключению (продлён); failed — запись не прошла. */
+type RealPremiumDeactivateOutcome = 'deactivated' | 'kept' | 'failed';
+
+/**
+ * зачем (владелец 11.11 «да, исправь»; ревью советника): раньше решение «истекла», принятое по СТАРОМУ чтению, слепо писало
+ * active:false поверх того снимка, который лежит в хранилище в момент записи. Если между чтением и записью проходило продление,
+ * оно затиралось, и заплативший человек до 5 минут выглядел бесплатным. Теперь условие отключения проверяется заново внутри
+ * записи, по актуальному снимку: продлённый снимок не трогаем.
+ */
+async function deactivateRealPremiumIfStillRevocable(
   generation: AccountGenerationToken,
-  active: boolean,
+  stillRevocable: (current: RealPremiumSnapshotV1) => boolean,
   inheritedLease?: AccountTransitionLockLease,
-): Promise<boolean> {
-  const updated = await updateRealPremiumSnapshotForGeneration(generation, (current) => ({
-    ...current,
-    active,
-  }), inheritedLease);
-  if (!updated || !accountGenerationIsCurrent(generation)) return false;
-  await AsyncStorage.setItem('premium_active', active ? 'true' : 'false');
-  return accountGenerationIsCurrent(generation);
+): Promise<RealPremiumDeactivateOutcome> {
+  const keptBox: { snapshot: RealPremiumSnapshotV1 | null } = { snapshot: null };
+  const updated = await updateRealPremiumSnapshotForGeneration(generation, (current) => {
+    if (!stillRevocable(current)) {
+      keptBox.snapshot = current;
+      return null;
+    }
+    return { ...current, active: false };
+  }, inheritedLease);
+  const kept = keptBox.snapshot;
+  if (kept !== null) {
+    // Ранний выход называет причину (без идентификаторов человека): план и источник снимка, который решили не трогать.
+    console.warn('[PREMIUM-GUARD] deactivate:skipped_snapshot_changed', JSON.stringify({ generation: generation.generation, plan: kept.plan, active: kept.active, evidence: kept.evidenceSource })); // guard-ok: редкий выход, одна строка
+    return 'kept';
+  }
+  if (!updated || !accountGenerationIsCurrent(generation)) return 'failed';
+  await AsyncStorage.setItem('premium_active', 'false');
+  return accountGenerationIsCurrent(generation) ? 'deactivated' : 'failed';
 }
 
 // зачем (координатор 11.10, прогон на эмуляторе без Play): RevenueCat не сконфигурирован → каждая проверка доступа
@@ -408,8 +444,15 @@ function refreshRealPremiumInBackground(
       if (snapshot.rcLastSeenAtMs > 0 && now - snapshot.rcLastSeenAtMs <= RC_STALE_GRACE_MS) return;
 
       if (snapshot.active) {
-        const persisted = await setRealPremiumActiveForGeneration(generation, false);
-        if (!persisted) return;
+        // То же условие, что выше по этому снимку, но по актуальному: продление, пришедшее за время запроса к магазину, не затираем.
+        const outcome = await deactivateRealPremiumIfStillRevocable(generation, (current) => {
+          const at = Date.now();
+          if (current.plan === 'lifetime') return false;
+          if (current.rcExpiryMs > at || current.premiumExpiryMs > at) return false;
+          if (current.rcLastSeenAtMs > 0 && at - current.rcLastSeenAtMs <= RC_STALE_GRACE_MS) return false;
+          return true;
+        });
+        if (outcome !== 'deactivated') return;
         cacheReal(false, generation);
         emitAppEvent('premium_deactivated');
       }
@@ -475,30 +518,33 @@ export async function getVerifiedRealPremiumStatus(
   }
 
   const compute = async (): Promise<boolean> => {
+    // зачем (владелец 11.11, ревью советника): кэш сбросили, пока шло это вычисление (покупка, облако) — его ответ построен на
+    // данных до сброса. Вызвавшему он отдаётся, но в кэш на 5 минут не кладётся: следующая проверка прочитает хранилище заново.
+    const cacheEpochAtStart = _premiumCacheEpoch;
+    const finishFresh = (result: boolean): boolean => {
+      if (_premiumCacheEpoch === cacheEpochAtStart) return finish(result);
+      return accountGenerationIsCurrent(generation) ? result : false;
+    };
     const snapshot = await readRealPremiumSnapshotForGeneration(generation);
     if (!accountGenerationIsCurrent(generation)) return false;
     refreshRealPremiumInBackground(generation, snapshot);
-    if (!snapshot?.active || !snapshot.plan) return finish(false);
+    if (!snapshot?.active || !snapshot.plan) return finishFresh(false);
 
-    const now = Date.now();
-    const premiumExpiryExpired = snapshot.premiumExpiryMs > 0 && snapshot.premiumExpiryMs <= now;
-    const rcExpiryExpired = snapshot.rcExpiryMs > 0 && snapshot.rcExpiryMs <= now;
-    const lifetime = snapshot.plan === 'lifetime';
-    const lastSeenFresh = snapshot.rcLastSeenAtMs > 0
-      && now - snapshot.rcLastSeenAtMs <= RC_STALE_GRACE_MS;
-    const localAccess = !premiumExpiryExpired && !rcExpiryExpired && (
-      lifetime
-      || snapshot.premiumExpiryMs > now
-      || snapshot.rcExpiryMs > now
-      || lastSeenFresh
-    );
+    const localAccess = realSnapshotGrantsLocalAccess(snapshot, Date.now());
 
     if (!localAccess) {
-      const persisted = await setRealPremiumActiveForGeneration(generation, false, options?.lease);
-      if (!persisted) return false;
+      const outcome = await deactivateRealPremiumIfStillRevocable(
+        generation,
+        (current) => !realSnapshotGrantsLocalAccess(current, Date.now()),
+        options?.lease,
+      );
+      if (outcome === 'failed') return false;
+      if (!accountGenerationIsCurrent(generation)) return false;
+      // kept: в хранилище уже лежит снимок с доступом (продление пришло, пока мы решали) — отвечаем по нему.
+      return finishFresh(outcome === 'kept');
     }
     if (!accountGenerationIsCurrent(generation)) return false;
-    return finish(localAccess);
+    return finishFresh(true);
   };
 
   if (!shareable) return compute();

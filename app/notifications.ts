@@ -1271,6 +1271,53 @@ export const cancelUpsellNotifications = async (): Promise<void> => {
   }
 };
 
+/** Последний слот напоминаний о Plus — 14-й день; позже планировать нечего. */
+const UPSELL_FROM_INSTALL_WINDOW_MS = 14 * 24 * 60 * 60 * 1000;
+
+/**
+ * Напоминания о Plus на 4-й, 7-й и 14-й день ОТ УСТАНОВКИ.
+ *
+ * зачем (владелец 2026-11-11, аудит мотивации к Plus: «Пуши на 4/7/14 день» — делать): раньше эти три пуша
+ * ставил только «Бонус на старт» (app/intro_full_access.ts), а он выключен (D186) — пуши не уходили никому.
+ * Теперь отсчёт идёт от `install_date`. Зовётся из scheduleNotifications ПОСЛЕ проверки разрешения и
+ * мастер-тумблера, поэтому системного запроса разрешения не вызывает. Тексты и категория «offers» — прежние.
+ *
+ * Подписчику не ставим и снимаем уже стоящие. Статус подписки берём только ПОДТВЕРЖДЁННЫЙ: пока он не
+ * подтверждён, не планируем (следующий запуск попробует снова) — иначе при сбое сети пуш «купи Plus»
+ * ушёл бы тому, кто уже платит. Сети сам не открывает: читает то, что уже выяснил запуск приложения.
+ */
+async function scheduleUpsellNotificationsFromInstall(lang: Lang): Promise<void> {
+  try {
+    const installRaw = await AsyncStorage.getItem('install_date');
+    const installMs = Number(installRaw);
+    if (!Number.isFinite(installMs) || installMs <= 0) {
+      console.log(`[UPSELL-PUSH] skip reason=no_install_date raw=${String(installRaw)}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    const ageMs = Date.now() - installMs;
+    if (ageMs > UPSELL_FROM_INSTALL_WINDOW_MS) {
+      console.log(`[UPSELL-PUSH] skip reason=window_passed ageDays=${Math.floor(ageMs / 86_400_000)}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    const guard = await import('./premium_guard');
+    if (!guard.isPremiumAccessDecisionConfirmedForCurrentAccount()) {
+      console.log(`[UPSELL-PUSH] skip reason=premium_unconfirmed ageDays=${Math.floor(ageMs / 86_400_000)}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    const premium = await guard.getVerifiedPremiumStatus();
+    if (premium) {
+      const hadAny = (await AsyncStorage.multiGet(Object.values(UPSELL_NOTIF_KEYS))).some(([, value]) => value !== null);
+      if (hadAny) await cancelUpsellNotifications();
+      console.log(`[UPSELL-PUSH] skip reason=premium cancelled=${String(hadAny)}`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    const result = await scheduleUpsellNotifications(installMs, lang);
+    console.log(`[UPSELL-PUSH] from_install ageDays=${Math.floor(ageMs / 86_400_000)} result=${JSON.stringify(result)}`); // guard-ok: итог постановки
+  } catch (error: unknown) {
+    console.warn('[UPSELL-PUSH] from_install failed', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
+  }
+}
+
 /**
  * План #7: abandoned-paywall push — мягкое напоминание через ~1 час после того,
  * как пользователь открыл пейвол и закрыл без покупки. Targeted (упоминает прогресс) —
@@ -1755,6 +1802,9 @@ export const scheduleNotifications = async (
     console.log('[SMART-REMINDER] schedule:skip reason=master_off');
     return;
   }
+
+  // зачем (владелец 11.11): напоминания о Plus на 4/7/14 день от установки — фоном, расписание напоминаний их не ждёт
+  void scheduleUpsellNotificationsFromInstall(resolveNotificationLang(lang, 'upsell_from_install'));
 
   const anyEnabled = Object.values(s.schedule).some(d => d.enabled);
   if (!anyEnabled) {

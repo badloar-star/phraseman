@@ -1,0 +1,159 @@
+{
+ "en": {
+  "subj": {
+   "fit": 3599,
+   "nofit": 1825,
+   "skip": 0,
+   "sameClass": 2721,
+   "otherClass": 878
+  },
+  "aux": {
+   "fit": 1075,
+   "nofit": 669,
+   "skip": 3875,
+   "sameClass": 643,
+   "otherClass": 432
+  },
+  "prep": {
+   "fit": 0,
+   "nofit": 0,
+   "skip": 2867,
+   "sameClass": 0,
+   "otherClass": 0
+  },
+  "det": {
+   "fit": 4836,
+   "nofit": 2486,
+   "skip": 12,
+   "sameClass": 4836,
+   "otherClass": 0
+  },
+  "conj": {
+   "fit": 280,
+   "nofit": 100,
+   "skip": 186,
+   "sameClass": 35,
+   "otherClass": 245
+  }
+ },
+ "es": {
+  "prep": {
+   "fit": 0,
+   "nofit": 0,
+   "skip": 3005,
+   "sameClass": 0,
+   "otherClass": 0
+  },
+  "subj": {
+   "fit": 0,
+   "nofit": 0,
+   "skip": 164,
+   "sameClass": 0,
+   "otherClass": 0
+  },
+  "conj": {
+   "fit": 262,
+   "nofit": 576,
+   "skip": 339,
+   "sameClass": 219,
+   "otherClass": 43
+  },
+  "det": {
+   "fit": 693,
+   "nofit": 6195,
+   "skip": 433,
+   "sameClass": 693,
+   "otherClass": 0
+  }
+ },
+ "fr": {
+  "subj": {
+   "fit": 556,
+   "nofit": 4104,
+   "skip": 226,
+   "sameClass": 555,
+   "otherClass": 1
+  },
+  "prep": {
+   "fit": 0,
+   "nofit": 0,
+   "skip": 1545,
+   "sameClass": 0,
+   "otherClass": 0
+  },
+  "det": {
+   "fit": 541,
+   "nofit": 5272,
+   "skip": 312,
+   "sameClass": 541,
+   "otherClass": 0
+  },
+  "conj": {
+   "fit": 81,
+   "nofit": 492,
+   "skip": 702,
+   "sameClass": 27,
+   "otherClass": 54
+  }
+ },
+ "de": {
+  "subj": {
+   "fit": 452,
+   "nofit": 1931,
+   "skip": 1445,
+   "sameClass": 145,
+   "otherClass": 307
+  },
+  "prep": {
+   "fit": 0,
+   "nofit": 0,
+   "skip": 2105,
+   "sameClass": 0,
+   "otherClass": 0
+  },
+  "det": {
+   "fit": 80,
+   "nofit": 6575,
+   "skip": 18,
+   "sameClass": 80,
+   "otherClass": 0
+  },
+  "conj": {
+   "fit": 654,
+   "nofit": 89,
+   "skip": 745,
+   "sameClass": 354,
+   "otherClass": 300
+  }
+ },
+ "it": {
+  "subj": {
+   "fit": 0,
+   "nofit": 0,
+   "skip": 741,
+   "sameClass": 0,
+   "otherClass": 0
+  },
+  "prep": {
+   "fit": 0,
+   "nofit": 0,
+   "skip": 2044,
+   "sameClass": 0,
+   "otherClass": 0
+  },
+  "det": {
+   "fit": 67,
+   "nofit": 5368,
+   "skip": 192,
+   "sameClass": 67,
+   "otherClass": 0
+  },
+  "conj": {
+   "fit": 148,
+   "nofit": 433,
+   "skip": 533,
+   "sameClass": 113,
+   "otherClass": 35
+  }
+ }
+}

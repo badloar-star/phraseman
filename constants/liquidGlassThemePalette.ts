@@ -322,15 +322,18 @@ export function liquidGlassTokens(id: unknown, requested: LiquidGlassVariant = a
   // accentGraphic = accent, пока он держит ≥ 3:1 на ВСЕХ поверхностях; иначе тот же оттенок, углублённый в сторону текста темы. В тёмном оформлении и там, где accent и так виден, совпадает с accent.
   // зачем (координатор 17.10, «кнопки нигде не сливаются»): графика акцента (точки, полоса прогресса) лежит и на заливке buttonFill (дорожка, пилюля) — держим ≥ 3,2:1 и к ней
   // зачем (владелец 11.11 «да, убрать» рывки кнопок на ползунках): у тем-ползунков кнопки считаются без выключателя тона — см. fillLine в liquidGlassButtonTokens.ts
-  const isSliderTheme = parseThemeTuneId(themeId) !== null;
-  const earlyButtonFill = deriveLiquidGlassButtonRoles({ ...built, bad: (deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity }) as LiquidGlassPaletteRoles).bad }, isSliderTheme).buttonFill;
+  const sliderTune = parseThemeTuneId(themeId);
+  const isSliderTheme = sliderTune !== null;
+  // оттенок темы-ползунка — уровням A1–B2 напрямую (liquidGlassPaletteRoles.ts), без вычисления из почти серой поверхности
+  const sliderHue = sliderTune ? { themeHue: sliderTune.H } : {};
+  const earlyButtonFill = deriveLiquidGlassButtonRoles({ ...built, bad: (deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity, ...sliderHue }) as LiquidGlassPaletteRoles).bad }, isSliderTheme).buttonFill;
   const accentGraphicRaw = legibleOn(built.accent, built.text, [
     built.bg, built.bgTop, built.bgBottom, built.opaqueCard, built.opaqueControl, built.opaqueSheet, earlyButtonFill,
   ], 3.2);
   // зачем (сторож accent_graphic_token, 24.10): legibleOn отдаёт hex заглавными — у премиум-пигментов (строчные) это «другой» цвет для сравнения; тот же цвет = сам accent
   const accentGraphic = accentGraphicRaw.toLowerCase() === built.accent.toLowerCase() ? built.accent : accentGraphicRaw;
   // зачем (TS2345, координатор 13.10): `bad` — роль палитры, а не базового токена; считаем роли палитры один раз и отдаём `bad` ролям кнопок (dangerFill/dangerInk).
-  const paletteRoles = deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity }) as LiquidGlassPaletteRoles;
+  const paletteRoles = deriveLiquidGlassPaletteRoles({ ...built, intensity: variant.intensity, ...sliderHue }) as LiquidGlassPaletteRoles;
   const tokens: GlassTokens = Object.freeze({
     ...built,
     secondary,

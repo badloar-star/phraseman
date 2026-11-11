@@ -179,16 +179,22 @@ const redHue = (hex: string): boolean => {
 };
 
 /** Опасная кнопка: заливка — bad, растворённый в шторке (от слабого к сильному), подпись — bad, сдвинутый к тексту темы, пока не станет читаемой. */
-function dangerRoles(t: Surfaces): Readonly<{ dangerFill: string; dangerInk: string }> {
+// зачем (владелец 11.11 «да, убрать» рывки на ползунках): первый проход мешает красный с ТОНИРОВАННОЙ шторкой и отбрасывает смеси, ушедшие из красного
+// оттенка. У тем-ползунков тон шторки меняется на ходу — смесь то проходит отбор, то нет, и заливка «Удалить» прыгала до 59 единиц канала за шаг.
+// smooth: сразу второй проход (красный в нейтральном сером той же яркости, что шторка — оттенок всегда красный) и мелкий шаг подписи (0,01 вместо 0,05).
+function dangerRoles(t: Surfaces, smooth = false): Readonly<{ dangerFill: string; dangerInk: string }> {
   const under = underSurfaces(t);
   let fallback = { dangerFill: mix(t.opaqueSheet, t.bad, 0.4), dangerInk: hex6(t.text) };
   // второй проход — только если на тонированной шторке красного не нашлось: тот же bad растворяется в нейтральном сером той же яркости, что шторка
   const level = Math.round(Math.max(0, Math.min(1, lum(t.opaqueSheet) ** (1 / 2.2))) * 255).toString(16).padStart(2, '0');
-  for (const base of [t.opaqueSheet, `#${level}${level}${level}`]) {
-    for (let k = 0.1; k <= 0.7001; k += 0.02) {
+  const gray = `#${level}${level}${level}`;
+  const inkStep = smooth ? 0.01 : 0.05;
+  const fillStep = smooth ? 0.005 : 0.02;
+  for (const base of smooth ? [gray] : [t.opaqueSheet, gray]) {
+    for (let k = 0.1; k <= 0.7001; k += fillStep) {
       const fill = mix(base, t.bad, k);
       if (minOver(fill, under) < DANGER_SURFACE_MIN || !redHue(fill)) continue;
-      for (let m = 0.2; m <= 1.0001; m += 0.05) {
+      for (let m = 0.2; m <= 1.0001; m += inkStep) {
         const ink = mix(t.bad, t.text, Math.min(m, 1));
         if (ratio(ink, fill) >= DANGER_INK_MIN) return { dangerFill: fill, dangerInk: ink };
       }
@@ -210,5 +216,5 @@ export function deriveLiquidGlassButtonRoles(t: Surfaces, smoothForSliders = fal
     buttonInkDisabled = candidate;
   }
   const primary = primaryRoles(t, buttonFill);
-  return { buttonFill, buttonFillDisabled, buttonInkDisabled, ctaFill: primary.fill, ctaFillInk: primary.ink, ...dangerRoles(t) };
+  return { buttonFill, buttonFillDisabled, buttonInkDisabled, ctaFill: primary.fill, ctaFillInk: primary.ink, ...dangerRoles(t, smoothForSliders) };
 }

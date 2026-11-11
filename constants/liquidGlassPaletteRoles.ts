@@ -84,6 +84,8 @@ type RoleSource = Readonly<{
   opaqueSheet?: string;
   isLight: boolean;
   intensity: number;
+  /** Оттенок темы-ползунка (`tune:H:S`), градусы. Задан — уровни A1–B2 берут его напрямую, а не вычисляют из цвета поверхности. */
+  themeHue?: number;
 }>;
 
 const ROLE_HUES = {
@@ -153,7 +155,10 @@ export function deriveLiquidGlassPaletteRoles(t: RoleSource) {
   }
 
   // ── Уровни A1–B2: тон темы, ступени оттенка и светлоты; чернила уровня читаются на его плашке ≥ 4.5 ──
-  const baseHue = hueOfHex(t.opaqueControl);
+  // зачем (владелец 11.11: ползунки «меняют резко цвет, когда входишь в зону» → «да, убрать»): оттенок уровней вычислялся из цвета поверхности.
+  // У почти серой поверхности (низкая насыщенность) оттенок не определён — брался запасной 260°, а на следующем шаге ползунка появлялся настоящий,
+  // и плашки уровней прыгали на 30–48 единиц канала. Тема-ползунок знает свой оттенок точно — берём его, ход плавный на любой насыщенности.
+  const baseHue = typeof t.themeHue === 'number' && Number.isFinite(t.themeHue) ? t.themeHue : hueOfHex(t.opaqueControl);
   LEVEL_KEYS.forEach((key, i) => {
     const hue = (baseHue + i * 18) % 360;
     const bg = oklchToHexLocal(dark ? 0.30 - i * 0.015 : 0.94 - i * 0.02, 0.02 + 0.03 * k, hue);

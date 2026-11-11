@@ -97,6 +97,8 @@ export interface LessonPhrase {
     clarifierKeys?: string[];
     wordNoteKeys?: string[];
     contextCue?: string;
+    /** Use only explicitly reviewed distractors for this exercise. */
+    authoredAssemblyBank?: true;
   };
   /** Легитимные альтернативы на французском (режим learnTarget=fr). */
   alternativesFr?: string[];

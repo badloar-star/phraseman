@@ -22,6 +22,7 @@ export const CLASSIC_COURSES_RUNTIME_ENABLED = true;
 type RawTile = { text?: unknown; correct?: unknown; distractors?: unknown };
 type RawPhrase = {
   id?: unknown; target?: unknown; tiles?: unknown; alternatives?: unknown; accepted?: unknown;
+  authoredAssemblyBank?: unknown;
   sourceLocales?: Record<string, unknown>; clarifierKeys?: unknown; wordNoteKeys?: unknown; rev?: unknown; contextCue?: unknown;
 };
 
@@ -86,6 +87,7 @@ export function classicPhraseFromRecord(raw: RawPhrase, lang: ClassicCourseLang)
       clarifierKeys: strList(raw.clarifierKeys),
       wordNoteKeys: strList(raw.wordNoteKeys),
       contextCue: str(raw.contextCue) || undefined,
+      ...(raw.authoredAssemblyBank === true ? { authoredAssemblyBank: true } : {}),
     },
   };
 }

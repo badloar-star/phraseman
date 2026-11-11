@@ -540,6 +540,21 @@ const computePerWordDistracts = (
   if (!currentCorrect || String(currentCorrect).trim() === '') {
     return [];
   }
+  if (phrase.classic?.authoredAssemblyBank === true) {
+    const next = rows[wordIndex + 1];
+    const contraction = studyTarget === 'en' && next
+      ? getContractionFor(currentCorrect, next.correct ?? next.text)
+      : null;
+    const expansion = studyTarget === 'en' ? lookupContraction(currentCorrect)?.[0] : undefined;
+    const choices = [currentCorrect, contraction, expansion, ...(wordData.distractors ?? [])];
+    const unique = new Map<string, string>();
+    for (const choice of choices) {
+      if (!choice) continue;
+      const key = optionIdentity(choice);
+      if (key && !unique.has(key)) unique.set(key, choice);
+    }
+    return shuffle([...unique.values()].slice(0, 6));
+  }
   const enSurface = String(phrase?.english ?? '').trim();
   const normalizedStudyTarget = storageStudyTarget(studyTarget);
   const isFrenchTarget = ENABLE_DEV_STUDY_TARGET_LANG && normalizedStudyTarget === 'fr';

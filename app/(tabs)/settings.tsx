@@ -33,6 +33,7 @@ import { KitGlassLayer } from '../../components/v2/KitLiquidGlass';
 import { actionBoxShadow, nestedBoxShadow, plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { ThemeAccentFill } from '../../components/v2/ThemeAccentFill';
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
+import { V2 } from '../../constants/v2Style';
 // зачем (флаг theme_sliders_v1, слово владельца 05.11): при включённом флаге вместо списка тем — экран «Оформление» (Светлая/Тёмная + Оттенок + Насыщенность)
 import { useMyCoinRank } from '../../hooks/use_my_coin_rank';
 import { useMyRankCoinRank } from '../../hooks/use_my_rank_coin';
@@ -1122,8 +1123,9 @@ export default function SettingsMain() {
         // зачем: лево/право — safe area, низ — высота таббара (tabContentBottomPad уже включает нижний inset);
         // крупный шрифт просто удлиняет прокручиваемое содержимое.
         // зачем: паритет profile.html (13.10): верхний inset уже даёт обёртка вкладок ((tabs)/_layout.tsx, paddingTop: insets.top) —
-        // второй раз он опускал заголовок на ≈55px; поля 20, как в макете A.
-        contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingLeft: 20 + insets.left, paddingRight: 20 + insets.right }}
+        // второй раз он опускал заголовок на ≈55px.
+        // зачем: владелец 11.11 «блоки сделай шире по ширине экрана» — поле как у Главной (V2.homePad = 12), было 20.
+        contentContainerStyle={{ paddingBottom: tabContentBottomPad, paddingLeft: V2.homePad + insets.left, paddingRight: V2.homePad + insets.right }}
         keyboardShouldPersistTaps="handled"
         scrollEventThrottle={16}
         bounces

@@ -9,7 +9,7 @@ import {
   type MistakeExerciseMode,
 } from './exercise_mode_registry';
 import { mistakeExerciseCapabilitiesFor, type MistakeCapabilitySource } from './capabilities';
-import { applyMistakeStepAnswer } from './three_step_rule';
+import { MISTAKE_STUBBORN_REST_MS, applyMistakeStepAnswer } from './three_step_rule';
 
 /**
  * Метка правила на ответе отработки (payload.rule). зачем (D203, 11.11): состояние ошибки пересчитывается из ВСЕЙ истории
@@ -313,7 +313,9 @@ export function projectMistakes(
       current.supportPassCount = next.stepsDone;
       current.missesInRow = next.missesInRow;
       current.stubborn = next.stubborn;
-      current.dueAtMs = event.occurredAtMs;
+      // зачем (D203): упрямая ошибка (три промаха подряд) отдыхает сутки — так «Вернёмся к этой фразе завтра» становится правдой;
+      // любой другой ответ оставляет ошибку доступной сразу.
+      current.dueAtMs = next.stubborn ? event.occurredAtMs + MISTAKE_STUBBORN_REST_MS : event.occurredAtMs;
       if (correct) {
         const localDayV3 = payloadString(event.payload, 'localDay');
         if (localDayV3 && LOCAL_DAY_PATTERN.test(localDayV3) && !current.qualifyingDays.includes(localDayV3)) {

@@ -361,6 +361,14 @@ export function advanceMistakePracticeSession(
     const failureCount = (failureCounts[entry.mistakeId] ?? 0) + 1;
     failureCounts[entry.mistakeId] = failureCount;
     requeue = planFailureRequeue({ mistakeId: entry.mistakeId, failureCount });
+    if (requeue.kind === 'stop_for_today') {
+      // зачем (владелец 11.11, D203 «три промаха — задания прекращаются»): следующие шаги этой ошибки уже стоят в очереди
+      // (занятие строится тремя кругами) — убираем их, иначе после «вернёмся завтра» фраза приходила бы снова через пару заданий.
+      const kept = queue.filter((candidate, index) => index <= session.cursor || candidate.mistakeId !== entry.mistakeId);
+      console.log('[MISTAKE-SESSION] stubborn:drop', JSON.stringify({ id: entry.mistakeId.slice(-8), dropped: queue.length - kept.length, cursor: session.cursor }));
+      queue.length = 0;
+      queue.push(...kept);
+    }
     if (requeue.kind === 'requeue') {
       const desiredInsertAt = session.cursor + 1 + requeue.afterTaskCount;
       if (desiredInsertAt > queue.length) {
@@ -376,6 +384,9 @@ export function advanceMistakePracticeSession(
       }
     }
   }
+  // зачем (D203): «упрямой» ошибку делают три промаха ПОДРЯД — верный ответ обнуляет счёт, как в правиле шагов (three_step_rule.ts).
+  // Раньше счёт шёл по всем промахам за занятие, и ошибка могла остановиться после «мимо, верно, мимо, верно, мимо».
+  if (answer.correct && (failureCounts[entry.mistakeId] ?? 0) > 0) failureCounts[entry.mistakeId] = 0;
   const nextCursor = session.cursor + 1;
   console.log('[MISTAKE-SESSION] advance', JSON.stringify({
     attemptId,

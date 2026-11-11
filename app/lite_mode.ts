@@ -54,6 +54,35 @@ export function decideLiteMode(
   return { on: emulator, reason: emulator ? 'auto_emulator' : 'auto_off', ...base };
 }
 
+// зачем (решение владельца 11.11, аудит «подлагивания на Android»): авто-Lite включался только при ОЗУ строго < 3 ГБ, а типичные
+// слабые Android с 3–4 ГБ (Redmi, Galaxy A) получали полные размытые тени — до 6 слоёв на карточку, 8–15 карточек на экране.
+// Теперь тени снимаются автоматически и на них. Порог Карточек (low_power.ts, 3D-флип) НЕ меняется: расширен только «Лёгкий режим».
+// Телефон «на 4 ГБ» сообщает меньше 4 ГиБ (часть памяти занята системой), поэтому сравнение строгое. Ручной тумблер главнее авто.
+export const LITE_AUTO_MEMORY_THRESHOLD_BYTES = 4 * 1024 * 1024 * 1024;
+
+/** Чистая функция порога «Лёгкого режима». Неизвестная память / web → false: не упрощаем «на всякий случай». */
+export function computeLiteAutoLowRam(totalMemoryBytes: number | null | undefined, os: string): boolean {
+  if (os === 'web') return false;
+  if (typeof totalMemoryBytes !== 'number' || !Number.isFinite(totalMemoryBytes) || totalMemoryBytes <= 0) return false;
+  return totalMemoryBytes < LITE_AUTO_MEMORY_THRESHOLD_BYTES;
+}
+
+/** Память устройства не меняется за запуск — читаем один раз. */
+let liteAutoLowRamCached: boolean | null = null;
+function isLiteAutoLowRam(): boolean {
+  if (liteAutoLowRamCached !== null) return liteAutoLowRamCached;
+  let totalMemory: number | null = null;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const Device = require('expo-device') as { totalMemory?: number | null };
+    totalMemory = Device.totalMemory ?? null;
+  } catch (error) {
+    console.warn('[HOME-LITE] lite_memory_read_failed', error instanceof Error ? error.message : String(error));
+  }
+  liteAutoLowRamCached = computeLiteAutoLowRam(totalMemory, Platform.OS);
+  return liteAutoLowRamCached;
+}
+
 function totalMemoryMb(): number | null {
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -84,7 +113,7 @@ function isEmulatorDevice(): boolean {
 let devLink: LiteDevLink | null = null;
 let lastLogged = '';
 function applyLiteMode(source: string): LiteModeDecision {
-  const decision = decideLiteMode(getLowPowerOverride(), isLowPowerDeviceAuto(), LITE_MODE_AUTO_ENABLED, isEmulatorDevice(), { build: ENABLE_DEV_TOOLS, link: devLink });
+  const decision = decideLiteMode(getLowPowerOverride(), isLowPowerDeviceAuto() || isLiteAutoLowRam(), LITE_MODE_AUTO_ENABLED, isEmulatorDevice(), { build: ENABLE_DEV_TOOLS, link: devLink });
   setLiteModeFlag(decision.on);
   const line = JSON.stringify({ on: decision.on, reason: decision.reason, override: decision.override, autoLowRam: decision.autoLowRam, emulator: decision.emulator, devBuild: ENABLE_DEV_TOOLS, devLink, ramMb: totalMemoryMb(), os: Platform.OS });
   if (line !== lastLogged) {
@@ -136,6 +165,7 @@ export function __resetLiteModeForTests(): void {
   started = false;
   lastLogged = '';
   emulatorCached = null;
+  liteAutoLowRamCached = null;
   devLink = null;
   setLiteModeFlag(false);
 }

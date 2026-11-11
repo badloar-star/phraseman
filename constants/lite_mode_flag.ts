@@ -1,6 +1,6 @@
 // зачем (Сверка 21.10, пункт №39, Galaxy A04): плоский флаг «Лёгкий режим» без тяжёлых импортов — его читают тени
 // (constants/liquidGlassShadowStyle.ts) на КАЖДОМ рендере, поэтому здесь нет ни AsyncStorage, ни React Native.
-// Выставляет флаг app/lite_mode.ts (авто по ОЗУ < 3 ГБ или ручной переключатель в Настройках).
+// Выставляет флаг app/lite_mode.ts (авто по ОЗУ < 4 ГБ с 11.11 или ручной переключатель в Настройках).
 let liteModeOn = false;
 const listeners = new Set<(on: boolean) => void>();
 

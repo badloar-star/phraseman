@@ -1,4 +1,4 @@
-﻿import React, { Profiler, useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
+﻿import React, { Profiler, useState, useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { Freeze } from 'react-freeze';
 import { useFocusEffect, useNavigationContainerRef, usePathname, useRootNavigationState, useRouter, useSegments } from 'expo-router';
 import { View, StyleSheet, Animated, AppState, Easing, Text } from 'react-native';
@@ -1535,6 +1535,12 @@ function ReleasedTabLayout() {
     return false;
   }, []);
 
+  // зачем (владелец 11.11: «при переключении вкладок лёгкий фриз, но неприятный»; журнал с телефона: тап → смена страницы 82–115 мс, из них 60–95 мс —
+  // перерисовка Главной и соседних вкладок, которые в переходе не участвуют: их будил общий контекст вкладок в ТОМ ЖЕ коммите, что сдвигает страницу).
+  // Срочный коммит теперь только сдвигает страницу, красит панель и размораживает вкладку назначения; «кто владелец экрана» (контекст вкладок)
+  // приходит следующим, фоновым рендером. Заморозка уходящей вкладки ждёт этого же фонового рендера (см. freezeWanted ниже) — иначе она уснула бы,
+  // не узнав, что перестала быть владельцем, и её таймеры крутились бы в фоне (tab_freeze_handoff_contract).
+  const settledPhysicalPageIdx = useDeferredValue(physicalPageIdx);
   const tabScreens = useMemo(() => {
     // Главная всегда в дереве; остальные табы получают слот сразу, а реальные экраны
     // по одному монтируются в фоне после первого готового кадра, чтобы первый тап не видел пустой placeholder.
@@ -1549,7 +1555,9 @@ function ReleasedTabLayout() {
     const shouldLoad = (i: number) => shouldLoadTabScreen(activeIdx, i, mountedTabs);
     // Замораживаем табы дальше чем сосед активного: активный + оба соседа живут
     // (свайп-драг показывает соседнюю панель — она не должна быть пустой).
-    const freezeWanted = (logicalIdx: number) => Math.abs(logicalTabToPhysicalPage(logicalIdx, pageLayout) - physicalPageIdx) >= TAB_FREEZE_MIN_DISTANCE;
+    // Разморозка — сразу по живому индексу; заморозка — только когда и фоновый рендер (с новым владельцем в контексте) уже дошёл.
+    const farFrom = (logicalIdx: number, pageIdx: number) => Math.abs(logicalTabToPhysicalPage(logicalIdx, pageLayout) - pageIdx) >= TAB_FREEZE_MIN_DISTANCE;
+    const freezeWanted = (logicalIdx: number) => farFrom(logicalIdx, physicalPageIdx) && farFrom(logicalIdx, settledPhysicalPageIdx);
     // зачем D129: скрытая вкладка выпадает из ленты целиком — свайп её не находит.
     const screens = [
       show(0) ? (
@@ -1584,7 +1592,7 @@ function ReleasedTabLayout() {
     // зачем (слово владельца 11.11): страницы ленты идут в том же порядке, что значки панели, — иначе тап по алмазику
     // открывал бы соседнюю страницу. Порядок один, из модели.
     return visibleLogicalTabs(pageLayout).map((logicalIdx) => screens[logicalIdx]!);
-  }, [activeIdx, mountedTabs, openDevHub, pageLayout, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
+  }, [activeIdx, mountedTabs, openDevHub, pageLayout, physicalPageIdx, settledPhysicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
   // зачем (Сверка 18.10, пустые Настройки ≥ 6 с; «сперва логи»): в каком состоянии была выбранная вкладка — смонтирована ли, посещалась ли,
   // попадает ли под заморозку; экран Настроек пишет свой первый кадр относительно этой отметки ([TAB-FIRST-FRAME]). Временная трасса.
   useEffect(() => {
@@ -1597,11 +1605,22 @@ function ReleasedTabLayout() {
   const renderPhysicalIdx = (physicalPageIdx < physicalPageCount(pageLayout)
     ? physicalPageIdx
     : logicalTabToPhysicalPage(visibleTabIdx(activeIdx, pageLayout), pageLayout)) as PhysicalPageIndex;
-  const runtimeOwnerId = physicalPageToRuntimeOwner(renderPhysicalIdx, pageLayout);
+  // Контекст вкладок (кто активен, кто владелец) — фоновым рендером: его потребители (Главная, соседние вкладки) не держат сдвиг страницы.
+  const runtimeOwnerId = useDeferredValue(physicalPageToRuntimeOwner(renderPhysicalIdx, pageLayout));
+  const settledActiveIdx = useDeferredValue(activeIdx);
+  // зачем: сколько фоновый рендер отстал от тапа — видно, если владелец экрана приходит слишком поздно (только dev)
+  const ownerLagSinceRef = useRef<number | null>(null);
+  if (settledActiveIdx !== activeIdx && ownerLagSinceRef.current === null) ownerLagSinceRef.current = Date.now();
+  useEffect(() => {
+    if (settledActiveIdx !== activeIdx || ownerLagSinceRef.current === null) return;
+    const lagMs = Date.now() - ownerLagSinceRef.current;
+    ownerLagSinceRef.current = null;
+    if (__DEV__) console.log('[TABS-OWNER-LAG]', JSON.stringify({ activeIdx, runtimeOwnerId, lagMs })); // guard-ok: одна строка на переход, только dev
+  }, [activeIdx, runtimeOwnerId, settledActiveIdx]);
 
   return (
     <TabProvider
-      activeIdx={activeIdx}
+      activeIdx={settledActiveIdx}
       runtimeOwnerId={runtimeOwnerId}
       onTabChange={handleTabChange}
       onSwipeStart={handleSwipeStart}

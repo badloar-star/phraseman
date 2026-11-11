@@ -43,6 +43,21 @@ test('у вкладки два слоя значка, цвет не зависи
   assert.doesNotMatch(source, /const color = on \?/);
 });
 
+// зачем (владелец 11.11: «при переключении вкладок лёгкий фриз, но неприятный»): сдвиг страницы не ждёт перерисовки Главной и соседей —
+// контекст вкладок приходит фоновым рендером. Заморозка уходящей вкладки обязана ждать того же фонового рендера, иначе вкладка уснёт,
+// не узнав о потере владения, и её таймеры останутся крутиться.
+test('контекст вкладок — фоновым рендером, заморозка ждёт его же', () => {
+  const layout = fs.readFileSync(path.resolve(__dirname, '../app/(tabs)/_layout.tsx'), 'utf8');
+  assert.match(layout, /const settledPhysicalPageIdx = useDeferredValue\(physicalPageIdx\);/);
+  assert.match(layout, /const runtimeOwnerId = useDeferredValue\(physicalPageToRuntimeOwner\(renderPhysicalIdx, pageLayout\)\);/);
+  assert.match(layout, /const settledActiveIdx = useDeferredValue\(activeIdx\);/);
+  assert.match(layout, /<TabProvider\s+activeIdx=\{settledActiveIdx\}\s+runtimeOwnerId=\{runtimeOwnerId\}/);
+  assert.match(layout, /const freezeWanted = \(logicalIdx: number\) => farFrom\(logicalIdx, physicalPageIdx\) && farFrom\(logicalIdx, settledPhysicalPageIdx\);/);
+  // страница, панель и доступность — по живому индексу, без отставания
+  assert.match(layout, /physicalPageIdx=\{renderPhysicalIdx\}/);
+  assert.match(layout, /visualIdx=\{visualIdx\}/);
+});
+
 test('плотность заливки не зависит от платформы и задаётся только константами', () => {
   const start = source.indexOf('const glassFill = useMemo(');
   const end = source.indexOf('const count = items.length');

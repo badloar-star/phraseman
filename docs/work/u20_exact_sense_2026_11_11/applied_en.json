@@ -1,0 +1,403 @@
+{
+ "01.17": {
+  "vi": "Cô ấy ở chỗ làm.",
+  "id": "Dia di tempat kerja."
+ },
+ "01.18": {
+  "vi": "Anh ấy ở chỗ làm.",
+  "id": "Dia di tempat kerja."
+ },
+ "01.20": {
+  "vi": "Họ ở chỗ làm.",
+  "id": "Mereka di tempat kerja."
+ },
+ "01.31": {
+  "ru": "Я рано.",
+  "uk": "Я рано.",
+  "es": "Llego temprano.",
+  "pt-BR": "Estou adiantado(a)."
+ },
+ "01.32": {
+  "ru": "Ты рано.",
+  "uk": "Ти рано.",
+  "es": "Llegas temprano.",
+  "pt-BR": "Você está adiantado(a)."
+ },
+ "01.33": {
+  "es": "Ella llega tarde."
+ },
+ "01.34": {
+  "ru": "Мы рано.",
+  "uk": "Ми рано.",
+  "pt-BR": "Nós estamos adiantados."
+ },
+ "01.35": {
+  "es": "Ellos llegan tarde."
+ },
+ "01.36": {
+  "es": "El autobús llega tarde."
+ },
+ "01.48": {
+  "pt-BR": "O ônibus está aqui.",
+  "vi": "Xe buýt ở đây."
+ },
+ "02.01": {
+  "ru": "Я не опаздываю.",
+  "uk": "Я не запізнююся."
+ },
+ "02.02": {
+  "ru": "Вы не опаздываете.",
+  "uk": "Ви не запізнюєтеся."
+ },
+ "02.07": {
+  "id": "Mereka tidak di tempat kerja."
+ },
+ "02.08": {
+  "pl": "Drzwi nie są otwarte."
+ },
+ "02.09": {
+  "es": "Mi teléfono no está encendido.",
+  "pt-BR": "Meu telefone não está ligado.",
+  "pl": "Mój telefon nie jest włączony."
+ },
+ "02.13": {
+  "vi": "Anh ấy có ở chỗ làm không?",
+  "id": "Apakah dia di tempat kerja?"
+ },
+ "02.15": {
+  "id": "Apakah itu buka?",
+  "vi": "Nó có mở cửa không?"
+ },
+ "02.17": {
+  "ru": "Я рано?",
+  "uk": "Я рано?",
+  "es": "¿Llego temprano?",
+  "pt-BR": "Estou adiantado(a)?"
+ },
+ "02.18": {
+  "ru": "Автобус здесь?",
+  "uk": "Автобус тут?",
+  "pt-BR": "O ônibus está aqui?",
+  "tr": "Otobüs burada mı?",
+  "id": "Apakah bus ada di sini?"
+ },
+ "02.45": {
+  "es": "La taquilla no está abierta.",
+  "pt-BR": "A bilheteria não está aberta.",
+  "pl": "Kasa biletowa nie jest otwarta."
+ },
+ "02.48": {
+  "pl": "Nie jestem w autobusie."
+ },
+ "03.25": {
+  "pl": "Kawiarnia zamyka się wcześnie."
+ },
+ "03.27": {
+  "ru": "Моя смена скоро начинается."
+ },
+ "03.29": {
+  "es": "El autobús para cerca.",
+  "vi": "Xe buýt dừng ở gần đây.",
+  "id": "Bus berhenti di dekat sini.",
+  "tr": "Otobüs yakınlarda duruyor."
+ },
+ "03.31": {
+  "pl": "Jeżdżę autobusem."
+ },
+ "03.32": {
+  "pl": "On jeździ pociągiem."
+ },
+ "03.34": {
+  "vi": "Cô ấy ở chung căn hộ."
+ },
+ "04.16": {
+  "pl": "Ten automat nie przyjmuje monet."
+ },
+ "04.21": {
+  "id": "Pintu tidak bisa dikunci."
+ },
+ "04.27": {
+  "id": "Jendela tidak bisa ditutup."
+ },
+ "04.50": {
+  "pl": "Moja karta nie działa w tym automacie."
+ },
+ "05.15": {
+  "pl": "Czy drzwi zamykają się na klucz?"
+ },
+ "05.17": {
+  "pl": "Czy sklep otwiera się wcześnie?"
+ },
+ "05.23": {
+  "pl": "Czy pokoje mają ogrzewanie?"
+ },
+ "05.31": {
+  "tr": "Yeni vardiyanızı beğeniyor musunuz?"
+ },
+ "05.32": {
+  "pl": "Czy Twój zespół zaczyna pracę wcześnie?"
+ },
+ "05.45": {
+  "vi": "Có ai kiểm tra thư không?"
+ },
+ "05.46": {
+  "pl": "Czy odbieram to tutaj?"
+ },
+ "05.47": {
+  "pl": "Czy pokazuję bilet przy bramce?"
+ },
+ "06.27": {
+  "pl": "Gdzie zwracam tę paczkę?",
+  "pt-BR": "Onde eu devolvo esta encomenda?"
+ },
+ "06.30": {
+  "pl": "Dlaczego ta kosztuje więcej?"
+ },
+ "07.01": {
+  "pl": "Mam bilet."
+ },
+ "07.02": {
+  "pl": "Ona ma bilet."
+ },
+ "07.15": {
+  "tr": "Kızımın nezlesi var."
+ },
+ "07.24": {
+  "tr": "Bozuk parası var mı?"
+ },
+ "08.21": {
+  "ru": "Офис закрывается в праздничные дни.",
+  "pl": "Biuro zamyka się w święta.",
+  "tr": "Ofis resmi tatillerde kapanır."
+ },
+ "08.25": {
+  "ru": "Рынок открывается по субботам.",
+  "pl": "Targ otwiera się w soboty."
+ },
+ "08.26": {
+  "ru": "Посылка приходит в понедельник днём."
+ },
+ "08.33": {
+  "ru": "Летом на кухне становится жарко."
+ },
+ "08.45": {
+  "pl": "Sklep zamyka się dziś wcześnie."
+ },
+ "10.10": {
+  "pl": "Nie mogą zostać do późna.",
+  "id": "Mereka tidak bisa tinggal sampai larut."
+ },
+ "10.17": {
+  "es": "¿Puedo tomar prestado un bolígrafo?"
+ },
+ "11.01": {
+  "ru": "Я вчера пошёл домой пешком."
+ },
+ "11.02": {
+  "pl": "Ona poszła pieszo na stację."
+ },
+ "12.29": {
+  "es": "Él rompió sus gafas."
+ },
+ "13.05": {
+  "pl": "Spotkają się z nami tutaj."
+ },
+ "13.19": {
+  "pl": "Za dostawę będzie niewielka opłata."
+ },
+ "13.32": {
+  "tr": "Onu arabayla bırakmak gerekecek mi?"
+ },
+ "13.44": {
+  "pl": "Nowy rozkład jazdy zacznie obowiązywać w przyszłym miesiącu."
+ },
+ "13.45": {
+  "pt-BR": "A previsão diz que vai chover depois do almoço."
+ },
+ "14.42": {
+  "pl": "Czy większy pokój jest droższy?"
+ },
+ "15.46": {
+  "tr": "Şoförün numarası bende."
+ },
+ "16.05": {
+  "pl": "Wyruszyliśmy do portu przed obiadem."
+ },
+ "16.08": {
+  "pl": "Wróć po próbie."
+ },
+ "17.03": {
+  "id": "Kami sedang berangkat."
+ },
+ "17.04": {
+  "id": "Mereka sedang berangkat."
+ },
+ "17.33": {
+  "es": "No nos quedamos a pasar la noche.",
+  "tr": "Geceyi burada geçirmiyoruz."
+ },
+ "17.36": {
+  "pl": "Dzisiaj nie pracują."
+ },
+ "17.39": {
+  "ru": "Я не беру машину.",
+  "uk": "Я не беру машину."
+ },
+ "17.40": {
+  "pl": "Autobus się nie rusza.",
+  "es": "El autobús no se mueve."
+ },
+ "18.04": {
+  "pl": "Proszę usiąść tutaj."
+ },
+ "18.08": {
+  "vi": "Giữ cửa luôn đóng.",
+  "id": "Jaga pintu tetap tertutup.",
+  "pl": "Trzymaj drzwi zamknięte."
+ },
+ "18.40": {
+  "pl": "Zadzwoń dzwonkiem raz."
+ },
+ "19.14": {
+  "tr": "O otobüste."
+ },
+ "19.15": {
+  "tr": "O takside."
+ },
+ "19.32": {
+  "es": "Ponga la carpeta sobre el escritorio."
+ },
+ "19.42": {
+  "es": "Hay un agujero en mi bolsillo."
+ },
+ "20.18": {
+  "ru": "Мы заказали такси. Такси приехало рано.",
+  "uk": "Ми замовили таксі. Таксі приїхало рано.",
+  "pl": "Zamówiliśmy taksówkę. Taksówka przyjechała wcześnie."
+ },
+ "21.05": {
+  "pt-BR": "Preciso de alguém para ajudar.",
+  "id": "Saya butuh seseorang untuk membantu."
+ },
+ "21.07": {
+  "tr": "Birinde numaram var."
+ },
+ "21.18": {
+  "pl": "Czy poszedłeś gdzieś wczoraj?"
+ },
+ "21.20": {
+  "es": "¿Puedo traerte algo?",
+  "id": "Bisakah saya mengambilkan sesuatu untuk Anda?",
+  "pl": "Czy mogę ci coś przynieść?"
+ },
+ "21.33": {
+  "id": "Semua orang punya tempat duduk."
+ },
+ "23.46": {
+  "pl": "Tylne drzwi muszą być niezastawione.",
+  "id": "Pintu belakang harus tetap tidak terhalang."
+ },
+ "25.08": {
+  "pt-BR": "Você estava em pé perto do elevador."
+ },
+ "25.15": {
+  "pt-BR": "Eles estavam viajando a tarde toda."
+ },
+ "25.23": {
+  "pl": "Czekaliśmy, kiedy przyjechała taksówka."
+ },
+ "25.36": {
+  "pl": "Dlaczego dzwonił alarm przeciwpożarowy?"
+ },
+ "25.42": {
+  "es": "Mientras él leía, yo cocinaba nuestra comida."
+ },
+ "25.48": {
+  "pl": "Sklep się zamykał, kiedy przyjechaliśmy."
+ },
+ "26.05": {
+  "pl": "Jeśli zasuwka się zacina, podnieś klamkę."
+ },
+ "26.09": {
+  "es": "Si esperas a la sombra, traeré la llave."
+ },
+ "26.38": {
+  "pl": "Kto zamknie drzwi, jeśli wyjdziesz wcześnie?"
+ },
+ "27.16": {
+  "vi": "Họ nói với tôi giá đã bao gồm bữa sáng."
+ },
+ "27.28": {
+  "id": "Saya memberi tahu dia bahwa saya akan menyimpan satu tempat duduk."
+ },
+ "27.37": {
+  "pl": "Zapytała, czy chcemy zamiennik."
+ },
+ "27.49": {
+  "id": "Dia bilang paketnya akan tiba keesokan harinya."
+ },
+ "28.19": {
+  "vi": "Chúng tôi dành thêm thời gian cho bản thân."
+ },
+ "28.45": {
+  "pl": "Ona pokroiła chleb, a nie siebie.",
+  "vi": "Cô ấy cắt bánh mì, chứ không cắt vào chính mình."
+ },
+ "29.03": {
+  "uk": "Раніше ми ділили квартиру."
+ },
+ "29.35": {
+  "vi": "Trước đây bạn thường mua vé ở đâu?"
+ },
+ "29.36": {
+  "vi": "Trước đây bạn từng ở chung căn hộ với ai?"
+ },
+ "29.39": {
+  "tr": "Eskiden gittiğiniz dükkan bu muydu?",
+  "vi": "Đây có phải là cửa hàng trước đây bạn hay đến không?"
+ },
+ "29.44": {
+  "pl": "Kiedyś drukował każdy bilet, teraz korzysta z telefonu."
+ },
+ "30.09": {
+  "ru": "Ключа, который открывает шлагбаум, нет на месте."
+ },
+ "30.43": {
+  "vi": "Con đường chúng tôi đi chạy ngang qua sân chơi."
+ },
+ "30.50": {
+  "es": "¿Quién es la persona que se encarga de las quejas?",
+  "tr": "Şikayetlerle ilgilenen kişi kim?",
+  "pl": "Kto jest osobą, która zajmuje się reklamacjami?"
+ },
+ "31.12": {
+  "vi": "Chúng tôi nghe thấy cô ấy đổ nước vào nồi.",
+  "pl": "Słyszeliśmy, jak nalewa wodę do garnka."
+ },
+ "31.15": {
+  "pt-BR": "Eu senti aquilo se mexer."
+ },
+ "31.28": {
+  "vi": "Chúng tôi thấy Anna cho tài xế mượn một cây bút."
+ },
+ "31.37": {
+  "es": "El humo hizo que me lagrimearan los ojos."
+ },
+ "31.48": {
+  "es": "Me dejó tomar prestada su chaqueta impermeable.",
+  "pt-BR": "Ela me deixou pegar emprestada sua jaqueta impermeável.",
+  "id": "Dia mengizinkan saya meminjam jaket tahan airnya.",
+  "tr": "Su geçirmez ceketini ödünç almama izin verdi.",
+  "ru": "Она разрешила мне взять на время её водонепроницаемую куртку.",
+  "uk": "Вона дозволила мені позичити її водонепроникну куртку."
+ },
+ "32.08": {
+  "ru": "Пожалуйста, держите пожарный выход свободным."
+ },
+ "32.38": {
+  "tr": "Ayrılmadan önce kapı zilini kontrol etmenizin sakıncası var mı?",
+  "pl": "Czy miałby Pan coś przeciwko sprawdzeniu dzwonka przed wyjściem?",
+  "ru": "Вас не затруднит проверить дверной звонок перед отъездом?",
+  "uk": "Вам не важко перевірити дзвінок перед тим, як піти?"
+ }
+}

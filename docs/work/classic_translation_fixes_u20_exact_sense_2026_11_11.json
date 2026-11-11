@@ -1,0 +1,566 @@
+{
+ "_note": "en: U20 «Точный смысл» (владелец 11.11) — подсказка ведёт к той же конструкции, что и цель: время, лицо, отрицание, тип предложения, состояние/действие («I am early» ≠ «Я пришёл рано»). Полный проход 1600 фраз × 8 языков. Запись ключа заменяет прежние слои целиком, поэтому поля прежних слоёв для того же ключа перенесены сюда. Накладывает сборщик classic_course_pack.mjs (слой TRANSLATION_FIXES).",
+ "en:01.17": {
+  "vi": "Cô ấy ở chỗ làm.",
+  "id": "Dia di tempat kerja.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:01.18": {
+  "vi": "Anh ấy ở chỗ làm.",
+  "id": "Dia di tempat kerja.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:01.20": {
+  "vi": "Họ ở chỗ làm.",
+  "id": "Mereka di tempat kerja.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:01.31": {
+  "ru": "Я рано.",
+  "uk": "Я рано.",
+  "es": "Llego temprano.",
+  "pt-BR": "Estou adiantado(a).",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:01.32": {
+  "ru": "Ты рано.",
+  "uk": "Ти рано.",
+  "es": "Llegas temprano.",
+  "pt-BR": "Você está adiantado(a).",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:01.33": {
+  "es": "Ella llega tarde.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:01.34": {
+  "ru": "Мы рано.",
+  "uk": "Ми рано.",
+  "pt-BR": "Nós estamos adiantados.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:01.35": {
+  "es": "Ellos llegan tarde.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:01.36": {
+  "es": "El autobús llega tarde.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:01.48": {
+  "pt-BR": "O ônibus está aqui.",
+  "vi": "Xe buýt ở đây.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:02.01": {
+  "ru": "Я не опаздываю.",
+  "uk": "Я не запізнююся.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:02.02": {
+  "ru": "Вы не опаздываете.",
+  "uk": "Ви не запізнюєтеся.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:02.07": {
+  "id": "Mereka tidak di tempat kerja.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:02.08": {
+  "pl": "Drzwi nie są otwarte.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:02.09": {
+  "ru": "Мой телефон не включён.",
+  "es": "Mi teléfono no está encendido.",
+  "pt-BR": "Meu telefone não está ligado.",
+  "pl": "Mój telefon nie jest włączony.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:02.13": {
+  "vi": "Anh ấy có ở chỗ làm không?",
+  "id": "Apakah dia di tempat kerja?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:02.15": {
+  "ru": "Открыто?",
+  "uk": "Відчинено?",
+  "vi": "Nó có mở cửa không?",
+  "id": "Apakah itu buka?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:02.17": {
+  "ru": "Я рано?",
+  "uk": "Я рано?",
+  "es": "¿Llego temprano?",
+  "pt-BR": "Estou adiantado(a)?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:02.18": {
+  "ru": "Автобус здесь?",
+  "uk": "Автобус тут?",
+  "pt-BR": "O ônibus está aqui?",
+  "id": "Apakah bus ada di sini?",
+  "tr": "Otobüs burada mı?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:02.45": {
+  "ru": "Касса не открыта.",
+  "uk": "Каса не відчинена.",
+  "es": "La taquilla no está abierta.",
+  "pt-BR": "A bilheteria não está aberta.",
+  "pl": "Kasa biletowa nie jest otwarta.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:02.48": {
+  "pl": "Nie jestem w autobusie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:03.25": {
+  "ru": "Кафе закрывается рано.",
+  "uk": "Кафе закривається рано.",
+  "pl": "Kawiarnia zamyka się wcześnie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:03.27": {
+  "ru": "Моя смена скоро начинается.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:03.29": {
+  "es": "El autobús para cerca.",
+  "vi": "Xe buýt dừng ở gần đây.",
+  "id": "Bus berhenti di dekat sini.",
+  "tr": "Otobüs yakınlarda duruyor.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:03.31": {
+  "ru": "Я езжу на автобусе.",
+  "uk": "Я їжджу автобусом.",
+  "pl": "Jeżdżę autobusem.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:03.32": {
+  "ru": "Он ездит на поезде.",
+  "uk": "Він їздить поїздом.",
+  "pl": "On jeździ pociągiem.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:03.34": {
+  "uk": "Вона живе в квартирі разом з кимось.",
+  "vi": "Cô ấy ở chung căn hộ.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:04.16": {
+  "pl": "Ten automat nie przyjmuje monet.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:04.21": {
+  "id": "Pintu tidak bisa dikunci.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:04.27": {
+  "id": "Jendela tidak bisa ditutup.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:04.50": {
+  "pl": "Moja karta nie działa w tym automacie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:05.15": {
+  "pl": "Czy drzwi zamykają się na klucz?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:05.17": {
+  "pl": "Czy sklep otwiera się wcześnie?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:05.23": {
+  "pl": "Czy pokoje mają ogrzewanie?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:05.31": {
+  "ru": "Вам нравится ваша новая смена?",
+  "tr": "Yeni vardiyanızı beğeniyor musunuz?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:05.32": {
+  "uk": "Чи починає ваша команда роботу рано?",
+  "pl": "Czy Twój zespół zaczyna pracę wcześnie?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:05.45": {
+  "vi": "Có ai kiểm tra thư không?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:05.46": {
+  "ru": "Мне забирать это здесь?",
+  "uk": "Мені забирати це тут?",
+  "pl": "Czy odbieram to tutaj?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:05.47": {
+  "ru": "Мне показывать свой билет на турникете?",
+  "uk": "Мені показувати свій квиток біля турнікета?",
+  "pl": "Czy pokazuję bilet przy bramce?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:06.27": {
+  "pt-BR": "Onde eu devolvo esta encomenda?",
+  "pl": "Gdzie zwracam tę paczkę?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:06.30": {
+  "pl": "Dlaczego ta kosztuje więcej?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:07.01": {
+  "pl": "Mam bilet.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:07.02": {
+  "pl": "Ona ma bilet.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:07.15": {
+  "tr": "Kızımın nezlesi var.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:07.24": {
+  "tr": "Bozuk parası var mı?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:08.21": {
+  "ru": "Офис закрывается в праздничные дни.",
+  "tr": "Ofis resmi tatillerde kapanır.",
+  "pl": "Biuro zamyka się w święta.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:08.25": {
+  "ru": "Рынок открывается по субботам.",
+  "pl": "Targ otwiera się w soboty.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:08.26": {
+  "ru": "Посылка приходит в понедельник днём.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:08.33": {
+  "ru": "Летом на кухне становится жарко.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:08.45": {
+  "pl": "Sklep zamyka się dziś wcześnie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:10.10": {
+  "uk": "Вони не можуть залишатися допізна.",
+  "id": "Mereka tidak bisa tinggal sampai larut.",
+  "pl": "Nie mogą zostać do późna.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:10.17": {
+  "es": "¿Puedo tomar prestado un bolígrafo?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:11.01": {
+  "ru": "Я вчера пошёл домой пешком.",
+  "uk": "Я вчора пішов додому пішки.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:11.02": {
+  "ru": "Она дошла до станции пешком.",
+  "uk": "Вона пішла до станції пішки.",
+  "pl": "Ona poszła pieszo na stację.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:12.29": {
+  "uk": "Він розбив свої окуляри.",
+  "es": "Él rompió sus gafas.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:13.05": {
+  "pl": "Spotkają się z nami tutaj.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:13.19": {
+  "pl": "Za dostawę będzie niewielka opłata.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:13.32": {
+  "uk": "Чи треба буде її підвезти?",
+  "tr": "Onu arabayla bırakmak gerekecek mi?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:13.44": {
+  "pl": "Nowy rozkład jazdy zacznie obowiązywać w przyszłym miesiącu.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:13.45": {
+  "pt-BR": "A previsão diz que vai chover depois do almoço.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:14.42": {
+  "ru": "Номер побольше дороже?",
+  "pl": "Czy większy pokój jest droższy?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:15.46": {
+  "tr": "Şoförün numarası bende.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:16.05": {
+  "ru": "Мы отправились в порт до обеда.",
+  "pl": "Wyruszyliśmy do portu przed obiadem.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:16.08": {
+  "pl": "Wróć po próbie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:17.03": {
+  "id": "Kami sedang berangkat.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:17.04": {
+  "id": "Mereka sedang berangkat.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:17.33": {
+  "es": "No nos quedamos a pasar la noche.",
+  "tr": "Geceyi burada geçirmiyoruz.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:17.36": {
+  "pl": "Dzisiaj nie pracują.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:17.39": {
+  "ru": "Я не беру машину.",
+  "uk": "Я не беру машину.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:17.40": {
+  "es": "El autobús no se mueve.",
+  "pl": "Autobus się nie rusza.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:18.04": {
+  "pl": "Proszę usiąść tutaj.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:18.08": {
+  "vi": "Giữ cửa luôn đóng.",
+  "id": "Jaga pintu tetap tertutup.",
+  "pl": "Trzymaj drzwi zamknięte.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:18.40": {
+  "pl": "Zadzwoń dzwonkiem raz.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:19.14": {
+  "tr": "O otobüste.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:19.15": {
+  "tr": "O takside.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:19.32": {
+  "es": "Ponga la carpeta sobre el escritorio.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:19.42": {
+  "es": "Hay un agujero en mi bolsillo.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:20.18": {
+  "ru": "Мы заказали такси. Такси приехало рано.",
+  "uk": "Ми замовили таксі. Таксі приїхало рано.",
+  "pl": "Zamówiliśmy taksówkę. Taksówka przyjechała wcześnie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:21.05": {
+  "ru": "Мне нужен кто-то, кто поможет.",
+  "uk": "Мені потрібен хтось, хто допоможе.",
+  "pt-BR": "Preciso de alguém para ajudar.",
+  "id": "Saya butuh seseorang untuk membantu.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:21.07": {
+  "tr": "Birinde numaram var.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:21.18": {
+  "pl": "Czy poszedłeś gdzieś wczoraj?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:21.20": {
+  "es": "¿Puedo traerte algo?",
+  "id": "Bisakah saya mengambilkan sesuatu untuk Anda?",
+  "pl": "Czy mogę ci coś przynieść?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:21.33": {
+  "ru": "У каждого есть место.",
+  "uk": "У кожного є місце.",
+  "id": "Semua orang punya tempat duduk.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:23.46": {
+  "id": "Pintu belakang harus tetap tidak terhalang.",
+  "pl": "Tylne drzwi muszą być niezastawione.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:25.08": {
+  "pt-BR": "Você estava em pé perto do elevador.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:25.15": {
+  "ru": "Они ехали всю вторую половину дня.",
+  "uk": "Вони їхали всю другу половину дня.",
+  "pt-BR": "Eles estavam viajando a tarde toda.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:25.23": {
+  "pl": "Czekaliśmy, kiedy przyjechała taksówka.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:25.36": {
+  "ru": "Почему звенела пожарная сигнализация?",
+  "pl": "Dlaczego dzwonił alarm przeciwpożarowy?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:25.42": {
+  "ru": "Пока он читал, я готовил нам поесть.",
+  "uk": "Поки він читав, я готував нам поїсти.",
+  "es": "Mientras él leía, yo cocinaba nuestra comida.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:25.48": {
+  "pl": "Sklep się zamykał, kiedy przyjechaliśmy.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:26.05": {
+  "pl": "Jeśli zasuwka się zacina, podnieś klamkę.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:26.09": {
+  "uk": "Якщо ти почекаєш у тіні, я принесу ключ.",
+  "es": "Si esperas a la sombra, traeré la llave.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:26.38": {
+  "pl": "Kto zamknie drzwi, jeśli wyjdziesz wcześnie?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:27.16": {
+  "vi": "Họ nói với tôi giá đã bao gồm bữa sáng.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:27.28": {
+  "uk": "Я сказав їй, що притримаю місце.",
+  "id": "Saya memberi tahu dia bahwa saya akan menyimpan satu tempat duduk.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:27.37": {
+  "uk": "Вона запитала, чи хочемо ми заміну.",
+  "pl": "Zapytała, czy chcemy zamiennik.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:27.49": {
+  "id": "Dia bilang paketnya akan tiba keesokan harinya.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:28.19": {
+  "vi": "Chúng tôi dành thêm thời gian cho bản thân.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:28.45": {
+  "uk": "Вона порізала хліб, а не себе.",
+  "vi": "Cô ấy cắt bánh mì, chứ không cắt vào chính mình.",
+  "pl": "Ona pokroiła chleb, a nie siebie.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:29.03": {
+  "ru": "Мы раньше жили в одной квартире.",
+  "uk": "Раніше ми ділили квартиру.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:29.35": {
+  "uk": "Де ви раніше купували квитки?",
+  "vi": "Trước đây bạn thường mua vé ở đâu?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:29.36": {
+  "ru": "С кем вы раньше жили в одной квартире?",
+  "vi": "Trước đây bạn từng ở chung căn hộ với ai?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:29.39": {
+  "vi": "Đây có phải là cửa hàng trước đây bạn hay đến không?",
+  "tr": "Eskiden gittiğiniz dükkan bu muydu?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:29.44": {
+  "pl": "Kiedyś drukował każdy bilet, teraz korzysta z telefonu.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:30.09": {
+  "ru": "Ключа, который открывает шлагбаум, нет на месте.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:30.43": {
+  "vi": "Con đường chúng tôi đi chạy ngang qua sân chơi.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:30.50": {
+  "ru": "Кто тот человек, который занимается жалобами?",
+  "uk": "Хто та людина, яка займається скаргами?",
+  "es": "¿Quién es la persona que se encarga de las quejas?",
+  "tr": "Şikayetlerle ilgilenen kişi kim?",
+  "pl": "Kto jest osobą, która zajmuje się reklamacjami?",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:31.12": {
+  "ru": "Мы слышали, как она налила воду в кастрюлю.",
+  "vi": "Chúng tôi nghe thấy cô ấy đổ nước vào nồi.",
+  "pl": "Słyszeliśmy, jak nalewa wodę do garnka.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:31.15": {
+  "ru": "Я почувствовал, как оно пошевелилось.",
+  "uk": "Я відчув, як воно поворухнулося.",
+  "pt-BR": "Eu senti aquilo se mexer.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:31.28": {
+  "vi": "Chúng tôi thấy Anna cho tài xế mượn một cây bút.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:31.37": {
+  "uk": "Від диму в мене сльозилися очі.",
+  "es": "El humo hizo que me lagrimearan los ojos.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:31.48": {
+  "ru": "Она разрешила мне взять на время её водонепроницаемую куртку.",
+  "uk": "Вона дозволила мені позичити її водонепроникну куртку.",
+  "es": "Me dejó tomar prestada su chaqueta impermeable.",
+  "pt-BR": "Ela me deixou pegar emprestada sua jaqueta impermeável.",
+  "id": "Dia mengizinkan saya meminjam jaket tahan airnya.",
+  "tr": "Su geçirmez ceketini ödünç almama izin verdi.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:32.08": {
+  "ru": "Пожалуйста, держите пожарный выход свободным.",
+  "reason": "U20 точный смысл (11.11)"
+ },
+ "en:32.38": {
+  "ru": "Вас не затруднит проверить дверной звонок перед отъездом?",
+  "uk": "Вам не важко перевірити дзвінок перед тим, як піти?",
+  "tr": "Ayrılmadan önce kapı zilini kontrol etmenizin sakıncası var mı?",
+  "pl": "Czy miałby Pan coś przeciwko sprawdzeniu dzwonka przed wyjściem?",
+  "reason": "U20 точный смысл (11.11)"
+ }
+}

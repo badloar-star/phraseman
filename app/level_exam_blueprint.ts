@@ -56,18 +56,18 @@ export const LEVEL_EXAM_V5_MIX: Readonly<Record<LevelExamLevel, LevelMix>> = {
   },
   A2: {
     classic: { guess_phrase: 3, fill_gap: 4, find_oddity: 3, translate_build: 3 },
-    expanded: [['sentence_build_noise', 3], ['remove_intruder', 3], ['multi_select', 2], ['word_repair', 3]],
-    authored: [],
+    expanded: [['sentence_build_noise', 2], ['remove_intruder', 2], ['multi_select', 1], ['word_repair', 1]],
+    authored: [['context_choice', 1], ['dialogue_order', 1], ['reply_pairs', 1], ['classify_function', 1], ['evidence_choice', 1]],
   },
   B1: {
     classic: { guess_phrase: 2, fill_gap: 3, find_oddity: 2, translate_build: 2 },
-    expanded: [['word_repair', 4], ['remove_intruder', 2], ['sentence_build_noise', 2], ['linked_gaps', 2], ['multi_select', 2], ['typed_word', 3]],
-    authored: [],
+    expanded: [['word_repair', 3], ['remove_intruder', 1], ['sentence_build_noise', 1], ['linked_gaps', 2], ['multi_select', 1], ['typed_word', 2]],
+    authored: [['context_choice', 1], ['dialogue_order', 1], ['reply_pairs', 1], ['classify_function', 1], ['evidence_choice', 1]],
   },
   B2: {
     classic: { guess_phrase: 1, fill_gap: 2, find_oddity: 2, translate_build: 0 },
-    expanded: [['word_repair', 4], ['typed_word', 5], ['sentence_transform', 3], ['linked_gaps', 2], ['sentence_build_noise', 2], ['multi_select', 2], ['remove_intruder', 1]],
-    authored: [],
+    expanded: [['word_repair', 3], ['typed_word', 4], ['sentence_transform', 3], ['linked_gaps', 2], ['sentence_build_noise', 1], ['multi_select', 1]],
+    authored: [['context_choice', 1], ['dialogue_order', 1], ['reply_pairs', 1], ['classify_function', 1], ['evidence_choice', 1]],
   },
 };
 /** Чем заменить механику, если из фраз уровня её не собрать: сначала близкая, в конце — выбор перевода (ему хватает одного правила). */
@@ -498,7 +498,10 @@ export function buildLevelExamBlueprint(input: BuildLevelExamBlueprintInput): Le
   }
 
   for (let index = 0; index < mix.classic.fill_gap; index += 1) {
-    const provableGaps = blueprintVersion >= 4;
+    // зачем (сторож level_exam_active_attempt_compatibility): версия 4 обязана давать те же задания, что версия 3 — иначе попытка,
+    // начатая на версии 4, после обновления восстановится с другими заданиями. Доказуемые пропуски (U10) меняют отбор фраз,
+    // поэтому живут только в версии 5; версия 4 сохраняет прежний отбор, подсказку-перевод и один засчитываемый вариант.
+    const provableGaps = blueprintVersion >= 5;
     const reference = next((item) => safeGapCandidate(item, quiet, provableGaps) !== null);
     const candidate = safeGapCandidate(reference, loud, provableGaps)!;
     const id = `${input.level}:fill_gap:${reference.lessonId}:${reference.phraseId}`;

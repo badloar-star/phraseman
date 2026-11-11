@@ -103,7 +103,7 @@ export default function LevelExamResult({ lang, attemptId, result, rewardState, 
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontFamily: ds.fontFamily, fontWeight: '900' }}>
               {copy.skillsLabel}
             </Text>
-            {Object.entries(result.byFormat).filter(([, score]) => score.total > 0).map(([format, score]) => {
+            {Object.entries(result.byFormat).flatMap(([format, score]) => (score && score.total > 0 ? [[format, score] as const] : [])).map(([format, score]) => {
               const ratio = score.total === 0 ? 0 : score.correct / score.total;
               return (
                 <View key={format} style={{ gap: ds.spacing.xs }}>

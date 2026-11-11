@@ -22,7 +22,8 @@ function countScoredFormats(
     if (task.format === 'speed_match') {
       counts.speed_match += task.pairs.length;
     } else {
-      counts[task.format] += 1;
+      // версия 4 выдаёт только прежние виды; вид новой механики здесь стал бы NaN и уронил сверку состава
+      counts[task.format as keyof FormatCounts] += 1;
     }
     return counts;
   }, {

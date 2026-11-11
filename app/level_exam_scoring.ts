@@ -1,10 +1,10 @@
 import { gradeExpanded } from '../modules/expanded-formats/grade';
-import { EXPANDED_FORMATS } from '../modules/expanded-formats/types';
+import type { ExpandedFormat } from '../modules/expanded-formats/types';
 import { getLessonData } from './lesson_data_all';
 import type { LessonPhrase } from './lesson_data_types';
 import { getExamMedalTier, type MedalTier } from './medal_utils';
 import type { LevelExamFinishReason, PersistedLevelExamAnswer } from './level_exam_attempt_state';
-import type { LevelExamBlueprint, LevelExamFormat } from './level_exam_types';
+import type { LevelExamBlueprint, LevelExamClassicFormat, LevelExamFormat } from './level_exam_types';
 
 export type LevelExamAnswers = Record<string, PersistedLevelExamAnswer>;
 
@@ -15,7 +15,9 @@ export type LevelExamScoreResult = {
   passed: boolean;
   neededForPass: number;
   finishReason: LevelExamFinishReason;
-  byFormat: Record<LevelExamFormat, { correct: number; total: number }>;
+  /** Пять прежних видов есть всегда; новая механика — только если задание такого вида было в попытке. */
+  byFormat: Record<LevelExamClassicFormat, { correct: number; total: number }>
+    & Partial<Record<ExpandedFormat, { correct: number; total: number }>>;
   byLesson: { lessonId: number; correct: number; total: number }[];
   weakLessons: { lessonId: number; title: string; correct: number; total: number }[];
   medal: MedalTier;
@@ -108,12 +110,15 @@ export function scoreLevelExam(
     find_oddity: { correct: 0, total: 0 },
     translate_build: { correct: 0, total: 0 },
     speed_match: { correct: 0, total: 0 },
-    ...Object.fromEntries(EXPANDED_FORMATS.map((format) => [format, { correct: 0, total: 0 }])),
-  } as Record<LevelExamFormat, { correct: number; total: number }>;
+  } as LevelExamScoreResult['byFormat'];
   const lessonTotals = new Map<number, { correct: number; total: number }>();
   for (const unit of units) {
-    byFormat[unit.format].total += 1;
-    if (unit.correct) byFormat[unit.format].correct += 1;
+    // зачем: строка новой механики появляется, только если такое задание было в попытке — у экзамена прежней версии
+    // итог по навыкам остаётся ровно из пяти прежних строк, без двенадцати нулевых
+    const tally = byFormat[unit.format] ?? { correct: 0, total: 0 };
+    byFormat[unit.format] = tally;
+    tally.total += 1;
+    if (unit.correct) tally.correct += 1;
     const lesson = lessonTotals.get(unit.lessonId) ?? { correct: 0, total: 0 };
     lesson.total += 1;
     if (unit.correct) lesson.correct += 1;

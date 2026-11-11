@@ -10,8 +10,8 @@
  * (app/level_exam_expanded_copy.ts). Автор пишет ответ «как есть» (верный вариант первым, реплики по порядку) —
  * порядок на экране перемешивает сборщик по сиду попытки, чтобы место не выдавало ответ.
  *
- * Готово: английский, уровень A1 (уроки 1–8). Остальные уровни и языки пополняются отдельными партиями;
- * пока банка для уровня нет, экзамен берёт вместо этих заданий механики из фраз уроков.
+ * Готово: английский, все четыре уровня (A1 — уроки 1–8, A2 — до 18, B1 — до 28, B2 — до 32). Остальные языки
+ * пополняются отдельными партиями; пока банка для языка нет, экзамен берёт вместо этих заданий механики из фраз уроков.
  */
 import type { ExpandedExercise } from '../modules/expanded-formats/types';
 import { parseExpandedExercise } from '../modules/expanded-formats/validate';
@@ -76,8 +76,105 @@ const EN_A1: readonly AuthoredExamItem[] = [
   { id: 'en:A1:text:06', lessonId: 7, format: 'evidence_choice', passage: ['He has a headache.', 'He needs an appointment.', 'He does not go to work today.'], question: 'Why does he need an appointment?', answer: 0 },
 ];
 
+const EN_A2: readonly AuthoredExamItem[] = [
+  { id: 'en:A2:reply:01', lessonId: 9, format: 'context_choice', line: 'Is there a lift?', right: 'Yes, there is.', wrong: ['Yes, it does.', 'Yes, I can.', 'At nine.'] },
+  { id: 'en:A2:reply:02', lessonId: 10, format: 'context_choice', line: 'Can you swim?', right: 'Yes, I can.', wrong: ['Yes, I am.', 'Yes, there is.', 'Yesterday.'] },
+  { id: 'en:A2:reply:03', lessonId: 11, format: 'context_choice', line: 'Did you call a taxi?', right: 'Yes, I did.', wrong: ['Yes, I do.', 'Yes, I will.', 'Yes, I am.'] },
+  { id: 'en:A2:reply:04', lessonId: 12, format: 'context_choice', line: 'Where did you go yesterday?', right: 'I went to the bank.', wrong: ['I go to the bank.', 'I will go tomorrow.', 'Yes, I did.'] },
+  { id: 'en:A2:reply:05', lessonId: 13, format: 'context_choice', line: 'Will you wait outside?', right: 'Yes, I will.', wrong: ['Yes, I did.', 'Yes, I am.', 'Yes, there is.'] },
+  { id: 'en:A2:reply:06', lessonId: 15, format: 'context_choice', line: 'Whose umbrella is this?', right: 'It is mine.', wrong: ['It is me.', 'Yes, it is.', 'It is wet.'] },
+  { id: 'en:A2:reply:07', lessonId: 17, format: 'context_choice', line: 'What are you reading?', right: 'I am reading a letter.', wrong: ['I read a letter yesterday.', 'Yes, I am.', 'I will read it later.'] },
+  { id: 'en:A2:reply:08', lessonId: 12, format: 'context_choice', line: 'What did you buy?', right: 'I bought bread.', wrong: ['I buy bread.', 'I will buy bread.', 'Yes, I did.'] },
+
+  { id: 'en:A2:order:01', lessonId: 12, format: 'dialogue_order', lines: ['A: Where did you go yesterday?', 'B: I went to the market.', 'A: What did you buy there?', 'B: I bought bread.'] },
+  { id: 'en:A2:order:02', lessonId: 11, format: 'dialogue_order', lines: ['A: Did you call the clinic?', 'B: Yes, I called yesterday.', 'A: Did they answer?', 'B: No, they did not.'] },
+  { id: 'en:A2:order:03', lessonId: 12, format: 'dialogue_order', lines: ['A: I found a wallet.', 'B: Where did you find it?', 'A: I found it near the bank.', 'B: Take it to the reception.'] },
+  { id: 'en:A2:order:04', lessonId: 15, format: 'dialogue_order', lines: ['A: Whose jacket is this?', 'B: It is mine.', 'A: Is it dry?', 'B: No, it is wet.'] },
+  { id: 'en:A2:order:05', lessonId: 10, format: 'dialogue_order', lines: ['A: Is there a toilet here?', 'B: Yes, there is one upstairs.', 'A: Can I use it?', 'B: Yes, you can.'] },
+  { id: 'en:A2:order:06', lessonId: 17, format: 'dialogue_order', lines: ['A: What are you cooking?', 'B: I am cooking soup.', 'A: Is it ready?', 'B: No, it is still cold.'] },
+
+  { id: 'en:A2:pairs:01', lessonId: 13, format: 'reply_pairs', pairs: [['Is there a bank nearby?', 'Yes, there is.'], ['Can you drive?', 'No, I cannot.'], ['Did you find the keys?', 'Yes, I did.'], ['Will it rain tomorrow?', 'Yes, it will.']] },
+  { id: 'en:A2:pairs:02', lessonId: 17, format: 'reply_pairs', pairs: [['Whose gloves are these?', 'They are mine.'], ['Where did you wait?', 'Behind the bank.'], ['When will you call?', 'Tomorrow morning.'], ['What are you reading?', 'A letter.']] },
+  { id: 'en:A2:pairs:03', lessonId: 14, format: 'reply_pairs', pairs: [['Why did you miss the flight?', 'The taxi was late.'], ['Who fixed the lamp?', 'My brother did.'], ['Which route is faster?', 'The second one.'], ['Are they waiting outside?', 'Yes, they are.']] },
+  { id: 'en:A2:pairs:04', lessonId: 13, format: 'reply_pairs', pairs: [['Can we sit here?', 'Yes, you can.'], ['Did she pay online?', 'No, she did not.'], ['Is he sleeping?', 'Yes, he is.'], ['Will they come?', 'No, they will not.']] },
+  { id: 'en:A2:pairs:05', lessonId: 12, format: 'reply_pairs', pairs: [['What did you eat?', 'Soup with bread.'], ['Where is the reception?', 'Downstairs.'], ['When did you arrive?', 'Yesterday.'], ['Who are you calling?', 'My friend.']] },
+
+  { id: 'en:A2:groups:01', lessonId: 13, format: 'classify_function', kind: 'past_future', items: [['I walked home.', 0], ['I will walk home.', 1], ['She called a taxi.', 0], ['She will call a taxi.', 1]] },
+  { id: 'en:A2:groups:02', lessonId: 13, format: 'classify_function', kind: 'past_future', items: [['We bought bread.', 0], ['We will buy bread.', 1], ['They went to the bank.', 0], ['It will rain tomorrow.', 1]] },
+  { id: 'en:A2:groups:03', lessonId: 13, format: 'classify_function', kind: 'past_future', items: [['He lost his wallet.', 0], ['He will find it later.', 1], ['I paid online.', 0], ['I will pay tomorrow.', 1]] },
+  { id: 'en:A2:groups:04', lessonId: 13, format: 'classify_function', kind: 'when_where', items: [['Yesterday.', 0], ['Upstairs.', 1], ['Tomorrow morning.', 0], ['Behind the bank.', 1]] },
+  { id: 'en:A2:groups:05', lessonId: 15, format: 'classify_function', kind: 'one_many', items: [['There is a queue.', 0], ['There are queues.', 1], ['That chair is broken.', 0], ['Those chairs are broken.', 1]] },
+  { id: 'en:A2:groups:06', lessonId: 16, format: 'classify_function', kind: 'when_where', items: [['Later.', 0], ['Outside.', 1], ['After the meeting.', 0], ['Downstairs.', 1]] },
+
+  { id: 'en:A2:text:01', lessonId: 12, format: 'evidence_choice', passage: ['I went to the market yesterday.', 'I bought bread.', 'I paid by card.'], question: 'What did I buy?', answer: 1 },
+  { id: 'en:A2:text:02', lessonId: 12, format: 'evidence_choice', passage: ['The taxi was late.', 'We missed the flight.', 'We booked a new ticket.'], question: 'Why did we miss the flight?', answer: 0 },
+  { id: 'en:A2:text:03', lessonId: 10, format: 'evidence_choice', passage: ['There is a toilet upstairs.', 'There are lockers downstairs.', 'The exit is behind the reception.'], question: 'Where are the lockers?', answer: 1 },
+  { id: 'en:A2:text:04', lessonId: 13, format: 'evidence_choice', passage: ['My brother will come tomorrow.', 'He will bring the ladder.', 'We will change the lamp.'], question: 'When will my brother come?', answer: 0 },
+  { id: 'en:A2:text:05', lessonId: 14, format: 'evidence_choice', passage: ['This bag is lighter.', 'That bag is cheaper.', 'I will take the lighter one.'], question: 'Which bag is cheaper?', answer: 1 },
+  { id: 'en:A2:text:06', lessonId: 17, format: 'evidence_choice', passage: ['She is cooking soup.', 'He is washing the cups.', 'The children are sleeping.'], question: 'Who is sleeping?', answer: 2 },
+];
+
+const EN_B1: readonly AuthoredExamItem[] = [
+  { id: 'en:B1:reply:01', lessonId: 24, format: 'context_choice', line: 'Have you ever lived abroad?', right: 'Yes, I have.', wrong: ['Yes, I do.', 'Yes, I am.', 'Yes, I will.'] },
+  { id: 'en:B1:reply:02', lessonId: 25, format: 'context_choice', line: 'Where were you at seven?', right: 'I was at home.', wrong: ['I am at home.', 'I will be at home.', 'Yes, I was.'] },
+  { id: 'en:B1:reply:03', lessonId: 26, format: 'context_choice', line: 'What will you do if it rains?', right: 'I will stay inside.', wrong: ['I stayed inside.', 'Yes, I will.', 'It was raining.'] },
+  { id: 'en:B1:reply:04', lessonId: 23, format: 'context_choice', line: 'When are the rooms cleaned?', right: 'They are cleaned daily.', wrong: ['It is cleaned daily.', 'Yes, they are.', 'Yesterday.'] },
+  { id: 'en:B1:reply:05', lessonId: 21, format: 'context_choice', line: 'Is anyone at home?', right: 'No, nobody is at home.', wrong: ['No, anything is at home.', 'Yes, somewhere.', 'Yes, I have.'] },
+  { id: 'en:B1:reply:06', lessonId: 22, format: 'context_choice', line: 'Do you enjoy cooking?', right: 'Yes, I enjoy it.', wrong: ['Yes, I am cooking.', 'Yes, I was.', 'Yes, I have.'] },
+  { id: 'en:B1:reply:07', lessonId: 27, format: 'context_choice', line: 'What did Anna say?', right: 'She said she was tired.', wrong: ['She says tired.', 'Yes, she did.', 'She will say it.'] },
+
+  { id: 'en:B1:order:01', lessonId: 24, format: 'dialogue_order', lines: ['A: Have you finished the report?', 'B: No, I have not started it.', 'A: Why not?', 'B: Because the printer is broken.'] },
+  { id: 'en:B1:order:02', lessonId: 21, format: 'dialogue_order', lines: ['A: Someone left a suitcase in the lobby.', 'B: Whose is it?', 'A: Nobody knows.', 'B: Then take it to the reception.'] },
+  { id: 'en:B1:order:03', lessonId: 26, format: 'dialogue_order', lines: ['A: It might rain tomorrow.', 'B: What will we do if it rains?', 'A: We will stay inside.', 'B: Then I will bring a film.'] },
+  { id: 'en:B1:order:04', lessonId: 23, format: 'dialogue_order', lines: ['A: Has the parcel arrived?', 'B: Yes, it was delivered at noon.', 'A: Who signed for it?', 'B: The manager did.'] },
+
+  { id: 'en:B1:pairs:01', lessonId: 26, format: 'reply_pairs', pairs: [['Have you seen my keys?', 'Yes, they are on the shelf.'], ['Were you sleeping?', 'No, I was reading.'], ['Is the gate locked at night?', 'Yes, it is.'], ['If it rains, will you stay?', 'Yes, I will.']] },
+  { id: 'en:B1:pairs:02', lessonId: 24, format: 'reply_pairs', pairs: [['Why are you tired?', 'Because I worked all night.'], ['Who repaired the roof?', 'Nobody did.'], ['Where is the library?', 'Opposite the bank.'], ['How long have you lived here?', 'Since March.']] },
+  { id: 'en:B1:pairs:03', lessonId: 27, format: 'reply_pairs', pairs: [['Were you working?', 'No, I was cooking dinner.'], ['What have you lost?', 'My wallet.'], ['What did she say?', 'She said she was busy.'], ['What happened?', 'Nothing happened.']] },
+  { id: 'en:B1:pairs:04', lessonId: 24, format: 'reply_pairs', pairs: [['Has she ever driven a van?', 'No, she has never driven one.'], ['Did they enjoy the meal?', 'Yes, they did.'], ['Was the letter delivered?', 'Yes, it was.'], ['Are you interested in music?', 'Yes, I am.']] },
+
+  { id: 'en:B1:groups:01', lessonId: 25, format: 'classify_function', kind: 'now_past', items: [['She is driving.', 0], ['She was driving.', 1], ['We are waiting.', 0], ['We were waiting.', 1]] },
+  { id: 'en:B1:groups:02', lessonId: 23, format: 'classify_function', kind: 'now_past', items: [['The gate is locked.', 0], ['The gate was locked.', 1], ['The rooms are cleaned daily.', 0], ['The letters were delivered.', 1]] },
+  { id: 'en:B1:groups:03', lessonId: 24, format: 'classify_function', kind: 'when_where', items: [['Since March.', 0], ['Opposite the bank.', 1], ['Two years ago.', 0], ['Between the tree and the wall.', 1]] },
+  { id: 'en:B1:groups:04', lessonId: 26, format: 'classify_function', kind: 'past_future', items: [['She has found her card.', 0], ['If it rains, we will stay inside.', 1], ['We had dinner at seven.', 0], ['I will call you later.', 1]] },
+
+  { id: 'en:B1:text:01', lessonId: 25, format: 'evidence_choice', passage: ['Anna was driving to work.', 'The phone rang.', 'She did not answer it.'], question: 'Where was Anna driving?', answer: 0 },
+  { id: 'en:B1:text:02', lessonId: 23, format: 'evidence_choice', passage: ['The parcel was delivered at noon.', 'Nobody was at home.', 'The driver left a note.'], question: 'What did the driver leave?', answer: 2 },
+  { id: 'en:B1:text:03', lessonId: 24, format: 'evidence_choice', passage: ['Tom has lived here since March.', 'He works at the airport.', 'He enjoys his job.'], question: 'Where does Tom work?', answer: 1 },
+  { id: 'en:B1:text:04', lessonId: 26, format: 'evidence_choice', passage: ['If it rains, we will stay inside.', 'If it is dry, we will walk to the river.', 'We will take the dog.'], question: 'What will we do if it rains?', answer: 0 },
+];
+
+const EN_B2: readonly AuthoredExamItem[] = [
+  { id: 'en:B2:reply:01', lessonId: 29, format: 'context_choice', line: 'Did you use to live here?', right: 'Yes, I used to live upstairs.', wrong: ['Yes, I will.', 'Yes, I am.', 'Yes, I can.'] },
+  { id: 'en:B2:reply:02', lessonId: 30, format: 'context_choice', line: 'Who is the man who repaired the roof?', right: 'He is my neighbour.', wrong: ['It is the roof.', 'Yes, he did.', 'He repaired it yesterday.'] },
+  { id: 'en:B2:reply:03', lessonId: 32, format: 'context_choice', line: 'Is the small room still available?', right: 'No, it is already booked.', wrong: ['No, it is not small.', 'Yes, I have.', 'Yes, it was painted.'] },
+  { id: 'en:B2:reply:04', lessonId: 31, format: 'context_choice', line: 'Did you hear Anna laugh?', right: 'Yes, I heard her.', wrong: ['Yes, she heard.', 'Yes, I laugh.', 'Yes, I will hear.'] },
+  { id: 'en:B2:reply:05', lessonId: 29, format: 'context_choice', line: 'Where did you use to work?', right: 'I used to work in a factory.', wrong: ['I will work in a factory.', 'Yes, I used to.', 'I am working.'] },
+  { id: 'en:B2:reply:06', lessonId: 31, format: 'context_choice', line: 'What did you see?', right: 'I saw Tom leave.', wrong: ['I see Tom leave.', 'Yes, I saw.', 'I will see him.'] },
+
+  { id: 'en:B2:order:01', lessonId: 29, format: 'dialogue_order', lines: ['A: Did you use to live here?', 'B: Yes, I used to rent the flat upstairs.', 'A: Why did you leave it?', 'B: Because it was too small.'] },
+  { id: 'en:B2:order:02', lessonId: 30, format: 'dialogue_order', lines: ['A: A woman left a note for you.', 'B: What does it say?', 'A: It says she found your phone.', 'B: Then I will call her.'] },
+  { id: 'en:B2:order:03', lessonId: 31, format: 'dialogue_order', lines: ['A: I heard something fall.', 'B: Where did you hear it?', 'A: In the kitchen.', 'B: Then I will look there.'] },
+  { id: 'en:B2:order:04', lessonId: 32, format: 'dialogue_order', lines: ['A: Is the small room still available?', 'B: No, it is already booked.', 'A: Is anything else available?', 'B: Yes, the room upstairs is free.'] },
+
+  { id: 'en:B2:pairs:01', lessonId: 32, format: 'reply_pairs', pairs: [['Did you use to cycle to work?', 'Yes, I used to.'], ['Who is the woman who called?', 'She is my niece.'], ['Did you see him leave?', 'Yes, I did.'], ['Is the reservation confirmed?', 'Yes, it is.']] },
+  { id: 'en:B2:pairs:02', lessonId: 31, format: 'reply_pairs', pairs: [['Where did you use to work?', 'In a warehouse.'], ['Which tram goes to the cinema?', 'The one at the corner.'], ['Why is the alarm ringing?', 'Because someone opened the door.'], ['When was the fence painted?', 'Two years ago.']] },
+  { id: 'en:B2:pairs:03', lessonId: 31, format: 'reply_pairs', pairs: [['What did you hear?', 'I heard the door slam.'], ['Who won the race?', 'My nephew did.'], ['What was stolen?', 'A bicycle.'], ['Whose child is that?', 'He is my son.']] },
+  { id: 'en:B2:pairs:04', lessonId: 31, format: 'reply_pairs', pairs: [['Could you lend me a pen?', 'Yes, take mine.'], ['Has the customer paid?', 'No, not yet.'], ['Was the tyre repaired?', 'Yes, it was.'], ['Do you hate waiting?', 'Yes, I do.']] },
+
+  { id: 'en:B2:groups:01', lessonId: 29, format: 'classify_function', kind: 'now_past', items: [['I drive to work.', 0], ['I used to drive to work.', 1], ['She lives upstairs.', 0], ['She used to live upstairs.', 1]] },
+  { id: 'en:B2:groups:02', lessonId: 30, format: 'classify_function', kind: 'person_thing', items: [['The man who repaired the roof.', 0], ['The phone that fell.', 1], ['The woman who called.', 0], ['The bus that stops here.', 1]] },
+  { id: 'en:B2:groups:03', lessonId: 32, format: 'classify_function', kind: 'past_future', items: [['The fence was painted.', 0], ['The room will be painted.', 1], ['The reservation was confirmed.', 0], ['The parcel will be delivered tomorrow.', 1]] },
+  { id: 'en:B2:groups:04', lessonId: 30, format: 'classify_function', kind: 'when_where', items: [['Two years ago.', 0], ['At the corner.', 1], ['Before the race.', 0], ['In the warehouse.', 1]] },
+
+  { id: 'en:B2:text:01', lessonId: 29, format: 'evidence_choice', passage: ['I used to drive to work.', 'Now I cycle.', 'The journey takes thirty minutes.'], question: 'How did I use to go to work?', answer: 0 },
+  { id: 'en:B2:text:02', lessonId: 30, format: 'evidence_choice', passage: ['The woman who found my phone left a note.', 'The note was on the counter.', 'I called her and thanked her.'], question: 'Where was the note?', answer: 1 },
+  { id: 'en:B2:text:03', lessonId: 31, format: 'evidence_choice', passage: ['We heard the door slam.', 'Then we saw a man run away.', 'We called the police.'], question: 'Who did we call?', answer: 2 },
+  { id: 'en:B2:text:04', lessonId: 32, format: 'evidence_choice', passage: ['The small room is booked.', 'The room upstairs is still available.', 'It costs less.'], question: 'Which room is available?', answer: 1 },
+];
+
 const BANK: Readonly<Record<string, Readonly<Partial<Record<CourseLevel, readonly AuthoredExamItem[]>>>>> = {
-  en: { A1: EN_A1 },
+  en: { A1: EN_A1, A2: EN_A2, B1: EN_B1, B2: EN_B2 },
 };
 
 /** Авторские задания языка и уровня; пусто — банк для них ещё не написан. */

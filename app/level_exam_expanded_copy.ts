@@ -7,7 +7,7 @@
 import type { ExpandedFormat } from '../modules/expanded-formats/types';
 
 /** Какие две группы у задания «разложи по группам» (авторский банк называет вид, подписи — здесь). */
-export type AuthoredGroupKind = 'when_where' | 'one_many';
+export type AuthoredGroupKind = 'when_where' | 'one_many' | 'past_future' | 'now_past' | 'person_thing';
 
 export type LevelExamExpandedCopy = Readonly<{
   /** Подпись над заданием: что сделать. */
@@ -44,6 +44,21 @@ const GROUPS: Readonly<Record<AuthoredGroupKind, Readonly<{ prompt: Row; first: 
     prompt: ['Когда или где?', 'Коли чи де?', 'When or where?', '¿Cuándo o dónde?', 'Quando ou onde?', 'Khi nào hay ở đâu?', 'Kapan atau di mana?', 'Ne zaman mı, nerede mi?', 'Kiedy czy gdzie?'],
     first: ['Когда', 'Коли', 'When', 'Cuándo', 'Quando', 'Khi nào', 'Kapan', 'Ne zaman', 'Kiedy'],
     second: ['Где', 'Де', 'Where', 'Dónde', 'Onde', 'Ở đâu', 'Di mana', 'Nerede', 'Gdzie'],
+  },
+  past_future: {
+    prompt: ['Уже было или будет?', 'Уже було чи буде?', 'Past or future?', '¿Pasado o futuro?', 'Passado ou futuro?', 'Đã qua hay sắp tới?', 'Sudah atau akan?', 'Geçmiş mi, gelecek mi?', 'Było czy będzie?'],
+    first: ['Уже было', 'Уже було', 'Past', 'Pasado', 'Passado', 'Đã qua', 'Sudah', 'Geçmiş', 'Było'],
+    second: ['Будет', 'Буде', 'Future', 'Futuro', 'Futuro', 'Sắp tới', 'Akan', 'Gelecek', 'Będzie'],
+  },
+  now_past: {
+    prompt: ['Сейчас или раньше?', 'Зараз чи раніше?', 'Now or before?', '¿Ahora o antes?', 'Agora ou antes?', 'Bây giờ hay trước đây?', 'Sekarang atau dulu?', 'Şimdi mi, önceden mi?', 'Teraz czy wcześniej?'],
+    first: ['Сейчас', 'Зараз', 'Now', 'Ahora', 'Agora', 'Bây giờ', 'Sekarang', 'Şimdi', 'Teraz'],
+    second: ['Раньше', 'Раніше', 'Before', 'Antes', 'Antes', 'Trước đây', 'Dulu', 'Önceden', 'Wcześniej'],
+  },
+  person_thing: {
+    prompt: ['Человек или предмет?', 'Людина чи предмет?', 'Person or thing?', '¿Persona o cosa?', 'Pessoa ou coisa?', 'Người hay vật?', 'Orang atau benda?', 'Kişi mi, nesne mi?', 'Osoba czy rzecz?'],
+    first: ['Человек', 'Людина', 'Person', 'Persona', 'Pessoa', 'Người', 'Orang', 'Kişi', 'Osoba'],
+    second: ['Предмет', 'Предмет', 'Thing', 'Cosa', 'Coisa', 'Vật', 'Benda', 'Nesne', 'Rzecz'],
   },
   one_many: {
     prompt: ['Один или несколько?', 'Один чи кілька?', 'One or several?', '¿Uno o varios?', 'Um ou vários?', 'Một hay nhiều?', 'Satu atau beberapa?', 'Bir mi, birkaç mı?', 'Jeden czy kilka?'],

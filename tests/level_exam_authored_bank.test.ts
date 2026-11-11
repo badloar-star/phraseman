@@ -55,9 +55,9 @@ function keyResponse(exercise: ExpandedExercise): ExpandedResponse | null {
 }
 
 describe.each(TARGETS)('авторский банк экзамена, язык %s', (target) => {
-  it('у английского A1 банк есть и покрывает состав экзамена с запасом', () => {
-    const items = authoredExamItems(target, 'A1');
-    for (const [format, count] of LEVEL_EXAM_V5_MIX.A1.authored) {
+  it.each(LEVELS)('у уровня %s банк есть и покрывает состав экзамена с запасом', (level) => {
+    const items = authoredExamItems(target, level);
+    for (const [format, count] of LEVEL_EXAM_V5_MIX[level].authored) {
       // зачем: запас ×3 — чтобы две попытки подряд не показывали одно и то же задание
       expect(items.filter((item) => item.format === format).length).toBeGreaterThanOrEqual(count * 3);
     }

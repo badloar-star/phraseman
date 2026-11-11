@@ -152,11 +152,11 @@ describe.each(LEVELS)('экзамен уровня %s, версия 5', (level) 
   });
 });
 
-describe('экзамен уровня A1, версия 5 — диалоги и тексты из авторского банка', () => {
+describe.each(LEVELS)('экзамен уровня %s, версия 5 — диалоги и тексты из авторского банка', (level) => {
   it('в каждой попытке есть все пять авторских механик, без подмены механиками из фраз', () => {
     for (const seed of SEEDS) {
-      const formats = build('A1', seed).tasks.map((task) => task.format);
-      for (const [format, count] of LEVEL_EXAM_V5_MIX.A1.authored) {
+      const formats = build(level, seed).tasks.map((task) => task.format);
+      for (const [format, count] of LEVEL_EXAM_V5_MIX[level].authored) {
         expect([seed, format, formats.filter((value) => value === format).length]).toEqual([seed, format, count]);
       }
     }

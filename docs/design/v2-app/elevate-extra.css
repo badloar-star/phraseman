@@ -5,6 +5,10 @@
 .elnav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
 .elnav a { font-size: 14px; font-weight: 600; height: 36px; padding: 0 16px; border-radius: 18px; background: #161618; color: var(--sec); display: inline-flex; align-items: center; }
 .elnav a.on { background: #26262A; color: #fff; }
+.toc { position: sticky; top: 0; z-index: 60; display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 0; margin-top: 18px; background: rgba(5,5,6,.88); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.toc a { font-size: 14px; font-weight: 600; height: 36px; padding: 0 14px; border-radius: 18px; background: #161618; color: #D6D6D8; display: inline-flex; align-items: center; gap: 8px; }
+.toc a b { color: var(--muted); font-weight: 600; }
+.block { scroll-margin-top: 70px; }
 .pairw { display: flex; align-items: flex-start; gap: 18px; }
 .was { display: flex; flex-direction: column; align-items: center; gap: 10px; padding-top: 2px; }
 .was .wasbox { zoom: .5; }

@@ -102,7 +102,7 @@
     return () => G.clear();
   }
 
-  document.addEventListener('DOMContentLoaded', () => mount([
+  const S = [
     { id: 'games', title: 'Девять новых игр на наших материалах', lead: 'Ни одна не требует новых текстов. Над каждым телефоном написано, из какого раздела берётся материал. В разминке и в карточках они встают в очередь сами — выбирать их не нужно.',
       screens: [
         { id: 'g-listen', fn: listen, cls: 'deep', lbl: 'На слух · материал: уроки', note: 'Фраза звучит всё быстрее. Вторая фраза в показе — с ошибкой.' },
@@ -115,5 +115,7 @@
         { id: 'g-minute', fn: minute, lbl: 'Минута знаний · материал: теория уроков', note: 'Показывается после игры, только если была ошибка. Через двадцать секунд уходит сама.' },
         { id: 'g-levels', fn: levels, lbl: 'Уровни игры · на примере «Блица»', note: 'Нажатие на лестницу добавляет хороший заход. Уровень человек не выбирает.' },
       ] },
-  ]));
+  ];
+  window.ELS = Object.assign(window.ELS || {}, { games: S[0] });
+  if (document.body.dataset.page === 'games') document.addEventListener('DOMContentLoaded', () => mount(S));
 })();

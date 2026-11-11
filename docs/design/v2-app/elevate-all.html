@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PhraseMan на новый лад — всё вместе</title>
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="elevate-mechanics.css">
+<link rel="stylesheet" href="elevate-extra.css">
+</head>
+<body data-theme="ink" data-page="all">
+<div class="page">
+  <h1 class="page-h1">PhraseMan на новый лад — всё вместе</h1>
+  <p class="page-lead">Предложение, не эталон. Все макеты на одной странице в том порядке, в каком человек идёт по приложению: вошёл, сыграл, потренировался, увидел итог, посмотрел рост. Где есть нынешний экран — он слева уменьшенный, справа новый. Каждый телефон живой, кнопка под ним проигрывает показ заново. Код приложения не менялся.</p>
+  <div class="switch"><span class="k">Тема</span>
+    <button class="on" data-theme-set="ink">Сумерки</button>
+    <button data-theme-set="marine">Океан</button>
+    <button data-theme-set="graphite">Затмение</button>
+    <button data-theme-set="amethyst">Аметист</button>
+  </div>
+  <div class="toc" id="toc"></div>
+  <div id="root"></div>
+</div>
+<script src="kit.js"></script>
+<script src="elevate-core.js"></script>
+<script src="elevate-mechanics.app.js"></script>
+<script src="elevate-flow.js"></script>
+<script src="elevate-modes.js"></script>
+<script src="elevate-games.js"></script>
+<script>
+// зачем (владелец 11.11: «1 макет сделай со всеми сразу, отсортировано»): одна страница собирает разделы четырёх страниц по пути человека
+document.addEventListener('DOMContentLoaded', () => {
+  const p1 = (id) => { const s = window.ELP1.find((x) => x.id === id); return Object.assign({}, s, { lbl: s.lbl.replace(/^\d+ · /, '') }); };
+  const S = window.ELS, sec = (id, title, lead, screens) => ({ id, title, lead, screens });
+  const list = [
+    sec('a-entry', 'Вход: одна кнопка, без выбора', S.entry.lead, S.entry.screens),
+    sec('a-warm', 'Три игры разминки', 'Идут подряд после кнопки «Начать». Материал — фразы уроков и ошибки человека.', [p1('flow'), p1('cut'), p1('sort')]),
+    sec('a-modes', 'Режимы приложения: было → стало', S.modes.lead, S.modes.screens),
+    sec('a-games', 'Новые игры на наших материалах', S.games.lead, S.games.screens),
+    sec('a-results', 'Экраны завершения: было → стало', S.results.lead, S.results.screens),
+    sec('a-growth', 'Рост: навыки и статистика', 'Навыки показывают, что выросло. Статистика: что из нынешних блоков заменено и что добавлено.', [p1('skills')].concat(S.stats.screens)),
+  ].map((s, i) => Object.assign(s, { title: `${i + 1} · ${s.title}`, screens: s.screens.map((x) => Object.assign({}, x, { lbl: x.lbl.replace(/^\d+ · /, '') })) })); // зачем: номера несёт раздел, у телефонов свои номера с отдельных страниц сбивали бы счёт
+  document.getElementById('toc').innerHTML = list.map((s) => `<a href="#${s.id}">${s.title}<b>${s.screens.length}</b></a>`).join('');
+  EL.mount(list);
+});
+</script>
+</body>
+</html>

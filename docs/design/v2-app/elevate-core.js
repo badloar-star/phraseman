@@ -118,7 +118,7 @@ window.EL = (() => {
   }
 
   /* ---------- сборка страницы ---------- */
-  const NAV = [['elevate-mechanics.html', 'Шесть механик'], ['elevate-flow.html', 'Вход, итоги, статистика'], ['elevate-modes.html', 'Режимы: было → стало'], ['elevate-games.html', 'Новые игры']];
+  const NAV = [['elevate-all.html', 'Всё вместе'], ['elevate-mechanics.html', 'Шесть механик'], ['elevate-flow.html', 'Вход, итоги, статистика'], ['elevate-modes.html', 'Режимы: было → стало'], ['elevate-games.html', 'Новые игры']];
   const nav = (cur) => `<div class="elnav">${NAV.map(([h, t]) => `<a href="${h}"${h === cur ? ' class="on"' : ''}>${t}</a>`).join('')}</div>`;
   function mount(sections) {
     const all = sections.flatMap((s) => s.screens), stop = {};

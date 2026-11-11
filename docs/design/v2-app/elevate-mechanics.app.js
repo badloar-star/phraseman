@@ -301,6 +301,6 @@
     document.querySelectorAll('.ph.sky').forEach((p) => io.observe(p));
     K.init();
   }
-  window.__elevate = { run, SCREENS };
-  document.addEventListener('DOMContentLoaded', build);
+  window.ELP1 = SCREENS; // зачем: общий макет берёт эти же экраны, не копируя их
+  if (document.body.dataset.page !== 'all') { window.__elevate = { run, SCREENS }; document.addEventListener('DOMContentLoaded', build); }
 })();

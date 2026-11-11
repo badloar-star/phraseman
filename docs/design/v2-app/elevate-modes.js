@@ -132,7 +132,7 @@
   };
 
   window.ELM = { blitz };
-  if (document.body.dataset.page === 'modes') document.addEventListener('DOMContentLoaded', () => mount([
+  const S = [
     { id: 'modes', title: 'Режимы приложения на новый лад', lead: 'Правила режимов не тронуты: те же фразы, те же сердца и энергия. Меняется подача — сцена вместо графита, слова перелетают, буквы встают в ячейки, время видно полосой.',
       screens: [
         { id: 'm-build', fn: build, cls: 'deep', lbl: 'Урок · собери фразу', was: W.build, note: 'Слово перелетает из банка в ячейку. Ячеек столько, сколько слов, — это уже утверждённый вариант Пика.' },
@@ -142,5 +142,7 @@
         { id: 'm-truth', fn: truth, cls: 'deep', lbl: 'Карточки · Правда / ложь', was: W.truth, note: 'Те же два ответа, но смахиванием. Карту можно тащить мышью или нажать на корзину.' },
         { id: 'm-write', fn: write, cls: 'deep', lbl: 'Карточки · Вспомни и напиши', was: W.write, note: 'Ячейка на каждую букву. Неверная буква не принимается сразу, а не после кнопки «Проверить».' },
       ] },
-  ]));
+  ];
+  window.ELS = Object.assign(window.ELS || {}, { modes: S[0] });
+  if (document.body.dataset.page === 'modes') document.addEventListener('DOMContentLoaded', () => mount(S));
 })();

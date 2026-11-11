@@ -123,7 +123,7 @@
     <div class="card c2" style="padding:16px"><div class="ov">Год</div><div class="heat">${Array.from({ length: 72 }, () => '<i></i>').join('')}</div></div>
     <div class="card c2" style="padding:16px"><div class="lockrow">${I('lockF', 's18')}Сравнение с другими · Plus</div></div></div>`);
 
-  document.addEventListener('DOMContentLoaded', () => mount([
+  const S = [
     { id: 'entry', title: 'Где живёт разминка и как убрать выбор', lead: 'Разминка — не новый раздел. Она занимает место задания дня «Исправить ошибки» и собирается из тех же ошибок. Запускается одной кнопкой: игры идут подряд сами. По тому же правилу в «Карточках» шторка из четырёх режимов уступает место одной кнопке.',
       screens: [
         { id: 'today', fn: today, lbl: '1 · «Сегодня»: разминка вместо «Исправить ошибки»', was: wasToday, note: 'Одно нажатие — три игры подряд. Задание дня и монеты засчитываются так же, как раньше.' },
@@ -134,5 +134,7 @@
       screens: R.map((r) => ({ id: r.id, fn: result(r.c), lbl: r.lbl, was: wasResult(r.w) })) },
     { id: 'stats', title: 'Статистика: что заменить и что добавить', lead: 'Серия, неделя и год остаются. «Баланс практики» заменяют навыки — это та же мысль, но понятнее. Сравнение с другими остаётся и получает кривую. Добавляются два блока: «Подтянуть» и «Рекорды игр».',
       screens: [{ id: 'stats', fn: stats, lbl: 'Статистика', was: wasStats, note: 'Экран прокручивается. Блоки с меткой «новое» — добавленные.' }] },
-  ]));
+  ];
+  window.ELS = Object.assign(window.ELS || {}, { entry: S[0], results: S[1], stats: S[2] });
+  if (document.body.dataset.page === 'flow') document.addEventListener('DOMContentLoaded', () => mount(S));
 })();

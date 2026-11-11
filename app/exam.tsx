@@ -70,7 +70,7 @@ import { captureCurrentAccountObjectiveAttempt } from './mistake_practice_captur
 import { isMistakeStudyTargetValue } from '../modules/mistake-practice/contracts';
 import { lessonProgressKey, storageStudyTarget } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
-import { loadFrenchRemoteFinalExamQuestions } from './french_exam_remote_runtime';
+import { classicFinalExamTarget, loadClassicFinalExamQuestions } from './classic_final_exam_bank';
 import { DebugLogger } from './debug-logger';
 import { notifyActivityStartFailed, useScreenOpenRef } from './activity_start_failed_toast';
 import { useSilentLeave } from '../hooks/use_silent_leave';
@@ -101,6 +101,10 @@ interface ExamQuestion {
   opts:    string[]; // 4 options
   correct: number;
   type?:   ExamQType; // default = 'fill'
+  /** Перевод предложения — только у банков ES/DE/IT/FR (без него пропуск неоднозначен). */
+  hint?: string;
+  /** id фразы курса — только у банков ES/DE/IT/FR. */
+  phraseId?: string;
 }
 
 function buildExamQuestionPhrase(q: ExamQuestion): string {
@@ -386,8 +390,9 @@ export default function ExamScreen() {
   const {lang} = useLang();
   const { studyTarget } = useStudyTarget();
   const frenchExamBlocked = !examContentAvailableForTarget(studyTarget);
-  const isFrenchExam = storageStudyTarget(studyTarget) === 'fr';
-  const frenchExamSourceLocale = lang === 'uk' ? 'uk' : 'ru';
+  // зачем (владелец 11.11, F01): у ES/DE/IT/FR свой банк из фраз курса этого языка. Раньше всё, что не fr,
+  // получало английский EXAM_POOL, а fr — пустой список. null = английский (его банк ниже, без изменений).
+  const classicExamTarget = classicFinalExamTarget(storageStudyTarget(studyTarget));
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const t3 = (
@@ -441,7 +446,7 @@ export default function ExamScreen() {
   const [certNamePrefill, setCertNamePrefill] = useState('');
   const [mountExportCert, setMountExportCert] = useState(false);
   const englishQuestions = React.useMemo(() => {
-    if (frenchExamBlocked) return [];
+    if (frenchExamBlocked || classicExamTarget) return [];
     // Группируем по уроку
     const byLesson: Record<number, ExamQuestion[]> = {};
     for (const q of EXAM_POOL) {
@@ -459,10 +464,11 @@ export default function ExamScreen() {
     const pool = [...mandatory, ...shuffle(extras).slice(0, needed)];
     const result = shuffle(pool);
     return result.map(q => ({ ...q, rawTopic: q.rawTopic ?? q.topic, topic: examTopicForLang(q, lang) }));
-  }, [frenchExamBlocked, lang]);
-  const [frenchQuestions, setFrenchQuestions] = useState<ExamQuestion[]>([]);
-  const [examQuestionsLoading, setExamQuestionsLoading] = useState(false);
-  const questions = isFrenchExam ? frenchQuestions : englishQuestions;
+  }, [classicExamTarget, frenchExamBlocked, lang]);
+  const [classicQuestions, setClassicQuestions] = useState<ExamQuestion[]>([]);
+  // зачем: банк языка собирается из 32 уроков в фоне; тап «Начать» до его готовности запоминается (startWhenReadyRef), пустой экзамен не стартует.
+  const [examQuestionsLoading, setExamQuestionsLoading] = useState(() => classicExamTarget !== null);
+  const questions = classicExamTarget ? classicQuestions : englishQuestions;
   const [idx, setIdx]               = useState(0);
   const [choices, setChoices]       = useState<(number|null)[]>(() => Array(questions.length).fill(null));
   const [flagged, setFlagged]       = useState<boolean[]>(() => Array(questions.length).fill(false));
@@ -481,31 +487,38 @@ export default function ExamScreen() {
   );
   const examEnergyGate = useFirstQuestionEnergyGate({ intent: examEnergyIntent, screen: 'exam' });
   const examStartCommitInFlightRef = useRef(false);
+  const startWhenReadyRef = useRef(false);
   const screenOpenRef = useScreenOpenRef();
   const countdownAnim = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
     let cancelled = false;
-    if (!isFrenchExam || frenchExamBlocked) {
-      setFrenchQuestions([]);
+    if (!classicExamTarget || frenchExamBlocked) {
+      console.log(`[EXAM] банк: target=${storageStudyTarget(studyTarget)} classic=${String(classicExamTarget)} закрыт=${frenchExamBlocked} → встроенный английский банк`); // guard-ok: ранний выход называет причину
+      setClassicQuestions([]);
       setExamQuestionsLoading(false);
       return () => { cancelled = true; };
     }
     setExamQuestionsLoading(true);
-    loadFrenchRemoteFinalExamQuestions(frenchExamSourceLocale, 50)
+    loadClassicFinalExamQuestions(classicExamTarget, lang, 50)
       .then((rows) => {
-        if (!cancelled) setFrenchQuestions(rows);
+        if (cancelled) {
+          console.log(`[EXAM] банк ${classicExamTarget}: ответ опоздал (экран закрыт/язык сменён) — отброшен`); // guard-ok: ранний выход называет причину
+          return;
+        }
+        if (rows.length === 0) console.warn(`[EXAM] банк ${classicExamTarget} пуст — экзамен не стартует, английский банк не подставляется`); // guard-ok: причина пустого экзамена
+        setClassicQuestions(rows);
       })
       .catch((error: unknown) => {
         // зачем (аудит Optimistic UI, 12.10): сбой загрузки вопросов был немым — экран просто оставался без вопросов
-        console.warn(`[EXAM] вопросы не загрузились locale=${frenchExamSourceLocale}: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch пишет причину
-        if (!cancelled) setFrenchQuestions([]);
+        console.warn(`[EXAM] вопросы не загрузились target=${classicExamTarget} ui=${lang}: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch пишет причину
+        if (!cancelled) setClassicQuestions([]);
       })
       .finally(() => {
         if (!cancelled) setExamQuestionsLoading(false);
       });
     return () => { cancelled = true; };
-  }, [frenchExamBlocked, frenchExamSourceLocale, isFrenchExam]);
+  }, [classicExamTarget, frenchExamBlocked, lang, studyTarget]);
 
   useEffect(() => {
     setIdx(0);
@@ -690,7 +703,14 @@ export default function ExamScreen() {
       void trackFeatureBlocked('exam', 'start', 'exam_content_gate_disabled', { studyTarget }, 'exam');
       return;
     }
-    if (examQuestionsLoading || questions.length === 0) {
+    if (examQuestionsLoading) {
+      // зачем (F01, Optimistic UI): банк языка ещё собирается (доли секунды) — тап не теряем, экзамен начнётся сам, как только задания готовы.
+      startWhenReadyRef.current = true;
+      console.log(`[EXAM] старт: банк ${String(classicExamTarget)} ещё собирается — запомнил тап, начну по готовности`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    if (questions.length === 0) {
+      console.warn(`[EXAM] старт отклонён: заданий нет target=${String(studyTarget)} classic=${String(classicExamTarget)}`); // guard-ok: ранний выход называет причину
       void trackFeatureBlocked('exam', 'start', 'exam_questions_unavailable', {
         studyTarget,
         loading: examQuestionsLoading,
@@ -723,6 +743,15 @@ export default function ExamScreen() {
 
   // зачем (аудит Optimistic UI, 12.10): второй тап «Завершить» в том же кадре запускал вторую сдачу — второй сертификат,
   // второй showName и повторные записи ошибок. Замок синхронный; страница итога открывается один раз.
+  // зачем (F01): отложенный тап «Начать» — срабатывает один раз, когда банк языка собран.
+  const startExamRef = useRef(startExam);
+  startExamRef.current = startExam;
+  useEffect(() => {
+    if (examQuestionsLoading || !startWhenReadyRef.current) return;
+    startWhenReadyRef.current = false;
+    if (questions.length > 0) void startExamRef.current();
+  }, [examQuestionsLoading, questions.length]);
+
   const submitExamInFlightRef = useRef(false);
   const submitExam = async () => {
     if (submitExamInFlightRef.current) {
@@ -748,9 +777,10 @@ export default function ExamScreen() {
             objective: true,
             content: {
               sourceKind: 'exam',
-              sourceId: `${question.lessonNum}:${question.q}`,
+              // зачем (F01): у ES/DE/IT/FR один и тот же пропуск бывает у разных фраз — различаем по id фразы курса.
+              sourceId: question.phraseId ? `${question.phraseId}:${question.q}` : `${question.lessonNum}:${question.q}`,
               canonicalTarget: buildExamQuestionPhrase(question),
-              sourceMeaning: question.rawTopic ?? question.topic,
+              sourceMeaning: question.hint ?? question.rawTopic ?? question.topic,
               // зачем (владелец 11.11, «Мои ошибки 3.0», этап 1): сам вопрос — без него ошибку нельзя ни показать, ни объяснить.
               sourcePrompt: question.q,
               lessonId: String(question.lessonNum),
@@ -1499,6 +1529,8 @@ export default function ExamScreen() {
           </View>
           <View style={[examCardStyle(glass), {marginTop:8,paddingVertical:22,paddingHorizontal:22,minHeight:110}]}>
             {questionKicker ? <Text style={{color:glass.secondary,fontSize:16,lineHeight:21,marginBottom:8}}>{questionKicker}</Text> : null}
+            {/* зачем (F01): перевод предложения у банков ES/DE/IT/FR — тот же стиль, что у строки-подсказки выше. */}
+            {q.hint ? <Text testID="exam-question-hint" style={{color:glass.secondary,fontSize:16,lineHeight:21,marginBottom:8}}>{q.hint}</Text> : null}
             <ClozeGapText text={q.q} style={{color:glass.text,fontSize:24,fontWeight:'600',lineHeight:30}} />
           </View>
 

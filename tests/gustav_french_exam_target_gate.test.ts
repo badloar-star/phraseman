@@ -34,10 +34,13 @@ describe('Gustav French exam target gate', () => {
     const runtimeSource = fs.readFileSync(path.join(ROOT, 'app', 'french_exam_remote_runtime.ts'), 'utf8');
 
     expect(finalExamSource).toContain('const frenchExamBlocked = !examContentAvailableForTarget(studyTarget)');
-    expect(finalExamSource).toContain("import { loadFrenchRemoteFinalExamQuestions } from './french_exam_remote_runtime'");
-    expect(finalExamSource).toContain('const isFrenchExam = storageStudyTarget(studyTarget) === \'fr\'');
-    expect(finalExamSource).toContain('loadFrenchRemoteFinalExamQuestions(frenchExamSourceLocale, 50)');
-    expect(finalExamSource).toContain('const questions = isFrenchExam ? frenchQuestions : englishQuestions;');
+    // зачем (владелец 11.11, F01): итоговый экзамен французского (и es/de/it) берёт СВОЙ банк из фраз курса;
+    // пустой удалённый загрузчик снят. Английский банк не-английскому языку по-прежнему не достаётся.
+    expect(finalExamSource).toContain("import { classicFinalExamTarget, loadClassicFinalExamQuestions } from './classic_final_exam_bank'");
+    expect(finalExamSource).toContain('if (frenchExamBlocked || classicExamTarget) return [];');
+    expect(finalExamSource).toContain('const classicExamTarget = classicFinalExamTarget(storageStudyTarget(studyTarget))');
+    expect(finalExamSource).toContain('loadClassicFinalExamQuestions(classicExamTarget, lang, 50)');
+    expect(finalExamSource).toContain('const questions = classicExamTarget ? classicQuestions : englishQuestions;');
     expect(finalExamSource).toContain("'exam_questions_unavailable'");
     // зачем (владелец 18.10: «экранов-ошибок нигде»): закрытый язык — тихий уход назад, а не заглушка.
     expect(finalExamSource).toContain("useSilentLeave(frenchExamBlocked, 'exam', 'french_gate_closed'");
@@ -50,7 +53,7 @@ describe('Gustav French exam target gate', () => {
     expect(finalExamSource).toContain('loadLingmanCertificate(studyTarget)');
     expect(finalExamSource).toContain('saveLingmanCertificate(cert, studyTarget)');
     expect(finalExamSource).toContain('updateLingmanCertificateName(name, studyTarget)');
-    expect(finalExamSource.indexOf('loadFrenchRemoteFinalExamQuestions(frenchExamSourceLocale, 50)')).toBeLessThan(
+    expect(finalExamSource.indexOf('loadClassicFinalExamQuestions(classicExamTarget, lang, 50)')).toBeLessThan(
       finalExamSource.indexOf('const q = questions[idx]||questions[0]'),
     );
     expect(finalExamSource.indexOf('if (frenchExamBlocked) return <ScreenGradient')).toBeGreaterThan(-1);
@@ -75,8 +78,8 @@ describe('Gustav French exam target gate', () => {
     );
 
     expect(runtimeSource).toContain('French exams previously reused the retired Quiz delivery surface');
-    expect(runtimeSource).toMatch(/loadFrenchRemoteFinalExamQuestions[\s\S]*?return \[\];/);
-    expect(runtimeSource).toContain('loadFrenchRemoteFinalExamQuestions');
+    expect(runtimeSource).not.toContain('loadFrenchRemoteFinalExamQuestions');
+    expect(runtimeSource).toMatch(/loadFrenchRemoteLevelExamQuestions[\s\S]*?return \[\];/);
     expect(runtimeSource).toContain('loadFrenchRemoteLevelExamQuestions');
     expect(runtimeSource).toContain("type?: 'choice4'");
     expect(runtimeSource).not.toContain('EXAM_POOL');

@@ -508,29 +508,10 @@ function optionIdentity(value: string): string {
   return String(value ?? '').trim().replace(/[.,!?;:]+$/g, '').toLowerCase();
 }
 
-// зачем (владелец 11.11, микрофризы при сборке фразы; правило «сперва логи»): подбор идёт синхронно в тапе по слову,
-// поэтому его длительность — прямая задержка отклика плитки. Одна строка [TILE-PERF] на подбор; в релизе console.log вырезается.
 const getPerWordDistracts = (
   phrase: any,
   wordIndex: number = 0,
   studyTarget: StudyTargetLang = 'en',
-): string[] => {
-  const startedAt = Date.now();
-  const options = computePerWordDistracts(phrase, wordIndex, studyTarget);
-  console.log('[TILE-PERF]', JSON.stringify({ // guard-ok: одна строка на тап, замер задержки плитки
-    phraseId: String(phrase?.id ?? ''),
-    wordIndex,
-    target: String(studyTarget),
-    options: options.length,
-    ms: Date.now() - startedAt,
-  }));
-  return options;
-};
-
-const computePerWordDistracts = (
-  phrase: any,
-  wordIndex: number,
-  studyTarget: StudyTargetLang,
 ): string[] => {
   const rows = phrase ? phraseWordRowsForStudyTarget(phrase, studyTarget) : [];
   const wordData = rows[wordIndex];

@@ -753,31 +753,7 @@ const LessonContent = React.memo(function LessonContent({
     if (showTapHint) setShowTapHint(false);
     handleWordPress(word);
   };
-  // ВРЕМЕННАЯ ТРАССИРОВКА [TAP-PERF] (аудит микрофризов 11.11, правило «сперва логи»): сколько длится
-  // обработка тапа по плитке и сколько проходит от тапа до готового кадра. По этим цифрам решаем,
-  // чинить ли обработку последнего слова фразы. Убрать после замера на телефоне (вернуть однострочный
-  // onTileWordPress: (word) => tileWordPressLatestRef.current(word)).
-  const tapPerfRef = useRef<{ startedAt: number; handlerMs: number; wordIdx: number } | null>(null);
-  const tapPerfWordIdxRef = useRef(phraseWordIdx);
-  tapPerfWordIdxRef.current = phraseWordIdx;
-  const onTileWordPress = useCallback((word: string) => {
-    const startedAt = performance.now();
-    tileWordPressLatestRef.current(word);
-    tapPerfRef.current = { startedAt, handlerMs: performance.now() - startedAt, wordIdx: tapPerfWordIdxRef.current };
-  }, []);
-  useEffect(() => {
-    const tap = tapPerfRef.current;
-    if (!tap) return;
-    tapPerfRef.current = null;
-    const commitMs = performance.now() - tap.startedAt;
-    console.log('[TAP-PERF]', JSON.stringify({ // guard-ok: временный замер, одна строка на тап; в релизе console.log вырезается
-      wordIdx: tap.wordIdx,
-      statusAfter: status, // 'result' = это было последнее слово, сработала проверка ответа
-      handlerMs: Math.round(tap.handlerMs * 10) / 10,
-      commitMs: Math.round(commitMs * 10) / 10,
-    }));
-  });
-  // КОНЕЦ ВРЕМЕННОЙ ТРАССИРОВКИ [TAP-PERF]
+  const onTileWordPress = useCallback((word: string) => tileWordPressLatestRef.current(word), []);
   const questionEnterAnim = useRef(new Animated.Value(1)).current;
   // Mirror of phraseEnterKey, read inside async callbacks to drop stale AI-explain responses
   // that resolve after the user has already moved to another phrase.

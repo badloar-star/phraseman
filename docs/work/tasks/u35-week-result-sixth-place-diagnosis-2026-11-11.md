@@ -136,3 +136,22 @@ Status: код в истории (c04d5c451, 36d75737f), на бой НЕ выл
 
 Сухой прогон 11.11 (`scripts/deploy_from_clean_head.sh`, без `--execute`), HEAD 09dd6a6e9: сверка «бой vs HEAD» — OK; сборка functions и паритет рантайма — OK; `firebase --dry-run` — отказ сервиса Google «Cloud Runtime Config is currently experiencing issues» (не код). Повтор остановлен по решению владельца.
 Не проверено: повторный прогон тестов после правки `level_spin_star_grant.test.ts:171`; тесты на состоянии HEAD после d8a0a685a.
+
+## Дополнение 6 — список общей выкладки дополнен «лесенкой», скрипт симуляции в историю (11.11, просьба координатора)
+
+Governance-ID: TG-0804497DFAEE
+Status: выкладку и пробную выкладку эта сессия НЕ делает — запускает только владелец.
+
+Бонус за друга по «лесенке» (`referral_ladder`, 500 монет обоим) начисляет `processReferralLadderLesson` / `retryReferralLadderForReferrer` из `functions/src/referral_ladder_server.ts`. Своего экспорта у модуля нет, его зовут три выкладываемые функции (`functions/src/referral.ts`):
+- `usersWriteRouter` — триггер записи `users/{userId}`, ветка `handleReferralUsersWrite` (первый пройденный урок друга, `users_write`);
+- `referralApply` — ввод кода приглашения (`apply`);
+- `referralListMyInvites` — повторная попытка при заходе пригласившего (`list_retry`).
+
+Полный список функций, чьё поведение меняет U35 (счёт недели Пика), для общего пакета:
+`levelSpinStarGrant`, `referralSpin`, `usersWriteRouter`, `referralApply`, `referralListMyInvites`, `communitySyncPackRuneSale`, `communityMonthClaimReward`.
+Журнал один на всех: функции, начисляющие earn (уроки, ступени Пика), поведение не меняют, но при выкладке получат тот же код.
+⚠️ `usersWriteRouter` срабатывает на КАЖДУЮ запись пользователя — выкладывать с вниманием к прочим изменениям его замыкания.
+
+Скрипт `scripts/spire_week_u35_simulation.ts` уже в истории: его вместе с зависимостью `functions/src/spire_finalization_freeze.ts` забрал широкий коммит d8a0a685a — отдельный коммит не понадобился.
+
+Тесты перед общей выкладкой (11.11, HEAD 94d767a4f, через светофор, `npm --prefix functions test -- --runInBand`): 10 наборов, 178 тестов — все прошли. Наборы: stars_ledger_week_policy, stars_week_policy, stars_ledger, level_spin_star_grant, coin_wallet_policy_video_full, practice_rune_grant, spire_rank_by_coins, spire_finalize_cron, spire_finalize_core, spire_week_payout. Незакоммиченных правок в stars_ledger.ts, level_spin_star_grant.ts, coin_wallet_policy.ts и их тестах на момент прогона не было.

@@ -84,8 +84,15 @@ export interface MistakePracticeSession {
   readonly answeredAttemptIds: readonly string[];
 }
 
+/**
+ * Верхняя граница одной сессии: дольше человек устаёт, а не учится.
+ * зачем (владелец 11.11, D203 «да, ограничь»): в занятии ошибка проходит три шага, поэтому прежние 30 ошибок давали до 90
+ * заданий подряд. 10 ошибок — не больше 30 заданий, около 4 минут; остальные ждут следующего занятия.
+ */
+export const MISTAKE_PRACTICE_MAX_SESSION = 10;
+
 /** Не больше стольких id ошибок принимает маршрут «Ещё N» (как лимит одной сессии). */
-export const MISTAKE_RETRY_IDS_MAX = 30;
+export const MISTAKE_RETRY_IDS_MAX = MISTAKE_PRACTICE_MAX_SESSION;
 const MISTAKE_ID_PATTERN = /^[A-Za-z0-9:_-]{1,128}$/;
 
 /**
@@ -106,8 +113,6 @@ export function parseMistakeRetryIdsParam(raw: unknown): Readonly<{ ids: readonl
   return Object.freeze({ ids: Object.freeze(ids), dropped, overLimit: valid.length - ids.length });
 }
 
-/** Верхняя граница одной сессии: дольше человек устаёт, а не учится. */
-export const MISTAKE_PRACTICE_MAX_SESSION = 30;
 /**
  * С какого объёма сессия стоит энергию. Короткие наборы (1-4 ошибки)
  * бесплатны, чтобы новичок с тремя промахами сразу попадал в раздел.
@@ -126,7 +131,8 @@ export function mistakePracticeLengthOptions(
   return Object.freeze([
     Object.freeze({ id: '5', count: 5, enabled: available >= 5 }),
     Object.freeze({ id: '10', count: 10, enabled: available >= 10 }),
-    Object.freeze({ id: '15', count: 15, enabled: available >= 15 }),
+    // зачем (D203): длина сверх потолка сессии не предлагается — иначе «15» молча давало бы 10.
+    Object.freeze({ id: '15', count: 15, enabled: available >= 15 && MISTAKE_PRACTICE_MAX_SESSION >= 15 }),
     Object.freeze({ id: 'all', count: Math.min(MISTAKE_PRACTICE_MAX_SESSION, available), enabled: available >= 1 }),
   ]);
 }
@@ -139,7 +145,7 @@ export function mistakePracticeSessionCount(
   const available = Number.isFinite(rawAvailable) ? Math.max(0, Math.floor(rawAvailable)) : 0;
   return requested === 'all'
     ? Math.min(MISTAKE_PRACTICE_MAX_SESSION, available)
-    : Math.min(Number(requested), available);
+    : Math.min(Number(requested), available, MISTAKE_PRACTICE_MAX_SESSION);
 }
 
 /** Сессия платная (энергия), только если в ней от 5 ошибок. */
@@ -198,10 +204,10 @@ export function buildMistakePracticeSession(input: {
     ? idFiltered.filter((item) => item.mistakeId === focusMistakeId)
     : idFiltered;
   const ready = pool === 'corrected'
-    ? selectCorrectedMistakesForReview(candidates, { limit: focusMistakeId ? 1 : 30 })
+    ? selectCorrectedMistakesForReview(candidates, { limit: focusMistakeId ? 1 : MISTAKE_PRACTICE_MAX_SESSION })
     : selectMistakesForSession(candidates, {
       nowMs: input.nowMs,
-      limit: focusMistakeId ? 1 : 30,
+      limit: focusMistakeId ? 1 : MISTAKE_PRACTICE_MAX_SESSION,
     });
   // зачем (координатор 04.10, «выбрано Все 12, а сессия из одного задания»): сперва логи — сколько ошибок отсеял каждый фильтр
   // и сколько реально готово по сроку. Печатаем значения, не голые флаги.

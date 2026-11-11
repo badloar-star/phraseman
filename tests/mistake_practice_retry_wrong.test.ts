@@ -83,7 +83,8 @@ describe('«Ещё N»: разбор параметра маршрута', () =>
     const many = Array.from({ length: 45 }, (_, i) => `mistake:v1:${i}`).join(',');
     const parsed = parseMistakeRetryIdsParam(many);
     expect(parsed.ids).toHaveLength(MISTAKE_RETRY_IDS_MAX);
-    expect(parsed.overLimit).toBe(15);
+    // зачем (D203, 11.11): потолок сессии стал 10 — лишнее считаем от самого потолка, а не зашитым числом.
+    expect(parsed.overLimit).toBe(45 - MISTAKE_RETRY_IDS_MAX);
   });
 
   test('массив параметров expo-router и пустое значение', () => {

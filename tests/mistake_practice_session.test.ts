@@ -31,7 +31,8 @@ function item(index: number, facet: MistakeProjectionItem['facet'] = 'word_order
 }
 
 describe('mistake practice session', () => {
-  test('enables 5/10/15 only when available, All from a single mistake, capped at 30', () => {
+  // зачем (D203, 11.11): потолок сессии — 10 ошибок (каждая проходит три шага); длина 15 больше не предлагается.
+  test('enables 5/10 only when available, All from a single mistake, capped at 10', () => {
     // зачем (владелец 2026-09-14): порог «минимум 5» отменён - «Все» доступно от одной ошибки.
     expect(mistakePracticeLengthOptions(0).every((option) => !option.enabled)).toBe(true);
     expect(mistakePracticeLengthOptions(4)).toEqual([
@@ -48,9 +49,10 @@ describe('mistake practice session', () => {
     ]);
     expect(mistakePracticeLengthOptions(48).at(-1)).toEqual({
       id: 'all',
-      count: 30,
+      count: 10,
       enabled: true,
     });
+    expect(mistakePracticeLengthOptions(48).find((option) => option.id === '15')?.enabled).toBe(false);
   });
 
   test('starts from a single due mistake and trims the requested length to what is available', () => {
@@ -76,7 +78,7 @@ describe('mistake practice session', () => {
   test('charges energy only from five mistakes', () => {
     expect(mistakePracticeSessionCostsEnergy(4)).toBe(false);
     expect(mistakePracticeSessionCostsEnergy(5)).toBe(true);
-    expect(mistakePracticeSessionCount('all', 48)).toBe(30);
+    expect(mistakePracticeSessionCount('all', 48)).toBe(10);
     expect(mistakePracticeSessionCount('15', 7)).toBe(7);
   });
 

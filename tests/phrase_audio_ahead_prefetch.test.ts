@@ -197,7 +197,34 @@ describe('scheduleAheadPhraseAudioPrefetch (D48)', () => {
     expect(downloads).toHaveLength(0);
   });
 
-  it('не студент английского — докачка не стартует', async () => {
+  // зачем (владелец 11.11.2026, «Да, включай»): записи есть для en/es/de/fr/it — прежнее «только английский» снято
+  it('язык без записей — докачка не стартует', async () => {
+    studyTargetRaw = 'pt';
+    classicActive = true;
+    try {
+      scheduleAheadPhraseAudioPrefetch();
+      jest.advanceTimersByTime(AHEAD_PREFETCH_START_DELAY_MS);
+      await flush();
+      expect(downloads).toHaveLength(0);
+    } finally {
+      classicActive = false;
+    }
+  });
+
+  it('испанский курс — докачиваются его фразы', async () => {
+    studyTargetRaw = 'es';
+    classicActive = true;
+    try {
+      scheduleAheadPhraseAudioPrefetch();
+      jest.advanceTimersByTime(AHEAD_PREFETCH_START_DELAY_MS);
+      await flush();
+      expect([...downloads].sort()).toEqual(['classic one phrase k', 'classic two phrase m']);
+    } finally {
+      classicActive = false;
+    }
+  });
+
+  it('язык с записями, но без классического курса и не английский — качать нечего', async () => {
     studyTargetRaw = 'es';
     scheduleAheadPhraseAudioPrefetch();
     jest.advanceTimersByTime(AHEAD_PREFETCH_START_DELAY_MS);

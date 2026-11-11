@@ -85,8 +85,11 @@ describe('useAudio TTS resiliency', () => {
   });
 
   it('uses visible exact text for generated clips and pronunciation text only for system TTS', () => {
-    expect(audioSource).toContain('hasPhraseAudio(normalized)');
+    // зачем (владелец 11.11.2026, «Да, включай»): записи есть для пяти языков — вместе с видимым текстом в поиск
+    // и в плеер уходит язык произносимой фразы (recordingLang), иначе испанская фраза искалась бы среди английских.
+    expect(audioSource).toContain('hasPhraseAudio(normalized, recordingLang)');
     expect(audioSource).toMatch(/playPhraseByText\(\s*normalized,/);
+    expect(audioSource).toMatch(/onError: \(\) => fallbackOnce\('player_error'\),\s*\},\s*recordingLang,\s*\)/);
     expect(audioSource).toContain('Speech.speak(spokenText, speechOptions)');
   });
 
@@ -100,8 +103,11 @@ describe('useAudio TTS resiliency', () => {
   });
 
   it('routes playback and prefetch through the same punctuation-tolerant clip lookup', () => {
-    expect(phraseAudioSource).toContain('getPlayablePhraseAudioUrl(text)');
-    expect(phraseAudioPrefetchSource).toContain('getPlayablePhraseAudioUrl(text)');
+    // зачем (11.11.2026): тот же общий поиск, теперь с языком записи — плеер и докачка обязаны передавать его оба
+    expect(phraseAudioSource).toContain('getPlayablePhraseAudioUrl(text, lang)');
+    expect(phraseAudioPrefetchSource).toContain('getPlayablePhraseAudioUrl(text, lang)');
+    expect(phraseAudioSource).not.toContain('getPlayablePhraseAudioUrl(text)');
+    expect(phraseAudioPrefetchSource).not.toContain('getPlayablePhraseAudioUrl(text)');
   });
 
   // Regression: phrase clips died after ~half a lesson because createAudioPlayer

@@ -9,9 +9,13 @@ let ensureImpl: (text: string, url: string) => Promise<boolean> = async (text) =
   return true;
 };
 
+const lookupLangs: string[] = [];
+
 jest.mock('../modules/audio/phrase_audio_lookup', () => ({
-  getPlayablePhraseAudioUrl: (text: string) =>
-    text.startsWith('нет-клипа') ? undefined : `https://cdn.test/${encodeURIComponent(text)}.mp3`,
+  getPlayablePhraseAudioUrl: (text: string, lang: string) => {
+    lookupLangs.push(lang);
+    return text.startsWith('нет-клипа') ? undefined : `https://cdn.test/${encodeURIComponent(text)}.mp3`;
+  },
 }));
 
 jest.mock('../app/net_status', () => ({ getNetStatus: () => netStatus }));
@@ -38,6 +42,7 @@ const cellular = { fetch: async () => ({ type: 'cellular', isConnectionExpensive
 
 beforeEach(() => {
   downloads.length = 0;
+  lookupLangs.length = 0;
   netStatus = 'online';
   ensureImpl = async (text: string) => {
     downloads.push(text);
@@ -62,12 +67,27 @@ describe('prefetchPhraseAudio', () => {
     expect(downloads.slice(0, 5)).toEqual(['фраза 0', 'фраза 1', 'фраза 2', 'фраза 3', 'фраза 4']);
   });
 
-  it('на мобильном интернете качает только начало — уважает лимитный тариф', async () => {
+  // зачем (владелец 11.11.2026, «качать весь урок»): новые записи по ~13 КБ, урок ≈ 0.6 МБ — на мобильной сети
+  // докачивается целиком, иначе 42 фразы из 50 в первый раз звучали голосом телефона.
+  it('на мобильном интернете качает урок целиком — 50 фраз', async () => {
     const texts = Array.from({ length: 50 }, (_, i) => `фраза ${i}`);
     prefetchPhraseAudio(texts, { netInfo: cellular });
     await flush();
-    expect(downloads.length).toBeLessThanOrEqual(8);
-    expect(downloads.length).toBeGreaterThan(0);
+    expect(downloads).toHaveLength(50);
+  });
+
+  it('на мобильном интернете раздел крупнее урока не выкачивается весь — уважает лимитный тариф', async () => {
+    const texts = Array.from({ length: 110 }, (_, i) => `фраза ${i}`);
+    prefetchPhraseAudio(texts, { netInfo: cellular });
+    await flush();
+    expect(downloads.length).toBeLessThanOrEqual(60);
+    expect(downloads.length).toBeGreaterThanOrEqual(50);
+  });
+
+  it('язык курса доходит до поиска записи', async () => {
+    prefetchPhraseAudio(['hola'], { netInfo: wifi, lang: 'es' });
+    await flush();
+    expect(lookupLangs).toEqual(['es']);
   });
 
   it('офлайн не качает ничего', async () => {
@@ -195,8 +215,11 @@ describe('prefetchPhraseAudio', () => {
     // вызывающий должен знать, что предзагружен не весь раздел.
     const texts = Array.from({ length: 500 }, (_, i) => `фраза ${i}`);
     const handle = prefetchPhraseAudio(texts, { netInfo: wifi });
-    await flush();
+    // зачем: потолок пачки вырос с 69 до 120 записей (средний размер записи 44 КБ → 13 КБ) — одной прокрутки
+    // очереди микрозадач на 120 загрузок не хватает, ждём с запасом
+    for (let i = 0; i < 6; i += 1) await flush();
 
+    expect(handle.planned).toBe(120);
     expect(handle.truncated).toBeGreaterThan(0);
     expect(handle.planned + handle.truncated).toBe(500);
     expect(downloads.length).toBe(handle.planned);

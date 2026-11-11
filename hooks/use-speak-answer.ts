@@ -13,6 +13,7 @@
 import { useCallback } from 'react';
 import { useAudio } from './use-audio';
 import { hasPhraseAudio } from './phrase_audio_player';
+import { courseVoiceLangFromLocale } from '../modules/audio/course_voice_key';
 import { getUserSettingsSnapshot } from '../app/user_settings_store';
 import { ttsLocaleForStudyTarget } from '../app/phrase_target_utils';
 import type { StudyTargetLang } from '../app/study_target_lang_dev';
@@ -57,9 +58,10 @@ export function useSpeakAnswer() {
       if (!settings.voiceOut) return Promise.resolve();
       return new Promise<void>((resolve) => {
         const language = ttsLocaleForStudyTarget(studyTarget);
-        const mayUseFirstClipDownload = language.toLowerCase().startsWith('en')
-          && !(settings.speechVoiceId ?? '').trim()
-          && hasPhraseAudio(line);
+        // зачем (владелец 11.11.2026): записи есть для пяти языков и играют всегда, когда они есть, — выбранный
+        // когда-то голос телефона их больше не отменяет («убирай голос телефона из настроек вообще»).
+        const clipLang = courseVoiceLangFromLocale(language);
+        const mayUseFirstClipDownload = clipLang !== null && hasPhraseAudio(line, clipLang);
         let settled = false;
         let timer: ReturnType<typeof setTimeout> | null = null;
         const finish = () => {

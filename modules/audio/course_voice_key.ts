@@ -14,6 +14,18 @@ import { normalizePhraseAudioKey } from '../../app/phrase_audio_key';
 export const COURSE_VOICE_LANGS = ['en', 'es', 'de', 'fr', 'it'] as const;
 export type CourseVoiceLang = (typeof COURSE_VOICE_LANGS)[number];
 
+/**
+ * Язык записи по языку речи: 'es-ES' → 'es', 'en-US' → 'en'; для языка без записей — null.
+ *
+ * зачем (владелец 11.11.2026, «Да, включай»): запись выбирается по языку ПРОИЗНОСИМОЙ фразы, а не по языку курса.
+ * Так английское слово, прозвучавшее у изучающего испанский, не получит испанскую запись одинакового написания
+ * («no», «chat»), и наоборот.
+ */
+export function courseVoiceLangFromLocale(locale: string | null | undefined): CourseVoiceLang | null {
+  const prefix = (locale ?? '').trim().toLowerCase().slice(0, 2);
+  return (COURSE_VOICE_LANGS as readonly string[]).includes(prefix) ? (prefix as CourseVoiceLang) : null;
+}
+
 /** Папка поколения записей на сервере. Перезаписал весь корпус другими голосами — подними номер. */
 export const COURSE_VOICE_GENERATION = 'course-v1';
 

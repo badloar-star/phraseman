@@ -16,8 +16,8 @@
 //     пачки одновременно не воюют за сеть;
 //   • первые CRITICAL_HEAD клипов качаются вперёд остальных: пока человек
 //     читает задание, начало урока уже на диске;
-//   • на мобильном интернете качается только голова пачки — уважаем лимитный
-//     тариф, остальное подтянется по ходу обычным путём;
+//   • на мобильном интернете качается урок целиком (до CELLULAR_LIMIT записей,
+//     ≈0.6 МБ), но не раздел на сотни записей — см. комментарий у константы;
 //   • сеть уступается интерфейсу через withBackgroundNetworkLease: фоновая
 //     докачка не должна тормозить живые запросы экрана;
 //   • ошибки глотаются молча — это предзагрузка, её отсутствие не поломка:
@@ -26,15 +26,18 @@
 import { getNetStatus } from '../app/net_status';
 import { withBackgroundNetworkLease } from '../app/interactive_network_quiet';
 import { getPlayablePhraseAudioUrl } from '../modules/audio/phrase_audio_lookup';
+import type { CourseVoiceLang } from '../modules/audio/course_voice_key';
 import { ensurePhraseAudioCached } from './phrase_audio_player';
 
 import { reportSwallowed } from '../app/debug-logger';
 // Сколько клипов гарантированно тянем первыми. Пять — примерно столько человек
 // успевает пройти, пока читает условие задания.
 const CRITICAL_HEAD = 5;
-// На мобильном ограничиваемся головой: 50 клипов урока ≈ 2.1 МБ, и молча
-// потратить это на чужом лимитном тарифе — неуважительно.
-const CELLULAR_LIMIT = 8;
+// зачем (владелец 11.11.2026, на вопрос о мобильной сети: «качать весь урок»): прежний лимит 8 был под записи по
+// 44 КБ (урок ≈ 2.1 МБ). Новые записи — в среднем 13 КБ, весь урок из 50 фраз ≈ 0.6 МБ; с лимитом 8 остальные 42 фразы
+// на мобильной сети в первый раз звучали голосом телефона. 60 = урок целиком с запасом; раздел крупнее (словарь)
+// на мобильной сети по-прежнему не выкачивается весь.
+const CELLULAR_LIMIT = 60;
 // Одновременных загрузок. Столько же, сколько в предзагрузке Learning V2:
 // больше — заметно отбирает канал у интерактивных запросов.
 const CONCURRENCY = 3;
@@ -44,9 +47,10 @@ const CONCURRENCY = 3;
 const MAX_BATCH = 120;
 // Потолок по трафику. Одного счётчика файлов мало: клипы разные — слово ~8 КБ,
 // длинная фраза квиза до 129 КБ, и 120 тяжёлых клипов дали бы ~15 МБ фоном без
-// ведома человека. Оцениваем по среднему размеру корпуса (44 КБ) и режем пачку
-// по объёму раньше, чем по счётчику.
-const AVG_CLIP_BYTES = 44 * 1024;
+// ведома человека. Оцениваем по среднему размеру корпуса и режем пачку
+// по объёму раньше, чем по счётчику. Средний размер — замер новой озвучки 11.11.2026:
+// 144.4 МБ на 11 499 записей ≈ 13 КБ (у прежнего корпуса было 44 КБ).
+const AVG_CLIP_BYTES = 13 * 1024;
 const MAX_BATCH_BYTES = 3 * 1024 * 1024;
 const MAX_BATCH_BY_BYTES = Math.floor(MAX_BATCH_BYTES / AVG_CLIP_BYTES);
 
@@ -101,7 +105,7 @@ export type PhraseAudioPrefetchPlan = Readonly<{
 }>;
 
 /** Убираем дубли и то, для чего в карте нет клипа — качать нечего. */
-function planUrls(texts: readonly string[]): PhraseAudioPrefetchPlan {
+function planUrls(texts: readonly string[], lang: CourseVoiceLang): PhraseAudioPrefetchPlan {
   const cap = Math.min(MAX_BATCH, MAX_BATCH_BY_BYTES);
   const seen = new Set<string>();
   const items: { text: string; url: string }[] = [];
@@ -109,7 +113,7 @@ function planUrls(texts: readonly string[]): PhraseAudioPrefetchPlan {
 
   for (const text of texts) {
     if (typeof text !== 'string' || !text.trim()) continue;
-    const url = getPlayablePhraseAudioUrl(text);
+    const url = getPlayablePhraseAudioUrl(text, lang);
     if (!url || seen.has(url)) continue;
     seen.add(url);
     considered += 1;
@@ -130,12 +134,13 @@ function planUrls(texts: readonly string[]): PhraseAudioPrefetchPlan {
  */
 export function prefetchPhraseAudio(
   texts: readonly string[],
-  options: Readonly<{ netInfo?: NetInfoLike | null }> = {},
+  // зачем lang (владелец 11.11.2026, «Да, включай»): записи есть для пяти языков — экран передаёт язык своего курса
+  options: Readonly<{ netInfo?: NetInfoLike | null; lang?: CourseVoiceLang }> = {},
 ): PhraseAudioPrefetchHandle {
   // План строим ДО смены поколения. Иначе пустой вызов (экран отрисовался
   // раньше, чем пришли фразы) молча обрывал бы уже идущую полезную пачку —
   // качать нечего, а прошлую очередь мы при этом убили.
-  const plan = planUrls(texts);
+  const plan = planUrls(texts, options.lang ?? 'en');
   if (plan.items.length === 0 || getNetStatus() === 'offline') {
     return Object.freeze({ cancel: () => {}, planned: 0, truncated: plan.truncated });
   }

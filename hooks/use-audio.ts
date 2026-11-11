@@ -12,7 +12,7 @@ import {
 } from '../modules/audio/audio_runtime_arbiter';
 import { phraseAudioClipStartTimeoutMs } from '../modules/audio/phrase_audio_timing';
 import { getManagedAudioModeSnapshot } from '../app/audio_session_coordinator';
-import { peekEnVoiceId, peekVoiceIdForLocale } from '../app/flashcards/voice_prefs';
+import { courseVoiceLangFromLocale } from '../modules/audio/course_voice_key';
 import {
   cardTtsLanguageFromSpeechLocale,
   notifyCardVoiceUnavailable,
@@ -47,9 +47,9 @@ export type SpeakOpts = {
   /** Optional pronunciation-only text; the visible lesson text stays unchanged. */
   speechText?: string;
   /**
-   * cards-2.0 (E13): явный идентификатор голоса (voice picker preview).
-   * Без него для en-* подставляется выбранный юзером голос из fc_voice_prefs_v1;
-   * uk/ru/es автодетект языка не трогаем — голос применяется только к en.
+   * Явный идентификатор голоса телефона, который требует сам вызывающий экран.
+   * Без него голос телефона — по умолчанию для языка: сохранённый выбор пользователя
+   * больше не подставляется (владелец 11.11.2026: «убирай голос телефона из настроек вообще»).
    */
   voiceId?: string | null;
   /**
@@ -270,17 +270,16 @@ export function useAudio() {
       !!opts &&
       (Object.prototype.hasOwnProperty.call(opts, 'voice') ||
         Object.prototype.hasOwnProperty.call(opts, 'voiceId'));
-    const settingsVoice = settings.speechVoiceId.trim();
+    // зачем (владелец 11.11.2026: «Если в настройках выбран конкретный голос телефона для языка, нет! убирай голос
+    // телефона из настроек вообще»): выбранный когда-то в настройках или в «Карточках» голос телефона больше НЕ
+    // читается — раньше он молча отменял запись курса. Остаётся только голос, который вызывающий код передал явно
+    // (диалоги со строгим голосом): это не настройка пользователя, а требование экрана.
     const requestedVoice = hasVoiceOverride
       ? (opts?.voice ?? opts?.voiceId ?? '').trim() // зачем: после переприсваивания opts (медленный повтор) TS теряет сужение через hasVoiceOverride — TS18048
-      // зачем (Ревизор 15.10): у es/fr/de/it теперь свой выбранный голос (voice_prefs, отдельный ключ); английский — как раньше
-      : (language.toLowerCase().startsWith('en')
-        ? settingsVoice || (peekEnVoiceId() ?? '').trim()
-        : (peekVoiceIdForLocale(language) ?? '').trim());
+      : '';
 
-    // Prefer the high-quality OpenAI "echo" clip when one exists for this exact
-    // text, the language is English (clips are EN-only), and the caller did not
-    // force a specific system voice. Falls back to expo-speech on any miss/error.
+    // Запись курса (свои голоса ElevenLabs, пять языков) играет, когда она есть для этого текста на языке речи и
+    // вызывающий не потребовал конкретный голос. Любой промах или ошибка → голос телефона (expo-speech).
     if (opts?.strictVoice && !requestedVoice) {
       console.warn('[PACK-AUDIO] speak:skip strict_voice_missing', JSON.stringify({ language }));
       opts.onError?.(new Error('strict_dialogue_voice_missing'));
@@ -290,8 +289,10 @@ export function useAudio() {
       speakWithSystemTts();
       return;
     }
-    const isEnglish = language.toLowerCase().startsWith('en');
-    const canUseClip = isEnglish && !requestedVoice;
+    // зачем (владелец 11.11.2026, «Да, включай»): записи есть для en/es/de/fr/it. Язык записи = язык ПРОИЗНОСИМОЙ
+    // фразы: английское слово у изучающего испанский не получит испанскую запись одинакового написания.
+    const clipLang = courseVoiceLangFromLocale(language);
+    const canUseClip = clipLang !== null && !requestedVoice;
     // зачем (владелец 11.11.2026, «удали всю озвучку»): клипов карточек нет — карточка сразу идёт в голос
     // устройства своего языка. Английская карточка с явно выбранным голосом уважает выбор пользователя.
     const cardLanguage: CardTtsLanguage | null = opts?.cardAudio ? cardTtsLanguageFromSpeechLocale(language) : null;
@@ -335,7 +336,8 @@ export function useAudio() {
     }
 
     function runDefaultVoicePath() {
-    if (canUseClip) {
+    const recordingLang = canUseClip ? clipLang : null;
+    if (recordingLang) {
       // Single fallback trigger: the promise resolves false on any failure
       // (including the internal catch that also reports onError), so we fall
       // back here exactly once and never double-speak.
@@ -370,7 +372,7 @@ export function useAudio() {
             || speechGenerationRef.current !== generation
             || !voicePlaybackPolicy.canStart(voicePolicyToken)
           ) return false;
-          if (!hasPhraseAudio(normalized)) return false;
+          if (!hasPhraseAudio(normalized, recordingLang)) return false;
           return playPhraseByText(
             normalized,
             {
@@ -383,6 +385,7 @@ export function useAudio() {
               onDone: opts?.onDone,
               onError: () => fallbackOnce('player_error'),
             },
+            recordingLang,
           );
         })
         .then((played) => {

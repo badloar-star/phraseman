@@ -21,6 +21,7 @@ import {
   PHRASE_AUDIO_PLAYER_START_WATCHDOG_MS,
 } from '../modules/audio/phrase_audio_timing';
 import { getPlayablePhraseAudioUrl } from '../modules/audio/phrase_audio_lookup';
+import type { CourseVoiceLang } from '../modules/audio/course_voice_key';
 import { getNetStatus } from '../app/net_status';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
@@ -456,8 +457,10 @@ export function stopPhraseAudio(): void {
 export async function playPhraseByText(
   text: string,
   cb?: PlayCallbacks,
+  // зачем (владелец 11.11.2026, «Да, включай»): записи есть для пяти языков — язык даёт вызывающий (язык речи)
+  lang: CourseVoiceLang = 'en',
 ): Promise<boolean> {
-  const url = getPlayablePhraseAudioUrl(text);
+  const url = getPlayablePhraseAudioUrl(text, lang);
   if (!url) return false;
   return playResolvedClip(normalizePhraseAudioKey(text), url, cb, false);
 }
@@ -610,6 +613,6 @@ async function playResolvedClip(
   }
 }
 
-export function hasPhraseAudio(text: string): boolean {
-  return !!getPlayablePhraseAudioUrl(text);
+export function hasPhraseAudio(text: string, lang: CourseVoiceLang = 'en'): boolean {
+  return !!getPlayablePhraseAudioUrl(text, lang);
 }

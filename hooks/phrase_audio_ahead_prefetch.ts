@@ -19,8 +19,8 @@
 //
 // Что докачиваем: клипы ТЕКУЩЕГО и СЛЕДУЮЩЕГО урока (как их видит кнопка
 // «Урок» на Главной — тот же сторедж-ключ lastOpenedLessonKey +
-// resolveLastAvailableLessonId, что и app/(tabs)/home.tsx). Только студент
-// английского — клипы озвучены EN-only (как в lesson1.tsx).
+// resolveLastAvailableLessonId, что и app/(tabs)/home.tsx). Язык — язык
+// курса: записи есть для en/es/de/fr/it (владелец 11.11.2026), как в lesson1.tsx.
 //
 // Отличия от hooks/phrase_audio_prefetch.ts (докачка ПРИ входе в урок):
 //   • качаем и на Wi-Fi, и на мобильном — лимит «на мобильном только 8 клипов»
@@ -35,6 +35,7 @@ import { AppState, type AppStateStatus } from 'react-native';
 import { getNetStatus } from '../app/net_status';
 import { withBackgroundNetworkLease } from '../app/interactive_network_quiet';
 import { getPlayablePhraseAudioUrl } from '../modules/audio/phrase_audio_lookup';
+import { courseVoiceLangFromLocale, type CourseVoiceLang } from '../modules/audio/course_voice_key';
 import { ensurePhraseAudioCached, isPhraseAudioCached } from './phrase_audio_player';
 import { subscribeAccountGeneration } from '../app/account_generation';
 import { peekStudyTargetRaw } from '../app/app_snapshot_bootstrap';
@@ -60,14 +61,14 @@ let accountSub: { remove: () => void } | null = null;
 
 type PlannedClip = Readonly<{ text: string; url: string }>;
 
-function planClips(lessonsInOrder: readonly (readonly string[])[]): readonly PlannedClip[] {
+function planClips(lessonsInOrder: readonly (readonly string[])[], lang: CourseVoiceLang): readonly PlannedClip[] {
   const seen = new Set<string>();
   const items: PlannedClip[] = [];
   for (const texts of lessonsInOrder) {
     for (const text of texts) {
       if (items.length >= MAX_TOTAL_CLIPS) return Object.freeze(items);
       if (typeof text !== 'string' || !text.trim()) continue;
-      const url = getPlayablePhraseAudioUrl(text);
+      const url = getPlayablePhraseAudioUrl(text, lang);
       if (!url || seen.has(url)) continue;
       seen.add(url);
       items.push({ text, url });
@@ -80,7 +81,7 @@ function planClips(lessonsInOrder: readonly (readonly string[])[]): readonly Pla
  * Тексты фраз одного урока V1, в порядке прохождения — как их строит
  * app/lesson1.tsx для своей собственной докачки при входе.
  */
-async function lessonPhraseTexts(lessonId: number): Promise<readonly string[]> {
+async function lessonPhraseTexts(lessonId: number, lang: CourseVoiceLang): Promise<readonly string[]> {
   const [{ getLessonData }, { phraseHasStudyTargetContent, phraseAnswerDisplayLine }, { classicCourseActiveFor, getClassicLessonPhrases }] =
     await Promise.all([
       import('../app/lesson_data_all'),
@@ -90,11 +91,13 @@ async function lessonPhraseTexts(lessonId: number): Promise<readonly string[]> {
   // зачем (владелец 11.11.2026, новая озвучка: «чтобы юзеры не ждали загрузку»): урок теперь идёт по классическому
   // курсу, а здесь тексты брались из прежних данных урока — другие фразы, и докачка заранее не находила ни одной
   // новой записи (замер: 46 из 1600). Берём те же фразы и ту же строку, что произносит экран урока.
-  if (classicCourseActiveFor('en')) {
-    return getClassicLessonPhrases(lessonId, 'en')
-      .map((p) => phraseAnswerDisplayLine(p, 'en', 'en'))
+  if (classicCourseActiveFor(lang)) {
+    return getClassicLessonPhrases(lessonId, lang)
+      .map((p) => phraseAnswerDisplayLine(p, lang, 'en'))
       .filter((line): line is string => Boolean(line));
   }
+  // зачем: прежние данные урока есть только у английского — у остальных языков без классического курса качать нечего
+  if (lang !== 'en') return [];
   const rows = getLessonData(lessonId).filter((p) => {
     if (!p || !phraseHasStudyTargetContent(p, 'en')) return false;
     return p.words && p.words.length > 0;
@@ -109,18 +112,18 @@ async function lessonPhraseTexts(lessonId: number): Promise<readonly string[]> {
 }
 
 /** Текущий + следующий урок так же, как их видит кнопка «Урок» на Главной. */
-async function resolveCurrentAndNextLessonIds(): Promise<readonly number[] | null> {
+async function resolveCurrentAndNextLessonIds(lang: CourseVoiceLang): Promise<readonly number[] | null> {
   const AsyncStorage = (await import('@react-native-async-storage/async-storage')).default;
   const [{ lastOpenedLessonKey }, { resolveLastAvailableLessonId }] = await Promise.all([
     import('../app/target_storage_keys'),
     import('../app/lesson_lock_system'),
   ]);
-  const raw = await AsyncStorage.getItem(lastOpenedLessonKey('en'));
+  const raw = await AsyncStorage.getItem(lastOpenedLessonKey(lang));
   const requested = raw ? parseInt(raw, 10) : 1;
   if (!Number.isFinite(requested)) return null;
   const currentId = await resolveLastAvailableLessonId(
     Math.min(32, Math.max(1, requested)),
-    'en',
+    lang,
   );
   if (!Number.isFinite(currentId) || currentId < 1 || currentId > 32) return null;
   const nextId = currentId < 32 ? currentId + 1 : null;
@@ -152,9 +155,12 @@ async function runAheadPrefetchOnce(runGeneration: number): Promise<void> {
     return;
   }
 
+  // зачем (владелец 11.11.2026, «Да, включай»): записи есть для en/es/de/fr/it — докачка идёт на языке курса
+  // (раньше — только для английского). Язык без записей пропускается и называет себя в журнале.
   const studyTarget = peekStudyTargetRaw();
-  if (studyTarget !== 'en') {
-    trace('skip', { reason: 'study_target_not_english', studyTarget }); // ранний выход обязан называть причину
+  const lang = courseVoiceLangFromLocale(studyTarget);
+  if (!lang) {
+    trace('skip', { reason: 'study_target_without_recordings', studyTarget }); // ранний выход обязан называть причину
     return;
   }
   if (getNetStatus() === 'offline') {
@@ -164,7 +170,7 @@ async function runAheadPrefetchOnce(runGeneration: number): Promise<void> {
 
   let lessonIds: readonly number[] | null;
   try {
-    lessonIds = await resolveCurrentAndNextLessonIds();
+    lessonIds = await resolveCurrentAndNextLessonIds(lang);
   } catch (error: unknown) {
     // Немой catch запрещён: без причины докачка молча не работала бы месяцами.
     DebugLogger.error(
@@ -181,7 +187,7 @@ async function runAheadPrefetchOnce(runGeneration: number): Promise<void> {
 
   let lessonsInOrder: readonly (readonly string[])[];
   try {
-    lessonsInOrder = await Promise.all(lessonIds.map(lessonPhraseTexts));
+    lessonsInOrder = await Promise.all(lessonIds.map((lessonId) => lessonPhraseTexts(lessonId, lang)));
   } catch (error: unknown) {
     DebugLogger.error(
       'phrase_audio_ahead_prefetch:load_phrases',
@@ -192,8 +198,8 @@ async function runAheadPrefetchOnce(runGeneration: number): Promise<void> {
   }
   if (!isCurrent()) return;
 
-  const plan = planClips(lessonsInOrder);
-  trace('planned', { lessonIds, planned: plan.length });
+  const plan = planClips(lessonsInOrder, lang);
+  trace('planned', { lang, lessonIds, planned: plan.length });
   if (plan.length === 0) return;
 
   let alreadyCached = 0;

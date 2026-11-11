@@ -60,6 +60,7 @@ import { useScreen } from '../hooks/use-screen';
 import { useAudio } from '../hooks/use-audio';
 import { phraseAudioClipStartTimeoutMs } from '../modules/audio/phrase_audio_timing';
 import { prefetchPhraseAudio } from '../hooks/phrase_audio_prefetch';
+import { courseVoiceLangFromLocale } from '../modules/audio/course_voice_key';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import fk from './feedback/feedback_kit';
@@ -2371,9 +2372,12 @@ function LessonScreen() {
   // докачаться, и фраза звучала роботом expo-speech, хотя клип физически есть
   // (см. hooks/phrase_audio_prefetch.ts). Прогреваем пачкой все фразы урока в
   // фоне сразу при заходе — начиная с текущей позиции, чтобы то, что человек
-  // услышит первым, качалось первым. Только для en: клипы озвучены EN-only.
+  // услышит первым, качалось первым.
+  // зачем (владелец 11.11.2026, «Да, включай»): записи есть для en/es/de/fr/it — докачка идёт на языке курса
+  // (раньше — только для английского); язык без записей пропускается.
   useEffect(() => {
-    if (studyTarget !== 'en' || !hasPlayableLessonRows) return;
+    const recordingLang = courseVoiceLangFromLocale(ttsLocaleForStudyTarget(studyTarget));
+    if (!recordingLang || !hasPlayableLessonRows) return;
     const ordered: string[] = [];
     for (let i = 0; i < effectiveTotal; i++) {
       const cell = (cellIndex + i) % effectiveTotal;
@@ -2382,7 +2386,7 @@ function LessonScreen() {
       const line = phraseAnswerDisplayLine(p, studyTarget, lang);
       if (line) ordered.push(line);
     }
-    const handle = prefetchPhraseAudio(ordered);
+    const handle = prefetchPhraseAudio(ordered, { lang: recordingLang });
     return () => handle.cancel();
     // getPhraseForCell зависит от phraseOrderRef (ref) + LESSON_DATA; перечислять ref не нужно.
     // eslint-disable-next-line react-hooks/exhaustive-deps

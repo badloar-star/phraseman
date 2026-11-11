@@ -4,7 +4,7 @@
 // зачем: у Шпиля один таймер на 10 заданий (T8), а не на задание, как у Арены.
 // Кольцо подписано на clock раннера и перерисовывается само, не дёргая весь экран
 // ступени каждые 250 мс. На паузе (показ ошибки / свёрнуто / шторка выхода) дуга
-// серая и под временем подпись «таймер на паузе».
+// серая; видимой подписи нет (владелец 11.11.2026).
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useSyncExternalStore } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -22,12 +22,9 @@ export const SPIRE_RING_R = R;
 const STROKE = 7;
 const CIRC = 2 * Math.PI * R;
 
-// зачем (владелец 11.11.2026: «убери "таймер на паузе" при начале игры»): pausedLabel=false — дуга серая, но подписи нет
-// (подготовка ступени и отсчёт 3-2-1: игра ещё не началась, «пауза» там сбивает с толку). По умолчанию подпись как раньше.
-type Props = Readonly<{ lang: Lang; clock: SpireClock; budgetMs: number; paused: boolean; pausedLabel?: boolean }>;
+type Props = Readonly<{ lang: Lang; clock: SpireClock; budgetMs: number; paused: boolean }>;
 
-function SpireTimerRing({ lang, clock, budgetMs, paused, pausedLabel = true }: Props) {
-  const showLabel = paused && pausedLabel;
+function SpireTimerRing({ lang, clock, budgetMs, paused }: Props) {
   const p = useSpirePalette();
   const elapsed = useSyncExternalStore(clock.subscribe, clock.get, clock.get);
   const left = Math.max(0, budgetMs - elapsed);
@@ -38,7 +35,9 @@ function SpireTimerRing({ lang, clock, budgetMs, paused, pausedLabel = true }: P
       style={s.wrap}
       accessible
       accessibilityRole="timer"
-      accessibilityLabel={spireGameText(lang, 'timeLeft', { t: text })}
+      // зачем (владелец 11.11.2026: «убери "таймер на паузе" везде»): видимой подписи больше нет, пауза видна по серой дуге;
+      // для диктора экрана слова «таймер на паузе» остались в озвучке кольца — серый цвет он не прочитает
+      accessibilityLabel={paused ? `${spireGameText(lang, 'timeLeft', { t: text })}, ${spireGameText(lang, 'timerPaused')}` : spireGameText(lang, 'timeLeft', { t: text })}
       testID="spire-step-ring"
     >
       <Svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`}>
@@ -59,10 +58,6 @@ function SpireTimerRing({ lang, clock, budgetMs, paused, pausedLabel = true }: P
       <View style={s.center} pointerEvents="none">
         <Text style={[s.time, { color: p.text }]}>{text}</Text>
       </View>
-      {/* зачем (spire-gaps-states, координатор 12.10): подпись «таймер на паузе» висит под кольцом абсолютно и места в потоке не занимает — пауза не сдвигает ни кольцо, ни вопрос */}
-      <Text importantForAccessibility={showLabel ? 'auto' : 'no'} style={[s.paused, { color: p.textSecondary, opacity: showLabel ? 1 : 0 }]}>
-        {spireGameText(lang, 'timerPaused')}
-      </Text>
     </View>
   );
 }
@@ -71,7 +66,6 @@ const s = StyleSheet.create({
   wrap: { alignSelf: 'center', alignItems: 'center', width: SIZE },
   center: { position: 'absolute', top: 0, left: 0, width: SIZE, height: SIZE, alignItems: 'center', justifyContent: 'center' },
   time: { fontSize: 30, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  paused: { position: 'absolute', top: SIZE + 8, left: 0, right: 0, textAlign: 'center', fontSize: 13, lineHeight: 17, fontWeight: '600' },
 });
 
 export default memo(SpireTimerRing);

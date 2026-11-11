@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Мягкие предложения Plus и пуши</title>
+<!-- зачем: владелец 11.11 одобрил четыре пункта (вехи серии, недельный обзор и второй диалог, уровни кроме 5-го, пуши 4/7/14) и просил макеты.
+     Карточка — размеры и раскладка из components/SoftContextualUpsellCard.tsx (радиус 16, поля 16, зазор 10, кнопки высотой 44, радиус кнопки 12);
+     кегли — ThemeContext (body 14, caption 13, label 12) × 1,15. Цвета и телефон — kit.css. Тексты «уже в приложении» — дословно из
+     app/lesson_complete.tsx и app/notifications.ts; тексты с пометкой «предложение» новые и ждут одобрения. -->
+<link rel="stylesheet" href="../../../design/v2-app/kit.css">
+<style>
+.wrap2 { max-width: 1180px; }
+.grid { display: flex; flex-wrap: wrap; gap: 28px 24px; align-items: flex-start; }
+.cell { width: 343px; max-width: 100%; }
+.tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: #1C1C1E; color: var(--sec); margin-bottom: 8px; }
+.tag.live { color: #7EF0C8; }
+.where { font-size: 14px; line-height: 20px; color: var(--sec); margin: 0 0 12px; min-height: 40px; }
+/* карточка мягкого предложения — как SoftContextualUpsellCard */
+.su { background: var(--card); border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.su .hd { display: flex; align-items: center; gap: 9px; }
+.su .hd svg { width: 22px; height: 22px; color: #7EF0C8; flex: none; }
+.su .ti { flex: 1; font-size: 16px; line-height: 21px; font-weight: 800; color: var(--text); }
+.su .bd { font-size: 15px; line-height: 20px; color: var(--sec); }
+.su .ac { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; align-items: stretch; }
+.su .no, .su .go { flex: 1 1 auto; min-height: 44px; min-width: 44px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.su .no { gap: 4px; padding: 0 8px; color: var(--sec); }
+.su .go { gap: 7px; padding: 0 16px; border-radius: 12px; background: #7EF0C8; color: #04261D; font-weight: 800; }
+.su .no svg { width: 22px; height: 22px; } .su .go svg { width: 19px; height: 19px; }
+/* пуш — системная карточка уведомления Android */
+.nt { background: #1F1F22; border-radius: 22px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; }
+.nt .ic { width: 22px; height: 22px; border-radius: 50%; background: linear-gradient(135deg, #38E0AA, #7C5CFF); flex: none; margin-top: 1px; }
+.nt .ap { font-size: 12px; line-height: 16px; color: var(--sec); }
+.nt .tt { font-size: 15px; line-height: 20px; font-weight: 600; color: var(--text); margin-top: 2px; }
+.nt .tx { font-size: 14px; line-height: 19px; color: var(--sec); margin-top: 1px; }
+h2.sec { font-size: 22px; font-weight: 700; letter-spacing: -.3px; margin: 56px 0 6px; }
+p.sec { color: var(--sec); font-size: 14px; line-height: 1.5; margin: 0 0 22px; max-width: 70ch; }
+</style>
+</head>
+<body>
+<div class="page wrap2">
+  <h1 class="page-h1">Мягкие предложения Plus и пуши</h1>
+  <p class="page-lead">Карточка одна и та же — меняются только место и текст. «Не сейчас» прячет её на 7 дней, «Посмотреть Plus» открывает окно покупки.</p>
+
+  <h2 class="sec">Карточка</h2>
+  <p class="sec">Первая уже работает в приложении. Остальные три — новые места показа; экраны вокруг карточки здесь не нарисованы.</p>
+  <div class="grid" id="cards"></div>
+
+  <h2 class="sec">Пуши на 4-й, 7-й и 14-й день</h2>
+  <p class="sec">Тексты уже есть в приложении, но пуши не уходят: их ставил в очередь выключенный «Бонус на старт». Предложение — считать дни от установки.</p>
+  <div class="grid" id="pushes"></div>
+
+  <h2 class="sec">Уровни кроме 5-го</h2>
+  <p class="sec">Нового вида нет: на 10-м и 20-м уровне открывается то же окно покупки, что сегодня на 5-м — «Новый уровень! Идём дальше?» из макета «Два пути».</p>
+</div>
+<script>
+const SP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5l1.6 4.4a2 2 0 001.2 1.2l4.4 1.6-4.4 1.6a2 2 0 00-1.2 1.2L10 17.9l-1.6-4.4a2 2 0 00-1.2-1.2L2.8 10.7l4.4-1.6a2 2 0 001.2-1.2L10 3.5z"/><path d="M18.5 14.5l.7 1.9 1.9.7-1.9.7-.7 1.9-.7-1.9-1.9-.7 1.9-.7.7-1.9z"/></svg>';
+const X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg>';
+const AR = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const card = (live, where, title, body) => `<div class="cell"><span class="tag ${live ? 'live' : ''}">${live ? 'Уже в приложении' : 'Предложение'}</span><p class="where">${where}</p>
+  <div class="su"><div class="hd">${SP}<div class="ti">${title}</div></div><div class="bd">${body}</div>
+  <div class="ac"><div class="no">${X}Не сейчас</div><div class="go">Посмотреть Plus${AR}</div></div></div></div>`;
+document.getElementById('cards').innerHTML = [
+  card(true, 'Экран итога после первого урока.', 'Первый урок — готово', 'Дальше курс ведёт от простых фраз до свободного разговора. С Plus открывается весь курс, а с ним и всё остальное: разговоры вслух, тренировки без счётчика и статистика.'),
+  card(false, 'Окно вехи серии: 7, 14 и 30 дней.', '7 дней подряд', 'С Plus серия не сгорит, если пропустишь день: три защиты в месяц.'),
+  card(false, 'Недельный обзор у бесплатного аккаунта.', 'Итог недели на одной странице', 'Что укрепилось, где проседает и с чего начать новую неделю.'),
+  card(false, 'Экран итога после второго диалога с ИИ.', 'Второй диалог за плечами', 'Бесплатно — 30 ответов в месяц. С Plus счётчика нет.'),
+].join('');
+const push = (day, title, text) => `<div class="cell"><span class="tag live">Текст уже в приложении</span><p class="where">${day}</p>
+  <div class="nt"><span class="ic"></span><div><div class="ap">PhraseMan · сейчас</div><div class="tt">${title}</div><div class="tx">${text}</div></div></div></div>`;
+document.getElementById('pushes').innerHTML = [
+  push('4-й день после установки.', 'Plus снимает все стопы', 'С Plus энергия не кончается, а весь курс открыт.'),
+  push('7-й день.', 'Надоело ждать энергию?', 'С Plus она не кончается — занимайся, когда хочется.'),
+  push('14-й день.', 'Две недели вместе!', 'Похоже, у нас всё серьёзно. С Plus откроется весь курс.'),
+].join('');
+</script>
+</body>
+</html>

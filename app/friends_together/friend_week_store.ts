@@ -10,6 +10,7 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { captureAccountGeneration } from '../account_generation';
+import { isSameAccountOwner, markAccountOwner } from '../account_same_owner';
 import { syncToCloud } from '../cloud_sync';
 import { getLocalDayKey } from '../local_date';
 import { statsDailyBreakdownKey } from '../target_storage_keys';
@@ -92,6 +93,7 @@ export async function readMyFriendWeek(): Promise<FriendWeekRecord | null> {
 export async function refreshMyFriendWeek(reason: string): Promise<FriendWeekRecord | null> {
   if (!FRIENDS_TOGETHER_UI_ENABLED) return null;
   const startedAt = Date.now();
+  const owner = markAccountOwner();
   try {
     const [storedRaw, lessonsByDay, activeState, streakNow, floorThisWeek] = await Promise.all([
       AsyncStorage.getItem(FRIEND_WEEK_STORAGE_KEY),
@@ -112,6 +114,12 @@ export async function refreshMyFriendWeek(reason: string): Promise<FriendWeekRec
     });
     const nextRaw = serializeFriendWeekRecord(next);
     if (storedRaw === nextRaw) return next;
+    // зачем (F17, аудит): сводку считали по данным одного игрока — если за время чтения аккаунт сменился, не кладём её новому
+    // (иначе уроки, серия и этаж A ушли бы в облако B, а запись после стирания выглядела бы «недостёртым» аккаунтом)
+    if (!isSameAccountOwner(owner)) {
+      console.log(`${LOG} пропуск записи reason=account_changed trigger=${reason} ${Date.now() - startedAt}мс`); // guard-ok: ранний выход с причиной
+      return null;
+    }
     await AsyncStorage.setItem(FRIEND_WEEK_STORAGE_KEY, nextRaw);
     void syncToCloud();
     console.log( // guard-ok: редкая запись (меняется не чаще занятия) — что ушло в синхронизацию

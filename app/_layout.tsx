@@ -1142,9 +1142,20 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
   // старт больше не зовёт cosmeticAssetCatalogGet (минус вызов функции в сутки).
 
   useEffect(() => {
+    // зачем (F17, аудит, владелец 11.11): очередь окон-объявлений собиралась для одного аккаунта и переписывалась только после
+    // ответа сети для нового — в этом промежутке объявление прошлого игрока могло открыться у следующего. Чистим при смене
+    // владельца (не на каждой фазе того же владельца: иначе очередь мигала бы при обычных переходах фаз).
+    let lastOwner = captureAccountGeneration().stableId;
     const subscription = subscribeAccountGeneration((token) => {
       setAccountGeneration(token);
       setPersonalAdminMessage(null);
+      if (token.stableId !== lastOwner) {
+        lastOwner = token.stableId;
+        setAppMessageModalQueue((current) => {
+          if (current.length > 0) console.log('[APP-MESSAGES] owner_changed', JSON.stringify({ droppedModals: current.length })); // guard-ok: одна строка на смену владельца
+          return current.length > 0 ? [] : current;
+        });
+      }
     });
     return () => subscription.remove();
   }, []);

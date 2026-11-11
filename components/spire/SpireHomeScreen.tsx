@@ -66,7 +66,7 @@ import { spirePeopleCount } from './spire_plurals';
 import { spireGameText } from './spire_game_strings';
 import { SPIRE_FLOOR_COUNT, spireRivalsByFloor, spireTimeLeft } from './spire_tower_model';
 import { useSpireSummit } from './use_spire_summit';
-import { asSpireLang, peekFirstFrameWeek, readCurrentLocalWeek } from './spire_home_week';
+import { asSpireLang, peekFirstFrameWeek, readCurrentLocalWeek, useSpireHomeWeekOwner } from './spire_home_week';
 import { usePeakPerfProbeOnTab } from '../../app/spire/use_peak_perf_probe_on_tab';
 const LOG = '[SPIRE]';
 const DASH = '—';
@@ -158,7 +158,7 @@ export default function SpireHomeScreen() {
     if (typeof __DEV__ === 'undefined' || !__DEV__) return;
     console.log('[SPIRE-RULES] home', JSON.stringify({ unlocked, langLocked: langLock.locked, lang, config: config === null ? 'not_read' : config.enabled === true ? 'enabled' : 'disabled', preview: preview !== null, weekFloor: week ? week.floor : null, tier: week ? week.tier : null, rendered: config === null ? 'spire-loading' : langLock.locked || !unlocked ? 'SpireLockedState' : 'home' })); // guard-ok: dev-журнал, что за шторкой правил
   }, [unlocked, langLock.locked, lang, config, preview, week]);
-  const spireLang = asSpireLang(studyTarget);
+  const spireLang = asSpireLang(studyTarget); const ownerEpoch = useSpireHomeWeekOwner(() => { setWeek(null); setSelected(null); setShowAll(false); }); // зачем (F17): смена аккаунта убирает неделю прошлого игрока
   // зачем (аудит §AUTH-0110, координатор 15.10): при смене изучаемого языка неделя и выбранный этаж старого языка не должны оставаться до конца чтения новой недели.
   const prevSpireLangRef = useRef(spireLang);
   useEffect(() => {
@@ -192,7 +192,7 @@ export default function SpireHomeScreen() {
     if (tourSeen === null) void spireReadTourSeen().then((seen) => { if (alive) setTourSeen(seen); });
     return () => { alive = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [unlocked, spireLang, studyTarget]);
+  }, [unlocked, spireLang, studyTarget, ownerEpoch]);
 
   // Игровая часть: вся сеть — только за воротами (оба замка), см. use_spire_game.ts.
   const realGame = useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek, runtimeActive: spireRuntimeActive }); useSpireLoadReadiness(realGame, preview !== null); // [SPIRE-LOAD] когда пришли люди и что держит «Играть»

@@ -27,6 +27,8 @@ import { parseFriendWeekRecord, type FriendWeekRecord } from './friend_week';
 import { parseFriendPhraseAnswer, type FriendPhraseAnswer } from './friend_phrase';
 import { isPlusProfile } from '../../components/plus/plus_ring_spec';
 import { DebugLogger } from '../debug-logger';
+import { onAccountOwnerChanged } from '../account_owner_change';
+import { isSameAccountOwner, markAccountOwner } from '../account_same_owner';
 import { noteSwallowedHandler, noteSwallowedAs } from '../swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const SNAPSHOT_KEY = 'friends_together_snapshot_v1';
@@ -211,6 +213,15 @@ export function getFriendsTogetherSnapshot(): FriendsTogetherSnapshot | null {
   return _memorySnapshot;
 }
 
+// зачем (F17, аудит, владелец 11.11): снимок «вместе» отдаётся синхронно и без проверки, чей он — после смены аккаунта пары,
+// серии и имена друзей прошлого игрока попадали на Главную, в колокольчик и в шторку пары нового. Память сбрасывается при
+// смене владельца; копия на диске своя на аккаунт (ключ с uid) и остаётся прежнему.
+onAccountOwnerChanged('friends_together_snapshot', () => {
+  console.log('[FRIENDS-TOGETHER] owner_changed', JSON.stringify({ hadSnapshot: _memorySnapshot !== null, pairs: _memorySnapshot ? Object.keys(_memorySnapshot.pairs).length : 0 })); // guard-ok: одна строка на смену владельца
+  _memorySnapshot = null;
+  _memorySnapshotUid = null;
+});
+
 /** Прогреть снапшот из AsyncStorage (вызывать рядом со стартовым прогревом друзей). */
 export async function primeFriendsTogetherSnapshot(): Promise<FriendsTogetherSnapshot | null> {
   const myUid = await getCanonicalUserId();
@@ -266,6 +277,7 @@ export async function refreshFriendsTogether(
   profiles: readonly FriendProfileBatchRecord[],
   options: { forcePairsRefresh?: boolean } = {},
 ): Promise<FriendsTogetherSnapshot> {
+  const ownerMark = markAccountOwner(); // зачем (F17): отметка аккаунта до первого ожидания
   const myUid = await getCanonicalUserId();
   const myActiveDays = await readMyActiveDays();
   const myDayKey = getLocalDayKey();
@@ -306,6 +318,12 @@ export async function refreshFriendsTogether(
   }
 
   const snapshot: FriendsTogetherSnapshot = { updatedAtMs: Date.now(), myDayKey, pairs };
+  if (!isSameAccountOwner(ownerMark)) {
+    // зачем (F17, аудит): пересчёт начат одним игроком, а закончен при другом (свои дни читались отдельно от uid) — такой снимок
+    // не кладём ни в память, ни на диск: он смешал бы данные двух аккаунтов
+    console.log('[FRIENDS-TOGETHER] refresh:skip_store', JSON.stringify({ reason: 'account_changed', pairs: Object.keys(pairs).length })); // guard-ok: ранний выход с причиной
+    return snapshot;
+  }
   _memorySnapshot = snapshot;
   _memorySnapshotUid = myUid;
 

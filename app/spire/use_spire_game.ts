@@ -240,7 +240,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeAct
     }
     if (!ids) { DebugLogger.info(LOG, 'блок no_identity'); setOutcome(null); setStartBlock('no_identity'); return; }
     startingRef.current = true;
-    setStarting(true);
+    setStarting(true); const resetKeyAtStart = prevLangRef.current; // зачем (F17): язык|владелец в момент тапа — чтобы заметить сброс посреди старта
     setStartBlock(null);
     setRejectNotice(false);
     setOutcome(null);
@@ -252,7 +252,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeAct
       console.log('[SPIRE-ROOM-WARM]', JSON.stringify({ event: 'tap_without_room', lang, tier, hasRoom: room !== null && room !== undefined })); // guard-ok: ветка решения
       const load = await spireSyncRoom(gate, { uid: ids.uid, stableId: ids.stableId, lang });
       console.log('[SPIRE-ROOM-WARM]', JSON.stringify({ event: 'tap_sync', status: load.status, reason: load.reason, hasRoom: load.room !== null, tier: load.room?.tier ?? null, ms: Date.now() - syncAt })); // guard-ok: итог добора
-      setRoomLoad((cur) => spireMergeRoomLoad(cur, load, { uid: ids.uid, lang }));
+      if (prevLangRef.current !== resetKeyAtStart) { DebugLogger.info(LOG, `game: старт отменён — сброс ${resetKeyAtStart} → ${prevLangRef.current} во время добора комнаты`); startingRef.current = false; setStarting(false); return; } setRoomLoad((cur) => spireMergeRoomLoad(cur, load, { uid: ids.uid, lang })); // зачем (F17, аудит): сменился язык/аккаунт — ступень прошлого игрока не открываем
       startTier = load.room?.tier ?? weekRef.current?.tier ?? null;
       if (startTier === null || !load.room) {
         startingRef.current = false;
@@ -314,7 +314,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeAct
         prepIdRef.current = null;
         startingRef.current = false;
         setStarting(false);
-      }
+      } else if (prepIdRef.current === null && prevLangRef.current !== resetKeyAtStart) { DebugLogger.info(LOG, `game: подготовка ${prepId} осиротела (сброс ${resetKeyAtStart} → ${prevLangRef.current}) — снимаем замок старта`); startingRef.current = false; setStarting(false); } // зачем (F17, аудит): сброс языка/аккаунта обнулил prepIdRef посреди подготовки — замок никто не снимал, «Играть» у следующего игрока оставалась заблокированной
     }
   }, [gate, lang, config, session, ids, tier, room]);
 

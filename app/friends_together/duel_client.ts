@@ -16,6 +16,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 
+import { isSameAccountOwner, markAccountOwner, type AccountOwnerMark } from '../account_same_owner';
 import { maskUid } from '../diagnostic_mask';
 import { getCanonicalUserId } from '../user_id_policy';
 import { prepareTogetherSender } from './sender_identity';
@@ -158,11 +159,16 @@ type ChallengeResponse = { duelId?: unknown; expiresAtMs?: unknown };
 type MoveResponse = { outcome?: unknown; mine?: unknown; theirs?: unknown };
 
 /** Только сеть: один запрос вызова. Повтор — тем же requestId. */
-async function callChallenge(entry: Extract<PendingDuel, { kind: 'challenge' }>): Promise<DuelChallengeResult> {
+async function callChallenge(entry: Extract<PendingDuel, { kind: 'challenge' }>, owner: AccountOwnerMark): Promise<DuelChallengeResult> {
   const sender = await prepareTogetherSender();
   if (!sender) {
     log(`challenge:skip request=${entry.requestId} reason=no_sender`);
     return { ok: false, reason: 'no_sender' };
+  }
+  if (!isSameAccountOwner(owner)) {
+    // зачем (F17, аудит): отправителя собрали уже после ожидания — если аккаунт сменился, действие прошлого игрока не уходит от имени нового; запись остаётся в очереди прежнего
+    log(`challenge:skip request=${entry.requestId} reason=account_changed friend=${maskUid(entry.friendUid)}`);
+    return { ok: false, reason: 'network' };
   }
   const payload = {
     stableId: sender.stableId,
@@ -205,11 +211,16 @@ function parseMoveResponse(data: MoveResponse): Extract<DuelMoveResult, { ok: tr
 }
 
 /** Только сеть: один запрос хода друга. */
-async function callMove(entry: Extract<PendingDuel, { kind: 'move' }>): Promise<DuelMoveResult> {
+async function callMove(entry: Extract<PendingDuel, { kind: 'move' }>, owner: AccountOwnerMark): Promise<DuelMoveResult> {
   const sender = await prepareTogetherSender();
   if (!sender) {
     log(`move:skip request=${entry.requestId} reason=no_sender`);
     return { ok: false, reason: 'no_sender' };
+  }
+  if (!isSameAccountOwner(owner)) {
+    // зачем (F17, аудит): отправителя собрали уже после ожидания — если аккаунт сменился, действие прошлого игрока не уходит от имени нового; запись остаётся в очереди прежнего
+    log(`move:skip request=${entry.requestId} reason=account_changed duel=${maskUid(entry.duelId)}`);
+    return { ok: false, reason: 'network' };
   }
   const payload = {
     stableId: sender.stableId,
@@ -243,9 +254,10 @@ export async function submitDuelChallenge(input: Readonly<{ friendUid: string; p
     log(`challenge:refuse reason=invalid friend=${input.friendUid ? maskUid(input.friendUid) : 'none'} ids=${Array.isArray(input.phraseIds) ? input.phraseIds.length : 'none'} move_ok=${isValidDuelMove(input.move)}`);
     return { ok: false, reason: 'invalid' };
   }
+  const owner = markAccountOwner();
   const entry: PendingDuel = { kind: 'challenge', friendUid: input.friendUid, phraseIds: [...input.phraseIds], move: input.move, requestId: makeDuelRequestId(), createdAtMs: Date.now() };
   await rememberPending(entry);
-  const result = await callChallenge(entry);
+  const result = await callChallenge(entry, owner);
   if (result.ok || !keepForRetry(result.reason)) await forgetPending(entry.requestId);
   return result;
 }
@@ -256,15 +268,21 @@ export async function submitDuelMove(input: Readonly<{ duelId: string; move: Due
     log(`move:refuse reason=invalid duel=${input.duelId ? maskUid(input.duelId) : 'none'} move_ok=${isValidDuelMove(input.move)}`);
     return { ok: false, reason: 'invalid' };
   }
+  const owner = markAccountOwner();
   const entry: PendingDuel = { kind: 'move', duelId: input.duelId, move: input.move, requestId: makeDuelRequestId(), createdAtMs: Date.now() };
   await rememberPending(entry);
-  const result = await callMove(entry);
+  const result = await callMove(entry, owner);
   if (result.ok || !keepForRetry(result.reason)) await forgetPending(entry.requestId);
   return result;
 }
 
 /** Только сеть: один запрос отказа. Повтор — тем же requestId: сервер узнаёт уже принятый отказ и отвечает ok. */
-async function callDecline(entry: Extract<PendingDuel, { kind: 'decline' }>): Promise<DuelDeclineResult> {
+async function callDecline(entry: Extract<PendingDuel, { kind: 'decline' }>, owner: AccountOwnerMark): Promise<DuelDeclineResult> {
+  if (!isSameAccountOwner(owner)) {
+    // зачем (F17, аудит): отправителя собрали уже после ожидания — если аккаунт сменился, действие прошлого игрока не уходит от имени нового; запись остаётся в очереди прежнего
+    log(`decline:skip request=${entry.requestId} reason=account_changed duel=${maskUid(entry.duelId)}`);
+    return { ok: false, reason: 'network' };
+  }
   const startedAt = Date.now();
   try {
     await httpsCallable<{ duelId: string; requestId: string }, unknown>(getFunctions(getApp(), REGION), 'friendsDuelDecline')({
@@ -290,31 +308,42 @@ export async function submitDuelDecline(duelId: string): Promise<DuelDeclineResu
     log('decline:refuse reason=invalid duel=none');
     return { ok: false, reason: 'invalid' };
   }
+  const owner = markAccountOwner();
   const entry: PendingDuel = { kind: 'decline', duelId, requestId: makeDuelRequestId(), createdAtMs: Date.now() };
   await rememberPending(entry);
-  const result = await callDecline(entry);
+  const result = await callDecline(entry, owner);
   if (result.ok || !keepForRetry(result.reason)) await forgetPending(entry.requestId);
   else log(`decline:queued request=${entry.requestId} duel=${maskUid(duelId)} reason=${result.reason} → дошлём при следующем заходе во «Друзей»`);
   return result;
 }
 
-async function sendPending(entry: PendingDuel): Promise<DuelChallengeResult | DuelMoveResult | DuelDeclineResult> {
-  if (entry.kind === 'challenge') return callChallenge(entry);
-  if (entry.kind === 'move') return callMove(entry);
-  return callDecline(entry);
+async function sendPending(entry: PendingDuel, owner: AccountOwnerMark): Promise<DuelChallengeResult | DuelMoveResult | DuelDeclineResult> {
+  if (entry.kind === 'challenge') return callChallenge(entry, owner);
+  if (entry.kind === 'move') return callMove(entry, owner);
+  return callDecline(entry, owner);
 }
 
 /** Дослать отложенные ходы и отказы (при входе во «Друзей»). По одному запросу на запись, без повторов внутри одного захода. */
 export async function flushPendingDuels(): Promise<Readonly<{ sent: number; dropped: number; left: number }>> {
+  // зачем (F17, аудит): очередь прочитана для одного аккаунта — если он сменился посреди досылки, остаток не уходит от имени нового
+  const owner = markAccountOwner();
   const pending = await readPendingDuels();
   if (pending.length === 0) return { sent: 0, dropped: 0, left: 0 };
   let sent = 0;
   let dropped = 0;
   for (const entry of pending) {
-    const result = await sendPending(entry);
+    if (!isSameAccountOwner(owner)) {
+      log(`pending:flush stop reason=account_changed total=${pending.length} sent=${sent} dropped=${dropped}`);
+      break;
+    }
+    const result = await sendPending(entry, owner);
     if (!result.ok && keepForRetry(result.reason)) continue;
     if (result.ok) sent += 1;
     else dropped += 1;
+    if (!isSameAccountOwner(owner)) {
+      log(`pending:flush stop reason=account_changed_after_send request=${entry.requestId} → запись прежнего аккаунта не трогаем`);
+      break;
+    }
     await forgetPending(entry.requestId);
   }
   const left = pending.length - sent - dropped;

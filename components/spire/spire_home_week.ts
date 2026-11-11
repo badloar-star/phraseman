@@ -4,6 +4,9 @@
 // зачем (Авторизация №11, координатор 13.10): сторож «каждый файл Шпиля ≤ 400 строк» — экран разросся после нарядов башен и пика недели; функции чтения недели
 // вынесены без изменений поведения: те же ветки и те же логи [SPIRE] (нет uid, нет недели, неделя устарела, неделя ок).
 // ═══════════════════════════════════════════════════════════════════════════
+import { useEffect, useRef } from 'react';
+
+import { useSpireOwnerEpoch } from '../../app/spire/spire_owner_epoch';
 import { peekSpireWeekLocal, spireReadWeekLocal } from '../../app/spire_report_client';
 import { DebugLogger } from '../../app/debug-logger';
 import { getCanonicalUserId } from '../../app/user_id_policy';
@@ -27,6 +30,27 @@ export function asSpireLang(value: unknown): SpireLang | null {
 export function peekFirstFrameWeek(studyTarget: unknown): SpireWeekLocal | null {
   const lang = asSpireLang(studyTarget);
   return lang ? peekSpireWeekLocal(lang) : null;
+}
+
+/**
+ * Смена владельца (выход, A → B) на живом экране Пика: неделя, выбранный этаж и «все участники» прошлого игрока убираются сразу.
+ * Возвращает эпоху владельца — экран ставит её в зависимости чтения недели, и неделя нового игрока перечитывается.
+ * зачем (F17, аудит, владелец 11.11): экран Пика не перемонтируется при смене аккаунта, а чтение недели зависело только от языка.
+ * При том же языке обучения B видел этаж, ступени и место A, а «Играть» открывала ступень с номером A. Вынесено сюда из-за
+ * сторожа «экран Пика ≤ 400 строк».
+ */
+export function useSpireHomeWeekOwner(reset: () => void): number {
+  const ownerEpoch = useSpireOwnerEpoch();
+  const seenRef = useRef(ownerEpoch);
+  const resetRef = useRef(reset);
+  resetRef.current = reset;
+  useEffect(() => {
+    if (seenRef.current === ownerEpoch) return; // guard-ok: владелец тот же — сбрасывать нечего
+    console.log('[SPIRE-TARGET] home: владелец', JSON.stringify({ from: seenRef.current, to: ownerEpoch, reset: 'week+selected+showAll' })); // guard-ok: трассировка сброса при смене владельца
+    seenRef.current = ownerEpoch;
+    resetRef.current();
+  }, [ownerEpoch]);
+  return ownerEpoch;
 }
 
 /** Локальная неделя текущей ISO-недели или null (чужая/старая неделя — не показываем как свою). */

@@ -15,7 +15,9 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { StyleSheet, Text, View, type LayoutChangeEvent } from 'react-native';
 
+import { onAccountOwnerChanged } from '../../../../app/account_owner_change';
 import { usePersonalProgressSnapshot } from '../../../../app/personal_progress_store';
+import { useActiveAccountOwner } from '../../../../hooks/use_active_account_owner';
 import type { Lang } from '../../../../constants/i18n';
 import { lessonNameForStudyTarget } from '../../../../app/lesson_titles_for_study_target'; // зачем: название урока 1 для героя новичка (макет rev6-home-free-0)
 import type { StudyTargetLang } from '../../../../app/study_target_lang_dev';
@@ -73,6 +75,8 @@ const CHIP_ICON: Readonly<Record<HomeSceneChipKind, HomeSceneChip['icon']>> = {
 
 /** День, когда «серия прервалась» уже показали (первый вход за день; в памяти процесса). */
 let streakLostShownDay: string | null = null;
+// зачем (F17, аудит, владелец 11.11): отметка «уже показали сегодня» — прошлого игрока; у нового сцена «серия прервалась» не глушится
+onAccountOwnerChanged('home_scene_streak_lost_day', () => { streakLostShownDay = null; });
 const dayKeyOf = (d: Date): string => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 
 /** Место продолжения — то же, что показывала карточка «Продолжить». */
@@ -162,6 +166,8 @@ export default function HomeScene(p: Props) {
   // зачем (таблица: «серия прервалась» — только в первый вход за день): снимок «первый ли вход сегодня» берётся при монтировании,
   // отметка ставится после показа — повторный монтаж в тот же день покажет «Продолжить»
   const firstEntryToday = useRef(streakLostShownDay !== todayKey);
+  const sceneOwner = useActiveAccountOwner(); const sceneOwnerRef = useRef(sceneOwner); // зачем (F17): Главная не перемонтируется — для нового игрока «первый вход за день» считается заново
+  if (sceneOwnerRef.current !== sceneOwner) { sceneOwnerRef.current = sceneOwner; firstEntryToday.current = streakLostShownDay !== todayKey; }
   const streakLostToday = lostCandidate && firstEntryToday.current;
   useEffect(() => { if (streakLostToday) streakLostShownDay = todayKey; }, [streakLostToday, todayKey]);
   const decision = useMemo(() => pickHomeSceneState(devSetup

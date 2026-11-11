@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState } from 'react-native';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
+import { isSameAccountOwner, markAccountOwner } from '../account_same_owner';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getLocalDayKey } from '../local_date';
 import { prepareTogetherSender, type TogetherSenderIdentity } from './sender_identity';
@@ -247,6 +248,8 @@ export async function nudgeFriend(friendUid: string): Promise<NudgeResult> {
     return { ok: false, reason: 'network' };
   }
 
+  // зачем (F17, аудит): отметка аккаунта — в момент тапа, до первого ожидания
+  const tapOwner = markAccountOwner();
   inFlight.add(uid);
   try {
     const owner = await ensureMemoryFresh();
@@ -278,6 +281,11 @@ export async function nudgeFriend(friendUid: string): Promise<NudgeResult> {
     const sender = await prepareTogetherSender();
     if (!sender) {
       log(`nudge:skip reason=no_sender_identity friend=${maskUid(uid)}`);
+      return { ok: false, reason: 'network' };
+    }
+    // зачем (F17, аудит): тап был у одного игрока, отправитель собран уже у другого (смена аккаунта в ожидании) — зов не уходит от чужого имени
+    if (!isSameAccountOwner(tapOwner) || (owner && sender.stableId !== owner)) {
+      log(`nudge:skip reason=account_changed friend=${maskUid(uid)} sameGeneration=${isSameAccountOwner(tapOwner)} senderIsOwner=${!owner || sender.stableId === owner}`);
       return { ok: false, reason: 'network' };
     }
 

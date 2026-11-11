@@ -1547,6 +1547,8 @@ export default function FriendsTabScreen() {
   const mountedRef = useRef(true);
   /** Был непустой список в SWR-кеше для текущего uid — блокируем пустой локальный onSnapshot Firestore. */
   const swrHadFriendsRef = useRef(false);
+  /** Чей список сейчас в состоянии вкладки (канонический uid); null — ещё не определяли. */
+  const friendsListOwnerRef = useRef<string | null>(null);
   // зачем (аудит Optimistic UI, 12.10): заявки «в пути» — снимки подписок не возвращают принятую/отклонённую заявку и не
   // убирают только что добавленного друга, пока сервер не ответил (см. app/friends_pending_ops.ts).
   const pendingFriendOpsRef = useRef(createPendingFriendOps<FriendEntry, FriendRequestEntry>());
@@ -1762,7 +1764,23 @@ export default function FriendsTabScreen() {
         setRequests([]);
         setProfiles({});
         swrHadFriendsRef.current = false;
+      } else if (canonical && friendsListOwnerRef.current !== null && friendsListOwnerRef.current !== canonical) {
+        // зачем (F17, аудит, владелец 11.11): вкладка не перемонтируется при смене аккаунта. Прогретый снимок после выхода пуст
+        // (w === null), и ветка выше не срабатывала — список, заявки и пары прошлого игрока оставались до ответа сервера,
+        // а без сети — насовсем. Сбрасываем всё, что принадлежало прошлому владельцу; список считается «ещё не известен».
+        console.log('[FRIENDS-LIST] owner_changed', JSON.stringify({ from: friendTag(friendsListOwnerRef.current), to: friendTag(canonical), droppedFriends: friends.length, droppedRequests: requests.length })); // guard-ok: одна строка на смену владельца
+        setFriends([]);
+        setRequests([]);
+        setProfiles({});
+        swrHadFriendsRef.current = false;
+        setFriendsListSettled(false);
+        setTogetherSnapshot(null);
+        setFriendEvents([]);
+        setNudgeVerdicts({});
+        setOptimisticNudgedUids(new Set());
+        void primeFriendsTogetherSnapshot().then((snap) => { if (!cancelled && snap) setTogetherSnapshot(snap); });
       }
+      if (canonical) friendsListOwnerRef.current = canonical;
 
       unsubFriends = friendsAccountStore.subscribe((data, meta) => {
         if (cancelled) return;
@@ -1819,6 +1837,12 @@ export default function FriendsTabScreen() {
         try {
           const uid = await getCanonicalUserId();
           if (!uid) return;
+          // зачем (F17, аудит): список в состоянии мог быть ещё прошлого игрока (смена аккаунта, заявки нового уже пришли) —
+          // тогда он записался бы в кэш нового как его собственный и пережил бы перезапуск. Пишем только свой список.
+          if (friendsListOwnerRef.current !== uid) {
+            console.log('[FRIENDS-LIST] cache_write_skip', JSON.stringify({ reason: friendsListOwnerRef.current === null ? 'owner_not_resolved_yet' : 'list_of_other_account', friends: friends.length, requests: requests.length })); // guard-ok: ранний выход с причиной
+            return;
+          }
           // Сохраняем только friends+requests — профили хранятся в отдельном кеше с TTL.
           await AsyncStorage.setItem(
             FRIENDS_TAB_SWR_CACHE_KEY,

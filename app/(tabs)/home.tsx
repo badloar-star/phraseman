@@ -1333,6 +1333,24 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const [vipCelebrationMarker, setVipCelebrationMarker] = useState<string | null>(null);
     const vipCelebrationQueuedMarkerRef = useRef<string | null>(null);
     const vipCelebrationOverlayVisible = useOverlayVisible('vipCelebration', homeRuntimeActive && vipCelebrationVisible);
+    // зачем (F17, аудит, владелец 11.11): Главная не перемонтируется при смене аккаунта. Поздравление Plus/VIP прошлого игрока,
+    // стоявшее в очереди за другим окном, открывалось у нового, а закрытие записывало «показано» уже ему; взведённый гард
+    // (celebrationQueuedRef) не давал поставить в очередь настоящее поздравление нового. Сбрасываем при смене владельца.
+    useEffect(() => {
+        let lastOwner = captureAccountGeneration().stableId;
+        const subscription = subscribeAccountGeneration((token) => {
+            if (token.stableId === lastOwner) return; // guard-ok: фаза того же владельца — поздравление не трогаем
+            lastOwner = token.stableId;
+            console.log('[CELEBRATION] owner_changed', JSON.stringify({ droppedPlusQueued: celebrationQueuedRef.current, droppedVipQueued: vipCelebrationQueuedMarkerRef.current !== null })); // guard-ok: одна строка на смену владельца
+            celebrationQueuedRef.current = false;
+            vipCelebrationQueuedMarkerRef.current = null;
+            setCelebrationVisible(false);
+            setCelebrationMarker(null);
+            setVipCelebrationVisible(false);
+            setVipCelebrationMarker(null);
+        });
+        return () => subscription.remove();
+    }, []);
     const premiumCelebrationMounted = useMountedAfterFirstOpen(celebrationOverlayVisible);
     const vipCelebrationMounted = useMountedAfterFirstOpen(vipCelebrationOverlayVisible);
     const profileModalMounted = useMountedAfterFirstOpen(homeProfilePlayer !== null);

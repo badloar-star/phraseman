@@ -115,6 +115,7 @@ import SessionAttemptsHud from '../components/session_attempts/SessionAttemptsHu
 import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
+import { noteSkillAction } from '../modules/skills/skill_store';
 import { practiceCoinsAllowedForDeckKeys } from './flashcards/dictionary_training_deck';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
@@ -1023,6 +1024,8 @@ export default function FlashcardsSpeakingSession() {
       // раз за сессию, сколько бы попыток на неё ни ушло до зачёта.
       if (attempt.passed && failedCard) {
         const awarded = practiceRunes.onCorrectAnswer(failedCard.id);
+        // зачем (D207, владелец 11.11): очки навыков — по таблице modules/skills; от монет не зависят, экран не меняют
+        noteSkillAction({ action: 'speaking_clean', itemKey: failedCard.id });
         setLastAward(awarded > 0 ? awarded : 0);
         if (awarded > 0) runeFlight.fly(awarded);
       } else {

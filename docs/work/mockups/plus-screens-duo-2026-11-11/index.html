@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вкладка Plus и «Моя подписка» — в стиле пейвола «Два пути»</title>
+<!-- зачем: владелец 11.11 — «раздел на табе с алмазиком переделать под новый дизайн пейволов» и «раздел плюс в настройках,
+     когда Plus или Ultra подключён, — фулл очень красивый дизайн». Язык оформления — ровно из утверждённого
+     ../paywall-sell-2026-11-11/variant-a.html: цвета уровней, знак (шестиугольник ✦ / круг ◆), свечение, кнопки-тарифы, блик, кривая.
+     Тексты — дословно из приложения (ru): вкладка — components/plus-tab/*, подписка — app/manage_subscription.tsx. Цены — пример. -->
+<style>
+@font-face{font-family:Inter;font-weight:400;src:url(../home-luxe-2026-11-11/fonts/Inter-Regular.ttf)}
+@font-face{font-family:Inter;font-weight:600;src:url(../home-luxe-2026-11-11/fonts/Inter-SemiBold.ttf)}
+@font-face{font-family:Inter;font-weight:700;src:url(../home-luxe-2026-11-11/fonts/Inter-Bold.ttf)}
+@font-face{font-family:Inter;font-weight:900;src:url(../home-luxe-2026-11-11/fonts/Inter-Black.ttf)}
+@property --c1{syntax:'<color>';inherits:true;initial-value:#ff7a59}
+@property --c2{syntax:'<color>';inherits:true;initial-value:#ff5f8f}
+@property --c3{syntax:'<color>';inherits:true;initial-value:#ff4fd0}
+:root{--page:#08070c;--bg:#0c0b12;--sheet:#15131d;--tile:#1c1926;--fg:#f5f1f9;--mut:#aca4ba;--line:rgba(255,255,255,.08);--ease:cubic-bezier(.23,1,.32,1)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--page);color:var(--fg);font:400 15px/1.45 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:40px 16px 80px}
+button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;text-align:left}
+.wrap{max-width:1250px;margin:0 auto}
+h1{font-size:34px;line-height:1.12;font-weight:900;letter-spacing:-.025em;text-wrap:balance}
+h2{font-size:22px;font-weight:700;letter-spacing:-.015em;margin:64px 0 4px}
+.lead{color:var(--mut);margin-top:12px;max-width:640px;text-wrap:pretty}
+.gh{color:var(--mut);font-size:14px;margin-bottom:22px;max-width:640px}
+.grid{display:flex;flex-wrap:wrap;gap:34px 28px}
+.cell{width:375px;max-width:100%}
+.cell code{display:block;font:600 12px/1.3 ui-monospace,Consolas,monospace;color:var(--mut);margin-bottom:10px}
+
+/* ── телефон; цвет уровня — три переменные, перетекают при смене Ultra ↔ Plus (как в пейволе) ── */
+.phone{--c1:#ff7a59;--c2:#ff5f8f;--c3:#ff4fd0;--ink:#2b0717;position:relative;width:375px;max-width:100%;height:780px;border-radius:44px;overflow:hidden;background:var(--bg);box-shadow:0 0 0 1px rgba(255,255,255,.07),0 30px 80px -20px #000;transition:--c1 .4s var(--ease),--c2 .4s var(--ease),--c3 .4s var(--ease)}
+.phone[data-t=plus]{--c1:#a99bff;--c2:#8e7cff;--c3:#5f90db;--ink:#0f0a33}
+.scr{position:absolute;inset:0;overflow-y:auto;scrollbar-width:none}
+.scr::-webkit-scrollbar{display:none}
+.glow{background:radial-gradient(120% 420px at 50% 0,color-mix(in srgb,var(--c2) 26%,transparent),transparent 70%),var(--bg)}
+.hero{position:relative;width:84px;height:84px}
+.mark{position:absolute;inset:0;display:grid;place-items:center;font-size:40px;color:var(--ink);background:linear-gradient(135deg,var(--c1),var(--c2),var(--c3));filter:drop-shadow(0 12px 30px color-mix(in srgb,var(--c2) 55%,transparent));transition:opacity .28s var(--ease),transform .34s var(--ease),filter .28s}
+.mark.u{clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+.mark.p{border-radius:50%;font-size:34px}
+.phone[data-t=ultra] .mark.p,.phone[data-t=plus] .mark.u{opacity:0;transform:scale(.8) rotate(-30deg);filter:blur(6px)}
+.hl{font-size:33px;line-height:1.1;font-weight:900;letter-spacing:-.03em;text-wrap:balance}
+.sub{color:var(--mut);font-size:15px;margin-top:10px;text-wrap:pretty}
+[data-t=ultra] .op,[data-t=plus] .ou{display:none}
+
+/* кнопки-тарифы — из пейвола без изменений */
+.buys{display:grid;gap:10px}
+.buy{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:74px;padding:14px 18px;border-radius:22px;overflow:hidden;background:var(--tile);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);transition:transform .15s var(--ease),background-color .3s,box-shadow .3s,color .3s}
+.buy:active{transform:scale(.97)}
+.buy b{display:block;font-weight:700;font-size:17px;letter-spacing:-.01em}
+.buy i{display:block;font-style:normal;font-size:13px;opacity:.86;margin-top:2px}
+.buy .r{text-align:right;flex:none;font-variant-numeric:tabular-nums}
+.buy .r b{font-size:21px;font-weight:900}
+.buy[data-p=ultra]:not(.sel) .n{color:#ffb3c8}.buy[data-p=plus]:not(.sel) .n{color:#cfc7ff}
+.sel,.cta{color:var(--ink);background:linear-gradient(120deg,var(--c1),var(--c2) 48%,var(--c3));box-shadow:0 14px 34px -12px color-mix(in srgb,var(--c2) 70%,transparent),inset 0 1px 0 rgba(255,255,255,.35)}
+.sheen::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.38) 50%,transparent 65%);transform:translateX(-120%);animation:sheen 4.5s var(--ease) 1.2s infinite}
+@keyframes sheen{0%{transform:translateX(-120%)}28%,100%{transform:translateX(120%)}}
+.save{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:99px;background:rgba(255,95,143,.2);color:#ffc2d3;font-size:12px;font-weight:700;vertical-align:2px}
+.sel .save{background:var(--ink);color:#ffd9e4}
+.cta{position:relative;overflow:hidden;display:grid;place-items:center;width:100%;min-height:56px;margin-top:12px;border-radius:18px;font-weight:700;font-size:16px;transition:transform .15s var(--ease)}
+.cta:active{transform:scale(.97)}
+.fine{color:var(--mut);font-size:13px;text-align:center;margin-top:10px}
+.fine+.fine{margin-top:2px}
+
+/* ── A. вкладка Plus ── */
+.tabtop{padding:64px 22px 22px}
+.tabtop .hero{margin-bottom:22px}
+.tabtop .buys{margin-top:24px}
+.more{padding:6px 22px 120px;background:var(--sheet);border-radius:28px 28px 0 0}
+.more h3{font-size:20px;font-weight:700;letter-spacing:-.015em;margin:24px 0 12px}
+.cmp{display:grid;grid-template-columns:1fr 88px 96px;font-size:14px}
+.cmp>*{padding:11px 0;border-top:1px solid var(--line);display:flex;align-items:center}
+.cmp>.h{border:0;padding:0 0 6px;color:var(--mut);font-size:13px;font-weight:600}
+.cmp>:nth-child(3n+2){justify-content:center;color:var(--mut);text-align:center}
+.cmp>:nth-child(3n){justify-content:center;font-weight:700;text-align:center;background:color-mix(in srgb,var(--c2) 12%,transparent)}
+.cmp>.h:nth-child(3){color:var(--c1);border-radius:12px 12px 0 0;padding-top:8px}
+.cmp>:last-child{border-radius:0 0 12px 12px}
+.foot{display:flex;flex-wrap:wrap;justify-content:center;gap:0 18px;margin-top:18px;color:var(--mut);font-size:13px}
+.foot span{padding:12px 0}
+.bar{position:absolute;left:14px;right:14px;bottom:14px;z-index:6;height:64px;border-radius:26px;display:flex;align-items:center;justify-content:space-around;background:rgba(28,25,38,.82);backdrop-filter:blur(18px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 18px 40px -16px #000}
+.bar span{width:44px;height:44px;display:grid;place-items:center;color:var(--mut);font-size:20px;opacity:.7}
+.bar .on{opacity:1;color:var(--ink);font-size:17px;border-radius:15px;background:linear-gradient(135deg,var(--c1),var(--c2),var(--c3));box-shadow:0 8px 20px -8px var(--c2)}
+
+/* ── B. «Моя подписка» ── */
+.back{position:absolute;z-index:5;top:18px;left:18px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.09);display:grid;place-items:center;font-size:17px}
+.sbtop{padding:76px 22px 0}
+.sbtop .hero{margin-bottom:22px}
+.live{display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--c1);font-size:13px;font-weight:700;letter-spacing:.02em}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c1);box-shadow:0 0 0 4px color-mix(in srgb,var(--c2) 26%,transparent)}
+.pass{position:relative;overflow:hidden;margin-top:24px;padding:18px 20px 20px;border-radius:26px}
+.pass .k{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:700}
+.pass .k span:last-child{font-weight:600;opacity:.8}
+.pass .d{font-size:27px;line-height:1.15;font-weight:900;letter-spacing:-.025em;margin-top:26px;font-variant-numeric:tabular-nums}
+.pass .l{font-size:13px;opacity:.82;margin-top:3px}
+.inc{margin:14px 0 0;padding:6px 18px;background:var(--sheet);border-radius:24px}
+.sec{font-size:20px;font-weight:700;letter-spacing:-.015em;margin:30px 0 0}
+.row{display:flex;align-items:center;gap:13px;min-height:54px;border-top:1px solid var(--line);font-size:15px}
+.row:first-child{border:0}
+.row svg{flex:none;width:22px;height:22px;stroke:var(--c1);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.row span{flex:1}
+.row em{font-style:normal;color:var(--c1);font-weight:700}
+.up{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;width:100%;margin-top:14px;padding:16px 18px;border-radius:22px;background:radial-gradient(140% 160% at 0 0,rgba(255,95,143,.26),transparent 62%),var(--tile);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);transition:transform .15s var(--ease)}
+.up:active{transform:scale(.97)}
+.up .hex{flex:none;width:40px;height:40px;display:grid;place-items:center;font-size:19px;color:#2b0717;background:linear-gradient(135deg,#ff7a59,#ff5f8f,#ff4fd0);clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)}
+.up b{display:block;font-size:16px;font-weight:700}
+.up i{display:block;font-style:normal;font-size:13px;color:#ffb3c8;margin-top:2px}
+.up .go{margin-left:auto;color:#ffb3c8;font-size:20px}
+.quiet{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:54px;margin-top:10px;padding:0 18px;border-radius:18px;background:var(--tile);font-weight:600;transition:transform .15s var(--ease)}
+.quiet:active{transform:scale(.97)}
+.quiet span:last-child{color:var(--mut)}
+.leave{display:block;width:100%;min-height:48px;margin-top:4px;text-align:center;color:var(--mut);font-size:14px;font-weight:600}
+.sbend{padding:0 22px 34px}
+@media (prefers-reduced-motion:reduce){*,*::after,*::before{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Вкладка Plus и «Моя подписка» — в стиле пейвола «Два пути»</h1>
+  <p class="lead">Тот же знак, то же свечение и те же кнопки-тарифы, что в новом окне оплаты. Тексты взяты из приложения как есть, цены — пример.</p>
+
+  <h2>A. Вкладка с алмазом в нижней панели</h2>
+  <div class="gh">Видна, пока в панели четыре раздела и подписки нет. Нажми на «Plus · месяц» — знак, свечение, кнопка и колонка сравнения перетекают в фиолетовый; на «Ultra · год» — обратно в коралловый.</div>
+  <div class="grid"><div class="cell"><code>plus-tab · без подписки</code><div id="tab"></div></div></div>
+
+  <h2>B. Настройки → подписка подключена</h2>
+  <div class="gh">Экран в цвете своего уровня: Ultra — коралловый шестиугольник, Plus — фиолетовый круг. У месячного Plus есть карточка перехода на год; у разовой покупки нет даты списания и отмены.</div>
+  <div class="grid" id="subs"></div>
+</div>
+
+<script>
+const ROWS = [['Уроки курса','Уроки 1–3','Все 32'],['Языки курса','Один','Все'],['Энергия','5, +1 за 30 мин','Не тратится'],['Говорить вслух','3 в день','Без лимита'],['Работа над ошибками','1 раз в день','Без лимита'],['Разбор ошибки ИИ','3 в день','Каждая']];
+const I = {
+  energy:'<path d="M13 3 5 13h6l-1 8 8-10h-6z"/>',
+  talk:'<path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H11l-5 4v-4.2A2.5 2.5 0 0 1 4 13.5z"/>',
+  mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/>',
+  save:'<path d="M7 4h10v16l-5-4-5 4z"/>',
+  snow:'<path d="M12 3v18M4.2 7.5l15.6 9M19.8 7.5l-15.6 9"/>',
+  stats:'<path d="M4 17l5-5 4 3 7-8M15 7h5v5"/>',
+  cards:'<path d="M12 4 3 9l9 5 9-5zM3 14l9 5 9-5"/>',
+};
+const INCLUDED = [['energy','Энергия не расходуется'],['talk','Свободный разговор'],['mic','Произношение без дневного лимита'],['save','Сохранённые фразы без ограничения'],['snow','3 заморозки серии в месяц'],['stats','Подробная статистика занятий'],['cards','Тренировки с карточками без ограничений']];
+
+document.getElementById('tab').innerHTML = `<div class="phone" data-t="ultra"><div class="scr">
+  <div class="tabtop glow">
+    <div class="hero"><div class="mark u">✦</div><div class="mark p">◆</div></div>
+    <div class="hl">Занимайся сколько хочешь</div>
+    <div class="buys" role="radiogroup">
+      <button class="buy sel sheen" data-p="ultra"><span><b class="n">✦ Ultra · год <span class="save">−58%</span></b><i>7 дней бесплатно</i></span><span class="r"><b>€39,99</b><i>в год</i></span></button>
+      <button class="buy" data-p="plus"><span><b class="n">◆ Plus · месяц</b><i>без пробного</i></span><span class="r"><b>€7,99</b><i>в месяц</i></span></button>
+    </div>
+    <button class="cta sheen"><span class="ou">Оформить Ultra на год</span><span class="op">Оформить Plus на месяц</span></button>
+    <div class="fine">Цена и пробный период — из магазина. Отмена в любой момент.</div>
+    <div class="fine"><span class="ou">Продлевается автоматически каждый год.</span><span class="op">Продлевается автоматически каждый месяц.</span></div>
+  </div>
+  <div class="more">
+    <h3>Всё, что даёт Plus</h3>
+    <div class="cmp"><span class="h"></span><span class="h">Бесплатно</span><span class="h tn">Ultra</span>${ROWS.map(r => r.map(c => `<span>${c}</span>`).join('')).join('')}</div>
+    <div class="foot"><span>Условия</span><span>Конфиденциальность</span><span>Восстановить</span></div>
+  </div></div>
+  <div class="bar"><span>⌂</span><span>▤</span><span>☺</span><span class="on">◆</span><span>⚙</span></div></div>`;
+
+function sub(tier, kind) {
+  const name = tier === 'ultra' ? 'Ultra' : 'Plus';
+  const glyph = tier === 'ultra' ? '✦' : '◆';
+  const plan = kind === 'life' ? 'Навсегда' : tier === 'ultra' ? 'год' : 'месяц';
+  const pass = kind === 'life'
+    ? `<div class="d">Навсегда</div><div class="l">Разовая покупка — без списаний и автопродления.</div>`
+    : `<div class="d">${tier === 'ultra' ? '11 ноября 2027' : '11 декабря 2026'}</div><div class="l">Следующее списание</div>`;
+  return `<div class="phone" data-t="${tier}"><button class="back" aria-label="Закрыть">‹</button><div class="scr glow">
+    <div class="sbtop">
+      <div class="hero"><div class="mark u">✦</div><div class="mark p">◆</div></div>
+      <div class="live">${name} активирован</div>
+      <div class="hl">Подписка ${name}</div>
+      <div class="pass sel sheen"><div class="k"><span>${glyph} ${name} · ${plan}</span><span>PhraseMan</span></div>${pass}</div>
+      <div class="sec">Что включено</div>
+      <div class="inc">${INCLUDED.map(([i, t]) => `<div class="row"><svg viewBox="0 0 24 24">${I[i]}</svg><span>${t}</span><em>✓</em></div>`).join('')}</div>
+    </div>
+    <div class="sbend">
+      ${kind === 'month' ? `<button class="up"><span class="hex">✦</span><span><b>Перейти на годовой план</b><i>Дешевле в пересчёте — €39,99/год</i></span><span class="go">→</span></button>` : ''}
+      <button class="quiet"><span>Восстановить покупки</span><span>›</span></button>
+      ${kind === 'life' ? '' : '<button class="leave">Перейти к отмене</button>'}
+      <div class="fine">Цена и период всегда берутся из App Store / Google Play.</div>
+    </div></div></div>`;
+}
+document.getElementById('subs').innerHTML = [['ultra','year','Ultra · год'],['plus','month','Plus · месяц'],['ultra','life','разовая покупка']]
+  .map(([t, k, label]) => `<div class="cell"><code>manage_subscription · ${label}</code>${sub(t, k)}</div>`).join('');
+
+// зачем: как в пейволе — нажатие на невыбранный тариф перекрашивает экран (знак, свечение, кнопка, колонка сравнения)
+const ph = document.querySelector('#tab .phone');
+ph.querySelectorAll('.buy[data-p]').forEach(b => b.onclick = () => {
+  if (b.classList.contains('sel')) return;
+  ph.dataset.t = b.dataset.p;
+  ph.querySelectorAll('.buy[data-p]').forEach(o => { o.classList.toggle('sel', o === b); o.classList.toggle('sheen', o === b); });
+  ph.querySelectorAll('.tn').forEach(n => { n.textContent = b.dataset.p === 'ultra' ? 'Ultra' : 'Plus'; });
+});
+</script>
+</body>
+</html>

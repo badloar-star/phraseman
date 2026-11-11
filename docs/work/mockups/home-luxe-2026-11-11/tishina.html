@@ -9,7 +9,7 @@
    зачем (владелец выбрал «Тишину» из двух направлений): направление доведено до всех семи экранов — Главная, Обучение, Видео, Сообщество (Друзья и Пик), Настройки.
    Правила «Тишины»: 1) поверхности почти нейтральные и ровные, три ясные ступени — фон, плашка, элемент внутри плашки; 2) цвет темы только у действия и прогресса;
    3) на сцене Главной действие белое (кнопка, пройденные дни), вне сцены главное действие — цветом темы; 4) никаких лент, звёзд, блеска.
-   Отличие от первой пробы: ступени разведены сильнее (владелец просил больше разницы между фоном и элементами), в светлом оформлении фон темнее и чуть цветнее.
+   Тона поверхностей — ровно как в первой «Тишине» (designer.html): попытка развести ступени сильнее владельцу не понравилась и отменена.
    Раскладка экранов снята с кода вкладок (как в index.html); файл собран сценарием из designer.html. */
 @font-face { font-family: Inter; src: url(fonts/Inter-Regular.ttf); font-weight: 400 500; }
 @font-face { font-family: Inter; src: url(fonts/Inter-SemiBold.ttf); font-weight: 600; }
@@ -459,10 +459,11 @@ function compute() {
   // «Тишина»
   const qAcc = dark ? ok(.80, Math.min(.13, Cv * .75), SH) : ok(.50, Math.min(.17, Cv * .9), SH);
   const qTop = ok(dark ? .30 : .44, Cs, SH - 6); const qBot = ok(dark ? .21 : .34, Cs * .85, SH + 8);
-  const q = flat({ bg: dark ? ok(.085, Cn, SH) : ok(.905, Math.min(.03, Cv * .2), SH), card: dark ? ok(.32, Cn * 1.1, SH) : '#FFFFFF', ctl: dark ? ok(.41, Cn * 1.2, SH) : ok(.925, Math.min(.025, Cv * .16), SH),
+  // зачем (владелец, круг 11: «сейчас макет стал плохим! где тишина с прошлого макета?»): тона фона, плашки и вложенной плашки возвращены ровно к значениям первой «Тишины» (designer.html) — усиление ступеней отменено
+  const q = flat({ bg: dark ? ok(.10, Cn, SH) : ok(.93, Math.min(.02, Cv * .13), SH), card: dark ? ok(.29, Cn * 1.1, SH) : '#FFFFFF', ctl: dark ? ok(.37, Cn * 1.2, SH) : ok(.925, Math.min(.02, Cv * .14), SH),
     tx: dark ? ok(.97, .004, SH) : ok(.21, .012, SH), sec: dark ? ok(.86, .012, SH) : ok(.46, .014, SH), acc: qAcc, accInk: dark ? ok(.18, .02, SH) : '#FFFFFF',
     line: dark ? 'rgba(255,255,255,.08)' : 'rgba(20,24,34,.07)', line2: dark ? 'rgba(255,255,255,.14)' : 'rgba(20,24,34,.12)',
-    shP: dark ? '0 14px 24px -14px rgba(0,0,0,.8)' : `0 14px 28px -14px ${hexA(ok(.35, Cv * .5, SH), .36)}, 0 1px 3px rgba(20,24,34,.08)`,
+    shP: dark ? '0 14px 24px -14px rgba(0,0,0,.7)' : `0 12px 26px -14px ${hexA(ok(.35, Cv * .5, SH), .30)}, 0 1px 2px rgba(20,24,34,.06)`,
     sceneTop: qTop, cta1: '#FFFFFF', cta2: '#FFFFFF', ctaInkV: qBot, ctaGlow: 'transparent' });
   const qSky = `radial-gradient(110% 80% at 14% -10%, ${hexA(ok(.62, Cs, SH - 14), .42)}, transparent 66%), linear-gradient(180deg, ${qTop}, ${qBot})`;
   // «Рассвет»

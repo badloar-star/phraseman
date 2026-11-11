@@ -2,10 +2,9 @@
  * Лента «Итоги недели» наверху вкладки «Друзья» (идея 6, docs/design/v2-app/friends-full.html #week, `rail` и `wEmpty`).
  *
  * зачем (координатор 22.10, 1:1 с макетом): заголовок секции со счётчиком и «пн · 9:00» справа, карточки листаются вбок от края до
- * края экрана; итогов нет — спокойная плашка «Итоги недели — в понедельник». Кого показывать, решает friend_week_rail (чистая
+ * края экрана; итогов нет — блока нет (пустую плашку владелец убрал 11.11). Кого показывать, решает friend_week_rail (чистая
  * функция над снапшотом пар — 0 чтений); здесь только вид. До понедельника 9:00 ленты нет совсем.
  */
-import Ionicons from '@expo/vector-icons/Ionicons';
 import React, { memo, useCallback } from 'react';
 import { FlatList, StyleSheet, View, type ListRenderItem } from 'react-native';
 
@@ -14,22 +13,21 @@ import type { FriendWeekCard as FriendWeekCardModel, FriendWeekRail as FriendWee
 import { weekCopy } from '../../app/friends_together/friend_week_copy';
 import { FlowText } from '../text-integrity';
 import { FriendsSectionTitle, type FriendsGlass } from '../friends/FriendsGlassKit';
-import { plateBoxShadow } from '../v2/ShadowSurface';
 import type { FriendCallState } from './FriendCallPill';
 import FriendWeekCard, { FRIEND_WEEK_CARD_WIDTH } from './FriendWeekCard';
 
 const CARD_GAP = 10;
 const keyOf = (card: FriendWeekCardModel) => card.uid;
 
-function FriendWeekRail({ glass, textScale, lang, rail, sidePad, showEmpty, highFivedUids, callStateByUid, onOpen, onHighFive, onCall }: Readonly<{
+function FriendWeekRail({ glass, textScale, lang, rail, sidePad, highFivedUids, callStateByUid, onOpen, onHighFive, onCall }: Readonly<{
   glass: FriendsGlass;
   textScale: number;
   lang: Lang;
   rail: FriendWeekRailModel;
   /** Боковое поле списка — лента выходит за него до края экрана (макет: margin 0 −20px, padding 0 20px). */
   sidePad: number;
-  /** Плашка «Итоги недели — в понедельник», когда карточек нет (у человека есть друзья). */
-  showEmpty: boolean;
+  /** Больше не используется: пустая плашка убрана (владелец 11.11). Удалить вместе с передачей в friends.tsx. */
+  showEmpty?: boolean;
   highFivedUids: ReadonlySet<string>;
   callStateByUid: Readonly<Record<string, FriendCallState>>;
   onOpen: (uid: string) => void;
@@ -52,20 +50,9 @@ function FriendWeekRail({ glass, textScale, lang, rail, sidePad, showEmpty, high
     />
   ), [callStateByUid, glass, highFivedUids, lang, onCall, onHighFive, onOpen, rail.week, textScale]);
   if (!rail.open) return null;
-  if (rail.cards.length === 0) {
-    if (!showEmpty) return null;
-    return (
-      <View testID="friend-week-empty" style={[styles.empty, { backgroundColor: glass.opaqueCard, boxShadow: plateBoxShadow(glass) }]}>
-        <View style={[styles.emptyIcon, { backgroundColor: glass.opaqueControl }]}>
-          <Ionicons name="calendar-outline" size={21} color={glass.text} accessible={false} />
-        </View>
-        <View style={styles.emptyText}>
-          <FlowText testID="friend-week-empty-title" provenance="authored" style={{ color: glass.text, fontSize: 16 * textScale, lineHeight: 21 * textScale, fontWeight: '700' }}>{weekCopy(lang, 'emptyTitle')}</FlowText>
-          <FlowText testID="friend-week-empty-sub" provenance="authored" style={{ color: glass.secondary, fontSize: 13 * textScale, lineHeight: 18 * textScale }}>{weekCopy(lang, 'emptySub')}</FlowText>{/* guard-ok: подпись пустой плашки макета #week (исключение 2.0) */}
-        </View>
-      </View>
-    );
-  }
+  // зачем (владелец 11.11): плашку «Итоги недели — в понедельник / первый итог после 7 дней дружбы» убрали совсем —
+  // карточек нет, значит и блока нет. Проп showEmpty пока остаётся в типе (его передаёт friends.tsx, который правит другая сессия).
+  if (rail.cards.length === 0) return null;
   return (
     <View testID="friend-week-rail">
       <View style={styles.head}>
@@ -105,7 +92,4 @@ const styles = StyleSheet.create({
   count: { minWidth: 33, height: 24, paddingHorizontal: 9, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
   // макет: зазор 10, поля 2 сверху и 14 снизу — тень карточек не обрезается
   row: { gap: CARD_GAP, paddingTop: 2, paddingBottom: 14, alignItems: 'stretch' },
-  empty: { marginTop: 8, borderRadius: 22, paddingVertical: 14, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 12 },
-  emptyIcon: { width: 40, height: 40, borderRadius: 12, alignItems: 'center', justifyContent: 'center' },
-  emptyText: { flex: 1, minWidth: 0 },
 });

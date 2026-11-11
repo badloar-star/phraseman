@@ -14,9 +14,15 @@
 //
 // Порядок: память процесса → файл на диске (Paths.document/spire-packs) → сеть.
 // Файлы других недель удаляются после успешного скачивания — на диске одна неделя.
+//
+// Накладка новых механик (владелец 11.11.2026): рядом с пакетом сервер может положить файл
+// {weekId}.expanded.json (functions/src/spire_expanded_overlay.ts). Пакет от неё не зависит: нет файла, сеть упала,
+// файл битый — играем прежним пакетом. Пакет с диска отдаётся сразу, накладка догружается фоном (раздел открывается
+// мгновенно, владелец 04.10); уже начатая ступень свой набор заданий не меняет — он выбран на старте ступени.
 // ═══════════════════════════════════════════════════════════════════════════
 import { Directory, File, Paths } from 'expo-file-system';
 
+import { spireApplyExpandedOverlay } from '../../modules/spire/expanded_overlay';
 import { spireDecodeWeekPack, type SpireWeekPack } from '../../modules/spire/pack_plan';
 import { DebugLogger } from '../debug-logger';
 import type { SpireLiveGate } from './spire_live_gate';
@@ -47,6 +53,13 @@ const missingAt = new Map<string, number>();
 
 const keyOf = (k: SpirePackKey) => `${k.lang}:${k.tier}:${k.weekId}`;
 const fileName = (k: SpirePackKey) => `${k.lang}_t${k.tier}_${k.weekId}.json`.replace(/[^A-Za-z0-9._-]/gu, '_');
+const overlayFileName = (k: SpirePackKey) => fileName(k).replace(/\.json$/u, '.expanded.json');
+// зачем: накладки может не быть неделями (сервер её не собрал или владелец выключил) — не спрашиваем Storage при каждом
+// старте ступени; раз в полчаса на ключ, только в памяти процесса
+const OVERLAY_RECHECK_MS = 30 * 60 * 1000;
+const OVERLAY_TIMEOUT_MS = 12_000;
+const overlayCheckedAt = new Map<string, number>();
+const overlayInFlight = new Set<string>();
 
 function packDir(): Directory {
   return new Directory(Paths.document, DIR_NAME);
@@ -74,14 +87,104 @@ async function readDisk(k: SpirePackKey): Promise<SpireWeekPack | null> {
   }
 }
 
+/** Накладка с диска, применённая к пакету. Нет файла или он не подошёл — пакет как был. */
+async function withDiskOverlay(k: SpirePackKey, pack: SpireWeekPack): Promise<{ pack: SpireWeekPack; hadFile: boolean }> {
+  try {
+    const file = new File(packDir(), overlayFileName(k));
+    if (!file.exists) return { pack, hadFile: false };
+    const result = spireApplyExpandedOverlay(pack, JSON.parse(await file.text()));
+    if (result.applied === 0) {
+      // накладка от другого пакета (его пересобрали) или битая — удаляем, фон скачает свежую
+      DebugLogger.warn(LOG, `overlay: файл на диске не подошёл (${result.reason}) — удаляем`);
+      file.delete();
+      return { pack, hadFile: false };
+    }
+    DebugLogger.info(LOG, `overlay: с диска, новых заданий=${result.applied} пропущено=${result.skipped}${result.skipped ? ` (${result.reason})` : ''}`);
+    return { pack: result.pack, hadFile: true };
+  } catch (error) {
+    DebugLogger.warn(LOG, `overlay: файл на диске не прочитался (${spireErrorText(error)})`);
+    return { pack, hadFile: false };
+  }
+}
+
+function writeOverlayDisk(k: SpirePackKey, text: string): void {
+  try {
+    const dir = packDir();
+    if (!dir.exists) dir.create({ intermediates: true });
+    new File(dir, overlayFileName(k)).write(text);
+  } catch (error) {
+    // Не записали — накладка живёт в памяти процесса, следующий запуск скачает снова.
+    DebugLogger.warn(LOG, `overlay: запись на диск не удалась (${spireErrorText(error)})`);
+  }
+}
+
+/**
+ * Накладка из сети поверх уже разобранного пакета. Любая неудача — пакет как был (игра от накладки не зависит).
+ * Не чаще раза в OVERLAY_RECHECK_MS на ключ.
+ */
+async function withNetworkOverlay(gate: SpireLiveGate, k: SpirePackKey, pack: SpireWeekPack): Promise<SpireWeekPack> {
+  const key = keyOf(k);
+  const checkedAt = overlayCheckedAt.get(key);
+  if (checkedAt !== undefined && Date.now() - checkedAt < OVERLAY_RECHECK_MS) return pack;
+  if (overlayInFlight.has(key)) return pack;
+  if (!spireCloudAvailable()) {
+    DebugLogger.info(LOG, 'overlay: облако выключено — играем прежним пакетом');
+    return pack;
+  }
+  const bucket = spireStorageBucket('pack');
+  const token = await spireIdToken(gate, 'pack');
+  if (!bucket || !token) {
+    DebugLogger.info(LOG, `overlay: пропуск (${!bucket ? 'no_bucket' : 'no_token'}) — играем прежним пакетом`);
+    return pack;
+  }
+  overlayInFlight.add(key);
+  const path = `${STORAGE_PREFIX}/${k.lang}/${k.tier}/${k.weekId}.expanded.json`;
+  const url = `https://firebasestorage.googleapis.com/v0/b/${bucket}/o/${encodeURIComponent(path)}?alt=media`;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), OVERLAY_TIMEOUT_MS);
+  const startedAt = Date.now();
+  try {
+    const res = await fetch(url, { headers: { Authorization: `Firebase ${token}` }, signal: controller.signal });
+    if (res.status === 404) {
+      overlayCheckedAt.set(key, Date.now());
+      DebugLogger.info(LOG, `overlay: ${path} нет (404) за ${Date.now() - startedAt}мс — новых механик на этой неделе нет, играем прежним пакетом`);
+      return pack;
+    }
+    if (!res.ok) {
+      // 5xx/403 — не «нет файла»: отметку не ставим, следующая загрузка пакета попробует снова
+      DebugLogger.warn(LOG, `overlay: ответ ${res.status} за ${Date.now() - startedAt}мс — играем прежним пакетом`);
+      return pack;
+    }
+    const text = await res.text();
+    const result = spireApplyExpandedOverlay(pack, JSON.parse(text));
+    overlayCheckedAt.set(key, Date.now());
+    if (result.applied === 0) {
+      DebugLogger.warn(LOG, `overlay: файл сети не подошёл (${result.reason}), байт=${text.length} — играем прежним пакетом`);
+      return pack;
+    }
+    DebugLogger.info(LOG, `overlay: сеть ok, новых заданий=${result.applied} пропущено=${result.skipped}${result.skipped ? ` (${result.reason})` : ''} байт=${text.length} за ${Date.now() - startedAt}мс`);
+    writeOverlayDisk(k, text);
+    return result.pack;
+  } catch (error) {
+    const aborted = controller.signal.aborted;
+    DebugLogger.warn(LOG, `overlay: скачивание упало (${aborted ? 'таймаут' : spireErrorText(error)}) за ${Date.now() - startedAt}мс — играем прежним пакетом`);
+    return pack;
+  } finally {
+    clearTimeout(timer);
+    overlayInFlight.delete(key);
+  }
+}
+
 function writeDisk(k: SpirePackKey, text: string): void {
   try {
     const dir = packDir();
     if (!dir.exists) dir.create({ intermediates: true });
     new File(dir, fileName(k)).write(text);
     const keep = fileName(k);
+    // зачем: накладку своей недели не удаляем вместе с «файлами других недель»
+    const keepOverlay = overlayFileName(k);
     for (const entry of dir.list()) {
-      if (entry instanceof File && !entry.uri.endsWith(keep)) {
+      if (entry instanceof File && !entry.uri.endsWith(keep) && !entry.uri.endsWith(keepOverlay)) {
         try {
           entry.delete();
         } catch (error) {
@@ -156,17 +259,31 @@ export function spireEnsureWeekPack(gate: SpireLiveGate, k: SpirePackKey): Promi
   const task = (async (): Promise<SpirePackLoad> => {
     const disk = await readDisk(k);
     if (disk) {
-      memory.set(key, disk);
+      const local = await withDiskOverlay(k, disk);
+      memory.set(key, local.pack);
       DebugLogger.info(LOG, `pack: с диска hash=${disk.packHash}`);
-      return { status: 'ok', pack: disk, source: 'disk', reason: 'disk' };
+      if (!local.hadFile) {
+        // зачем: пакет с диска отдаём сразу, накладку догружаем фоном — следующая ступень возьмёт уже пакет с новыми заданиями;
+        // поздний ответ кладём только если в памяти всё ещё тот же пакет (не затираем пакет другой загрузки)
+        void withNetworkOverlay(gate, k, disk).then((next) => {
+          if (next !== disk && memory.get(key) === local.pack) memory.set(key, next);
+        });
+      }
+      return { status: 'ok', pack: local.pack, source: 'disk', reason: 'disk' };
     }
     if (!spireCloudAvailable()) {
       DebugLogger.info(LOG, 'pack: облако выключено — пакета нет');
       return { status: 'unavailable', pack: null, source: 'none', reason: 'cloud_off' };
     }
     const net = await download(gate, k);
-    if (net.pack) { memory.set(key, net.pack); missingAt.delete(key); }
-    else if (net.status === 'missing') missingAt.set(key, Date.now());
+    if (net.pack) {
+      // первая загрузка недели: накладку ждём здесь же (человек и так ждёт пакет), со своим коротким пределом
+      const pack = await withNetworkOverlay(gate, k, net.pack);
+      memory.set(key, pack);
+      missingAt.delete(key);
+      return { ...net, pack };
+    }
+    if (net.status === 'missing') missingAt.set(key, Date.now());
     return net;
   })().finally(() => { inFlight.delete(key); });
   inFlight.set(key, task);

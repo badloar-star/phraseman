@@ -84,6 +84,8 @@ import { verifyTournamentPoolTaskProof, type ArenaPublication } from './tourname
 import { compileStepRecordVerifier, stepRecordVerifierPath } from './spire_floor_record_verifier';
 import type { StepRecordVerifier } from './spire_floor_record_verifier';
 import { prepareExistingStepRecordVerifier, writeImmutableStepRecordVerifier } from './spire_floor_record_publication';
+import { buildSpireExpandedOverlay, spireExpandedOverlayPath, SPIRE_EXPANDED_OVERLAY_PER_SET, SPIRE_EXPANDED_OVERLAY_SCHEMA } from './spire_expanded_overlay';
+import { spireExpandedPoolTaskFromAuthorRecord, type SpireExpandedPoolTask } from './spire_expanded_task';
 
 const LOG = '[SPIRE-PACK]';
 const DAY_MS = 86_400_000;
@@ -263,6 +265,40 @@ export function loadListenDraftPool(lang: SpireLang): { tasks: ListenDraftTask[]
   return { tasks: pool.tasks };
 }
 
+/* ------------------- новые механики: накладка поверх пакета ---------------- */
+
+/**
+ * Пул двенадцати новых механик из bundled-файла (content/spire-expanded/{lang}/tasks.jsonl → copy_generated_assets.js).
+ * 0 чтений Firestore. Нет файла или он битый — пустой список и причина в логе: пакет недели от этого не зависит,
+ * просто накладка для языка не собирается.
+ */
+export function loadExpandedPool(lang: SpireLang): { tasks: SpireExpandedPoolTask[]; rejected: number; reason?: string } {
+  let rows: unknown[];
+  try {
+    // guard-ok: require одного сгенерированного файла, не Firestore-запрос.
+    const bundle = require(`./generated/spire_expanded_${lang}.json`) as { schemaVersion?: unknown; rows?: unknown };
+    if (bundle?.schemaVersion !== 'spire-expanded-bundle-v1' || !Array.isArray(bundle.rows)) {
+      throw new Error('expanded_bundle_invalid');
+    }
+    rows = bundle.rows;
+  } catch (error) {
+    // guard-ok: без пула новых механик Пик работает как раньше; причина в логе.
+    const reason = errMessage(error);
+    logger.warn('expanded_pool_missing', { lang, reason });
+    return { tasks: [], rejected: 0, reason };
+  }
+  const tasks: SpireExpandedPoolTask[] = [];
+  let rejected = 0;
+  for (const row of rows) {
+    const task = spireExpandedPoolTaskFromAuthorRecord(row);
+    if (task && task.lang === lang) tasks.push(task);
+    else rejected += 1;
+  }
+  if (rejected > 0) warn('expanded_pool_rows_rejected', { lang, rejected });
+  log('expanded_pool_loaded', { lang, totalRows: rows.length, accepted: tasks.length, rejected });
+  return { tasks, rejected };
+}
+
 /** Стабильная проекция причины прямого multilingual-пула в admin unavailableLangs. */
 export function multilingualPoolUnavailableReason(
   pool: Readonly<{ unavailableReason?: string }>,
@@ -397,6 +433,107 @@ async function writePack(path: string, json: string, meta: Record<string, string
   });
 }
 
+export type OverlayOutcome = Readonly<{
+  lang: SpireLang;
+  tier: number;
+  weekId: string;
+  status: 'written' | 'kept_existing' | 'no_pack' | 'skipped' | 'failed';
+  basePackHash?: string;
+  slots?: number;
+  bytes?: number;
+  reason?: string;
+}>;
+
+/** Отпечаток пакета, к которому привязана уже лежащая накладка; null — накладки нет. */
+async function existingOverlayBase(path: string): Promise<string | null> {
+  const file = admin.storage().bucket().file(path);
+  const [exists] = await file.exists();
+  if (!exists) return null;
+  const [metadata] = await file.getMetadata();
+  const raw = (metadata?.metadata as Record<string, unknown> | undefined)?.basePackHash;
+  return typeof raw === 'string' && raw.length > 0 ? raw : 'present_without_base';
+}
+
+/**
+ * Накладки новых механик для уже опубликованных пакетов языка. Сам пакет НЕ трогает (packHash прежний), поэтому
+ * безопасна посреди недели: старые сборки файл не запрашивают, отчёты ступеней идут с прежним отпечатком.
+ *
+ * Firebase-экономия: пул — bundled-файл (0 чтений базы); на пару «шпиль × неделя» два чтения метаданных Storage,
+ * пакет скачивается только когда накладки ещё нет или она привязана к другому отпечатку.
+ */
+async function ensureExpandedOverlays(
+  db: admin.firestore.Firestore,
+  lang: SpireLang,
+  weekIds: readonly string[],
+  tiers: readonly number[],
+  trigger: 'cron' | 'admin',
+): Promise<OverlayOutcome[]> {
+  const outcomes: OverlayOutcome[] = [];
+  if (SPIRE_EXPANDED_OVERLAY_PER_SET <= 0) {
+    log('overlay_disabled', { lang });
+    return outcomes;
+  }
+  const pool = loadExpandedPool(lang);
+  if (pool.tasks.length === 0) {
+    log('overlay_skip_no_pool', { lang, reason: pool.reason ?? 'expanded_pool_empty' });
+    return outcomes;
+  }
+  // зачем: задание, снятое оператором по жалобе, не должно вернуться через накладку — тот же gate, что у пакета
+  const flags = await loadFlaggedTaskIds(db, lang);
+  if (!flags.ok) {
+    warn('overlay_skip_flags', { lang, reason: flags.reason });
+    for (const weekId of weekIds) for (const tier of tiers) outcomes.push({ lang, tier, weekId, status: 'failed', reason: flags.reason });
+    return outcomes;
+  }
+  for (const weekId of weekIds) {
+    for (const tier of tiers) {
+      const packPath = spirePackPath(lang, tier, weekId);
+      const overlayPath = spireExpandedOverlayPath(lang, tier, weekId);
+      try {
+        const basePackHash = await existingPackHash(packPath);
+        if (!basePackHash || basePackHash === 'present_without_hash') {
+          outcomes.push({ lang, tier, weekId, status: 'no_pack', reason: basePackHash ?? 'pack_absent' });
+          continue;
+        }
+        const boundTo = await existingOverlayBase(overlayPath);
+        if (boundTo === basePackHash) {
+          outcomes.push({ lang, tier, weekId, status: 'kept_existing', basePackHash });
+          continue;
+        }
+        const [packBytes] = await admin.storage().bucket().file(packPath).download();
+        const built = buildSpireExpandedOverlay({
+          pack: JSON.parse(packBytes.toString('utf8')) as unknown,
+          weekId, lang, tier, basePackHash,
+          tasks: pool.tasks,
+          excludedTaskIds: flags.ids,
+        });
+        if (!built.ok) {
+          warn('overlay_build_failed', { path: overlayPath, reason: built.reason, detail: built.detail ?? null });
+          outcomes.push({ lang, tier, weekId, status: built.reason === 'no_replaceable_slots' ? 'skipped' : 'failed', basePackHash, reason: built.reason });
+          continue;
+        }
+        await writePack(overlayPath, built.json, {
+          schema: SPIRE_EXPANDED_OVERLAY_SCHEMA,
+          basePackHash,
+          weekId,
+          lang,
+          tier: String(tier),
+          builtAtMs: String(Date.now()),
+          trigger,
+        });
+        const bytes = Buffer.byteLength(built.json, 'utf8');
+        log('overlay_written', { path: overlayPath, basePackHash, bytes, replacedBinding: boundTo, ...built.stats });
+        outcomes.push({ lang, tier, weekId, status: 'written', basePackHash, slots: built.stats.slots, bytes });
+      } catch (error) {
+        // guard-ok: накладка одного шпиля не валит остальные и не трогает сам пакет; причина в логе и в итоге.
+        logger.warn('overlay_failed', { path: overlayPath, reason: errMessage(error) });
+        outcomes.push({ lang, tier, weekId, status: 'failed', reason: errMessage(error) });
+      }
+    }
+  }
+  return outcomes;
+}
+
 async function deleteQuietly(path: string): Promise<void> {
   try {
     await admin.storage().bucket().file(path).delete({ ignoreNotFound: true });
@@ -424,6 +561,8 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
   poolReads: number;
   outcomes: PackOutcome[];
   unavailableLangs: Record<string, string>;
+  /** Накладки новых механик (отдельные файлы рядом с пакетом); пусто, если Пик не live или пула нет. */
+  overlays: OverlayOutcome[];
 }> {
   const startedAt = Date.now();
   const db = admin.firestore();
@@ -434,7 +573,7 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
   const spireConfig = await loadSpireConfig(db);
   if (input.requireLive && !spireConfig.liveForPlayers) {
     log('skip_not_live', { trigger: input.trigger, exists: spireConfig.exists, enabled: spireConfig.config.enabled });
-    return { skipped: 'spire_not_live', poolReads: 0, outcomes: [], unavailableLangs: {} };
+    return { skipped: 'spire_not_live', poolReads: 0, outcomes: [], unavailableLangs: {}, overlays: [] };
   }
   const arenaConfig = await loadArenaConfig(db);
   const outcomes: PackOutcome[] = [];
@@ -591,9 +730,19 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
     }
   }
 
+  // зачем отдельным проходом ПОСЛЕ пакетов: накладка строится по опубликованным байтам пакета (в том числе по пакету
+  // текущей недели, который сборка выше не трогала) и ничего в нём не меняет
+  const overlays: OverlayOutcome[] = [];
+  for (const lang of input.langs) {
+    overlays.push(...await ensureExpandedOverlays(db, lang, input.weekIds, tiers, input.trigger));
+  }
+
   const summary = {
     trigger: input.trigger,
     poolReads,
+    overlaysWritten: overlays.filter((o) => o.status === 'written').length,
+    overlaysKept: overlays.filter((o) => o.status === 'kept_existing').length,
+    overlaysFailed: overlays.filter((o) => o.status === 'failed').length,
     written: outcomes.filter((o) => o.status === 'written').length,
     kept: outcomes.filter((o) => o.status === 'kept_existing' || o.status === 'same_hash').length,
     failed: outcomes.filter((o) => o.status === 'failed').length,
@@ -601,7 +750,7 @@ export async function runSpirePackBuild(input: SpirePackRunInput): Promise<{
     tookMs: Date.now() - startedAt,
   };
   log('done', summary);
-  return { poolReads, outcomes, unavailableLangs };
+  return { poolReads, outcomes, unavailableLangs, overlays };
 }
 
 /* -------------------------------- крон ----------------------------------- */
@@ -635,6 +784,7 @@ export const spirePackWeeklyCron = onSchedule(
       for (const lang of SPIRE_LANGS) {
         for (let tier = 0; tier <= SPIRE_PACK_MAX_TIER; tier += 1) {
           await deleteQuietly(spirePackPath(lang, tier, oldWeekId));
+          await deleteQuietly(spireExpandedOverlayPath(lang, tier, oldWeekId));
         }
       }
       log('old_week_cleanup', { oldWeekId });

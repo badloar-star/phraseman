@@ -1,0 +1,350 @@
+{
+  "schema": "spire-expanded-pool-manifest-v1",
+  "authorSchema": "peak-expanded-author-v1",
+  "authorStatuses": {
+    "author_self_reviewed_pending_independent_review": 1550
+  },
+  "langs": {
+    "en": {
+      "tasks": 350,
+      "sha256": "aabf6d8f50a3ba2be53775fba6cf9f68b04ee476cadb7b48977b46446c51ac83",
+      "formats": {
+        "classify_function": 28,
+        "context_choice": 35,
+        "dialogue_order": 28,
+        "evidence_choice": 21,
+        "linked_gaps": 35,
+        "multi_select": 35,
+        "remove_intruder": 21,
+        "reply_pairs": 28,
+        "sentence_build_noise": 28,
+        "sentence_transform": 21,
+        "typed_word": 35,
+        "word_repair": 35
+      }
+    },
+    "es": {
+      "tasks": 300,
+      "sha256": "0d4dab29254d76ecfde40b84184d8db0f89fcc4801c74eca56a2383867c46135",
+      "formats": {
+        "classify_function": 24,
+        "context_choice": 30,
+        "dialogue_order": 24,
+        "evidence_choice": 18,
+        "linked_gaps": 30,
+        "multi_select": 30,
+        "remove_intruder": 18,
+        "reply_pairs": 24,
+        "sentence_build_noise": 24,
+        "sentence_transform": 18,
+        "typed_word": 30,
+        "word_repair": 30
+      }
+    },
+    "de": {
+      "tasks": 300,
+      "sha256": "354a99fae7d31c226a5991444c3f7c0dba56ada42b26348b498db15a22d07a94",
+      "formats": {
+        "classify_function": 24,
+        "context_choice": 30,
+        "dialogue_order": 24,
+        "evidence_choice": 18,
+        "linked_gaps": 30,
+        "multi_select": 30,
+        "remove_intruder": 18,
+        "reply_pairs": 24,
+        "sentence_build_noise": 24,
+        "sentence_transform": 18,
+        "typed_word": 30,
+        "word_repair": 30
+      }
+    },
+    "fr": {
+      "tasks": 300,
+      "sha256": "7e6d8da5c6965a7a0ca16020b346eb63fb365f4dc0f1cfdcbcead6b4c7c47e62",
+      "formats": {
+        "classify_function": 24,
+        "context_choice": 30,
+        "dialogue_order": 24,
+        "evidence_choice": 18,
+        "linked_gaps": 30,
+        "multi_select": 30,
+        "remove_intruder": 18,
+        "reply_pairs": 24,
+        "sentence_build_noise": 24,
+        "sentence_transform": 18,
+        "typed_word": 30,
+        "word_repair": 30
+      }
+    },
+    "it": {
+      "tasks": 300,
+      "sha256": "0ab52aa0c198b8eb6e6f5987b89046dba192a926883b311c312a02e32f92f7ec",
+      "formats": {
+        "classify_function": 24,
+        "context_choice": 30,
+        "dialogue_order": 24,
+        "evidence_choice": 18,
+        "linked_gaps": 30,
+        "multi_select": 30,
+        "remove_intruder": 18,
+        "reply_pairs": 24,
+        "sentence_build_noise": 24,
+        "sentence_transform": 18,
+        "typed_word": 30,
+        "word_repair": 30
+      }
+    }
+  },
+  "sources": [
+    {
+      "batch": "de-batch-001",
+      "group": "new-formats-v1",
+      "file": "candidates-v3.json",
+      "sha256": "a72f27c0635c816767385c84053f8199268a6686aa8299c7f32047599a9602c4",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "de-batch-002",
+      "group": "new-formats-v1",
+      "file": "candidates-v2.json",
+      "sha256": "0af650515d814661624e23cef4c80779855dfff1060e2b2f016a0695e49a0e49",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "de-batch-003",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "b7169eba50578ddbdd5431e69d49dc37e98f36b1509160ecdae0657089f34bfb",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "de-batch-004",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "3c8ff0059977f8361437b1cff7bc302adffbc736c16b7672cbb534d2596327ca",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "de-batch-005",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "16bdee90871df74bf86e2fc2fba6a9cd0ccc5c7c0963fde12f23eee4e21c1b80",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "de-batch-006",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "c017feade30da29baab941d3da89a22ca6066043e9e5e4055c9d469b1eef4749",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "en-batch-001",
+      "group": "new-formats-v1",
+      "file": "candidates-v4.json",
+      "sha256": "96a781a160c439b6ad61410cfe9b09c52f9d96e09f174cac7c166c673f0e4a98",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "en-batch-002",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "a1a60f3b505e2936bfe669a3916492f76969a770865ba62c68069f747145dc40",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "en-batch-003",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "f80bc39607c0628c84dac8961528cbaf14a146959c15d1554aeb428b22cd1ea0",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "en-batch-004",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "dcbe02eb14dce867e5b2e6573ab1a1e599b2c390fd3845217acfb7ba61dad4d1",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "en-batch-005",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "c2b741e11e3d28a50398a4a3eb0afff1ea62fa0aa25b0a2cd501d1f479aafde2",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "en-batch-006",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "e26e572c6c0eaf2af89454c7181ece1c639dd3bdda78d88750b13898c226ec8d",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "en-batch-007",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "b1283434933793eb755d69542fb573706df89c9323e5d05765aa67ef36b7de59",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "es-batch-001",
+      "group": "new-formats-v1",
+      "file": "candidates-v3.json",
+      "sha256": "6d97fbb90cfc005cc98f00c36bea57d628df8915f3af450bf1e96212a9bcf0af",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "es-batch-002",
+      "group": "expanded-repairs",
+      "file": "candidates-v2.json",
+      "sha256": "b3b37a17c49921b11b3bb175289106348d99a944c7d3d9ca1a6b03183c0f7934",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "es-batch-003",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "d9f762c33fa56cbb460bc48c2b0a022268f5592e3474124e082b33bd20274c0b",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "es-batch-004",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "2d0bd88d5e0a0aa238087de3a20ba5715cd296c036e30f166d7453b0330fd6d2",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "es-batch-005",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "63e8cd31d5873ebffdd1e84cdfc80ad2d9a1f3fd2d98b00c27e7d81a0aa4ad28",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "es-batch-006",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "ff86c72684cb3705dc4eb9589391b3d385277d3dd5a7f51535a4d4908cdcf3b8",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "fr-batch-001",
+      "group": "new-formats-v1",
+      "file": "candidates-v4.json",
+      "sha256": "438533c9019ae3506b4624071cbeb595470c2cdbcbfdc06e0d90ea5e60b58093",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "fr-batch-002",
+      "group": "new-formats-v1",
+      "file": "candidates-v2.json",
+      "sha256": "0ee88a06fc9b4e30c51b9749475ebeb4c1c536df54066c90a5a61e94a19f55a4",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "fr-batch-003",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "5316d002b29aae85f62e5b3be8616797e422a3bc22d424f41730854822c431b3",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "fr-batch-004",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "c1628f5224ec727799330cb630a43e7726096752591f18d52028068fdb01ee56",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "fr-batch-005",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "87ab4fb0b69620ea3da2f8e2ed0f5f469c5c9050765c283b7643bfd4bae8bbc8",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "fr-batch-006",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "2a873f0fd41c37306909e33f4cf02e66c66f50912aaefe9d5111b318ff2485c8",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "it-batch-001",
+      "group": "new-formats-v1",
+      "file": "candidates-v2.json",
+      "sha256": "14071653599875d2390eac04fc81469b05f37a6a40ce05b9178257a0ebde7fc5",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "it-batch-002",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "81ad3f490b80b6e96dac588bf828e77181703697c148e0488133af18965e8049",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "it-batch-003",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "3a8fe2a941322834800661c8d62d1414514672e25f01ec67aee3c6f561120c89",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "it-batch-004",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "5284f4a533eb98e732716c4cc20d0a5d66d3258944a3c3ea9f440baaf29f0294",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "it-batch-005",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "ffc97e7118333c3cc6d9b566bd2e2c51480e5bcc53b6447852dbfda469704b5b",
+      "records": 50,
+      "accepted": 50
+    },
+    {
+      "batch": "it-batch-006",
+      "group": "new-formats-v1",
+      "file": "candidates-v1.json",
+      "sha256": "86c9fd5ea5032e6e792a7d1f3b1303613cff0eb2d84d8fff0c0f1c05c3078f68",
+      "records": 50,
+      "accepted": 50
+    }
+  ],
+  "rejected": []
+}

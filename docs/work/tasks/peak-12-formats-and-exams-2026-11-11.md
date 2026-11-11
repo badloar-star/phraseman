@@ -18,6 +18,10 @@ Governance-ID: TG-7EEBDA4301F4
 Governance-ID: TG-3BE500344E5E
 Governance-ID: TG-89AFE2A4EE81
 Governance-ID: TG-D1C8BFB8C0B5
+Governance-ID: TG-01A2E98F4B24
+Governance-ID: TG-90E42935AF63
+Governance-ID: TG-931425A0126D
+Governance-ID: TG-67CF347974A3
 Peak-wiring: client (pack decode, verdict, screen); pool not published
 Status: In progress
 Owner: сессия Claude (владелец 11.11.2026: «все механики а не 5 и всё, что ещё не в приложении для Пика, что Кодекс не добавил, — доделай и добавь ты»)
@@ -95,3 +99,16 @@ React, ни про Firebase, ни про Пик, ни про экзамен — 
 Модуль и экраны — новые файлы, никто их не зовёт до подключения; откат — revert коммитов. Подключение к экзамену
 идёт новой версией набора заданий: старые начатые попытки восстанавливаются прежней версией, откат — вернуть
 текущую версию константой.
+
+Governance-ID: TG-265C8028521F
+Governance-ID: TG-9470FCCDD1FD
+
+## Перенос четырёх вещей старого экрана зачёта (11.11, передача от U10)
+
+Outcome: новый экран зачёта пишет ошибки в «Мои ошибки» (включая механики из фраз уроков), ведёт на Plus с замка уровня, даёт флажок «сообщить об ошибке», просит оценку после сдачи и показывает тост отказа старта. Scope: components/level-exam/LevelExamV2.tsx, app/level_exam_mistake_capture.ts, app/level_exam.tsx (вырезан U10), перенаправленные сторожа. Security and privacy: новых данных не собирается — та же запись ошибок на устройстве, тот же пейвол, цены не тронуты. Technical debt: осиротевшие экспорты старого банка. Verification: проверка типов и сторожа в слоте. Rollback: revert коммита.
+
+Governance-ID: TG-DDFD5327ACC9
+
+Governance-ID: TG-220AE45C3A50
+
+Governance-ID: TG-2D2E92CDB511

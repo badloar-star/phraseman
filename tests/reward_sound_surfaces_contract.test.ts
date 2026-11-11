@@ -12,7 +12,8 @@ describe('reward sound surfaces', () => {
   });
 
   test('exam result and restored streak use exact semantic events', () => {
-    expect(read('app/level_exam.tsx')).toContain("passed ? 'pm.complete.exam_pass' : 'pm.complete.exam_retry'");
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx; звук итога просит экран итога нового движка
+    expect(read('components/level-exam/LevelExamResult.tsx')).toContain("result.passed ? 'pm.complete.exam_pass' : 'pm.complete.exam_retry'");
     // зачем (01.10): кнопка заморозки серии была только в старой Главной V1 (удалена, 4169840e9);
     // звук pm.streak.saved остаётся в каталоге — заморозка для Plus сохраняется по D107.
   });

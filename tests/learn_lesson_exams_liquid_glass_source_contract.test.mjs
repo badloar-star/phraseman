@@ -16,7 +16,6 @@ const FILES = [
   'app/preposition_drill.tsx',
   'app/combined_lesson_pick.tsx',
   'app/diagnostic_test.tsx',
-  'app/level_exam.tsx',
   'components/level-exam/LevelExamV2.tsx',
   'app/exam.tsx',
 ];

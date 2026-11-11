@@ -13,7 +13,9 @@ describe('level exam v2 route contract', () => {
     // не-английский курс не получает английских заданий, — только теперь её держит передача языка курса в движок.
     expect(route).toContain('if (!frenchExamBlocked) {');
     expect(route).toContain("studyTarget={classicExamTarget ?? 'en'}");
-    expect(route).toContain('loadClassicLevelExamQuestions');
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx — своего банка в маршруте больше нет
+    expect(route).not.toContain('loadClassicLevelExamQuestions');
+    expect(route).not.toContain('QUESTION_POOL');
   });
 
   it('connects persisted attempts, wall-clock timeout, scoring, and every UI format', () => {
@@ -100,7 +102,8 @@ describe('level exam v2 route contract', () => {
     expect(intro).toContain('label={copy.startCta}');
     expect(legacyRoute).toContain("import { usePremium } from '../components/PremiumContext'");
     expect(legacyRoute).toMatch(/const \{ hasPremiumAccess,[^}]*\} = usePremium\(\)/); // + accessResolved/reload для ожидания облака
-    expect(legacyRoute).toContain('const examEnergyUnlimited = energyUnlimited || hasPremiumAccess');
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx: маршрут энергию не трогает вовсе
+    expect(legacyRoute).not.toContain('useEnergy');
   });
 
   it('keeps local 1/0 writers compatible while accepting cloud true flags', () => {
@@ -109,8 +112,8 @@ describe('level exam v2 route contract', () => {
     expect(route).toContain("storedProgressFlagIsTrue(previousPassed) || scored.passed ? '1' : '0'");
     expect(route).toContain('const firstPass = !storedProgressFlagIsTrue(previousPassed)');
     expect(route).not.toContain("previousPassed !== '1'");
-    expect(legacyRoute).toContain("persistedPassed ? '1' : '0'");
-    expect(legacyRoute).toContain('storedProgressFlagIsTrue(previousPassedRaw) || passed');
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx: результат пишет только новый экран
+    expect(legacyRoute).not.toContain('AsyncStorage');
   });
 
   it('reads lesson boundaries from the canonical course map', () => {

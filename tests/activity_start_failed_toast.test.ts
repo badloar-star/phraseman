@@ -37,7 +37,9 @@ describe('проводка: каждый отказ старта на энерг
   const read = (rel: string) => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').replace(/\r\n/g, '\n');
   it.each([
     ['app/exam.tsx', 1],
-    ['app/level_exam.tsx', 1],
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx;
+    // тост отказа списания перенесён в новый экран
+    ['components/level-exam/LevelExamV2.tsx', 1],
     ['app/diagnostic_test.tsx', 2],
   ])('%s', (file, count) => {
     const src = read(file);

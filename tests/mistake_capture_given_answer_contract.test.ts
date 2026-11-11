@@ -30,7 +30,8 @@ describe('mistake capture carries the learner answer from every objective source
     ['app/lesson_irregular_verbs.tsx', 'given: word'],
     ['app/flashcards_blitz_session.tsx', 'given: question.options[optIdx]'],
     ['app/exam.tsx', 'given: question.opts[pickedIndex]'],
-    ['app/level_exam.tsx', 'given: q.opts[ci]'],
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx; запись ошибок экзамена уровня — в отдельном модуле
+    ['app/level_exam_mistake_capture.ts', 'given: mistake.given.slice(0, MISTAKE_GIVEN_MAX_CHARS)'],
   ])('%s writes facet.given', (relative, needle) => {
     expect(captureCallBody(read(relative))).toContain(needle);
   });
@@ -49,7 +50,7 @@ describe('mistake capture carries the learner answer from every objective source
   // только пересобранная фраза, а сам вопрос (для вопросов без пропуска) терялся.
   test.each([
     ['app/exam.tsx', 'sourcePrompt: question.q'],
-    ['app/level_exam.tsx', 'sourcePrompt: q.q'],
+    ['app/level_exam_mistake_capture.ts', 'sourcePrompt: mistake.sourcePrompt'],
   ])('%s keeps the question text', (relative, needle) => {
     expect(captureCallBody(read(relative))).toContain(needle);
   });

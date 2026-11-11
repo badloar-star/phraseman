@@ -6,7 +6,7 @@ describe('level exam access check deadline', () => {
     const source = readFileSync(join(process.cwd(), 'app', 'level_exam.tsx'), 'utf8');
     const accessEffect = source.slice(
       source.indexOf("setAccessState('checking')"),
-      source.indexOf('const levelLabel = LEVEL_LABELS[lvl]'),
+      source.indexOf('const silentLeaveFrench = '),
     );
 
     expect(accessEffect).toContain('LEVEL_EXAM_ACCESS_TIMEOUT_MS');

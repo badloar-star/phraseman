@@ -147,8 +147,9 @@ describe('банк итогового экзамена классических 
 
   it('экран зачёта: не-английский язык не получает английский банк, а в движок идёт со своим языком курса', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'level_exam.tsx'), 'utf8');
-    expect(source).toContain('const questions = classicExamTarget ? classicQuestions : englishQuestions;');
-    expect(source).toMatch(/const englishQuestions = useMemo\(\(\) => \{\s*if \(frenchExamBlocked \|\| classicExamTarget\) return \[\];/);
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx — английского банка в файле больше нет вовсе
+    expect(source).not.toContain('QUESTION_POOL');
+    expect(source).not.toContain('englishQuestions');
     // зачем (владелец 11.11.2026, позже в тот же день: «Перевести на новые механики»): экзамен уровня всех пяти курсов идёт через
     // новый движок, но каждый — СО СВОИМ языком. Прежнее правило «движок только английскому» заменено: суть та же —
     // не-английский курс не получает английских заданий, — только теперь её держит передача языка курса в движок.

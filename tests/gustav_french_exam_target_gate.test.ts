@@ -63,26 +63,31 @@ describe('Gustav French exam target gate', () => {
     expect(levelExamSource).toContain('const frenchExamBlocked = !examContentAvailableForTarget(studyTarget)');
     // зачем (владелец 11.11, «Да, зачёты тоже»): зачёт уровня fr/es/de/it берёт СВОЙ банк из фраз курса;
     // английский движок (LevelExamV2) и английский банк остаются только английскому.
-    expect(levelExamSource).toContain("import { classicFinalExamTarget, loadClassicLevelExamQuestions } from './classic_final_exam_bank'");
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx: свой банк старого экрана
+    // (loadClassicLevelExamQuestions, englishQuestions) больше не собирается — задания своего языка строит новый движок
+    expect(levelExamSource).toContain("import { classicFinalExamTarget } from './classic_final_exam_bank'");
     expect(levelExamSource).toContain('const classicExamTarget = classicFinalExamTarget(storageStudyTarget(studyTarget))');
-    expect(levelExamSource).toContain('loadClassicLevelExamQuestions(classicExamTarget, lang, lvl as CourseLevel, INTRO_Q_COUNT)');
-    expect(levelExamSource).toContain('const questions = classicExamTarget ? classicQuestions : englishQuestions;');
-    expect(levelExamSource).toContain('if (frenchExamBlocked || classicExamTarget) return [];');
+    expect(levelExamSource).not.toContain('QUESTION_POOL');
+    expect(levelExamSource).not.toContain('englishQuestions');
     // зачем (владелец 11.11.2026, позже в тот же день: «Перевести на новые механики»): экзамен уровня всех пяти курсов идёт через
     // новый движок, но каждый — СО СВОИМ языком. Прежнее правило «движок только английскому» заменено: суть та же —
     // не-английский курс не получает английских заданий, — только теперь её держит передача языка курса в движок.
     expect(levelExamSource).toContain('if (!frenchExamBlocked) {');
     expect(levelExamSource).toContain("studyTarget={classicExamTarget ?? 'en'}");
-    expect(levelExamSource).toContain("'exam_questions_unavailable'");
     expect(levelExamSource).toContain("useSilentLeave(silentLeaveFrench, 'level_exam', frenchExamBlocked ? 'french_gate_closed'");
     // та же переписанная система, что и в финальном экзамене: ошибка уровня
     // записывается со своим языком, английская работа над ошибками не задета
-    expect(levelExamSource).toContain('captureCurrentAccountObjectiveAttempt');
-    expect(levelExamSource).toMatch(/captureCurrentAccountObjectiveAttempt\(\{[\s\S]{0,200}?studyTarget/);
-    expect(levelExamSource.indexOf('if (silentLeaveFrench) {')).toBeGreaterThan(-1);
-    expect(levelExamSource.indexOf('if (silentLeaveFrench) {')).toBeLessThan(
-      levelExamSource.indexOf("if (accessState !== 'allowed')"),
+    // запись ошибок экзамена перенесена из вырезанного экрана в app/level_exam_mistake_capture.ts — язык курса по-прежнему свой
+    const mistakeCaptureSource = fs.readFileSync(path.join(ROOT, 'app', 'level_exam_mistake_capture.ts'), 'utf8');
+    expect(mistakeCaptureSource).toContain('captureCurrentAccountObjectiveAttempt');
+    expect(mistakeCaptureSource).toMatch(/captureCurrentAccountObjectiveAttempt\(\{[\s\S]{0,200}?studyTarget/);
+    expect(fs.readFileSync(path.join(ROOT, 'components', 'level-exam', 'LevelExamV2.tsx'), 'utf8')).toContain('captureLevelExamMistakes({ blueprint: sourceBlueprint, answers: finishing.answers, level, studyTarget,');
+    // закрытый курс: после нового экрана в маршруте остаётся только пустой экран тихого ухода — ни вопросов, ни заглушки
+    expect(levelExamSource.indexOf('if (!frenchExamBlocked) {')).toBeGreaterThan(-1);
+    expect(levelExamSource.indexOf('if (!frenchExamBlocked) {')).toBeLessThan(
+      levelExamSource.indexOf('return <ScreenGradient artBackdrop="exam"><View style={{ flex: 1 }} /></ScreenGradient>;'),
     );
+    expect(levelExamSource).not.toContain("if (accessState !== 'allowed')");
 
     // пустой удалённый загрузчик французских экзаменов снят целиком — ни один экран его больше не зовёт
     expect(fs.existsSync(path.join(ROOT, 'app', 'french_exam_remote_runtime.ts'))).toBe(false);

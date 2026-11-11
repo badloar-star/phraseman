@@ -60,7 +60,8 @@ describe('старт платной активности: без окна под
       'app/lesson_irregular_verbs.tsx',
       'app/lesson_words.tsx',
       'app/lesson1.tsx',
-      'app/level_exam.tsx',
+      // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx: маршрут сам энергию не списывает,
+      // списание экзамена уровня — в components/level-exam/LevelExamV2.tsx (ниже в списке)
       // зачем (03.10): app/max_call_prestart.tsx удалён в снимке 2.0 (efe19ae9d, раздел MAX законсервирован) — точки входа больше нет.
       'app/mistake_practice_session.tsx',
       // зачем (03.10): app/personal_plan_exercise.tsx удалён вместе с персональными планами (решение владельца 2026-09-27:

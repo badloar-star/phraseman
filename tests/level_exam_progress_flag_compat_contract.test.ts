@@ -33,16 +33,15 @@ describe('level exam progress flag compatibility', () => {
 
   it('keeps both local exam routes and cloud restore monotonic', () => {
     const examV2 = read('components/level-exam/LevelExamV2.tsx');
-    const legacyExam = read('app/level_exam.tsx');
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx: писатель результата остался один — новый экран
+    const route = read('app/level_exam.tsx');
     const cloudSync = read('app/cloud_sync.ts');
 
     expect(examV2).toContain("scored.passed ? '1' : '0'");
     expect(examV2).toContain('const previousPct = Number.isFinite(previousPctRaw)');
     expect(examV2).toContain('Math.max(0, Math.min(100, Math.round(previousPctRaw)))');
-    expect(legacyExam).toContain('const persistedPassed = storedProgressFlagIsTrue(previousPassedRaw) || passed');
-    expect(legacyExam).toContain('const persistedPct = Math.max(Number.isFinite(previousPct) ? previousPct : 0, pct)');
-    expect(legacyExam).toContain("persistedPassed ? '1' : '0'");
-    expect(legacyExam).not.toContain("levelExamKey(lvl, 'passed', studyTarget), passed ? '1' : '0'");
+    expect(examV2).toContain('String(Math.max(previousPct, scored.pct))');
+    expect(route).not.toContain('levelExamKey(');
     expect(cloudSync).toContain("parseProgressBool(cloudValue) || parseProgressBool(localValue) ? 'true' : 'false'");
   });
 });

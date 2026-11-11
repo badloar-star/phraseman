@@ -28,7 +28,8 @@ const REVIEWED_DYNAMIC_CONTEXTS = new Set([
   'app/lesson_complete.tsx:lessonPaywallContext(premiumBannerNextLesson.current)',
   'app/lesson_menu.tsx:lessonPaywallContext(lessonId)',
   'app/lesson_premium_gate.ts:lessonPaywallContext(lessonId)',
-  'app/level_exam.tsx:lessonPaywallContext(firstLessonForLevel)',
+  // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx; «Получить Plus» на замке уровня — в новом экране
+  'components/level-exam/LevelExamV2.tsx:lessonPaywallContext(firstLessonForLevel)',
   'components/AiLimitUpsellCard.tsx:paywallContext',
   'components/NoEnergyModal.tsx:ctx',
   // 2026-10-12: шторка остановки режима энергии Б — контекст приходит пропом с одобренным значением по умолчанию 'no_energy'

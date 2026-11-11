@@ -327,10 +327,11 @@ describe('reported content regressions', () => {
   });
 
   it('keeps level exam questions on already taught wording for passive voice and third conditional', () => {
-    const levelExamSource = fs.readFileSync(path.join(process.cwd(), 'app', 'level_exam.tsx'), 'utf8');
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx вместе с банком заданий;
+    // экзамен уровня собирает задания из фраз курса, формулировки остались только в банке зачёта урока
     const legacyExamSource = fs.readFileSync(path.join(process.cwd(), 'app', 'exam.tsx'), 'utf8');
 
-    for (const source of [levelExamSource, legacyExamSource]) {
+    for (const source of [legacyExamSource]) {
       expect(source).toContain("q:'The documents ___ checked today.'");
       expect(source).toContain("q:'If we had started earlier, we ___ finished.'");
       expect(source).not.toContain("q:'The report ___ submitted by Friday.'");

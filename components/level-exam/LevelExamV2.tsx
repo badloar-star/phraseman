@@ -68,6 +68,15 @@ import LevelExamResult, { type LevelExamRewardState } from './LevelExamResult';
 import PhraseBuilderQuestion from './PhraseBuilderQuestion';
 import SpeedMatchQuestion from './SpeedMatchQuestion';
 import { useSilentLeave } from '../../hooks/use_silent_leave';
+// зачем (владелец 11.11.2026, «Сначала перенести»): четыре вещи прежнего встроенного экрана, которых у нового не было, —
+// запись ошибок в «Мои ошибки», «Получить Plus» на замке уровня, флажок «сообщить об ошибке» и просьба об оценке / тост отказа старта.
+import ReportErrorButton from '../ReportErrorButton';
+import ReviewPromptModal from '../ReviewPromptModal';
+import { canShowReview } from '../../app/review_utils';
+import { notifyActivityStartFailed, useScreenOpenRef } from '../../app/activity_start_failed_toast';
+import { lessonPaywallContext } from '../../app/monetization_policy';
+import { lessonPurchaseContinuationParams } from '../../app/paywall_lesson_continuation';
+import { captureLevelExamMistakes } from '../../app/level_exam_mistake_capture';
 import { noteSwallowedAs, noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 // Numeric energy: экзамен стоит одно занятие (1 ⚡) за один старт.
@@ -171,6 +180,8 @@ export default function LevelExamV2({ level, lang, studyTarget = 'en', accessSta
   const [starting, setStarting] = useState(false);
   const beginQuizInFlightRef = useRef(false);
   const [noEnergy, setNoEnergy] = useState(false);
+  const screenOpenRef = useScreenOpenRef();
+  const [reviewPromptVisible, setReviewPromptVisible] = useState(false);
   // зачем: заголовок «Зачёт A1» в шапках блокировки и вопросов берём из общей копии экзамена
   const examTitle = getLevelExamCopy(lang, {
     level,
@@ -209,6 +220,8 @@ export default function LevelExamV2({ level, lang, studyTarget = 'en', accessSta
     const scored = scoreLevelExam(sourceBlueprint, finishing.answers, reason);
     setResult(scored);
     setPhase('result');
+    // зачем: неверные ответы попытки уходят в «Мои ошибки» один раз, когда экзамен посчитан; показ итога запись не ждёт
+    captureLevelExamMistakes({ blueprint: sourceBlueprint, answers: finishing.answers, level, studyTarget, attemptId: finishing.attemptId });
 
     try {
       const previousPassed = await AsyncStorage.getItem(levelExamKey(level, 'passed', studyTarget));
@@ -467,6 +480,8 @@ export default function LevelExamV2({ level, lang, studyTarget = 'en', accessSta
       if (!unlimitedEnergy) {
         const energyResult = await levelExamEnergyGate.charge();
         if (energyResult === 'cancelled') {
+          // зачем (координатор 15.10, п.3): отказ списания — тост «Не получилось начать», если экран ещё открыт
+          notifyActivityStartFailed('level_exam', screenOpenRef);
           setPhase('intro');
           return;
         }
@@ -494,7 +509,36 @@ export default function LevelExamV2({ level, lang, studyTarget = 'en', accessSta
     } finally {
       beginQuizInFlightRef.current = false;
     }
-  }, [level, levelExamEnergyGate, unlimitedEnergy]);
+  }, [level, levelExamEnergyGate, screenOpenRef, unlimitedEnergy]);
+
+  // зачем: замок Plus ведёт на пейвол с продолжением в первый урок уровня после покупки — как в прежнем экране и в меню урока
+  const openLevelPaywall = useCallback(() => {
+    const firstLessonForLevel = getFirstLessonForLevel(level);
+    router.push({
+      pathname: '/premium_modal',
+      params: {
+        context: lessonPaywallContext(firstLessonForLevel),
+        source: 'level_exam',
+        lessons_done: '0',
+        ...lessonPurchaseContinuationParams(firstLessonForLevel),
+      },
+    } as never);
+  }, [level, router]);
+
+  // зачем: после сданного экзамена — просьба об оценке (если её время пришло), и только потом к урокам
+  const leavingResultRef = useRef(false);
+  const leavePassedResult = useCallback(async () => {
+    // зачем: второе нажатие, пока проверяется просьба об оценке, не уводит с экрана дважды и не открывает второе окно
+    if (leavingResultRef.current) return;
+    leavingResultRef.current = true;
+    const ask = await canShowReview({ trigger: 'level_exam_pass', scorePercent: result?.pct ?? 0, userContinued: true })
+      .catch((error: unknown) => {
+        console.warn(`[LEVEL-EXAM] просьба об оценке не проверилась: ${error instanceof Error ? error.message : String(error)}`); // guard-ok: причина в catch, раз за итог экзамена
+        return false;
+      });
+    if (ask) { setReviewPromptVisible(true); return; }
+    dismissToTabRoute(router, '/(tabs)/lessons');
+  }, [result?.pct, router]);
 
   const pauseAndExit = useCallback(() => {
     const current = attemptRef.current;
@@ -528,7 +572,12 @@ export default function LevelExamV2({ level, lang, studyTarget = 'en', accessSta
             />
           </View>
           <ExamFooter bottomInset={0}>
-            <PracticeCta glass={glass} label={triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'Ir a lecciones', 'pt-BR': 'Ir para as aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere git', pl: 'Do lekcji' })} trailingArrow onPress={() => safeRouterBack(router, '/(tabs)/lessons' as never)} accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} />
+            {accessBlockKind === 'premium' ? (
+              // зачем: замок Plus — не тупик; кнопка ведёт на пейвол, «назад» в шапке по-прежнему возвращает к урокам
+              <PracticeCta glass={glass} label={triLang(lang, { ru: 'Получить Plus', uk: 'Отримати Plus', en: 'Get Plus', es: 'Obtener Plus', 'pt-BR': 'Obter Plus', vi: 'Mở Plus', id: 'Dapatkan Plus', tr: 'Plus al', pl: 'Kup Plus' })} trailingArrow onPress={openLevelPaywall} />
+            ) : (
+              <PracticeCta glass={glass} label={triLang(lang, { ru: 'К урокам', uk: 'До уроків', en: 'To lessons', es: 'Ir a lecciones', 'pt-BR': 'Ir para as aulas', vi: 'Về bài học', id: 'Ke pelajaran', tr: 'Derslere git', pl: 'Do lekcji' })} trailingArrow onPress={() => safeRouterBack(router, '/(tabs)/lessons' as never)} accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', en: 'Back', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} />
+            )}
           </ExamFooter>
         </SafeAreaView>
       </ScreenGradient>
@@ -564,18 +613,29 @@ export default function LevelExamV2({ level, lang, studyTarget = 'en', accessSta
 
   if (phase === 'result' && result && attempt) {
     return (
-      <LevelExamResult
-        lang={lang}
-        attemptId={attempt.attemptId}
-        result={result}
-        rewardState={rewardState}
-        energyCost={ENERGY_COST}
-        unlimitedEnergy={unlimitedEnergy}
-        // зачем (PM-046, владелец): /level_reward_spin удалён — успешный
-        // экзамен больше никуда не ведёт кроме уроков, спин-ветка снята.
-        onPrimary={() => result.passed ? dismissToTabRoute(router, '/(tabs)/lessons') : setPhase('intro')}
-        onClose={() => safeRouterBack(router, '/(tabs)/lessons' as never)}
-      />
+      <>
+        <LevelExamResult
+          lang={lang}
+          attemptId={attempt.attemptId}
+          result={result}
+          rewardState={rewardState}
+          energyCost={ENERGY_COST}
+          unlimitedEnergy={unlimitedEnergy}
+          // зачем (PM-046, владелец): /level_reward_spin удалён — успешный
+          // экзамен больше никуда не ведёт кроме уроков, спин-ветка снята.
+          onPrimary={() => { if (result.passed) void leavePassedResult(); else setPhase('intro'); }}
+          onClose={() => safeRouterBack(router, '/(tabs)/lessons' as never)}
+        />
+        <ReviewPromptModal
+          visible={reviewPromptVisible}
+          context="level_exam_pass"
+          lang={lang}
+          onClose={() => {
+            setReviewPromptVisible(false);
+            dismissToTabRoute(router, '/(tabs)/lessons');
+          }}
+        />
+      </>
     );
   }
 
@@ -637,6 +697,15 @@ export default function LevelExamV2({ level, lang, studyTarget = 'en', accessSta
         onExit={() => setExitConfirm(true)}
       >
         {content}
+        {/* зачем (правило владельца: флажок «сообщить об ошибке» на каждом экране с заданием): в отчёт уходят номер задания и его текст */}
+        <View style={styles.reportWrap}>
+          <ReportErrorButton
+            variant="icon-flag"
+            screen="level_exam"
+            dataId={`level_exam_${level}_${task.id}`}
+            dataText={taskPrompt(task, lang).slice(0, 120)}
+          />
+        </View>
       </LevelExamQuestionFrame>
       <ThemedConfirmModal
         visible={exitConfirm}
@@ -661,4 +730,5 @@ export default function LevelExamV2({ level, lang, studyTarget = 'en', accessSta
 const styles = StyleSheet.create({
   safeArea: { flex: 1 },
   stateWrap: { flex: 1, justifyContent: 'center', paddingBottom: 60 },
+  reportWrap: { alignItems: 'center', marginTop: 2 },
 });

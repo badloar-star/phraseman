@@ -25,8 +25,9 @@ test('combined_lesson_pick: SafeTopBackButton напрямую — общая «
 });
 
 test('level_exam: «назад» рисует обёртка ExamHeader из ExamGlassParts через SafeTopBackButton', () => {
-  const exam = read('app/level_exam.tsx');
-  assert.match(exam, /from '\.\.\/components\/level-exam\/ExamGlassParts'/);
+  // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx; шапку с «назад» рисует новый экран
+  const exam = read('components/level-exam/LevelExamV2.tsx');
+  assert.match(exam, /from '\.\/ExamGlassParts'/);
   assert.match(exam, /<ExamHeader\b[^>]*onBack=/);
   assert.equal(sharedBackTag(read('components/level-exam/ExamGlassParts.tsx')), 'SafeTopBackButton');
 });

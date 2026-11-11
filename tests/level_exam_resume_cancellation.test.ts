@@ -59,6 +59,9 @@ function compileEffectStart(callbackSource: string) {
         levelExamAttemptMatchesBlueprintIdentity, persistActiveLevelExamAttempt,
         noteSwallowedHandler, blueprintRef, attemptRef, setBlueprint, setAttempt,
         setRemainingMs, remainingLevelExamMs, setPhase, finishExam,
+        // зачем (11.11.2026): эффект восстановления читает язык курса и язык интерфейса с тех пор, как экзамен
+        // работает для пяти курсов; проба их не подавала и падала «studyTarget is not defined», не дойдя до сути
+        studyTarget, lang,
       } = env;
       let cancelled = false;
       const promise = (${callbackSource})();
@@ -94,6 +97,8 @@ function createHarness() {
     levelExamKey: () => 'best-key',
     setBestScore: () => undefined,
     examSourceLocale: 'ru',
+    studyTarget: 'en',
+    lang: 'ru',
     clearActiveLevelExamAttempt: async () => undefined,
     trackFeatureError: () => undefined,
     setContentUnavailable: () => undefined,

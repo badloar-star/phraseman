@@ -46,7 +46,9 @@ assert.match(ledger, /energy-session-refund-request\.v1/);
 assert.match(ledger, /status: 'reversed'/);
 assert.match(ledger, /operation_id_conflict/);
 
-const levelExam = read('app/level_exam.tsx');
-assert.match(levelExam, /setExamEnergyAttemptRevision\(\(current\) => current \+ 1\)/);
+// зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx. Суть прежней проверки —
+// следующая попытка платится отдельно от предыдущей — у нового экрана держится номером попытки в личности списания.
+const levelExam = read('components/level-exam/LevelExamV2.tsx');
+assert.match(levelExam, /useEnergySessionIntent\(\s*'level_exam_v2',\s*level,\s*attempt\?\.attemptId,\s*\)/);
 
 console.log(`ENERGY SESSION CALLSITES CONTRACT: PASS (${productionFiles.length} production files)`);

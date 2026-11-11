@@ -23,7 +23,8 @@ describe('«Обучение»: без второй копии вкладки «
   });
 
   it('переходы «к урокам» сворачивают стек до вкладки', () => {
-    for (const rel of ['app/lesson_words.tsx', 'app/level_exam.tsx', 'app/exam.tsx', 'app/lesson1.tsx', 'components/level-exam/LevelExamV2.tsx']) {
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx: переход «к урокам» экзамена уровня — в LevelExamV2
+    for (const rel of ['app/lesson_words.tsx', 'app/exam.tsx', 'app/lesson1.tsx', 'components/level-exam/LevelExamV2.tsx']) {
       expect(read(rel)).toContain("dismissToTabRoute(router, '/(tabs)/lessons')");
     }
   });

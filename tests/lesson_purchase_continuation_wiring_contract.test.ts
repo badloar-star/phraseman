@@ -13,7 +13,9 @@ describe('legacy lesson purchase continuation wiring', () => {
     expect((lessonMenu.match(/lessonPurchaseContinuationParams\(lessonId\)/g) ?? [])).toHaveLength(1);
     expect(lessonMenu).toContain("source: 'lesson_menu',");
     expect(read('app', 'lesson_complete.tsx')).toContain('lessonPurchaseContinuationParams(premiumBannerNextLesson.current)');
-    expect(read('app', 'level_exam.tsx')).toContain('lessonPurchaseContinuationParams(firstLessonForLevel)');
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx;
+    // кнопка «Получить Plus» на замке уровня перенесена в новый экран
+    expect(read('components', 'level-exam', 'LevelExamV2.tsx')).toContain('lessonPurchaseContinuationParams(firstLessonForLevel)');
   });
 
   it('the single Plus paywall forwards the allowlisted lesson id into the shared purchase hook', () => {

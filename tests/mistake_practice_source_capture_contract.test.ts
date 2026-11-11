@@ -9,7 +9,8 @@ describe('new mistake capture source coverage', () => {
     'app/lesson_words.tsx',
     'app/lesson_irregular_verbs.tsx',
     'app/diagnostic_test.tsx',
-    'app/level_exam.tsx',
+    // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx; запись ошибок экзамена уровня — в отдельном модуле
+    'app/level_exam_mistake_capture.ts',
     'app/exam.tsx',
     'app/flashcards_swipe.tsx',
     'app/flashcards_blitz_session.tsx',

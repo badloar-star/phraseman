@@ -17,7 +17,36 @@ const PKG = 'app.phraseman';
 const ADB = process.env.ADB ?? 'C:/Users/badlo/AppData/Local/Android/Sdk/platform-tools/adb.exe';
 
 function adb(serial, args, timeoutMs = 60_000) {
-  return execFileSync(ADB, ['-s', serial, ...args], { encoding: 'utf8', timeout: timeoutMs, maxBuffer: 256 * 1024 * 1024 });
+  try {
+    return execFileSync(ADB, ['-s', serial, ...args], { encoding: 'utf8', timeout: timeoutMs, maxBuffer: 256 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'] });
+  } catch (error) {
+    // зачем (11.11, «сперва логи»): на перегруженном ПК чтение журнала падало голым «Command failed» — без кода, сигнала и stderr
+    // нельзя отличить таймаут от отказа adb.
+    const e = /** @type {{ status?: number|null, signal?: string|null, code?: string, stderr?: string, stdout?: string }} */ (error);
+    throw new Error(`adb ${args.join(' ')} → status=${e.status ?? null} signal=${e.signal ?? null} code=${e.code ?? null} timeoutMs=${timeoutMs} stdoutBytes=${e.stdout?.length ?? 0} stderr=${String(e.stderr ?? '').trim().slice(0, 300)}`);
+  }
+}
+
+/**
+ * зачем (11.11, факт из журнала: `adb logcat -d` → status=255 при stdoutBytes=106953 на перегруженном ПК): поток журнала по adb
+ * рвётся посреди выдачи. Журнал сначала пишется в файл на самом устройстве, потом читается одним куском; до трёх попыток,
+ * каждая неудача печатается.
+ */
+function readLogcat(serial) {
+  let lastError = null;
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      // зачем: `logcat -f` ДОПИСЫВАЕТ файл — без удаления первый запуск серии подменял собой все следующие (поймано 11.11:
+      // три запуска подряд с одинаковыми 3211 мс и растущим числом меток).
+      adb(serial, ['shell', 'rm -f /data/local/tmp/cold_measure.log; logcat -d -v epoch -f /data/local/tmp/cold_measure.log'], 120_000);
+      return adb(serial, ['exec-out', 'cat', '/data/local/tmp/cold_measure.log'], 120_000);
+    } catch (error) {
+      lastError = error;
+      console.warn(`${LOG} чтение журнала: попытка ${attempt}/3 не удалась — ${error instanceof Error ? error.message : String(error)}`);
+      sleep(2_000);
+    }
+  }
+  throw lastError;
 }
 
 function sleep(ms) {
@@ -117,7 +146,7 @@ function run(args) {
     sleep(2_000);
     const am = adb(serial, ['shell', 'am', 'start', '-W', '-n', `${PKG}/.MainActivity`], 120_000);
     sleep(settleSec * 1_000);
-    const log = adb(serial, ['logcat', '-d', '-v', 'epoch'], 120_000);
+    const log = readLogcat(serial);
     fs.writeFileSync(path.join(out, `run${i}.am.txt`), am);
     fs.writeFileSync(path.join(out, `run${i}.log`), log);
     console.log(`${LOG} запуск ${i}/${runs}: ${JSON.stringify(parseRun(log, am))}`);

@@ -31,7 +31,11 @@ export function logPlateToneOnce(
   palette: Readonly<{ smoke: string; smokeBoost: number; sheenFrom: string; sheenTo: string }>,
   tone: PlateTone,
 ): void {
-  const key = `${themeId}/${g.isLight ? 'light' : 'dark'}/${g.level}/${String(g.intensity)}`;
+  // зачем (владелец 11.11 «ползунки всё равно тормозят», журнал 22:49: строка [PLATE-TONE] на КАЖДЫЙ шаг ползунка «Оформление»): у тем-ползунков
+  // каждый шаг — новый идентификатор tune:H:S, «один раз на сочетание» превращался в лог на каждый кадр жеста и вечный рост набора ключей.
+  // Темы-ползунки ключуем без оттенка/насыщенности: одна строка на оформление/уровень, набор не растёт.
+  const tuneFamily = themeId.startsWith('tune:') ? 'tune:*' : themeId;
+  const key = `${tuneFamily}/${g.isLight ? 'light' : 'dark'}/${g.level}/${String(g.intensity)}`;
   if (logged.has(key)) return;
   logged.add(key);
   console.log(`[PLATE-TONE] theme=${themeId} isLight=${String(g.isLight)} level=${g.level} intensity=${String(g.intensity)} plate=${g.plateFillFrom}→${g.plateFillTo} sheen=${palette.sheenFrom}→${palette.sheenTo} smokeAsked=${palette.smoke}×${palette.smokeBoost} smokeDrawn=${tone.smoke}×${tone.smokeBoost} clamped=${String(tone.clamped)} shadow=outer-bottom`);

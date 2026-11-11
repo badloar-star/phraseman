@@ -1,6 +1,8 @@
 // VoiceAllowanceBadge.tsx — пилюля-цифра «осталось голосовых попыток сегодня» в правом верхнем углу кнопки микрофона (макет D194, learning-v2-voice-limit.html).
 // зачем (решение владельца D194, 15.10): остаток виден ДО нажатия; 0 → «PLUS» (тап ведёт на пейвол); при списании цифра «тикает» (масштаб 1 → 1,25 → 1, 420 мс).
 // Размеры текста по D145 (< 19 только 13 и 16): цифра 16/20 вместо 15 в макете, «PLUS» 13 вместо 12. Цвета приходят от хоста (токены темы), своих цветов нет.
+// зачем (владелец 11.11): при 0 вместо букв «PLUS» — иконка замка. Слово не помещалось в пилюлю и читалось как «PL»; замок — тот же знак «доступно в Plus», что в настройках тем и языка.
+import { Ionicons } from '@expo/vector-icons';
 import React, { memo, useEffect, useRef } from 'react';
 import { StyleSheet, Text } from 'react-native';
 import Reanimated, { Easing, useAnimatedStyle, useSharedValue, withSequence, withTiming } from 'react-native-reanimated';
@@ -19,7 +21,7 @@ export type VoiceAllowanceColors = Readonly<{
 }>;
 
 export type VoiceAllowanceBadgeProps = Readonly<{
-  /** Сколько попыток осталось; 0 и меньше — «PLUS». */
+  /** Сколько попыток осталось; 0 и меньше — замок. */
   remaining: number;
   colors: VoiceAllowanceColors;
   reduceMotion?: boolean;
@@ -31,6 +33,8 @@ export type VoiceAllowanceBadgeProps = Readonly<{
 const TICK_UP_MS = 170;
 const TICK_DOWN_MS = 250; // вместе 420 мс, как vbTick в макете
 const EASE = Easing.bezier(0.3, 1.5, 0.5, 1);
+const LOCK_MD = 15; // в круге 28
+const LOCK_SM = 12; // в круге 22
 
 function VoiceAllowanceBadge({ remaining, colors, reduceMotion = false, size = 'md', testID = 'voice-allowance-badge' }: VoiceAllowanceBadgeProps) {
   const prev = useRef(remaining);
@@ -52,14 +56,20 @@ function VoiceAllowanceBadge({ remaining, colors, reduceMotion = false, size = '
       style={[
         s.badge,
         size === 'sm' ? s.badgeSm : null,
+        // зачем: замок стоит в ровном круге — боковые поля нужны только цифре (двузначной)
+        plus ? s.badgeLock : null,
         // кольцо вокруг пилюли — тень без размытия цвета фона страницы (в макете box-shadow 0 0 0 2px var(--bg)), не обводка
         { backgroundColor: plus ? colors.plusFill : colors.fill, boxShadow: `0 0 0 2px ${colors.ring}` },
         style,
       ]}
     >
-      <Text style={[plus ? s.plusText : s.digit, size === 'sm' ? s.textSm : null, { color: plus ? colors.plusInk : colors.ink }]} testID={`${testID}-text`}>
-        {plus ? 'PLUS' : String(remaining)}
-      </Text>
+      {plus ? (
+        <Ionicons name="lock-closed" size={size === 'sm' ? LOCK_SM : LOCK_MD} color={colors.plusInk} testID={`${testID}-lock`} />
+      ) : (
+        <Text style={[s.digit, size === 'sm' ? s.textSm : null, { color: colors.ink }]} testID={`${testID}-text`}>
+          {String(remaining)}
+        </Text>
+      )}
     </Reanimated.View>
   );
 }
@@ -81,7 +91,7 @@ const s = StyleSheet.create({
   badgeSm: { top: -5, right: -8, minWidth: 22, height: 22, paddingHorizontal: 6, borderRadius: 11 },
   textSm: { fontSize: 13, lineHeight: 17 },
   digit: { fontSize: 16, lineHeight: 20, fontWeight: '800', fontVariant: ['tabular-nums'] },
-  plusText: { fontSize: 13, lineHeight: 20, fontWeight: '800', letterSpacing: 0.4 },
+  badgeLock: { paddingHorizontal: 0 },
 });
 
 export default memo(VoiceAllowanceBadge);

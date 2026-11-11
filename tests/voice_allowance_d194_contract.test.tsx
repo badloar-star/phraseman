@@ -1,5 +1,5 @@
 // зачем (решение владельца D194, 15.10; макет лимита голоса): остаток дневных голосовых попыток на микрофоне голосовых заданий курса V2.
-// Сторож: бейдж (цифра / PLUS), SpeakHoldButton без allowance не меняется (Карточки), вшивка в плеер — гейт до записи, списание в момент старта записи, бейдж только при kind === 'limited'.
+// Сторож: бейдж (цифра / замок при 0), SpeakHoldButton без allowance не меняется (Карточки), вшивка в плеер — гейт до записи, списание в момент старта записи, бейдж только при kind === 'limited'.
 (globalThis as typeof globalThis & { __DEV__?: boolean }).__DEV__ = false;
 
 import fs from 'node:fs';
@@ -16,6 +16,8 @@ jest.mock('react-native', () => ({
   Dimensions: { get: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }) },
   NativeModules: {},
 }));
+// зачем: замок при 0 — Ionicons; заглушка-хост, чтобы тест видел testID иконки
+jest.mock('@expo/vector-icons', () => ({ Ionicons: 'Ionicons' }));
 jest.mock('react-native-reanimated', () => {
   const R = jest.requireActual('react');
   const View = (props: Record<string, unknown>) => R.createElement('View', props, props.children);
@@ -41,9 +43,12 @@ describe('VoiceAllowanceBadge', () => {
     await render(<VoiceAllowanceBadge remaining={3} colors={colors} />);
     expect(screen.getByTestId('voice-allowance-badge-text', { hidden: true }).props.children).toBe('3');
   });
-  it('остаток 0 — «PLUS»', async () => {
+  // зачем (владелец 11.11): слово «PLUS» не помещалось и читалось как «PL» — при 0 рисуем замок, букв нет
+  it('остаток 0 — иконка замка вместо букв', async () => {
     await render(<VoiceAllowanceBadge remaining={0} colors={colors} />);
-    expect(screen.getByTestId('voice-allowance-badge-text', { hidden: true }).props.children).toBe('PLUS');
+    expect(screen.getByTestId('voice-allowance-badge-lock', { hidden: true })).toBeTruthy();
+    expect(screen.queryByTestId('voice-allowance-badge-text', { hidden: true })).toBeNull();
+    expect(screen.queryByText('PLUS', { hidden: true })).toBeNull();
   });
 });
 

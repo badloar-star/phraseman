@@ -16,11 +16,13 @@ const v2HomeStart = home.indexOf('const renderHomeV2 = () =>');
 const v2HeaderStart = home.indexOf('const renderHomeV2Header');
 const v2Home = home.slice(v2HeaderStart >= 0 && v2HeaderStart < v2HomeStart ? v2HeaderStart : v2HomeStart, v2HomeStart + 10500);
 
-test('all three feature illustrations sit at the left on one uninterrupted glass surface', () => {
-  assert.match(tiles, /style=\{s\.art\}/);
+// зачем (владелец 11.11: «всегда иконки должны быть отцентрированы»; макет home_tiles_mockup утверждён): предмет больше не прижат влево — стоит по центру.
+// Заодно пины стиля приведены к коду после 05.11 (ряд из трёх: s.tileDense / s.artDense) — прежние строки `style={s.art}` и `[s.tile, glass]` с тех пор не совпадали.
+test('all feature illustrations sit centered on one uninterrupted glass surface', () => {
+  assert.match(tiles, /style=\{\[s\.art, dense \? s\.artDense : null\]\}/);
   assert.doesNotMatch(tiles, /s\.art, \{ backgroundColor: p\.glassRaised \}/);
-  assert.match(tiles, /art: \{[^}]*alignItems: 'flex-start'/);
-  assert.match(tiles, /style=\{\[s\.tile, glass\]\}/);
+  assert.match(tiles, /art: \{[^}]*alignItems: 'center', justifyContent: 'center'/);
+  assert.match(tiles, /style=\{\[s\.tile, dense \? s\.tileDense : null, glass\]\}/);
 });
 
 test('V2 home identity and balance use one real coin-rank asset, never the hex avatar or rune', () => {

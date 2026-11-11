@@ -116,12 +116,12 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
             <HomeScenePlateShadow kind="tile" isLight={g.isLight} shadow={g.plateShadow} shadowSoft={g.plateShadowSoft} />
             {/* зачем (владелец 11.11, макет aurora_rassvet.html утверждён «1 в 1»): плитка «Авроры» — матовое стекло без размытия (AuroraTileFrost); у остальных тем — прежняя ровная заливка */}
             {g.aurora ? <AuroraTileFrost material={g.aurora} radius={20} idPrefix={`homeTile_${tile.key}`} /> : <View pointerEvents="none" style={[s.sceneTileFill, { backgroundColor: g.opaqueCard }]} />}
-            {/* зачем (Сверка home4, scenes-compact `.tile`; координатор: «подпись ВНУТРИ плитки, без подписи снизу»): плитка — карточка r20, картинка 58 сверху, подпись 13/700 внутри; поля 6/4/10 */}
+            {/* зачем (Сверка home4, scenes-compact `.tile`; координатор: «подпись ВНУТРИ плитки, без подписи снизу»): плитка — карточка r20, подпись внутри; с 11.11 (слово владельца, макет home_tiles_mockup) — квадрат, предмет на всё место над подписью, подпись 10/12 */}
             <View pointerEvents="none" style={s.sceneArt}>
               {/* зачем (замечание координатора 06.11, кадр home_newbie_3tiles): светлый арт «Фразы из видео» (cards_from_video) нарисован с полями —
                   видимая часть 450×395 из 512 против ~499×446 у «Уроков»/«Сохранённых», плитка выглядела мельче и выше; выравниваем посадку
                   масштабом по измеренной рамке видимой части (assets v2art/light), тёмный арт заполняет рамку как соседи */}
-              <ThemedArtLayers source={tile.art} accent={tile.artAccent} /* зачем (владелец 11.11, позже в тот же день: «элемент короны, который должен краситься под цвет темы, не красится — исправь»): исключение «Пик в Авроре без окраски» снято, цветная часть короны красится во всех темах */ style={tile.key === 'video_packs' && g.isLight ? [s.sceneArtImage, { transform: [{ scale: VIDEO_PACKS_LIGHT_ART_SCALE }] }] : s.sceneArtImage} />
+              <ThemedArtLayers source={tile.art} accent={tile.artAccent} /* зачем (владелец 11.11, позже в тот же день: «элемент короны, который должен краситься под цвет темы, не красится — исправь»): исключение «Пик в Авроре без окраски» снято, цветная часть короны красится во всех темах */ style={tile.key === 'video_packs' && g.isLight ? s.sceneArtImageVideoLight : s.sceneArtImage} />
               {tile.key === 'spire' && spirePlace !== null ? (
                 <View style={[s.badge, { backgroundColor: g.ctaFill }]}>
                   <Text style={[s.badgeText, { color: g.ctaFillInk }]}>{spirePlaceBadgeText(uiLang, spirePlace)}</Text>
@@ -196,7 +196,7 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
         >
           <View pointerEvents="none" style={[s.art, dense ? s.artDense : null]}>
             {/* зачем (координатор 15.10): основа + необязательный слой .accent в цвет темы (tile.artAccent из того же resolve); без слоя — один Image, как раньше */}
-            <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={s.artImage} />
+            <ThemedArtLayers source={tile.art} accent={tile.artAccent} style={dense ? s.artImageDense : s.artImage} />
           </View>
           {/* зачем (Сверка font13, home_es_13_light: на живом кадре при шрифте 1,3 «Lecciones» рвалось «Leccione/s» — боевая ветка плиток этот Text, а не iconTitle): потолок роста кегля 1,05 (16→16,8 dp, слово ≈81 из 87 dp), не ужатие; цифры — [TILE-LABEL] */}
           <Text style={[dense ? s.titleDense : s.title, { color: p.text }]} maxFontSizeMultiplier={1.05} onLayout={(e) => logTileLabel('box', tile, uiLang, e)} onTextLayout={(e) => logTileLabel('lines', tile, uiLang, e)}>{tile.title}</Text>
@@ -231,6 +231,13 @@ function logTileLabel(kind: 'box' | 'lines', tile: HomeFeatureTile, lang: string
 
 const TILE_GAP = 10; // зачем: «Тень» 12.10 — между плашками ≥ 10, иначе тени слипаются
 
+// зачем (владелец 11.11, макет home_tiles_mockup утверждён «Да, переноси»: «всегда иконки должны быть отцентрированы… увеличь везде иконки внутри своих плиток»;
+// «не плитки, а иконки»): плитка остаётся прежнего размера, растёт только предмет. У картинок 512×512 прозрачные поля (видимая часть ~499×446),
+// поэтому предмет увеличивается масштабом внутри своего места: 2 плитки ×1,2; 3 плитки ×1,22; 4 плитки ×1,15 — видимая часть не выходит за плитку на 360 dp.
+const ART_SCALE_TWO = 1.2;
+const ART_SCALE_THREE = 1.22;
+const ART_SCALE_FOUR = 1.15;
+
 const s = StyleSheet.create({
   // зачем («Тень» 12.10): между плашками ≥ 10, иначе тени слипаются
   row: { flexDirection: 'row', gap: TILE_GAP },
@@ -243,26 +250,33 @@ const s = StyleSheet.create({
   tile: {
     aspectRatio: 1,
     borderRadius: V2.radius.tile,
-    paddingHorizontal: 10,
-    paddingBottom: 10,
+    paddingHorizontal: 8,
+    paddingTop: 8,
+    paddingBottom: 12,
+    alignItems: 'center',
     overflow: 'hidden',
   },
-  // Предмет занимает всё место над названием и прижат влево, как раньше.
-  art: { flex: 1, marginHorizontal: -10, marginBottom: 4, paddingLeft: 10, paddingTop: 6, alignItems: 'flex-start', justifyContent: 'center' },
-  artImage: { width: '86%', height: '100%', maxWidth: 84, maxHeight: 84 },
-  title: { ...V2_TYPE.headline },
-  // три плитки в ряд: поля 4 dp вместо 10, название 13/17 (см. dense в компоненте)
-  tileDense: { paddingHorizontal: 4 },
-  artDense: { marginHorizontal: -4, paddingLeft: 4 },
-  titleDense: { fontSize: 13, lineHeight: 17, fontWeight: '700' as const },
+  // зачем (владелец 11.11: «всегда иконки должны быть отцентрированы»): предмет занимает всё место над названием и стоит по центру плитки; название — по центру под ним.
+  art: { flex: 1, alignSelf: 'stretch', marginBottom: 4, alignItems: 'center', justifyContent: 'center' },
+  artImage: { width: '100%', height: '100%', transform: [{ scale: ART_SCALE_TWO }] },
+  title: { ...V2_TYPE.headline, alignSelf: 'stretch', textAlign: 'center' },
+  // три плитки в ряд: поля 4 dp, название 13/17 (см. dense в компоненте)
+  tileDense: { paddingHorizontal: 4, paddingTop: 4, paddingBottom: 8 },
+  artDense: { marginBottom: 2 },
+  artImageDense: { width: '100%', height: '100%', transform: [{ scale: ART_SCALE_THREE }] },
+  titleDense: { fontSize: 13, lineHeight: 17, fontWeight: '700' as const, alignSelf: 'stretch', textAlign: 'center' },
   // Вариант (а): плашка-иконка, арт по центру (башня Пика целиком в кадре), название под плашкой.
-  // зачем (ратчет typography_two_sizes, D145; координатор 17.10): ниже заголовка допустимы только 16 и 13 — название 14→13, цифра места на бейдже 11→13 (бейдж на 2 dp выше, текст всё так же в одну строку).
-  sceneTile: { borderRadius: 20, paddingTop: 6, paddingHorizontal: 4, paddingBottom: 10, alignItems: 'center' },
+  // зачем (ратчет typography_two_sizes, D145; координатор 17.10): ниже заголовка допустимы только 16 и 13 — цифра места на бейдже 13.
+  // зачем (владелец 11.11: «плитки квадратные сделай, а тексты сделай меньше, чтобы „Сохранённые“ помещалось в 1 ряд»; макет home_tiles_mockup утверждён):
+  // четыре плитки в ряд — квадрат (aspectRatio 1), предмет занимает всё место над названием, название 10/12 (исключение D145 — решение владельца кнопкой 11.11).
+  sceneTile: { aspectRatio: 1, borderRadius: 20, paddingBottom: 5, alignItems: 'center' },
   // заливка плитки — отдельный слой поверх маски тени (HomeScenePlateShadow)
   sceneTileFill: { ...StyleSheet.absoluteFillObject, borderRadius: 20 },
-  sceneArt: { width: '100%', height: 58 },
-  sceneArtImage: { width: '100%', height: '100%' },
-  sceneTileTitle: { fontSize: 13, lineHeight: 17, fontWeight: '700', textAlign: 'center' },
+  sceneArt: { flex: 1, alignSelf: 'stretch' },
+  sceneArtImage: { width: '100%', height: '100%', transform: [{ scale: ART_SCALE_FOUR }] },
+  // светлый арт «Фразы из видео» нарисован с полями — к общему масштабу добавляется его собственная поправка посадки
+  sceneArtImageVideoLight: { width: '100%', height: '100%', transform: [{ scale: ART_SCALE_FOUR * VIDEO_PACKS_LIGHT_ART_SCALE }] },
+  sceneTileTitle: { fontSize: 10, lineHeight: 12, fontWeight: '700', alignSelf: 'stretch', textAlign: 'center' }, // d145-micro: название в квадратной плитке 72 dp — 13 не помещает «Сохранённые» в одну строку (владелец 11.11)
   iconPlate: { aspectRatio: 1, borderRadius: V2.radius.tile, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' },
   iconArt: { width: '74%', height: '74%' },
   // зачем (владелец 18.10): арт 60% и сдвиг вниз на 24% (процент от ширины квадратной плашки) — корона целиком под плашкой места, верх плашки свободен

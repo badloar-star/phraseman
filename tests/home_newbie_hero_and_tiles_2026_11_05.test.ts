@@ -32,7 +32,7 @@ describe('три плитки Главной: слово не рвётся', () 
   it('ряд из трёх плиток: кегль 13/17 и поля 4 dp', () => {
     expect(tiles).toContain('const dense = tiles.length >= 3;');
     expect(tiles).toMatch(/titleDense:\s*\{\s*fontSize:\s*13,\s*lineHeight:\s*17/);
-    expect(tiles).toMatch(/tileDense:\s*\{\s*paddingHorizontal:\s*4\s*\}/);
+    expect(tiles).toMatch(/tileDense:\s*\{\s*paddingHorizontal:\s*4,/); // зачем (владелец 11.11, иконки по центру и крупнее): к полям 4 dp добавились верх/низ плитки — боковые поля те же
   });
   it('без сжатия шрифта (adjustsFontSizeToFit запрещён законом владельца)', () => {
     expect(tiles).not.toMatch(/adjustsFontSizeToFit/);

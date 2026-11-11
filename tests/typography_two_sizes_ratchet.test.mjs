@@ -33,7 +33,10 @@ const MICRO_FILES = new Set(['app/streak_stats.tsx', 'app/ai_dialog_session.tsx'
   // одобренного владельцем 14.10; свежее конкретное одобрение важнее общего D145. Помечены две строки `d145-micro:`.
   'components/spire/moments/SpireNoEnergySheet.tsx',
   // зачем (координатор 25.10, призрак друга; живой макет spire-step-live.html): буква имени в бегунке 16 dp (9 sp) и на метке кольца 22 dp (12 sp)
-  'components/spire/SpireGhostLayer.tsx']);
+  'components/spire/SpireGhostLayer.tsx',
+  // зачем (владелец 11.11, ответ кнопкой «Исключение в стороже»; макет home_tiles_mockup): название в квадратной плитке ряда из четырёх (72 dp) — 10 sp,
+  // иначе «Сохранённые» рвётся посреди слова; помечена одна строка `d145-micro:` (sceneTileTitle).
+  'components/home/v2/HomeV2FeatureTiles.tsx']);
 function lineAt(src, index) {
   const start = src.lastIndexOf('\n', index) + 1;
   const end = src.indexOf('\n', index);

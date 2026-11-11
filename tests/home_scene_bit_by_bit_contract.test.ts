@@ -8,10 +8,16 @@ describe('Главная со «Сценой»: до бита', () => {
   const bar = readSource('components/v2/V2TabBar.tsx');
   const home = readSource('app/(tabs)/home.tsx');
 
-  it('плитка: карточка r20, картинка 58, подпись 13/700 ВНУТРИ, поля 6/4/10', () => {
-    expect(tiles).toMatch(/sceneTile: \{ borderRadius: 20, paddingTop: 6, paddingHorizontal: 4, paddingBottom: 10/);
-    expect(tiles).toMatch(/sceneArt: \{ width: '100%', height: 58 \}/);
-    expect(tiles).toMatch(/sceneTileTitle: \{ fontSize: 13, lineHeight: 17, fontWeight: '700'/);
+  // зачем (владелец 11.11, макет home_tiles_mockup утверждён «Да, переноси»: «плитки квадратные сделай, а тексты сделай меньше, чтобы „Сохранённые“ помещалось в 1 ряд»;
+  // «всегда иконки должны быть отцентрированы… увеличь иконки»): прежний пин «картинка 58, подпись 13/700, поля 6/4/10» заменён решением владельца
+  it('плитка: квадратная карточка r20, предмет по центру на всё место над подписью и крупнее, подпись 10/700 ВНУТРИ', () => {
+    expect(tiles).toMatch(/sceneTile: \{ aspectRatio: 1, borderRadius: 20, paddingBottom: 5, alignItems: 'center' \}/);
+    expect(tiles).toMatch(/sceneArt: \{ flex: 1, alignSelf: 'stretch' \}/);
+    expect(tiles).toMatch(/sceneArtImage: \{ width: '100%', height: '100%', transform: \[\{ scale: ART_SCALE_FOUR \}\] \}/);
+    expect(tiles).toMatch(/sceneTileTitle: \{ fontSize: 10, lineHeight: 12, fontWeight: '700', alignSelf: 'stretch', textAlign: 'center' \}/);
+    const scale = Number((tiles.match(/const ART_SCALE_FOUR = ([0-9.]+);/) ?? [])[1]);
+    expect(scale).toBeGreaterThan(1); // предмет крупнее прежнего
+    expect(scale).toBeLessThanOrEqual(1.15); // видимая часть (≈97 % ширины картинки) не выходит за плитку 72 dp
     // зачем (шаг 2 ускорения первого кадра Главной): тень — запечённой маской позади заливки, заливка — отдельным слоем
     expect(tiles).toContain('style={s.sceneTile}');
     expect(tiles).toContain('<HomeScenePlateShadow kind="tile" isLight={g.isLight} shadow={g.plateShadow} shadowSoft={g.plateShadowSoft} />');

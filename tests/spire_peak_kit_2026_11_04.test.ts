@@ -6,7 +6,7 @@ import path from 'node:path';
 import { SPIRE_GAME_STRINGS } from '../components/spire/spire_game_strings';
 import { peakRecordLine, PEAK_TAP_TARGET } from '../components/spire/peak/peak_text';
 
-const KEYS = ['peakMyCoins', 'peakMyPlace', 'peakMovingUp', 'peakAllParticipants', 'peakStepRecord', 'peakRecordBy', 'peakNoRecord', 'peakReachedTop', 'peakWeekCoins'];
+const KEYS = ['peakMyCoins', 'peakMyPlace', 'peakMovingUp', 'peakAllParticipants', 'peakStepRecord', 'peakStepRecordN', 'peakFloorOccupants', 'peakFloorEmpty', 'peakRecordBy', 'peakNoRecord', 'peakReachedTop', 'peakWeekCoins'];
 
 describe('каркас экрана Пика', () => {
   it('новые строки есть на всех 9 языках и не пустые', () => {

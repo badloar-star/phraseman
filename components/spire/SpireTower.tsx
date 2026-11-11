@@ -46,6 +46,7 @@ type Props = Readonly<{
   /** Ранг монеты игрока (0..19) из useMyCoinRank; null = нейтральный кружок. */
   myCoinRank: number | null;
   /** Соперники по этажам из кэша комнаты недели; нет комнаты — пусто. */
+  rivalsOnTower?: boolean;
   rivalsByFloor?: ReadonlyMap<number, readonly SpireRival[]>;
   /** Нет сети — чужие цифры приглушены (макет §11). */
   dimRivals?: boolean;
@@ -105,7 +106,7 @@ function markerTarget(floor: number, scale: number): Readonly<{ x: number; y: nu
   return { x: p.x * scale - MARKER_SIZE / 2, y: p.y * scale - MARKER_SIZE / 2 };
 }
 
-function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT, onTouchActive, variant = 'window', sceneRowsClearBottom, hideFloorWords = false, onPressRival, onPressMore, onPressMe, themeColors }: Props) {
+function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFloor, rivalsOnTower = false, dimRivals = false, tier = null, windowHeight = WINDOW_HEIGHT, onTouchActive, variant = 'window', sceneRowsClearBottom, hideFloorWords = false, onPressRival, onPressMore, onPressMe, themeColors }: Props) {
   const p = useSpirePalette();
   const g = useShadowGlass();
   const reduceMotion = useReduceMotion();
@@ -307,7 +308,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
         {width > 0 ? (
           <View style={{ width: renderWidth, height: SPIRE_TOWER_GEOM.height * scale, alignSelf: 'center' }}>
             <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={renderWidth} skin={skin} scene={scene} hideWords={sceneMode && hideFloorWords} hideFloorLabels={sceneMode} sceneClean={sceneMode} />
-            {rivalsByFloor && rivalsByFloor.size > 0 ? <View pointerEvents={onPressRival ? 'box-none' : 'none'} style={StyleSheet.absoluteFill}><RivalsLayer onPressRival={onPressRival} onPressMore={onPressMore} rivals={rivalsByFloor} scale={scale} dim={dimRivals} renderWidth={renderWidth} singleCoin={fontScale >= RIVAL_BIG_FONT} extraColor={SPIRE_SCENE_TOWER.num} sceneFit={sceneFit} hiddenBelow={0} /></View> : null}
+            {rivalsByFloor && rivalsByFloor.size > 0 ? <View pointerEvents={onPressRival ? 'box-none' : 'none'} style={StyleSheet.absoluteFill}><RivalsLayer onTower={rivalsOnTower} onPressRival={onPressRival} onPressMore={onPressMore} rivals={rivalsByFloor} scale={scale} dim={dimRivals} renderWidth={renderWidth} singleCoin={fontScale >= RIVAL_BIG_FONT} extraColor={SPIRE_SCENE_TOWER.num} sceneFit={sceneFit} hiddenBelow={0} /></View> : null}
             {myFloor !== null ? <Animated.View pointerEvents={onPressMe ? 'box-none' : 'none'} style={[s.marker, { transform: [{ translateX: tx }, { translateY: ty }] }]}><SpireTowerMarker lang={lang} sceneMode myCoinRank={myCoinRank} onPressMe={onPressMe} /></Animated.View> : null}
           </View>
         ) : null}
@@ -334,7 +335,7 @@ function SpireTower({ lang, myFloor, selected, onSelect, myCoinRank, rivalsByFlo
             <SpireTowerSvg lang={lang} myFloor={myFloor} selected={selected} onSelect={onSelect} width={renderWidth} skin={skin} scene={scene} hideWords={sceneMode && hideFloorWords} hideFloorLabels={sceneMode} sceneClean={sceneMode} />
             {rivalsByFloor && rivalsByFloor.size > 0 ? (
               <View pointerEvents={onPressRival ? 'box-none' : 'none'} style={StyleSheet.absoluteFill}>
-                <RivalsLayer onPressRival={onPressRival} onPressMore={onPressMore} rivals={rivalsByFloor} scale={scale} dim={dimRivals} renderWidth={renderWidth} singleCoin={fontScale >= RIVAL_BIG_FONT} extraColor={sceneMode ? SPIRE_SCENE_TOWER.num : undefined} sceneFit={sceneFit} hiddenBelow={sceneMode ? rowsHidden : 0} />
+                <RivalsLayer onTower={rivalsOnTower} onPressRival={onPressRival} onPressMore={onPressMore} rivals={rivalsByFloor} scale={scale} dim={dimRivals} renderWidth={renderWidth} singleCoin={fontScale >= RIVAL_BIG_FONT} extraColor={sceneMode ? SPIRE_SCENE_TOWER.num : undefined} sceneFit={sceneFit} hiddenBelow={sceneMode ? rowsHidden : 0} />
               </View>
             ) : null}
             {myFloor !== null ? (

@@ -42,6 +42,10 @@ const S = {
   peakAllParticipants: ['Все участники', 'Усі учасники', 'All participants', 'Todos los participantes', 'Todos os participantes', 'Tất cả người tham gia', 'Semua peserta', 'Tüm katılımcılar', 'Wszyscy uczestnicy'],
   peakStepRecord: ['Рекорд этажа', 'Рекорд поверху', 'Floor record', 'Récord del piso', 'Recorde do andar', 'Kỷ lục tầng', 'Rekor lantai', 'Kat rekoru', 'Rekord piętra'],
   peakRecordBy: ['Рекорд: {name} — {time}', 'Рекорд: {name} — {time}', 'Record: {name} — {time}', 'Récord: {name} — {time}', 'Recorde: {name} — {time}', 'Kỷ lục: {name} — {time}', 'Rekor: {name} — {time}', 'Rekor: {name} — {time}', 'Rekord: {name} — {time}'],
+  // зачем (макет листа этажа 11.11): подпись над именем владельца рекорда в плашке листа
+  peakStepRecordN: ['Рекорд ступени {n}', 'Рекорд сходинки {n}', 'Step {n} record', 'Récord del escalón {n}', 'Recorde do degrau {n}', 'Kỷ lục bậc {n}', 'Rekor anak tangga {n}', '{n}. basamak rekoru', 'Rekord stopnia {n}'],
+  peakFloorOccupants: ['Сейчас на этаже', 'Зараз на поверсі', 'On this floor', 'En este piso', 'Neste andar', 'Trên tầng này', 'Di lantai ini', 'Bu katta', 'Na tym piętrze'],
+  peakFloorEmpty: ['На этом этаже пока никого нет', 'На цьому поверсі поки нікого немає', 'No one on this floor yet', 'Aún no hay nadie en este piso', 'Ainda não há ninguém neste andar', 'Chưa có ai trên tầng này', 'Belum ada siapa pun di lantai ini', 'Bu katta henüz kimse yok', 'Na tym piętrze nikogo jeszcze nie ma'],
   peakNoRecord: ['Нет рекорда', 'Рекорду ще немає', 'No record yet', 'Aún no hay récord', 'Ainda sem recorde', 'Chưa có kỷ lục', 'Belum ada rekor', 'Henüz rekor yok', 'Brak rekordu'],
   peakReachedTop: ['Дошёл до вершины', 'Дійшов до вершини', 'Reached the top', 'Llegó a la cima', 'Chegou ao topo', 'Đã lên tới đỉnh', 'Sudah sampai puncak', 'Zirveye ulaştı', 'Dotarł na szczyt'],
   peakWeekCoins: ['Монеты за неделю', 'Монети за тиждень', 'Coins this week', 'Monedas de la semana', 'Moedas da semana', 'Xu trong tuần', 'Koin minggu ini', 'Bu haftanın koinleri', 'Monety w tym tygodniu'],

@@ -28,7 +28,8 @@ import type { PeakRow } from '../../../modules/spire/peak_model';
 import PeakTopSkeleton from './PeakTopSkeleton';
 import { peakTourDevOff } from './peak_screen_flag';
 import PeakStepSheet from './PeakStepSheet';
-import PeakFloorStepper from './PeakFloorStepper';
+import { usePeakFloorRecords, type PeakRecordSource } from './use_peak_floor_records';
+import { spireRivalsByFloor } from '../spire_tower_model';
 import PeakStepChips from './PeakStepChips';
 import PeakTourFull from './PeakTourFull'; // зачем (владелец 05.11, макет peak_tour_full_approved): полноэкранный тур первого входа в Пик, 3 страницы со свайпом, вместо прежнего оверлея-подсветки
 import { usePeakTourGate } from './use_peak_tour_gate';
@@ -49,6 +50,8 @@ type Props = Readonly<{
   pillText: string;
   towerProps: Omit<TowerProps, 'lang' | 'selected' | 'onSelect' | 'windowHeight'>;
   onOpenAll: () => void;
+  recordSource?: PeakRecordSource;
+  active?: boolean;
   records?: Readonly<Record<string, PeakStepRecord>> | null;
   /** Высота колонки башни; нет — 72 % высоты окна в пределах 420–640 dp. */
   railHeight?: number;
@@ -63,7 +66,7 @@ export const PEAK_ROW_COIN_SIZE = 36;
 /** Высота строки топ-5 (PeakTopRow.minHeight) — по ней считается зелёная линия зоны повышения. */
 export const PEAK_ROW_HEIGHT = 56;
 
-function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, towerProps, onOpenAll, records = null, railHeight, tour: tourProp }: Props) {
+function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, towerProps, onOpenAll, records, recordSource, active = true, railHeight, tour: tourProp }: Props) {
   const tour = tourProp ?? (peakTourDevOff() ? 'off' : 'auto');
   const p = useSpirePalette();
   const { height, width, fontScale } = useWindowDimensions();
@@ -79,11 +82,6 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   );
   // зачем (Макеты 05.11, кадр 07:43: «башня тёмно-серая на светлом экране — башня и экран разных цветов»; макет variant_B: камень башни — оттенок темы): наряд лиги в цветах темы экрана
   const towerTheme = useSpireTowerTheme(p);
-  // зачем (владелец 05.11 ~19:12: «наложения зелёная полоска на иконку — убери… и с башни убирай иконки юзеров»): на башне НЕТ монет участников и метки «я»;
-  // слой монет и данные для него удалены. Журнал [PEAK-LINE-MARKER] — что рисуется на башне и по какому условию (одна строка на смену этажа).
-  useEffect(() => {
-    console.log('[PEAK-LINE-MARKER]', JSON.stringify({ tower: 'clean', participantCoins: 'removed', ownMarker: 'hidden (myCoinRank=null: метка пустая)', myFloor: towerProps.myFloor, upLine: 'peak-up-line, left 0 width 3 в панели списка, ничего не перекрывает', reason: 'owner_05_11_no_user_icons_on_tower' })); // guard-ok: трассировка решения по башне
-  }, [towerProps.myFloor]);
   // зачем: участники приходят порядком комнаты (уже по рубильнику); weekCoins в документе может отсутствовать — считаем 0
   // зачем (владелец 05.11 ~19:15: «монета абсолютно во всех местах обязана соответствовать рангу строго»; аудит RANK_COIN_AUDIT): ранг в документе комнаты пишется только при входе —
   // пустой кэш давал бронзу, после повышения монета устаревала. У своей строки берём ТЕКУЩИЙ ранг (useMyCoinRank из экрана Пика), ранга ещё нет — значение комнаты. 0 новых чтений.
@@ -98,6 +96,7 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   const closePlayer = useCallback(() => setPlayer(null), []);
   const myName = useMemo(() => (members ?? []).find((m) => m.isMe)?.name ?? '', [members]);
   const model = useMemo(() => buildPeakModel((members ?? []).map((m) => ({ ...m, weekCoins: m.weekCoins ?? 0, ...(m.isMe && myRank !== null ? { coinRank: myRank } : null) })), rankBy), [members, rankBy, myRank]);
+  const floorMembers = useMemo(() => spireRivalsByFloor(model.all, true), [model.all]);
   // зачем (тур первого входа): окна затемнения считаются от измеренных блоков; меряем только когда тур показывается (в обычной жизни — ноль работы)
   const headRef = useRef<View>(null);
   const pillRef = useRef<View>(null);
@@ -122,29 +121,30 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
   const left = spireTimeLeft(Date.now(), spireWeekStartMs(Date.now()));
   const nb = ' ';
   const timeShort = `${left.days}${nb}${spireText(lang, 'dayUnit')}${nb}${left.hours}${nb}${spireText(lang, 'hourUnit')}`;
-  const openSheet = () => { setSheetFloor(floor); setSheetStep(1); setSheetOpen(true); };
-  const moveFloor = (next: number) => { const f = Math.max(1, Math.min(15, next)); setSheetFloor(f); setSheetStep((st) => Math.min(st, peakMaxStep(f))); };
-  const record = peakStepRecord(records, sheetFloor, sheetStep);
+  const openSheet = (next: number) => { setSheetFloor(next); setSheetStep(1); setSheetOpen(true); };
+  const selectTowerFloor = (next: number) => { onSelectFloor(next); openSheet(next); };
+  useEffect(() => { if (!active) setSheetOpen(false); }, [active]);
+  const liveRecords = usePeakFloorRecords(recordSource, active && sheetOpen);
+  const best = peakStepRecord(records ?? liveRecords.records, sheetFloor, sheetStep);
+  // зачем (макет листа этажа 11.11): у плашки рекорда — монета ранга владельца; имя и ранг берём из уже прочитанной комнаты (0 чтений)
+  const holder = best ? model.all.find((row) => row.uid === best.uid) : undefined;
+  const record = best ? { ...best, name: best.name ?? holder?.name, coinRank: holder?.coinRank ?? null } : null;
   const upRows = model.top.filter((r) => r.zone === 'up').length;
   const meRow = model.all.find((r) => r.isMe) ?? null;
   const meInTop = meRow ? model.top.some((r) => r.uid === meRow.uid) : false;
-  const stepper = (
-    <View style={s.sheetControls}>
-      <PeakFloorStepper label={`${floorWord} ${sheetFloor}`} canDown={sheetFloor > 1} canUp={sheetFloor < 15} onDown={() => moveFloor(sheetFloor - 1)} onUp={() => moveFloor(sheetFloor + 1)} downLabel={`${floorWord} ${sheetFloor - 1}`} upLabel={`${floorWord} ${sheetFloor + 1}`} />
-      <PeakStepChips max={peakMaxStep(sheetFloor)} selected={sheetStep} onSelect={setSheetStep} />
-    </View>
-  );
+  // зачем (владелец 11.11: «этаж выбираем на башне, а не в модал листе»): в листе только ступени, стрелок «этаж ниже/выше» нет
+  const stepper = <PeakStepChips max={peakMaxStep(sheetFloor)} selected={sheetStep} onSelect={setSheetStep} />;
   return (
     <View style={s.root} testID="peak-screen-v2">
       <View ref={railRef} collapsable={false} style={[s.rail, { width: railWidth, height: rail }]} testID="peak-tower-rail">
         {/* зачем: variant="scene" — башня без плиты-панели и без подписей этажей; монет «+N» слева нет (rivalsByFloor не передаём), иконок участников и метки «я» на башне нет (владелец 05.11 ~19:12) */}
         <View style={[s.towerBox, { width: towerFit.width, height: towerFit.height, left: towerFit.offsetLeft, bottom: -towerFit.sinkDown }]} testID="peak-tower-box">
-          <SpireTower {...towerProps} variant="scene" hideFloorWords rivalsByFloor={undefined} myCoinRank={null} onPressMe={undefined} themeColors={towerTheme} lang={lang} selected={floor} onSelect={onSelectFloor} windowHeight={towerFit.height} />
+          <SpireTower {...towerProps} variant="scene" hideFloorWords rivalsOnTower rivalsByFloor={floorMembers} myCoinRank={null} onPressMe={undefined} themeColors={towerTheme} lang={lang} selected={floor} onSelect={selectTowerFloor} windowHeight={towerFit.height} />
         </View>
       </View>
       <View style={s.panel}>
         <View ref={headRef} collapsable={false} style={s.head}>
-        <V2Pressable accessibilityRole="button" onPress={openSheet} style={s.floorBtn} testID="peak-floor-title">
+        <V2Pressable accessibilityRole="button" onPress={() => openSheet(Math.min(floor, SPIRE_FLOOR_COUNT))} style={s.floorBtn} testID="peak-floor-title">
           <Text style={[s.floor, { color: p.text }]}>{`${floorWord} ${floor}`}</Text>
         </V2Pressable>
         <View ref={pillRef} collapsable={false} style={[s.pill, { backgroundColor: p.cardRaised }]} accessible accessibilityLabel={pillText}>
@@ -176,7 +176,7 @@ function PeakScreenV2({ lang, members, rankBy, floor, onSelectFloor, pillText, t
       </View>
       {tourOn ? <PeakTourFull lang={lang} initialPage={forcedPage ?? 0} onDone={finishTour} /> : null}
       <SpirePlayerCard player={player} myName={myName} onClose={closePlayer} />
-      <PeakStepSheet lang={lang} visible={sheetOpen} title={`${floorWord} ${sheetFloor} · ${sheetStep}`} record={record} onClose={() => setSheetOpen(false)} stepper={stepper} />
+      <PeakStepSheet lang={lang} visible={active && sheetOpen} title={`${floorWord} ${sheetFloor}`} step={sheetStep} meUid={meRow?.uid ?? null} record={record} recordStatus={records !== undefined ? 'ready' : liveRecords.status} occupants={members === null ? null : floorMembers.get(sheetFloor) ?? []} onClose={() => setSheetOpen(false)} stepper={stepper} />
     </View>
   );
 }
@@ -199,7 +199,6 @@ const s = StyleSheet.create({
   group: { fontSize: 15, lineHeight: 20, fontWeight: '700', marginTop: 14, marginBottom: 4, marginLeft: 12 },
   all: { minHeight: 56, borderRadius: 28, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 12, marginTop: 18, paddingHorizontal: 18 },
   allText: { fontSize: 17, fontWeight: '800' },
-  sheetControls: { gap: 14, alignItems: 'center' },
 });
 
 export default memo(PeakScreenV2);

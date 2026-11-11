@@ -112,10 +112,11 @@ export type SpireRival = Readonly<{ uid: string; name: string; coinRank: number 
  */
 export function spireRivalsByFloor(
   rows: readonly Readonly<{ uid: string; name: string; steps: number; isMe: boolean; coinRank?: number | null; isPremium?: boolean; plusTier?: 'plus' | 'ultra' | null }>[] | null,
+  includeMe = false,
 ): ReadonlyMap<number, readonly SpireRival[]> {
   const map = new Map<number, SpireRival[]>();
   for (const r of rows ?? []) {
-    if (r.isMe) continue;
+    if (r.isMe && !includeMe) continue;
     const f = Math.min(spireFloorOfSteps(r.steps), SPIRE_FLOOR_COUNT);
     const list = map.get(f) ?? [];
     list.push({ uid: r.uid, name: r.name, coinRank: r.coinRank ?? null, isPremium: r.isPremium === true, plusTier: r.plusTier ?? null });

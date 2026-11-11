@@ -18,6 +18,8 @@ const RIVAL = 22;
 const RIVAL_STEP = 13;
 const RIVAL_SHOWN = 2;
 const RIVAL_GAP = 10;
+/** Наименьший размер монеты участника НА башне Пика, dp (владелец 11.11: «их вообще не видно»). */
+export const TOWER_COIN_MIN = 24;
 /** Шрифт от этого множителя: у башни одна монета и «+N» — слева от этажа помещаются подпись этажа, монеты и счётчик (Макеты 15.10: «+20» заходил на кладку). */
 export const RIVAL_BIG_FONT = 1.15;
 
@@ -41,7 +43,7 @@ const RivalCoin = memo(function RivalCoin({ m, size, marginLeft, onPress }: Read
   );
 });
 
-const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim, renderWidth, singleCoin, extraColor, sceneFit, hiddenBelow = 0, onPressRival, onPressMore }: Readonly<{ onPressRival?: (uid: string) => void; onPressMore?: () => void; extraColor?: string; rivals: ReadonlyMap<number, readonly SpireRival[]>; scale: number; dim: boolean; renderWidth: number; singleCoin: boolean; sceneFit?: Readonly<{ fontScale: number; guardChars: number }>; hiddenBelow?: number }>) {
+const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim, renderWidth, singleCoin, extraColor, sceneFit, hiddenBelow = 0, onTower = false, onPressRival, onPressMore }: Readonly<{ onPressRival?: (uid: string) => void; onPressMore?: () => void; extraColor?: string; rivals: ReadonlyMap<number, readonly SpireRival[]>; scale: number; dim: boolean; renderWidth: number; singleCoin: boolean; sceneFit?: Readonly<{ fontScale: number; guardChars: number }>; hiddenBelow?: number; onTower?: boolean }>) {
   const p = useSpirePalette();
   const rowHalf = sceneFit ? spireSceneRowHalf(scale, sceneFit.fontScale) : 0;
   const items: React.ReactNode[] = [];
@@ -49,6 +51,22 @@ const RivalsLayer = memo(function RivalsLayer({ rivals, scale, dim, renderWidth,
     const list = rivals.get(fl.f);
     if (!list || list.length === 0) continue;
     if (fl.f <= hiddenBelow) continue; // зачем (Пик v2, координатор 22.10: «сетка без пересечений»): ряды ниже монет пьедестала не рисуются
+    if (onTower) {
+      // зачем (владелец 11.11: «иконки вернуть и увеличить, а то их вообще не видно»): было min(18, h−4)·scale — на рельсе Пика (scale ≈ 0,5) монета ~9 dp.
+      // Теперь почти во всю высоту этажа, но не меньше TOWER_COIN_MIN dp, иначе ранг на монете не различить
+      const size = Math.max(TOWER_COIN_MIN, (fl.h - 2) * scale);
+      const spread = list.length > 1 ? Math.min(size * 0.55, Math.max(0, (fl.w - 12) * scale - size) / (list.length - 1)) : 0;
+      const width = size + spread * (list.length - 1);
+      items.push(
+        <View key={fl.f} testID={`spire-floor-coins-${fl.f}`} pointerEvents="none"
+          style={[s.rivals, { left: (fl.x0 + fl.w / 2) * scale - width / 2, top: (fl.y + fl.h / 2) * scale - size / 2, opacity: dim ? 0.55 : 1 }]}>
+          {list.map((member, index) => (
+            <RivalCoin key={member.uid} m={member} size={size} marginLeft={index === 0 ? 0 : spread - size} />
+          ))}
+        </View>,
+      );
+      continue;
+    }
     const shown = Math.min(list.length, singleCoin ? 1 : RIVAL_SHOWN);
     // зачем (координатор 22.10: «нижние этажи перекрыты монетами жителей»): на «Сцене» монет столько, сколько влезает между подписью и башней
     const fit = sceneFit ? spireSceneRivalsFit({ floor: fl.f, count: list.length, scale, fontScale: sceneFit.fontScale, guardChars: sceneFit.guardChars }) : null;

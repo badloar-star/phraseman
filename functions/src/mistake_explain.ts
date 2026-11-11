@@ -3,7 +3,7 @@ import { createHash } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK_OPENAI } from './callable_options';
-import { resolveStableUidForAuth } from './auth_identity';
+import { reserveCapAndRateTogether, resolveMistakeStableUid, warmMistakeExplainRuntime } from './mistake_explain_speed';
 import { resolvePremiumAccess } from './premium_status';
 import {
   enforceFreeJobGenLimit,
@@ -840,30 +840,6 @@ async function recordBilling(
   });
 }
 
-/**
- * Бесплатная часть прогрева: клиент Firestore и токен доступа готовятся заранее, без единого запроса к базе.
- * Никогда не бросает и ждёт не дольше 4 с — прогрев необязателен и не должен ломать или задерживать ответ.
- */
-async function warmMistakeExplainRuntime(): Promise<void> {
-  const startedAtMs = Date.now();
-  let outcome = 'ok';
-  try {
-    const app = admin.app();
-    void admin.firestore(app);
-    const credential = app.options.credential;
-    if (credential) {
-      await Promise.race([
-        credential.getAccessToken(),
-        new Promise((resolve) => setTimeout(resolve, 4000)),
-      ]);
-    }
-  } catch (error) {
-    outcome = `failed:${String((error as Error)?.name ?? 'unknown').slice(0, 60)}`;
-    console.warn('[EXPLAIN-MISTAKE] warm:failed', JSON.stringify({ reason: outcome })); // прогрев необязателен — ошибка не идёт дальше, но причина записана
-  }
-  console.log('[EXPLAIN-MISTAKE] warm', JSON.stringify({ outcome, ms: Date.now() - startedAtMs }));
-}
-
 export const explainMistake = onCall({
   region: REGION,
   enforceAppCheck: ENFORCE_APP_CHECK_OPENAI,
@@ -879,13 +855,14 @@ export const explainMistake = onCall({
   // делом — до Firestore, до гейтов, до OpenAI.
   // зачем: у функции minInstances: 0 (осознанная экономия, сторож
   // ai_functions_warm_instance_contract). Клиент будит инстанс, пока пользователь
-  // читает свою ошибку, — реальный разбор попадает на тёплый сервер. Ping ОБЯЗАН
-  // быть бесплатным: ниже идут чтения Firestore и списание дневного капа.
+  // читает свою ошибку, — реальный разбор попадает на тёплый сервер. Ping НЕ пишет в базу,
+  // не списывает дневной кап и не зовёт ИИ: всё это идёт ниже.
   if ((request.data as { warmupPing?: unknown } | null)?.warmupPing === true) {
-    // зачем (владелец 11.11: «разбор готовится очень долго»; журнал 17:34 — на уже проснувшемся инстансе 6 с уходило
-    // до первой проверки): прогрев заодно поднимает клиент базы и токен доступа. Ни одного чтения, записи или
-    // обращения к ИИ — прогрев остаётся бесплатным (сторож tests/ai_warmup_ping_contract.test.ts).
-    await warmMistakeExplainRuntime();
+    // зачем (владелец 11.11: «разбор готовится очень долго» → кнопкой «Да, все четыре правки»; журнал 18:44/18:45 —
+    // опознание аккаунта занимает 3,8–4,2 с на каждый разбор): прогрев опознаёт аккаунт заранее и кладёт в память
+    // инстанса. Это несколько ЧТЕНИЙ на открытие урока — осознанное решение владельца; записей, капов и ИИ здесь нет
+    // (сторож tests/ai_warmup_ping_contract.test.ts).
+    await warmMistakeExplainRuntime(admin.firestore(), request.auth.uid);
     return {
       ok: true,
       text: '',
@@ -909,6 +886,7 @@ export const explainMistake = onCall({
   // какой шаг на самом деле съел время.
   const handlerStartedAtMs = Date.now();
   const stageMs: Record<string, number> = {};
+  let identitySource = 'unknown';
   const timed = async <T>(stage: string, work: Promise<T>): Promise<T> => {
     try {
       return await work;
@@ -917,14 +895,18 @@ export const explainMistake = onCall({
     }
   };
   const [stableUid, , cached] = await Promise.all([
-    timed('stableUid', resolveStableUidForAuth(db, authUid)),
+    // зачем (владелец 11.11): опознание берётся из памяти инстанса, если прогрев или прошлый разбор уже его сделали.
+    timed('stableUid', resolveMistakeStableUid(db, authUid).then((identity) => {
+      identitySource = identity.source;
+      return identity.stableUid;
+    })),
     // зачем (Ревизор 18.10, аудит накрутки п.3/п.4): ферма анонимов с одного адреса — потолок вызовов в сутки на IP.
     timed('ipWindow', enforceCallerRateWindow({ scope: 'mistake_explain_ip', authUid, rawRequest: request.rawRequest, maxPerUid: 0, maxPerIp: 30, windowMs: 24 * 60 * 60 * 1000 })),
     // 1. Cache FIRST — the ≥99% path, $0.
     timed('cacheRead', readCachedMistakeExplanation(mistakeHash)),
   ]);
   const logTiming = (result: string): void => {
-    console.log('[EXPLAIN-MISTAKE] timing', JSON.stringify({ result, variant: payload.variant, totalMs: Date.now() - handlerStartedAtMs, stageDoneAtMs: stageMs }));
+    console.log('[EXPLAIN-MISTAKE] timing', JSON.stringify({ result, variant: payload.variant, totalMs: Date.now() - handlerStartedAtMs, identitySource, stageDoneAtMs: stageMs }));
   };
   // зачем (владелец 11.11, все языковые курсы): видно, какой язык курса прислал телефон и каким его понял сервер —
   // расхождение (прислали «es», поняли «en») раньше было немым. Тексты ответов не пишем.
@@ -1116,8 +1098,14 @@ export const explainMistake = onCall({
   try {
     const provider = await providerPromise;
     model = provider.model;
-    freeCapReservation = await timed('freeCap', reserveFreeDailyGenCap(db, authUid, stableUid));
-    await timed('uidRate', enforceRateLimit(db, authUid, stableUid));
+    // зачем (владелец 11.11; журнал 18:44/18:45 — кап и окно частоты по очереди занимали 1,7–3,0 с): оба шага идут
+    // одновременно. Отказ любого по-прежнему останавливает вызов до платной генерации; если кап уже зарезервирован,
+    // а окно частоты отказало, кап возвращается внутри помощника — freeCapReservation остаётся null, двойного возврата нет.
+    freeCapReservation = await timed('capAndRate', reserveCapAndRateTogether({
+      reserveCap: () => reserveFreeDailyGenCap(db, authUid, stableUid),
+      enforceRate: () => enforceRateLimit(db, authUid, stableUid),
+      refundCap: (reservation) => refundFreeDailyGenCap(reservation),
+    }));
     generationStartedAtMs = Date.now();
     gen = await timed('generation', generateCheckedMistakeBundle(provider.apiKey, model, payload));
   } catch (error) {

@@ -14,6 +14,13 @@
  * Поэтому проверяем позицию: ветка ping'а обязана стоять ДО первого обращения
  * к Firestore и ДО любых гейтов. Тест намеренно текстовый (как соседние
  * контрактные сторожа проекта) — он ловит именно смещение ветки при рефакторинге.
+ *
+ * ИСКЛЮЧЕНИЕ, РЕШЕНИЕ ВЛАДЕЛЬЦА 11.11.2026 (кнопкой «Да, все четыре правки» на вопрос про ускорение разбора ошибки):
+ * прогрев explainMistake опознаёт аккаунт заранее — это несколько ЧТЕНИЙ на открытие урока у согласившихся на
+ * ИИ-разбор, не чаще раза в 9 минут. Повод: журнал сервера показал 3,8–4,2 с опознания на каждый разбор.
+ * Разрешены ТОЛЬКО эти чтения, через warmMistakeExplainRuntime. Записи, дневные капы, окно частоты и ИИ в прогреве
+ * по-прежнему запрещены — это проверяет блок «прогрев разбора ошибки» ниже. На остальные функции исключение не
+ * распространяется.
  */
 import fs from 'fs';
 import path from 'path';
@@ -72,6 +79,24 @@ describe('warmupPing остаётся бесплатным', () => {
     expect(ping).toBeGreaterThan(-1);
     expect(cap).toBeGreaterThan(-1);
     expect(ping).toBeLessThan(cap);
+  });
+
+  it('прогрев разбора ошибки: только опознание заранее — без записей, капов, окна частоты и ИИ (владелец 11.11)', () => {
+    const body = handlerBody(read('functions/src/mistake_explain.ts'), 'explainMistake');
+    const ping = body.indexOf('warmupPing === true');
+    const pingEnd = body.indexOf("model: 'warmup-ping'");
+    expect(ping).toBeGreaterThan(-1);
+    expect(pingEnd).toBeGreaterThan(ping);
+    const branch = body.slice(ping, pingEnd);
+    expect(branch).toContain('await warmMistakeExplainRuntime(admin.firestore(), request.auth.uid);');
+    for (const forbidden of ['reserveFreeDailyGenCap', 'enforceRateLimit', 'enforceCallerRateWindow', 'claimMistakePendingLock', 'generateChecked', 'OPENAI_API_KEY', 'recordPaidUsage', '.set(', '.update(']) {
+      expect(branch).not.toContain(forbidden);
+    }
+    // Сам помощник прогрева не пишет в базу и не зовёт ИИ: в его модуле нет ни обращения к коллекциям базы, ни сетевого вызова.
+    const speed = read('functions/src/mistake_explain_speed.ts');
+    for (const forbidden of ['.collection(', '.doc(', 'runTransaction', '.batch(', 'fetch(', 'OPENAI']) {
+      expect(speed).not.toContain(forbidden);
+    }
   });
 
   it('ping требует авторизацию — открытой дырой прогрев быть не должен', () => {

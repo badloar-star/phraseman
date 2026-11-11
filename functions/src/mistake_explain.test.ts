@@ -159,6 +159,7 @@ jest.mock('./premium_status', () => {
 });
 
 import { explainMistake as explainMistakeRaw, PLUS_MISTAKE_EXPLAIN_DAILY_CAP } from './mistake_explain';
+import { __resetMistakeExplainSpeedForTests } from './mistake_explain_speed';
 import {
   mistakeHashFor,
   MISTAKE_COLLECTION,
@@ -271,6 +272,7 @@ async function callExplain(data: DocData, authUid: string | null = 'auth-1') {
 
 beforeEach(() => {
   jest.useFakeTimers().setSystemTime(new Date('2026-06-12T12:00:00.000Z'));
+  __resetMistakeExplainSpeedForTests(); // зачем (11.11): память опознания живёт в модуле — без сброса тесты влияли бы друг на друга
   docs.clear();
   failingSetCounts.clear();
   autoId = 0;

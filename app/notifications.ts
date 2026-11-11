@@ -218,6 +218,8 @@ export const requestNotificationPermissionWithFallback = async (
 
     const current = await N.getPermissionsAsync();
     if (current?.status === 'granted') {
+      // зачем (владелец 11.11): разрешение есть, а тумблер мог остаться выключенным после миграции — см. healUndecidedNotifMaster
+      await healUndecidedNotifMaster('permission_granted');
       return { granted: true, blocked: false, openedSettings: false };
     }
     if (current?.status === 'denied' && current?.canAskAgain === false) {
@@ -233,6 +235,8 @@ export const requestNotificationPermissionWithFallback = async (
     const asked = await N.requestPermissionsAsync();
     console.warn('[NOTIF-PERM] system_prompt_result', JSON.stringify({ status: asked?.status ?? null, canAskAgain: asked?.canAskAgain ?? null })); // guard-ok: итог
     if (asked?.status === 'granted') {
+      // зачем (владелец 11.11): согласие в системном окне включает и общий тумблер, если человек его сам не выключал
+      await healUndecidedNotifMaster('permission_granted');
       return { granted: true, blocked: false, openedSettings: false };
     }
     if (asked?.status === 'denied' && asked?.canAskAgain === false) {
@@ -1537,6 +1541,8 @@ export async function hydrateNotifPrefsFromStorage(): Promise<NotifPrefs> {
     const raw = await AsyncStorage.getItem(NOTIF_PREFS_KEY);
     if (raw) {
       notifPrefsMemory = normalizeNotifPrefs(JSON.parse(raw));
+      // зачем (владелец 11.11): разрешение могли выдать в настройках телефона уже после миграции — см. healUndecidedNotifMaster
+      await healUndecidedNotifMaster('hydrate');
       return getNotifPrefsSnapshot();
     }
     const legacy = await AsyncStorage.getItem('notifications_enabled');
@@ -1554,6 +1560,37 @@ export async function hydrateNotifPrefsFromStorage(): Promise<NotifPrefs> {
     console.warn('[NOTIF-PREFS] настройки уведомлений не прочитаны — по умолчанию', error instanceof Error ? error.message : String(error));
     notifPrefsMemory = notifPrefsMemory ?? { ...DEFAULT_NOTIF_PREFS, categories: { ...DEFAULT_NOTIF_PREFS.categories } };
     return getNotifPrefsSnapshot();
+  }
+}
+
+/**
+ * зачем (владелец 11.11: «почини и остальные напоминания с этим выключателем»): миграция выше пишет master=false тому, у кого
+ * на момент первого чтения настроек не было системного разрешения. Разрешение потом выдают (системное окно, настройки телефона),
+ * а тумблер остаётся выключенным — и серия, фраза дня, итоги, ежедневное напоминание, премьера видео молча выходят по master_off.
+ * Включаем тумблер сами ТОЛЬКО когда человек его не выключал: любое выключение (экран настроек, cancelAllNotifications) пишет
+ * легаси-флаг 'false'; флаг пуст или 'true' при выключенном мастере — след миграции, а не выбора. Явное «выключено» не трогаем.
+ */
+async function healUndecidedNotifMaster(source: 'hydrate' | 'permission_granted'): Promise<boolean> {
+  const current = notifPrefsMemory;
+  // Настройки ещё не читались — миграция сама выведет мастер из уже выданного разрешения.
+  if (!current || current.master) return false;
+  try {
+    const legacy = await AsyncStorage.getItem('notifications_enabled');
+    if (legacy === 'false') {
+      console.log(`[NOTIF-PREFS] master_heal source=${source} result=skip reason=explicit_off`); // guard-ok: ранний выход пишет причину
+      return false;
+    }
+    const granted = await isNotificationPermissionGranted();
+    if (!granted) {
+      console.log(`[NOTIF-PREFS] master_heal source=${source} result=skip reason=no_permission legacy=${String(legacy)}`); // guard-ok: ранний выход пишет причину
+      return false;
+    }
+    await saveNotifPrefs({ ...current, master: true, categories: { ...current.categories } });
+    console.warn(`[NOTIF-PREFS] master_heal source=${source} result=enabled legacy=${String(legacy)}`); // guard-ok: разовое событие, warn нужен в релизе (log вырезается)
+    return true;
+  } catch (error) {
+    console.warn(`[NOTIF-PREFS] master_heal source=${source} result=failed`, error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
+    return false;
   }
 }
 

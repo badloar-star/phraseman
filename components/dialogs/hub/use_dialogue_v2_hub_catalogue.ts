@@ -13,6 +13,7 @@ import { getDialogueV2DoneVersion, hydrateDialogueV2DoneIds, peekDialogueV2DoneI
 import { dialogueV2UiCopy } from '../../../app/dialogue_v2_ui_copy';
 import { useMyCoinRank } from '../../../hooks/use_my_coin_rank';
 import { useLang } from '../../LangContext';
+import { usePremium } from '../../PremiumContext';
 import { useStudyTarget } from '../../StudyTargetContext';
 import { catalogueCopy, dialogueV2WorldHeadings } from '../DialogueV2CatalogueContainer';
 import type { DialogueV2CatalogueLearnerItem, DialogueV2CatalogueWorld } from '../DialogueV2CatalogueSection';
@@ -32,6 +33,8 @@ export function useDialogueV2HubCatalogue(): DialogueV2HubCatalogue {
   const { studyTarget } = useStudyTarget();
   const { lang } = useLang();
   const localCoinRank = useMyCoinRank();
+  // зачем (владелец 11.11, D204): Plus открывает все сценарии сразу — тот же признак, что у контейнера хаба
+  const { hasPremiumAccess } = usePremium();
   const headings = useMemo(() => dialogueV2WorldHeadings(lang), [lang]);
   const copy = useMemo(() => catalogueCopy(lang), [lang]);
   // версия хранилища будит экран в тот же кадр, когда диалог отмечен пройденным
@@ -48,7 +51,7 @@ export function useDialogueV2HubCatalogue(): DialogueV2HubCatalogue {
       return null;
     }
     const target = studyTarget as DialogueV2CatalogueStudyTarget;
-    const input = { studyTarget: target, localCoinRank, worldHeadings: headings, doneScenarioIds: peekDialogueV2DoneIds(target) };
+    const input = { studyTarget: target, localCoinRank, hasPremiumAccess, worldHeadings: headings, doneScenarioIds: peekDialogueV2DoneIds(target) };
     const cached = peekDialogueV2Catalogue(target);
     const embedded = getEmbeddedDialogueV2Catalogue(target);
     const envelope = cached ?? embedded;
@@ -58,7 +61,7 @@ export function useDialogueV2HubCatalogue(): DialogueV2HubCatalogue {
     console.warn(LOG, 'catalogue:projection_rejected', JSON.stringify({ studyTarget, hadCache: cached !== null, hadEmbedded: embedded !== null })); // guard-ok: ветка называет причину
     return embedded && embedded !== envelope ? projectAuthorizedDialogueV2Catalogue({ ...input, packets: embedded.packets }) : null;
     // doneVersion — намеренная зависимость: статусы «пройдено» читаются из хранилища при каждом его обновлении
-  }, [doneVersion, headings, localCoinRank, studyTarget, supported]);
+  }, [doneVersion, hasPremiumAccess, headings, localCoinRank, studyTarget, supported]);
 
   const items = useMemo(() => (projection?.items ?? []).map((item) => {
     const ui = dialogueV2UiCopy(lang, item.id);

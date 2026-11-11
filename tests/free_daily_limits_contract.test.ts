@@ -84,8 +84,11 @@ describe('индикатор точек считает остаток', () => {
  * всех: Plus не открывает сценарии без ранга, старые покупки диалогов за руны
  * не учитываются». До D124 здесь сторожились три бесплатных сценария и
  * «Plus открывает всё» — правило отменено владельцем, сторож переписан.
+ *
+ * D204 (владелец 2026-11-11): Plus снова открывает сценарии без ранга — экран покупки
+ * обещает «Сценарии: все сразу». Бесплатный аккаунт по-прежнему идёт по рангам, руны не открывают.
  */
-describe('диалоги: доступ решает только монетный ранг (D124)', () => {
+describe('диалоги: доступ решает монетный ранг или Plus (D124 → D204)', () => {
   it('ранг старого сценария = ранг первого сценария того же уровня в Dialogue V2', () => {
     expect(legacyDialogScenarioRankRequired('A1')).toBe(1);
     expect(legacyDialogScenarioRankRequired('A2')).toBe(6);
@@ -93,10 +96,18 @@ describe('диалоги: доступ решает только монетны�
     expect(legacyDialogScenarioRankRequired('B2')).toBe(14);
   });
 
-  it('без ранга (0 или неизвестен) не открыт ни один сценарий — Plus не участвует', () => {
+  it('без ранга (0 или неизвестен) бесплатному не открыт ни один сценарий', () => {
     for (const scenario of DIALOG_SCENARIOS) {
       expect(isScenarioUnlockedForAccount(scenario, 0)).toBe(false);
       expect(isScenarioUnlockedForAccount(scenario, null)).toBe(false);
+      expect(isScenarioUnlockedForAccount(scenario, 0, false)).toBe(false);
+    }
+  });
+
+  it('Plus открывает каждый сценарий без ранга (D204)', () => {
+    for (const scenario of DIALOG_SCENARIOS) {
+      expect(isScenarioUnlockedForAccount(scenario, 0, true)).toBe(true);
+      expect(isScenarioUnlockedForAccount(scenario, null, true)).toBe(true);
     }
   });
 
@@ -138,12 +149,13 @@ describe('диалоги: доступ решает только монетны�
 describe('обход закрытых диалогов прямым роутом закрыт', () => {
   const briefing = read('app', 'ai_dialog_briefing.tsx');
 
-  it('экран брифинга сам проверяет доступ к сценарию по рангу (D124)', () => {
-    expect(briefing).toContain('isScenarioUnlockedForAccount(scenario, coinRank)');
+  it('экран брифинга сам проверяет доступ к сценарию по рангу и Plus (D204)', () => {
+    expect(briefing).toContain('isScenarioUnlockedForAccount(scenario, coinRank, hasPremiumAccess)');
+    expect(briefing).toContain('const { hasPremiumAccess } = usePremium();');
     expect(briefing).toContain('useMyCoinRank()');
   });
 
-  it('закрытый рангом сценарий не уводит на пейвол — Plus ранг не заменяет', () => {
+  it('закрытый рангом сценарий не уводит на пейвол — экран называет нужный ранг', () => {
     expect(briefing).not.toContain("pathname: '/premium_modal'");
     expect(briefing).toMatch(/briefing:access denied/);
   });

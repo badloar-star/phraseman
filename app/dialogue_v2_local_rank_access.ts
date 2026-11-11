@@ -16,11 +16,13 @@ export type DialogueV2LocalRankAccess = Readonly<{
 
 /**
  * Local-first presentation access for the immutable V2 catalogue.
- * This deliberately accepts no subscription, ownership, or purchase state.
+ * зачем (владелец 11.11, D204): Plus открывает сценарий без ранга — признак подписки приходит третьим аргументом
+ * от экрана (usePremium), модуль остаётся чистым. Владение и покупки за руны по-прежнему не принимаются.
  */
 export function getDialogueV2LocalRankAccess(
   scenarioId: unknown,
   localCoinRank: unknown,
+  hasPremiumAccess: boolean = false,
 ): DialogueV2LocalRankAccess | null {
   const entry = getDialogueV2CatalogueEntry(scenarioId);
   if (!entry) return null;
@@ -34,6 +36,7 @@ export function getDialogueV2LocalRankAccess(
       achievedRank: isValidCoinRank(localCoinRank) ? localCoinRank : null,
       // зачем (правило владельца 13.10): замок берёт ранг открытия из таблицы (unlockRank), а не номер сценария в разделе (rankRequired структурный, для пакетов)
       rankRequired: shiftedRank,
+      hasPremiumAccess,
     }),
   };
 }

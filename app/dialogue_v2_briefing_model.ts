@@ -22,6 +22,8 @@ export type DialogueV2BriefingModelInput = Readonly<{
   studyTarget: unknown;
   scenarioId: unknown;
   localCoinRank: unknown;
+  /** зачем (владелец 11.11, D204): Plus открывает сценарий без ранга — тот же признак, что у каталога. */
+  hasPremiumAccess?: boolean;
   /** Язык интерфейса: служебный текст (название, описание, задания, имена) — на нём. */
   uiLang?: unknown;
 }>;
@@ -64,6 +66,7 @@ export function buildDialogueV2BriefingModel(
     packets: input.packets,
     studyTarget: input.studyTarget,
     localCoinRank: input.localCoinRank,
+    hasPremiumAccess: input.hasPremiumAccess === true,
     worldHeadings: INTERNAL_WORLD_HEADINGS,
   });
   const item = catalogue?.items.find((candidate) => candidate.id === input.scenarioId);

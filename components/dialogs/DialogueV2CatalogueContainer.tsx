@@ -251,7 +251,8 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true, sc
 
   const projection = useMemo(() => {
     if (state.kind !== 'available' || !supportedTarget(studyTarget)) return null;
-    const input = { studyTarget, localCoinRank, worldHeadings: headings, doneScenarioIds: peekDialogueV2DoneIds(studyTarget) };
+    // зачем (владелец 11.11, D204): Plus открывает все сценарии сразу
+    const input = { studyTarget, localCoinRank, hasPremiumAccess, worldHeadings: headings, doneScenarioIds: peekDialogueV2DoneIds(studyTarget) };
     const projected = projectAuthorizedDialogueV2Catalogue({ ...input, packets: state.envelope.packets });
     if (projected) return projected;
     // зачем: ответ сети/кэша не прошёл повторную проверку — показываем встроенный
@@ -263,7 +264,7 @@ function DialogueV2CatalogueContainerImpl({ onPressItem, showQuotaRow = true, sc
     return embedded && embedded !== state.envelope
       ? projectAuthorizedDialogueV2Catalogue({ ...input, packets: embedded.packets })
       : null;
-  }, [doneVersion, headings, localCoinRank, state, studyTarget]);
+  }, [doneVersion, hasPremiumAccess, headings, localCoinRank, state, studyTarget]);
   // зачем (владелец 01.10: «диалоги в русском интерфейсе все на английском»): название сценария —
   // на языке интерфейса (данные Ядра); нет перевода — как в пакете.
   const localizedItems = useMemo(() => (projection?.items ?? []).map((item) => {

@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AiDialogBriefingScreen from '../components/AiDialogBriefingScreen';
 import DialogueTargetBoundary from '../components/dialogs/DialogueTargetBoundary';
 import { useLang } from '../components/LangContext';
+import { usePremium } from '../components/PremiumContext';
 import ScreenGradient from '../components/ScreenGradient';
 import V2DeadEnd from '../components/v2/V2DeadEnd';
 import { useStudyTarget } from '../components/StudyTargetContext';
@@ -143,9 +144,9 @@ function AiDialogBriefingBody() {
    * не открывает. Реальную оплату всё равно проверяет сервер на первой реплике.
    */
   /**
-   * D124 (владелец 2026-09-30): доступ — только монетный ранг для всех, то же
-   * правило, что у Dialogue V2. Plus и купленное за руны сценарий больше НЕ
-   * открывают, поэтому ни подписка, ни владение здесь не читаются.
+   * D204 (владелец 2026-11-11, отменяет «только ранг» из D124): сценарий открывает
+   * монетный ранг ИЛИ Plus — то же правило, что у Dialogue V2 и у плитки каталога.
+   * Купленное за руны сценарий по-прежнему НЕ открывает.
    *
    * Замок по-прежнему СИНХРОННЫЙ: ранг приходит из кэша в памяти/диска через
    * тот же хук, что у каталога V2 (useMyCoinRank), без сети. Пока ранг не
@@ -153,18 +154,19 @@ function AiDialogBriefingBody() {
    * НЕ уводим: Plus его всё равно не откроет, а экран честно называет ранг.
    */
   const coinRank = useMyCoinRank();
-  const rankAccess = scenario ? dialogScenarioRankAccess(scenario, coinRank) : null;
-  const scenarioUnlocked = !scenario || isScenarioUnlockedForAccount(scenario, coinRank);
+  const { hasPremiumAccess } = usePremium();
+  const rankAccess = scenario ? dialogScenarioRankAccess(scenario, coinRank, hasPremiumAccess) : null;
+  const scenarioUnlocked = !scenario || isScenarioUnlockedForAccount(scenario, coinRank, hasPremiumAccess);
   const rankRequired = rankAccess?.status === 'locked_by_rank' ? rankAccess.rankRequired : null;
 
   // Отказ — единственный ранний выход этого экрана, поэтому логируем его всегда.
   useEffect(() => {
     if (!scenario || scenarioUnlocked) return;
-    console.log(`[DIALOG-GATE] briefing:access denied scenario=${scenario.id} cefr=${scenario.cefr} rank=${String(coinRank)} rankRequired=${String(rankRequired)} → экран ранга`); // guard-ok: ранний выход обязан логироваться и в релизе (правило «сперва логи»)
+    console.log(`[DIALOG-GATE] briefing:access denied scenario=${scenario.id} cefr=${scenario.cefr} rank=${String(coinRank)} plus=${String(hasPremiumAccess)} rankRequired=${String(rankRequired)} → экран ранга`); // guard-ok: ранний выход обязан логироваться и в релизе (правило «сперва логи»)
     void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
       scenarioId: scenario.id, cefr: scenario.cefr, reason: 'rank_required',
     });
-  }, [coinRank, rankRequired, scenario, scenarioUnlocked]);
+  }, [coinRank, hasPremiumAccess, rankRequired, scenario, scenarioUnlocked]);
 
   /**
    * Будим спящий инстанс, пока человек читает задание.

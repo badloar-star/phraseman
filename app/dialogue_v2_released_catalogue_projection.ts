@@ -34,6 +34,8 @@ export type DialogueV2ReleasedCatalogueProjectionInput = Readonly<{
   studyTarget: unknown;
   /** Local-first presentation input; it is not a service authorization. */
   localCoinRank: unknown;
+  /** зачем (владелец 11.11, D204): Plus открывает все сценарии сразу; не передан — считаем бесплатным. */
+  hasPremiumAccess?: boolean;
   /** Ordered localized headings from the released surface, never packet copy. */
   worldHeadings: readonly unknown[];
 }>;
@@ -109,7 +111,7 @@ export function projectReleasedDialogueV2Catalogue(
     const gateRows: DialogueV2RankGateRow[] = [];
     for (const entry of DIALOGUE_V2_CATALOGUE_INDEX) {
       const packet = packets.get(entry.id);
-      const rankAccess = getDialogueV2LocalRankAccess(entry.id, input.localCoinRank);
+      const rankAccess = getDialogueV2LocalRankAccess(entry.id, input.localCoinRank, input.hasPremiumAccess === true);
       if (!packet || !rankAccess) return null;
       items.push(Object.freeze({
         id: entry.id,

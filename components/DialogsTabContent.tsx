@@ -399,10 +399,10 @@ function DialogsTabContentBody({
       }
       // Тап и статус плитки обязаны спрашивать ОДНО правило, иначе плитка
       // покажет «открыто», а тап уведёт на пейвол (или наоборот).
-      const unlocked = isScenarioUnlockedForAccount(scenario, coinRank);
+      const unlocked = isScenarioUnlockedForAccount(scenario, coinRank, hasPremiumAccess);
       if (!unlocked) {
-        // D124: Plus ранг не заменяет — пейвол врал бы; называем нужный ранг.
-        console.log(`[DIALOG-GATE] catalog:rank_required scenario=${scenario.id} rank=${String(coinRank)}`); // guard-ok: ранний выход обязан логироваться
+        // D204 (владелец 11.11): сюда попадает только бесплатный аккаунт без нужного ранга — Plus сценарий уже открыл выше.
+        console.log(`[DIALOG-GATE] catalog:rank_required scenario=${scenario.id} rank=${String(coinRank)} plus=${String(hasPremiumAccess)}`); // guard-ok: ранний выход обязан логироваться
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
           cefr: scenario.cefr,
@@ -414,7 +414,7 @@ function DialogsTabContentBody({
       }
       void openScenarioDestination(scenario, forceBriefing);
     },
-    [accessResolved, aiDialogGateOpen, coinRank, dialogsOpenThisMonth, frenchGateCopy, lang, showGlassAlert, openScenarioDestination, reachedLevel, router],
+    [accessResolved, aiDialogGateOpen, coinRank, dialogsOpenThisMonth, frenchGateCopy, hasPremiumAccess, lang, showGlassAlert, openScenarioDestination, reachedLevel, router],
   );
 
   const openChallengeScenario = useCallback(
@@ -442,9 +442,9 @@ function DialogsTabContentBody({
        * Алерт заменён пейволом: он называет настоящую причину и даёт выход,
        * а не просто закрывается кнопкой «Закрыть».
        */
-      const unlocked = isScenarioUnlockedForAccount(scenario, coinRank);
+      const unlocked = isScenarioUnlockedForAccount(scenario, coinRank, hasPremiumAccess);
       if (!unlocked) {
-        console.log(`[DIALOG-GATE] catalog:rank_required scenario=${scenario.id} rank=${String(coinRank)}`); // guard-ok: ранний выход обязан логироваться
+        console.log(`[DIALOG-GATE] catalog:rank_required scenario=${scenario.id} rank=${String(coinRank)} plus=${String(hasPremiumAccess)}`); // guard-ok: ранний выход обязан логироваться
         void trackAiDialogEvent('ai_dialog_locked_scenario_tapped', {
           scenarioId: scenario.id,
           reason: 'rank_required',
@@ -454,7 +454,7 @@ function DialogsTabContentBody({
       }
       void openScenarioDestination(scenario, forceBriefing);
     },
-    [accessResolved, aiDialogGateOpen, coinRank, dialogsOpenThisMonth, frenchGateCopy, lang, showGlassAlert, openScenarioDestination, router],
+    [accessResolved, aiDialogGateOpen, coinRank, dialogsOpenThisMonth, frenchGateCopy, hasPremiumAccess, lang, showGlassAlert, openScenarioDestination, router],
   );
 
   // ── View-model каталога ────────────────────────────────────────────────────
@@ -470,7 +470,7 @@ function DialogsTabContentBody({
           // открыты ровно три сценария, остальные за Plus. Прежний текст
           // «Откроется на уровне A2» стал бы ложью: никакой прогресс их уже
           // не откроет.
-          const unlocked = isScenarioUnlockedForAccount(scenario, coinRank);
+          const unlocked = isScenarioUnlockedForAccount(scenario, coinRank, hasPremiumAccess);
           const done = completedIds.has(scenario.id);
           const status: ScenarioStatus = !dialogsOpenThisMonth || !unlocked ? 'locked' : done ? 'done' : 'available';
           return {
@@ -486,7 +486,7 @@ function DialogsTabContentBody({
         const doneCount = scenarios.filter((s) => s.status === 'done').length;
         return { group, scene, scenarios, doneCount };
       }),
-    [coinRank, dialogsOpenThisMonth, completedIds, lang, openCourseScenario],
+    [coinRank, dialogsOpenThisMonth, completedIds, hasPremiumAccess, lang, openCourseScenario],
   );
 
   const challengeVMs = useMemo<ScenarioVM[]>(
@@ -495,7 +495,7 @@ function DialogsTabContentBody({
         const requiredLevel = scenario.requiredAccountLevel ?? 1;
         // Вызовы теперь входят в Plus (владелец 2026-09-14) — уровень аккаунта
         // их больше не открывает. Тап считает ровно это же правило.
-        const unlocked = isScenarioUnlockedForAccount(scenario, coinRank);
+        const unlocked = isScenarioUnlockedForAccount(scenario, coinRank, hasPremiumAccess);
         const done = completedIds.has(scenario.id);
         const status: ScenarioStatus = !dialogsOpenThisMonth || !unlocked ? 'locked' : done ? 'done' : 'available';
         return {
@@ -518,7 +518,7 @@ function DialogsTabContentBody({
           onLongPress: () => openChallengeScenario(scenario, true),
         };
       }),
-    [coinRank, completedIds, dialogsOpenThisMonth, lang, openChallengeScenario],
+    [coinRank, completedIds, dialogsOpenThisMonth, hasPremiumAccess, lang, openChallengeScenario],
   );
 
   // зачем: владелец просил заходить в «Диалоги» с полностью свёрнутыми

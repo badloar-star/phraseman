@@ -123,7 +123,8 @@ export function useDialogsSceneHub(): DialogsSceneHubData {
   const model = useMemo<DialogsSceneHubModel | null>(() => {
     if (!supported || !envelope) return null;
     const headings = dialogueV2WorldHeadings(lang);
-    const base = { studyTarget, localCoinRank, worldHeadings: headings, doneScenarioIds: peekDialogueV2DoneIds(studyTarget) };
+    // зачем (владелец 11.11, D204): Plus открывает все сценарии сразу
+    const base = { studyTarget, localCoinRank, hasPremiumAccess, worldHeadings: headings, doneScenarioIds: peekDialogueV2DoneIds(studyTarget) };
     const projected = projectAuthorizedDialogueV2Catalogue({ ...base, packets: envelope.packets })
       ?? (() => {
         const embedded = getEmbeddedDialogueV2Catalogue(studyTarget as DialogueV2CatalogueStudyTarget);
@@ -145,7 +146,7 @@ export function useDialogsSceneHub(): DialogsSceneHubData {
     return built;
     // doneVersion — будит пересчёт, когда диалог отмечен пройденным (peekDialogueV2DoneIds читается внутри)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [supported, envelope, lang, studyTarget, localCoinRank, doneVersion]);
+  }, [supported, envelope, lang, studyTarget, localCoinRank, hasPremiumAccess, doneVersion]);
 
   const plus = accessResolved && hasPremiumAccess;
   const consent = isAiDialogConsentHydrated() ? consentState === 'granted' : null;

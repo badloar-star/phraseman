@@ -31,6 +31,14 @@ describe('dialogue v2 local rank catalogue access', () => {
     },
   );
 
+  // зачем (владелец 2026-11-11, D204): Plus открывает сценарий без ранга; подпись ранга в entry остаётся прежней
+  test('Plus opens a scenario above the local rank, a free account stays locked', () => {
+    expect(getDialogueV2LocalRankAccess('travel_19', 0, true)?.access).toEqual({ status: 'unlocked' });
+    expect(getDialogueV2LocalRankAccess('travel_19', null, true)?.access).toEqual({ status: 'unlocked' });
+    expect(getDialogueV2LocalRankAccess('travel_19', 0, false)?.access).toEqual({ status: 'locked_by_rank', rankRequired: 19 });
+    expect(getDialogueV2LocalRankAccess('legacy_cafe_01', 19, true)).toBeNull();
+  });
+
   test('returns null for an ID outside the canonical catalogue', () => {
     expect(getDialogueV2LocalRankAccess('legacy_cafe_01', 19)).toBeNull();
   });

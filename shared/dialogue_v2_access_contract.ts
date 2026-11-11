@@ -1,7 +1,10 @@
 /**
- * Dialogue V2 progression is intentionally rank-only. Subscription and prior
- * ownership are accepted in the input shape solely so an integration cannot
- * accidentally treat either as an alternate unlock authority.
+ * Dialogue V2 access: coin rank OR an active Plus subscription.
+ *
+ * зачем (владелец 2026-11-11, D204 — отменяет «только ранг» из D124/D185): экран покупки обещает
+ * «Сценарии: по рангу / все сразу», и владелец выбрал выполнить обещание, а не убрать его. Plus открывает
+ * любой сценарий каталога сразу; бесплатный аккаунт по-прежнему идёт лестницей рангов.
+ * Prior rune ownership (ownsScenario) is still ignored: old purchases do not unlock anything.
  */
 export type DialogueV2ScenarioAccessInput = Readonly<{
   achievedRank: unknown;
@@ -36,7 +39,10 @@ export function decideDialogueV2ScenarioAccess(
   // its canonical scenario record, never accept it from a client request.
   const rankRequired = requiredCatalogueRank(input.rankRequired);
   const achievedRank = achievedAccountRank(input.achievedRank);
+  // Unknown scenario rank stays closed for everyone: Plus opens catalogue scenarios, not malformed rows.
   if (rankRequired === null) return { status: 'locked_by_rank', rankRequired: null };
   if (achievedRank !== null && achievedRank >= rankRequired) return { status: 'unlocked' };
+  // Strict `=== true`: an unresolved or garbage flag must never open a scenario.
+  if (input.hasPremiumAccess === true) return { status: 'unlocked' };
   return { status: 'locked_by_rank', rankRequired };
 }

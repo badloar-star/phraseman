@@ -1,8 +1,8 @@
 /**
  * Замок сценариев ИИ-диалогов старого каталога.
  *
- * D124 (владелец 2026-09-30): доступ — только монетный ранг для всех, как у
- * Dialogue V2. Plus и покупки за руны сценарии больше не открывают.
+ * D204 (владелец 2026-11-11, отменяет «только ранг» из D124): сценарий открывает
+ * монетный ранг ИЛИ Plus — как у Dialogue V2. Покупки за руны по-прежнему не открывают.
  * reachedCourseLevel/isScenarioLevelUnlocked ниже остались для группировки и
  * аналитики каталога, доступ они не решают.
  *
@@ -74,23 +74,26 @@ export function legacyDialogScenarioRankRequired(cefr: string): number | null {
  * Открыт ли сценарий старого каталога — единственное правило для плитки,
  * тапа и прямого роута брифинга (иначе плитка покажет одно, а тап сделает другое).
  *
- * D124: решает ТОЛЬКО монетный ранг — то же правило, что у Dialogue V2
- * (decideDialogueV2ScenarioAccess). Подписка и владение за руны сюда больше
- * не передаются вовсе, чтобы их нельзя было случайно снова сделать ключом.
+ * D204 (владелец 2026-11-11): решает монетный ранг ИЛИ Plus — то же правило, что у
+ * Dialogue V2 (decideDialogueV2ScenarioAccess). Экран покупки обещает «все сценарии
+ * сразу», и это обещание теперь выполняется. Владение за руны сюда не передаётся.
  * Месячную квоту реплик Free (D111) это не трогает — она живёт отдельно.
  */
 export function isScenarioUnlockedForAccount(
   scenario: Readonly<{ id: string; cefr: string }>,
   coinRank: unknown,
+  hasPremiumAccess: boolean = false,
 ): boolean {
-  return dialogScenarioRankAccess(scenario, coinRank).status === 'unlocked';
+  return dialogScenarioRankAccess(scenario, coinRank, hasPremiumAccess).status === 'unlocked';
 }
 
 export function dialogScenarioRankAccess(
   scenario: Readonly<{ id: string; cefr: string }>,
   coinRank: unknown,
+  hasPremiumAccess: boolean = false,
 ): DialogueV2ScenarioAccess {
   return decideDialogueV2ScenarioAccess({
+    hasPremiumAccess,
     // Контракт сам отбрасывает не-целые и ранги < 1; таблицу монет (с картинками)
     // сюда не тянем — модуль остаётся чистым и лёгким.
     achievedRank: coinRank,

@@ -109,12 +109,12 @@ describe('AI dialog catalog scenario-feed contract', () => {
      * известен в первом кадре и из ТОГО ЖЕ источника, что у плиток каталога —
      * иначе плитка покажет открытым то, что экран закроет.
      */
-    // D124 (владелец 2026-09-30): доступ — только монетный ранг, как у Dialogue V2.
+    // D204 (владелец 2026-11-11, отменяет «только ранг» из D124): доступ — монетный ранг ИЛИ Plus, как у Dialogue V2.
     // Правило сторожа прежнее: замок СИНХРОННЫЙ и из того же источника, что
-    // плитки каталога (ранг из кэша useMyCoinRank, без сети). Plus и владение
-    // за руны больше не читаются вовсе, а закрытый сценарий не уводит на пейвол.
+    // плитки каталога (ранг из кэша useMyCoinRank и признак Plus из usePremium, без сети).
+    // Владение за руны не читается, а закрытый сценарий не уводит на пейвол.
     expect(route).toContain('useMyCoinRank()');
-    expect(route).toContain('isScenarioUnlockedForAccount(scenario, coinRank)');
+    expect(route).toContain('isScenarioUnlockedForAccount(scenario, coinRank, hasPremiumAccess)');
     expect(route).not.toContain("= useFeatureAccess('ai_dialog')");
     expect(route).not.toContain('getOwnedDialogIds');
     expect(route).not.toContain("pathname: '/premium_modal'");

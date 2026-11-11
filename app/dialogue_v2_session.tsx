@@ -288,10 +288,12 @@ function SessionContent() {
       studyTarget,
       scenarioId,
       localCoinRank,
+      // зачем (владелец 11.11, D204): Plus открывает сценарий без ранга — как плитка в каталоге
+      hasPremiumAccess,
       // зачем (владелец 01.10): служебный текст сцены — на языке интерфейса.
       uiLang: lang,
     });
-  }, [lang, localCoinRank, scenarioId, state, studyTarget]);
+  }, [hasPremiumAccess, lang, localCoinRank, scenarioId, state, studyTarget]);
 
   // Первая реплика персонажа — сразу в ленте, до любого хода пользователя.
   useEffect(() => {

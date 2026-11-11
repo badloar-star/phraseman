@@ -28,6 +28,8 @@ export type DialogueV2AuthorizedCatalogueProjectionInput = Readonly<{
   packets: readonly unknown[];
   studyTarget: unknown;
   localCoinRank: unknown;
+  /** зачем (владелец 11.11, D204): Plus открывает все сценарии сразу; не передан — считаем бесплатным. */
+  hasPremiumAccess?: boolean;
   worldHeadings: readonly unknown[];
   /**
    * зачем (координатор 12.10, dialogs-003): id сценариев, пройденных на этом устройстве (app/dialogue_v2_done_store.ts). Нет набора = ни один не пройден.
@@ -163,7 +165,7 @@ export function projectAuthorizedDialogueV2Catalogue(
       const packet = input.packets.find((candidate) => plainRecord(candidate)?.scenario
         && plainRecord(plainRecord(candidate)?.scenario)?.id === entry.id);
       const title = validPacket(packet, entry, input.studyTarget);
-      const rankAccess = getDialogueV2LocalRankAccess(entry.id, input.localCoinRank);
+      const rankAccess = getDialogueV2LocalRankAccess(entry.id, input.localCoinRank, input.hasPremiumAccess === true);
       if (!title || !rankAccess || observed.has(entry.id)) return null;
       observed.add(entry.id);
       const unlocked = rankAccess.access.status === 'unlocked';

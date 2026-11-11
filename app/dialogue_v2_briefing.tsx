@@ -304,10 +304,12 @@ export default function DialogueV2BriefingRoute() {
       studyTarget,
       scenarioId,
       localCoinRank,
+      // зачем (владелец 11.11, D204): Plus открывает сценарий без ранга — как плитка в каталоге
+      hasPremiumAccess,
       // зачем (владелец 01.10): служебный текст сцены — на языке интерфейса.
       uiLang: lang,
     });
-  }, [lang, localCoinRank, scenarioId, state, studyTarget]);
+  }, [hasPremiumAccess, lang, localCoinRank, scenarioId, state, studyTarget]);
 
   if (state.kind === 'loading') {
     return <DialogueV2BriefingTransientScreen testID="dialogue-v2-briefing-loading" loading message={labels.loading} backLabel={labels.back} onBack={() => safeRouterBack(router, '/ai_dialog_home' as never)} />;

@@ -8,12 +8,26 @@ describe('dialogue v2 scenario access', () => {
       .toEqual({ status: 'locked_by_rank', rankRequired: 5 });
   });
 
-  test('does not make a purchase or subscription an alternative unlock path', () => {
+  // зачем (владелец 2026-11-11, D204): экран покупки обещает «Сценарии: все сразу» — Plus открывает сценарий без ранга.
+  test('Plus opens a scenario the coin rank has not reached yet', () => {
+    expect(decideDialogueV2ScenarioAccess({ achievedRank: 1, rankRequired: 19, hasPremiumAccess: true }))
+      .toEqual({ status: 'unlocked' });
+    expect(decideDialogueV2ScenarioAccess({ achievedRank: null, rankRequired: 19, hasPremiumAccess: true }))
+      .toEqual({ status: 'unlocked' });
+  });
+
+  test('a rune purchase alone is still not an unlock path', () => {
+    expect(decideDialogueV2ScenarioAccess({ achievedRank: 1, rankRequired: 19, ownsScenario: true }))
+      .toEqual({ status: 'locked_by_rank', rankRequired: 19 });
+    expect(decideDialogueV2ScenarioAccess({ achievedRank: 1, rankRequired: 19, hasPremiumAccess: false, ownsScenario: true }))
+      .toEqual({ status: 'locked_by_rank', rankRequired: 19 });
+  });
+
+  test('Plus does not open a row whose catalogue rank is malformed, and a non-boolean flag opens nothing', () => {
+    expect(decideDialogueV2ScenarioAccess({ achievedRank: 5, rankRequired: 20, hasPremiumAccess: true }))
+      .toEqual({ status: 'locked_by_rank', rankRequired: null });
     expect(decideDialogueV2ScenarioAccess({
-      achievedRank: 1,
-      rankRequired: 19,
-      hasPremiumAccess: true,
-      ownsScenario: true,
+      achievedRank: 1, rankRequired: 19, hasPremiumAccess: 'yes' as unknown as boolean,
     })).toEqual({ status: 'locked_by_rank', rankRequired: 19 });
   });
 

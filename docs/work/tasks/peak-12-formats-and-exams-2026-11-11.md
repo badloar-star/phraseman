@@ -9,6 +9,14 @@ Governance-ID: TG-A9CC03286555
 Governance-ID: TG-1E74FE80081D
 Governance-ID: TG-C18A339627CE
 Governance-ID: TG-D0D9CA2A8B75
+Governance-ID: TG-BD02AA792A21
+Governance-ID: TG-E163BA14A209
+Governance-ID: TG-A4EA4D676619
+Governance-ID: TG-BFCBE146BE6D
+Governance-ID: TG-8D54274D1269
+Governance-ID: TG-7EEBDA4301F4
+Governance-ID: TG-3BE500344E5E
+Governance-ID: TG-89AFE2A4EE81
 Peak-wiring: client (pack decode, verdict, screen); pool not published
 Status: In progress
 Owner: сессия Claude (владелец 11.11.2026: «все механики а не 5 и всё, что ещё не в приложении для Пика, что Кодекс не добавил, — доделай и добавь ты»)

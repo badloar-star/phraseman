@@ -27,6 +27,7 @@ import {
   spireStepsForFloor,
   type SpireTimerConfig,
 } from './spire_config_contract';
+import { SPIRE_EXPANDED_KIND, spireExpandedPoolTaskProblem, type SpireExpandedPoolTask } from './spire_expanded_task';
 import {
   answerFingerprint,
   toPublicTournamentTask,
@@ -228,7 +229,17 @@ export type SpirePackBuildInput = Readonly<{
    * (`config/spire_task_flags_{lang}`), в пакет не попадают.
    */
   excludedTaskIds?: readonly string[];
+  /**
+   * Задания двенадцати новых механик (владелец 11.11.2026: «код сейчас, пул после вычитки»).
+   * Не задано, пусто или perSet = 0 — пакет собирается байт-в-байт как раньше, packHash прежний.
+   * Задано — на этажах от `fromFloor` в каждом наборе до `perSet` заданий «выбор» заменяются заданиями новых механик;
+   * не хватило заданий — слот остаётся за прежним видом, пакет из-за этого не срывается.
+   */
+  expanded?: Readonly<{ tasks: readonly SpireExpandedPoolTask[]; perSet: number; fromFloor?: number }>;
 }>;
+
+/** С какого этажа в наборе появляются новые механики, если вызывающий не задал своё: первые этажи — знакомство с башней. */
+export const SPIRE_PACK_EXPANDED_FROM_FLOOR = 3;
 
 export type SpirePackBuildResult =
   | Readonly<{ ok: true; pack: SpirePack; json: string }>
@@ -256,6 +267,8 @@ export function spirePackHash(packWithoutHash: unknown): string {
 /* ---------------------------- подготовка пула ----------------------------- */
 
 type PlayableTask = Readonly<{ task: TournamentTask; mode: SpirePackMode; difficulty: number }>;
+/** Слот набора, занятый заданием новой механики. */
+type ChosenExpanded = Readonly<{ expanded: SpireExpandedPoolTask; difficulty: number }>;
 
 /** Задание «на слух» звучит голосом телефона только на языке пакета (D47). */
 function isDeviceTtsFor(task: TournamentTask, lang: string): boolean {
@@ -387,6 +400,35 @@ export function buildSpirePack(input: SpirePackBuildInput): SpirePackBuildResult
     return { ok: false, reason: 'pool_too_small', detail: { playable: playable.length, needPerStep: perStep } };
   }
 
+  // ── задания новых механик: выключено, пока вызывающий явно не передал пул и perSet > 0 ──
+  const expandedPerSet = Math.max(0, Math.trunc(input.expanded?.perSet ?? 0));
+  const expandedFromFloor = input.expanded?.fromFloor ?? SPIRE_PACK_EXPANDED_FROM_FLOOR;
+  const expandedPool = expandedPerSet > 0 ? (input.expanded?.tasks ?? []).filter((task) => !excluded.has(task.taskId)) : [];
+  for (const task of expandedPool) {
+    // зачем: битое задание на экране превращается в «нажал верно — засчитали неверно»; такой пул не собираем вовсе
+    const problem = spireExpandedPoolTaskProblem(task, input.lang);
+    if (problem) return { ok: false, reason: 'expanded_task_invalid', detail: { taskId: String((task as { taskId?: unknown }).taskId), problem } };
+  }
+  const expandedByDifficulty = new Map<number, { order: SpireExpandedPoolTask[]; pos: number }>();
+  for (const task of expandedPool.slice().sort((a, b) => a.taskId.localeCompare(b.taskId))) {
+    const cell = expandedByDifficulty.get(task.difficulty) ?? { order: [], pos: 0 }; // guard-ok: Map.get в памяти, не Firestore
+    cell.order.push(task);
+    expandedByDifficulty.set(task.difficulty, cell);
+  }
+  for (const [difficulty, cell] of expandedByDifficulty) cell.order = shuffled(cell.order, `${saltId}|expanded|${difficulty}`);
+  const pickExpanded = (difficulty: number, usedInStep: Set<string>): SpireExpandedPoolTask | null => {
+    for (const level of [1, 2, 3].sort((a, b) => Math.abs(a - difficulty) - Math.abs(b - difficulty) || a - b)) {
+      const cell = expandedByDifficulty.get(level); // guard-ok: Map.get в памяти, не Firestore
+      if (!cell || cell.order.length === 0) continue;
+      for (let tries = 0; tries < cell.order.length; tries += 1) {
+        const candidate = cell.order[cell.pos % cell.order.length];
+        cell.pos += 1;
+        if (!usedInStep.has(candidate.taskId)) return candidate;
+      }
+    }
+    return null;
+  };
+
   const everUsed = new Set<string>();
   let reusedAcrossSteps = 0;
   let fallbacks = 0;
@@ -430,8 +472,21 @@ export function buildSpirePack(input: SpirePackBuildInput): SpirePackBuildResult
           ...Array<number>(easy).fill(1), ...Array<number>(mid).fill(2), ...Array<number>(hard).fill(3),
         ];
         const pairedModes = shuffled(modes, `${seed}|modes`);
-        const chosen: PlayableTask[] = [];
+        const chosen: (PlayableTask | ChosenExpanded)[] = [];
+        let expandedLeft = floor >= expandedFromFloor ? expandedPerSet : 0;
         for (let i = 0; i < SPIRE_STEP_TASK_COUNT; i += 1) {
+          if (expandedLeft > 0 && (CHOICE_FAMILY as readonly string[]).includes(pairedModes[i])) {
+            const expandedTask = pickExpanded(difficulties[i], usedInStep);
+            if (expandedTask) {
+              usedInStep.add(expandedTask.taskId);
+              if (everUsed.has(expandedTask.taskId)) reusedAcrossSteps += 1;
+              everUsed.add(expandedTask.taskId);
+              chosen.push({ expanded: expandedTask, difficulty: expandedTask.difficulty });
+              expandedLeft -= 1;
+              slots += 1;
+              continue;
+            }
+          }
           const got = pick(pairedModes[i], difficulties[i], usedInStep);
           if (!got) {
             return {
@@ -451,6 +506,13 @@ export function buildSpirePack(input: SpirePackBuildInput): SpirePackBuildResult
         const tasks: SpirePackPublicTask[] = [];
         const answerFingerprints: string[][] = [];
         for (const p of chosen) {
+          if ('expanded' in p) {
+            // зачем: верный ответ новой механики лежит в самом задании (ввод с клавиатуры и разбор ошибки по отпечатку
+            // не восстановить); отпечаток здесь — метка вида, чтобы строка отпечатков оставалась непустой, как у остальных
+            tasks.push({ taskId: p.expanded.taskId, mode: p.expanded.mode, kind: SPIRE_EXPANDED_KIND, difficulty: p.expanded.difficulty, payload: p.expanded.payload });
+            answerFingerprints.push([answerFingerprint(saltId, p.expanded.taskId, SPIRE_EXPANDED_KIND)]);
+            continue;
+          }
           if ((LISTEN_FAMILY as readonly string[]).includes(p.mode)) {
             const listenTask = toPublicListenTask(p.task, saltId);
             if (!listenTask) return { ok: false, reason: 'public_task_rejected', detail: { taskId: p.task.taskId } };

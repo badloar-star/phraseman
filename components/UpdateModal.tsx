@@ -88,7 +88,8 @@ const TEXTS = {
   },
 } as const;
 
-const pickUpdateText = (lang: string) => TEXTS[lang as keyof typeof TEXTS] ?? TEXTS.ru;
+// зачем (истории вместо окон, 11.11): кадр «Вышло обновление» говорит теми же словами, что окно, — берёт их отсюда
+export const pickUpdateText = (lang: string) => TEXTS[lang as keyof typeof TEXTS] ?? TEXTS.ru;
 const blockAndroidBack = () => undefined;
 
 type GlassTokens = ReturnType<typeof liquidGlassTokens>;

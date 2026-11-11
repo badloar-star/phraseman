@@ -84,10 +84,6 @@ const S = {
   ],
   rankLeft: ['останется {left}', 'залишиться {left}', '{left} left after', 'te quedarán {left}', 'sobram {left}', 'còn lại {left}', 'tersisa {left}', 'geriye {left} kalır', 'zostanie {left}'],
 
-  // ── 5 · вышло обновление (строки изменений приходят из события) ──
-  updateOverline: ['Версия {version}', 'Версія {version}', 'Version {version}', 'Versión {version}', 'Versão {version}', 'Phiên bản {version}', 'Versi {version}', 'Sürüm {version}', 'Wersja {version}'],
-  updateTitle: ['Вышло обновление', 'Вийшло оновлення', 'An update is out', 'Hay una actualización', 'Saiu uma atualização', 'Đã có bản cập nhật', 'Pembaruan tersedia', 'Güncelleme çıktı', 'Jest aktualizacja'],
-
   // ── 6 · личное сообщение (текст и время приходят из события) ──
   msgOverline: ['Личное сообщение', 'Особисте повідомлення', 'Personal message', 'Mensaje personal', 'Mensagem pessoal', 'Tin nhắn riêng', 'Pesan pribadi', 'Kişisel mesaj', 'Wiadomość osobista'],
   msgTitle: ['Ответ от команды', 'Відповідь від команди', 'A reply from the team', 'Respuesta del equipo', 'Resposta da equipe', 'Phản hồi từ đội ngũ', 'Balasan dari tim', 'Ekipten yanıt', 'Odpowiedź od zespołu'],

@@ -104,8 +104,30 @@ describe('событие instead → данные кадра', () => {
     expect(insteadTemplateFromPayload({ kind: 'first_dialog', key: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 })).toBeNull();
   });
 
-  it('список видов с источником — тринадцать; остальные 7 кадров ждут своих партий', () => {
-    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam']);
+  it('список видов с источником — четырнадцать; остальные 6 кадров ждут своих партий', () => {
+    expect([...STORY_INSTEAD_EVENT_KINDS]).toEqual(['back', 'rank_enough', 'legacy', 'plus_expired', 'ref_ended', 'ref_welcome', 'first_dialog', 'rate', 'perfect', 'lesson_open', 'medal', 'level_exam', 'lingman_exam', 'update']);
+  });
+
+  it('«Вышло обновление»: текст из настроек необязателен; окно — прежний путь при выключенных историях; адрес магазина — только из настроек приложения', () => {
+    expect(storyEventKey('instead', { kind: 'update', key: '2026-11-11', message: '' })).toBe('instead:update:2026-11-11');
+    expect(insteadTemplateFromPayload({ kind: 'update', key: 'k', message: '' })).toEqual({ id: 'instead_update', message: null });
+    expect(insteadTemplateFromPayload({ kind: 'update', key: 'k', message: '   ' })).toEqual({ id: 'instead_update', message: null });
+    expect(insteadTemplateFromPayload({ kind: 'update', key: 'k' })).toEqual({ id: 'instead_update', message: null });
+    expect(insteadTemplateFromPayload({ kind: 'update', key: 'k', message: 'Исправили звук в уроках.' })).toEqual({ id: 'instead_update', message: 'Исправили звук в уроках.' });
+    const layout = read('app/_layout.tsx');
+    const branch = layout.indexOf('if (storiesReplaceWindows()) {', layout.indexOf('checkForUpdate().then(u => {'));
+    expect(branch).toBeGreaterThan(-1);
+    expect(layout.indexOf('void recordAppUpdateStory({ dayKey, message: u.message ?? null })', branch)).toBeGreaterThan(branch);
+    expect(layout.indexOf('setUpdateInfo(u);', branch)).toBeGreaterThan(branch);
+    // кадр говорит словами окна
+    const frame = read('components/stories/templates/frames_instead_a.tsx');
+    expect(frame).toContain('const copy = pickUpdateText(lang);');
+    expect(frame).toContain('<P text={tpl.message ?? copy.body} d={760} />');
+    // кнопка: адрес берётся из настроек приложения, событие его не несёт; двойной тап магазин дважды не открывает
+    const cta = read('components/stories/templates/use_story_cta_action.ts');
+    expect(cta).toContain("const storeUrl = Platform.OS === 'ios' ? config.STORE_URL_IOS : config.STORE_URL_ANDROID;");
+    expect(cta).toContain('if (storeOpeningRef.current) {');
+    expect(read('modules/story_events/story_instead_sources.ts')).not.toContain('storeUrl');
   });
 
   it('медаль и экзамены: данные события → кадр; битые — нет кадра', () => {

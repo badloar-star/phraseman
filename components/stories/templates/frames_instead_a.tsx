@@ -24,6 +24,7 @@ import { mix, useStoryTemplatePalette } from './story_template_palette';
 import { tplNumber } from './story_template_strings';
 import { BigPlusMark, Bubbles, IconDisc, PerkRows } from './story_instead_parts';
 import { insteadText } from './story_instead_strings';
+import { pickUpdateText } from '../../UpdateModal';
 
 /** Данные кадров — только то, что событие уже знает. При подключении переезжают в story_template_registry. */
 export type HelloNewStory = Readonly<{ coinRank: number }>;
@@ -31,7 +32,8 @@ export type WelcomeBackStory = Readonly<{ coinRank: number | null; daysAway: num
 /** Сколько было старого: опыт, жемчуг, вращения — то, что сервер пересчитал в монеты (legacy_bonus_view: from). */
 export type LegacyCoinsStory = Readonly<{ coins: number; xpBefore: number; pearlsBefore: number; spinsBefore: number }>;
 export type RankEnoughStory = Readonly<{ rank: number; nextRank: number; balance: number; price: number }>;
-export type AppUpdateStory = Readonly<{ version: string; changes: readonly string[] }>;
+/** Текст из настроек обновления (его показывало окно) или null — тогда стандартный текст окна. Номера версии и списка изменений проверка обновления не знает. */
+export type AppUpdateStory = Readonly<{ message: string | null }>;
 export type TeamMessageStory = Readonly<{ text: string; whenLabel: string }>;
 export type NotifNudgeStory = Readonly<{ missedDays: number; endMs: number }>;
 /** `freezesPerMonth` — из PREMIUM_FREE_FREEZES_PER_MONTH, `untilLabel` — готовая дата на языке интерфейса; null — дата неизвестна, строки с датой нет. */
@@ -123,12 +125,14 @@ export const RankEnoughFrame = memo(function RankEnoughFrame({ tpl, lang }: Fram
 // ── 5 · вышло обновление (взамен окна «Доступно обновление») ─────────────────────────────────────────
 
 export const AppUpdateFrame = memo(function AppUpdateFrame({ tpl, lang }: FrameProps<AppUpdateStory>) {
+  // зачем (шаг 2и, 11.11): слова — те же, что у окна «Доступно обновление» (голос Компаса); придуманные в макете «Версия 2.1»
+  // и три строки изменений убраны — проверка обновления знает только «есть версия новее» и необязательный текст
+  const copy = pickUpdateText(lang);
   return (
     <FrameRoot testID="story-tpl-instead-update">
       <Art><IconDisc icon="rocket" /></Art>
-      <Ov text={insteadText(lang, 'updateOverline', { version: tpl.version })} d={380} />
-      <H1 text={insteadText(lang, 'updateTitle')} d0={460} />
-      {tpl.changes.length > 0 ? <PerkRows items={tpl.changes.slice(0, 3)} d0={720} /> : null}
+      <H1 text={copy.title} d0={380} />
+      <P text={tpl.message ?? copy.body} d={760} />
     </FrameRoot>
   );
 });

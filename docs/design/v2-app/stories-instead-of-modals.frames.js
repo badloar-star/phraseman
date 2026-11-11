@@ -25,9 +25,9 @@ const TPL = [
     cta: { label: 'Улучшить монету', icon: 'trend' },
     render: () => `<div class="art"><div class="flipw"><div class="halo"></div><div class="flip">${coin(4, 120)}${coin(5, 120, 'back')}</div></div></div><div class="ov a" style="--d:500ms">Монета · ранг 4</div><div class="h1">${words('Хватает на ранг 5', 580)}</div><div class="p a" style="--d:800ms">На счёте 2 400 монет. Ранг 5 стоит 2 000.</div><div class="chip a" style="--d:950ms">${io('wallet', 15)}останется 400</div>` },
 
-  { id: 'app_update', name: 'Вышло обновление', group: 'Сообщения', kind: 'new', ev: 'app_update_available (новое)', when: 'взамен окна «Доступно обновление» · в магазине версия новее', data: 'version, changes[3]', motion: 'знак появляется, три строки отмечаются по очереди',
+  { id: 'app_update', name: 'Вышло обновление', group: 'Сообщения', kind: 'new', ev: 'app_update_available (новое)', when: 'взамен окна «Доступно обновление» · в магазине версия новее', data: 'message (текст из настроек, необязателен)', motion: 'знак появляется, заголовок встаёт по словам',
     cta: { label: 'Обновить', icon: 'refresh' },
-    render: () => `<div class="art">${icn('rocket')}</div><div class="ov a" style="--d:380ms">Версия 2.1</div><div class="h1">${words('Вышло обновление', 460)}</div>${rows([['Истории вместо окон'], ['Новые сценарии диалогов'], ['Уроки открываются быстрее']], 720)}` },
+    render: () => `<div class="art">${icn('rocket')}</div><div class="h1 s">${words('Это Компас. У меня кое-что новое', 380)}</div><div class="p a" style="--d:760ms">Доступна новая версия — быстрее и удобнее.</div>` },
 
   { id: 'team_msg', name: 'Личное сообщение', group: 'Сообщения', kind: 'new', ev: 'personal_message (новое)', when: 'взамен окна личного сообщения · команда написала этому игроку', data: 'text, sentAt', motion: 'реплика всплывает, как в диалоге',
     cta: { label: 'Ответить', icon: 'chat' },

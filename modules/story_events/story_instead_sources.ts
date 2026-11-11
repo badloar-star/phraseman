@@ -113,6 +113,16 @@ export function recordLingmanExamOpenStory(input: Readonly<{ studyTarget: string
   return record('lingman_exam', input.studyTarget, { lessonNo: input.lessonNo, score: input.score });
 }
 
+/**
+ * «Вышло обновление» (взамен мягкого окна «Доступно обновление»): необязательный текст из настроек обновления.
+ * Ключ — локальный день: проверка обновления и так срабатывает не чаще раза в сутки. Адрес магазина в событие не пишется —
+ * кнопка кадра берёт его из настроек приложения.
+ */
+export function recordAppUpdateStory(input: Readonly<{ dayKey: string; message: string | null }>): Promise<StoryRecordResult> {
+  // пустая строка — текста из настроек нет (в событии только числа и строки)
+  return record('update', input.dayKey, { message: input.message ?? '' });
+}
+
 /** «Хватает на ранг N»: ключ — номер следующего ранга, один раз на ранг (как у окна). */
 export function recordRankEnoughStory(input: Readonly<{ rank: number; nextRank: number; balance: number; price: number }>, accountToken: AccountGenerationToken): Promise<StoryRecordResult> {
   return record('rank_enough', String(input.nextRank), { rank: input.rank, nextRank: input.nextRank, balance: input.balance, price: input.price }, accountToken);

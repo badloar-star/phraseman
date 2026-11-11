@@ -146,6 +146,7 @@ import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { startupSplashPalette, STARTUP_SPLASH_DARK_BG } from '../constants/startup_splash_palette';
 import UpdateModal from '../components/UpdateModal';
+import { recordAppUpdateStory, storiesReplaceWindows } from '../modules/story_events/story_instead_sources';
 import AppMessageAnnouncementModal from '../components/AppMessageAnnouncementModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import ReleaseNotesV2Modal from '../components/ReleaseNotesV2Modal';
@@ -2412,7 +2413,20 @@ function AppContent({ fontsReady = true }: { fontsReady?: boolean }) {
           .then((m) => m.primeFlashcardsCollectionCache())
           .catch(noteSwallowedHandler('_layout:runHeavyInit.call_7'));
       });
-      checkForUpdate().then(u => { if (u) setUpdateInfo(u); }).catch(noteSwallowedHandler('_layout:runHeavyInit.checkForUpdate'));
+      checkForUpdate().then(u => {
+        if (!u) return;
+        // зачем (владелец 11.11: «никаких модальных окон совсем, всё отображается только в историях»): при включённых историях найденное
+        // обновление приходит кадром истории — окно не поднимаем; истории выключены (флаг stories_v1) — окно как раньше.
+        // Обязательное обновление сюда не относится: оно остаётся экраном.
+        if (storiesReplaceWindows()) {
+          const now = new Date();
+          const dayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+          void recordAppUpdateStory({ dayKey, message: u.message ?? null })
+            .catch((e: unknown) => { DebugLogger.error('_layout:recordAppUpdateStory', e instanceof Error ? e : new Error(String(e)), 'warning'); });
+          return;
+        }
+        setUpdateInfo(u);
+      }).catch(noteSwallowedHandler('_layout:runHeavyInit.checkForUpdate'));
       prefetchEasUpdateAfterStartup().catch(noteSwallowedHandler('_layout:runHeavyInit.prefetchEasUpdateAfterStartup'));
     };
 

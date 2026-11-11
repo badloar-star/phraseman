@@ -9,7 +9,7 @@
 // Логи [STORY-TPL] — каждая ветка и каждый ранний выход.
 // ═══════════════════════════════════════════════════════════════════════════
 import { useCallback, useRef } from 'react';
-import { Share } from 'react-native';
+import { Linking, Platform, Share } from 'react-native';
 import { useRouter } from 'expo-router';
 import type { Lang } from '../../../constants/i18n';
 import { DebugLogger } from '../../../app/debug-logger';
@@ -34,6 +34,7 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
   const router = useRouter();
   const sharingRef = useRef(false);
   const ratingRef = useRef(false);
+  const storeOpeningRef = useRef(false);
   return useCallback((cta: StoryTemplateCta, ctx: StoryCtaContext) => {
     DebugLogger.info(LOG, `кнопка action=${cta.action} кадр=${ctx.source} студия=${String(studio)}`);
     void hapticTap();
@@ -107,6 +108,22 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
       DebugLogger.info(LOG, `код приглашения: закрываем просмотр и открываем ввод кода (кадр=${ctx.source})`);
       closeViewer('cta_enter_referral_code');
       router.push('/referrals?enter=1' as never);
+      return;
+    }
+    if (cta.action === 'update_app') {
+      // зачем (истории вместо окон, 11.11): то же, что кнопка «Обновить» окна — открыть страницу приложения в магазине. Адрес — из настроек
+      // приложения по платформе (событие истории адрес не несёт и подменить его не может); повторный тап магазин дважды не открывает
+      if (storeOpeningRef.current) { DebugLogger.info(LOG, 'обновление: магазин уже открывается — повторный тап пропущен'); return; }
+      storeOpeningRef.current = true;
+      closeViewer('cta_update_app');
+      void import('../../../app/config')
+        .then(async (config) => {
+          const storeUrl = Platform.OS === 'ios' ? config.STORE_URL_IOS : config.STORE_URL_ANDROID;
+          await Linking.openURL(storeUrl);
+          DebugLogger.info(LOG, `обновление: магазин открыт (кадр=${ctx.source})`);
+        })
+        .catch((e: unknown) => { DebugLogger.warn(LOG, `обновление: магазин не открылся: ${String(e)}`); })
+        .finally(() => { storeOpeningRef.current = false; });
       return;
     }
     if (cta.action === 'share_celebration') {

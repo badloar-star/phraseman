@@ -5,15 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Аврора: все разделы</title>
 <style>
-/* ───────── PhraseMan · «Аврора» на всех разделах (макет 11.11, круг 3) ─────────
-   зачем (слово владельца 11.11, круг 3: «мне нравится Аврора; плитки полупрозрачные с ненастоящим блюром; более красивый блок кружочков с днями;
-   чтобы это отобразилось на всех разделах; когда насыщенность опущена, оно не должно становиться жёлтым и зелёным»):
-   — «Аврора» показана на пяти вкладках: Главная, Уроки, Видео, Сообщество, Настройки; шестой экран — Главная как сейчас, для сравнения;
-   — плитки — матовое стекло БЕЗ настоящего размытия: внутри плитки нарисована уже «размытая» копия того, что под ней (два мягких градиента), поэтому в приложении это дёшево;
-   — блок дней — стеклянная капсула: пройденные дни связаны светящейся цепочкой, сегодня — кольцо с мягким пульсом;
-   — цветность «Авроры» считается ПРЯМО из ползунка насыщенности (0 % = чистый серый) и оттенка ползунка, а не из акцента темы: у серого акцента оттенок не определён
-     (в приложении сцена при 0 % берёт случайный оттенок 90° и нижний порог цветности 0,07 — отсюда жёлто-зелёный; это видно на экране «Сейчас»).
-   Базовые цвета (фон, карточки, текст, акцент, тени) — настоящий код темы приложения: pm_theme.js собран esbuild из pm_entry.ts. */
+/* ───────── PhraseMan · «Аврора» на всех разделах (макет 11.11, круг 4) ─────────
+   зачем (слово владельца 11.11, круг 4: «это взято не из приложения! разделы должны точно соответствовать приложению, а не то, что ты придумал;
+   плитки — блюр сильнее, чтобы не было видно границу фона и сцены под ними»):
+   — «Обучение», «Видео», «Сообщество», «Настройки» пересобраны СТРОГО по коду вкладок: состав и порядок блоков, размеры, отступы, скругления, кегли,
+     подписи и имена значков сняты с app/(tabs)/lessons.tsx, app/lingman_videos.tsx, app/(tabs)/community.tsx + friends.tsx, app/(tabs)/settings.tsx и их компонентов.
+     У этих вкладок в приложении НЕТ сцены — сцена только у Главной; «Аврора» здесь меняет материал (фон экрана, заливку плашек, акценты), а не раскладку.
+     «Сообщество» открывается на «Друзьях» (так в коде: раздел по умолчанию 'friends'). Данные (имена друзей, названия роликов, числа) — примеры: в коде их нет, они приходят с сервера.
+   — плитки Главной: «размытая копия» теперь почти непрозрачная и идёт одним плавным переходом на всю высоту плитки — границы сцены под плиткой не видно.
+   — значки берутся по тем же именам, что в коде (ionicons_map.js — карта значков приложения).
+   — цветность «Авроры» считается прямо из ползунка насыщенности (0 % = чистый серый), оттенок — число ползунка.
+   Базовые цвета (фон, плашки, текст, акцент, тени) — настоящий код темы приложения: pm_theme.js собран esbuild из pm_entry.ts. */
 @font-face { font-family: Inter; src: url(fonts/Inter-Regular.ttf); font-weight: 400 500; }
 @font-face { font-family: Inter; src: url(fonts/Inter-SemiBold.ttf); font-weight: 600; }
 @font-face { font-family: Inter; src: url(fonts/Inter-Bold.ttf); font-weight: 700; }
@@ -127,8 +129,10 @@ h1 { font-size: 24px; line-height: 30px; margin: 0 0 6px; font-weight: 700; lett
 
 /* ── Таб-бар ── */
 .tabbar { position: absolute; left: 12px; right: 12px; bottom: 30px; height: 66px; border-radius: 33px; background: var(--tabNow); box-shadow: var(--shP); z-index: 20; display: flex; align-items: center; padding: 0 9px; }
-.tabbar .tb { flex: 1; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 26px; color: var(--sec); }
-.tabbar .tb.on { background: var(--capNow); color: var(--accB); }
+/* V2TabBar: капсула 66, поле 9, плашка активной 48 × до 120, скругление 18, значки 28; неактивные — контурные, цветом mutedText */
+.tabbar .tb { flex: 1; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--mut); }
+.tabbar .tb i { width: 100%; max-width: 120px; height: 48px; border-radius: 18px; display: flex; align-items: center; justify-content: center; }
+.tabbar .tb.on { color: var(--accB); } .tabbar .tb.on i { background: var(--capNow); }
 .now .vc .poster { background: linear-gradient(150deg, var(--ctl), var(--card)); }
 .now .vc { color: var(--tx); } .now .vc span { text-shadow: none; }
 
@@ -151,12 +155,13 @@ h1 { font-size: 24px; line-height: 30px; margin: 0 0 6px; font-weight: 700; lett
 .vA .poster.p1 { background: radial-gradient(80% 90% at 10% 0%, var(--a1), transparent 70%), radial-gradient(70% 90% at 100% 100%, var(--a3), transparent 70%), linear-gradient(180deg, var(--aTop), var(--aBot)); }
 .vA .poster.p2 { background: radial-gradient(80% 90% at 100% 0%, var(--a2), transparent 70%), radial-gradient(70% 90% at 0% 100%, var(--a4), transparent 70%), linear-gradient(180deg, var(--aTop), var(--aBot)); }
 .vA .poster.p3 { background: radial-gradient(90% 90% at 50% 110%, var(--a1), transparent 70%), radial-gradient(60% 80% at 0% 0%, var(--a2), transparent 70%), linear-gradient(180deg, var(--aTop), var(--aBot)); }
-.vA .tabbar .tb.on { background: linear-gradient(98deg, var(--cta1), var(--cta2)); color: var(--ctaInkV); }
+.vA .tabbar .tb.on { color: var(--ctaInkV); } .vA .tabbar .tb.on i { background: linear-gradient(98deg, var(--cta1), var(--cta2)); }
 
-/* ── матовое стекло БЕЗ размытия: «размытая копия» того, что под плиткой, нарисована двумя градиентами внутри неё ──
-   зачем (владелец: «плитки прозрачные или полупрозрачные с ненастоящим блюром за ними»): настоящий backdrop-blur на Android дорогой и ломает первый кадр;
-   здесь верх плитки повторяет размытый низ сцены, низ — размытый фон экрана, поверх лёгкая дымка. Один статичный слой, без шейдера. */
-.vA .tile, .vA .frost { background: radial-gradient(90% 80% at 14% -10%, var(--fGlow1), transparent 70%), radial-gradient(90% 80% at 100% 110%, var(--fGlow2), transparent 70%), linear-gradient(180deg, var(--fr1) 0%, var(--fr1) 26%, var(--fr2) 62%, var(--fr2) 100%); box-shadow: var(--shF); color: var(--fTx); }
+/* ── матовое стекло БЕЗ размытия, сильное: «размытая копия» того, что под плиткой, почти непрозрачная ──
+   зачем (владелец, круг 4: «блюр сильнее, чтобы не было видно границу фона и сцены под ними»): раньше заливка была 66–80 % и под плиткой читался край сцены.
+   Теперь заливка 96 % и ОДИН плавный переход на всю высоту (цвет низа сцены → цвет фона экрана) без площадок — как очень сильное размытие; сверху два мягких пятна света.
+   Настоящего backdrop-blur нет: в приложении это один статичный слой. */
+.vA .tile { background: radial-gradient(120% 90% at 10% -20%, var(--fGlow1), transparent 72%), radial-gradient(120% 90% at 105% 120%, var(--fGlow2), transparent 72%), linear-gradient(180deg, var(--fr1) 0%, var(--frM) 46%, var(--fr2) 100%); box-shadow: var(--shF); color: var(--fTx); }
 .vA .tile b { text-shadow: var(--fTxSh); }
 
 /* ── блок дней: стеклянная капсула, цепочка серии, пульс «сегодня» ── */
@@ -171,32 +176,96 @@ h1 { font-size: 24px; line-height: 30px; margin: 0 0 6px; font-weight: 700; lett
 .wk .d.cur i::after { content: ''; position: absolute; inset: -2px; border-radius: 50%; box-shadow: 0 0 0 2px rgba(255, 255, 255, .7); animation: ring 2.4s var(--ease-out) infinite; }
 @keyframes ring { 0% { transform: scale(1); opacity: .9; } 70%, 100% { transform: scale(1.5); opacity: 0; } }
 
-/* ── части остальных разделов ── */
-.shead { position: relative; z-index: 2; padding: 44px 20px 52px; }
-.shead h2 { margin: 0; color: #fff; font-size: 30px; line-height: 36px; font-weight: 700; letter-spacing: -.6px; text-shadow: 0 1px 10px rgba(0, 0, 0, .38); }
-.chips { display: flex; gap: 8px; margin-top: 14px; }
-.chip { min-height: 36px; padding: 0 14px; border-radius: 18px; display: flex; align-items: center; gap: 6px; color: #fff; font-size: 16px; line-height: 21px; font-weight: 700; }
-.vA .chip.on { background: linear-gradient(98deg, var(--cta1), var(--cta2)); color: var(--ctaInkV); }
-.sline { display: flex; align-items: center; gap: 10px; margin-top: 14px; color: rgba(255, 255, 255, .88); font-size: 13px; line-height: 17px; font-variant-numeric: tabular-nums; }
-.bar { flex: 1; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .22); overflow: hidden; } .bar i { display: block; height: 100%; border-radius: 3px; }
-.bar.on-card { background: var(--hair2); }
-.hero { position: relative; z-index: 3; border-radius: 24px; padding: 16px; display: flex; align-items: center; gap: 14px; }
-.hero .rt { flex: 1; min-width: 0; } .hero small { display: block; font-size: 13px; line-height: 17px; opacity: .8; } .hero b { display: block; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; margin: 2px 0 10px; }
-.btn { min-height: 44px; padding: 0 18px; border-radius: 22px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; line-height: 21px; font-weight: 700; white-space: nowrap; }
-.big { position: relative; z-index: 3; height: 214px; border-radius: 24px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 16px; color: #fff; box-shadow: var(--shV); }
-.big b { position: relative; font-size: 20px; line-height: 26px; font-weight: 700; letter-spacing: -.2px; text-shadow: 0 1px 10px rgba(0, 0, 0, .4); } .big small { position: relative; font-size: 13px; line-height: 17px; opacity: .88; margin-top: 2px; }
-.big .play { position: absolute; left: 50%; top: 42%; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 32px; display: flex; align-items: center; justify-content: center; font-size: 26px; padding-left: 4px; }
-.big .tag { position: absolute; top: 12px; left: 12px; }
-.thumb { position: relative; width: 112px; height: 64px; border-radius: 14px; overflow: hidden; flex: none; }
-.you { margin: 0 -8px; padding: 8px !important; border-radius: 16px; border-top: 0 !important; }
-.you + .row { border-top: 0; }
-.mini { width: 36px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; color: #fff; flex: none; background: linear-gradient(150deg, var(--ch1), var(--ch2)); }
-.rank { width: 22px; text-align: center; font-size: 16px; font-weight: 700; color: var(--sec); font-variant-numeric: tabular-nums; }
-.tg { width: 51px; height: 31px; border-radius: 16px; background: linear-gradient(98deg, var(--cta1), var(--cta2)); padding: 2px; display: flex; justify-content: flex-end; flex: none; } .tg::after { content: ''; width: 27px; height: 27px; border-radius: 14px; background: #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .3); }
-.prof { position: relative; z-index: 2; display: flex; align-items: center; gap: 14px; margin-top: 16px; color: #fff; }
-.prof b { display: block; font-size: 20px; line-height: 26px; font-weight: 700; } .prof small { display: block; font-size: 13px; line-height: 17px; opacity: .86; }
-.spire { width: 92px; height: 92px; flex: none; }
-.steps { display: flex; gap: 6px; margin-top: 2px; } .steps i { flex: 1; height: 6px; border-radius: 3px; background: var(--hair2); } .steps i.on { background: linear-gradient(90deg, var(--cta1), var(--cta2)); }
+/* ═════════ разделы без сцены: «Обучение», «Видео», «Сообщество», «Настройки» — раскладка по коду ═════════ */
+/* страница вкладки: отступ сверху = зона часов (TabSlider paddingTop = insets.top); колонка без общего зазора — отступы у блоков свои */
+.feed.plain { gap: 0; padding-top: 28px; }
+.feed.p20 { padding-left: 20px; padding-right: 20px; }
+.vA .scr.plain-bg { background: radial-gradient(90% 22% at 0% 0%, var(--aBg2), transparent 72%), radial-gradient(90% 24% at 100% 4%, var(--aBg1), transparent 72%), radial-gradient(70% 26% at 0% 54%, var(--aBg1), transparent 72%), radial-gradient(80% 30% at 100% 84%, var(--aBg2), transparent 72%), linear-gradient(180deg, var(--bgTop) 0%, var(--bg) 60%, var(--bgBottom) 100%); }
+.plain-bg ~ .sbar { color: var(--tx); }
+.plate { position: relative; background: linear-gradient(180deg, var(--pfA), var(--pfB)); box-shadow: var(--shP); }
+.vA .plate { background: linear-gradient(148deg, var(--cA1) 0%, var(--cA2) 62%); box-shadow: var(--shV); }
+.chev { font-size: 20px; color: var(--tx); flex: none; } .chev.sec { color: var(--sec); } .chev.s18 { font-size: 18px; }
+
+/* ── Обучение (app/(tabs)/lessons.tsx, LessonsListGlassCard, LessonsListGlassKit, LessonsListGlassExamCards) ── */
+.l-top { padding-top: 12px; display: flex; align-items: center; column-gap: 10px; min-height: 58px; }
+.l-top h2 { margin: 0; font-size: 34px; line-height: 40px; font-weight: 700; letter-spacing: -.6px; }
+.l-hud { margin-left: auto; display: flex; align-items: center; gap: 7px; }
+.l-coin { height: 30px; border-radius: 15px; padding: 0 13px; display: flex; align-items: center; gap: 7px; font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.l-coin img { width: 20px; height: 20px; }
+.l-en { width: 60px; height: 28px; display: flex; align-items: center; justify-content: center; gap: 2px; font-size: 16px; line-height: 22px; font-weight: 900; font-variant-numeric: tabular-nums; } .l-en .io { font-size: 17px; }
+.l-tools { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+.l-ico { width: 40px; height: 40px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.l-ico.fill { background: var(--bf); box-shadow: var(--shN); }
+.l-lv { display: flex; align-items: center; gap: 8px; margin: 26px 2px 5px; } .l-lv.next { margin-top: 28px; }
+.l-lv b { font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: -.2px; } .l-lv .io { font-size: 16px; color: var(--sec); } .l-lv span { margin-left: auto; font-size: 13px; font-weight: 600; color: var(--sec); font-variant-numeric: tabular-nums; }
+.l-card { margin-top: 10px; border-radius: 14px; min-height: 86px; padding: 14px; display: flex; align-items: center; gap: 14px; }
+.l-num { width: 44px; height: 44px; border-radius: 22px; border: 1px solid var(--edge); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; flex: none; }
+.l-num.cur { border-color: var(--tx55); } .l-num.lock { border-color: var(--line); opacity: .8; font-size: 14px; color: var(--sec); }
+.l-txt { flex: 1; min-width: 0; } .l-txt.lock { opacity: .8; } .l-txt b { display: block; font-size: 16px; line-height: 21px; font-weight: 700; }
+.l-st { display: flex; align-items: center; gap: 10px; margin-top: 8px; min-height: 18px; font-size: 13px; color: var(--sec); } .l-st.g6 { gap: 6px; } .l-st .io { font-size: 12px; }
+.l-bar { flex: 1; height: 6px; border-radius: 4px; background: var(--line); overflow: hidden; } .l-bar i { display: block; height: 6px; min-width: 6px; border-radius: 4px; background: var(--acc); }
+.vA .l-bar i { background: linear-gradient(90deg, var(--cta1), var(--cta2)); }
+.l-pct { min-width: 34px; text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.l-exam { margin-top: 9px; border-radius: 22px; min-height: 84px; padding: 14px; display: flex; align-items: center; gap: 14px; }
+.l-tile { width: 46px; height: 46px; border-radius: 12px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 22px; flex: none; opacity: .6; }
+.l-exam .l-txt { opacity: .6; } .l-exam .l-txt i { display: block; font-style: normal; font-size: 13px; line-height: 18px; margin-top: 3px; color: var(--sec); }
+
+/* ── Видео (app/lingman_videos.tsx, YoutubeChannelHeader, YoutubeChannelTabs, YoutubeVideoGridCard, VideoRewardBadge) ── */
+.v-head { padding-top: 12px; margin-bottom: 16px; }
+.v-title { display: flex; align-items: center; gap: 10px; min-height: 44px; } .v-title h2 { flex: 1; margin: 0; font-size: 34px; line-height: 40px; font-weight: 800; letter-spacing: -.6px; }
+.v-lang { height: 35px; border-radius: 18px; display: flex; align-items: center; gap: 8px; padding: 0 12px 0 10px; font-size: 16px; font-weight: 700; flex: none; } .v-lang img { width: 24px; height: 15px; border-radius: 3px; object-fit: cover; } .v-lang .io { font-size: 16px; }
+.v-chan { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; border-radius: 22px; margin-top: 14px; padding: 0 14px 0 6px; font-size: 16px; line-height: 22px; font-weight: 700; }
+.v-chan i { width: 32px; height: 32px; border-radius: 16px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-style: normal; font-size: 13px; font-weight: 800; }
+.v-tabs { position: relative; display: flex; gap: 22px; margin: 18px 0 4px; border-bottom: 1px solid var(--line); }
+.v-tabs div { min-height: 44px; padding: 12px 0; display: flex; align-items: center; font-size: 16px; font-weight: 600; color: var(--sec); } .v-tabs .on { color: var(--tx); border-bottom: 2px solid var(--acc); margin-bottom: -1px; }
+.v-grid { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12px; padding-top: 16px; }
+.v-card { margin-bottom: 20px; min-width: 0; }
+.v-thumb { position: relative; aspect-ratio: 16 / 9; border-radius: 14px; overflow: hidden; background: var(--ctl); box-shadow: var(--shP); }
+.v-rew { position: absolute; left: 6px; top: 6px; display: flex; align-items: center; gap: 4px; padding: 3px 7px 3px 3px; border-radius: 999px; background: rgba(8, 10, 14, .66); color: #fff; font-size: 12px; line-height: 12px; font-weight: 800; letter-spacing: .2px; } .v-rew img { width: 16px; height: 16px; }
+.v-dur { position: absolute; right: 7px; bottom: 7px; min-height: 22px; padding: 0 7px; border-radius: 7px; display: flex; align-items: center; background: var(--scrim); color: #fff; font-size: 13px; line-height: 17px; font-weight: 700; }
+.v-card b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 6px; font-size: 13px; line-height: 17px; font-weight: 600; min-height: 34px; }
+.v-meta { display: flex; align-items: center; gap: 8px; min-height: 28px; } .v-meta span { flex: 1; min-width: 0; font-size: 11px; line-height: 14px; color: var(--accSafe); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .v-meta .io { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--sec); flex: none; }
+
+/* ── Сообщество → Друзья (app/(tabs)/community.tsx, friends.tsx, FriendWeekRail, FriendWeekCard, FriendListRow, FriendsGlassKit) ── */
+.c-head { padding: 12px 0 4px; min-height: 58px; display: flex; align-items: center; }
+.c-tabs { display: flex; align-items: flex-end; gap: 22px; margin-top: 6px; } .c-tabs div { padding-bottom: 8px; border-bottom: 3px solid transparent; font-size: 16px; line-height: 22px; font-weight: 600; color: var(--sec); } .c-tabs .on { color: var(--tx); border-bottom-color: var(--acc); }
+.c-sec { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 44px; }
+.c-sec .t { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; } .c-sec .t b { font-size: 19px; line-height: 24px; font-weight: 700; }
+.c-sec .n { min-width: 33px; height: 24px; padding: 0 9px; border-radius: 12px; background: var(--ctl); display: flex; align-items: center; justify-content: center; font-size: 13px; line-height: 17px; font-weight: 700; }
+.c-sec .r { font-size: 16px; line-height: 21px; font-weight: 600; color: var(--sec); flex: none; }
+.c-rail { display: flex; gap: 10px; margin: 0 -20px; padding: 2px 20px 14px; overflow-x: auto; scrollbar-width: none; } .c-rail::-webkit-scrollbar { display: none; }
+.c-wk { flex: none; width: 236px; border-radius: 22px; padding: 14px; display: flex; flex-direction: column; background: var(--card); box-shadow: var(--shP); }
+.vA .c-wk { background: linear-gradient(148deg, var(--cA1) 0%, var(--cA2) 62%); box-shadow: var(--shV); }
+.c-wk.rest { opacity: .8; }
+.c-wk .h { display: flex; align-items: center; gap: 12px; } .c-wk .h img { width: 40px; height: 40px; } .c-wk .h b { display: block; font-size: 16px; line-height: 21px; font-weight: 700; } .c-wk .h i { display: block; font-style: normal; font-size: 13px; line-height: 17px; color: var(--sec); }
+.c-stats { display: flex; align-items: center; gap: 14px; margin-top: 12px; } .c-stats span { display: flex; align-items: center; gap: 3px; font-size: 16px; line-height: 21px; font-weight: 700; } .c-stats .io { font-size: 15px; color: var(--acc); }
+.c-wk p { margin: 6px 0 0; font-size: 13px; line-height: 18px; color: var(--sec); } .c-wk.rest p { margin-top: 12px; min-height: 58px; }
+.c-wk .sp { flex: 1; }
+.c-pill { align-self: flex-start; margin-top: 10px; min-height: 36px; border-radius: 18px; padding: 6px 14px; display: flex; align-items: center; gap: 6px; background: var(--ctl); font-size: 16px; line-height: 21px; font-weight: 700; } .c-pill .io { font-size: 16px; }
+.c-add { width: 44px; height: 44px; border-radius: 22px; background: var(--ctl); box-shadow: var(--shN); display: flex; align-items: center; justify-content: center; font-size: 20px; flex: none; }
+.c-fr { position: relative; margin-bottom: 10px; min-height: 64px; border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; gap: 14px; background: linear-gradient(180deg, var(--sel), transparent), var(--card); box-shadow: var(--shP); overflow: hidden; }
+.vA .c-fr { background: linear-gradient(148deg, var(--cA1) 0%, var(--cA2) 62%); box-shadow: var(--shV); }
+.c-fr img { width: 44px; height: 44px; flex: none; }
+.c-fr .id { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: 3px; } .c-fr .id b { font-size: 16px; line-height: 21px; font-weight: 700; }
+.c-fr .id span { display: flex; align-items: center; gap: 6px; min-width: 0; font-size: 13px; line-height: 18px; color: var(--mut); }
+.c-fr .fl { display: flex; align-items: center; gap: 3px; font-size: 13px; line-height: 17px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--acc); } .c-fr .fl .io { font-size: 15px; } .c-fr .fl.dim { color: var(--sec); opacity: .55; }
+.c-call { min-height: 36px; border-radius: 18px; padding: 6px 14px; display: flex; align-items: center; background: var(--tx); color: var(--card); font-size: 16px; line-height: 21px; font-weight: 700; flex: none; }
+.vA .c-call { background: linear-gradient(98deg, var(--cta1), var(--cta2)); color: var(--ctaInkV); }
+.c-foot { display: flex; justify-content: center; padding: 16px 0; font-size: 17px; color: var(--sec); opacity: .92; }
+
+/* ── Настройки (app/(tabs)/settings.tsx, SettingsGlassRows, GlassSwitch) ── */
+.s-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: 10px; } .s-top h2 { flex: 1; margin: 0; font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: -.6px; } .s-top img { width: 44px; height: 44px; }
+.s-prof { margin-top: 22px; border-radius: 22px; padding: 16px; display: flex; align-items: center; gap: 14px; } .s-prof img { width: 52px; height: 52px; flex: none; } .s-prof b { display: block; font-size: 19px; line-height: 24px; font-weight: 700; } .s-prof span { display: block; font-size: 13px; line-height: 18px; color: var(--sec); margin-top: 2px; }
+.s-eye { margin: 26px 4px 10px; font-size: 13px; line-height: 16px; font-weight: 700; letter-spacing: 3px; color: var(--sec); }
+.s-grp { border-radius: 14px; }
+.s-row { position: relative; min-height: 60px; padding: 9px 16px; display: flex; align-items: center; gap: 14px; } .s-row + .s-row { border-top: 1px solid var(--div); }
+.s-ic { width: 41px; height: 41px; border-radius: 10px; background: var(--div); box-shadow: var(--shN); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--accTx); flex: none; }
+.vA .s-ic { background: linear-gradient(150deg, var(--ch1), var(--ch2)); color: #fff; box-shadow: 0 8px 14px -8px var(--ch2); }
+.s-row b { flex: 1; min-width: 0; font-size: 16px; line-height: 22px; font-weight: 600; } .s-row .val { max-width: 45%; font-size: 16px; line-height: 22px; color: var(--sec); text-align: right; } .s-row .io.c { font-size: 18px; color: var(--mut); }
+.s-sw { width: 48px; height: 29px; border-radius: 16px; padding: 3px; background: var(--swOff); flex: none; } .s-sw::after { content: ''; display: block; width: 21px; height: 21px; border-radius: 11px; background: var(--swKnobOff); }
+.s-sw.on { background: var(--acc); } .s-sw.on::after { transform: translateX(19px); background: var(--swKnobOn); }
+.vA .s-sw.on { background: linear-gradient(98deg, var(--cta1), var(--cta2)); } .vA .s-sw.on::after { background: var(--ctaInkV); }
+.s-ver { margin-top: 26px; padding-bottom: 12px; text-align: center; font-size: 13px; line-height: 18px; color: var(--mut); }
 
 @media (prefers-reduced-motion: reduce) { .vA .scene .fx::before, .vA .scene .fx::after, .wk .d.cur i::after { animation: none; } .press, .seg i.th, .trk .kn, .reset { transition: none; } }
 @media (max-width: 900px) { .panel { grid-template-columns: 1fr; position: static; } .sls { grid-template-columns: 1fr; gap: 8px; } }
@@ -205,7 +274,7 @@ h1 { font-size: 24px; line-height: 30px; margin: 0 0 6px; font-weight: 700; lett
 <body>
 <div class="page">
   <h1>«Аврора» на всех разделах</h1>
-  <p class="lead">Пять вкладок приложения в одном материале и для сравнения Главная как сейчас. Двигайте ползунки, как на экране «Оформление»: при насыщенности 0 % «Аврора» становится чисто серой.</p>
+  <p class="lead">Пять вкладок приложения в материале «Аврора» и для сравнения Главная как сейчас. Раскладка каждой вкладки снята с её кода; имена, названия роликов и числа — примеры. Двигайте ползунки, как на экране «Оформление».</p>
   <div class="panel">
     <div class="seg" id="seg" data-v="dark"><i class="th"></i><button data-ap="light" aria-pressed="false"><i class="io" data-io="sunny"></i>Светлая</button><button data-ap="dark" aria-pressed="true"><i class="io" data-io="moon"></i>Тёмная</button></div>
     <div class="sls">
@@ -216,23 +285,23 @@ h1 { font-size: 24px; line-height: 30px; margin: 0 0 6px; font-weight: 700; lett
   </div>
   <div class="wrap">
     <div class="cell"><div class="cap">Главная</div><div class="zw"><div class="ph vA" id="phHome"></div></div></div>
-    <div class="cell"><div class="cap">Уроки</div><div class="zw"><div class="ph vA" id="phLessons"></div></div></div>
-    <div class="cell"><div class="cap">Видео</div><div class="zw"><div class="ph vA" id="phVideo"></div></div></div>
-    <div class="cell"><div class="cap">Сообщество</div><div class="zw"><div class="ph vA" id="phCommunity"></div></div></div>
-    <div class="cell"><div class="cap">Настройки</div><div class="zw"><div class="ph vA" id="phSettings"></div></div></div>
+    <div class="cell"><div class="cap">Обучение <span>по коду вкладки</span></div><div class="zw"><div class="ph vA" id="phLessons"></div></div></div>
+    <div class="cell"><div class="cap">Видео <span>по коду вкладки</span></div><div class="zw"><div class="ph vA" id="phVideo"></div></div></div>
+    <div class="cell"><div class="cap">Сообщество · Друзья <span>по коду вкладки</span></div><div class="zw"><div class="ph vA" id="phCommunity"></div></div></div>
+    <div class="cell"><div class="cap">Настройки <span>по коду вкладки</span></div><div class="zw"><div class="ph vA" id="phSettings"></div></div></div>
     <div class="cell"><div class="cap">Главная сейчас <span>по коду приложения</span></div><div class="zw"><div class="ph now" id="phNow"></div></div></div>
   </div>
   <p class="note" id="note"></p>
 </div>
+<script src="ionicons_map.js"></script>
 <script src="pm_theme.js"></script>
 <script>
 (() => {
 'use strict';
 const LOG = '[HOME-LUXE]';
-/* значки Ionicons — коды из glyphmap приложения (@expo/vector-icons) */
-const CODE = { book: 61861, 'book-outline': 61862, chat: 61971, check: 61981, next: 62011, copy: 62096, diamond: 62113, flame: 62227, flash: 62230, home: 62338, lock: 62407, moon: 62560, bell: 62591, people: 62623, play: 62662, 'play-circle': 62669, refresh: 62740, settings: 62827, sparkles: 62860, sunny: 62893, trend: 62972, videocam: 62989 };
-const io = (n, cls = '') => `<i class="io ${cls}">${String.fromCharCode(CODE[n])}</i>`;
-document.querySelectorAll('[data-io]').forEach((e) => { e.textContent = String.fromCharCode(CODE[e.dataset.io]); });
+/* значки Ionicons — по тем же именам, что в коде экранов; карта — glyphmap приложения (@expo/vector-icons) */
+const io = (n, cls = '') => { const code = window.IONMAP[n]; if (!code) console.warn(LOG, 'нет значка', n); return `<i class="io ${cls}">${code ? String.fromCharCode(code) : ''}</i>`; };
+document.querySelectorAll('[data-io]').forEach((e) => { e.textContent = String.fromCharCode(window.IONMAP[e.dataset.io] || 0); });
 
 const STD = PM.THEME_TUNE_STANDARD; // { H: 250, S: 35 } — «Стандартный» приложения
 const st = { ap: 'dark', H: STD.H, S: STD.S };
@@ -280,6 +349,10 @@ function compute() {
     bg: g.bg, bgTop: g.bgTop, bgBottom: g.bgBottom, card: g.opaqueCard, ctl: g.opaqueControl, tx: g.text, sec: g.secondary, hair: g.text.slice(0, 7) + '12', hair2: g.text.slice(0, 7) + '1F',
     acc: g.accentGraphic, accB: g.accentBright, ctaInk: g.accentInk, g1: grad[0], g2: grad[1], g3: grad[2],
     shP: shadowCss(PM.plateShadowStyle(g)), plate50: hexA(g.plateFillFrom, .5), tabNow: hexA(g.opaqueControl, .9), capNow: hexA(g.accentCap.slice(0, 7), .32), scNow,
+    // токены, которыми красятся «Обучение», «Видео», «Сообщество», «Настройки» (те же поля, что читает их код)
+    pfA: g.plateFillFrom, pfB: g.plateFillTo, shN: shadowCss(PM.nestedShadowStyle(g)), mut: g.mutedText, line: g.line, edge: g.glassEdge, tx55: g.text.slice(0, 7) + '8C', div: g.dividerTone, sel: g.selected,
+    bf: g.buttonFill, accTx: g.accentText, accSafe: g.accentTextSafe, scrim: hexA(g.mediaScrim.slice(0, 7), .72),
+    swOff: dark ? g.buttonFillDisabled : g.secondary.slice(0, 7) + 'C8', swKnobOff: dark ? g.secondary : '#FFFFFF', swKnobOn: g.accentInk,
     shV: dark ? `0 18px 30px -16px ${hexA(ok(.10, Cb * .5, SH), .9)}` : shadowCss(PM.plateShadowStyle(g)),
     aTop, aBot, avaGap: aTop, a1: hexA(a1c, .58), a2: hexA(ok(.56, Cv, SH - 46), .55), a3: hexA(a3c, a3a), a4: hexA(ok(.46, Cv * .9, SH - 26), .5),
     r1: hexA(ok(.78, Cv * .9, SH + 60), .38), r2: hexA(ok(.74, Cv * .9, SH + 10), .34), r3: hexA(ok(.70, Cv * .9, SH - 40), .30), aShadow: hexA(aTop, dark ? .95 : .55),
@@ -287,7 +360,7 @@ function compute() {
     cta1, cta2, ctaInkV: ok(.20, Cb * .6, SH), ctaGlow: hexA(ok(.70, Cv, SH + 10), .55),
     cA1: dark ? mix(g.plateFillFrom, ok(.42, Cv, SH + 40), .26) : ok(.995, Math.min(.004, Cv), SH), cA2: dark ? g.plateFillTo : ok(.955, Math.min(.03, Cv * .2), SH + 30),
     ch1: ok(.52, Cv, SH - 24), ch2: ok(.42, Cv, SH + 34),
-    fr1: hexA(frTop, dark ? .80 : .84), fr2: hexA(frBot, dark ? .66 : .74), fGlow1: hexA(a1c, dark ? .26 : .22), fGlow2: hexA(ok(.56, Cv, SH - 46), dark ? .22 : .16),
+    fr1: hexA(frTop, .96), frM: hexA(mix(frTop, frBot, .5), .96), fr2: hexA(frBot, .96), fGlow1: hexA(a1c, dark ? .20 : .18), fGlow2: hexA(ok(.56, Cv, SH - 46), dark ? .16 : .12),
     fTx, fTxSh: dark ? '0 1px 8px rgba(0,0,0,.45)' : 'none', shF: dark ? `0 16px 26px -16px ${hexA(ok(.08, Cb * .5, SH), .9)}` : shadowCss(PM.plateShadowStyle(g)),
   };
   const checks = { aurora: +whiteOn(mix(aBot, a3c, a3a)).toFixed(2), tile: +ratio(fTx, mix(frTop, a1c, dark ? .26 : .22)).toFixed(2), now: +whiteOn(scNow).toFixed(2), nowHue: Math.round(sc.palette.H), nowChroma: +sc.palette.Ct.toFixed(3) };
@@ -302,18 +375,20 @@ function nowStars(sc) { if (!PM.isSkyPalette(sc)) return ''; const low = rndStar
 
 /* ───────── разметка ───────── */
 const WEEK = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-const TASKS = [['book-outline', 'Пройди урок', 'Один шаг в обычном курсе', 'done'], ['chat', 'Потренировать диалог', '', '0/1'], ['copy', 'Повторить карточки', 'Не менее 10 слов', '4/10']];
+const TASKS = [['book-outline', 'Пройди урок', 'Один шаг в обычном курсе', 'done'], ['chatbubble-ellipses-outline', 'Потренировать диалог', '', '0/1'], ['copy-outline', 'Повторить карточки', 'Не менее 10 слов', '4/10']];
 const TILES = [['lessons', 'Уроки'], ['cards', 'Карточки'], ['dialogs', 'Диалоги'], ['spire_tile', 'Пик']];
 const VIDEOS = ['Как звучит живой английский', '10 фраз для кафе', 'Small talk без пауз'];
-const shell = (inner, tab) => `<div class="scr"><div class="feed">${inner}</div></div>
-  <div class="tabbar">${['home', 'book', 'videocam', 'people', 'settings'].map((n, i) => `<div class="tb${i === tab ? ' on' : ''}">${io(n)}</div>`).join('')}</div>
+/* таб-бар: значки и порядок из constants/mainTabs.ts — неактивные контурные, активная залитая */
+const TABS = [['home-outline', 'home'], ['book-outline', 'book'], ['play-circle-outline', 'play-circle'], ['people-outline', 'people'], ['settings-outline', 'settings']];
+const shell = (inner, tab, cls = '') => `<div class="scr${cls ? ' plain-bg' : ''}"><div class="feed ${cls}">${inner}</div></div>
+  <div class="tabbar">${TABS.map(([off, on], i) => `<div class="tb${i === tab ? ' on' : ''}">${io(i === tab ? on : off)}</div>`).join('')}</div>
   <div class="sbar"><span>9:41</span><span class="r">${io('flash')}<span class="bat"></span></span></div><div class="gest"></div>`;
 const sceneOpen = `<div class="scene"><div class="sky" data-sky></div><div data-stars></div><div class="fx"></div>`;
-const headerRow = `<div class="hdr"><div class="stats"><div class="pill press">${io('flame')}5 дней</div><div class="pill press"><img src="art/coin.webp" alt="">690<i class="dv"></i>${io('flash', 'sm')}∞</div></div>
-  <div class="act"><div class="bell press">${io('bell')}</div><div class="ava press"><i><b>A</b></i></div></div></div>`;
+const headerRow = `<div class="hdr"><div class="stats"><div class="pill press">${io('flame')}5 дней</div><div class="pill press"><img src="art/coin_rank_01.webp" alt="">690<i class="dv"></i>${io('flash', 'sm')}5</div></div>
+  <div class="act"><div class="bell press">${io('notifications-outline')}</div><div class="ava press"><i><b>A</b></i></div></div></div>`;
 /* блок дней: «Сейчас» — кружки по коду HomeWeekDots; «Аврора» — капсула с цепочкой серии */
 const weekNow = `<div class="week">${WEEK.map((d, i) => `<div class="${i < 3 ? 'on' : ''}${i === 3 ? ' now' : ''}"><i></i>${d}</div>`).join('')}</div>`;
-const weekAurora = `<div class="wk press"><div class="chain"></div>${WEEK.map((d, i) => `<div class="d${i < 3 ? ' done' : ''}${i === 3 ? ' cur' : ''}">${d}<i>${i < 3 ? String.fromCharCode(CODE.check) : ''}</i></div>`).join('')}</div>`;
+const weekAurora = `<div class="wk press"><div class="chain"></div>${WEEK.map((d, i) => `<div class="d${i < 3 ? ' done' : ''}${i === 3 ? ' cur' : ''}">${d}<i>${i < 3 ? String.fromCharCode(window.IONMAP.checkmark) : ''}</i></div>`).join('')}</div>`;
 function homeHTML(aurora) {
   return shell(`${sceneOpen}${headerRow}
       <div class="body"><div class="kick">Урок 1</div><div class="ttl">Местоимения и глагол To Be</div>
@@ -321,41 +396,68 @@ function homeHTML(aurora) {
         ${aurora ? weekAurora : weekNow}
         <div class="cta press">${io('play')}Продолжить</div></div></div>
     <div class="tiles">${TILES.map(([k, n]) => `<div class="tile press"><div class="art"><canvas data-tile="${k}"></canvas></div><b>${n}</b></div>`).join('')}</div>
-    <div class="today"><div class="th"><b>Сегодня</b><span>Все задания</span></div>${TASKS.map(([ic, t, s, c]) => `<div class="row press"><div class="ri">${io(ic)}</div><div class="rt"><b>${t}</b>${s ? `<i>${s}</i>` : ''}</div>${c === 'done' ? `<div class="tick">${io('check')}</div>` : `<div class="rc">${c}</div>`}</div>`).join('')}</div>
+    <div class="today"><div class="th"><b>Сегодня</b><span>Все задания</span></div>${TASKS.map(([ic, t, s, c]) => `<div class="row press"><div class="ri">${io(ic)}</div><div class="rt"><b>${t}</b>${s ? `<i>${s}</i>` : ''}</div>${c === 'done' ? `<div class="tick">${io('checkmark')}</div>` : `<div class="rc">${c}</div>`}</div>`).join('')}</div>
     <div class="vid"><b>Видео</b><div class="rail">${VIDEOS.map((t, i) => `<div class="vc press"><div class="poster p${i + 1}"></div><span>${t}</span>${io('play-circle')}</div>`).join('')}</div></div>
-    <div class="pod press"><canvas data-tile="phrase_of_day"></canvas><div class="pt"><small>Фраза дня</small><b>Break the ice</b><em>Растопить лёд</em></div>${io('next')}</div>`, 0);
+    <div class="pod press"><canvas data-tile="phrase_of_day"></canvas><div class="pt"><small>Фраза дня</small><b>Break the ice</b><em>Растопить лёд</em></div>${io('chevron-forward')}</div>`, 0);
 }
-/* остальные разделы: состав блоков условный (показывают материал), тексты — примеры */
-const LESSONS = [['1', 'Местоимения и глагол To Be', '12 из 50', 24], ['2', 'To Be: вопросы и отрицания', '0 из 50', 0], ['3', 'Present Simple', '', -1], ['4', 'Артикли a, an, the', '', -1], ['5', 'Have и have got', '', -1]];
+
+/* ── Обучение: app/(tabs)/lessons.tsx. Состояние: без Plus, урок 1 пройден на 12 из 50 (24 %), уроки 2–3 ждут 2★, с 4-го — Plus; названия — constants/lessons.ts ── */
+const LESSON_NAMES = ['Местоимения и глагол To Be', 'Отрицание и вопросы (To Be)', 'Present Simple: Утверждение', 'Present Simple: Отрицание', 'Present Simple: Вопросы', 'Специальные вопросы', 'Глагол To Have', 'Предлоги времени', 'There is / There are', 'Модальные глаголы'];
+function lessonCard(n) {
+  const title = LESSON_NAMES[n - 1];
+  if (n === 1) return `<div class="l-card plate press"><div class="l-num cur">1</div><div class="l-txt"><b>${title}</b><div class="l-st"><div class="l-bar"><i style="width:24%"></i></div><span class="l-pct">24%</span></div></div>${io('chevron-forward', 'chev')}</div>`;
+  const status = n <= 3 ? `<div class="l-st">Пройди урок&nbsp;${n - 1}&nbsp;на 2★</div>` : `<div class="l-st g6">${io('lock-closed')}Входит в Plus</div>`;
+  return `<div class="l-card plate press"><div class="l-num lock">${io('lock-closed')}</div><div class="l-txt lock"><b>${title}</b>${status}</div>${io('chevron-forward', 'chev')}</div>`;
+}
 function lessonsHTML() {
-  return shell(`${sceneOpen}<div class="shead"><h2>Уроки</h2>
-      <div class="chips">${['A1', 'A2', 'B1', 'B2'].map((l, i) => `<div class="chip press${i === 0 ? ' on' : ''}">${l}</div>`).join('')}</div>
-      <div class="sline"><div class="bar"><i style="width:9%"></i></div>3 из 32</div></div></div>
-    <div class="hero frost press"><div class="rt"><small>Продолжить</small><b>Местоимения и глагол To Be</b><div class="btn">${io('play')}Урок 1</div></div><canvas class="spire" data-tile="lessons"></canvas></div>
-    <div class="card"><div class="th"><b>Уровень A1</b><span>32 урока</span></div>${LESSONS.map(([n, t, s, p]) => `<div class="row press"><div class="ri${p < 0 ? ' off' : ''}">${p < 0 ? io('lock') : n}</div><div class="rt"><b>${t}</b>${s ? `<i>${s}</i>` : ''}${p > 0 ? `<div class="bar on-card" style="margin-top:6px"><i style="width:${p}%"></i></div>` : ''}</div><div class="rc">${io('next')}</div></div>`).join('')}</div>`, 1);
+  return shell(`<div class="l-top"><h2>Обучение</h2><div class="l-hud"><div class="l-coin plate press"><img src="art/coin_rank_01.webp" alt="">690</div><div class="l-en">${io('flash-outline')}5</div></div></div>
+    <div class="l-tools"><div class="l-ico press">${io('search')}</div><div class="l-ico fill press">${io('shuffle')}</div></div>
+    <div class="l-lv"><b>A1</b><span>0&nbsp;из&nbsp;8</span></div>
+    ${[1, 2, 3, 4, 5, 6, 7, 8].map(lessonCard).join('')}
+    <div class="l-exam plate press"><div class="l-tile">${io('document-text')}</div><div class="l-txt"><b>Экзамен A1</b><i>Откроется с Plus</i></div>${io('chevron-forward', 'chev sec')}</div>
+    <div class="l-lv next"><b>A2</b>${io('lock-closed')}<span>0&nbsp;из&nbsp;10</span></div>
+    ${[9, 10].map(lessonCard).join('')}`, 1, 'plain');
 }
-const VLIST = [['10 фраз для кафе', '6 мин', 2], ['Small talk без пауз', '9 мин', 3], ['Как не бояться ошибок', '4 мин', 1], ['Фразы для аэропорта', '7 мин', 2]];
+
+/* ── Видео: app/lingman_videos.tsx. Названия, длительности, даты и обложки роликов приходят с сервера — здесь примеры; обложки заменены заливкой ── */
+const VGRID = [['Как звучит живой английский', '12:34', '2 дня назад · 4,1 тыс.', 1], ['10 фраз для кафе и ресторана', '6:05', 'неделю назад · 12 тыс.', 2], ['Small talk без неловких пауз', '9:48', '2 недели назад · 8,6 тыс.', 3], ['Как не бояться ошибок в речи', '4:20', 'месяц назад · 21 тыс.', 2], ['Фразы для аэропорта', '7:12', 'месяц назад · 5,3 тыс.', 3], ['Present Perfect за 8 минут', '8:01', '2 месяца назад · 1,2 млн', 1]];
 function videoHTML() {
-  return shell(`${sceneOpen}<div class="shead"><h2>Видео</h2>
-      <div class="chips">${['Все', 'Новое', 'Для начала'].map((l, i) => `<div class="chip press${i === 0 ? ' on' : ''}">${l}</div>`).join('')}</div></div></div>
-    <div class="big press"><div class="poster p1"></div><div class="pill tag"><img src="art/coin.webp" alt="">+10</div><div class="play btn">${io('play')}</div><b>Как звучит живой английский</b><small>12 мин</small></div>
-    <div class="card"><div class="th"><b>Дальше</b><span>8 видео</span></div>${VLIST.map(([t, d, p]) => `<div class="row press"><div class="thumb"><div class="poster p${p}"></div></div><div class="rt"><b>${t}</b><i>${d}</i></div><div class="rc">${io('next')}</div></div>`).join('')}</div>`, 2);
+  return shell(`<div class="v-head"><div class="v-title"><h2>Видео</h2><div class="v-lang plate press"><img src="art/language_en.webp" alt="">EN${io('chevron-down')}</div></div>
+      <div class="v-chan plate"><i>PL</i>Professor Lingman</div></div>
+    <div class="v-tabs"><div class="on">Новое</div><div>Плейлисты</div><div>Наборы</div></div>
+    <div class="v-grid">${VGRID.map(([t, d, m, p]) => `<div class="v-card press"><div class="v-thumb"><div class="poster p${p}"></div><div class="v-rew"><img src="art/coin_rank_01.webp" alt="">+500</div><div class="v-dur">${d}</div></div><b>${t}</b><div class="v-meta"><span>${m}</span>${io('star-outline')}</div></div>`).join('')}</div>`, 2, 'plain p20');
 }
-const LEAGUE = [['1', 'М', 'Марина', '1 240'], ['2', 'Д', 'Давид', '980'], ['3', 'A', 'Алекс', '690', true], ['4', 'С', 'Соня', '655'], ['5', 'Т', 'Тимур', '610']];
+
+/* ── Сообщество: app/(tabs)/community.tsx открывает раздел «Друзья» (friends.tsx). Имена, серии и карточки недели — данные аккаунта, здесь примеры ── */
+const FRIENDS = [['Марина', 'coin_rank_05', 12, 'on', 'Оба занимались сегодня', false], ['Давид', 'coin_rank_03', 4, 'dim', 'Сегодня ещё без занятия', true], ['Соня', 'coin_rank_01', 7, 'on', 'Занятие сделано · ждёт тебя', false], ['Тимур', 'coin_rank_03', 0, 'dim', 'Сегодня ещё никто из вас', true]];
 function communityHTML() {
-  return shell(`${sceneOpen}<div class="shead"><h2>Сообщество</h2>
-      <div class="chips">${['Пик', 'Друзья', 'Наборы'].map((l, i) => `<div class="chip press${i === 0 ? ' on' : ''}">${l}</div>`).join('')}</div></div></div>
-    <div class="hero frost press"><canvas class="spire" data-tile="spire_tile"></canvas><div class="rt"><small>Ступень 4 из 10</small><b>3 место в лиге</b><div class="steps">${Array.from({ length: 10 }, (_, i) => `<i class="${i < 4 ? 'on' : ''}"></i>`).join('')}</div></div></div>
-    <div class="cta press" style="margin-top:0">${io('trend')}Пройти ступень</div>
-    <div class="card"><div class="th"><b>Лига недели</b><span>осталось 3 дня</span></div>${LEAGUE.map(([r, l, n, c, me]) => `<div class="row press${me ? ' you frost' : ''}"><div class="rank">${r}</div><div class="mini">${l}</div><div class="rt"><b>${n}</b></div><div class="rc">${c}</div></div>`).join('')}</div>`, 3);
+  return shell(`<div class="c-head"><div class="c-tabs"><div>Пик</div><div class="on">Друзья</div><div>Наборы</div></div></div>
+    <div class="c-sec" style="margin:16px 0 10px"><div class="t"><b>Итоги недели</b><span class="n">2</span></div><span class="r">пн · 9:00</span></div>
+    <div class="c-rail">
+      <div class="c-wk press"><div class="h"><img src="art/coin_rank_05.webp" alt=""><div><b>Марина</b><i>3–9 ноября</i></div></div>
+        <div class="c-stats"><span>${io('flame')}12</span><span>${io('book')}5</span><span>${io('podium')}7</span></div><p>Неделя без пропусков</p><div class="sp"></div>
+        <div class="c-pill">${io('hand-left-outline')}Дать пять</div></div>
+      <div class="c-wk rest press"><div class="h"><img src="art/coin_rank_03.webp" alt=""><div><b>Давид</b><i>3–9 ноября</i></div></div>
+        <p>Без занятий на этой неделе. Позовёшь?</p><div class="c-pill">${io('notifications-outline')}Позвать</div></div>
+    </div>
+    <div class="c-sec" style="margin:12px 0"><div class="t"><b>Твои друзья</b></div><div class="c-add press">${io('add')}</div></div>
+    ${FRIENDS.map(([n, coin, days, fl, line, call]) => `<div class="c-fr press"><img src="art/${coin}.webp" alt=""><div class="id"><b>${n}</b><span><span class="fl${fl === 'dim' ? ' dim' : ''}">${io('flame')}${days}</span>${line}</span></div>${call ? '<div class="c-call">Позвать</div>' : io('chevron-forward', 'chev sec s18')}</div>`).join('')}
+    <div class="c-foot">${io('flag-outline')}</div>`, 3, 'plain p20');
 }
-const SETTINGS = [['sunny', 'Оформление', 'next'], ['book', 'Язык обучения', 'next'], ['bell', 'Напоминания', 'tg'], ['flash', 'Звуки и вибрация', 'tg'], ['people', 'Аккаунт', 'next']];
+
+/* ── Настройки: app/(tabs)/settings.tsx. Полный список строк живой ветки (вошедший пользователь без Plus, не dev); звук и размер шрифта скрыты флагами в коде ── */
+const SETTINGS = [
+  ['ОСНОВНОЕ', [['person-outline', 'Аккаунт', 'Google'], ['flag-outline', 'Язык интерфейса', 'Русский'], ['globe-outline', 'Язык изучения', 'English']]],
+  ['ОБУЧЕНИЕ', [['book-outline', 'Настройки обучения', ''], ['notifications-outline', 'Уведомления', 'Вкл'], ['layers-outline', 'Оформление', ''], ['play-circle-outline', 'Видео', 'sw:on'], ['phone-portrait-outline', 'Тактильный отклик', 'sw:on'], ['speedometer-outline', 'Лёгкий режим', 'sw:off']]],
+  ['PHRASEMAN PLUS', [['diamond-outline', 'Подписка Plus', 'Не активна'], ['pricetag-outline', 'Ввести промокод', ''], ['gift-outline', 'Пригласить друга', '']]],
+  ['ПОМОЩЬ', [['chatbox-outline', 'Написать в поддержку', ''], ['shield-outline', 'Приватность и данные', ''], ['trash-outline', 'Очистить временные файлы', ''], ['star-outline', 'Оценить в Google Play', '']]],
+];
 function settingsHTML() {
-  return shell(`${sceneOpen}<div class="shead"><h2>Настройки</h2>
-      <div class="prof"><div class="ava"><i><b>A</b></i></div><div><b>Алекс</b><small>Серия 5 дней</small></div></div></div></div>
-    <div class="hero frost press"><div class="rt"><small>Plus</small><b>Цвет приложения под себя</b><div class="btn">${io('diamond')}Открыть Plus</div></div></div>
-    <div class="card">${SETTINGS.map(([ic, t, r]) => `<div class="row press"><div class="ri">${io(ic)}</div><div class="rt"><b>${t}</b></div>${r === 'tg' ? '<div class="tg"></div>' : `<div class="rc">${io('next')}</div>`}</div>`).join('')}</div>
-    <div class="card"><div class="row press"><div class="ri off">${io('refresh')}</div><div class="rt"><b>Восстановить покупки</b></div><div class="rc">${io('next')}</div></div><div class="row press"><div class="ri off">${io('chat')}</div><div class="rt"><b>Написать в поддержку</b></div><div class="rc">${io('next')}</div></div></div>`, 4);
+  const row = ([ic, t, v]) => `<div class="s-row press"><div class="s-ic">${io(ic)}</div><b>${t}</b>${v.startsWith('sw:') ? `<div class="s-sw${v === 'sw:on' ? ' on' : ''}"></div>` : `${v ? `<span class="val">${v}</span>` : ''}${io('chevron-forward', 'c')}`}</div>`;
+  return shell(`<div class="s-top"><h2>Настройки</h2><img src="art/coin_rank_01.webp" alt=""></div>
+    <div class="s-prof plate press"><img src="art/coin_rank_01.webp" alt=""><div><b>Алекс</b><span>Кадет · аккаунт привязан</span></div></div>
+    ${SETTINGS.map(([eye, rows]) => `<div class="s-eye">${eye}</div><div class="s-grp plate">${rows.map(row).join('')}</div>`).join('')}
+    <div class="s-ver">Версия 2.1.1 (150)</div>`, 4, 'plain p20');
 }
 
 /* ───────── картинки плиток: основа + слой .accent в цвет темы (как ThemedArtLayers) ───────── */

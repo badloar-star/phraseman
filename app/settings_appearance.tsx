@@ -23,7 +23,7 @@ import { TuneSlider } from '../components/settings/TuneSlider';
 import { AppearancePlusSheet } from '../components/settings/AppearancePlusSheet';
 import { createTunePerf, type TunePerf } from '../components/settings/tune_perf_log';
 import { KIT_MOTION } from '../constants/motionHybrid';
-import { useTheme } from '../components/ThemeContext';
+import { ThemeDraftScope, useTheme } from '../components/ThemeContext';
 import { usePremium } from '../components/PremiumContext';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
@@ -179,7 +179,10 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
   const canReset = !isThemeTuneStandard(shown);
 
   if (!THEME_SLIDERS_V1_ENABLED) return null;
+  // зачем (владелец 11.11: «ползунок должен реально играть роль ползунка»): раньше за пальцем красилась только карточка, фон и остальное — рывком
+  // при отпускании. ThemeDraftScope подаёт черновик всему ЭТОМУ экрану (фон, сегмент, «назад», шторка) — цвет течёт за пальцем; остальное приложение не трогается.
   return (
+    <ThemeDraftScope themeId={draft ? themeTuneId(draft) : null}>
     <ScreenGradient>
       <View style={{ flex: 1, paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }}>
         <ContentWrap>
@@ -235,6 +238,7 @@ export default function SettingsAppearanceScreen(): React.JSX.Element | null {
       <AppearancePlusSheet lang={lang} visible={plusSheet} onPlus={onSheetPlus} onDismiss={onSheetDismiss} />
       <ScreenBackButton screen="settings_appearance" testID="appearance-back" accessibilityLabel={triLang(lang, T.title)} onPress={() => safeRouterBack(router, '/(tabs)/settings' as never)} />
     </ScreenGradient>
+    </ThemeDraftScope>
   );
 }
 

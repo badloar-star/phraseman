@@ -34,6 +34,18 @@ describe('settings_appearance: контракт', () => {
     expect(src).toContain('useEffect(() => () => setPreviewLiquidGlassThemeId(null)');
     expect(src).toContain("log: (summary) => console.log(LOG, 'perf', JSON.stringify(summary))");
   });
+  // зачем (владелец 11.11: «ползунки меняют цвет резко… хочу, чтобы ползунок реально играл роль ползунка»): черновик красит ВЕСЬ экран
+  // (фон, сегмент, «назад»), а не одну карточку — через локальный ThemeDraftScope; общий ThemeContext во время жеста по-прежнему не трогается.
+  it('жест: черновик подаётся всему экрану локально (ThemeDraftScope), общий контекст не меняется', () => {
+    expect(src).toContain('<ThemeDraftScope themeId={draft ? themeTuneId(draft) : null}>');
+    expect(src.indexOf('<ThemeDraftScope')).toBeLessThan(src.indexOf('<ScreenGradient>'));
+    expect(src.indexOf('</ScreenGradient>')).toBeLessThan(src.indexOf('</ThemeDraftScope>'));
+    const ctx = fs.readFileSync(path.join(__dirname, '..', 'components/ThemeContext.tsx'), 'utf8').replace(/\r\n/g, '\n');
+    const scope = ctx.slice(ctx.indexOf('export function ThemeDraftScope'), ctx.indexOf('export const useTheme'));
+    expect(scope).toContain('if (themeId === null || themeId === parent.liquidGlassThemeId) return parent;');
+    expect(scope).toContain('makeLiquidGlassTheme(themeId, DARK, variant)');
+    expect(scope).not.toMatch(/setPreviewLiquidGlassThemeId|setLiquidGlassThemeId|useState/);
+  });
   it('журнал [THEME-SLIDERS]: вход, запись, запертый ползунок, смена оформления', () => {
     for (const marker of ["'screen'", "'commit'", 'ползунок заперт без Plus', "'appearance'"]) expect(src).toContain(marker);
   });

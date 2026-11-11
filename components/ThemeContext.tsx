@@ -880,6 +880,20 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 };
 
+// зачем (владелец 11.11: «ползунки меняют цвет резко… хочу, чтобы ползунок реально играл роль ползунка»): во время жеста экран «Оформление»
+// красил по черновику только карточку «Цвет», а фон, сегмент и кнопка «назад» читали общий ThemeContext и перекрашивались рывком при отпускании.
+// Общий контекст во время жеста трогать нельзя (🔴 06.11: перерисовка всего приложения = лаги), поэтому черновик подаётся ЛОКАЛЬНО: вложенный
+// провайдер подменяет тему только для своих детей. themeId = null — значение родителя без изменений (тот же объект, лишних перерисовок нет).
+export function ThemeDraftScope({ themeId, children }: Readonly<{ themeId: LiquidGlassThemeId | null; children: React.ReactNode }>): React.JSX.Element {
+  const parent = useContext(ThemeContext);
+  const value = useMemo<ThemeCtx>(() => {
+    if (themeId === null || themeId === parent.liquidGlassThemeId) return parent;
+    const variant = { level: parent.liquidGlassColorLevel, appearance: parent.liquidGlassAppearance, intensity: parent.liquidGlassIntensity };
+    return { ...parent, liquidGlassThemeId: themeId, theme: makeLiquidGlassTheme(themeId, DARK, variant) };
+  }, [parent, themeId]);
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+}
+
 export const useTheme = () => {
   if (IS_DEV) themePerfConsumerCalls += 1; // guard-ok: счётчик [THEMES-PERF], в боевой сборке IS_DEV=false
   return useContext(ThemeContext);

@@ -905,7 +905,8 @@ export default function DiagnosticTest() {
   const diagnosticChargeInFlightRef = useRef(false);
   const screenOpenRef = useScreenOpenRef();
 
-  const captureDiagnosticWrong = (question: Question, questionIndex: number, mode: string) => {
+  // зачем (владелец 11.11, «Мои ошибки 3.0», этап 1): `given` — что ответил человек; у таймаута ответа нет, поэтому параметр необязательный.
+  const captureDiagnosticWrong = (question: Question, questionIndex: number, mode: string, given?: string) => {
     // зачем (22.09): ранний выход пропускал запись ошибки для испанского и
     // немецкого — диагностика для них не пополняла «Мои ошибки» вообще.
     if (!isMistakeStudyTargetValue(studyTarget)) {
@@ -938,6 +939,7 @@ export default function DiagnosticTest() {
             : question.type === 'type' || question.type === 'fill' ? 'missing_token'
               : 'form',
         expected: correctAnswer,
+        given,
       },
     }).catch(noteSwallowedHandler('diagnostic_test:captureDiagnosticWrong.captureCurrentAccountObjectiveAttempt'));
   };
@@ -1348,7 +1350,7 @@ export default function DiagnosticTest() {
     }
     if (!isRight) {
       const qq = questions[idx];
-      if (qq) captureDiagnosticWrong(qq, idx, 'choice');
+      if (qq) captureDiagnosticWrong(qq, idx, 'choice', qq.opts[ci]);
     }
     if (autoAdvance) scheduleDiagnosticAdvance(ns, 1500);
   };
@@ -1375,7 +1377,7 @@ export default function DiagnosticTest() {
     }
     if (!isRight) {
       const qq = questions[idx];
-      if (qq) captureDiagnosticWrong(qq, idx, 'type');
+      if (qq) captureDiagnosticWrong(qq, idx, 'type', typedAnswer);
     }
     if (autoAdvance) scheduleDiagnosticAdvance(ns, 1500);
   };
@@ -1401,7 +1403,7 @@ export default function DiagnosticTest() {
     }
     if (!isRight) {
       const qq = questions[idx];
-      if (qq) captureDiagnosticWrong(qq, idx, 'build');
+      if (qq) captureDiagnosticWrong(qq, idx, 'build', buildSelected.join(' '));
     }
     if (autoAdvance) scheduleDiagnosticAdvance(ns, 1500);
   };

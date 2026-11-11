@@ -35,6 +35,16 @@ describe('mistake capture carries the learner answer from every objective source
     expect(captureCallBody(read(relative))).toContain(needle);
   });
 
+  // зачем: у диагностики ответ приходит из трёх обработчиков (выбор, ввод, сборка); таймаут ответа не имеет.
+  test('app/diagnostic_test.tsx passes the answer from every answering handler', () => {
+    const source = read('app/diagnostic_test.tsx');
+    expect(captureCallBody(source)).toContain('        given,');
+    expect(source).toContain("captureDiagnosticWrong(qq, idx, 'choice', qq.opts[ci]);");
+    expect(source).toContain("captureDiagnosticWrong(qq, idx, 'type', typedAnswer);");
+    expect(source).toContain("captureDiagnosticWrong(qq, idx, 'build', buildSelected.join(' '));");
+    expect(source).toContain("captureDiagnosticWrong(qq, idx, 'timeout');");
+  });
+
   // зачем: без текста вопроса ошибку экзамена нельзя ни показать, ни объяснить — в записи оставалась
   // только пересобранная фраза, а сам вопрос (для вопросов без пропуска) терялся.
   test.each([

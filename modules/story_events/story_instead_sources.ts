@@ -148,11 +148,11 @@ export function recordTeamMessageStory(input: Readonly<{ messageId: string; titl
 }
 
 /**
- * «Plus подключён» (взамен праздничного окна после покупки или выдачи Plus): сколько защит серии в месяц даёт Plus (число — из правил
- * приложения). Ключ — отметка события покупки или выдачи: одно событие — одна история.
+ * «Plus / Ultra активирован» (взамен праздничного окна после покупки или выдачи подписки): уровень подписки.
+ * Ключ — отметка события покупки или выдачи: одно событие — одна история.
  */
-export function recordPlusOnStory(input: Readonly<{ key: string; freezesPerMonth: number }>): Promise<StoryRecordResult> {
-  return record('plus_on', input.key, { freezesPerMonth: input.freezesPerMonth });
+export function recordPlusOnStory(input: Readonly<{ key: string; tier: 'plus' | 'ultra' }>): Promise<StoryRecordResult> {
+  return record('plus_on', input.key, { tier: input.tier });
 }
 
 /** «Пик · позиция выросла» (взамен окна после ступени): место «было → стало» и монеты ступени. Ключ — ключ решения Ядра (в нём неделя). */

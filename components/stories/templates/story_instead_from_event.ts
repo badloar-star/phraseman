@@ -146,12 +146,9 @@ export function insteadTemplateFromPayload(p: Payload): StoryInsteadTemplate | n
       if (typeof p.body !== 'string' || p.body.trim().length === 0) return null;
       return { id: 'instead_message', title: typeof p.title === 'string' ? p.title.trim() : '', body: p.body };
     }
-    case 'plus_on': {
-      const freezesPerMonth = count(p.freezesPerMonth);
-      if (freezesPerMonth === null || freezesPerMonth < 1) return null;
-      // дату окончания праздничное окно не знало — кадр идёт без строки с датой
-      return { id: 'instead_plus_on', untilLabel: null, freezesPerMonth };
-    }
+    case 'plus_on':
+      // уровень подписки; в старых событиях (до 11.11) его нет — тогда Plus: Ultra по догадке не показываем
+      return { id: 'instead_plus_on', tier: p.tier === 'ultra' ? 'ultra' : 'plus' };
     case 'peak_rise': {
       const fromIndex = count(p.fromIndex);
       const toIndex = count(p.toIndex);

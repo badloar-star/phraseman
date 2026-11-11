@@ -88,7 +88,7 @@ const S = {
   // ── 8 и 16 · Plus закончился / Plus подключён (дата приходит готовой строкой) ──
   untilOverline: ['До {date}', 'До {date}', 'Until {date}', 'Hasta el {date}', 'Até {date}', 'Đến {date}', 'Hingga {date}', '{date} tarihine kadar', 'Do {date}'],
   expiredTitle: ['Plus закончился', 'Plus закінчився', 'Plus has ended', 'Plus terminó', 'O Plus terminou', 'Plus đã hết hạn', 'Plus telah berakhir', 'Plus sona erdi', 'Plus się skończył'],
-  plusOnTitle: ['Plus подключён', 'Plus підключено', 'Plus is on', 'Plus está activo', 'O Plus está ativo', 'Plus đã bật', 'Plus sudah aktif', 'Plus açıldı', 'Plus jest aktywny'],
+
   perkShield: ['Защита серии, {n} в месяц', 'Захист серії, {n} на місяць', 'Streak shields, {n} a month', 'Protección de racha, {n} al mes', 'Proteção de sequência, {n} por mês', 'Bảo vệ chuỗi, {n} lần mỗi tháng', 'Pelindung rangkaian, {n} per bulan', 'Seri koruması, ayda {n}', 'Ochrona serii, {n} w miesiącu'],
   perkDialogs: ['Диалоги без счётчика', 'Діалоги без лічильника', 'Dialogues with no counter', 'Diálogos sin contador', 'Diálogos sem contador', 'Hội thoại không giới hạn', 'Dialog tanpa penghitung', 'Sayaçsız diyaloglar', 'Dialogi bez licznika'],
   perkLessons: ['Все уроки курса', 'Усі уроки курсу', 'Every lesson in the course', 'Todas las lecciones del curso', 'Todas as lições do curso', 'Tất cả bài học của khóa', 'Semua pelajaran kursus', 'Kursun tüm dersleri', 'Wszystkie lekcje kursu'],

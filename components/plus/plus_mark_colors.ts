@@ -6,3 +6,13 @@
 // theme-exempt: градиент и чернила уровня из утверждённого макета пейвола «Два пути» — смысловой цвет подписки, темой не красится.
 export const PLUS_MARK_GRADIENT = ['#FF7A59', '#FF5F8F', '#FF4FD0'] as const; // theme-exempt: макет --c1/--c2/--c3 Ultra
 export const PLUS_MARK_INK = '#2B0717'; // theme-exempt: чернила глифа на градиенте уровня
+
+/**
+ * Знак уровня подписки: градиент, чернила и значок — Ultra (годовая) коралловый со звездой ✦, Plus (месячная) фиолетово-синий с ромбом ◆.
+ * зачем (владелец 11.11: «есть Ультра и Плюс… они отличаются иконки по цвету»): кадр «Plus / Ultra активирован» в «Историях» различает
+ * уровни так же, как пейвол «Два пути» (DUO_TIER_COLORS / DUO_TIER_INK в PaywallDuoHero); равенство держит сторож историй.
+ */
+export const SUB_TIER_MARK = Object.freeze({
+  ultra: Object.freeze({ gradient: PLUS_MARK_GRADIENT, ink: PLUS_MARK_INK, glyph: '✦', glow: 'rgba(255, 95, 143, 0.5)' }), // theme-exempt: свечение знака Ultra
+  plus: Object.freeze({ gradient: ['#A99BFF', '#8E7CFF', '#5F90DB'] as const, ink: '#0F0A33', glyph: '◆', glow: 'rgba(142, 124, 255, 0.5)' }), // theme-exempt: макет --c1/--c2/--c3 Plus
+});

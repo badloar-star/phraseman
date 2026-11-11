@@ -480,7 +480,7 @@ const TPL = [
     render: () => `<div class="art">${icn('chats')}</div><div class="ov a" style="--d:380ms">Первый диалог</div><div class="h1 s">${words('Первый разговор по-английски — есть!', 460)}</div><div class="p a" style="--d:900ms">6 реплик · 5 заданий из 5</div>` },
 
   { id: 'plus_on', name: 'Plus подключён', group: 'Plus', kind: 'new', ev: 'plus_activated (новое)', when: 'взамен праздничного окна после покупки или выдачи Plus', data: 'kind, until', motion: 'знак Plus встаёт, три возможности отмечаются, конфетти один раз',
-    render: () => `${confetti(18, 600)}<div class="art">${pbig(160)}</div><div class="ov a" style="--d:380ms">До 11 декабря</div><div class="h1">${words('Plus подключён', 460)}</div>${rows([['Все уроки курса'], ['Диалоги без счётчика'], ['Защита серии, 3 в месяц']], 700)}` },
+    render: () => `${confetti(18, 600)}<div class="art">${pbig(160)}</div><div class="ov a" style="--d:380ms">Plus</div><div class="h1">${words('Plus активирован', 460)}</div><div class="p a" style="--d:760ms">Уроки и тренировки не уменьшают запас энергии.</div>` },
 
   { id: 'peak_overtake', name: 'Пик · тебя обгоняют', group: 'Пик', kind: 'new', ev: 'spire_position_overtake (новое)', when: 'взамен всплывающей плашки «Тебя обогнали» после ступени · подробный макет трёх кадров Пика — stories-peak-position.html', data: 'rivalName, rivalCoinRank, gapCoins или gapSteps', motion: 'монета соперника появляется, заголовок встаёт по словам',
     cta: { label: 'Играть', icon: 'flash' },

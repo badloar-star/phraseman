@@ -9,13 +9,14 @@
 // Действия шести новых кнопок назначаются на шаге 2 (вместе с событиями); до него кадры к игроку не попадают.
 // ═══════════════════════════════════════════════════════════════════════════
 import type { Lang } from '../../../constants/i18n';
-import type { AppUpdateStory, HelloNewStory, LegacyCoinsStory, NotifNudgeStory, PlusStateStory, RankEnoughStory, TeamMessageStory, WelcomeBackStory } from './frames_instead_a';
+import type { AppUpdateStory, HelloNewStory, LegacyCoinsStory, NotifNudgeStory, PlusOnStory, PlusStateStory, RankEnoughStory, TeamMessageStory, WelcomeBackStory } from './frames_instead_a';
 import type { FirstDialogStory, LessonOpenStory, PackPrizeStory, PeakOvertakeStory, PerfectLessonStory, RateAppStory, ReferralEndedStory, ReferralWelcomeStory } from './frames_instead_b';
 import type { LessonMedalStory, LevelExamOpenStory, LingmanExamOpenStory } from './frames_instead_c';
 import type { PeakLastChanceStory, PeakRiseStory } from './frames_instead_d';
 import { momentText } from '../../spire/moments/moments_strings';
 import { positionMomentText } from '../../spire/moments/position_moment_strings';
 import { insteadText } from './story_instead_strings';
+import { celebrationLiquidCopy } from '../../premium_celebration/celebrationLiquidCopy';
 import { celebrationShareLabel } from '../../lesson_moments/lesson_notif_copy';
 import { reviewStoreCta } from '../../review_prompt_copy';
 import { notifNudgeCopy } from '../../../app/notif_nudge_copy';
@@ -51,7 +52,7 @@ export type StoryInsteadTemplate =
   | T<'instead_rate', RateAppStory>
   | T<'instead_pack_prize', PackPrizeStory>
   | T<'instead_first_dialog', FirstDialogStory>
-  | T<'instead_plus_on', PlusStateStory>
+  | T<'instead_plus_on', PlusOnStory>
   | T<'instead_peak_overtake', PeakOvertakeStory>
   | T<'instead_medal', LessonMedalStory>
   | T<'instead_level_exam', LevelExamOpenStory>
@@ -92,7 +93,8 @@ export const STORY_INSTEAD_TEMPLATE_SAMPLES: Readonly<{ [I in StoryInsteadTempla
   },
   // пример окна «Первый разговор»: «6 реплик · 5 заданий из 5»
   instead_first_dialog: { id: 'instead_first_dialog', studyTarget: 'en', turns: 6, goalsDone: 5, goalsTotal: 5 },
-  instead_plus_on: { id: 'instead_plus_on', untilLabel: '11 декабря', freezesPerMonth: 3 },
+  // макет stories-pro-vip: «Plus активирован» (у Ultra — коралловый знак ✦)
+  instead_plus_on: { id: 'instead_plus_on', tier: 'plus' },
   // макет stories-peak-position: «Марк обгоняет тебя — на 120 монет за неделю»
   instead_peak_overtake: { id: 'instead_peak_overtake', rivalName: 'Марк', rivalCoinRank: 8, gapCoins: 120, gapSteps: null },
   // макет stories-lesson-notifs: золотая медаль за урок 12, экзамен уровня A1, экзамен Lingman
@@ -150,6 +152,8 @@ export function storyInsteadCta(tpl: StoryInsteadTemplate, lang: Lang): StoryIns
     case 'instead_peak_rise': return { action: 'play_peak', text: positionMomentText(lang, 'playMore'), icon: 'flash' };
     case 'instead_peak_overtake': return { action: 'play_peak', text: momentText(lang, 'play'), icon: 'flash' };
     case 'instead_peak_last': return { action: 'open_plus', text: positionMomentText(lang, 'plusLink'), icon: 'flash' };
+    // «К занятиям» — главная кнопка праздничного окна
+    case 'instead_plus_on': return { action: 'start_lesson', text: celebrationLiquidCopy(lang).toLessons, icon: 'play' };
     // «Поделиться» — единственная кнопка, как у уведомления
     case 'instead_medal':
     case 'instead_level_exam':
@@ -160,7 +164,6 @@ export function storyInsteadCta(tpl: StoryInsteadTemplate, lang: Lang): StoryIns
     case 'instead_legacy':
     case 'instead_perfect':
     case 'instead_first_dialog':
-    case 'instead_plus_on':
       return null;
     default: {
       const never: never = tpl;

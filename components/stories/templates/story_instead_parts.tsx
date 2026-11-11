@@ -12,7 +12,9 @@
 import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Svg, { Polygon } from 'react-native-svg';
+import Svg, { Defs, LinearGradient, Polygon, Stop } from 'react-native-svg';
+import { SUB_TIER_MARK } from '../../plus/plus_mark_colors';
+import type { SubscriptionTier } from '../../../app/subscription_tier';
 import { PlusMark } from './frames_plus';
 import { Enter } from './story_template_motion';
 import { CheckFill } from './story_template_parts';
@@ -72,6 +74,28 @@ export const BigPlusMark = memo(function BigPlusMark({ off = false, id, d = 160 
           <Text style={[s.bigGlyph, { color: pal.sec }]}>✦</Text>
         </View>
       ) : <PlusMark id={id} size={112} />}
+    </Enter>
+  );
+});
+
+/** Большой знак уровня подписки 112: Ultra — коралловый градиент и ✦, Plus — фиолетово-синий и ◆ (как в пейволе «Два пути»). */
+export const TierMark = memo(function TierMark({ tier, d = 160 }: Readonly<{ tier: SubscriptionTier; d?: number }>) {
+  const mark = SUB_TIER_MARK[tier];
+  return (
+    <Enter kind="pop" d={d}>
+      <View style={[s.bigMark, { boxShadow: `0 16px 34px ${mark.glow}` }]}>
+        <Svg width={112} height={112} viewBox="0 0 100 100">
+          <Defs>
+            <LinearGradient id={`tier-${tier}`} x1="0" y1="0" x2="1" y2="1">
+              <Stop offset="0" stopColor={mark.gradient[0]} />
+              <Stop offset="0.52" stopColor={mark.gradient[1]} />
+              <Stop offset="1" stopColor={mark.gradient[2]} />
+            </LinearGradient>
+          </Defs>
+          <Polygon points={HEX_POINTS} fill={`url(#tier-${tier})`} />
+        </Svg>
+        <Text style={[s.bigGlyph, { color: mark.ink }]}>{mark.glyph}</Text>
+      </View>
     </Enter>
   );
 });

@@ -11,6 +11,9 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { DebugLogger } from '../../app/debug-logger';
 import { consumeCelebration } from '../../app/premium_celebration_state';
+import { consumeVipCelebration } from '../../app/vip_celebration_state';
+import { peekPremiumPlan } from '../../app/premium_plan_peek';
+import { tierFromPlan, tierFromProductId, type SubscriptionTier } from '../../app/subscription_tier';
 import { insteadStoryLanded, recordPlusOnStory, storiesReplaceWindows } from './story_instead_sources';
 
 const LOG = '[PLUS-CELEBRATION]';
@@ -19,19 +22,42 @@ export type PlusCelebrationStoryInput = Readonly<{
   /** Отметка события покупки или выдачи; null — отметки нет, ключом служит день. */
   marker: string | null;
   dayKey: string;
-  /** Сколько защит серии в месяц даёт Plus (из правил приложения). */
-  freezesPerMonth: number;
 }>;
 
+/**
+ * Уровень для кадра — тем же правилом, что во всём приложении (use_subscription_tier): продукт точнее плана; плана в памяти нет — Plus.
+ * зачем (владелец 11.11: «Pro нету! есть Ультра и Плюс!»): кадр показывает уровень подписки, а не вариант окна (бывший «Pro», VIP).
+ */
+export function celebrationTier(): SubscriptionTier {
+  const peek = peekPremiumPlan();
+  if (!peek) return 'plus';
+  return peek.productId ? tierFromProductId(peek.productId) : tierFromPlan(peek.plan);
+}
+
 /** true — поздравление забрала история, окно открывать не нужно; false — истории выключены, работает окно. */
-export async function plusCelebrationAsStory({ marker, dayKey, freezesPerMonth }: PlusCelebrationStoryInput): Promise<boolean> {
+export async function plusCelebrationAsStory({ marker, dayKey }: PlusCelebrationStoryInput): Promise<boolean> {
   if (!storiesReplaceWindows()) return false; // истории выключены — путь окна
-  const record = await recordPlusOnStory({ key: marker ?? `day:${dayKey}`, freezesPerMonth });
+  const tier = celebrationTier();
+  const record = await recordPlusOnStory({ key: marker ?? `day:${dayKey}`, tier });
   if (!insteadStoryLanded(record)) {
     DebugLogger.warn(LOG, `история не записана (${record.recorded ? 'ok' : record.reason}) — поздравление остаётся ожидающим`);
     return true;
   }
-  DebugLogger.info(LOG, `история вместо окна marker=${marker ?? '—'}`);
+  DebugLogger.info(LOG, `история вместо окна marker=${marker ?? '—'} уровень=${tier}`);
   await consumeCelebration(marker);
+  return true;
+}
+
+/** То же для поздравления VIP (выдача командой): кадр уровня, ожидающее поздравление VIP гасится только после записи истории. */
+export async function vipCelebrationAsStory({ marker, dayKey }: PlusCelebrationStoryInput): Promise<boolean> {
+  if (!storiesReplaceWindows()) return false; // истории выключены — путь окна
+  const tier = celebrationTier();
+  const record = await recordPlusOnStory({ key: `vip:${marker ?? `day:${dayKey}`}`, tier });
+  if (!insteadStoryLanded(record)) {
+    DebugLogger.warn(LOG, `VIP: история не записана (${record.recorded ? 'ok' : record.reason}) — поздравление остаётся ожидающим`);
+    return true;
+  }
+  DebugLogger.info(LOG, `VIP: история вместо окна marker=${marker ?? '—'} уровень=${tier}`);
+  await consumeVipCelebration(marker);
   return true;
 }

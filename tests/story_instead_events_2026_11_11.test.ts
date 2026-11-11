@@ -153,20 +153,36 @@ describe('событие instead → данные кадра', () => {
     expect(read('components/stories/templates/story_instead_registry.ts')).not.toContain("action: 'reply_team', text");
   });
 
-  it('«Plus подключён»: только подписка Plus; ожидающее поздравление гасится после записи истории; Pro и VIP — прежним окном', () => {
-    expect(insteadTemplateFromPayload({ kind: 'plus_on', key: 'm1', freezesPerMonth: 3 })).toEqual({ id: 'instead_plus_on', untilLabel: null, freezesPerMonth: 3 });
-    expect(insteadTemplateFromPayload({ kind: 'plus_on', key: 'm1', freezesPerMonth: 0 })).toBeNull();
+  it('«Plus / Ultra активирован»: уровень из события (старые события — Plus); ожидающее поздравление и VIP гасятся после записи истории', () => {
+    expect(insteadTemplateFromPayload({ kind: 'plus_on', key: 'm1', tier: 'ultra' })).toEqual({ id: 'instead_plus_on', tier: 'ultra' });
+    expect(insteadTemplateFromPayload({ kind: 'plus_on', key: 'm1', tier: 'plus' })).toEqual({ id: 'instead_plus_on', tier: 'plus' });
+    expect(insteadTemplateFromPayload({ kind: 'plus_on', key: 'm1', freezesPerMonth: 3 })).toEqual({ id: 'instead_plus_on', tier: 'plus' });
     const home = read('app/(tabs)/home.tsx');
-    const branch = home.indexOf("if (variant === 'premium' && await plusCelebrationAsStory({ marker, dayKey: getLocalDayKey(), freezesPerMonth: PREMIUM_FREE_FREEZES_PER_MONTH })) {");
+    const branch = home.indexOf('if (await plusCelebrationAsStory({ marker, dayKey: getLocalDayKey() })) {');
     expect(branch).toBeGreaterThan(-1);
     expect(home.indexOf('setCelebrationVisible(true);', branch)).toBeGreaterThan(branch);
-    // гашение «ожидающего поздравления» — в отдельном модуле и строго после того, как история записана; не записалась — не гасим
+    const vip = home.indexOf('if (await vipCelebrationAsStory({ marker, dayKey: getLocalDayKey() }))');
+    expect(vip).toBeGreaterThan(-1);
+    expect(home.indexOf('setVipCelebrationMarker(marker);', vip)).toBeGreaterThan(vip);
     const story = read('modules/story_events/plus_on_story.ts');
-    expect(story).toContain('if (!storiesReplaceWindows()) return false;');
-    const notLanded = story.indexOf('if (!insteadStoryLanded(record)) {');
-    expect(notLanded).toBeGreaterThan(-1);
-    expect(story.indexOf('await consumeCelebration(marker);')).toBeGreaterThan(notLanded);
-    expect(story.match(/consumeCelebration\(/g)).toHaveLength(1);
+    for (const consume of ['await consumeCelebration(marker);', 'await consumeVipCelebration(marker);']) {
+      const at = story.indexOf(consume);
+      expect(at).toBeGreaterThan(-1);
+      expect(story.lastIndexOf('if (!insteadStoryLanded(record)) {', at)).toBeGreaterThan(-1);
+      expect(story.lastIndexOf('if (!insteadStoryLanded(record)) {', at)).toBeGreaterThan(story.lastIndexOf('export async function', at));
+    }
+    // уровень — тем же правилом, что во всём приложении: продукт точнее плана, плана нет — Plus
+    expect(story).toContain("if (!peek) return 'plus';");
+    expect(story).toContain('return peek.productId ? tierFromProductId(peek.productId) : tierFromPlan(peek.plan);');
+  });
+
+  it('знак уровня в кадре — те же цвета, что у уровней в пейволе «Два пути»', () => {
+    const marks = read('components/plus/plus_mark_colors.ts');
+    const hero = read('components/paywall/duo/PaywallDuoHero.tsx');
+    expect(hero).toContain("plus: ['#A99BFF', '#8E7CFF', '#5F90DB']");
+    expect(marks).toContain("gradient: ['#A99BFF', '#8E7CFF', '#5F90DB'] as const, ink: '#0F0A33', glyph: '◆'");
+    expect(hero).toContain("plus: '#0F0A33'");
+    expect(marks).toContain("ultra: Object.freeze({ gradient: PLUS_MARK_GRADIENT, ink: PLUS_MARK_INK, glyph: '✦'");
   });
 
   it('приветствие новичка: при включённых историях — кадр, «показано» после записи; три экрана остаются путём для выключенных историй', () => {

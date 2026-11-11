@@ -19,7 +19,9 @@ import { CountUp, Enter } from './story_template_motion';
 import { Breathe } from './story_template_parts';
 import { useStoryTemplatePalette } from './story_template_palette';
 import { tplNumber } from './story_template_strings';
-import { BigPlusMark, Bubbles, IconDisc, PerkRows } from './story_instead_parts';
+import { BigPlusMark, Bubbles, IconDisc, PerkRows, TierMark } from './story_instead_parts';
+import { celebrationLiquidCopy } from '../../premium_celebration/celebrationLiquidCopy';
+import { SUBSCRIPTION_TIER_NAME, type SubscriptionTier } from '../../../app/subscription_tier';
 import { insteadText } from './story_instead_strings';
 import { pickUpdateText } from '../../UpdateModal';
 import { notifNudgeCopy } from '../../../app/notif_nudge_copy';
@@ -38,6 +40,8 @@ export type TeamMessageStory = Readonly<{ title: string; body: string }>;
 export type NotifNudgeStory = Readonly<{ missedDays: number }>;
 /** `freezesPerMonth` — из PREMIUM_FREE_FREEZES_PER_MONTH, `untilLabel` — готовая дата на языке интерфейса; null — дата неизвестна, строки с датой нет. */
 export type PlusStateStory = Readonly<{ untilLabel: string | null; freezesPerMonth: number }>;
+/** Уровень подписки: месячная — Plus, годовая — Ultra (app/subscription_tier). */
+export type PlusOnStory = Readonly<{ tier: SubscriptionTier }>;
 
 type FrameProps<D> = Readonly<{ tpl: D; lang: Lang }>;
 
@@ -184,14 +188,17 @@ export const PlusExpiredFrame = memo(function PlusExpiredFrame({ tpl, lang }: Fr
 
 // ── 16 · Plus подключён (взамен праздничного окна после покупки или выдачи Plus) ─────────────────────
 
-export const PlusOnFrame = memo(function PlusOnFrame({ tpl, lang }: FrameProps<PlusStateStory>) {
-  const perks = plusPerks(lang, tpl.freezesPerMonth);
+export const PlusOnFrame = memo(function PlusOnFrame({ tpl, lang }: FrameProps<PlusOnStory>) {
+  // зачем (владелец 11.11: «есть Ультра и Плюс… они отличаются иконки по цвету»; макет stories-pro-vip — «Да, в приложение»): кадр различает
+  // уровень знаком и названием; слова — из праздничного окна (celebrationLiquidCopy): «{уровень} активирован» и строка про энергию
+  const copy = celebrationLiquidCopy(lang);
+  const name = SUBSCRIPTION_TIER_NAME[tpl.tier];
   return (
     <FrameRoot testID="story-tpl-instead-plus-on" layer={<Confetti n={18} d0={600} />}>
-      <Art><BigPlusMark id="on" /></Art>
-      {tpl.untilLabel ? <Ov text={insteadText(lang, 'untilOverline', { date: tpl.untilLabel })} d={380} /> : null}
-      <H1 text={insteadText(lang, 'plusOnTitle')} d0={460} />
-      <PerkRows items={[perks.lessons, perks.dialogs, perks.shield]} d0={700} />
+      <Art><TierMark tier={tpl.tier} /></Art>
+      <Ov text={name} d={380} />
+      <H1 text={copy.titleActivated(name)} d0={460} />
+      <P text={copy.benefitCardBody} d={760} />
     </FrameRoot>
   );
 });

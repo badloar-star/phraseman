@@ -9,7 +9,7 @@ describe('multichannel YouTube catalog UI contract', () => {
   const components = () => [
     'components/youtube/YoutubeChannelHeader.tsx',
     'components/youtube/YoutubeChannelPickerSheet.tsx',
-    'components/youtube/YoutubeChannelTabs.tsx',
+    'components/video/VideoFeedFilter.tsx', // зачем (владелец 11.11): ряд положений заменил вкладки
     'components/youtube/YoutubeInlinePlayer.tsx',
     'components/youtube/YoutubePremiereHero.tsx',
     'components/youtube/YoutubePlaylistGridCard.tsx',
@@ -41,8 +41,8 @@ describe('multichannel YouTube catalog UI contract', () => {
     expect(source).toContain('testID="youtube-all-channels"');
     expect(source).not.toContain('youtube-all-channels-legacy');
     expect(source).toContain('testID={`youtube-channel-${channel.id}`}');
-    expect(source).toContain("testID={`youtube-tab-${tab}`}");
-    expect(source).toContain("(['home', 'playlists', 'packs'] as const)");
+    expect(source).toContain('testID={`video-feed-chip-${view}`}');
+    expect(read('app/video_feed_filter.ts')).toContain("['all', 'unwatched', 'favorites', 'playlists']");
     expect(source).not.toContain("(['home', 'all', 'playlists'] as const)");
     // зачем (владелец 01.10): вкладка «Все видео» удалена вместе с веткой экрана.
     expect(screen()).not.toContain('testID="youtube-catalog-all-videos"');
@@ -107,7 +107,7 @@ describe('multichannel YouTube catalog UI contract', () => {
   it('keeps the redesigned shell visible while the catalog is still on RSS fallback', () => {
     const source = screen();
     // зачем: по макету video.html вкладки рисуются в каждом состоянии (загрузка/пусто/ошибка тоже)
-    expect(source).toContain('<YoutubeChannelTabs value={tab}');
+    expect(source).toContain('<VideoFeedChips value={tab');
     expect(source).toContain("tab === 'playlists' ?");
     expect(source).not.toContain("tab === 'all' || !catalog ?");
   });

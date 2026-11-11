@@ -10,21 +10,21 @@ const hero = read('components/youtube/YoutubePremiereHero.tsx');
 const card = read('components/youtube/YoutubeVideoCard.tsx');
 const row = read('components/youtube/YoutubePlaylistGridCard.tsx');
 const header = read('components/youtube/YoutubeChannelHeader.tsx');
-const tabs = read('components/youtube/YoutubeChannelTabs.tsx');
+const chips = read('components/video/VideoFeedFilter.tsx');
 const packs = read('app/flashcards_video_packs.tsx');
 const views = read('components/video/formatViewCount.ts');
 
-test('video-redesign #c1: «Наборы» — третья вкладка, а не плашка сверху', () => {
-  // зачем (владелец 11.10): плашка «Наборы из видео» заменена вкладкой; список тот же экран наборов (режим embedded).
+test('владелец 11.11: «Наборов» в разделе «Видео» нет — ни плашкой, ни вкладкой', () => {
+  // зачем (владелец 11.11, «да, перестраивай»): раздел упрощён до ленты с рядом положений; наборы из видео остаются в разделе «Карточки».
   assert.ok(!screen.includes('testID="video-tab-packs-row"'), 'плашки наборов сверху больше нет');
-  assert.ok(screen.includes("tab === 'packs'") && screen.includes('<FlashcardsVideoPacksScreen embedded'), 'вкладка встраивает экран наборов');
-  assert.ok(screen.includes('<YoutubeChannelTabs value={tab} onChange={changeTab} />'), 'tabs are drawn in every state');
+  assert.ok(!screen.includes("tab === 'packs'") && !screen.includes('FlashcardsVideoPacksScreen'), 'экран наборов в «Видео» не встраивается');
+  assert.ok(screen.includes("<VideoFeedChips value={tab === 'playlists' ? 'playlists' : feedFilter} onChange={changeFeedView} />"), 'ряд положений рисуется в каждом состоянии');
 });
 
 test('video.html: header pill has avatar/initials, tabs are 16/600', () => {
   assert.ok(header.includes('testID="youtube-channel-avatar"'), 'channel avatar in the pill');
   assert.ok(header.includes('avatarText'), 'initials fallback');
-  assert.ok(tabs.includes("fontSize: 16, fontWeight: '600'"), 'tab label 16/600');
+  assert.ok(chips.includes('label: { ...V2_TYPE.headline }'), 'подпись положения — 16/700 из общей шкалы V2_TYPE');
   assert.ok(!screen.includes('adjustsFontSizeToFit') && !header.includes('adjustsFontSizeToFit'), 'no font shrinking');
 });
 

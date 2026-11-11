@@ -58,7 +58,7 @@ beforeEach(() => {
 
 describe('пилюля языка на вкладке «Видео» — source-контракт', () => {
   const video = read('app/lingman_videos.tsx');
-  const onOpen = video.slice(video.indexOf('onOpenLanguage={'), video.indexOf('<YoutubeChannelTabs'));
+  const onOpen = video.slice(video.indexOf('onOpenLanguage={'), video.indexOf('<VideoFeedChips'));
 
   it('не ведёт на язык интерфейса, а открывает шторку «Язык изучения»', () => {
     expect(onOpen).toContain('setStudyLanguageSheetVisible(true)');

@@ -3,14 +3,15 @@ import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 
 const screen = readFileSync(new URL('../app/lingman_videos.tsx', import.meta.url), 'utf8');
-const tabs = readFileSync(new URL('../components/youtube/YoutubeChannelTabs.tsx', import.meta.url), 'utf8');
+const chips = readFileSync(new URL('../components/video/VideoFeedFilter.tsx', import.meta.url), 'utf8');
+const views = readFileSync(new URL('../app/video_feed_filter.ts', import.meta.url), 'utf8');
 const card = readFileSync(new URL('../components/youtube/YoutubeVideoCard.tsx', import.meta.url), 'utf8');
 const header = readFileSync(new URL('../components/youtube/YoutubeChannelHeader.tsx', import.meta.url), 'utf8');
 
-// зачем (владелец 01.10): «Все видео» убрана. Владелец 11.10 (video-redesign #c1): третья вкладка — «Наборы».
+// зачем (владелец 01.10): «Все видео» убрана. Владелец 11.11 («да, перестраивай»): вкладок нет — ряд из четырёх положений, «Наборы» живут в «Карточках».
 test('channel tabs are live on the same catalog', () => {
-  assert.ok(tabs.includes("'home' | 'playlists' | 'packs'"), 'three-tab state type');
-  assert.ok(tabs.includes("['home', 'playlists', 'packs']"), 'three visible tab buttons');
+  assert.ok(views.includes("export type VideoFeedView = VideoFeedFilter | 'playlists'"), 'тип положения ряда: фильтр роликов или плейлисты');
+  assert.ok(views.includes("['all', 'unwatched', 'favorites', 'playlists']") && chips.includes('VIDEO_FEED_VIEWS.map('), 'четыре видимых положения');
   assert.ok(!screen.includes("tab === 'all'"), 'no All Videos branch');
   // зачем (FINAL_PHASE п.4): ролики Главной вкладки — виртуальный список по реальному каталогу.
   assert.ok(screen.includes('allVideos.filter') && screen.includes('data={homeListVideos}'), 'Home renders real catalog data');
@@ -20,7 +21,7 @@ test('channel tabs are live on the same catalog', () => {
 
 test('video channel uses active 13-theme glass without replacing real thumbnails or playback', () => {
   assert.ok(screen.includes('liquidGlassTokens(liquidGlassThemeId)'), 'live theme tokens in screen');
-  assert.ok(tabs.includes('liquidGlassTokens(liquidGlassThemeId)'), 'live theme tokens in tabs');
+  assert.ok(chips.includes('useV2Palette()') && !/#[0-9a-fA-F]{6}/.test(chips), 'цвета ряда — из живой палитры темы, без зашитых значений');
   assert.ok(card.includes('liquidGlassTokens(liquidGlassThemeId)'), 'live theme tokens in cards');
   assert.ok(header.includes('liquidGlassTokens(liquidGlassThemeId)'), 'live theme tokens in channel actions');
   assert.ok(card.includes('video.thumbnailUrl'), 'real thumbnail source');

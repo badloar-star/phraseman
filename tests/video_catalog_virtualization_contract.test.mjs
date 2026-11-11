@@ -3,21 +3,23 @@ import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
 
 const screen = readFileSync(new URL('../app/lingman_videos.tsx', import.meta.url), 'utf8');
-const tabs = readFileSync(new URL('../components/youtube/YoutubeChannelTabs.tsx', import.meta.url), 'utf8');
+// зачем (владелец 11.11, «да, перестраивай»): вкладок больше нет — над лентой ряд из четырёх положений (VideoFeedChips).
+const chips = readFileSync(new URL('../components/video/VideoFeedFilter.tsx', import.meta.url), 'utf8');
+const views = readFileSync(new URL('../app/video_feed_filter.ts', import.meta.url), 'utf8');
 const header = readFileSync(new URL('../components/youtube/YoutubeChannelHeader.tsx', import.meta.url), 'utf8');
 
 // зачем (владелец 01.10): вкладки «Все видео» нет — ветки списка всех роликов в экране тоже нет.
 test('All videos tab is gone; one real inline player remains', () => {
   assert.ok(!screen.includes("tab === 'all'"), 'no All Videos branch');
   assert.ok(!screen.includes('youtube-catalog-all-videos'), 'no All Videos list');
-  assert.ok(!tabs.includes("'all'"), 'no all tab in the type');
+  assert.ok(views.includes("['all', 'unwatched', 'favorites', 'playlists']"), 'ряд положений: три фильтра роликов и плейлисты, отдельного списка «Все видео» нет');
   assert.ok(screen.includes('hero.id === activeVideoId ? ('), 'one real inline player remains wired (премьера в шапке)');
   assert.ok(screen.includes("pathname: '/lingman_video_watch'"), 'обычный ролик открывается экраном ролика');
 });
 
 test('Video chrome follows the reference hierarchy without inert controls', () => {
-  assert.ok(tabs.includes('minHeight: 44'), 'each tab keeps a 44pt touch target');
-  assert.ok(tabs.includes('borderBottomWidth: 2'), 'active tab is an underline, not a segmented fill');
+  assert.ok(chips.includes('minHeight: 44'), 'ряд положений держит зону касания 44');
+  assert.ok(!chips.includes('borderBottomWidth') && !chips.includes('borderWidth') && chips.includes('backgroundColor: active ? p.cta : p.control'), 'выбранное положение — заливка главной кнопки, без рамок и подчёркиваний (владелец 11.11)');
   assert.ok(header.includes('styles.channelPill'), 'channel is a labeled pill below the title');
   assert.ok(header.includes('testID="youtube-all-channels"'), 'the channel pill keeps its real action');
   assert.ok(header.includes('accessibilityLabel="YouTube"'), 'the real YouTube action remains available');
@@ -27,11 +29,11 @@ test('Video chrome follows the reference hierarchy without inert controls', () =
 
 test('Video tab strip gives every long localized label a responsive share of a narrow screen', () => {
   // зачем (Сверка video-001, .tabs3): вкладки по ширине текста слева через 22, но сжимаются на узком экране.
-  assert.ok(tabs.includes('gap: 22'), 'tabs sit left with the mockup gap');
-  assert.ok(tabs.includes('flexShrink: 1'), 'every tab may shrink on a narrow screen');
-  assert.ok(tabs.includes("minWidth: 0"), 'long labels may shrink and wrap instead of overflowing');
-  assert.ok(tabs.includes("Listas de reproducción"), 'the long Spanish playlist label remains a real localized label');
-  assert.ok(!tabs.includes('marginRight: 10'), 'inter-tab fixed gaps cannot push the third tab off-screen');
+  assert.ok(chips.includes('gap: 8'), 'положения идут слева с шагом макета');
+  assert.ok(chips.includes('<ScrollView horizontal'), 'на узком экране ряд прокручивается по горизонтали');
+  assert.ok(!chips.includes('flexShrink') && !chips.includes('numberOfLines'), 'длинные подписи не сжимаются и не обрезаются — их видно прокруткой');
+  assert.ok(chips.includes("playlists: 'Listas'") && chips.includes("unwatched: 'Sin ver'"), 'испанские подписи положений — настоящие переводы');
+  assert.ok(chips.includes('paddingHorizontal: V2.screenPad') && chips.includes('marginHorizontal: -V2.screenPad'), 'ряд уходит под поля экрана: последнее положение доступно прокруткой, а не выталкивается за край');
 });
 
 test('Video channel pill constrains a long external channel name without hiding its action', () => {

@@ -15,7 +15,6 @@ import HybridRefreshControl from '../components/feedback/HybridRefreshControl';
 import YoutubeChannelHeader from '../components/youtube/YoutubeChannelHeader';
 import YoutubeChannelPickerSheet from '../components/youtube/YoutubeChannelPickerSheet';
 import StudyLanguageSheet from '../components/settings/StudyLanguageSheet';
-import YoutubeChannelTabs, { type YoutubeChannelTab } from '../components/youtube/YoutubeChannelTabs';
 import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
 import { VideoRewardFlash } from '../components/video/VideoRewardOverlay';
 import { useVideoFullWatch } from '../hooks/use_video_full_watch';
@@ -24,7 +23,6 @@ import YoutubePremiereHero from '../components/youtube/YoutubePremiereHero';
 import YoutubeVideoGridCard from '../components/youtube/YoutubeVideoGridCard';
 import YoutubeVideoPhrases from '../components/youtube/YoutubeVideoPhrases';
 import { normalizePackLanguage } from './flashcards/pack_languages';
-import FlashcardsVideoPacksScreen from './flashcards_video_packs';
 import { loadVideoPhraseSetPacks, peekVideoPhraseSetPacks } from './video_phrase_set_packs';
 import { ALL_VIDEOS_PAGE_SIZE, allVideosPlaylistToSnapshot, useAllChannelVideos, type AllVideosItem } from './all_channel_videos_source';
 import { resolveVideoChannelForStudyTarget } from './video_language_contour';
@@ -50,8 +48,8 @@ import { V2 } from '../constants/v2Style';
 import { DebugLogger } from './debug-logger';
 import { useVideoFavorites } from '../hooks/use_video_favorites';
 import { useVideoFullRewarded } from '../hooks/use_video_full_rewarded';
-import { VideoFeedFilter, VideoFeedFilterEmpty } from '../components/video/VideoFeedFilter';
-import { filterVideoFeed, type VideoFeedFilter as VideoFeedFilterKey } from './video_feed_filter'; // зачем (владелец 11.11): фильтры ленты «Все · Не смотрел · Избранное»
+import { VideoFeedChips, VideoFeedFilterEmpty } from '../components/video/VideoFeedFilter';
+import { filterVideoFeed, type VideoFeedFilter as VideoFeedFilterKey, type VideoFeedView } from './video_feed_filter'; // зачем (владелец 11.11): ряд «Все · Не смотрел · Избранное · Плейлисты» вместо вкладок
 import { actionToastTri, emitAppEvent } from './events';
 import { quietEmptyDetail, quietEmptyTitle } from '../components/cards-grid/quiet_empty_copy';
 import {
@@ -92,6 +90,10 @@ import {
 } from './youtube_premiere_notifications';
 
 // Stable child contract: YoutubeVideoGridCard renders testID="lingman-video-card".
+
+// зачем (владелец 11.11, «да, перестраивай»): вкладок «Новое / Плейлисты / Наборы» больше нет. Внутри экрана осталось два списка —
+// ролики ('home') и плейлисты ('playlists'); какой из них показан, решает ряд положений VideoFeedChips. «Наборы» живут в разделе «Карточки».
+type FeedList = 'home' | 'playlists';
 
 function legacyChannelSnapshot(): YoutubeChannelSnapshot {
   const channel = getActiveYoutubeChannel();
@@ -161,7 +163,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   // зачем (ревью R1): номер загрузки — поздний ответ прежнего языка (en→es→en) не затирает новый.
   const loadSeqRef = useRef(0);
   const [preference, setPreference] = useState<YoutubeChannelPreference>(() => getYoutubeChannelPreference(renderToken));
-  const [tab, setTab] = useState<YoutubeChannelTab>('home');
+  const [tab, setTab] = useState<FeedList>('home');
   const [pickerVisible, setPickerVisible] = useState(false);
   // зачем (баг владельца 11.10): пилюля языка открывает шторку «Язык изучения» (PRF-23), а не язык интерфейса.
   const [studyLanguageSheetVisible, setStudyLanguageSheetVisible] = useState(false);
@@ -591,7 +593,7 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
     requestAnimationFrame(() => scrollToDeepLinked(target));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allVideos, deepLinkedVideoId]);
-  const changeTab = useCallback((nextTab: YoutubeChannelTab) => {
+  const changeTab = useCallback((nextTab: FeedList) => {
     setActiveVideoId(null);
     setExpandedPhraseVideoId(null);
     setTab(nextTab);
@@ -669,11 +671,18 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
   const homeListUnfiltered = useMemo(() => allVideos.filter((video) => video.id !== hero?.id), [allVideos, hero?.id]);
   // eslint-disable-next-line react-hooks/exhaustive-deps -- favorites.savedIds меняется вместе с isSaved: по нему список пересобирается сразу после касания звезды
   const homeListAll = useMemo(() => filterVideoFeed(homeListUnfiltered, feedFilter, { isSaved: favorites.isSaved, watchedIds: watchedVideoIds }), [homeListUnfiltered, feedFilter, favorites.savedIds, watchedVideoIds]);
-  const changeFeedFilter = useCallback((next: VideoFeedFilterKey) => {
-    console.log('[VIDEO-TAB] filter', JSON.stringify({ from: feedFilter, to: next, total: homeListUnfiltered.length, watched: watchedVideoIds.size, saved: favorites.savedIds.length })); // guard-ok: смена фильтра и значения, которые решают состав списка
+  // зачем: одно касание ряда решает сразу и список (ролики или плейлисты), и фильтр роликов.
+  const changeFeedView = useCallback((next: VideoFeedView) => {
+    if (next === 'playlists') {
+      console.log('[VIDEO-TAB] view', JSON.stringify({ from: tab === 'playlists' ? 'playlists' : feedFilter, to: next })); // guard-ok: переход к плейлистам
+      changeTab('playlists');
+      return;
+    }
+    if (tab !== 'home') changeTab('home');
+    console.log('[VIDEO-TAB] view', JSON.stringify({ from: tab === 'playlists' ? 'playlists' : feedFilter, to: next, total: homeListUnfiltered.length, watched: watchedVideoIds.size, saved: favorites.savedIds.length })); // guard-ok: смена положения ряда и значения, которые решают состав списка
     setFeedFilter(next);
     setPages(1); // новый состав списка читается с первой страницы
-  }, [favorites.savedIds.length, feedFilter, homeListUnfiltered.length, watchedVideoIds.size]);
+  }, [changeTab, favorites.savedIds.length, feedFilter, homeListUnfiltered.length, tab, watchedVideoIds.size]);
   // Страницы по 20 (allVideosPage у Ядра = page × 20): список растёт по onEndReached; снимок (20) и «Сохранённые» — целиком.
   const paged = !!fullVideos;
   const homeListVideos = useMemo(() => (paged ? homeListAll.slice(0, pages * ALL_VIDEOS_PAGE_SIZE) : homeListAll), [homeListAll, pages, paged]);
@@ -789,15 +798,12 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
             setStudyLanguageSheetVisible(true);
           } : undefined}
         />
-        <YoutubeChannelTabs value={tab} onChange={changeTab} />
+        {/* зачем (владелец 11.11): ряд положений рисуется в каждом состоянии экрана — загрузка, пусто, список — как раньше вкладки. */}
+        <VideoFeedChips value={tab === 'playlists' ? 'playlists' : feedFilter} onChange={changeFeedView} />
         {/* зачем (владелец 01.10): плашек «устарел/офлайн» и экрана ошибки нет — показываем то, что есть, обновляем тихо. */}
         {issue !== 'none' && snapshot && <View testID="lingman-videos-fallback-notice" />}
 
-        {tab === 'packs' ? (
-          // зачем (владелец 11.10, video-redesign #c1): вкладка «Наборы» показывает тот же список «Наборы из видео», что и
-          // раздел «Карточки» (один экран данных, режим embedded); грузится только когда вкладку открыли.
-          <FlashcardsVideoPacksScreen embedded bottomPad={inTab ? tabContentBottomPad : 24} />
-        ) : noChannel && !catalog ? (
+        {noChannel && !catalog ? (
           noVideosPanel
         ) : catalogExhausted && !catalog && !snapshot ? (
           <ScrollView
@@ -865,7 +871,6 @@ export default function LingmanVideosScreen({ presentation = 'push' }: LingmanVi
               onToggle={() => setExpandedPhraseVideoId((current) => current === hero.id ? null : hero.id)}
               testID={`video-phrases-${hero.id}`}
             /> : null}
-            {homeListUnfiltered.length > 0 ? <View style={styles.feedFilter}><VideoFeedFilter value={feedFilter} onChange={changeFeedFilter} /></View> : null}
             </>}
             ListEmptyComponent={feedFilter !== 'all' ? <VideoFeedFilterEmpty filter={feedFilter} /> : !hero ? <View testID="lingman-videos-empty" /> : null}
           />
@@ -899,7 +904,6 @@ const styles = StyleSheet.create({
   container: { flex: 1, paddingHorizontal: V2.screenPad, paddingTop: 12, backgroundColor: 'transparent' },
   // зачем (video-redesign #c1, `.g2`): сетка в две колонки, ряды через 20; верхний отступ 16 под вкладками.
   gridList: { paddingTop: 16, paddingBottom: 32 },
-  feedFilter: { marginBottom: 16 },
   gridCellLeft: { paddingRight: 6, marginBottom: 20 },
   gridCellRight: { paddingLeft: 6, marginBottom: 20 },
   gridSkeleton: { marginTop: 16 },

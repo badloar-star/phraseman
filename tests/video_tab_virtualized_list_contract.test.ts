@@ -29,15 +29,15 @@ describe('вкладка «Видео»: каталог роликов вирт�
     expect(source).toContain('allChannel.refresh()');
   });
 
-  test('шапка (премьера, «Сохранённые видео») — в ListHeaderComponent; «Наборы» — отдельная вкладка', () => {
+  test('шапка (премьера) — в ListHeaderComponent; «Наборов» в разделе «Видео» нет (владелец 11.11)', () => {
     const start = source.indexOf('ListHeaderComponent={<>');
     expect(start).toBeGreaterThan(0);
     const header = source.slice(start, source.indexOf('ListEmptyComponent=', start));
     expect(header).toContain('<YoutubePremiereHero');
     expect(header).not.toContain('savedRow'); // зачем (актуализация 05.11): строки «Сохранённые видео» нет с 1458fd3a7 (звёзды вместо закладок)
     expect(header).not.toContain('packsRow');
-    expect(source).toContain("tab === 'packs'");
-    expect(source).toContain('<FlashcardsVideoPacksScreen embedded');
+    expect(source).not.toContain("tab === 'packs'");
+    expect(source).not.toContain('FlashcardsVideoPacksScreen');
   });
 
   test('вид карточек обновляется при смене открытого ролика, избранного и фраз', () => {

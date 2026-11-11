@@ -10,6 +10,15 @@ export type VideoFeedFilter = 'all' | 'unwatched' | 'favorites';
 
 export const VIDEO_FEED_FILTERS: readonly VideoFeedFilter[] = ['all', 'unwatched', 'favorites'];
 
+/**
+ * Положения ряда над лентой: три фильтра роликов и «Плейлисты».
+ * зачем (владелец 11.11, «да, перестраивай»): ряд заменил вкладки «Новое / Плейлисты / Наборы» — плейлисты стали
+ * положением того же ряда, вкладки «Наборы» в разделе больше нет (наборы остаются в «Карточках»).
+ */
+export type VideoFeedView = VideoFeedFilter | 'playlists';
+
+export const VIDEO_FEED_VIEWS: readonly VideoFeedView[] = ['all', 'unwatched', 'favorites', 'playlists'];
+
 export type VideoFeedFilterContext = Readonly<{
   /** Отмечен ли ролик звездой («Избранное»). */
   isSaved: (videoId: string) => boolean;

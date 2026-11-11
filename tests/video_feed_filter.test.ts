@@ -1,7 +1,7 @@
 /**
  * Фильтр ленты «Видео» (владелец 11.11): «Все», «Не смотрел», «Избранное» — считается на телефоне, без сети.
  */
-import { filterVideoFeed, VIDEO_FEED_FILTERS } from '../app/video_feed_filter';
+import { filterVideoFeed, VIDEO_FEED_FILTERS, VIDEO_FEED_VIEWS } from '../app/video_feed_filter';
 
 const VIDEOS = [{ id: 'a' }, { id: 'b' }, { id: 'c' }, { id: 'd' }] as const;
 const ctx = { isSaved: (id: string) => id === 'b' || id === 'd', watchedIds: new Set(['a', 'b']) };
@@ -9,6 +9,10 @@ const ctx = { isSaved: (id: string) => id === 'b' || id === 'd', watchedIds: new
 describe('video_feed_filter', () => {
   it('фильтров три, «Все» — первый', () => {
     expect(VIDEO_FEED_FILTERS).toEqual(['all', 'unwatched', 'favorites']);
+  });
+
+  it('положений ряда четыре: три фильтра и «Плейлисты» последним (владелец 11.11 — ряд вместо вкладок)', () => {
+    expect(VIDEO_FEED_VIEWS).toEqual(['all', 'unwatched', 'favorites', 'playlists']);
   });
 
   it('«Все» возвращает тот же массив — список не перерисовывается зря', () => {

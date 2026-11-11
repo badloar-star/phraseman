@@ -42,6 +42,9 @@
  "03.15": {
   "pl": "Wy (liczba mnoga) robicie jedzenie."
  },
+ "03.17": {
+  "tr": "Süt alıyorsun."
+ },
  "03.25": {
   "pl": "Wy (liczba mnoga) szukacie kasy."
  },
@@ -63,7 +66,8 @@
  },
  "03.37": {
   "vi": "Bạn đang đợi bên ngoài.",
-  "id": "Kamu sedang menunggu di luar."
+  "id": "Kamu sedang menunggu di luar.",
+  "tr": "Dışarıda bekliyorsun."
  },
  "04.30": {
   "pt-BR": "Às oito estou em casa.",
@@ -86,6 +90,12 @@
   "vi": "Sau giờ làm việc, Anna ở nhà.",
   "id": "Setelah bekerja, Anna ada di rumah.",
   "pl": "Po pracy Anna jest w domu."
+ },
+ "05.01": {
+  "pt-BR": "Você está aqui?"
+ },
+ "05.02": {
+  "pt-BR": "A Anna está aqui?"
  },
  "05.03": {
   "pt-BR": "Vocês estão prontos?",
@@ -152,7 +162,8 @@
   "pl": "Wy potrzebujecie adresu."
  },
  "07.25": {
-  "pl": "Wy idziecie po schodach."
+  "pl": "Wy idziecie po schodach.",
+  "pt-BR": "Vocês pegam a escada."
  },
  "07.28": {
   "uk": "Том замовляє воду."
@@ -188,7 +199,8 @@
  "07.40": {
   "pt-BR": "Vocês abrem a bolsa.",
   "pl": "Wy otwieracie torbę.",
-  "tr": "Çantayı siz açıyorsunuz."
+  "tr": "Çantayı siz açıyorsunuz.",
+  "id": "Kalian membuka tas."
  },
  "07.42": {
   "pt-BR": "Vocês têm um plano?",
@@ -268,6 +280,9 @@
  "10.49": {
   "tr": "Annem ve babamla kutlamaya gidiyorum."
  },
+ "11.07": {
+  "pl": "Obraz wisi na ścianie."
+ },
  "11.26": {
   "pt-BR": "Vocês estão na estação de trem.",
   "tr": "Siz tren istasyonundasınız.",
@@ -275,6 +290,9 @@
  },
  "11.31": {
   "pt-BR": "Onde está o documento de identidade?"
+ },
+ "11.34": {
+  "pl": "Czy obraz wisi w biurze?"
  },
  "11.36": {
   "pt-BR": "Vocês estão esperando em frente à loja?",
@@ -341,6 +359,7 @@
  "12.40": {
   "pt-BR": "Você se senta no banco?",
   "vi": "Bạn ngồi xuống ghế dài chứ?",
+  "id": "Apakah kamu duduk di bangku?",
   "pl": "Siadasz na ławce?"
  },
  "12.47": {
@@ -420,6 +439,7 @@
   "es": "¡Llame otra vez mañana!"
  },
  "15.45": {
+  "ru": "Встань завтра рано!",
   "uk": "Встань завтра рано!",
   "id": "Bangun pagi-pagi besok!"
  },
@@ -435,6 +455,9 @@
   "pl": "Pojechaliście rowerem na dworzec kolejowy.",
   "pt-BR": "Vocês foram de bicicleta até a estação de trem.",
   "tr": "Tren istasyonuna bisikletle gittiniz."
+ },
+ "17.19": {
+  "pl": "Piłka stoczyła się do wody."
  },
  "17.25": {
   "pl": "Wyjechaliście punktualnie.",
@@ -471,6 +494,9 @@
   "pt-BR": "A vaga de estacionamento estava livre.",
   "tr": "Park yeri boştu."
  },
+ "18.20": {
+  "vi": "Xe taxi đã ở đó rồi."
+ },
  "18.25": {
   "pl": "Mieliście dwa bilety.",
   "pt-BR": "Vocês tinham dois ingressos."
@@ -499,15 +525,18 @@
  },
  "19.12": {
   "pt-BR": "Você se senta perto da janela.",
-  "pl": "Siadasz przy oknie."
+  "pl": "Siadasz przy oknie.",
+  "en": "You sit down by the window."
  },
  "19.13": {
   "pt-BR": "Anna se senta ao lado de Tom.",
-  "pl": "Anna siada obok Toma."
+  "pl": "Anna siada obok Toma.",
+  "en": "Anna sits down next to Tom."
  },
  "19.14": {
   "pt-BR": "Nós nos sentamos no café.",
-  "pl": "Siadamy w kawiarni."
+  "pl": "Siadamy w kawiarni.",
+  "en": "We sit down in the café."
  },
  "19.15": {
   "pl": "Usiądziecie z nami?",
@@ -535,6 +564,13 @@
  },
  "19.35": {
   "pl": "Kiedy się spotykacie?"
+ },
+ "19.45": {
+  "vi": "Chúng ta ghi nhớ con số đó."
+ },
+ "19.48": {
+  "tr": "İyi dinlendi.",
+  "pl": "Dobrze wypoczęła."
  },
  "19.49": {
   "tr": "Dün buluştuk."
@@ -570,6 +606,10 @@
   "ru": "Поскольку автобус не ходит, я еду на велосипеде.",
   "uk": "Оскільки автобус не їздить, я їду на велосипеді."
  },
+ "21.45": {
+  "ru": "Раз у нас есть время, мы идём пешком.",
+  "uk": "Раз у нас є час, ми йдемо пішки."
+ },
  "21.48": {
   "pl": "Ponieważ znam drogę, idę przodem."
  },
@@ -580,7 +620,8 @@
  "22.09": {
   "en": "She says that the food is warm.",
   "id": "Dia bilang makanannya hangat.",
-  "pl": "Ona mówi, że jedzenie jest ciepłe."
+  "pl": "Ona mówi, że jedzenie jest ciepłe.",
+  "vi": "Cô ấy nói rằng thức ăn còn ấm."
  },
  "22.21": {
   "en": "Anna texts that she will come later.",
@@ -588,7 +629,8 @@
   "id": "Anna mengirim pesan bahwa dia akan datang lebih lambat.",
   "pl": "Anna pisze SMS-a, że przyjdzie później.",
   "pt-BR": "Anna manda uma mensagem dizendo que vai chegar mais tarde.",
-  "tr": "Anna daha geç geleceğini mesajla bildiriyor."
+  "tr": "Anna daha geç geleceğini mesajla bildiriyor.",
+  "vi": "Anna nhắn tin rằng cô ấy sẽ đến muộn hơn."
  },
  "22.26": {
   "pl": "Czytam, że kurs zaczyna się w piątek.",
@@ -632,30 +674,40 @@
  "22.46": {
   "en": "It's good that you ask.",
   "pt-BR": "É bom que você pergunte.",
-  "tr": "Sormanız iyi."
+  "tr": "Sormanız iyi.",
+  "vi": "Thật tốt khi bạn hỏi."
  },
  "23.14": {
+  "id": "Tom naik taksi jika sudah larut malam.",
   "pl": "Tom bierze taksówkę, jeśli jest późno.",
   "pt-BR": "Tom pega um táxi se estiver tarde.",
-  "tr": "Geç olursa Tom taksiye biner."
+  "tr": "Geç olursa Tom taksiye biner.",
+  "vi": "Tom bắt taxi nếu trời đã muộn."
  },
  "23.18": {
+  "id": "Dia membawa roti saat berbelanja.",
   "pl": "Przynosi chleb, kiedy robi zakupy.",
   "pt-BR": "Ela traz pão quando faz compras.",
-  "tr": "Alışverişe gittiğinde ekmek getirir."
+  "tr": "Alışverişe gittiğinde ekmek getirir.",
+  "vi": "Cô ấy mang bánh mì khi đi mua sắm."
  },
  "23.19": {
+  "id": "Aku mendengarkan musik saat memasak.",
   "pl": "Słucham muzyki, kiedy gotuję.",
   "pt-BR": "Eu ouço música quando cozinho.",
-  "tr": "Yemek yaparken müzik dinlerim."
+  "tr": "Yemek yaparken müzik dinlerim.",
+  "vi": "Tôi nghe nhạc khi nấu ăn."
  },
  "23.20": {
+  "id": "Kita mengangin-anginkan ruangan saat cuaca bagus.",
   "pl": "Wietrzymy, kiedy jest ładna pogoda.",
   "pt-BR": "Nós arejamos quando o tempo está bom.",
-  "tr": "Hava güzel olduğunda havalandırırız."
+  "tr": "Hava güzel olduğunda havalandırırız.",
+  "vi": "Chúng ta mở cửa thông gió khi thời tiết đẹp."
  },
  "23.22": {
-  "pl": "Kiedy zadzwoni dzwonek do drzwi, otwórz, proszę, drzwi!"
+  "pl": "Kiedy zadzwoni dzwonek do drzwi, otwórz, proszę, drzwi!",
+  "uk": "Якщо подзвонять у двері, відчини, будь ласка!"
  },
  "23.23": {
   "pl": "Kiedy skończycie, sprzątnijcie ze stołu!"
@@ -675,6 +727,12 @@
  "23.36": {
   "pl": "Jeśli tu zaparkujecie, musicie zapłacić."
  },
+ "23.46": {
+  "id": "Jika pintunya macet, dorong perlahan ke atas!"
+ },
+ "23.50": {
+  "id": "Jika kereta tepat waktu, kami sempat mengejar kereta sambungan."
+ },
  "24.05": {
   "vi": "Khi tàu dừng lại, tôi đứng dậy."
  },
@@ -690,6 +748,9 @@
   "id": "Kacamata itu tergeletak di atas meja bundar.",
   "tr": "Gözlük yuvarlak masanın üzerinde duruyor.",
   "pl": "Okulary leżą na okrągłym stole."
+ },
+ "25.38": {
+  "vi": "Chúng tôi chia nhau bánh mì tươi."
  },
  "25.45": {
   "pl": "Tylna szyba się zacina."
@@ -717,6 +778,10 @@
   "vi": "Những cuốn sách các bạn đang đọc là sách mới.",
   "id": "Buku yang kalian baca adalah buku baru.",
   "pl": "Książki, które czytacie, są nowe."
+ },
+ "27.49": {
+  "vi": "Bạn có biết người phụ nữ vừa mới lên tàu không?",
+  "tr": "Az önce binen kadını tanıyor musunuz?"
  },
  "27.50": {
   "pt-BR": "Esta é a mala que vocês deixaram na estação de trem?",
@@ -768,6 +833,11 @@
   "tr": "Yol yarın kapatılacak.",
   "pl": "Droga zostanie zamknięta jutro."
  },
+ "28.15": {
+  "id": "Susu disimpan di tempat sejuk.",
+  "tr": "Süt serin yerde saklanıyor.",
+  "pl": "Mleko jest przechowywane w chłodnym miejscu."
+ },
  "28.20": {
   "pt-BR": "As bicicletas são deixadas no pátio.",
   "tr": "Bisikletler avluya bırakılıyor.",
@@ -776,6 +846,13 @@
  "28.21": {
   "pt-BR": "Aqui se paga com cartão.",
   "pl": "Tutaj płaci się kartą."
+ },
+ "28.22": {
+  "pt-BR": "No corredor não se fuma.",
+  "vi": "Ở hành lang không hút thuốc.",
+  "id": "Di lorong orang tidak merokok.",
+  "tr": "Koridorda sigara içilmez.",
+  "pl": "Na korytarzu się nie pali."
  },
  "28.25": {
   "pt-BR": "Neste caixa se paga em dinheiro."
@@ -797,11 +874,20 @@
  "28.47": {
   "tr": "Kapının önü kapatılmamalıdır."
  },
+ "29.07": {
+  "vi": "Một phòng yên tĩnh sẽ thật tuyệt.",
+  "id": "Kamar yang tenang akan menyenangkan."
+ },
+ "29.10": {
+  "vi": "Thứ Sáu cũng được không?"
+ },
  "29.20": {
   "vi": "Chúng tôi có thể trả phòng muộn hơn được không?"
  },
  "29.21": {
-  "pt-BR": "Você poderia fechar a janela, por favor?"
+  "pt-BR": "Você poderia fechar a janela, por favor?",
+  "id": "Tolong, bisakah Anda menutup jendela?",
+  "pl": "Czy mógłbyś zamknąć okno, proszę?"
  },
  "29.29": {
   "pt-BR": "Anna gostaria de mudar de curso.",
@@ -817,6 +903,15 @@
  },
  "30.24": {
   "pt-BR": "Por favor, diga-me onde você está esperando."
+ },
+ "30.26": {
+  "vi": "Hãy chỉ cho tôi máy này hoạt động như thế nào."
+ },
+ "30.29": {
+  "es": "Preguntamos en qué parada tenemos que cambiar de autobús."
+ },
+ "30.40": {
+  "vi": "Cô ấy hỏi đơn của mình đã được chấp thuận chưa."
  },
  "30.41": {
   "tr": "Bunun ne kadar olduğunu söyleyebilir misiniz?"
@@ -846,11 +941,26 @@
  "32.23": {
   "pl": "Gdybym wyciągnęła wtyczkę, lampa by zgasła."
  },
+ "32.42": {
+  "en": "Without your help, I wouldn't have carried the box.",
+  "es": "Sin tu ayuda, no habría cargado la caja.",
+  "pt-BR": "Sem a sua ajuda, eu não teria carregado a caixa.",
+  "vi": "Nếu không có sự giúp đỡ của bạn, tôi đã không mang chiếc hộp.",
+  "id": "Tanpa bantuan Anda, saya tidak akan membawa kotak itu.",
+  "tr": "Yardımınız olmasaydı, kutuyu taşımazdım.",
+  "pl": "Bez Twojej pomocy nie zaniósłbym pudełka."
+ },
+ "32.45": {
+  "vi": "Nếu tôi đã lưu số điện thoại, bây giờ tôi có thể gọi điện."
+ },
  "32.47": {
   "pt-BR": "Com uma segunda chave, eu teria conseguido entrar em casa.",
   "vi": "Nếu có chìa khóa thứ hai, tôi đã có thể vào nhà.",
   "id": "Dengan kunci cadangan, saya pasti bisa masuk ke rumah.",
   "tr": "İkinci bir anahtar olsaydı, eve girebilirdim.",
   "pl": "Z drugim kluczem mógłbym dostać się do domu."
+ },
+ "32.50": {
+  "tr": "Tekrar seçme şansım olsaydı, bu sefer direkt trene binerdim."
  }
 }

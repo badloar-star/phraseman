@@ -237,7 +237,7 @@
   "fix": "Süt alıyorsun.",
   "confidence": "low",
   "chunk": 0,
-  "applied": null
+  "applied": "Süt alıyorsun."
  },
  {
   "id": "03.25",
@@ -369,7 +369,7 @@
   "fix": "Dışarıda bekliyorsun.",
   "confidence": "low",
   "chunk": 0,
-  "applied": null
+  "applied": "Dışarıda bekliyorsun."
  },
  {
   "id": "03.35",
@@ -561,7 +561,7 @@
   "fix": "Você está aqui?",
   "confidence": "low",
   "chunk": 1,
-  "applied": null
+  "applied": "Você está aqui?"
  },
  {
   "id": "05.02",
@@ -573,7 +573,7 @@
   "fix": "A Anna está aqui?",
   "confidence": "low",
   "chunk": 1,
-  "applied": null
+  "applied": "A Anna está aqui?"
  },
  {
   "id": "05.03",
@@ -957,7 +957,7 @@
   "fix": "Vocês pegam a escada.",
   "confidence": "low",
   "chunk": 1,
-  "applied": null
+  "applied": "Vocês pegam a escada."
  },
  {
   "id": "07.28",
@@ -1161,7 +1161,7 @@
   "fix": "Kalian membuka tas.",
   "confidence": "low",
   "chunk": 1,
-  "applied": null
+  "applied": "Kalian membuka tas."
  },
  {
   "id": "07.42",
@@ -1665,7 +1665,7 @@
   "fix": "Obraz wisi na ścianie.",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Obraz wisi na ścianie."
  },
  {
   "id": "11.34",
@@ -1677,7 +1677,7 @@
   "fix": "Czy obraz wisi w biurze?",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Czy obraz wisi w biurze?"
  },
  {
   "id": "11.26",
@@ -2145,7 +2145,7 @@
   "fix": "Apakah kamu duduk di bangku?",
   "confidence": "low",
   "chunk": 2,
-  "applied": null
+  "applied": "Apakah kamu duduk di bangku?"
  },
  {
   "id": "12.40",
@@ -2394,7 +2394,7 @@
   "current": "Можна запитати Вас?",
   "category": "meaning",
   "problem": "Пропущено слово «питання» (eine Frage stellen).",
-  "fix": "Чи можна поставити Вам питання?",
+  "fix": "Чи можна задати Вам питання?",
   "confidence": "medium",
   "chunk": 3,
   "applied": "Чи можна поставити Вам питання?"
@@ -2697,7 +2697,7 @@
   "fix": "Встань завтра рано!",
   "confidence": "low",
   "chunk": 3,
-  "applied": null
+  "applied": "Встань завтра рано!"
  },
  {
   "id": "15.45",
@@ -3381,7 +3381,7 @@
   "fix": "Xe taxi đã ở đó rồi.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Xe taxi đã ở đó rồi."
  },
  {
   "id": "18.32",
@@ -3465,7 +3465,7 @@
   "fix": "Piłka stoczyła się do wody.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Piłka stoczyła się do wody."
  },
  {
   "id": "19.24",
@@ -3537,7 +3537,7 @@
   "fix": "You sit down by the window.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "You sit down by the window."
  },
  {
   "id": "19.13",
@@ -3573,7 +3573,7 @@
   "fix": "Anna sits down next to Tom.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Anna sits down next to Tom."
  },
  {
   "id": "19.14",
@@ -3609,7 +3609,7 @@
   "fix": "We sit down in the café.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "We sit down in the café."
  },
  {
   "id": "19.17",
@@ -3645,7 +3645,7 @@
   "fix": "İyi dinlendi.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "İyi dinlendi."
  },
  {
   "id": "19.48",
@@ -3657,7 +3657,7 @@
   "fix": "Dobrze wypoczęła.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Dobrze wypoczęła."
  },
  {
   "id": "19.49",
@@ -3681,7 +3681,7 @@
   "fix": "Chúng ta ghi nhớ con số đó.",
   "confidence": "low",
   "chunk": 4,
-  "applied": null
+  "applied": "Chúng ta ghi nhớ con số đó."
  },
  {
   "id": "21.12",
@@ -3813,7 +3813,7 @@
   "fix": "Раз у нас есть время, мы идём пешком.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Раз у нас есть время, мы идём пешком."
  },
  {
   "id": "21.45",
@@ -3825,7 +3825,7 @@
   "fix": "Раз у нас є час, ми йдемо пішки.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Раз у нас є час, ми йдемо пішки."
  },
  {
   "id": "21.48",
@@ -3909,7 +3909,7 @@
   "fix": "Cô ấy nói rằng thức ăn còn ấm.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Cô ấy nói rằng thức ăn còn ấm."
  },
  {
   "id": "22.21",
@@ -3993,7 +3993,7 @@
   "fix": "Anna nhắn tin rằng cô ấy sẽ đến muộn hơn.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Anna nhắn tin rằng cô ấy sẽ đến muộn hơn."
  },
  {
   "id": "22.26",
@@ -4269,7 +4269,7 @@
   "fix": "Thật tốt khi bạn hỏi.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Thật tốt khi bạn hỏi."
  },
  {
   "id": "23.14",
@@ -4281,7 +4281,7 @@
   "fix": "Tom naik taksi jika sudah larut malam.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Tom naik taksi jika sudah larut malam."
  },
  {
   "id": "23.14",
@@ -4329,7 +4329,7 @@
   "fix": "Tom bắt taxi nếu trời đã muộn.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Tom bắt taxi nếu trời đã muộn."
  },
  {
   "id": "23.18",
@@ -4341,7 +4341,7 @@
   "fix": "Dia membawa roti saat berbelanja.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Dia membawa roti saat berbelanja."
  },
  {
   "id": "23.18",
@@ -4389,7 +4389,7 @@
   "fix": "Cô ấy mang bánh mì khi đi mua sắm.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Cô ấy mang bánh mì khi đi mua sắm."
  },
  {
   "id": "23.19",
@@ -4401,7 +4401,7 @@
   "fix": "Aku mendengarkan musik saat memasak.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Aku mendengarkan musik saat memasak."
  },
  {
   "id": "23.19",
@@ -4449,7 +4449,7 @@
   "fix": "Tôi nghe nhạc khi nấu ăn.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Tôi nghe nhạc khi nấu ăn."
  },
  {
   "id": "23.20",
@@ -4461,7 +4461,7 @@
   "fix": "Kita mengangin-anginkan ruangan saat cuaca bagus.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Kita mengangin-anginkan ruangan saat cuaca bagus."
  },
  {
   "id": "23.20",
@@ -4509,7 +4509,7 @@
   "fix": "Chúng ta mở cửa thông gió khi thời tiết đẹp.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Chúng ta mở cửa thông gió khi thời tiết đẹp."
  },
  {
   "id": "23.22",
@@ -4533,7 +4533,7 @@
   "fix": "Якщо подзвонять у двері, відчини, будь ласка!",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Якщо подзвонять у двері, відчини, будь ласка!"
  },
  {
   "id": "23.23",
@@ -4641,7 +4641,7 @@
   "fix": "Jika pintunya macet, dorong perlahan ke atas!",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Jika pintunya macet, dorong perlahan ke atas!"
  },
  {
   "id": "23.50",
@@ -4653,7 +4653,7 @@
   "fix": "Jika kereta tepat waktu, kami sempat mengejar kereta sambungan.",
   "confidence": "low",
   "chunk": 5,
-  "applied": null
+  "applied": "Jika kereta tepat waktu, kami sempat mengejar kereta sambungan."
  },
  {
   "id": "24.05",
@@ -4761,7 +4761,7 @@
   "fix": "Chúng tôi chia nhau bánh mì tươi.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Chúng tôi chia nhau bánh mì tươi."
  },
  {
   "id": "25.45",
@@ -4989,7 +4989,7 @@
   "fix": "Bạn có biết người phụ nữ vừa mới lên tàu không?",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Bạn có biết người phụ nữ vừa mới lên tàu không?"
  },
  {
   "id": "27.49",
@@ -5001,7 +5001,7 @@
   "fix": "Az önce binen kadını tanıyor musunuz?",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Az önce binen kadını tanıyor musunuz?"
  },
  {
   "id": "28.01",
@@ -5277,7 +5277,7 @@
   "fix": "Susu disimpan di tempat sejuk.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Susu disimpan di tempat sejuk."
  },
  {
   "id": "28.15",
@@ -5289,7 +5289,7 @@
   "fix": "Süt serin yerde saklanıyor.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Süt serin yerde saklanıyor."
  },
  {
   "id": "28.15",
@@ -5301,7 +5301,7 @@
   "fix": "Mleko jest przechowywane w chłodnym miejscu.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Mleko jest przechowywane w chłodnym miejscu."
  },
  {
   "id": "28.20",
@@ -5385,7 +5385,7 @@
   "fix": "No corredor não se fuma.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "No corredor não se fuma."
  },
  {
   "id": "28.22",
@@ -5397,7 +5397,7 @@
   "fix": "Ở hành lang không hút thuốc.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Ở hành lang không hút thuốc."
  },
  {
   "id": "28.22",
@@ -5409,7 +5409,7 @@
   "fix": "Di lorong orang tidak merokok.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Di lorong orang tidak merokok."
  },
  {
   "id": "28.22",
@@ -5421,7 +5421,7 @@
   "fix": "Koridorda sigara içilmez.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Koridorda sigara içilmez."
  },
  {
   "id": "28.22",
@@ -5433,7 +5433,7 @@
   "fix": "Na korytarzu się nie pali.",
   "confidence": "low",
   "chunk": 6,
-  "applied": null
+  "applied": "Na korytarzu się nie pali."
  },
  {
   "id": "28.27",
@@ -5553,7 +5553,7 @@
   "fix": "Một phòng yên tĩnh sẽ thật tuyệt.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Một phòng yên tĩnh sẽ thật tuyệt."
  },
  {
   "id": "29.07",
@@ -5565,7 +5565,7 @@
   "fix": "Kamar yang tenang akan menyenangkan.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Kamar yang tenang akan menyenangkan."
  },
  {
   "id": "29.10",
@@ -5577,7 +5577,7 @@
   "fix": "Thứ Sáu cũng được không?",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Thứ Sáu cũng được không?"
  },
  {
   "id": "29.13",
@@ -5637,7 +5637,7 @@
   "fix": "Tolong, bisakah Anda menutup jendela?",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Tolong, bisakah Anda menutup jendela?"
  },
  {
   "id": "29.21",
@@ -5649,7 +5649,7 @@
   "fix": "Czy mógłbyś zamknąć okno, proszę?",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Czy mógłbyś zamknąć okno, proszę?"
  },
  {
   "id": "29.29",
@@ -5793,7 +5793,7 @@
   "fix": "Hãy chỉ cho tôi máy này hoạt động như thế nào.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Hãy chỉ cho tôi máy này hoạt động như thế nào."
  },
  {
   "id": "30.29",
@@ -5805,7 +5805,7 @@
   "fix": "Preguntamos en qué parada tenemos que cambiar de autobús.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Preguntamos en qué parada tenemos que cambiar de autobús."
  },
  {
   "id": "30.40",
@@ -5817,7 +5817,7 @@
   "fix": "Cô ấy hỏi đơn của mình đã được chấp thuận chưa.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Cô ấy hỏi đơn của mình đã được chấp thuận chưa."
  },
  {
   "id": "30.41",
@@ -5973,7 +5973,7 @@
   "fix": "Without your help, I wouldn't have carried the box.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Without your help, I wouldn't have carried the box."
  },
  {
   "id": "32.42",
@@ -5985,7 +5985,7 @@
   "fix": "Sin tu ayuda, no habría cargado la caja.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Sin tu ayuda, no habría cargado la caja."
  },
  {
   "id": "32.42",
@@ -5997,7 +5997,7 @@
   "fix": "Sem a sua ajuda, eu não teria carregado a caixa.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Sem a sua ajuda, eu não teria carregado a caixa."
  },
  {
   "id": "32.42",
@@ -6009,7 +6009,7 @@
   "fix": "Nếu không có sự giúp đỡ của bạn, tôi đã không mang chiếc hộp.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Nếu không có sự giúp đỡ của bạn, tôi đã không mang chiếc hộp."
  },
  {
   "id": "32.42",
@@ -6021,7 +6021,7 @@
   "fix": "Tanpa bantuan Anda, saya tidak akan membawa kotak itu.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Tanpa bantuan Anda, saya tidak akan membawa kotak itu."
  },
  {
   "id": "32.42",
@@ -6033,7 +6033,7 @@
   "fix": "Yardımınız olmasaydı, kutuyu taşımazdım.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Yardımınız olmasaydı, kutuyu taşımazdım."
  },
  {
   "id": "32.42",
@@ -6045,7 +6045,7 @@
   "fix": "Bez Twojej pomocy nie zaniósłbym pudełka.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Bez Twojej pomocy nie zaniósłbym pudełka."
  },
  {
   "id": "32.45",
@@ -6057,7 +6057,7 @@
   "fix": "Nếu tôi đã lưu số điện thoại, bây giờ tôi có thể gọi điện.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Nếu tôi đã lưu số điện thoại, bây giờ tôi có thể gọi điện."
  },
  {
   "id": "32.47",
@@ -6129,6 +6129,6 @@
   "fix": "Tekrar seçme şansım olsaydı, bu sefer direkt trene binerdim.",
   "confidence": "low",
   "chunk": 7,
-  "applied": null
+  "applied": "Tekrar seçme şansım olsaydı, bu sefer direkt trene binerdim."
  }
 ]

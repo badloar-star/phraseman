@@ -24,7 +24,8 @@ const LANGS = ['en', 'es', 'fr', 'de', 'it'];
 const LOG = '[U10-CLOSED]';
 // --base-head: исходник урока брать из HEAD (git show), а не из рабочей копии — повторный запуск после смены правил замены
 // даёт тот же результат, что первый, и не требует отката файлов
-const BASE_HEAD = process.argv.includes('--base-head');
+// --base-rev <ревизия>: то же от указанного коммита (пересборка всей части 3 от состояния до неё после смены правил)
+const BASE_REV = process.argv.includes('--base-rev') ? process.argv[process.argv.indexOf('--base-rev') + 1] : process.argv.includes('--base-head') ? 'HEAD' : null;
 const noAccent = (t) => t.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const RU_VY = /(^|[^а-яё])(вы|вас|вам|вами|ваш[а-яё]*)(?![а-яё])/i;
 const RU_OTHER = /(^|[^а-яё])(я|мы|ты|он|она|оно|они|меня|мне|нас|нам|тебя|тебе|его|её|ее|им|ей|ему|их|ним|ней|ними)(?![а-яё])/i;
@@ -287,32 +288,64 @@ function enAuxFits(lower, i, c, d) {
 }
 const CONJ_GROUPS = {
   en: [set('and but or so'), set('because if when while although unless')],
-  es: [set('y e o u pero sino ni pues'), set('porque aunque si cuando mientras')],
+  es: [set('y e o u pero sino ni'), set('porque pues aunque si cuando mientras')],
   fr: [set('et ou mais donc car'), set('si quand lorsque puisque comme')],
   de: [set('und oder aber denn sondern'), set('weil wenn als obwohl während bevor nachdem damit'), set('dass ob')],
   it: [set('e o ma però né'), set('perché se quando mentre come')],
 };
 // союзы, которым нужно целое предложение справа: между двумя существительными («du pain et du beurre») они не встают
-const CLAUSE_ONLY = { en: set('but so'), es: set('pero sino pues'), fr: set('mais car donc'), de: set('aber denn sondern'), it: set('ma però') };
+const CLAUSE_ONLY = { en: set('but so'), es: set('pero sino'), fr: set('mais car donc'), de: set('aber denn sondern'), it: set('ma però') };
+// союзы, которым нужно отрицание слева («no… sino», «non… né»): без него неверны в любой позиции
+const NEEDS_NEGATION = { en: set(''), es: set('sino ni'), fr: set(''), de: set('sondern'), it: set('né') };
+const NEGATION = set('no not non ne n’ nicht kein keine keinen nunca nadie nada never');
 // условное наклонение в главной части («je viendrais», «iría», «verrei») требует именно «если» — «когда» туда не встаёт
 const CONDITIONAL = { es: /ría(s|mos|is|n)?$/u, fr: /r(ais|ait|ions|iez|aient)$/u, it: /(rei|resti|rebbe|remmo|reste|rebbero)$/u };
 const IF_WORD = { es: 'si', fr: 'si', it: 'se' };
 function conjFits(lang, c, d, lower, i, target) {
   const next = lower[i + 1] || '';
+  const [coord, subord] = CONJ_GROUPS[lang];
   // вопросительное слово в начале вопроса («Quando arrivi?», «Perché è in ritardo?», «When do we start?») — не союз
   if (i === 0 && String(target || '').trim().endsWith('?')) return 'nofit';
-  // «ни» требует отрицания; немецкое «als» после сравнительной степени («schneller als ich») — не временной союз
-  if (['ni', 'né'].includes(d) && !['ni', 'né'].includes(c)) return 'nofit';
+  if (i === 0 && (next.includes('-') || (lang === 'fr' && next === 'est-ce'))) return 'nofit';
+  // «sino», «ni», «né», «sondern» требуют отрицания слева; без него неверны
+  if (NEEDS_NEGATION[lang].has(d) && !NEEDS_NEGATION[lang].has(c)) return lower.slice(0, i).some((w) => NEGATION.has(w)) ? 'skip' : 'nofit';
+  // немецкое «als» после сравнительной степени («schneller als ich») — не временной союз; als/wenn для однократного прошлого — ошибка
   if (lang === 'de' && c === 'als' && /er$/u.test(lower[i - 1] || '')) return 'nofit';
-  if (CLAUSE_ONLY[lang].has(d) && !CLAUSE_ONLY[lang].has(c) && classOf(lang, next) !== 'subj') return 'nofit';
-  if (IF_WORD[lang] === c && lower.some((w) => CONDITIONAL[lang].test(w))) return 'nofit';
-  // вопросительное «когда» в начале вопроса с инверсией («Quand arrives-tu ?», «Cuándo…») — не союз
-  if (i === 0 && (next.includes('-') || lang === 'fr' && next === 'est-ce')) return 'nofit';
-  // зачем (координатор): als/wenn для однократного прошлого — грамматическая ошибка, её оставляем
   if (lang === 'de' && set('als wenn').has(c) && set('als wenn').has(d)) return 'nofit';
-  // испанские y/e и o/u зависят от следующего звука — это тоже грамматическая ошибка
-  if (lang === 'es' && (set('y e').has(c) && set('y e').has(d) || set('o u').has(c) && set('o u').has(d))) return 'nofit';
-  return CONJ_GROUPS[lang].some((g) => g.has(c) && g.has(d)) ? 'fit' : 'skip';
+  // испанские y/e и o/u зависят от следующего звука: «e» — только перед i-/hi-, «u» — только перед o-/ho-
+  if (lang === 'es' && ['y', 'e', 'o', 'u'].includes(d)) {
+    const beforeI = /^h?i/u.test(next) && !/^hie/u.test(next); const beforeO = /^h?o/u.test(next);
+    if ((d === 'e' && !beforeI) || (d === 'y' && beforeI) || (d === 'u' && !beforeO) || (d === 'o' && beforeO)) return 'nofit';
+  }
+  // условное наклонение в главной части требует именно «если»
+  if (IF_WORD[lang] === c && lower.some((w) => CONDITIONAL[lang].test(w))) return 'nofit';
+  const cCoord = coord.has(c); const dCoord = coord.has(d); const cSub = subord.has(c); const dSub = subord.has(d);
+  if (cSub && dSub) return 'fit';
+  if (cSub && dCoord) {
+    // на месте подчинительного союза: в начале фразы сочинительный союз неверен («[But] it rains we will stay inside»);
+    // в немецком придаточное стоит с глаголом в конце, и сочинительный союз там неверен («Ich bleibe hier [aber] ich müde bin»);
+    // в остальных языках МЕЖДУ двумя предложениями он грамматичен («Leía el mensaje [pero] sonó el móvil») — это и есть нарушение
+    if (i === 0 || lang === 'de') return 'nofit';
+    return 'fit';
+  }
+  if (cCoord && dSub) {
+    // на месте сочинительного: подчинительный союз встаёт, только если справа целое предложение; в немецком он требует
+    // глагола в конце, а после сочинительного союза порядок прямой — неверен
+    if (lang === 'de') return 'nofit';
+    return classOf(lang, next) === 'subj' ? 'fit' : 'skip';
+  }
+  if (cCoord && dCoord) {
+    // союз, которому нужно целое предложение (but, pero, mais, ma), между двумя именными группами неверен: доказуемо это только
+    // когда справа короткий хвост без глагола («du pain et [mais] du beurre», «la pared y [pero] la puerta»)
+    if (CLAUSE_ONLY[lang].has(d) && !CLAUSE_ONLY[lang].has(c)) {
+      const tail = lower.length - 1 - i;
+      const nextClass = classOf(lang, next);
+      if (tail <= 2 && (tail === 1 || nextClass === 'det' || nextClass === 'prep')) return 'nofit';
+      return nextClass === 'subj' ? 'fit' : 'skip';
+    }
+    return 'fit';
+  }
+  return 'skip';
 }
 
 /** Вердикт для соблазна d0 в плитке i: fit (встаёт грамматически) | nofit (правило отсекает) | skip (правило не решает — не трогаем). */
@@ -437,7 +470,7 @@ function scan(lang, mode) {
   for (let n = 1; n <= 32; n += 1) {
     const file = path.join(COURSES, lang, lessonName(n));
     const current = fs.readFileSync(file, 'utf8');
-    const text = BASE_HEAD ? execFileSync('git', ['show', `HEAD:modules/classic-courses/${lang}/${lessonName(n)}`], { cwd: ROOT, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 }) : current;
+    const text = BASE_REV ? execFileSync('git', ['show', `${BASE_REV}:modules/classic-courses/${lang}/${lessonName(n)}`], { cwd: ROOT, encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 }) : current;
     const data = JSON.parse(text);
     if (JSON.stringify(data) + '\n' !== text) throw new Error(`${LOG} ${lang}/${lessonName(n)}: файл не в каноническом виде сборщика — не трогаю`);
     for (const p of data.phrases) {

@@ -53,10 +53,10 @@
 | en | det | your → ~~her~~ | 57 | every×6, many×26, few×10, those×10, several×2, each×2, that×1 | [Her] keys are here — Ваши ключи здесь. |
 | en | det | your → ~~his~~ | 57 | each×2, few×14, those×17, that×3, many×15, every×3, several×2, another×1 | [His] keys are here — Ваши ключи здесь. |
 | en | det | your → ~~their~~ | 57 | another×7, several×44, many×2, few×2, much×1, each×1 | [Their] keys are here — Ваши ключи здесь. |
-| en | conj | if → ~~when~~ | 57 | the*×19, a*×20, so×16, my*×2 | [When] it rains we will stay inside — Если пойдет дождь, мы останемся внутри. |
-| en | conj | if → ~~while~~ | 57 | my*×20, your*×7, a*×15, so×7, the*×7, our*×1 | [While] it rains we will stay inside — Если пойдет дождь, мы останемся внутри. |
+| en | conj | if → ~~when~~ | 57 | so×27, your*×4, their*×1, my*×12, a*×6, the*×3, or×3, and×1 | [When] it rains we will stay inside — Если пойдет дождь, мы останемся внутри. |
+| en | conj | if → ~~while~~ | 57 | the*×11, a*×9, or×12, my*×9, your*×9, our*×3, so×3, their*×1 | [While] it rains we will stay inside — Если пойдет дождь, мы останемся внутри. |
 | en | subj | she → ~~it~~ | 55 | him×17, i×2, you×1, a*×6, my*×7, us×2, them×2, they×2, me×7, the*×9 | [It] is late — Она опаздывает. |
-| en | conj | if → ~~unless~~ | 54 | a*×12, my*×26, our*×3, your*×13 | [Unless] it rains we will stay inside — Если пойдет дождь, мы останемся внутри. |
+| en | conj | if → ~~unless~~ | 54 | or×16, a*×5, our*×11, their*×6, your*×5, the*×10, an*×1 | [Unless] it rains we will stay inside — Если пойдет дождь, мы останемся внутри. |
 | en | det | this → ~~my~~ | 52 | many×13, several×30, few×9 | Is [my] seat free — Это место свободно? |
 | en | aux | have → ~~had~~ | 51 | is×42, was×2, are×3, does×3, a*×1 | I [had] a ticket — У меня есть билет. |
 | en | subj | i → ~~it~~ | 51 | me×9, us×15, my*×1, the*×12, a*×7, him×2, them×4, they×1 | [It] can swim — Я умею плавать. |
@@ -79,6 +79,7 @@
 | en | det | our → ~~their~~ | 28 | each×2, several×15, few×1, another×10 | [Their] seats are free — Наши места свободны. |
 | en | det | our → ~~his~~ | 28 | another×2, few×10, many×5, several×1, every×4, each×6 | [His] seats are free — Наши места свободны. |
 | en | aux | am → ~~was~~ | 27 | were×12, has×15 | I [was] ready — Я готов. |
+| en | conj | if → ~~but~~ | 26 | a*×15, my*×4, our*×1, your*×3, the*×3 | I will text you [but] the forecast changes — Я напишу тебе, если изменится прогноз погоды. |
 | en | subj | it → ~~you~~ | 25 | the*×6, us×2, me×4, i×9, a*×3, them×1 | Do I collect [you] here — Мне забирать это здесь? |
 | en | det | her → ~~my~~ | 24 | these×20, this×3, those×1 | Is [my] phone off — У нее выключен телефон? |
 | en | det | her → ~~your~~ | 24 | those×20, that×3, many×1 | Is [your] phone off — У нее выключен телефон? |
@@ -86,6 +87,7 @@
 | en | det | her → ~~their~~ | 24 | several×20, another×3, few×1 | Is [their] phone off — У нее выключен телефон? |
 | en | det | this → ~~your~~ | 23 | few×13, several×10 | Is [your] seat free — Это место свободно? |
 | en | det | her → ~~his~~ | 23 | many×19, every×3, these×1 | Is [his] phone off — У нее выключен телефон? |
+| en | conj | if → ~~and~~ | 21 | their*×10, my*×1, your*×4, our*×6 | I will text you [and] the forecast changes — Я напишу тебе, если изменится прогноз погоды. |
 | en | subj | it → ~~she~~ | 20 | him×9, i×7, us×4 | [She] is open — Открыто. |
 | en | det | his → ~~your~~ | 20 | those×15, that×4, these×1 | He checks [your] phone — Он проверяет свой телефон. |
 | en | det | his → ~~our~~ | 20 | many×9, few×6, every×2, each×2, those×1 | He checks [our] phone — Он проверяет свой телефон. |
@@ -96,14 +98,16 @@
 | en | subj | it → ~~he~~ | 18 | they×3, him×8, i×3, me×2, the*×1, a*×1 | [He] is open — Открыто. |
 | en | aux | would → ~~must~~ | 18 | does×5, has×6, a*×2, have×1, do×2, were×1, my*×1 | If I had a ladder I [must] check the roof — Если бы у меня была лестница, я бы проверил крышу. |
 | en | aux | would → ~~might~~ | 18 | has×5, was×3, does×1, the*×1, have×3, your*×2, a*×2, am×1 | If I had a ladder I [might] check the roof — Если бы у меня была лестница, я бы проверил крышу. |
-| en | conj | when → ~~if~~ | 17 | so×11, the*×4, a*×2 | I was reading [if] the phone rang — Я читала, когда зазвонил телефон. |
-| en | conj | when → ~~while~~ | 17 | a*×14, the*×1, my*×2 | I was reading [while] the phone rang — Я читала, когда зазвонил телефон. |
-| en | conj | when → ~~unless~~ | 17 | my*×12, a*×1, your*×4 | I was reading [unless] the phone rang — Я читала, когда зазвонил телефон. |
+| en | conj | when → ~~if~~ | 17 | a*×11, the*×5, so×1 | I was reading [if] the phone rang — Я читала, когда зазвонил телефон. |
+| en | conj | when → ~~while~~ | 17 | your*×8, my*×5, our*×3, or×1 | I was reading [while] the phone rang — Я читала, когда зазвонил телефон. |
+| en | conj | when → ~~unless~~ | 17 | our*×9, your*×4, their*×3, a*×1 | I was reading [unless] the phone rang — Я читала, когда зазвонил телефон. |
 | en | aux | would → ~~should~~ | 17 | were×7, does×6, has×1, do×1, a*×1, my*×1 | If I had a ladder I [should] check the roof — Если бы у меня была лестница, я бы проверил крышу. |
 | en | aux | did → ~~does~~ | 16 | have×8, were×8 | [Does] she check the address — Она проверила адрес? |
+| en | conj | when → ~~but~~ | 16 | my*×8, your*×4, a*×4 | I was reading [but] the phone rang — Я читала, когда зазвонил телефон. |
 | en | det | a → ~~every~~ | 15 | several×14, those×1 | Does this train have [every] quiet carriage — В этом поезде есть тихий вагон? |
 | en | det | this → ~~his~~ | 14 | several×13, a×1 | Is [his] seat free — Это место свободно? |
 | en | aux | will → ~~might~~ | 14 | my*×1, am×7, your*×2, does×2, was×1, were×1 | There [might] be a small fee for delivery — За доставку будет небольшая плата. |
+| en | conj | when → ~~and~~ | 14 | their*×8, our*×4, an*×1, my*×1 | I was reading [and] the phone rang — Я читала, когда зазвонил телефон. |
 | en | det | an → ~~this~~ | 13 | many×13 | We have [this] appointment — У нас запись на приём. |
 | en | det | an → ~~that~~ | 13 | few×13 | We have [that] appointment — У нас запись на приём. |
 | en | det | an → ~~each~~ | 12 | several×12 | We have [each] appointment — У нас запись на приём. |
@@ -119,16 +123,17 @@
 | en | aux | should → ~~would~~ | 9 | was×5, were×3, are×1 | You [would] keep the receipt — Вам следует сохранить чек. |
 | en | aux | had → ~~have~~ | 9 | is×7, am×1, are×1 | I [have] an egg for breakfast — Я съел яйцо на завтрак. |
 | en | aux | was → ~~am~~ | 9 | does×5, were×4 | I [am] reading — Я читала. |
-| en | conj | while → ~~if~~ | 9 | the*×3, a*×5, my*×1 | I dropped my keys [if] I was running — Я уронил ключи, когда бежал. |
-| en | conj | while → ~~unless~~ | 9 | a*×2, my*×6, your*×1 | I dropped my keys [unless] I was running — Я уронил ключи, когда бежал. |
-| en | conj | while → ~~because~~ | 9 | your*×7, our*×1, my*×1 | I dropped my keys [because] I was running — Я уронил ключи, когда бежал. |
-| en | conj | if → ~~because~~ | 9 | a*×2, your*×2, the*×2, my*×3 | She will call [because] the price changes — Она позвонит, если изменится цена. |
+| en | conj | while → ~~if~~ | 9 | the*×2, a*×4, my*×1, or×2 | I dropped my keys [if] I was running — Я уронил ключи, когда бежал. |
+| en | conj | while → ~~unless~~ | 9 | a*×1, your*×2, my*×4, so×2 | I dropped my keys [unless] I was running — Я уронил ключи, когда бежал. |
+| en | conj | while → ~~because~~ | 9 | our*×6, their*×1, a*×1, the*×1 | I dropped my keys [because] I was running — Я уронил ключи, когда бежал. |
+| en | conj | if → ~~because~~ | 9 | our*×5, the*×1, your*×1, so×1, my*×1 | She will call [because] the price changes — Она позвонит, если изменится цена. |
 | en | aux | could → ~~might~~ | 9 | do×2, has×6, my*×1 | If she lived nearby she [might] walk to work — Если бы она жила неподалеку, она могла бы дойти до работы пешком. |
 | en | det | this → ~~no~~ | 8 | many×6, an×2 | [No] machine does not accept coins — Этот автомат не принимает монеты. |
 | en | det | that → ~~the~~ | 8 | an×7, many×1 | [The] bus does not stop near my flat — Этот автобус не останавливается рядом с моей квартирой. |
 | en | det | that → ~~your~~ | 8 | several×2, both×6 | [Your] bus does not stop near my flat — Этот автобус не останавливается рядом с моей квартирой. |
 | en | det | that → ~~my~~ | 8 | several×6, both×1, few×1 | Do you hear [my] noise — Вы слышите этот шум? |
 | en | subj | it → ~~they~~ | 7 | a*×2, my*×2, them×2, us×1 | Will [they] rain tomorrow — Завтра будет дождь? |
+| en | conj | while → ~~and~~ | 7 | your*×5, my*×1, our*×1 | I dropped my keys [and] I was running — Я уронил ключи, когда бежал. |
 | en | det | these → ~~my~~ | 6 | a×3, another×3 | Are [my] seats free — Эти места свободны? |
 | en | det | their → ~~my~~ | 6 | this×5, these×1 | They packed [my] bags — Они собрали свои чемоданы. |
 | en | det | their → ~~your~~ | 6 | that×5, those×1 | They packed [your] bags — Они собрали свои чемоданы. |
@@ -141,8 +146,8 @@
 | en | aux | can → ~~might~~ | 5 | is×2, am×1, the*×1, has×1 | We [might] wait — Мы можем подождать. |
 | en | aux | must → ~~will~~ | 5 | does×2, am×1, a*×2 | You [will] wear a helmet — Вы должны надеть шлем. |
 | en | aux | must → ~~could~~ | 5 | has×1, was×2, our*×1, their*×1 | You [could] wear a helmet — Вы должны надеть шлем. |
-| en | conj | but → ~~or~~ | 5 | the*×4, a*×1 | I have my ticket [or] she needs hers — У меня есть свой билет, а ей нужен свой. |
-| en | conj | but → ~~and~~ | 5 | the*×5 | I know my postcode [and] not yours — Я знаю свой почтовый индекс, но не ваш. |
+| en | conj | but → ~~or~~ | 5 | your*×2, the*×3 | I have my ticket [or] she needs hers — У меня есть свой билет, а ей нужен свой. |
+| en | conj | but → ~~and~~ | 5 | the*×4, our*×1 | I know my postcode [and] not yours — Я знаю свой почтовый индекс, но не ваш. |
 | en | det | these → ~~the~~ | 4 | an×4 | [The] headphones do not work — Эти наушники не работают. |
 | en | det | every → ~~a~~ | 4 | many×4 | I work [a] Monday — Я работаю каждый понедельник. |
 | en | det | every → ~~this~~ | 4 | few×4 | I work [this] Monday — Я работаю каждый понедельник. |
@@ -153,6 +158,10 @@
 | en | det | no → ~~these~~ | 4 | every×3, another×1 | There are [these] buses tonight — Сегодня вечером автобусов нет. |
 | en | det | no → ~~those~~ | 4 | another×3, much×1 | There are [those] buses tonight — Сегодня вечером автобусов нет. |
 | en | aux | must → ~~can~~ | 4 | am×2, my*×2 | You [can] wear a helmet — Вы должны надеть шлем. |
+| en | conj | but → ~~if~~ | 4 | the*×3, a*×1 | I have my ticket [if] she needs hers — У меня есть свой билет, а ей нужен свой. |
+| en | conj | but → ~~when~~ | 4 | a*×3, my*×1 | I have my ticket [when] she needs hers — У меня есть свой билет, а ей нужен свой. |
+| en | conj | but → ~~because~~ | 4 | our*×1, their*×2, my*×1 | I have my ticket [because] she needs hers — У меня есть свой билет, а ей нужен свой. |
+| en | conj | but → ~~unless~~ | 4 | their*×1, your*×2, our*×1 | I have my ticket [unless] she needs hers — У меня есть свой билет, а ей нужен свой. |
 | en | det | these → ~~your~~ | 3 | an×3 | Are [your] seats free — Эти места свободны? |
 | en | det | these → ~~his~~ | 3 | another×3 | Are [his] seats free — Эти места свободны? |
 | en | det | that → ~~his~~ | 3 | both×2, a×1 | [His] bus does not stop near my flat — Этот автобус не останавливается рядом с моей квартирой. |
@@ -173,11 +182,14 @@
 | en | det | all → ~~this~~ | 2 | many×1, few×1 | The battery will not last [this] day — Батарея не продержится весь день. |
 | en | det | my → ~~the~~ | 2 | several×2 | [The] neighbour is fixing his bike — Мой сосед чинит свой велосипед. |
 | en | det | a → ~~any~~ | 2 | few×1, those×1 | He is taking [any] less crowded bus this week — На этой неделе он едет на менее переполненном автобусе. |
-| en | conj | so → ~~but~~ | 2 | the*×1, a*×1 | I have lost my pass [but] I cannot get in — Я потерял свой пропуск, поэтому не могу войти. |
-| en | conj | because → ~~if~~ | 2 | a*×1, so×1 | I missed the announcement [if] I was wearing headphones — Я пропустил объявление, потому что был в наушниках. |
-| en | conj | because → ~~when~~ | 2 | my*×2 | I missed the announcement [when] I was wearing headphones — Я пропустил объявление, потому что был в наушниках. |
-| en | conj | because → ~~while~~ | 2 | your*×1, a*×1 | I missed the announcement [while] I was wearing headphones — Я пропустил объявление, потому что был в наушниках. |
-| en | conj | because → ~~unless~~ | 2 | our*×1, your*×1 | I missed the announcement [unless] I was wearing headphones — Я пропустил объявление, потому что был в наушниках. |
+| en | conj | so → ~~but~~ | 2 | the*×1, your*×1 | I have lost my pass [but] I cannot get in — Я потерял свой пропуск, поэтому не могу войти. |
+| en | conj | so → ~~if~~ | 2 | a*×2 | I have lost my pass [if] I cannot get in — Я потерял свой пропуск, поэтому не могу войти. |
+| en | conj | so → ~~when~~ | 2 | their*×1, my*×1 | I have lost my pass [when] I cannot get in — Я потерял свой пропуск, поэтому не могу войти. |
+| en | conj | because → ~~if~~ | 2 | a*×2 | I missed the announcement [if] I was wearing headphones — Я пропустил объявление, потому что был в наушниках. |
+| en | conj | because → ~~but~~ | 2 | my*×1, your*×1 | I missed the announcement [but] I was wearing headphones — Я пропустил объявление, потому что был в наушниках. |
+| en | conj | because → ~~when~~ | 2 | your*×1, our*×1 | I missed the announcement [when] I was wearing headphones — Я пропустил объявление, потому что был в наушниках. |
+| en | conj | because → ~~while~~ | 2 | our*×1, my*×1 | I missed the announcement [while] I was wearing headphones — Я пропустил объявление, потому что был в наушниках. |
+| en | conj | because → ~~unless~~ | 2 | their*×2 | I missed the announcement [unless] I was wearing headphones — Я пропустил объявление, потому что был в наушниках. |
 | en | det | some → ~~each~~ | 2 | many×1, several×1 | She poured herself [each] water — Она налила себе воды. |
 | en | det | any → ~~each~~ | 1 | several×1 | Does he have [each] change — У него есть сдача? |
 | en | det | a → ~~my~~ | 1 | several×1 | Is there [my] cash machine here — Есть ли здесь банкомат? |
@@ -197,28 +209,34 @@
 | en | det | an → ~~every~~ | 1 | several×1 | I need [every] envelope — Мне нужен конверт. |
 | en | det | these → ~~no~~ | 1 | another×1 | [No] shoes are not made of leather — Эти туфли сделаны не из кожи. |
 | en | aux | must → ~~might~~ | 1 | our*×1 | The back door [might] be kept clear — Задняя дверь должна оставаться свободной. |
-| en | conj | so → ~~and~~ | 1 | a*×1 | I have lost my pass [and] I cannot get in — Я потерял свой пропуск, поэтому не могу войти. |
+| en | conj | so → ~~because~~ | 1 | your*×1 | I have lost my pass [because] I cannot get in — Я потерял свой пропуск, поэтому не могу войти. |
+| en | conj | so → ~~and~~ | 1 | our*×1 | I have lost my pass [and] I cannot get in — Я потерял свой пропуск, поэтому не могу войти. |
+| en | conj | so → ~~while~~ | 1 | our*×1 | We have booked the room [while] you can stop looking — Мы забронировали номер, так что можете прекратить поиски. |
+| en | conj | so → ~~unless~~ | 1 | their*×1 | We have booked the room [unless] you can stop looking — Мы забронировали номер, так что можете прекратить поиски. |
 | en | det | all → ~~the~~ | 1 | those×1 | They were travelling [the] afternoon — Они ехали всю вторую половину дня. |
 | en | det | all → ~~an~~ | 1 | these×1 | They were travelling [an] afternoon — Они ехали всю вторую половину дня. |
 | en | det | that → ~~any~~ | 1 | few×1 | I was wearing a waterproof jacket [any] day — В тот день на мне была водонепроницаемая куртка. |
+| en | conj | when → ~~or~~ | 1 | their*×1 | We were waiting [or] the taxi arrived — Мы ждали, и тут приехало такси. |
 | en | det | the → ~~his~~ | 1 | many×1 | I would take [his] job if the hours were better — Я бы согласился на эту работу, если бы график был лучше. |
 | en | det | the → ~~some~~ | 1 | few×1 | We told the manager [some] lift did not work — Мы сказали менеджеру, что лифт не работал. |
 | en | aux | might → ~~will~~ | 1 | am×1 | They said they [will] be late — Они сказали, что могут опоздать. |
 | en | aux | might → ~~would~~ | 1 | is×1 | They said they [would] be late — Они сказали, что могут опоздать. |
 | en | aux | might → ~~must~~ | 1 | was×1 | They said they [must] be late — Они сказали, что могут опоздать. |
 | en | subj | it → ~~i~~ | 1 | him×1 | [I] took me a week to get used to the noise — Мне потребовалась неделя, чтобы привыкнуть к шуму. |
-| en | conj | but → ~~so~~ | 1 | the*×1 | They made him pay [so] they let us go — Его заставили заплатить, а нам разрешили уйти. |
-| en | conj | unless → ~~if~~ | 1 | my*×1 | [If] you have a pass use the main entrance — Если у вас нет пропуска, воспользуйтесь главным входом. |
-| en | conj | unless → ~~while~~ | 1 | your*×1 | [While] you have a pass use the main entrance — Если у вас нет пропуска, воспользуйтесь главным входом. |
-| en | conj | unless → ~~when~~ | 1 | our*×1 | [When] you have a pass use the main entrance — Если у вас нет пропуска, воспользуйтесь главным входом. |
+| en | conj | but → ~~so~~ | 1 | our*×1 | They made him pay [so] they let us go — Его заставили заплатить, а нам разрешили уйти. |
+| en | conj | when → ~~so~~ | 1 | a*×1 | I was checking in [so] my phone rang — Я регистрировался, когда зазвонил мой телефон. |
+| en | conj | unless → ~~if~~ | 1 | or×1 | [If] you have a pass use the main entrance — Если у вас нет пропуска, воспользуйтесь главным входом. |
+| en | conj | unless → ~~while~~ | 1 | so×1 | [While] you have a pass use the main entrance — Если у вас нет пропуска, воспользуйтесь главным входом. |
+| en | conj | unless → ~~when~~ | 1 | my*×1 | [When] you have a pass use the main entrance — Если у вас нет пропуска, воспользуйтесь главным входом. |
 | en | det | each → ~~every~~ | 1 | several×1 | We helped [every] other carry the suitcases — Мы помогли друг другу донести чемоданы. |
 | en | aux | were → ~~is~~ | 1 | am×1 | I would take the train if it [is] cheaper — Я бы поехал на поезде, если бы это было дешевле. |
 | en | aux | had → ~~has~~ | 1 | am×1 | If she [has] an extra tyre she would lend it to us — Если бы у нее была лишняя шина, она бы одолжила ее нам. |
-| es | conj | cuando → ~~porque~~ | 79 | sino×14, pues×65 | Leía el mensaje [porque] sonó el móvil — Я читал сообщение, когда зазвонил телефон. |
-| es | conj | cuando → ~~si~~ | 79 | pues×14, sino×65 | Leía el mensaje [si] sonó el móvil — Я читал сообщение, когда зазвонил телефон. |
+| es | conj | cuando → ~~porque~~ | 79 | sino×13, u×21, e×27, ni×1, y×17 | Leía el mensaje [porque] sonó el móvil — Я читал сообщение, когда зазвонил телефон. |
+| es | conj | cuando → ~~si~~ | 79 | e×17, sino×59, u×2, y×1 | Leía el mensaje [si] sonó el móvil — Я читал сообщение, когда зазвонил телефон. |
+| es | conj | cuando → ~~pero~~ | 61 | u×37, e×17, sino×7 | Leía el mensaje [pero] sonó el móvil — Я читал сообщение, когда зазвонил телефон. |
 | es | det | la → ~~esta~~ | 58 | lo×22, el×5, los×20, las×7, unos×3, un×1 | No estás en [esta] cocina — Ты не на кухне. |
 | es | det | la → ~~cada~~ | 57 | los×9, lo×29, unos×4, las×8, el×5, ese×1, estos×1 | Luis está en [cada] cocina — Луис на кухне. |
-| es | conj | cuando → ~~aunque~~ | 41 | un*×39, sino×1, ni×1 | Leía el mensaje [aunque] sonó el móvil — Я читал сообщение, когда зазвонил телефон. |
+| es | conj | cuando → ~~aunque~~ | 41 | un*×39, sino×1, u×1 | Leía el mensaje [aunque] sonó el móvil — Я читал сообщение, когда зазвонил телефон. |
 | es | det | el → ~~cada~~ | 40 | la×7, las×5, los×7, esta×18, unos×3 | [Cada] móvil no está en el bolsillo — Телефон не в кармане. |
 | es | det | una → ~~mi~~ | 40 | las×13, los×7, un×5, mis×14, el×1 | Hay [mi] llave aquí — Здесь есть ключ. |
 | es | det | los → ~~mis~~ | 35 | una×3, la×9, mi×6, las×16, esta×1 | [Mis] libros están allí — Книги вон там. |
@@ -231,8 +249,8 @@
 | es | det | el → ~~ese~~ | 22 | la×4, las×4, esta×6, unos×3, los×5 | [Ese] coche está cerca — Машина рядом. |
 | es | det | tu → ~~su~~ | 22 | la×7, las×7, nuestro×4, una×4 | [Su] libro está aquí — Твоя книга здесь. |
 | es | det | tu → ~~mi~~ | 20 | una×10, nuestro×3, las×5, la×2 | [Mi] libro está aquí — Твоя книга здесь. |
-| es | conj | mientras → ~~si~~ | 20 | sino×15, pues×5 | [Si] leía el mensaje se abrió la puerta — Пока я читал сообщение, открылась дверь. |
-| es | conj | mientras → ~~porque~~ | 20 | pues×15, sino×5 | [Porque] leía el mensaje se abrió la puerta — Пока я читал сообщение, открылась дверь. |
+| es | conj | mientras → ~~si~~ | 20 | sino×15, y×5 | [Si] leía el mensaje se abrió la puerta — Пока я читал сообщение, открылась дверь. |
+| es | conj | mientras → ~~porque~~ | 20 | y×15, sino×5 | [Porque] leía el mensaje se abrió la puerta — Пока я читал сообщение, открылась дверь. |
 | es | det | los → ~~sus~~ | 18 | la×3, mi×4, una×4, las×7 | [Sus] libros están en casa — Книги дома. |
 | es | det | las → ~~sus~~ | 12 | tu×3, los×9 | [Sus] llaves están en la mesa — Ключи на столе. |
 | es | det | un → ~~cada~~ | 12 | unos×9, una×1, unas×1, la×1 | Ana escribe [cada] mensaje — Ана пишет сообщение. |
@@ -264,14 +282,16 @@
 | es | det | esta → ~~tu~~ | 3 | el×2, un×1 | Os gusta [tu] canción — Вам нравится эта песня? |
 | es | det | mi → ~~una~~ | 2 | vuestro×2 | Su libro está en [una] mochila — Её книга в моём рюкзаке. |
 | es | det | una → ~~esa~~ | 2 | el×2 | Tiene usted [esa] reserva — У вас есть бронь? |
-| es | conj | porque → ~~si~~ | 2 | ni×1, un*×1 | Voy a esperar [si] estás ocupado — Я собираюсь подождать, потому что ты занят. |
-| es | conj | porque → ~~mientras~~ | 2 | sino×1, pues×1 | Voy a esperar [mientras] estás ocupado — Я собираюсь подождать, потому что ты занят. |
-| es | conj | porque → ~~cuando~~ | 2 | pues×1, sino×1 | Voy a esperar [cuando] estás ocupado — Я собираюсь подождать, потому что ты занят. |
+| es | conj | porque → ~~si~~ | 2 | ni×1, u×1 | Voy a esperar [si] estás ocupado — Я собираюсь подождать, потому что ты занят. |
+| es | conj | porque → ~~mientras~~ | 2 | sino×1, e×1 | Voy a esperar [mientras] estás ocupado — Я собираюсь подождать, потому что ты занят. |
+| es | conj | porque → ~~cuando~~ | 2 | e×1, sino×1 | Voy a esperar [cuando] estás ocupado — Я собираюсь подождать, потому что ты занят. |
+| es | conj | porque → ~~pero~~ | 2 | u×1, un*×1 | Voy a esperar [pero] estás ocupado — Я собираюсь подождать, потому что ты занят. |
 | es | det | este → ~~su~~ | 2 | sus×1, mis×1 | Me gusta [su] libro — Мне нравится эта книга. |
 | es | det | la → ~~su~~ | 2 | lo×2 | Ana [su] busca — Ана её ищет. |
 | es | det | ese → ~~un~~ | 2 | los×2 | De niño compraba fruta en [un] mercado — В детстве я покупал фрукты на том рынке. |
-| es | conj | si → ~~mientras~~ | 2 | pues×1, sino×1 | Llama a la puerta [mientras] no suena el timbre — Постучи в дверь, если звонок не работает. |
-| es | conj | si → ~~porque~~ | 2 | un*×1, pues×1 | Llama a la puerta [porque] no suena el timbre — Постучи в дверь, если звонок не работает. |
+| es | conj | si → ~~mientras~~ | 2 | e×1, sino×1 | Llama a la puerta [mientras] no suena el timbre — Постучи в дверь, если звонок не работает. |
+| es | conj | si → ~~porque~~ | 2 | u×1, e×1 | Llama a la puerta [porque] no suena el timbre — Постучи в дверь, если звонок не работает. |
+| es | conj | si → ~~pero~~ | 2 | un*×1, u×1 | Llama a la puerta [pero] no suena el timbre — Постучи в дверь, если звонок не работает. |
 | es | det | un → ~~mi~~ | 2 | una×2 | Le compraste [mi] billete — Ты купил ему билет? |
 | es | det | mis → ~~los~~ | 2 | mi×1, tu×1 | Les pedí la lista a [los] vecinos — Я попросил у соседей список. |
 | es | det | otra → ~~la~~ | 2 | las×2 | Le pedimos [la] botella al camarero — Мы попросили у официанта ещё одну бутылку. |
@@ -281,7 +301,7 @@
 | es | det | estos → ~~tus~~ | 1 | mi×1 | Me gustan [tus] libros — Мне нравятся эти книги. |
 | es | det | este → ~~mi~~ | 1 | mis×1 | A Ana le gusta [mi] hotel — Ане нравится этот отель. |
 | es | det | esta → ~~su~~ | 1 | el×1 | Nos gusta [su] foto — Нам нравится эта фотография. |
-| es | conj | mientras → ~~aunque~~ | 1 | un*×1 | [Aunque] cantaba Ana empezó a llover — Пока Ана пела, пошёл дождь. |
+| es | conj | mientras → ~~aunque~~ | 1 | e×1 | [Aunque] cantaba Ana empezó a llover — Пока Ана пела, пошёл дождь. |
 | es | det | mi → ~~el~~ | 1 | una×1 | Le compré fruta a [el] vecino — Я купил фрукты для соседа. |
 | es | conj | si → ~~aunque~~ | 1 | un*×1 | Llevaré el paraguas [aunque] empieza a llover — Я возьму зонт, если начнётся дождь. |
 | es | det | ese → ~~su~~ | 1 | unos×1 | No alquilaría [su] piso si fuera tan ruidoso — Я бы не снял ту квартиру, если бы она была такой шумной. |
@@ -293,7 +313,10 @@
 | fr | subj | je → ~~il~~ | 56 | vous×29, tu×17, nous×3, ils×4, elles×3 | [Il] travaille ici — Я здесь работаю. |
 | fr | subj | je → ~~on~~ | 50 | tu×29, vous×15, elles×2, nous×1, ils×3 | [On] travaille ici — Я здесь работаю. |
 | fr | det | une → ~~cette~~ | 45 | cet×35, des×10 | C’est [cette] carte — Это карта. |
-| fr | conj | quand → ~~si~~ | 41 | un*×19, donc×20, une*×2 | [Si] j’étais petit je dessinais des bateaux — Когда я был маленьким, я рисовал лодки. |
+| fr | conj | quand → ~~si~~ | 41 | et×6, une*×9, mon*×13, un*×6, des*×6, mes*×1 | [Si] j’étais petit je dessinais des bateaux — Когда я был маленьким, я рисовал лодки. |
+| fr | conj | quand → ~~car~~ | 36 | des*×7, un*×9, une*×11, mon*×9 | Je lisais [car] tu as appelé — Я читал, когда ты позвонил. |
+| fr | conj | quand → ~~et~~ | 35 | un*×5, des*×18, une*×6, mon*×5, mes*×1 | Je lisais [et] tu as appelé — Я читал, когда ты позвонил. |
+| fr | conj | quand → ~~mais~~ | 35 | mon*×9, une*×8, des*×4, un*×14 | Je lisais [mais] tu as appelé — Я читал, когда ты позвонил. |
 | fr | subj | je → ~~tu~~ | 27 | nous×6, ils×14, on×6, il×1 | Je voudrais savoir où [tu] dois signer — Я хотел бы узнать, где мне нужно расписаться. |
 | fr | det | le → ~~leur~~ | 26 | ces×25, des×1 | [Leur] couloir n’est pas sombre — В коридоре не темно. |
 | fr | det | ce → ~~le~~ | 25 | cet×12, ces×7, des×5, une×1 | La pharmacie est ouverte [le] soir — Аптека открыта сегодня вечером? |
@@ -305,8 +328,10 @@
 | fr | det | ce → ~~un~~ | 14 | ces×6, des×7, cet×1 | La pharmacie est ouverte [un] soir — Аптека открыта сегодня вечером? |
 | fr | det | cette → ~~la~~ | 13 | des×5, les×2, ce×5, un×1 | Comment s’appelle [la] rue — Как называется эта улица? |
 | fr | subj | tu → ~~je~~ | 13 | j’×13 | Pendant que [je] conduisais j’ai lu le message — Пока ты вёл машину, я прочитал сообщение. |
-| fr | conj | et → ~~car~~ | 13 | un*×5, une*×8 | Elle va au musée [car] nous y allons aussi — Она идёт в музей, и мы тоже. |
-| fr | conj | et → ~~mais~~ | 13 | une*×5, un*×8 | Elle va au musée [mais] nous y allons aussi — Она идёт в музей, и мы тоже. |
+| fr | conj | et → ~~quand~~ | 13 | un*×4, une*×8, mon*×1 | Elle va au musée [quand] nous y allons aussi — Она идёт в музей, и мы тоже. |
+| fr | conj | et → ~~car~~ | 13 | une*×3, mon*×5, des*×2, un*×3 | Elle va au musée [car] nous y allons aussi — Она идёт в музей, и мы тоже. |
+| fr | conj | et → ~~mais~~ | 13 | mon*×4, un*×6, une*×2, des*×1 | Elle va au musée [mais] nous y allons aussi — Она идёт в музей, и мы тоже. |
+| fr | conj | et → ~~si~~ | 13 | des*×10, mon*×3 | Elle va au musée [si] nous y allons aussi — Она идёт в музей, и мы тоже. |
 | fr | det | cette → ~~une~~ | 11 | un×1, ce×3, des×4, ces×1, le×1, les×1 | Comment s’appelle [une] rue — Как называется эта улица? |
 | fr | subj | il → ~~je~~ | 11 | tu×6, vous×5 | [Je] reste du sucre — Осталось немного сахара. |
 | fr | subj | on → ~~elle~~ | 11 | nous×5, je×3, elles×1, vous×1, ils×1 | [Elle] va passer à la banque — Мы собираемся зайти в банк. |
@@ -319,7 +344,7 @@
 | fr | det | ton → ~~votre~~ | 8 | tes×1, sa×4, nos×2, mes×1 | C’est [votre] frère — Это твой брат? |
 | fr | det | ton → ~~leur~~ | 7 | ses×4, nos×2, tes×1 | C’est [leur] frère — Это твой брат? |
 | fr | det | du → ~~le~~ | 7 | ces×2, des×3, une×1, la×1 | Il y a [le] pain — Есть хлеб. |
-| fr | conj | quand → ~~comme~~ | 7 | donc×4, mais×1, un*×2 | [Comme] j’étais petit je dessinais des bateaux — Когда я был маленьким, я рисовал лодки. |
+| fr | conj | quand → ~~comme~~ | 7 | donc×6, un*×1 | [Comme] j’étais petit je dessinais des bateaux — Когда я был маленьким, я рисовал лодки. |
 | fr | subj | vous → ~~elle~~ | 6 | j’×4, nous×1, ils×1 | Les enfants sont avec [elle] — Дети с вами? |
 | fr | det | son → ~~mon~~ | 6 | ses×1, tes×1, mes×1, vos×3 | C’est [mon] vélo — Это его велосипед. |
 | fr | det | mon → ~~son~~ | 6 | ma×2, tes×2, nos×1, ses×1 | Ce n’est pas [son] sac — Это не моя сумка. |
@@ -362,8 +387,9 @@
 | fr | conj | mais → ~~car~~ | 2 | une*×2 | Le marché est loin [car] nous y allons à pied — Рынок далеко, но мы идём туда пешком. |
 | fr | subj | vous → ~~il~~ | 2 | elles×1, j’×1 | Le médecin [il] rappellera demain — Врач перезвонит вам завтра. |
 | fr | det | les → ~~ces~~ | 1 | cette×1 | [Ces] prix sont sur la carte — Цены указаны в меню. |
-| fr | conj | si → ~~lorsque~~ | 1 | mais×1 | Pourquoi pars-tu [lorsque] tôt — Почему ты так рано уходишь? |
-| fr | conj | si → ~~puisque~~ | 1 | car×1 | Pourquoi pars-tu [puisque] tôt — Почему ты так рано уходишь? |
+| fr | conj | si → ~~donc~~ | 1 | un*×1 | Pourquoi pars-tu [donc] tôt — Почему ты так рано уходишь? |
+| fr | conj | si → ~~lorsque~~ | 1 | une*×1 | Pourquoi pars-tu [lorsque] tôt — Почему ты так рано уходишь? |
+| fr | conj | si → ~~puisque~~ | 1 | mon*×1 | Pourquoi pars-tu [puisque] tôt — Почему ты так рано уходишь? |
 | fr | det | notre → ~~son~~ | 1 | sa×1 | [Son] train est à quai — Наш поезд на платформе. |
 | fr | det | leur → ~~sa~~ | 1 | tes×1 | [Sa] chambre est libre — Их комната свободна. |
 | fr | det | leur → ~~notre~~ | 1 | ses×1 | [Notre] chambre est libre — Их комната свободна. |
@@ -374,27 +400,29 @@
 | fr | subj | elle → ~~nous~~ | 1 | j’×1 | Léa est restée chez [nous] toute la journée — Леа осталась дома на весь день. |
 | fr | subj | elle → ~~vous~~ | 1 | tu×1 | Léa est restée chez [vous] toute la journée — Леа осталась дома на весь день. |
 | fr | det | chaque → ~~leur~~ | 1 | mes×1 | Ma tante préparait la même tarte [leur] dimanche — Моя тетя пекла один и тот же пирог каждое воскресенье. |
-| fr | conj | quand → ~~puisque~~ | 1 | un*×1 | Paul allait au garage [puisque] son vélo a déraillé — Поль ехал в мастерскую, когда на его велосипеде слетела цепь. |
+| fr | conj | quand → ~~donc~~ | 1 | une*×1 | Paul allait au garage [donc] son vélo a déraillé — Поль ехал в мастерскую, когда на его велосипеде слетела цепь. |
+| fr | conj | quand → ~~puisque~~ | 1 | des*×1 | Paul allait au garage [puisque] son vélo a déraillé — Поль ехал в мастерскую, когда на его велосипеде слетела цепь. |
 | fr | det | sa → ~~notre~~ | 1 | son×1 | Il montait l’escalier quand il a lâché [notre] valise — Он поднимался по лестнице, когда уронил чемодан. |
 | fr | det | leur → ~~la~~ | 1 | nos×1 | Vous pouvez [la] laisser un message — Вы можете оставить им сообщение. |
 | fr | det | leur → ~~le~~ | 1 | nos×1 | Les infirmières y passent après [le] garde — Медсёстры заходят туда после дежурства. |
 | fr | det | notre → ~~ton~~ | 1 | nos×1 | [Ton] salon est frais et j’y dors parfois — В нашей гостиной прохладно, и я иногда там сплю. |
+| fr | conj | mais → ~~quand~~ | 1 | mon*×1 | Le marché est loin [quand] nous y allons à pied — Рынок далеко, но мы идём туда пешком. |
+| fr | conj | mais → ~~si~~ | 1 | des*×1 | Le marché est loin [si] nous y allons à pied — Рынок далеко, но мы идём туда пешком. |
 | fr | subj | vous → ~~on~~ | 1 | j’×1 | Le médecin [on] rappellera demain — Врач перезвонит вам завтра. |
 | de | subj | wir → ~~sie~~ | 140 | er×28, ein*×42, ich×24, es×21, mein*×2, du×23 | [Sie] sind hier — Мы здесь. |
-| de | conj | wenn → ~~obwohl~~ | 94 | ein*×14, als×30, aber×15, denn×17, mein*×18 | [Obwohl] es regnet bleibe ich zu Hause — Если пойдёт дождь, я останусь дома. |
-| de | conj | wenn → ~~weil~~ | 94 | mein*×15, ein*×14, denn×20, als×36, aber×9 | [Weil] es regnet bleibe ich zu Hause — Если пойдёт дождь, я останусь дома. |
-| de | conj | wenn → ~~nachdem~~ | 93 | als×28, mein*×14, ein*×18, aber×23, kein*×1, denn×9 | [Nachdem] es regnet bleibe ich zu Hause — Если пойдёт дождь, я останусь дома. |
-| de | conj | weil → ~~wenn~~ | 53 | ein*×7, kein*×15, aber×8, denn×6, sondern×8, mein*×9 | Ich bleibe hier [wenn] ich müde bin — Я останусь здесь, потому что устал. |
-| de | conj | weil → ~~obwohl~~ | 53 | mein*×12, ein*×9, sondern×7, kein*×10, aber×7, denn×8 | Ich bleibe hier [obwohl] ich müde bin — Я останусь здесь, потому что устал. |
-| de | conj | weil → ~~nachdem~~ | 53 | kein*×6, ein*×14, mein*×10, denn×8, sondern×7, aber×7, dein*×1 | Ich bleibe hier [nachdem] ich müde bin — Я останусь здесь, потому что устал. |
-| de | conj | als → ~~nachdem~~ | 49 | mein*×14, sondern×2, denn×8, kein*×3, wenn×3, aber×9, ein*×9, dein*×1 | [Nachdem] ich ankam war die Tür offen — Когда я приехал, дверь была открыта. |
-| de | conj | als → ~~obwohl~~ | 48 | kein*×9, denn×12, aber×5, mein*×6, sondern×2, ein*×11, wenn×3 | [Obwohl] ich ankam war die Tür offen — Когда я приехал, дверь была открыта. |
+| de | conj | wenn → ~~obwohl~~ | 94 | aber×30, als×30, denn×34 | [Obwohl] es regnet bleibe ich zu Hause — Если пойдёт дождь, я останусь дома. |
+| de | conj | wenn → ~~weil~~ | 94 | denn×35, aber×23, als×36 | [Weil] es regnet bleibe ich zu Hause — Если пойдёт дождь, я останусь дома. |
+| de | conj | wenn → ~~nachdem~~ | 93 | als×28, denn×24, aber×41 | [Nachdem] es regnet bleibe ich zu Hause — Если пойдёт дождь, я останусь дома. |
+| de | conj | weil → ~~wenn~~ | 53 | denn×13, sondern×24, aber×16 | Ich bleibe hier [wenn] ich müde bin — Я останусь здесь, потому что устал. |
+| de | conj | weil → ~~obwohl~~ | 53 | aber×19, denn×17, sondern×16, und×1 | Ich bleibe hier [obwohl] ich müde bin — Я останусь здесь, потому что устал. |
+| de | conj | weil → ~~nachdem~~ | 53 | sondern×13, denn×21, aber×18, und×1 | Ich bleibe hier [nachdem] ich müde bin — Я останусь здесь, потому что устал. |
+| de | conj | als → ~~nachdem~~ | 49 | denn×22, sondern×6, wenn×3, aber×18 | [Nachdem] ich ankam war die Tür offen — Когда я приехал, дверь была открыта. |
+| de | conj | als → ~~obwohl~~ | 48 | sondern×10, denn×19, aber×16, wenn×3 | [Obwohl] ich ankam war die Tür offen — Когда я приехал, дверь была открыта. |
 | de | subj | sie → ~~wir~~ | 47 | ein*×44, mein*×1, ich×2 | Brauchen [Wir] Hilfe — Вам нужна помощь? |
 | de | subj | ich → ~~er~~ | 42 | mein*×11, du×4, ein*×20, dein*×1, wir×3, kein*×3 | [Er] kann hier warten — Я могу подождать здесь. |
 | de | subj | ich → ~~sie~~ | 41 | ein*×13, mein*×20, kein*×3, du×4, wir×1 | [Sie] kann hier warten — Я могу подождать здесь. |
 | de | subj | ich → ~~es~~ | 40 | ein*×15, mein*×18, kein*×3, du×3, wir×1 | Kann [es] mit Karte zahlen — Могу я заплатить картой? |
-| de | conj | als → ~~weil~~ | 33 | ein*×9, aber×7, sondern×6, wenn×2, mein*×8, denn×1 | [Weil] ich ankam war die Tür offen — Когда я приехал, дверь была открыта. |
-| de | conj | dass → ~~ob~~ | 29 | sondern×9, ein*×20 | Ich weiß [ob] Anna hier ist — Я знаю, что Анна здесь. |
+| de | conj | als → ~~weil~~ | 33 | aber×16, sondern×6, wenn×2, denn×9 | [Weil] ich ankam war die Tür offen — Когда я приехал, дверь была открыта. |
 | de | subj | sie → ~~es~~ | 24 | ich×2, ein*×8, du×5, mein*×6, wir×3 | [Es] braucht keine Quittung — Ей не нужна квитанция. |
 | de | subj | sie → ~~er~~ | 23 | ein*×19, du×1, ich×2, mein*×1 | [Er] braucht keine Quittung — Ей не нужна квитанция. |
 | de | subj | er → ~~es~~ | 22 | ein*×14, du×3, ich×2, mein*×3 | [Es] spricht mit mir — Он разговаривает со мной. |
@@ -402,11 +430,10 @@
 | de | subj | du → ~~er~~ | 13 | wir×2, mein*×8, ein*×2, kein*×1 | Setzt [er] dich auf die Bank — Ты садишься на скамейку? |
 | de | subj | du → ~~es~~ | 11 | ein*×6, kein*×1, mein*×2, ich×2 | Setzt [es] dich auf die Bank — Ты садишься на скамейку? |
 | de | subj | du → ~~sie~~ | 11 | mein*×3, ein*×5, wir×2, kein*×1 | Setzt [sie] dich auf die Bank — Ты садишься на скамейку? |
-| de | conj | ob → ~~dass~~ | 11 | aber×5, ein*×6 | Ich möchte wissen [dass] die Miete steigt — Я хочу узнать, повысится ли арендная плата. |
 | de | det | keinen → ~~einen~~ | 10 | mein×9, meine×1 | Ich habe [einen] Schlüssel — У меня нет ключа. |
-| de | conj | nachdem → ~~obwohl~~ | 8 | ein*×1, kein*×3, aber×3, sondern×1 | [Obwohl] ich gegessen hatte ging ich spazieren — После того как я поел, я пошёл гулять. |
-| de | conj | nachdem → ~~weil~~ | 8 | mein*×2, sondern×2, dein*×1, denn×2, ein*×1 | [Weil] ich gegessen hatte ging ich spazieren — После того как я поел, я пошёл гулять. |
-| de | conj | nachdem → ~~wenn~~ | 8 | kein*×1, ein*×1, denn×2, mein*×2, aber×1, sondern×1 | [Wenn] ich gegessen hatte ging ich spazieren — После того как я поел, я пошёл гулять. |
+| de | conj | nachdem → ~~obwohl~~ | 8 | aber×4, sondern×3, denn×1 | [Obwohl] ich gegessen hatte ging ich spazieren — После того как я поел, я пошёл гулять. |
+| de | conj | nachdem → ~~weil~~ | 8 | denn×4, sondern×3, aber×1 | [Weil] ich gegessen hatte ging ich spazieren — После того как я поел, я пошёл гулять. |
+| de | conj | nachdem → ~~wenn~~ | 8 | sondern×2, aber×3, denn×3 | [Wenn] ich gegessen hatte ging ich spazieren — После того как я поел, я пошёл гулять. |
 | de | det | keinen → ~~deinen~~ | 7 | meine×6, meinem×1 | Ihr habt [deinen] Termin — У вас нет записи на приём. |
 | de | det | keinen → ~~euren~~ | 7 | meinem×6, meiner×1 | Ihr habt [euren] Termin — У вас нет записи на приём. |
 | de | conj | als → ~~während~~ | 7 | wenn×7 | Tom war am Eingang [während] der Arzt kam — Том был у входа, когда пришёл врач. |
@@ -416,7 +443,7 @@
 | de | det | seinen → ~~einen~~ | 4 | ein×2, mein×2 | Tom hat [einen] Pass — У Тома его паспорт. |
 | de | det | seinen → ~~euren~~ | 4 | mein×2, meine×2 | Tom hat [euren] Pass — У Тома его паспорт. |
 | de | det | eure → ~~unsere~~ | 4 | ihr×3, ihrem×1 | [Unsere] Freundin wartet — Ваша подруга ждёт. |
-| de | conj | und → ~~oder~~ | 4 | aber×4 | Die Post liegt zwischen der Bank [oder] dem Hotel — Почта находится между банком и гостиницей. |
+| de | conj | und → ~~oder~~ | 4 | nachdem×4 | Die Post liegt zwischen der Bank [oder] dem Hotel — Почта находится между банком и гостиницей. |
 | de | subj | es → ~~er~~ | 4 | ein*×2, mein*×1, kein*×1 | [Er] ist gut dass du fragst — Хорошо, что ты спрашиваешь. |
 | de | subj | es → ~~ich~~ | 4 | ein*×3, mein*×1 | Wäre [ich] auch am Freitag möglich — А в пятницу это тоже было бы возможно? |
 | de | subj | sie → ~~ich~~ | 4 | ein*×2, er×2 | [Ich] möchte wissen ob der Aufzug funktioniert — Она хочет знать, работает ли лифт. |
@@ -432,9 +459,9 @@
 | de | det | deinen → ~~einen~~ | 2 | mein×2 | Sag mir [einen] Namen — Скажи мне, как тебя зовут! |
 | de | det | ihren → ~~einen~~ | 2 | mein×1, euer×1 | Zeigen Sie mir bitte [Einen] Ausweis — Покажите, пожалуйста, ваше удостоверение! |
 | de | det | ein → ~~ihr~~ | 2 | einer×2 | Als Anna noch ein Kind war hatte sie [ihr] rotes Fahrrad — Когда Анна была ещё ребёнком, у неё был красный велосипед. |
-| de | conj | bevor → ~~nachdem~~ | 2 | aber×1, ein*×1 | Anna hatte den Antrag abgegeben [nachdem] ihr Ausweis ablief — Анна подала заявление до того, как истёк срок действия её удостоверения. |
-| de | conj | bevor → ~~obwohl~~ | 2 | denn×1, mein*×1 | Anna hatte den Antrag abgegeben [obwohl] ihr Ausweis ablief — Анна подала заявление до того, как истёк срок действия её удостоверения. |
-| de | conj | bevor → ~~wenn~~ | 2 | sondern×1, kein*×1 | Anna hatte den Antrag abgegeben [wenn] ihr Ausweis ablief — Анна подала заявление до того, как истёк срок действия её удостоверения. |
+| de | conj | bevor → ~~nachdem~~ | 2 | aber×2 | Anna hatte den Antrag abgegeben [nachdem] ihr Ausweis ablief — Анна подала заявление до того, как истёк срок действия её удостоверения. |
+| de | conj | bevor → ~~obwohl~~ | 2 | denn×2 | Anna hatte den Antrag abgegeben [obwohl] ihr Ausweis ablief — Анна подала заявление до того, как истёк срок действия её удостоверения. |
+| de | conj | bevor → ~~wenn~~ | 2 | sondern×2 | Anna hatte den Antrag abgegeben [wenn] ihr Ausweis ablief — Анна подала заявление до того, как истёк срок действия её удостоверения. |
 | de | det | meine → ~~unsere~~ | 1 | ein×1 | Am Morgen suche ich [unsere] Schlüssel — Утром я ищу свои ключи. |
 | de | det | ihren → ~~seinen~~ | 1 | sein×1 | Anna sucht [seinen] Schal — Анна ищет свой шарф. |
 | de | det | unseren → ~~ihren~~ | 1 | mein×1 | Wir holen [ihren] Ball — Мы забираем наш мяч. |
@@ -445,25 +472,31 @@
 | de | det | ihren → ~~unseren~~ | 1 | mein×1 | Anna hat [unseren] Namen geschrieben — Анна написала своё имя. |
 | de | det | unsere → ~~deine~~ | 1 | ihren×1 | Eure Küche ist so groß wie [deine] — Ваша кухня такая же большая, как наша. |
 | de | conj | wenn → ~~bevor~~ | 1 | denn×1 | Wir nehmen die Treppe [bevor] der Aufzug nicht fährt — Мы идём по лестнице, когда лифт не работает. |
-| de | conj | nachdem → ~~damit~~ | 1 | dein*×1 | [Damit] sie das Formular ausgefüllt hatte gab sie es ab — Заполнив бланк, она его сдала. |
-| de | conj | weil → ~~damit~~ | 1 | ein*×1 | Ich war froh [damit] ich die Adresse gespeichert hatte — Я был рад, потому что сохранил адрес. |
-| it | conj | quando → ~~perché~~ | 43 | un*×20, però×20, né×3 | Leggevo [perché] hai chiamato — Я читал, когда ты позвонил. |
-| it | conj | quando → ~~se~~ | 40 | però×20, né×20 | Leggevo [se] hai chiamato — Я читал, когда ты позвонил. |
-| it | conj | mentre → ~~se~~ | 21 | però×21 | [Se] riordinavo Lea ha trovato lo scontrino — Пока я убирался, Леа нашла чек. |
-| it | conj | mentre → ~~perché~~ | 18 | un*×8, il*×2, né×8 | [Perché] riordinavo Lea ha trovato lo scontrino — Пока я убирался, Леа нашла чек. |
+| de | conj | nachdem → ~~damit~~ | 1 | und×1 | [Damit] sie das Formular ausgefüllt hatte gab sie es ab — Заполнив бланк, она его сдала. |
+| de | conj | weil → ~~damit~~ | 1 | denn×1 | Ich war froh [damit] ich die Adresse gespeichert hatte — Я был рад, потому что сохранил адрес. |
+| it | conj | quando → ~~perché~~ | 43 | il*×15, un*×19, mio*×3, dei*×1, o×2, ma×3 | Leggevo [perché] hai chiamato — Я читал, когда ты позвонил. |
+| it | conj | quando → ~~se~~ | 40 | un*×18, né×20, però×2 | Leggevo [se] hai chiamato — Я читал, когда ты позвонил. |
+| it | conj | quando → ~~e~~ | 38 | mio*×20, il*×14, dei*×3, una*×1 | Leggevo [e] hai chiamato — Я читал, когда ты позвонил. |
+| it | conj | quando → ~~ma~~ | 38 | dei*×20, mio*×14, una*×3, mia*×1 | Leggevo [ma] hai chiamato — Я читал, когда ты позвонил. |
+| it | conj | mentre → ~~se~~ | 21 | però×10, il*×2, né×8, un*×1 | [Se] riordinavo Lea ha trovato lo scontrino — Пока я убирался, Леа нашла чек. |
+| it | conj | mentre → ~~perché~~ | 18 | o×7, mio*×3, un*×7, il*×1 | [Perché] riordinavo Lea ha trovato lo scontrino — Пока я убирался, Леа нашла чек. |
+| it | conj | mentre → ~~e~~ | 11 | dei*×3, il*×3, mio*×5 | Ho sentito un rumore [e] leggevo — Я услышал шум, когда читал. |
+| it | conj | mentre → ~~ma~~ | 11 | una*×3, mio*×3, dei*×5 | Ho sentito un rumore [ma] leggevo — Я услышал шум, когда читал. |
 | it | det | dei → ~~molti~~ | 9 | delle×1, la×8 | Questi sono [molti] vicini — Это соседи. |
 | it | det | questa → ~~nessuna~~ | 8 | miei×6, tua×2 | Come si chiama [nessuna] strada — Как называется эта улица? |
 | it | det | dei → ~~questi~~ | 8 | delle×3, molte×5 | Ci sono [questi] libri sul tavolo — На столе лежат книги. |
 | it | det | questa → ~~molta~~ | 7 | mio×5, miei×2 | [Molta] zuppa è fredda — Этот суп холодный. |
-| it | conj | perché → ~~quando~~ | 7 | però×7 | Ero stanco [quando] non avevo dormito bene — Я устал, потому что плохо спал. |
-| it | conj | perché → ~~se~~ | 7 | ma×2, né×5 | Ero stanco [se] non avevo dormito bene — Я устал, потому что плохо спал. |
-| it | conj | perché → ~~mentre~~ | 7 | né×2, un*×5 | Ero stanco [mentre] non avevo dormito bene — Я устал, потому что плохо спал. |
+| it | conj | perché → ~~quando~~ | 7 | né×7 | Ero stanco [quando] non avevo dormito bene — Я устал, потому что плохо спал. |
+| it | conj | perché → ~~se~~ | 7 | un*×7 | Ero stanco [se] non avevo dormito bene — Я устал, потому что плохо спал. |
+| it | conj | perché → ~~mentre~~ | 7 | il*×3, mio*×4 | Ero stanco [mentre] non avevo dormito bene — Я устал, потому что плохо спал. |
+| it | conj | perché → ~~e~~ | 7 | mio*×3, dei*×4 | Ero stanco [e] non avevo dormito bene — Я устал, потому что плохо спал. |
+| it | conj | perché → ~~ma~~ | 5 | dei*×1, una*×4 | Era felice [ma] aveva avuto successo — Она была счастлива, потому что ей это удалось. |
 | it | det | delle → ~~molte~~ | 4 | la×1, il×3 | Queste sono [molte] foto — Это фотографии. |
 | it | det | delle → ~~queste~~ | 4 | la×4 | Nel cassetto ci sono [queste] pile — В ящике лежат батарейки. |
 | it | det | mio → ~~suo~~ | 3 | miei×1, suoi×1, mie×1 | Questo è [suo] fratello — Это мой брат. |
 | it | det | queste → ~~molte~~ | 3 | la×2, tue×1 | Quanto costano [molte] scarpe — Сколько стоят эти туфли? |
 | it | det | lo → ~~un~~ | 3 | una×2, i×1 | Il fascicolo [un] porto io in ufficio — Папку с документами я сам отнесу в офис. |
-| it | conj | quando → ~~come~~ | 3 | ma×3 | [Come] siamo arrivati il film era già iniziato — Когда мы приехали, фильм уже начался. |
+| it | conj | quando → ~~come~~ | 3 | e×3 | [Come] siamo arrivati il film era già iniziato — Когда мы приехали, фильм уже начался. |
 | it | det | questa → ~~una~~ | 2 | tua×2 | Come si chiama [una] strada — Как называется эта улица? |
 | it | det | tuo → ~~suo~~ | 1 | sua×1 | Questo è [suo] fratello — Это твой брат? |
 | it | det | degli → ~~questi~~ | 1 | mio×1 | Ha [questi] spiccioli — У вас есть мелочь? |
@@ -474,12 +507,12 @@
 | it | det | nessuna → ~~la~~ | 1 | lo×1 | Non c’è [la] panchina — Нет скамейки. |
 | it | det | tuo → ~~vostro~~ | 1 | sua×1 | Vai a casa di [vostro] fratello — Ты идёшь к своему брату. |
 | it | det | tuo → ~~mio~~ | 1 | nostri×1 | Vai a casa di [mio] fratello — Ты идёшь к своему брату. |
-| it | conj | o → ~~e~~ | 1 | ma×1 | Va alla reception [e] alla biglietteria — Вы идёте к стойке информации или в кассу? |
+| it | conj | o → ~~e~~ | 1 | né×1 | Va alla reception [e] alla biglietteria — Вы идёте к стойке информации или в кассу? |
 | it | det | molte → ~~poche~~ | 1 | mio×1 | Lei mangia [poche] verdure — Она ест много овощей. |
 | it | det | molte → ~~alcune~~ | 1 | mia×1 | Lei mangia [alcune] verdure — Она ест много овощей. |
 | it | det | mio → ~~nostro~~ | 1 | mie×1 | È arrivato [nostro] fratello — Мой брат пришел. |
 | it | det | molto → ~~questo~~ | 1 | mia×1 | Avevamo [questo] tempo — У нас было много времени. |
 | it | det | questi → ~~altri~~ | 1 | tutto×1 | [Altri] asciugamani sono puliti puoi prenderne uno — Эти полотенца чистые, можешь взять одно. |
-| it | conj | e → ~~o~~ | 1 | però×1 | Abbiamo poco tempo [o] ne serve di più — У нас мало времени, и нам нужно больше. |
+| it | conj | e → ~~o~~ | 1 | un*×1 | Abbiamo poco tempo [o] ne serve di più — У нас мало времени, и нам нужно больше. |
 | it | det | suo → ~~nostro~~ | 1 | nostri×1 | Lavora bene quanto [nostro] fratello — Она работает так же хорошо, как и её брат. |
 | it | det | suo → ~~mio~~ | 1 | vostre×1 | Lavora bene quanto [mio] fratello — Она работает так же хорошо, как и её брат. |

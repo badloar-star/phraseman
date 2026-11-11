@@ -49,6 +49,21 @@ describe('U10, часть 3: служебные соблазны не встаю
     // немецкий: als/wenn для однократного прошлого — ошибка, её оставляем; лицо по окончанию глагола
     expect(verdict('de', tiles('Als', 'ich', 'ankam', 'war', 'die', 'Tür', 'offen'), 0, 'Wenn', 'Als ich ankam, war die Tür offen.').v).toBe('nofit');
     expect(verdict('de', tiles('Ich', 'arbeite', 'heute'), 0, 'Er').v).toBe('nofit');
+    // зачем (сверка координатора 11.11): сочинительный союз МЕЖДУ двумя предложениями грамматичен, значит заменой быть не может
+    // («Leía el mensaje [pero] sonó el móvil», «Leggevo [però] hai chiamato»); «pues» — причинный союз, как porque
+    const es = tiles('Leía', 'el', 'mensaje', 'cuando', 'sonó', 'el', 'móvil');
+    expect(verdict('es', es, 3, 'pues', 'Leía el mensaje cuando sonó el móvil.').v).toBe('fit');
+    expect(verdict('es', es, 3, 'pero', 'Leía el mensaje cuando sonó el móvil.').v).toBe('fit');
+    expect(verdict('es', es, 3, 'sino', 'Leía el mensaje cuando sonó el móvil.').v).toBe('nofit'); // «sino» требует отрицания
+    expect(verdict('es', es, 3, 'u', 'Leía el mensaje cuando sonó el móvil.').v).toBe('nofit'); // «u» — только перед o-
+    expect(verdict('it', tiles('Leggevo', 'quando', 'hai', 'chiamato'), 1, 'però', 'Leggevo quando hai chiamato.').v).toBe('fit');
+    expect(verdict('it', tiles('Mentre', 'riordinavo', 'Lea', 'ha', 'trovato', 'lo', 'scontrino'), 0, 'Però', 'Mentre riordinavo, Lea ha trovato lo scontrino.').v).toBe('nofit');
+    expect(verdict('en', tiles('I', 'was', 'reading', 'when', 'the', 'phone', 'rang'), 3, 'but', 'I was reading when the phone rang.').v).toBe('fit');
+    expect(verdict('en', tiles('If', 'it', 'rains', 'we', 'stay'), 0, 'But', 'If it rains, we stay.').v).toBe('nofit');
+    // немецкое придаточное стоит с глаголом в конце — сочинительный союз там неверен
+    expect(verdict('de', tiles('Ich', 'bleibe', 'hier', 'weil', 'ich', 'müde', 'bin'), 3, 'aber', 'Ich bleibe hier, weil ich müde bin.').v).toBe('nofit');
+    // союзу «но» между двумя существительными места нет
+    expect(verdict('fr', tiles('Je', 'voudrais', 'du', 'pain', 'et', 'du', 'beurre'), 4, 'mais', 'Je voudrais du pain et du beurre.').v).toBe('nofit');
     // смысловые слова и предлоги правило не решает
     expect(verdict('en', tiles('We', 'buy', 'food'), 2, 'coffee').cls).toBeNull();
     expect(verdict('en', tiles('They', 'walk', 'in', 'the', 'evening'), 2, 'on').v).toBe('skip');

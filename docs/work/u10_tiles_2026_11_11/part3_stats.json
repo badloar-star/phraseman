@@ -29,11 +29,11 @@
    "otherClass": 0
   },
   "conj": {
-   "fit": 280,
-   "nofit": 100,
-   "skip": 186,
-   "sameClass": 35,
-   "otherClass": 245
+   "fit": 391,
+   "nofit": 129,
+   "skip": 46,
+   "sameClass": 71,
+   "otherClass": 320
   }
  },
  "es": {
@@ -52,11 +52,11 @@
    "otherClass": 0
   },
   "conj": {
-   "fit": 262,
-   "nofit": 576,
-   "skip": 339,
-   "sameClass": 219,
-   "otherClass": 43
+   "fit": 327,
+   "nofit": 446,
+   "skip": 404,
+   "sameClass": 285,
+   "otherClass": 42
   },
   "det": {
    "fit": 693,
@@ -89,11 +89,11 @@
    "otherClass": 0
   },
   "conj": {
-   "fit": 81,
-   "nofit": 492,
-   "skip": 702,
-   "sameClass": 27,
-   "otherClass": 54
+   "fit": 217,
+   "nofit": 310,
+   "skip": 748,
+   "sameClass": 12,
+   "otherClass": 205
   }
  },
  "de": {
@@ -119,11 +119,11 @@
    "otherClass": 0
   },
   "conj": {
-   "fit": 654,
-   "nofit": 89,
-   "skip": 745,
-   "sameClass": 354,
-   "otherClass": 300
+   "fit": 614,
+   "nofit": 131,
+   "skip": 743,
+   "sameClass": 614,
+   "otherClass": 0
   }
  },
  "it": {
@@ -149,11 +149,11 @@
    "otherClass": 0
   },
   "conj": {
-   "fit": 148,
-   "nofit": 433,
-   "skip": 533,
-   "sameClass": 113,
-   "otherClass": 35
+   "fit": 258,
+   "nofit": 376,
+   "skip": 480,
+   "sameClass": 63,
+   "otherClass": 195
   }
  }
 }

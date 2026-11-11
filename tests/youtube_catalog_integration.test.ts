@@ -20,6 +20,7 @@ function dependencies(notificationId: string): YoutubePremiereNotificationDepend
     schedule: jest.fn(async () => notificationId),
     cancel: jest.fn(async () => {}),
     openSettings: jest.fn(async () => {}),
+    enableMaster: jest.fn(async () => {}),
   };
 }
 

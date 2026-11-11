@@ -248,6 +248,15 @@ function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
       es: 'Para el recordatorio hace falta permiso de notificaciones.', 'pt-BR': 'O lembrete precisa de permissão para notificações.', vi: 'Cần cho phép thông báo để đặt lời nhắc.',
       id: 'Pengingat butuh izin notifikasi.', tr: 'Hatırlatma için bildirim izni gerekiyor.', pl: 'Przypomnienie wymaga zgody na powiadomienia.',
     }),
+    // зачем (владелец 11.11): общий тумблер уведомлений приложения выключен — честная причина и включение одним нажатием
+    notifAppOff: triLang(lang, {
+      ru: 'Уведомления в приложении выключены. Включить, чтобы напоминание пришло?', uk: 'Сповіщення в застосунку вимкнено. Увімкнути, щоб нагадування прийшло?',
+      en: 'Notifications are off in the app. Turn them on to get the reminder?', es: 'Las notificaciones de la app están desactivadas. ¿Activarlas para recibir el recordatorio?',
+      'pt-BR': 'As notificações do app estão desativadas. Ativar para receber o lembrete?', vi: 'Thông báo trong ứng dụng đang tắt. Bật để nhận lời nhắc?',
+      id: 'Notifikasi di aplikasi mati. Aktifkan agar pengingat masuk?', tr: 'Uygulama bildirimleri kapalı. Hatırlatma için açılsın mı?', pl: 'Powiadomienia w aplikacji są wyłączone. Włączyć, aby dostać przypomnienie?',
+    }),
+    enableLabel: triLang(lang, { ru: 'Включить', uk: 'Увімкнути', en: 'Turn on', es: 'Activar', 'pt-BR': 'Ativar', vi: 'Bật', id: 'Aktifkan', tr: 'Aç', pl: 'Włącz' }),
+    notNow: triLang(lang, { ru: 'Не сейчас', uk: 'Не зараз', en: 'Not now', es: 'Ahora no', 'pt-BR': 'Agora não', vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz' }),
     premiereStarted: triLang(lang, {
       ru: 'Премьера уже началась.', uk: 'Прем’єра вже почалася.', en: 'The premiere has already started.', es: 'El estreno ya empezó.', 'pt-BR': 'A estreia já começou.',
       vi: 'Buổi công chiếu đã bắt đầu.', id: 'Premier sudah dimulai.', tr: 'Prömiyer başladı.', pl: 'Premiera już się zaczęła.',
@@ -640,13 +649,13 @@ function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
   }, [inTab, screenRuntimeActive]);
 
   const openPlaylist = (playlistId: string) => router.push({ pathname: '/lingman_playlist', params: { playlistId, channelId: catalog?.channel.id } } as any);
-  const remind = async (video: YoutubeVideoSnapshot) => {
+  const remind = async (video: YoutubeVideoSnapshot, opts: { enableMaster?: boolean } = {}) => {
     setRemindedIds((current) => current.includes(video.id) ? current : [...current, video.id]);
     const rollback = () => setRemindedIds((current) => current.filter((id) => id !== video.id));
     // зачем (баг тестера 21.10, iPhone «Не удалось поставить напоминание»; правило «сперва логи»): вход экрана — какой ролик, какое время старта, какая платформа
     console.warn('[VIDEO-REMINDER] screen: тап «Напомнить»', JSON.stringify({ platform: Platform.OS, videoId: video.id, channelId: video.channelId, state: video.state, scheduledStartTime: video.scheduledStartTime ?? null, nowIso: new Date().toISOString() })); // guard-ok: трассировка бага напоминания
     try {
-      const result = await requestYoutubePremiereReminderFromTap({ videoId: video.id, channelId: video.channelId, title: video.title, scheduledStartTime: video.scheduledStartTime ?? '' });
+      const result = await requestYoutubePremiereReminderFromTap({ videoId: video.id, channelId: video.channelId, title: video.title, scheduledStartTime: video.scheduledStartTime ?? '' }, { enableMaster: opts.enableMaster });
       console.warn('[VIDEO-REMINDER] screen: итог', JSON.stringify(result.ok ? { ok: true, mode: result.mode } : { ok: false, reason: result.reason })); // guard-ok: итог
       if (result.ok) return;
       DebugLogger.warn('[VIDEO-TAB]', `напоминание не поставлено: reason=${result.reason}`);
@@ -658,8 +667,12 @@ function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
         showGlassAlert(copy.notifDenied);
       } else if (result.reason === 'invalid_or_past') {
         showGlassAlert(copy.premiereStarted);
+      } else if (result.reason === 'master_disabled') {
+        // зачем (владелец 11.11): раньше выключенный тумблер приложения давал общее «Не удалось» при каждом тапе, без выхода.
+        // Теперь называем причину и даём включить одним нажатием — повторный вызов уже с подтверждением человека.
+        showGlassAlert(copy.notifAppOff, undefined, [{ text: copy.notNow }, { text: copy.enableLabel, onPress: () => void remind(video, { enableMaster: true }) }]);
       } else {
-        showGlassAlert(copy.error); // master_disabled, schedule_failed
+        showGlassAlert(copy.error); // schedule_failed
       }
     } catch (error) {
       const e = error as { name?: string; code?: string; message?: string; stack?: string } | null;

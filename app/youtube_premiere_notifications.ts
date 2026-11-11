@@ -15,7 +15,10 @@ export type StoredPremiereReminder = {
 
 export type YoutubePremiereNotificationDependencies = {
   isMasterEnabled(): Promise<boolean>;
-  requestPermission(): Promise<{ granted: boolean; blocked: boolean }>;
+  /** justGranted — разрешение получено именно этим тапом (до запроса его не было). */
+  requestPermission(): Promise<{ granted: boolean; blocked: boolean; justGranted?: boolean }>;
+  /** Включает общий тумблер уведомлений приложения; при сбое записи бросает. */
+  enableMaster(): Promise<void>;
   schedule(input: {
     type: 'youtube_premiere';
     videoId: string;
@@ -51,7 +54,12 @@ const defaultDependencies: YoutubePremiereNotificationDependencies = {
     });
     const after = await notifications.getNotificationPermissionStatus();
     console.warn('[VIDEO-REMINDER] permission: после запроса', JSON.stringify({ before, after, granted: result.granted, blocked: result.blocked })); // guard-ok: итог
-    return { granted: result.granted, blocked: result.blocked };
+    return { granted: result.granted, blocked: result.blocked, justGranted: result.granted && before !== 'granted' };
+  },
+  enableMaster: async () => {
+    const notifications = await import('./notifications');
+    // зачем: снимок берётся ПОСЛЕ isMasterEnabled (он гидрирует память) — категории человека сохраняются, меняется только мастер
+    await notifications.saveNotifPrefs({ ...notifications.getNotifPrefsSnapshot(), master: true });
   },
   schedule: async (input) => (
     (await import('./notifications')).scheduleYoutubePremiereLocalNotification(input)
@@ -133,7 +141,8 @@ export async function loadYoutubePremiereReminders(
 
 export async function requestYoutubePremiereReminderFromTap(
   input: YoutubePremiereReminderInput,
-  options: { nowMs?: number; dependencies?: YoutubePremiereNotificationDependencies } = {},
+  // enableMaster — человек подтвердил в окне «Включить уведомления приложения»
+  options: { nowMs?: number; dependencies?: YoutubePremiereNotificationDependencies; enableMaster?: boolean } = {},
 ): Promise<
   | { ok: true; reminder: StoredPremiereReminder; mode: 'ten_minutes_before' | 'at_start' }
   | { ok: false; reason: 'invalid_or_past' | 'master_disabled' | 'permission_blocked' | 'permission_denied' | 'schedule_failed' }
@@ -162,7 +171,23 @@ export async function requestYoutubePremiereReminderFromTap(
   }
   const masterEnabled = await dependencies.isMasterEnabled();
   console.warn('[VIDEO-REMINDER] request: общий тумблер уведомлений в приложении', String(masterEnabled)); // guard-ok: значение, решившее ветку
-  if (!masterEnabled) return { ok: false, reason: 'master_disabled' };
+  if (!masterEnabled) {
+    // зачем (владелец 11.11: «не удалось поставить напоминание» при КАЖДОМ тапе): тем, кто не дал разрешение на старте, миграция
+    // настроек записывает общий тумблер выключенным (master = «разрешение выдано»). Человек жал «Напомнить», соглашался в системном
+    // окне — и всё равно упирался сюда, получая общее «Не удалось». Согласие этим самым тапом = то же, что дала бы миграция при
+    // выданном разрешении, поэтому тумблер включаем сами. Если разрешение было и раньше — тумблер мог выключить сам человек:
+    // тогда включаем только после его подтверждения в окне (options.enableMaster).
+    const mayEnable = permission.justGranted === true || options.enableMaster === true;
+    console.warn('[VIDEO-REMINDER] request: общий тумблер выключен', JSON.stringify({ justGranted: permission.justGranted === true, confirmed: options.enableMaster === true, mayEnable })); // guard-ok: значение, решившее ветку
+    if (!mayEnable) return { ok: false, reason: 'master_disabled' };
+    try {
+      await dependencies.enableMaster();
+    } catch (error) {
+      // Без сохранённого тумблера сверка при следующем входе сняла бы напоминание — честнее не ставить вовсе.
+      console.warn('[VIDEO-REMINDER] request: отказ master_disabled — тумблер не сохранился', error instanceof Error ? error.message : String(error)); // guard-ok: причина
+      return { ok: false, reason: 'master_disabled' };
+    }
+  }
 
   const reminders = await readStoredReminders();
   const previous = reminders.find((item) => item.videoId === videoId);

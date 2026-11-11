@@ -20,6 +20,7 @@ function dependencies(overrides: Partial<YoutubePremiereNotificationDependencies
     schedule: jest.fn(async () => 'notification-new'),
     cancel: jest.fn(async () => {}),
     openSettings: jest.fn(async () => {}),
+    enableMaster: jest.fn(async () => {}),
     ...overrides,
   };
 }
@@ -58,6 +59,40 @@ describe('YouTube premiere reminders', () => {
       type: 'youtube_premiere', videoId: premiere.videoId, channelId: premiere.channelId,
       triggerAtMs: Date.parse('2026-08-08T12:50:00.000Z'),
     }));
+  });
+
+  // зачем (владелец 11.11: «Не удалось поставить напоминание» при каждом тапе): у человека, не давшего разрешение на старте,
+  // общий тумблер приложения записан выключенным; тап «Напомнить» + согласие в системном окне обязаны его включить.
+  it('turns the app master switch on when permission was granted by this very tap', async () => {
+    const deps = dependencies({
+      isMasterEnabled: jest.fn(async () => false),
+      requestPermission: jest.fn(async () => ({ granted: true, blocked: false, justGranted: true })),
+    });
+    await expect(requestYoutubePremiereReminderFromTap(premiere, { nowMs, dependencies: deps }))
+      .resolves.toEqual(expect.objectContaining({ ok: true }));
+    expect(deps.enableMaster).toHaveBeenCalledTimes(1);
+    expect(deps.schedule).toHaveBeenCalledTimes(1);
+  });
+
+  it('keeps master off silently only until the person confirms enabling it', async () => {
+    const off = dependencies({ isMasterEnabled: jest.fn(async () => false) });
+    await expect(requestYoutubePremiereReminderFromTap(premiere, { nowMs, dependencies: off }))
+      .resolves.toEqual({ ok: false, reason: 'master_disabled' });
+    expect(off.enableMaster).not.toHaveBeenCalled();
+
+    await expect(requestYoutubePremiereReminderFromTap(premiere, { nowMs, dependencies: off, enableMaster: true }))
+      .resolves.toEqual(expect.objectContaining({ ok: true }));
+    expect(off.enableMaster).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not schedule when the master switch could not be saved', async () => {
+    const deps = dependencies({
+      isMasterEnabled: jest.fn(async () => false),
+      enableMaster: jest.fn(async () => { throw new Error('disk full'); }),
+    });
+    await expect(requestYoutubePremiereReminderFromTap(premiere, { nowMs, dependencies: deps, enableMaster: true }))
+      .resolves.toEqual({ ok: false, reason: 'master_disabled' });
+    expect(deps.schedule).not.toHaveBeenCalled();
   });
 
   it('returns blocked state without opening Settings until a second confirmed action', async () => {

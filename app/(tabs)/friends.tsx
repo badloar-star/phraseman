@@ -24,7 +24,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
-import FeatureIntroEntry from '../../components/feature_intro/FeatureIntroEntry';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import { LinearGradient } from '../../components/SafeLinearGradient';
@@ -33,7 +32,6 @@ import { LinearGradient } from '../../components/SafeLinearGradient';
 import FriendsRequestCard from '../../components/friends/FriendsRequestCard';
 import FriendsFoundCard from '../../components/friends/FriendsFoundCard';
 import FriendsEmptyState from '../../components/friends/FriendsEmptyState';
-import DailyPollCard from '../../components/friends/DailyPollCard';
 import { FriendsFeedbackRow, FriendsRoundButton, FriendsSectionTitle, useFriendsGlass } from '../../components/friends/FriendsGlassKit';
 import { plateBoxShadow } from '../../components/v2/ShadowSurface';
 import { FlowText } from '../../components/text-integrity';
@@ -166,12 +164,10 @@ import FriendPairMilestoneHost from '../../components/friends_together/FriendPai
 import FriendsOfflineStrip from '../../components/friends_together/FriendsOfflineStrip';
 import { useFriendsOffline } from '../../hooks/use_friends_offline';
 import { noteFriendsListServerSnapshot } from '../friends_together/friends_list_sync';
-import { creditLessonTogetherForInviter, rememberAcceptedLessonInvite, startLessonTogetherClaimer } from '../friends_together/lesson_together_claim';
 import FriendDuelChallengeSheet from '../../components/friends_together/FriendDuelChallengeSheet';
 import { useDuelChallenge } from '../../hooks/use_duel_challenge';
 import { duelCopy } from '../friends_together/duel_copy';
 import { flushPendingDuels } from '../friends_together/duel_client';
-import { launchLearningV2SessionByOrdinalsV1 } from '../learning_v2_home_continue_route';
 import { useStudyTarget } from '../../components/StudyTargetContext';
 import type { FriendCallState } from '../../components/friends_together/FriendCallPill';
 import {
@@ -932,8 +928,6 @@ export default function FriendsTabScreen() {
   const friendsTogetherUiEnabled = FRIENDS_TOGETHER_UI_ENABLED && friendsTogetherPolicy.enabled;
   // зачем (идея 1, макет «Нет сети»): полоса «Нет сети · список сохранён в …»; NetInfo слушаем, только пока вкладка на экране
   const friendsOffline = useFriendsOffline(friendsRuntimeActive && friendsTogetherUiEnabled);
-  // зачем (идея 2): вкладка монтируется на старте — слушатель засчитываний для награды «вместе» живёт с запуска приложения
-  useEffect(() => { if (friendsTogetherUiEnabled) startLessonTogetherClaimer(); }, [friendsTogetherUiEnabled]);
   const friendMarkersByUid = useMemo(() => {
     const grouped = new Map<string, FriendSocialEvent[]>();
     for (const event of friendEvents) grouped.set(event.actorStableUid, [...(grouped.get(event.actorStableUid) ?? []), event]);
@@ -965,11 +959,6 @@ export default function FriendsTabScreen() {
       setFriendEvents(friendSocialEventsFromNotifications(rows));
       // зачем (идея 3): пришёл итог или отказ по дуэли — снимаем «дуэль уже идёт» в журнале вызовов, не дожидаясь суток
       if (FRIENDS_TOGETHER_UI_ENABLED) void closeSentDuels(duelClosuresFromNotifications(rows));
-      // зачем (идея 2, закон владельца 22.10 «монеты выдаёт телефон»): друг прошёл по моему приглашению — +2 «вместе»
-      // начисляет мой телефон из уже загруженных «Сообщений» (0 чтений); повтор того же уведомления ничего не даёт
-      if (FRIENDS_TOGETHER_UI_ENABLED) {
-        void creditLessonTogetherForInviter(rows).catch(noteSwallowedHandler('friends:lesson_together_inviter_credit'));
-      }
     };
     let unsubFreshRequests: (() => void) | null = null;
     let socialRefreshStarted = false;
@@ -1398,6 +1387,23 @@ export default function FriendsTabScreen() {
   const [friends, setFriends] = useState<FriendEntry[]>(() => warmFriendsSnapshot?.friends ?? friendsSnapshot?.friends ?? []);
   // зачем (макет COM-04-OFFLINE): подписка на список упала — показать «Связь пропала · Повторить».
   const [friendsListError, setFriendsListError] = useState(false);
+  // зачем (аудит загрузок 11.11, правило владельца 04.10 «без ложных экранов ожидания»): на чистом кэше (первый запуск,
+  // смена аккаунта) список стартует пустым и вкладка рисовала «Учиться вместе приятнее / Добавить друга», а через секунду —
+  // друзей. Пустое состояние теперь показывается только когда список ИЗВЕСТЕН: есть снимок, ответила подписка, она упала
+  // либо истёк потолок. До этого место под списком пустое (макета строк-заготовок нет — не выдумываем).
+  const [friendsListSettled, setFriendsListSettled] = useState<boolean>(() => warmFriendsSnapshot != null || friendsSnapshot != null);
+  const settleFriendsList = useCallback((reason: string) => {
+    setFriendsListSettled((prev) => {
+      if (!prev) console.log('[FRIENDS-LIST] settled', JSON.stringify({ reason })); // guard-ok: одна строка на вход, значение решает показ пустого состояния
+      return true;
+    });
+  }, []);
+  useEffect(() => {
+    if (friendsListSettled || !friendsRuntimeActive) return;
+    // потолок: без сети и без кэша человек не должен смотреть в пустоту дольше, чем на обычный отклик
+    const timer = setTimeout(() => settleFriendsList('ceiling_2500ms'), 2500);
+    return () => clearTimeout(timer);
+  }, [friendsListSettled, friendsRuntimeActive, settleFriendsList]);
   // зачем (правило владельца 18.10 «экранов-ошибок нигде»): кнопки «Повторить» больше нет — подписка на список друзей
   // перечитывается тихо (паузы useLoadGate, затем при возврате в приложение); успех подписки сам снимает friendsListError.
   useLoadGate({
@@ -1453,6 +1459,7 @@ export default function FriendsTabScreen() {
 
   useEffect(() => {
     if (!friendsSnapshot) return;
+    settleFriendsList('app_snapshot');
     setFriends(prev => prev.length > 0 ? prev : friendsSnapshot.friends);
     setRequests(prev => prev.length > 0 ? prev : friendsSnapshot.requests);
     setProfiles(prev => {
@@ -1655,9 +1662,11 @@ export default function FriendsTabScreen() {
         setFriends([]);
         setRequests([]);
         setFriendsListError(true);
+        settleFriendsList('dev_fail');
         return;
       }
       if (isDevFriendsDemoOn()) {
+        settleFriendsList('dev_demo');
         const demo = devFriendsDemoData();
         console.log(`[DEV-STATE] friends: вкладка рисует демо requests=${demo.requests.length} friends=${demo.friends.length} (подписок нет)`); // guard-ok: ветка решает значение
         setFriends(demo.friends.map((f) => ({ uid: f.uid, createdAt: f.createdAt, displayName: f.displayName })));
@@ -1687,6 +1696,7 @@ export default function FriendsTabScreen() {
 
       if (canonical && w && w.canonicalUid === canonical) {
         swrHadFriendsRef.current = w.friends.length > 0;
+        settleFriendsList('swr_warm');
         setFriends(w.friends);
         if (w.friends.length > 0) {
           void checkAchievements({ type: 'friend_added', totalFriends: w.friends.length }).catch(noteSwallowedHandler('friends:useEffect.checkAchievements'));
@@ -1717,6 +1727,8 @@ export default function FriendsTabScreen() {
         // зачем (идея 1, полоса «Нет сети · список сохранён в …»): время последнего списка с сервера, своё на аккаунт, только телефон
         if (FRIENDS_TOGETHER_UI_ENABLED && !fromCache && canonical) noteFriendsListServerSnapshot(canonical);
         if (data.length === 0 && fromCache && swrHadFriendsRef.current) return;
+        // пустой ответ из локального кэша Firestore ещё не значит «друзей нет» — ждём сервер (или потолок)
+        if (!fromCache || data.length > 0) settleFriendsList(fromCache ? 'subscription_cache' : 'subscription_server');
         const mergedFriends = pendingFriendOpsRef.current.mergeFriends(data, Date.now());
         if (mergedFriends.length !== data.length) {
           console.log(`[FRIEND-REQUEST] снимок друзей: из сервера ${data.length}, после «в пути» ${mergedFriends.length} (разница ${mergedFriends.length - data.length})`); // guard-ok: ветка решает значение
@@ -1729,6 +1741,7 @@ export default function FriendsTabScreen() {
         if (cancelled) return;
         console.warn('[FRIENDS-LIST] screen got subscription error', { message: error?.message });
         setFriendsListError(true);
+        settleFriendsList('subscription_error');
       });
 
       unsubRequests = subscribeToIncomingRequests(
@@ -2430,8 +2443,7 @@ export default function FriendsTabScreen() {
       acknowledgeFriendEvent(event);
       return;
     }
-    // зачем (идея 2): приглашение на конкретное занятие открывает то же окно — в нём занятие, срок и факты отправителя
-    if (event.kind === 'study_invite' || event.kind === 'lesson_invite') {
+    if (event.kind === 'study_invite') {
       setStudyInvite({ event, friendName: profile.name, friendCoinRank: isValidCoinRank(profile.coinRank) ? profile.coinRank : null });
       return;
     }
@@ -2750,12 +2762,6 @@ export default function FriendsTabScreen() {
     </View>
   );
 
-  // зачем (владелец 2026-09-30): «Опрос дня» по макету COM-04-ACTIVITY — первым блоком вкладки.
-  // Опроса на сегодня нет → карточка сама ничего не рисует (без пустой рамки).
-  const dailyPollCard = <DailyPollCard active={friendsRuntimeActive} />;
-  // зачем (владелец 26.10): фраза дня остаётся на Главной, здесь сохраняется самостоятельный «Опрос дня».
-  const firstCard = dailyPollCard;
-
   // Всё, что на вкладке «Друзья» идёт до строк списка.
   const friendsPreList = (
     <>
@@ -2841,7 +2847,6 @@ export default function FriendsTabScreen() {
 
   return (
     <ScreenGradient artBackdrop="friends">
-      <FeatureIntroEntry id="friends_first_visit" enabled={friendsRuntimeActive && !addModalOpen && !selectedPlayer && !togetherSheetSession && !accessEndedOpen && !devBotsSheetOpen && !studyInvite && !deleteTarget} />
       <View testID="screen-friends" style={{ flex: 1 }}>
       <BouncyWrap style={bouncyStyle}>
         <AnimatedFlashList decelerationRate="fast"
@@ -2878,8 +2883,8 @@ export default function FriendsTabScreen() {
               </Reanimated.View>
             );
           }}
-          ListHeaderComponent={<>{firstCard}{offlineStrip}{weekRailNode}{listHeader}{friendsPreList}</>}
-          ListEmptyComponent={friendsEmptyState}
+          ListHeaderComponent={<>{offlineStrip}{weekRailNode}{listHeader}{friendsPreList}</>}
+          ListEmptyComponent={friendsListSettled ? friendsEmptyState : null}
           ListFooterComponent={listFooter}
         />
       </BouncyWrap>
@@ -3092,25 +3097,7 @@ export default function FriendsTabScreen() {
         friendCoinRank={studyInvite?.friendCoinRank ?? null}
         // зачем (идея 1, макет friendSide): «Серия вдвоём · N дней» — из снимка «Вместе» на телефоне; без выключателя строки нет
         pairStreak={friendsTogetherUiEnabled && studyInvite ? (togetherSnapshot?.pairs[studyInvite.event.actorStableUid]?.pair?.streak ?? null) : null}
-        lesson={friendsTogetherUiEnabled && studyInvite?.event.kind === 'lesson_invite' ? (studyInvite.event.lesson ?? null) : null}
         friendName={studyInvite?.friendName}
-        // зачем (идея 2): «Начать занятие» по приглашению — запомнить его до засчитывания и открыть то же занятие в своём курсе
-        onStartLesson={friendsTogetherUiEnabled && studyInvite?.event.lesson ? () => {
-          const invite = studyInvite;
-          const lesson = invite.event.lesson;
-          acknowledgeFriendEvent(invite.event);
-          setStudyInvite(null);
-          if (!lesson) {
-            console.log('[FRIENDS-2] lesson_invite:start skip reason=no_lesson'); // guard-ok: ранний выход называет причину
-            return;
-          }
-          startLessonTogetherClaimer();
-          if (invite.event.inviteId) {
-            void rememberAcceptedLessonInvite({ inviteId: invite.event.inviteId, inviterUid: invite.event.actorStableUid, lessonOrdinal: lesson.lessonOrdinal, sessionOrdinal: lesson.sessionOrdinal, expiresAtMs: invite.event.expiresAtMs ?? null, inviterName: invite.friendName, acceptedAtMs: Date.now() });
-          }
-          launchLearningV2SessionByOrdinalsV1({ lessonOrdinal: lesson.lessonOrdinal, sessionOrdinal: lesson.sessionOrdinal, from: 'friend_lesson_invite' }, { lang, studyTarget, push: (href) => router.push(href as never) })
-            .catch((e: unknown) => console.warn(`[FRIENDS-2] lesson_invite:launch failed → вкладка уроков: ${e instanceof Error ? e.message : String(e)}`)); // guard-ok: catch называет причину
-        } : undefined}
         onStart={() => {
           if (studyInvite) acknowledgeFriendEvent(studyInvite.event);
           setStudyInvite(null);

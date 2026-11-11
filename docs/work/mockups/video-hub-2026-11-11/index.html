@@ -154,12 +154,6 @@ h1 { font-size: 28px; line-height: 34px; margin: 0 0 8px; font-weight: 800; lett
 .qk { font-size: 15px; line-height: 20px; font-weight: 600; color: var(--sec); padding: 0 4px; }
 .qq { font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -.5px; margin: 6px 4px 0; text-wrap: balance; }
 
-.listen { margin-top: 18px; height: 64px; border-radius: 20px; background: var(--card); display: flex; align-items: center; gap: 14px; padding: 0 16px 0 10px; width: 100%; font-size: 16px; font-weight: 700; }
-.listen .pb { width: 44px; height: 44px; border-radius: 22px; background: #F2F1F6; color: #111216; display: flex; align-items: center; justify-content: center; font-size: 18px; padding-left: 2px; flex: none; }
-.listen .wv { flex: 1; height: 22px; display: flex; align-items: center; gap: 3px; }
-.listen .wv i { flex: 1; border-radius: 2px; background: rgba(255, 255, 255, .34); height: 30%; }
-.listen.playing .wv i { animation: wave 600ms ease-in-out infinite alternate; }
-@keyframes wave { to { height: 100%; } }
 .opts { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; }
 .opt { min-height: 60px; border-radius: 20px; padding: 10px 14px 10px 18px; background: var(--card); font-size: 17px; line-height: 22px; font-weight: 700; display: flex; align-items: center; gap: 10px; transition: transform 160ms var(--ease-out), background-color 200ms ease, opacity 200ms ease; }
 .opt:active { transform: scale(.98); }
@@ -332,7 +326,7 @@ function watchInit(ph) {
 const QUIZ = [
   { k: 'Как это по-английски?', q: 'Давно не виделись!', opts: ['Not too bad.', 'Long time no see!', 'That sounds great.'], ok: 1 },
   { k: 'Что это значит?', q: 'Same old, same old.', opts: ['Всё по-старому.', 'Мне пора идти.', 'Как дела?'], ok: 0 },
-  { k: 'Что сказал профессор?', listen: true, opts: ['How’s it going?', 'What have you been up to?', 'I’d better get going.'], ok: 2 },
+  { k: 'Как это по-английски?', q: 'Мне пора идти.', opts: ['How’s it going?', 'What have you been up to?', 'I’d better get going.'], ok: 2 },
 ];
 function quizHTML() { return `${sbar}<div class="quiz" id="quiz"></div><div class="gest"></div>`; }
 function quizInit(ph) {
@@ -345,13 +339,10 @@ function quizInit(ph) {
   };
   const ask = () => {
     const q = QUIZ[st.i];
-    const head = q.listen
-      ? `<button class="listen press" id="listen"><span class="pb">${io('play')}</span><span class="wv">${Array.from({ length: 30 }, (_, n) => `<i style="animation-delay:${-(n * 53) % 600}ms"></i>`).join('')}</span></button>`
-      : `<h3 class="qq">${q.q}</h3>`;
+    const head = `<h3 class="qq">${q.q}</h3>`;
     swap(`${top()}<div class="qbody"><div class="qk">${q.k}</div>${head}
       <div class="opts">${q.opts.map((o) => `<button class="opt"><span>${o}</span>${io('checkmark-circle')}</button>`).join('')}</div>
       <div class="fb"><p id="fbt"></p><button class="cta press" id="next">${st.i + 1 < QUIZ.length ? 'Дальше' : 'Готово'}</button></div></div>`, () => {
-      const listen = $('#listen', root); if (listen) listen.addEventListener('click', () => { listen.classList.add('playing'); setTimeout(() => listen.classList.remove('playing'), 2400); });
       $$('.opt', root).forEach((b, n) => b.addEventListener('click', () => {
         if (root.classList.contains('locked')) return; // защита от двойного касания
         const good = n === q.ok; root.classList.add('locked'); $$('.opt', root)[q.ok].classList.add('ok');

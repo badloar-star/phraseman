@@ -42,10 +42,20 @@ describe('video_quiz_core', () => {
     }
   });
 
-  it('вопросы — про разные фразы, виды вопросов не повторяются, пока фраз хватает', () => {
+  it('вопросы — про разные фразы, два вида вопросов чередуются', () => {
     const quiz = buildVideoQuiz(SEVEN, { seed: 11 });
     expect(new Set(quiz.map((q) => q.phraseId)).size).toBe(quiz.length);
-    expect(new Set(quiz.map((q) => q.kind))).toEqual(new Set(['to_target', 'to_native', 'listen']));
+    expect(quiz.map((q) => q.kind)).toEqual(['to_target', 'to_native', 'to_target']);
+  });
+
+  it('вопроса «на слух» нет (владелец 11.11: «что сказал профессор — не надо»): у вопроса всегда есть текст', () => {
+    for (const seed of [1, 2, 3, 4, 5, 6, 7, 8]) {
+      for (const q of buildVideoQuiz(SEVEN, { seed })) {
+        expect(['to_target', 'to_native']).toContain(q.kind);
+        expect(q.prompt.length).toBeGreaterThan(0);
+        expect(q).not.toHaveProperty('startSec');
+      }
+    }
   });
 
   it('один и тот же seed даёт один и тот же тест, другой seed — другой порядок', () => {
@@ -54,20 +64,9 @@ describe('video_quiz_core', () => {
     expect(signatures.size).toBeGreaterThan(1);
   });
 
-  it('вопрос «на слух» задаётся только по фразе с таймкодом и несёт его', () => {
-    for (const seed of [1, 2, 3, 4, 5]) {
-      for (const q of buildVideoQuiz(SEVEN, { seed })) {
-        if (q.kind === 'listen') expect(typeof q.startSec).toBe('number');
-        else expect(q.startSec).toBeUndefined();
-      }
-    }
-  });
-
-  it('без таймкодов вопроса «на слух» нет — он заменяется обычным', () => {
+  it('таймкоды фраз тесту не нужны: без них он собирается так же', () => {
     const noTime = SEVEN.map((p) => phrase(p.ordinal, p.phrase, p.translation));
-    const quiz = buildVideoQuiz(noTime, { seed: 5 });
-    expect(quiz).toHaveLength(VIDEO_QUIZ_QUESTION_COUNT);
-    expect(quiz.some((q) => q.kind === 'listen')).toBe(false);
+    expect(buildVideoQuiz(noTime, { seed: 5 })).toHaveLength(VIDEO_QUIZ_QUESTION_COUNT);
   });
 
   it('меньше трёх разных фраз — теста нет', () => {

@@ -5,32 +5,33 @@
  * того же ролика… можно»): вопросы собираются НА ТЕЛЕФОНЕ из уже загруженных фраз ролика. Неверные варианты — другие
  * фразы (или переводы) этого же ролика, заранее ничего не готовится, сервер не участвует — новых чтений Firestore нет.
  *
+ * Видов вопроса два: «как это сказать» и «что это значит». Вопроса «на слух» нет — владелец 11.11: «вот это
+ * „что сказал профессор“ не надо».
+ *
  * Модуль чистый: ни сети, ни хранилища, ни времени. Случайность — только из переданного seed, поэтому тест
  * воспроизводим в проверках, а экран сам решает, когда выдать новый seed («Пройти ещё раз»).
  * Макет: docs/work/mockups/video-hub-2026-11-11/index.html, экран 3.
  */
 import type { VideoPhrase } from '../shared/video_phrases_contract';
 
-/** to_target — «Как это по-английски?»; to_native — «Что это значит?»; listen — «Что сказал…?» по отрывку ролика. */
-export type VideoQuizKind = 'to_target' | 'to_native' | 'listen';
+/** to_target — «Как это сказать?» (дан перевод, выбрать фразу); to_native — «Что это значит?» (дана фраза, выбрать перевод). */
+export type VideoQuizKind = 'to_target' | 'to_native';
 
 export type VideoQuizQuestion = Readonly<{
   kind: VideoQuizKind;
   /** Фраза ролика, про которую вопрос (`videoId:ordinal`) — по ней ошибка уходит в карточки. */
   phraseId: string;
-  /** Текст вопроса: перевод (to_target), сама фраза (to_native); у listen пусто — вместо текста звучит отрывок. */
+  /** Текст вопроса: перевод (to_target) или сама фраза (to_native). */
   prompt: string;
   options: readonly string[];
   correctIndex: number;
-  /** Только у listen: секунда ролика, с которой звучит фраза. */
-  startSec?: number;
 }>;
 
 export const VIDEO_QUIZ_QUESTION_COUNT = 3;
 export const VIDEO_QUIZ_OPTION_COUNT = 3;
 /** Из скольких ближайших по длине кандидатов выбираются неверные варианты: похожая длина не выдаёт ответ с первого взгляда. */
 const DISTRACTOR_POOL = 4;
-const KIND_ORDER: readonly VideoQuizKind[] = ['to_target', 'to_native', 'listen'];
+const KIND_ORDER: readonly VideoQuizKind[] = ['to_target', 'to_native'];
 
 function norm(value: string): string {
   return value.trim().toLowerCase().replace(/\s+/g, ' ');
@@ -89,21 +90,10 @@ export function buildVideoQuiz(
   const next = rng(opts.seed);
   const count = Math.max(1, Math.min(opts.count ?? VIDEO_QUIZ_QUESTION_COUNT, pool.length));
   const order = shuffled(pool, next);
-  // зачем: вопрос «на слух» возможен только по фразе с таймкодом — отдаём ему такую фразу в первую очередь, а не случайную.
-  const listenSlot = KIND_ORDER.indexOf('listen');
-  if (listenSlot < count) {
-    const timedAt = order.findIndex((item) => typeof item.startSec === 'number');
-    if (timedAt >= 0 && timedAt !== listenSlot) {
-      const timed = order[timedAt] as VideoPhrase;
-      order[timedAt] = order[listenSlot] as VideoPhrase;
-      order[listenSlot] = timed;
-    }
-  }
   const questions: VideoQuizQuestion[] = [];
   for (let i = 0; i < count; i += 1) {
     const target = order[i] as VideoPhrase;
-    const wanted = KIND_ORDER[i % KIND_ORDER.length] as VideoQuizKind;
-    const kind: VideoQuizKind = wanted === 'listen' && typeof target.startSec !== 'number' ? 'to_target' : wanted;
+    const kind = KIND_ORDER[i % KIND_ORDER.length] as VideoQuizKind;
     const pick = (item: VideoPhrase): string => (kind === 'to_native' ? item.translation : item.phrase);
     const correct = pick(target);
     const nearest = pool
@@ -117,10 +107,9 @@ export function buildVideoQuiz(
     questions.push(Object.freeze({
       kind,
       phraseId: target.id,
-      prompt: kind === 'to_target' ? target.translation : kind === 'to_native' ? target.phrase : '',
+      prompt: kind === 'to_target' ? target.translation : target.phrase,
       options: Object.freeze(options),
       correctIndex: options.indexOf(correct),
-      ...(kind === 'listen' ? { startSec: target.startSec as number } : {}),
     }));
   }
   return Object.freeze(questions);

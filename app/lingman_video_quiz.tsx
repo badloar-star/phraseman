@@ -11,9 +11,7 @@
  * загрузки; сети экран не ждёт. Имя маршрута начинается с `/lingman_video`, поэтому раздел и язык раздела — «Видео»
  * (app/section_language.ts), отдельной регистрации не нужно.
  *
- * Вопрос «на слух» показывает сам ролик с нужной секунды: прятать видео и оставлять один звук нельзя по правилам
- * YouTube, поэтому вместо «волны» из макета здесь плеер.
- */
+ * Видов вопроса два: «как это сказать» и «что это значит». Вопроса «на слух» нет — владелец 11.11: «что сказал профессор — не надо».
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -23,14 +21,12 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import YoutubeInlinePlayer from '../components/youtube/YoutubeInlinePlayer';
 import { V2AnswerOption, V2Button, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { triLang } from '../constants/i18n';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { V2, V2_TYPE } from '../constants/v2Style';
 import { addFlashcard } from '../hooks/use-flashcards';
-import { useRuntimeActive } from '../hooks/use_runtime_active';
 import type { VideoPhrase } from '../shared/video_phrases_contract';
 import { normalizePackLanguage } from './flashcards/pack_languages';
 import { LINGMAN_BACK_FALLBACK, safeRouterBack } from './navigation_back';
@@ -38,7 +34,6 @@ import { useEffectiveStudyTarget } from './section_language';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { loadVideoPhrasesCached, peekCachedVideoPhrases } from './video_phrases_client';
 import { buildVideoQuiz, canBuildVideoQuiz, type VideoQuizQuestion } from './video_quiz_core';
-import { requestYoutubePause } from './youtube_player_seek_bus';
 
 const LOG = '[VIDEO-QUIZ]';
 
@@ -60,7 +55,6 @@ export default function LingmanVideoQuizScreen() {
   const g = liquidGlassTokens(liquidGlassThemeId);
   const p = useV2Palette();
   const insets = useStableSafeAreaInsets();
-  const runtimeActive = useRuntimeActive(true);
   const { studyTarget: globalStudyTarget } = useStudyTarget();
   const sectionTarget = useEffectiveStudyTarget(globalStudyTarget);
   // зачем: карточка из ошибки должна лечь в тот же язык, что и закладки этого ролика — язык приходит с экрана ролика, иначе берём язык раздела.
@@ -126,7 +120,6 @@ export default function LingmanVideoQuizScreen() {
     const good = optionIndex === question.correctIndex;
     console.log(LOG, 'answer', JSON.stringify({ videoId, index, kind: question.kind, phraseId: question.phraseId, picked: optionIndex, correct: question.correctIndex, good })); // guard-ok: ответ и что его решило
     setPicked(optionIndex);
-    if (question.kind === 'listen') requestYoutubePause(videoId);
     if (good) { setRightCount((value) => value + 1); return; }
     // зачем (макет, экран 3): ошибка сама кладёт фразу в карточки. Обещаем «добавлена» только по факту записи — не раньше.
     const missed = phrases?.find((item) => item.id === question.phraseId);
@@ -168,22 +161,22 @@ export default function LingmanVideoQuizScreen() {
   }, [videoId]);
 
   const copy = useMemo(() => triLang(lang, {
-    ru: { close: 'Закрыть', toTarget: 'Как это сказать?', toNative: 'Что это значит?', listen: 'Что прозвучало в ролике?', next: 'Дальше', finish: 'Готово', right: 'Верно', added: 'Фраза добавлена в карточки на повтор', duplicate: 'Эта фраза уже в карточках', plain: 'Правильный ответ отмечен', again: 'Пройти ещё раз', all: 'Всё верно', some: 'Хорошо', none: 'Стоит пересмотреть', of: 'из' },
-    uk: { close: 'Закрити', toTarget: 'Як це сказати?', toNative: 'Що це означає?', listen: 'Що прозвучало в ролику?', next: 'Далі', finish: 'Готово', right: 'Правильно', added: 'Вислів додано до карток на повторення', duplicate: 'Цей вислів уже в картках', plain: 'Правильну відповідь позначено', again: 'Пройти ще раз', all: 'Усе правильно', some: 'Добре', none: 'Варто переглянути ще раз', of: 'із' },
-    en: { close: 'Close', toTarget: 'How do you say this?', toNative: 'What does this mean?', listen: 'What was said in the video?', next: 'Next', finish: 'Done', right: 'Correct', added: 'Phrase added to your cards for review', duplicate: 'This phrase is already in your cards', plain: 'The correct answer is marked', again: 'Try again', all: 'All correct', some: 'Nice', none: 'Worth another watch', of: 'of' },
-    es: { close: 'Cerrar', toTarget: '¿Cómo se dice esto?', toNative: '¿Qué significa esto?', listen: '¿Qué se dijo en el vídeo?', next: 'Siguiente', finish: 'Listo', right: 'Correcto', added: 'Frase añadida a tus tarjetas para repasar', duplicate: 'Esta frase ya está en tus tarjetas', plain: 'La respuesta correcta está marcada', again: 'Repetir', all: 'Todo correcto', some: 'Bien', none: 'Vale la pena verlo otra vez', of: 'de' },
-    'pt-BR': { close: 'Fechar', toTarget: 'Como se diz isso?', toNative: 'O que isso significa?', listen: 'O que foi dito no vídeo?', next: 'Próxima', finish: 'Pronto', right: 'Correto', added: 'Frase adicionada aos seus cartões para revisão', duplicate: 'Essa frase já está nos seus cartões', plain: 'A resposta correta está marcada', again: 'Tentar de novo', all: 'Tudo certo', some: 'Boa', none: 'Vale a pena rever', of: 'de' },
-    vi: { close: 'Đóng', toTarget: 'Câu này nói thế nào?', toNative: 'Câu này nghĩa là gì?', listen: 'Trong video đã nói gì?', next: 'Tiếp', finish: 'Xong', right: 'Đúng', added: 'Đã thêm cụm từ vào thẻ để ôn lại', duplicate: 'Cụm từ này đã có trong thẻ', plain: 'Đáp án đúng đã được đánh dấu', again: 'Làm lại', all: 'Đúng hết', some: 'Tốt', none: 'Nên xem lại video', of: 'trên' },
-    id: { close: 'Tutup', toTarget: 'Bagaimana mengatakannya?', toNative: 'Apa artinya ini?', listen: 'Apa yang diucapkan di video?', next: 'Lanjut', finish: 'Selesai', right: 'Benar', added: 'Frasa ditambahkan ke kartu untuk diulang', duplicate: 'Frasa ini sudah ada di kartu', plain: 'Jawaban yang benar sudah ditandai', again: 'Ulangi', all: 'Semua benar', some: 'Bagus', none: 'Sebaiknya tonton lagi', of: 'dari' },
-    tr: { close: 'Kapat', toTarget: 'Bu nasıl söylenir?', toNative: 'Bu ne demek?', listen: 'Videoda ne söylendi?', next: 'İleri', finish: 'Tamam', right: 'Doğru', added: 'İfade tekrar için kartlarına eklendi', duplicate: 'Bu ifade zaten kartlarında', plain: 'Doğru cevap işaretlendi', again: 'Tekrar dene', all: 'Hepsi doğru', some: 'İyi', none: 'Tekrar izlemeye değer', of: '/' },
-    pl: { close: 'Zamknij', toTarget: 'Jak to powiedzieć?', toNative: 'Co to znaczy?', listen: 'Co padło w filmie?', next: 'Dalej', finish: 'Gotowe', right: 'Dobrze', added: 'Zwrot dodany do kart do powtórki', duplicate: 'Ten zwrot jest już w kartach', plain: 'Poprawna odpowiedź jest zaznaczona', again: 'Spróbuj jeszcze raz', all: 'Wszystko dobrze', some: 'Nieźle', none: 'Warto obejrzeć jeszcze raz', of: 'z' },
+    ru: { close: 'Закрыть', toTarget: 'Как это сказать?', toNative: 'Что это значит?', next: 'Дальше', finish: 'Готово', right: 'Верно', added: 'Фраза добавлена в карточки на повтор', duplicate: 'Эта фраза уже в карточках', plain: 'Правильный ответ отмечен', again: 'Пройти ещё раз', all: 'Всё верно', some: 'Хорошо', none: 'Стоит пересмотреть', of: 'из' },
+    uk: { close: 'Закрити', toTarget: 'Як це сказати?', toNative: 'Що це означає?', next: 'Далі', finish: 'Готово', right: 'Правильно', added: 'Вислів додано до карток на повторення', duplicate: 'Цей вислів уже в картках', plain: 'Правильну відповідь позначено', again: 'Пройти ще раз', all: 'Усе правильно', some: 'Добре', none: 'Варто переглянути ще раз', of: 'із' },
+    en: { close: 'Close', toTarget: 'How do you say this?', toNative: 'What does this mean?', next: 'Next', finish: 'Done', right: 'Correct', added: 'Phrase added to your cards for review', duplicate: 'This phrase is already in your cards', plain: 'The correct answer is marked', again: 'Try again', all: 'All correct', some: 'Nice', none: 'Worth another watch', of: 'of' },
+    es: { close: 'Cerrar', toTarget: '¿Cómo se dice esto?', toNative: '¿Qué significa esto?', next: 'Siguiente', finish: 'Listo', right: 'Correcto', added: 'Frase añadida a tus tarjetas para repasar', duplicate: 'Esta frase ya está en tus tarjetas', plain: 'La respuesta correcta está marcada', again: 'Repetir', all: 'Todo correcto', some: 'Bien', none: 'Vale la pena verlo otra vez', of: 'de' },
+    'pt-BR': { close: 'Fechar', toTarget: 'Como se diz isso?', toNative: 'O que isso significa?', next: 'Próxima', finish: 'Pronto', right: 'Correto', added: 'Frase adicionada aos seus cartões para revisão', duplicate: 'Essa frase já está nos seus cartões', plain: 'A resposta correta está marcada', again: 'Tentar de novo', all: 'Tudo certo', some: 'Boa', none: 'Vale a pena rever', of: 'de' },
+    vi: { close: 'Đóng', toTarget: 'Câu này nói thế nào?', toNative: 'Câu này nghĩa là gì?', next: 'Tiếp', finish: 'Xong', right: 'Đúng', added: 'Đã thêm cụm từ vào thẻ để ôn lại', duplicate: 'Cụm từ này đã có trong thẻ', plain: 'Đáp án đúng đã được đánh dấu', again: 'Làm lại', all: 'Đúng hết', some: 'Tốt', none: 'Nên xem lại video', of: 'trên' },
+    id: { close: 'Tutup', toTarget: 'Bagaimana mengatakannya?', toNative: 'Apa artinya ini?', next: 'Lanjut', finish: 'Selesai', right: 'Benar', added: 'Frasa ditambahkan ke kartu untuk diulang', duplicate: 'Frasa ini sudah ada di kartu', plain: 'Jawaban yang benar sudah ditandai', again: 'Ulangi', all: 'Semua benar', some: 'Bagus', none: 'Sebaiknya tonton lagi', of: 'dari' },
+    tr: { close: 'Kapat', toTarget: 'Bu nasıl söylenir?', toNative: 'Bu ne demek?', next: 'İleri', finish: 'Tamam', right: 'Doğru', added: 'İfade tekrar için kartlarına eklendi', duplicate: 'Bu ifade zaten kartlarında', plain: 'Doğru cevap işaretlendi', again: 'Tekrar dene', all: 'Hepsi doğru', some: 'İyi', none: 'Tekrar izlemeye değer', of: '/' },
+    pl: { close: 'Zamknij', toTarget: 'Jak to powiedzieć?', toNative: 'Co to znaczy?', next: 'Dalej', finish: 'Gotowe', right: 'Dobrze', added: 'Zwrot dodany do kart do powtórki', duplicate: 'Ten zwrot jest już w kartach', plain: 'Poprawna odpowiedź jest zaznaczona', again: 'Spróbuj jeszcze raz', all: 'Wszystko dobrze', some: 'Nieźle', none: 'Warto obejrzeć jeszcze raz', of: 'z' },
   }), [lang]);
 
   const total = quiz.length;
   const answered = picked !== null;
   const goodAnswer = answered && question ? picked === question.correctIndex : false;
   const feedback = !answered ? '' : goodAnswer ? copy.right : missNote === 'added' ? copy.added : missNote === 'duplicate' ? copy.duplicate : missNote === 'none' ? copy.plain : '';
-  const kicker = !question ? '' : question.kind === 'to_target' ? copy.toTarget : question.kind === 'to_native' ? copy.toNative : copy.listen;
+  const kicker = !question ? '' : question.kind === 'to_target' ? copy.toTarget : copy.toNative;
   const resultTitle = rightCount === total ? copy.all : rightCount === 0 ? copy.none : copy.some;
 
   return (
@@ -215,13 +208,7 @@ export default function LingmanVideoQuizScreen() {
         ) : question ? (
           <View style={[styles.body, { paddingBottom: insets.bottom + 16 }]}>
             <Text style={[styles.kicker, { color: p.textSecondary }]}>{kicker}</Text>
-            {question.kind === 'listen' ? (
-              <View style={styles.player}>
-                <YoutubeInlinePlayer key={`${seed}:${index}`} videoId={videoId} title={typeof params.title === 'string' ? params.title : ''} active={runtimeActive} presentation="preview" autoPlay startSec={question.startSec} />
-              </View>
-            ) : (
-              <Text accessibilityRole="header" style={[styles.prompt, { color: p.text }]}>{question.prompt}</Text>
-            )}
+            <Text accessibilityRole="header" style={[styles.prompt, { color: p.text }]}>{question.prompt}</Text>
             <View style={styles.options}>
               {question.options.map((label, i) => (
                 <V2AnswerOption
@@ -254,8 +241,6 @@ const styles = StyleSheet.create({
   body: { flex: 1, paddingHorizontal: V2.screenPad, paddingTop: 24 },
   kicker: { ...V2_TYPE.body },
   prompt: { ...V2_TYPE.title, marginTop: 6 },
-  // зачем: кадр ролика как на экране просмотра — 16:9, радиус 14, чёрная подложка под видео в любой теме.
-  player: { marginTop: 14, aspectRatio: 16 / 9, borderRadius: 14, overflow: 'hidden', backgroundColor: '#000000' }, // theme-exempt: фон под видео — чёрный в любой теме
   options: { marginTop: 22, gap: 10 },
   footer: { marginTop: 'auto', gap: 14 },
   feedback: { ...V2_TYPE.headline, minHeight: 42, paddingHorizontal: 4 },

@@ -105,11 +105,12 @@ export function ProBadge({ fill, text, radius, compact }: { fill: GradientSpec; 
   );
 }
 
-export function RankChip({ rank, label, bg, ink, testID }: { rank: number | null; label: string; bg: string; ink: string; testID?: string }) {
+// зачем `compact` (макет elevate-real4.js `.prank`): в компактной визитке плашка 28 pt, шрифт 13, без монеты — монета ранга стоит над именем.
+export function RankChip({ rank, label, bg, ink, testID, compact }: { rank: number | null; label: string; bg: string; ink: string; testID?: string; compact?: boolean }) {
   return (
-    <View testID={testID} style={[styles.rank, { backgroundColor: bg }]}>
-      <CoinImage rank={rank} size={24} />
-      <Text style={[styles.rankText, { color: ink }]}>{label}</Text>
+    <View testID={testID} style={[styles.rank, compact ? styles.rankCompact : null, { backgroundColor: bg }]}>
+      {compact ? null : <CoinImage rank={rank} size={24} />}
+      <Text style={[styles.rankText, compact ? styles.rankTextCompact : null, { color: ink }]}>{label}</Text>
     </View>
   );
 }
@@ -151,4 +152,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   rankText: { fontSize: 16, fontWeight: '700' },
+  rankCompact: { height: 28, borderRadius: 14, paddingLeft: 12, paddingRight: 12 },
+  rankTextCompact: { fontSize: 13 },
 });

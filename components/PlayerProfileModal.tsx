@@ -141,6 +141,9 @@ const CARD_CY = 0.36;
 // Прежняя большая сцена остаётся только для церемонии повышения ранга (её рисует таймлайн ProfileCardRankUp).
 const COMPACT_COIN = 76;
 const COMPACT_PAD_TOP = 20;
+// макет: звезда 190 на визитке «Про» (cardPro) и 170 на обычной (cardFree)
+const COMPACT_STAR_PRO = 190;
+const COMPACT_STAR_NORMAL = 170;
 
 type BodyProps = {
   player: PlayerInfo;
@@ -385,11 +388,11 @@ function PlayerProfileModalBody({
           testID="player-profile-modal-sheet"
           accessibilityViewIsModal
           accessibilityLabel={`${relationshipText}: ${player.name}`}
-          style={[styles.card, { height: cardHeight, bottom: cardBottom, backgroundColor: tokens.bg, shadowColor: overlay.shadow }, cardEnter]}
+          style={[styles.card, compact ? { maxHeight: cardHeight } : { height: cardHeight }, { bottom: cardBottom, backgroundColor: tokens.bg, shadowColor: overlay.shadow }, cardEnter]}
         >
-          <View style={styles.stage} onLayout={onStageLayout}>
-            {stage.width > 0 ? (
-              <ProfileCardBackdrop look={look} width={stage.width} height={stage.height} cy={backdropCy} animate={animate} k={backdropK} />
+          <View style={compact ? styles.stageCompact : styles.stage} onLayout={onStageLayout}>
+            {stage.width > 0 && !compact ? (
+              <ProfileCardBackdrop look={look} width={stage.width} height={stage.height} cy={CARD_CY} animate={animate} k={k} />
             ) : null}
             {visibleCeremony && stage.width > 0 ? (
               <>
@@ -457,16 +460,22 @@ function PlayerProfileModalBody({
                 showsVerticalScrollIndicator={false}
                 bounces={false}
               >
+                {/* зачем (сверка 11.11): фон вида лежит ВНУТРИ прокрутки — свет и кольца уезжают вместе с монетой, а не остаются под именем */}
+                {stage.width > 0 ? (
+                  <View pointerEvents="none" style={[styles.compactBackdrop, { width: stage.width, height: stage.height }]}>
+                    <ProfileCardBackdrop look={look} width={stage.width} height={stage.height} cy={backdropCy} animate={animate} k={backdropK} />
+                  </View>
+                ) : null}
                 <View
                   testID="profile-card-coin"
                   accessible
                   accessibilityLabel={rankRow ? coinRankTitle(rankRow.rank, L) : t4(L, PC.rankUnknown)}
-                  style={styles.compactCoin}
+                  style={[styles.compactCoin, look === 'neon' ? styles.compactCoinHalo : null]}
                 >
                   <ProfileCardCoin look={look} rank={visibleRank} size={coinSize} animate={animate} plus={plus} plusTier={plusTier} plusSurface={tokens.bg} />
                 </View>
                 {cardBody}
-                {cardSkills ? <ProfileCardSkills look={look} lang={L} levels={cardSkills.levels} ratios={cardSkills.ratios} /> : null}
+                {cardSkills ? <ProfileCardSkills look={look} lang={L} levels={cardSkills.levels} ratios={cardSkills.ratios} starSize={look === 'normal' ? COMPACT_STAR_NORMAL : COMPACT_STAR_PRO} /> : null}
                 {!isMe && player.pairStats ? <FriendCardStats stats={player.pairStats} tokens={tokens} lang={L} /> : null}
               </ScrollView>
             ) : cardBody}
@@ -745,9 +754,15 @@ const styles = StyleSheet.create({
   },
   stage: { flex: 1, minHeight: 0, overflow: 'hidden' },
   // Компактная визитка: всё содержимое в потоке внутри прокрутки (макет `.pcd`: поля 20 · 18 · 18); кнопки шапки лежат поверх.
-  scroll: { ...StyleSheet.absoluteFillObject, zIndex: 6 },
+  // зачем (сверка 11.11): компактная карточка обнимает содержимое, как `.pcd` в макете — у постороннего без «Про» (навыков нет)
+  // не остаётся пустого поля; выше прежней высоты сцены она не растёт, дальше — прокрутка. Высоту считает сама раскладка, без замера в JS.
+  stageCompact: { flexShrink: 1, minHeight: 0, overflow: 'hidden' },
+  scroll: { flexGrow: 0, zIndex: 6 },
+  // «Неон»: кольца вида шире монеты — без запаса свечение наезжало на имя
+  compactCoinHalo: { marginBottom: 10 },
   scrollContent: { paddingTop: COMPACT_PAD_TOP, paddingHorizontal: 18, paddingBottom: 18 },
   compactCoin: { alignSelf: 'center' },
+  compactBackdrop: { position: 'absolute', top: 0, left: 0 },
   edge: { ...StyleSheet.absoluteFillObject, borderRadius: CARD_RADIUS }, // guard-ok: кант визитки .vz-edge (1–1,5pt полупрозрачный, стиль 2.0)
   top: {
     position: 'absolute', top: 16, left: 16, right: 16, zIndex: 12,

@@ -89,10 +89,10 @@ function ProfileCardBodyBase({
             </ReanimatedView.View>
           </>
         ) : rank !== null ? (
-          <RankChip testID="profile-card-rank-chip" rank={rank} label={profileCardRankLabel(rank, lang)} bg={tokens.rankBg} ink={tokens.rankText} />
+          <RankChip testID="profile-card-rank-chip" rank={rank} label={profileCardRankLabel(rank, lang)} bg={tokens.rankBg} ink={tokens.rankText} compact={compact} />
         ) : (
           <View testID="player-profile-rank-placeholder" accessible accessibilityLabel={t4(lang, PC.rankUnknown)}>
-            <RankChip rank={null} label="—" bg={tokens.rankBg} ink={tokens.rankText} />
+            <RankChip rank={null} label="—" bg={tokens.rankBg} ink={tokens.rankText} compact={compact} />
           </View>
         )}
       </View>
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
   // макет `.pcd .pnm` / `.prank`: имя 24 через 10 после монеты, плашка ранга через 8
   bodyCompact: { alignSelf: 'stretch', alignItems: 'center', marginTop: 10 },
   nameCompact: { fontSize: 24, lineHeight: 29, letterSpacing: -0.3 },
-  rankWrapCompact: { marginTop: 8 },
+  rankWrapCompact: { marginTop: 8, minHeight: 28 },
   center: { alignItems: 'center' },
   nameRow: { alignSelf: 'stretch', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
   plusTag: { marginLeft: 8, flexShrink: 0 },

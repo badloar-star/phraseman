@@ -1,6 +1,6 @@
 import React, { memo, useEffect } from 'react';
 import Reanimated, { Easing, cancelAnimation, useAnimatedProps, useSharedValue, withDelay, withTiming } from 'react-native-reanimated';
-import Svg, { Line, Polygon } from 'react-native-svg';
+import Svg, { Line, Path, Polygon } from 'react-native-svg';
 
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 
@@ -11,7 +11,10 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
  */
 const GRID = [0.34, 0.67, 1] as const;
 const TWEEN_MS = 1300;
-const AnimatedPolygon = Reanimated.createAnimatedComponent(Polygon);
+// зачем Path, а не Polygon (сверка визитки на эмуляторе 11.11.2026): у Polygon `points` превращается в контур на стороне JS, поэтому
+// анимированный `points` до нативного слоя не доходил — фигура звезды не рисовалась вовсе, была видна только сетка. У Path
+// анимируется сам нативный `d`.
+const AnimatedPath = Reanimated.createAnimatedComponent(Path);
 
 type Props = Readonly<{
   size: number;
@@ -52,13 +55,13 @@ function SkillsStar({ size, values, from, delayMs = 0, gridColor, axisColor, sha
   }, [key, delayMs, reduceMotion, progress]);
 
   const shapeProps = useAnimatedProps(() => {
-    let points = '';
+    let d = '';
     for (let i = 0; i < n; i += 1) {
       const k = start[i] + (to[i] - start[i]) * progress.value;
       const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
-      points += `${i ? ' ' : ''}${(c + Math.cos(a) * r * k).toFixed(1)},${(c + Math.sin(a) * r * k).toFixed(1)}`;
+      d += `${i ? 'L' : 'M'}${(c + Math.cos(a) * r * k).toFixed(1)},${(c + Math.sin(a) * r * k).toFixed(1)} `;
     }
-    return { points };
+    return { d: `${d}Z` };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [key, n, c, r]);
 
@@ -74,7 +77,7 @@ function SkillsStar({ size, values, from, delayMs = 0, gridColor, axisColor, sha
         const a = -Math.PI / 2 + (i * 2 * Math.PI) / n;
         return <Line key={`ray-${i}`} x1={c} y1={c} x2={c + Math.cos(a) * r} y2={c + Math.sin(a) * r} stroke={axisColor} strokeWidth={1} />;
       })}
-      <AnimatedPolygon animatedProps={shapeProps} fill={shapeFill} stroke={shapeStroke} strokeWidth={2} strokeLinejoin="round" />
+      <AnimatedPath animatedProps={shapeProps} fill={shapeFill} stroke={shapeStroke} strokeWidth={2} strokeLinejoin="round" />
     </Svg>
   );
 }

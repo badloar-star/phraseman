@@ -187,3 +187,5 @@ Status: передача написана и проверена тестами; 
 Governance-ID: TG-C5E67EE5200E
 Governance-ID: TG-7603CCFBBC12
 Governance-ID: TG-F8E50570EA10
+Governance-ID: TG-69FC60B09B9F
+Governance-ID: TG-8296AE6BBB74

@@ -104,7 +104,8 @@ function completionLabels(lang: Lang) {
     // зачем (решение владельца 13.10, dialogs.html D2: под «Готово» «Добить: Ещё учу (N)» при ошибках; в карточке «Ошибки» — «Повторить ошибки»): N — ошибки диалога, записанные в «Мои ошибки»
     // зачем (координатор 17.10): «Добить: Ещё учу» не говорило, что N — ошибки; на языках кроме ru — «Исправить ошибки (N)». ru — как в макете, решает владелец.
     finishMistakes: (n: number) => triLang(lang, {
-      ru: `Добить: Ещё учу (${n})`, uk: `Виправити помилки (${n})`, en: `Fix mistakes (${n})`, es: `Corregir errores (${n})`,
+      // зачем (владелец 11.11, аудит текстов): ru приведён к остальным языкам — «Добить: Ещё учу» не говорило, что N — ошибки
+      ru: `Исправить ошибки (${n})`, uk: `Виправити помилки (${n})`, en: `Fix mistakes (${n})`, es: `Corregir errores (${n})`,
       'pt-BR': `Corrigir erros (${n})`, vi: `Sửa lỗi (${n})`, id: `Perbaiki kesalahan (${n})`,
       // зачем (Сверка, R1_LONG_TRANSLATIONS 13.10): pt-BR/pl/id/tr были длиннее en (30–34 знака) — кнопка переносилась; теперь ≤ en.
       tr: `Hataları düzelt (${n})`, pl: `Popraw błędy (${n})`, fr: `Corriger les erreurs (${n})`, de: `Fehler verbessern (${n})`,

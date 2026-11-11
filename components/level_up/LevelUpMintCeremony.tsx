@@ -140,7 +140,8 @@ export default function LevelUpMintCeremony({ visible, from, to, onDone, onCue }
         ru: 'Новый уровень', uk: 'Новий рівень', en: 'New level', es: 'Nuevo nivel', 'pt-BR': 'Novo nível', vi: 'Cấp mới', id: 'Level baru', tr: 'Yeni seviye', pl: 'Nowy poziom',
       }),
       skipHint: triLang(lang, {
-        ru: 'Коснитесь, чтобы досмотреть быстрее', uk: 'Торкніться, щоб дивитися швидше', en: 'Tap to fast-forward', es: 'Toca para avanzar más rápido',
+        // зачем (владелец 11.11, аудит текстов): интерфейс на «ты»; ru и uk приведены к общему обращению
+        ru: 'Коснись, чтобы досмотреть быстрее', uk: 'Торкнись, щоб дивитися швидше', en: 'Tap to fast-forward', es: 'Toca para avanzar más rápido',
         'pt-BR': 'Toque para avançar mais rápido', vi: 'Chạm để tua nhanh', id: 'Ketuk untuk mempercepat', tr: 'Hızlandırmak için dokunun', pl: 'Dotknij, aby przyspieszyć',
       }),
     }),

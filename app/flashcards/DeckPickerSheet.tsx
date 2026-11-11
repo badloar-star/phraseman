@@ -272,8 +272,9 @@ export default function DeckPickerSheet({
   const summaryLabel = summary.deckCount > 0
     ? deckSelectionLabel(lang, summary)
     : triLang(lang, {
-        ru: 'Отметьте один или несколько наборов',
-        uk: 'Позначте один або кілька наборів',
+        // зачем (владелец 11.11, аудит текстов): интерфейс на «ты»
+        ru: 'Отметь один или несколько наборов',
+        uk: 'Познач один або кілька наборів',
         en: 'Select one or more packs',
         es: 'Marca uno o varios packs',
         'pt-BR': 'Marque um ou mais pacotes',

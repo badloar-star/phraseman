@@ -1,6 +1,6 @@
 import { addSkillPoints, awardSkillPoints, emptySkillDayLedger } from '../modules/skills/skill_award';
 import {
-  EMPTY_SKILL_TOTALS, SKILL_LEVEL_MAX, skillLevelCost, skillLevelUps, skillProgressFromPoints, weakestStudySkill,
+  EMPTY_SKILL_TOTALS, SKILL_LEVEL_MAX, skillLevelCost, skillLevelUps, skillProgressFromPoints, skillRank, weakestStudySkill,
 } from '../modules/skills/skill_levels';
 import { SKILL_POINT_RULES } from '../modules/skills/skill_points_table';
 
@@ -50,6 +50,22 @@ describe('уровни', () => {
   it('«Подтянуть» не предлагает «Социальный», даже если он самый слабый', () => {
     const totals = { listening: 500, speech: 300, vocab: 900, grammar: 400, speed: 600, social: 0 };
     expect(weakestStudySkill(totals)).toBe('speech');
+  });
+});
+
+describe('слово уровня для пилюли (пороги владельца 11.11)', () => {
+  // очки, которых ровно хватает на уровень n: сумма цен уровней 0..n-1
+  const pointsFor = (level: number) => Array.from({ length: level }, (_, i) => skillLevelCost(i)).reduce((a, b) => a + b, 0);
+  const all = (level: number) => ({ listening: pointsFor(level), speech: pointsFor(level), vocab: pointsFor(level), grammar: pointsFor(level), speed: pointsFor(level), social: 0 });
+
+  it('0–5 «Новичок», 6–12 «Уверенный», 13–20 «Сильный», 21–30 «Мастер»', () => {
+    expect([0, 5, 6, 12, 13, 20, 21, 30].map((level) => skillRank(all(level)))).toEqual(
+      ['novice', 'novice', 'confident', 'confident', 'strong', 'strong', 'master', 'master'],
+    );
+  });
+
+  it('«Социальный» в расчёт не входит', () => {
+    expect(skillRank({ ...EMPTY_SKILL_TOTALS, social: 1e9 })).toBe('novice');
   });
 });
 

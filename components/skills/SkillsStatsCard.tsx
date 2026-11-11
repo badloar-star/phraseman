@@ -8,6 +8,7 @@
  */
 import React, { memo, useCallback, useEffect, useMemo, useRef, useSyncExternalStore } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
 
 import { useLang } from '../LangContext';
@@ -53,7 +54,11 @@ function SkillsStatsCard() {
 
   return (
     <V2Card seed={2} style={s.card} onPress={onPress} testID="stats-skills-card" accessibilityLabel={triLang(lang, SKILLS_SCREEN_COPY.title)}>
-      <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{triLang(lang, SKILLS_SCREEN_COPY.title)}</Text>
+      <View style={s.head}>
+        <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{triLang(lang, SKILLS_SCREEN_COPY.title)}</Text>
+        {/* зачем (владелец 11.11): подписи «Нажатие открывает…» нет — что блок нажимается, говорит стрелка, как у соседних строк */}
+        <Ionicons name="chevron-forward" size={20} color={p.textMuted} />
+      </View>
       <View style={s.body}>
         <SkillsStar size={STAR_SIZE} values={star} delayMs={350} gridColor={p.divider} axisColor={p.divider} shapeFill={p.accentSoft} shapeStroke={p.text} />
         <View style={s.rows}>
@@ -72,7 +77,8 @@ function SkillsStatsCard() {
 
 const s = StyleSheet.create({
   card: { paddingTop: 16, paddingHorizontal: 16, paddingBottom: 14 },
-  title: { fontSize: 19, lineHeight: 24, fontWeight: '800', marginBottom: 4 },
+  head: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 },
+  title: { fontSize: 19, lineHeight: 24, fontWeight: '800' },
   body: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 8 },
   rows: { flex: 1, gap: 9 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 10, height: 20 },

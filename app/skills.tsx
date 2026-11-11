@@ -24,8 +24,8 @@ import { useV2Palette } from '../components/v2/useV2Palette';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { hapticTap } from '../hooks/use-haptics';
-import { SKILLS_SCREEN_COPY, SKILL_NAME, SKILL_SOURCE } from '../modules/skills/skill_copy';
-import { EMPTY_SKILL_TOTALS, SKILL_LEVEL_MAX, skillProgressFromPoints } from '../modules/skills/skill_levels';
+import { SKILLS_SCREEN_COPY, SKILL_NAME, SKILL_RANK_NAME, SKILL_SOURCE } from '../modules/skills/skill_copy';
+import { EMPTY_SKILL_TOTALS, SKILL_LEVEL_MAX, skillProgressFromPoints, skillRank } from '../modules/skills/skill_levels';
 import { SKILL_IDS } from '../modules/skills/skill_points_table';
 import { peekSkills, refreshSkills, skillWeekGains, subscribeSkills } from '../modules/skills/skill_store';
 import { safeRouterBack } from './navigation_back';
@@ -77,8 +77,14 @@ export default function SkillsScreen() {
           </View>
 
           <View style={s.indexBlock}>
-            <Text style={[s.over, { color: p.textSecondary }]}>{triLang(lang, SKILLS_SCREEN_COPY.index)}</Text>
-            <StatCountUpText value={index} durationMs={1300} delayMs={OPEN_DELAY_MS} style={[s.big, { color: p.text }]} />
+            <View>
+              <Text style={[s.over, { color: p.textSecondary }]}>{triLang(lang, SKILLS_SCREEN_COPY.index)}</Text>
+              <StatCountUpText value={index} durationMs={1300} delayMs={OPEN_DELAY_MS} style={[s.big, { color: p.text }]} />
+            </View>
+            {/* зачем (владелец 11.11): пилюля — слово по среднему уровню учебных навыков, как на макете справа от индекса */}
+            <View style={[s.pill, s.rankPill, { backgroundColor: p.glass }]}>
+              <Text style={[s.pillText, { color: p.text }]}>{triLang(lang, SKILL_RANK_NAME[skillRank(totals)])}</Text>
+            </View>
           </View>
 
           <SkillsRadar
@@ -130,7 +136,8 @@ const s = StyleSheet.create({
   title: { position: 'absolute', left: 64, right: 64, textAlign: 'center', fontSize: 17, lineHeight: 22, fontWeight: '700' },
   pill: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 36, paddingHorizontal: 12, borderRadius: 18 },
   pillText: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
-  indexBlock: { marginTop: 18, height: 70 },
+  indexBlock: { marginTop: 18, height: 70, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between' },
+  rankPill: { marginBottom: 4 },
   over: { fontSize: 14, lineHeight: 18, fontWeight: '500' },
   big: { marginTop: 4, fontSize: 44, lineHeight: 48, fontWeight: '800', letterSpacing: -1, fontVariant: ['tabular-nums'] },
   hint: { minHeight: 18, marginTop: 4, textAlign: 'center', fontSize: 14, lineHeight: 18, fontWeight: '500' },

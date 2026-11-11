@@ -4,8 +4,8 @@
  *
  * зачем: блок получает итоги «до» и «после» и сам считает прирост через modules/skills — на любом итоге цифры
  * совпадают с таблицей очков. Нет прироста — блок не рисуется вовсе (вызывающий знает это до первого кадра,
- * потому что итоги уже в памяти). Метка «Новый уровень» занимает место сразу и только проявляется:
- * высота блока после анимации не меняется.
+ * потому что итоги уже в памяти). Метка «Новый уровень» выезжает и раздвигает блок — ровно как на макете
+ * (решение владельца 11.11).
  */
 import React, { memo, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -72,7 +72,9 @@ const GrowthRow = memo(function GrowthRow({ row, index, name, levelWord, levelUp
   }, [fill, index, reduceMotion, row.leveledUp, row.levelAfter, row.ratioAfter, tag]);
 
   const fillStyle = useAnimatedStyle(() => ({ width: `${Math.max(0, Math.min(1, fill.value)) * 100}%` }));
-  const tagStyle = useAnimatedStyle(() => ({ opacity: tag.value }));
+  // зачем (владелец 11.11, ответ «Ровно как на макете»): метка выезжает — высота 0 → 22 и отступ 0 → 8, блок раздвигается.
+  // Это осознанное исключение из правила стабильной геометрии: движение происходит один раз, после полоски, по слову владельца.
+  const tagStyle = useAnimatedStyle(() => ({ opacity: tag.value, height: 22 * tag.value, marginTop: 8 * tag.value }));
 
   return (
     <View>
@@ -130,7 +132,7 @@ const s = StyleSheet.create({
   levelValue: { fontSize: 20, fontWeight: '800', fontVariant: ['tabular-nums'] },
   track: { height: 6, borderRadius: 3, overflow: 'hidden', marginTop: 8 },
   fill: { height: 6, borderRadius: 3 },
-  tag: { alignSelf: 'flex-start', height: 22, paddingHorizontal: 10, borderRadius: 11, justifyContent: 'center', marginTop: 8 },
+  tag: { alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 11, justifyContent: 'center', overflow: 'hidden' },
   tagText: { fontSize: 12, lineHeight: 16, fontWeight: '700' },
 });
 

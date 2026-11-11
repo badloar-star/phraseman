@@ -57,6 +57,22 @@ export function skillLevelUps(before: SkillTotals, after: SkillTotals): SkillLev
   });
 }
 
+export type SkillRank = 'novice' | 'confident' | 'strong' | 'master';
+
+/**
+ * Слово для пилюли на экране «Навыки» — по среднему уровню пяти учебных навыков («Социальный» в расчёт не входит).
+ * Пороги утверждены владельцем 11.11.2026: 0–5 «Новичок», 6–12 «Уверенный», 13–20 «Сильный», 21–30 «Мастер».
+ * Буквы уровня языка (A2 и т. п.) нет намеренно: по очкам навыков уровень языка честно не определить.
+ */
+export function skillRank(totals: SkillTotals): SkillRank {
+  const sum = STUDY_SKILL_IDS.reduce((acc, skill) => acc + skillProgressFromPoints(totals[skill]).level, 0);
+  const average = Math.floor(sum / STUDY_SKILL_IDS.length);
+  if (average >= 21) return 'master';
+  if (average >= 13) return 'strong';
+  if (average >= 6) return 'confident';
+  return 'novice';
+}
+
 /** Самый слабый учебный навык для кнопки «Подтянуть»; «Социальный» не предлагается (владелец 11.11). */
 export function weakestStudySkill(totals: SkillTotals): SkillId {
   return STUDY_SKILL_IDS.reduce((weak, skill) => (totals[skill] < totals[weak] ? skill : weak));

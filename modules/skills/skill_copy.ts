@@ -24,6 +24,13 @@ export const SKILL_SOURCE: Readonly<Record<SkillId, Copy>> = {
   social: { ru: 'Растёт от сердечек, комментариев, своих наборов и друзей', uk: 'Зростає від сердечок, коментарів, власних наборів і друзів', es: 'Crece con corazones, comentarios, tus sets y amigos', en: 'Grows from hearts, comments, your sets and friends' },
 };
 
+export const SKILL_RANK_NAME = {
+  novice: { ru: 'Новичок', uk: 'Новачок', es: 'Principiante', en: 'Beginner' },
+  confident: { ru: 'Уверенный', uk: 'Упевнений', es: 'Seguro', en: 'Confident' },
+  strong: { ru: 'Сильный', uk: 'Сильний', es: 'Fuerte', en: 'Strong' },
+  master: { ru: 'Мастер', uk: 'Майстер', es: 'Maestro', en: 'Master' },
+} as const satisfies Record<string, Copy>;
+
 export const SKILLS_SCREEN_COPY = {
   title: { ru: 'Навыки', uk: 'Навички', es: 'Habilidades', en: 'Skills' },
   thisWeek: { ru: 'за неделю', uk: 'за тиждень', es: 'esta semana', en: 'this week' },

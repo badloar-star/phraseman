@@ -35,14 +35,14 @@ h1 { font-size: 24px; line-height: 30px; margin: 0 0 6px; font-weight: 700; lett
 .cap span { font-weight: 500; color: var(--pgs); font-size: 13px; }
 
 /* ═════ панель «Оформление»: размеры как в app/settings_appearance.tsx и TuneSlider ═════ */
-.panel { width: 100%; display: grid; grid-template-columns: minmax(220px, 280px) minmax(300px, 1fr) auto; gap: 16px; align-items: center; margin-bottom: 26px; padding: 14px 16px; border-radius: 28px; background: var(--pgc); box-shadow: 0 14px 26px -16px rgba(0, 0, 0, .5); position: sticky; top: 8px; z-index: 50; }
+.panel { width: 100%; display: grid; grid-template-columns: minmax(200px, 250px) minmax(200px, 1fr) auto; gap: 16px; align-items: center; margin-bottom: 26px; padding: 14px 16px; border-radius: 28px; background: var(--pgc); box-shadow: 0 14px 26px -16px rgba(0, 0, 0, .5); position: sticky; top: 8px; z-index: 50; }
 .seg { position: relative; height: 48px; border-radius: 16px; background: color-mix(in srgb, var(--pgx) 7%, var(--pgc)); padding: 4px; display: flex; }
 .seg i.th { position: absolute; top: 4px; bottom: 4px; left: 4px; width: calc(50% - 4px); border-radius: 12px; background: color-mix(in srgb, var(--pgx) 16%, var(--pgc)); transition: transform 240ms var(--ease-out); }
 .seg[data-v="dark"] i.th { transform: translateX(100%); }
 .seg button { position: relative; flex: 1; border: 0; background: none; color: var(--pgs); font: 700 16px Inter, sans-serif; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; border-radius: 12px; }
 .seg button[aria-pressed="true"] { color: var(--pgx); }
 .seg button .io { font-size: 18px; }
-.sls { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+.sls { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px 18px; } .sl .lb b { white-space: nowrap; }
 .sl .lb { display: flex; justify-content: space-between; align-items: baseline; min-height: 22px; }
 .sl .lb b { font-size: 16px; line-height: 22px; font-weight: 700; }
 .sl .lb span { font-size: 15px; color: var(--pgs); font-weight: 500; font-variant-numeric: tabular-nums; }

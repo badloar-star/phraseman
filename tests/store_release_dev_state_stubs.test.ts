@@ -20,7 +20,7 @@ const NAMES = ['dev_account_state', 'dev_vip_override', 'dev_social_state', 'dev
   'dev_short_lesson',
   // зачем (PM-216 пункт В, координатор 13.10): dev-модули, найденные в первом стор-экспорте
   'dev_ai_consent', 'dev_as_free_flag', 'dev_dialog_send', 'dev_fc_lang_state', 'dev_hub_bus', 'dev_overlays_off',
-  'dev_practice_runes_seed', 'dev_robot_display', 'dev_today_tasks', 'dev_year_activity', 'dev_youtube_demo',
+  'dev_practice_runes_seed', 'dev_robot_display', 'dev_today_tasks', 'dev_youtube_demo',
   // зачем (координатор 25.10): факты «Сцены» на боевой Главной для съёмки — в стор-бандле заглушка, подмены нет
   'dev_home_scene_facts'] as const;
 
@@ -88,8 +88,6 @@ describe('store-release stubs for the R1 dev-state modules', () => {
     expect([youtube.getDevYoutubeCatalogReader(), youtube.getDevVideoPhrases('x'), youtube.setDevYoutubeDemo('catalog')]).toEqual([null, null, false]);
     const today = require('../store_release_stubs/dev_state/dev_today_tasks_stub');
     expect([today.getDevTodayTaskSpire(), today.setDevTodayTaskSpire(true)]).toEqual([false, false]);
-    const year = require('../store_release_stubs/dev_state/dev_year_activity_stub');
-    expect([year.peekDevYearActivityDays(), year.setDevYearActivityDemo(true)]).toEqual([null, false]);
     const robot = require('../store_release_stubs/dev_state/dev_robot_display_stub');
     expect([robot.isDevInboxEmpty(), robot.getDevReminderTime(), robot.setDevInboxEmpty(true)]).toEqual([false, null, false]);
     const fcLang = require('../store_release_stubs/dev_state/dev_fc_lang_state_stub');

@@ -342,7 +342,7 @@ const io = (n, cls = '') => { const code = window.IONMAP[n]; if (!code) console.
 document.querySelectorAll('[data-io]').forEach((e) => { e.textContent = String.fromCharCode(window.IONMAP[e.dataset.io] || 0); });
 
 const STD = PM.THEME_TUNE_STANDARD; // { H: 250, S: 35 } — «Стандартный» приложения
-const st = { ap: 'dark', H: STD.H, S: STD.S, K: 75 }; // K — сила разницы фон/плашка, 0…100
+const st = { ap: 'dark', H: STD.H, S: STD.S, K: 100 }; // K — сила разницы фон/плашка, 0…100; зачем: владелец выбрал 100 % (круг 8) — это значение по умолчанию и то, что закрепляется правилом темы
 const SCENE_W = 411; const SCENE_H = 354; const DP = 2.625; // размер сцены Главной в dp — для расчёта «как сейчас»
 
 /* ───────── цвет: помощники ───────── */
@@ -384,7 +384,7 @@ function compute() {
      фон — самый глубокий и самый цветной; плашка — заметно светлее и спокойнее по цвету; вложенные плашки (значки, пилюли) — ещё на ступень светлее.
      Разницу держит страж: плашка светлеет, пока её контраст с САМЫМ светлым местом фона (под пятном света) не станет ≥ 1,5 в тёмном оформлении;
      в светлом фон сам темнеет от белой плашки до ≥ 1,2 и тень плашки окрашена в оттенок темы. */
-  /* зачем (владелец, круг 7: «недостаточно получилось»): прежний порог 1,5 давал слишком мягкую разницу. Теперь сила разницы — число K (ползунок «Контраст плашек», по умолчанию 75):
+  /* зачем (владелец, круг 7: «недостаточно получилось»): прежний порог 1,5 давал слишком мягкую разницу. Теперь сила разницы — число K (ползунок «Контраст плашек», по умолчанию 100 — выбор владельца):
      тёмное — цель 1,5…2,4 к 1: фон уходит почти в чёрный и теряет часть света пятен, плашка светлеет (потолок светлоты 0,44, чтобы белый и вторичный текст на ней читались);
      светлое — цель 1,2…1,6 к 1: фон темнеет и набирает цвет (не ниже светлоты 0,845 — на нём лежит тёмный текст заголовков). Вторичный текст на плашках в тёмном чуть светлее (0,88). */
   const K = st.K / 100; const target = dark ? 1.5 + 0.9 * K : 1.2 + 0.4 * K;
@@ -672,7 +672,7 @@ function render() {
   document.querySelector('#hueK i').style.background = ok(hueL, .14, st.H); document.querySelector('#satK i').style.background = g.accentGraphic;
   document.getElementById('hueV').textContent = `${st.H}°`; document.getElementById('satV').textContent = `${st.S} %`;
   document.getElementById('hueT').setAttribute('aria-valuenow', st.H); document.getElementById('satT').setAttribute('aria-valuenow', st.S);
-  document.getElementById('reset').disabled = st.H === STD.H && st.S === STD.S && st.K === 75;
+  document.getElementById('reset').disabled = st.H === STD.H && st.S === STD.S && st.K === 100;
   const seg = document.getElementById('seg'); seg.dataset.v = st.ap; seg.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.ap === st.ap)));
   document.getElementById('note').innerHTML = `Тема приложения <b>${r.id}</b>. Плашка к фону: <b>${checks.sepCard}:1</b> (цель ${checks.sepTarget}), вложенная плашка к плашке: <b>${checks.sepCtl}:1</b>. Белый текст на сцене «Авроры»: <b>${checks.aurora}:1</b>, подпись на стеклянной плитке: <b>${checks.tile}:1</b> (нужно от 4,5). Сцена приложения сейчас считает оттенок <b>${checks.nowHue}°</b> и цветность <b>${checks.nowChroma}</b> при ползунках ${st.H}° и ${st.S} %.`;
   console.log(LOG, JSON.stringify({ id: r.id, ap: st.ap, H: st.H, S: st.S, accent: g.accentGraphic, checks }));
@@ -690,7 +690,7 @@ function slider(id, max, set, get) {
 }
 slider('hueT', 359, (x) => { st.H = x; }, () => st.H); slider('satT', 100, (x) => { st.S = x; }, () => st.S); slider('conT', 100, (x) => { st.K = x; }, () => st.K);
 document.querySelectorAll('#seg button').forEach((b) => b.addEventListener('click', () => { st.ap = b.dataset.ap; schedule(); }));
-document.getElementById('reset').addEventListener('click', () => { st.H = STD.H; st.S = STD.S; st.K = 75; schedule(); });
+document.getElementById('reset').addEventListener('click', () => { st.H = STD.H; st.S = STD.S; st.K = 100; schedule(); });
 /* «день засчитан»: состояние меняется сразу по нажатию (как в приложении — локально, без ожидания сервера); повторное нажатие возвращает назад */
 function setCounted(on) {
   const wk = document.querySelector('#phHome [data-week]'); if (!wk) { console.warn(LOG, 'блок дней не найден — огонёк не зажечь'); return; }

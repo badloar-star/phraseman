@@ -12,8 +12,9 @@ describe('phrase audio lookup — готовых клипов нет', () => {
     expect(getPlayablePhraseAudioUrl(text)).toBeUndefined();
   });
 
-  it('карта «фраза → mp3» удалена и не импортируется', () => {
-    expect(fs.existsSync(path.join(ROOT, 'app', 'phrase_audio_url_map.generated.ts'))).toBe(false);
+  // зачем: проверки «файл карты удалён» здесь нет намеренно — владелец 11.11 делает новую озвучку,
+  // и её карта может лечь под тем же именем. Сторожим только то, что старая карта не подключена.
+  it('старая карта «фраза → mp3» не подключена к поиску клипа', () => {
     const source = fs.readFileSync(path.join(ROOT, 'modules', 'audio', 'phrase_audio_lookup.ts'), 'utf8');
     expect(source).not.toContain('require(');
     expect(source).not.toContain('firebasestorage');

@@ -58,8 +58,9 @@ export const VideoContinueCard = memo(function VideoContinueCard({ video, record
       {/* theme-exempt: затемнение под подписями поверх кадра — чёрное в любой теме, иначе белый текст не читается на светлой обложке */}
       <LinearGradient pointerEvents="none" colors={['rgba(0,0,0,0)', 'rgba(6,7,10,0.82)']} locations={[0.36, 1]} style={StyleSheet.absoluteFill} />
       <View style={styles.text} pointerEvents="none">
-        <Text numberOfLines={2} maxFontSizeMultiplier={1.2} style={[styles.title, { color: media.ink }]}>{title}</Text>
-        <Text numberOfLines={1} maxFontSizeMultiplier={1.2} style={[styles.sub, { color: media.ink }]}>{[resume, left].filter(Boolean).join(' · ')}</Text>
+        {/* зачем (правило владельца: текст не обрезать и не ужимать): название и строка остатка переносятся целиком; блок прижат к низу кадра и растёт вверх по затемнению. */}
+        <Text maxFontSizeMultiplier={1.2} style={[styles.title, { color: media.ink }]}>{title}</Text>
+        <Text maxFontSizeMultiplier={1.2} style={[styles.sub, { color: media.ink }]}>{[resume, left].filter(Boolean).join(' · ')}</Text>
       </View>
       <View style={[styles.play, { backgroundColor: p.cta }]} pointerEvents="none">
         <Ionicons name="play" size={22} color={p.ctaText} style={styles.playIcon} />

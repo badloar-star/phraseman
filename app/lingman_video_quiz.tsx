@@ -224,7 +224,7 @@ export default function LingmanVideoQuizScreen() {
             </View>
             {/* зачем (устойчивость вёрстки): место под строку исхода и кнопку занято всегда — после ответа ничего не сдвигается, кнопка только становится активной. */}
             <View style={styles.footer}>
-              <Text testID="lingman-video-quiz-feedback" accessibilityLiveRegion="polite" style={[styles.feedback, { color: goodAnswer ? p.correct : p.text }]} numberOfLines={2}>{feedback}</Text>
+              <Text testID="lingman-video-quiz-feedback" accessibilityLiveRegion="polite" style={[styles.feedback, { color: goodAnswer ? p.correct : p.text }]}>{feedback}</Text>
               <V2Button testID="lingman-video-quiz-next" label={index + 1 < total ? copy.next : copy.finish} disabled={!answered} onPress={next} />
             </View>
           </View>

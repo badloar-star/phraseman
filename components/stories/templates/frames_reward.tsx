@@ -7,18 +7,22 @@
 //
 // Сумма на кадре (шаг 3, владелец 11.11: «делай»): награда за место и за повышение приходят в событии истории и равны 0, пока сервер
 // не подтвердил выплату, — поэтому кадр показывает сумму только когда монеты дошли. Причины под суммой — прежние строки окна итога
-// («+N за K место», «+N за повышение», 9 языков), новых переводов нет. Чего на кадре пока нет: «в пути», энергия, «сколько не хватило
-// до пятёрки» — этих данных у события нет.
+// («+N за K место», «+N за повышение», 9 языков), новых переводов нет.
+// Энергия (шаг 5, владелец 11.11): строка «+1 / −1 к запасу энергии» — тем же правилом, что в окне итога недели (spireWeekEnergyLine).
+// Чего на кадре пока нет: «в пути» и «сколько не хватило до пятёрки». «В пути» требует обновлять уже записанную историю после
+// выплаты, иначе надпись останется навсегда; файлы, где это делается, 11.11 были заняты другой сессией.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo, useEffect, useMemo } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
 import { achievementConditionForLang, achievementDescForLang, achievementNameForLang, ALL_ACHIEVEMENTS } from '../../../app/achievements';
 import { DebugLogger } from '../../../app/debug-logger';
+import { getSpireEnergyBonus } from '../../../app/spire_energy_bonus_store';
 import { spireTierName } from '../../../modules/spire/tier_names';
 import AchievementArt from '../../AchievementArt';
 import SpireRankCoin from '../../spire/SpireRankCoin';
 import { momentLeagueIn, momentText } from '../../spire/moments/moments_strings';
+import { spireWeekEnergyLine } from '../../spire/spire_week_energy';
 import { streakDayWord } from '../../streak/moments/streak_moments_strings';
 import { storyText, storyThousands } from '../story_strings';
 import { EASE_FALL, frameMs, phase, useStoryFrameClock } from './story_frame_clock';
@@ -97,12 +101,16 @@ export const PeakWeekRewardFrame = memo(function PeakWeekRewardFrame({ tpl, lang
   // старое событие без поля → 0; оба числа уже нулевые, пока сервер не подтвердил выплату
   const placeCoins = Math.max(0, tpl.placeCoins ?? 0);
   const total = placeCoins + promotionCoins;
+  // зачем (владелец 11.11: «добавь энергию на кадр»): то же правило и тот же источник запаса, что у окон повышения и карточки итога —
+  // «+1» при подъёме, пока запас не на потолке; «−1» при спуске, только если было что снимать; лига не менялась — строки нет.
+  const energyBonus = getSpireEnergyBonus();
+  const energy = spireWeekEnergyLine(lang, { promoted: tpl.outcome === 'up', demoted: tpl.outcome === 'down' }, energyBonus);
 
   useEffect(() => {
     DebugLogger.info(LOG, `итог недели: вид=${variant} исход=${tpl.outcome} лига=${tpl.tier} прежняя=${prevTier} смена=${changed} место=${tpl.place}/${tpl.total} `
       + `монетНедели=${tpl.weekCoins} заМесто=${placeCoins}(в событии ${tpl.placeCoins === undefined ? 'нет поля' : tpl.placeCoins}) заПовышение=${promotionCoins} `
-      + `сумма=${total}${total > 0 ? '' : ' → строки суммы нет'} статуэтка=${size}dp`);
-  }, [variant, tpl, prevTier, changed, size, placeCoins, promotionCoins, total]);
+      + `сумма=${total}${total > 0 ? '' : ' → строки суммы нет'} запасЭнергии=${energyBonus} строкаЭнергии=${energy === null ? 'нет' : `«${energy}»`} статуэтка=${size}dp`);
+  }, [variant, tpl, prevTier, changed, size, placeCoins, promotionCoins, total, energyBonus, energy]);
 
   const outcome = tpl.outcome === 'up' ? storyText(lang, 'weekUp', { league })
     : tpl.outcome === 'down' ? storyText(lang, 'weekDown', { league })
@@ -136,6 +144,7 @@ export const PeakWeekRewardFrame = memo(function PeakWeekRewardFrame({ tpl, lang
       {tpl.place > 0 && tpl.total > 0 ? <P text={storyText(lang, 'weekPlace', { place: tpl.place, total: tpl.total })} d={REWARD_LAND_MS + 150} /> : null}
       {total > 0 ? <RewardSum total={total} rank={myRank} /> : null}
       <P text={reason} d={REWARD_LAND_MS + (total > 0 ? 1550 : 600)} />
+      {energy !== null ? <P text={energy} d={REWARD_LAND_MS + (total > 0 ? 1800 : 850)} /> : null}
     </FrameRoot>
   );
 });

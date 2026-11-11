@@ -80,6 +80,14 @@ describe('истории наград U36 — статуэтки и стиль',
     expect(frame).toContain("const promotionCoins = tpl.outcome === 'up' ? Math.max(0, tpl.promotionCoins) : 0;");
   });
 
+  it('строка энергии считается общим правилом итога недели, а не своим', () => {
+    // зачем (владелец 11.11, шаг 5): кадр истории и окно итога недели обязаны говорить про энергию одно и то же
+    const frame = read('components/stories/templates/frames_reward.tsx');
+    expect(frame).toContain("spireWeekEnergyLine(lang, { promoted: tpl.outcome === 'up', demoted: tpl.outcome === 'down' }, energyBonus)");
+    expect(frame).toContain('const energyBonus = getSpireEnergyBonus();');
+    expect(frame).toContain('{energy !== null ? <P text={energy}');
+  });
+
   it('движение сцены идёт от часов кадра, а не от своих таймеров', () => {
     const stage = read('components/stories/templates/story_reward_stage.tsx');
     expect(stage).toMatch(/useStoryFrameClock/);

@@ -107,7 +107,9 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
   // зачем (ТОП-20 №14, 05.11): подсказка «Правильно: …» появляется мягко (fade + 8 px вверх, 180 мс) и прокрутка доходит до неё — на низком окне она не оставалась за краем; Reduce Motion — без движения и без анимации прокрутки
   const reduceMotion = useReducedMotion();
   const scrollRef = useRef<ScrollView>(null);
-  const hintTaskIndex = fb ? fb.taskIndex : -1;
+  // зачем (владелец 11.11.2026: «я должен сам переходить по нажатию кнопки»): после верного ответа тоже стоит «Дальше» — без плашки разбора
+  const okShown = feedback?.ok === true;
+  const hintTaskIndex = feedback ? feedback.taskIndex : -1;
   useEffect(() => {
     if (hintTaskIndex < 0) return undefined;
     const timer = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: !reduceMotion }), 60);
@@ -162,23 +164,23 @@ export function SpireStepLayout(props: SpireStepLayoutProps) {
           </SpireGoldFrame>
         )}
         {props.reportSlot}
-        {fb ? (
-          <Animated.View entering={reduceMotion ? undefined : FadeInDown.duration(180).withInitialValues({ opacity: 0, transform: [{ translateY: 8 }] })} style={[s.hint, { backgroundColor: lv2Alpha(p.wrong, 0.14) }, sh.plate]} accessibilityLiveRegion="polite" testID="spire-step-hint">
-            {fb.correctText ? (
+        {fb || okShown ? (
+          <Animated.View entering={reduceMotion ? undefined : FadeInDown.duration(180).withInitialValues({ opacity: 0, transform: [{ translateY: 8 }] })} style={fb ? [s.hint, { backgroundColor: lv2Alpha(p.wrong, 0.14) }, sh.plate] : null} accessibilityLiveRegion="polite" testID="spire-step-hint">
+            {fb?.correctText ? (
               <Text style={[s.hintText, { color: p.text }]}>
                 {`${spireGameText(lang, 'correctIs')} `}<Text style={s.hintBold}>{fb.correctText}</Text>
               </Text>
             ) : null}
-            {fb.mistakeSaved ? <Text style={[s.hintSub, { color: p.textSecondary }]}>{spireGameText(lang, 'mistakeSaved')}</Text> : null}
+            {fb?.mistakeSaved ? <Text style={[s.hintSub, { color: p.textSecondary }]}>{spireGameText(lang, 'mistakeSaved')}</Text> : null}
             {/* зачем (обзор R1 п.4): запись в «Мои ошибки» упала — тихо, тем же тоном, без красного и значков (D158) */}
-            {fb.mistakeSaved === false ? <Text style={[s.hintSub, { color: p.textSecondary }]} testID="spire-step-mistake-not-saved">{spireGameText(lang, 'mistakeNotSaved')}</Text> : null}
+            {fb?.mistakeSaved === false ? <Text style={[s.hintSub, { color: p.textSecondary }]} testID="spire-step-mistake-not-saved">{spireGameText(lang, 'mistakeNotSaved')}</Text> : null}
             {/* зачем (владелец 30.09): ответ висит до «Дальше», таймер в это время стоит. */}
             <V2Pressable
               onPress={props.onContinue}
               disabled={exitOpen}
               accessibilityRole="button"
               accessibilityLabel={spireGameText(lang, 'onward')}
-              style={[s.onward, { backgroundColor: p.cta }, sh.action(p.cta)]}
+              style={[s.onward, fb ? null : s.onwardAlone, { backgroundColor: p.cta }, sh.action(p.cta)]}
               testID="spire-step-continue"
             >
               <Text style={[s.onwardText, { color: p.ctaText }]}>{spireGameText(lang, 'onward')}</Text>
@@ -371,6 +373,7 @@ const s = StyleSheet.create({
   hintBold: { fontWeight: '700' },
   hintSub: { fontSize: 13, lineHeight: 18 },
   onward: { marginTop: 10, minHeight: 48, borderRadius: 24, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
+  onwardAlone: { marginTop: 18 }, // тот же отступ от задания, что у плашки разбора после ошибки
   onwardText: { fontSize: 16, fontWeight: '700' },
   footer: { textAlign: 'center', fontSize: 16, fontWeight: '700' },
   reportRow: { minHeight: 44, marginTop: 10, alignItems: 'flex-end', justifyContent: 'center' },

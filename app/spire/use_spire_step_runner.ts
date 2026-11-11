@@ -35,13 +35,11 @@ import { DebugLogger } from '../debug-logger';
 import { spireBumpStepAttempt } from './spire_local_store';
 import { spireCaptureMistakeOutcome } from './spire_mistake_capture';
 import { useSpireCountdown } from './use_spire_countdown';
-import { PEAK_PERF } from './peak_perf_probe';
 import { revealTokensAfterPaint } from './spire_reveal_deferred';
 import { useSpireStreakHeart } from './use_spire_streak_heart';
 import { useSpireGold } from './use_spire_gold';
 const LOG = '[SPIRE]';
 const TICK_MS = 250;
-const CORRECT_FLASH_MS = 280;
 
 export type SpireStepContext = Readonly<{ lang: SpireLang; weekKey: string; tier: number; floor: number; stepInFloor: number; stepNumber?: number }>; // stepNumber — номер ступени недели ([SPIRE-GOLD])
 export type SpireStepFinish = Readonly<{ state: SpireStepState; report: SpireStepReport }>;
@@ -112,7 +110,6 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   const chargeStartedRef = useRef(false);
   const chargedRef = useRef<'none' | 'spent' | 'acked'>('none');
   const finishedRef = useRef(false);
-  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const inputRef = useRef(input); inputRef.current = input;
   const streakHeart = useSpireStreakHeart(input.runId); // [SPIRE-STREAK-HEART] сердце за серию, флаг spire_streak_heart
   const gold = useSpireGold({ runId: input.runId, stableId: input.stableId, weekKey: input.ctx.weekKey, stepNumber: input.ctx.stepNumber }); // [SPIRE-GOLD] ×2, флаг spire_gold
@@ -126,11 +123,6 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     clock.set(next.elapsedBudgetMs);
     setState(next);
   }, [clock]);
-
-  const later = useCallback((fn: () => void, ms: number) => {
-    const t = setTimeout(() => { timersRef.current = timersRef.current.filter((x) => x !== t); fn(); }, ms); // зачем (замер Сверки 24.10: список рос 1→2→3): сработавший таймер уходит из списка
-    timersRef.current.push(t); DebugLogger.info(LOG, `${PEAK_PERF} runner: таймер +${ms}мс, ждут ${timersRef.current.length}`); // зачем ([PEAK-PERF]): сколько таймеров реально ждут
-  }, []);
 
   // ── 1. Списание энергии на первом задании (D72); стартует после отсчёта ──
   useEffect(() => {
@@ -174,7 +166,6 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
     aliveRef.current = true;
     return () => {
       aliveRef.current = false;
-      timersRef.current.forEach(clearTimeout);
       if (chargedRef.current === 'spent') {
         DebugLogger.warn(LOG, 'step: экран закрыт после списания, до первого задания — возвращаем энергию');
         void refundOne(intent.operationId, 'spire_first_task_not_shown').catch((error: unknown) => {
@@ -205,6 +196,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
       lastTickRef.current = now;
       const cur = stateRef.current;
       if (cur.phase !== 'active' || exitOpenRef.current) return;
+      if (feedbackRef.current !== null) return; // зачем (владелец 11.11.2026): верный ответ тоже ждёт «Дальше» — пока человек смотрит на ответ, время не идёт
       const next = tickSpireBudget(cur, delta);
       if (next.phase === 'failed') {
         DebugLogger.info(LOG, 'step: время вышло');
@@ -230,6 +222,9 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
       finish(cur);
       return;
     }
+    // зачем (владелец 11.11.2026: «я должен сам переходить по нажатию кнопки»): после ВЕРНОГО ответа состояние ступени уже на
+    // следующем задании — кнопка только убирает показанный ответ и снова пускает таймер; повторный тап уходит в ветку ниже.
+    if (feedbackRef.current?.ok) { lastTickRef.current = Date.now(); DebugLogger.info(LOG, `step: «Дальше» после верного ответа → задание ${cur.taskIndex + 1}`); setFeedback(null); return; }
     if (cur.phase !== 'revealing') {
       DebugLogger.info(LOG, `step: «Дальше» в фазе ${cur.phase} — игнорируем`);
       return;
@@ -265,11 +260,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   const afterAnswer = useCallback((raw: SpireStepState, fb: SpireFeedback, given: string, correctOrLater: string | readonly string[] | null | Promise<readonly string[] | null>) => {
     const next = streakHeart.apply(raw, fb.ok, fb.taskIndex + 1); commit(next); gold.onAnswer(fb.taskIndex, fb.ok); // зачем (владелец 25.10, ТЗ §2): 5 верных подряд — сердце назад, под флагом
     setFeedback(fb);
-    if (fb.ok) {
-      later(() => setFeedback((cur) => (cur === fb ? null : cur)), CORRECT_FLASH_MS);
-      if (next.phase === 'passed') later(() => finish(next), CORRECT_FLASH_MS);
-      return;
-    }
+    if (fb.ok) return; // автоперехода нет: ответ висит до «Дальше» (continueAfterReveal); финал ступени — тоже по кнопке
     const task = pick.tasks[fb.taskIndex];
     // зачем (обзор R1 п.4): «не сохранилось» человеку — только при настоящем сбое записи (false); штатный пропуск
     // (пары, «найди лишнее», язык без журнала) оставляет null и ничего не показывает.
@@ -283,7 +274,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
         setFeedback((cur) => (cur && cur.taskIndex === fb.taskIndex && !cur.ok ? { ...cur, mistakeSaved } : cur));
       });
     // Правильный ответ висит до «Дальше» (continueAfterReveal), автоперехода нет.
-  }, [commit, finish, later, pick.tasks, streakHeart.apply, gold.onAnswer]);
+  }, [commit, pick.tasks, streakHeart.apply, gold.onAnswer]);
 
   const canAnswer = (): boolean => {
     const ok = phaseRef.current === 'playing' && stateRef.current.phase === 'active' && feedbackRef.current === null && !exitOpenRef.current;

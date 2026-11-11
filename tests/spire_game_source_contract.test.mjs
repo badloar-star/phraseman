@@ -236,6 +236,12 @@ test('owner 30.09: the correct answer stays until «Дальше», the timer is
   const step = read('components/spire/SpireStepScreen.tsx');
   assert.ok(step.includes('onContinue={runner.continueAfterReveal}') && step.includes('onPress={props.onContinue}'), '«Дальше» button');
   assert.match(step, /onward: \{[^}]*minHeight: (4[4-9]|[5-9]\d)/, '«Дальше» is at least 44dp tall');
+  // владелец 11.11.2026 («я должен сам переходить по нажатию кнопки»): то же правило после ВЕРНОГО ответа
+  assert.ok(!runner.includes('CORRECT_FLASH_MS'), 'no auto-advance after a correct answer either');
+  assert.ok(runner.includes('if (feedbackRef.current !== null) return;'), 'timer is stopped while any answer is on screen');
+  assert.ok(runner.includes('if (feedbackRef.current?.ok)'), '«Дальше» closes a shown correct answer');
+  assert.ok(runner.includes('if (fb.ok) return;'), 'a correct answer does not schedule its own dismissal');
+  assert.ok(step.includes('{fb || okShown ? ('), '«Дальше» is rendered after a correct answer too');
 });
 
 test('owner 30.09: rivals on the tower and «who is on this floor» come from the cached room only', () => {

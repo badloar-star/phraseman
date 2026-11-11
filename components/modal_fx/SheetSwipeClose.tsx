@@ -61,6 +61,13 @@ export default function SheetSwipeClose({ onClose, enabled = true, name, zoneHei
   onCloseRef.current = onClose;
   const fallbackRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => { if (fallbackRef.current) clearTimeout(fallbackRef.current); }, []);
+  // зачем (владелец 11.11, вылет iOS после ответа на «Фразу дня»; правило «сперва логи»): временная трассировка [SHEET-CRASH] — когда лист шторки
+  // появился и когда снят, чтобы сопоставить по времени с анимацией раскладки и снятием кнопки «сохранить». Только dev. Убрать после починки.
+  useEffect(() => {
+    if (!__DEV__) return undefined;
+    console.log(`[SHEET-CRASH] sheet mount id=${name} follow=${String(follow)} t=${Date.now() % 100000}`); // guard-ok: временная трассировка вылета шторки
+    return () => { console.log(`[SHEET-CRASH] sheet unmount id=${name} t=${Date.now() % 100000}`); }; // guard-ok: временная трассировка вылета шторки
+  }, [follow, name]);
   const travel = Dimensions.get('window').height;
 
   const finishClose = useCallback(() => {

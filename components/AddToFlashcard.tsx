@@ -105,6 +105,18 @@ function AddToFlashcard({
     ]).start();
   };
 
+  // зачем (владелец 11.11, вылет iOS после ответа на «Фразу дня»; правило «сперва логи»): в отчёте о падении снимаемый элемент — эта кнопка в шапке шторки.
+  // Временная трассировка [SHEET-CRASH]: когда кнопка появилась и снята и менялся ли её значок между этим. Только dev и только для фразы дня. Убрать после починки.
+  useEffect(() => {
+    if (!__DEV__ || source !== 'daily_phrase') return undefined;
+    console.log(`[SHEET-CRASH] save_button mount sourceId=${String(sourceId)} t=${Date.now() % 100000}`); // guard-ok: временная трассировка вылета шторки
+    return () => { console.log(`[SHEET-CRASH] save_button unmount sourceId=${String(sourceId)} t=${Date.now() % 100000}`); }; // guard-ok: временная трассировка вылета шторки
+  }, [source, sourceId]);
+  useEffect(() => {
+    if (!__DEV__ || source !== 'daily_phrase') return;
+    console.log(`[SHEET-CRASH] save_button saved=${String(saved)} t=${Date.now() % 100000}`); // guard-ok: временная трассировка вылета шторки
+  }, [saved, source]);
+
   // Sync with storage: cache hit is instant; first cold load is single AsyncStorage (deduped in loadFlashcards).
   useEffect(() => {
     blockStaleStorageHydrationRef.current = false;

@@ -93,12 +93,15 @@ export function flowRoundTimings(wordCount: number, msPerWord: number): FlowTimi
  */
 export function cleanFlowTranslation(text: string): string {
   let out = typeof text === 'string' ? text : '';
-  out = out.replace(/\s*Для сборки:.*$/su, '');
-  // хвостовых скобок может быть несколько подряд — снимаем все
+  // зачем (проверка 11.11 по 5 курсам × 32 урокам × ru/uk/en/es): пометка сборки бывает без двоеточия и не только
+  // «Для сборки» — «При сборке: «не» + «далеко».», «Для складання опишіть стан без заперечення…»
+  out = out.replace(/\s*(?:Для сборки|При сборке|Для складання|При складанні)(?=[\s:,.]|$).*$/su, '');
+  // скобки снимаются все, а не только хвостовые: «You (plural) are awake.», «Ustedes (en plural) viven aquí.»,
+  // «Они — врачи (женщины).» — это тоже пометки урока; вложенные скобки снимаются повтором
   let previous = '';
   while (previous !== out) {
     previous = out;
-    out = out.replace(/\s*\([^()]*\)\s*$/u, '');
+    out = out.replace(/\s*\([^()]*\)/gu, '');
   }
   return out.trim();
 }

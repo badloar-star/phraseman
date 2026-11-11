@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>U36 · Истории наград · премиум</title>
+<!-- зачем: владелец 11.11 отклонил макет с полосками и пиктограммами («дёшево») и потребовал
+     дорогой премиальный вид на реально красивых элементах. Поэтому кадр построен на настоящей
+     графике приложения: бронзовые статуэтки лиг и золотая монета, сцена со светом, отражением,
+     пылью в луче. Причину показывает сцена: статуэтка прежней лиги уступает место новой,
+     монеты падают в сумму. Конечный кадр = состояние по умолчанию, анимация только ведёт к нему.
+     Числа примера выдуманы. -->
+<style>
+  :root{--page:#08080a;--chip:#1c1c21;--chipOn:#f4f4f6;--mut:#8d8e97;--ink:#ececf1;
+    --ivory:#F4EEE3;--gold:#D9B26A;--soft:#B9AE9C;
+    --press:240ms cubic-bezier(.3,1.4,.5,1)}
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--page);color:var(--ink);
+    font:15px/1.45 Inter,-apple-system,"SF Pro Text","Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:36px 16px 64px}
+  h1{font-size:clamp(24px,3.4vw,34px);line-height:1.12;letter-spacing:-.02em;margin:0 0 10px;font-weight:750;text-wrap:balance}
+  .lede{color:#b9bac3;max-width:62ch;margin:0 0 24px;text-wrap:pretty}
+  .bar{display:flex;flex-wrap:wrap;gap:16px 26px;margin-bottom:30px}
+  .grp{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+  .grp>span{color:var(--mut);font-size:13px;margin-right:6px}
+  .chip{appearance:none;border:0;background:var(--chip);color:#d7d8df;font:inherit;font-size:13.5px;font-weight:550;
+    padding:8px 14px;border-radius:20px;cursor:pointer;transition:transform var(--press),background-color 160ms ease,color 160ms ease}
+  .chip:active{transform:scale(.96)}
+  .chip[aria-pressed="true"]{background:var(--chipOn);color:#111114}
+  .chip:focus-visible,.ph:focus-visible{outline:2px solid #8fb4ff;outline-offset:3px}
+  .stage{display:flex;flex-wrap:wrap;gap:36px 28px;justify-content:center}
+  figure{margin:0;width:min(340px,100%)}
+  figcaption{margin-top:13px;color:#b9bac3;font-size:13.5px;text-wrap:pretty}
+  figcaption b{display:block;color:var(--ink);font-weight:650;font-size:15px;margin-bottom:2px}
+
+  .ph{position:relative;width:100%;aspect-ratio:411.43/880;border-radius:34px;overflow:hidden;background:#000;color:var(--ivory);cursor:pointer;
+    container-type:inline-size;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 40px 80px -30px rgba(0,0,0,.95)}
+  .story{position:absolute;inset:0;overflow:hidden;perspective:700px}
+  .warm{background:radial-gradient(90% 46% at 50% 36%,#2a2015 0%,#110d09 46%,#050506 100%)}
+  .cool{background:radial-gradient(100% 52% at 64% 34%,#172338 0%,#0a101c 48%,#04060b 100%)}
+
+  /* свет сцены */
+  .cone{position:absolute;left:50%;top:-8%;width:170%;height:78%;translate:-50% 0;mix-blend-mode:screen;filter:blur(22px)}
+  .cone::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,232,190,.55),rgba(255,226,180,.14) 60%,transparent 96%);
+    clip-path:polygon(45% 0,55% 0,86% 100%,14% 100%)}
+  .shaft{position:absolute;right:-46%;top:-22%;width:120%;height:108%;rotate:24deg;mix-blend-mode:screen;filter:blur(26px)}
+  .shaft::before{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(176,206,255,.5),rgba(160,196,255,.12) 62%,transparent 94%);
+    clip-path:polygon(38% 0,58% 0,96% 100%,10% 100%)}
+  .pool{position:absolute;left:50%;top:53%;width:92%;height:11%;translate:-50% 0;filter:blur(7px);
+    background:radial-gradient(closest-side,rgba(255,226,176,.36),rgba(255,226,176,.08) 62%,transparent)}
+  .cool .pool{background:radial-gradient(closest-side,rgba(170,204,255,.3),rgba(170,204,255,.07) 62%,transparent)}
+  .fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .vig{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 90px 26px rgba(0,0,0,.72);
+    background:linear-gradient(to bottom,rgba(0,0,0,.42),transparent 16%,transparent 52%,rgba(0,0,0,.72) 82%)}
+  .grain{position:absolute;inset:-50%;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* статуэтка: сама картинка, отражение в полу, блик строго по её силуэту */
+  .fig{position:absolute;aspect-ratio:1}
+  .fig img.st{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 26px 30px rgba(0,0,0,.7))}
+  .fig img.refl{position:absolute;left:0;top:92%;width:100%;height:100%;object-fit:contain;transform:scaleY(-1);opacity:.3;filter:blur(1.2px);
+    -webkit-mask-image:linear-gradient(to top,#000,transparent 42%);mask-image:linear-gradient(to top,#000,transparent 42%)}
+  .glint{position:absolute;inset:0;overflow:hidden;mix-blend-mode:screen;
+    -webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+  .glint i{position:absolute;top:-20%;left:0;width:38%;height:140%;transform:translateX(420%) skewX(-16deg);
+    background:linear-gradient(90deg,transparent,rgba(255,244,214,.85),transparent)}
+  .figA{left:50%;top:10%;width:98%;translate:-50% 0}
+  .figA.big{top:3%;width:124%}
+  .figA.old{opacity:0}
+  .pan{position:absolute;left:0;top:0;width:200%;height:100%}
+  .pan .fig{width:56%;top:6%;translate:-50% 0}
+  .pan .fig.dim{filter:brightness(.26) blur(3px)}
+
+  .segs{position:absolute;left:0;right:0;top:0;display:flex;gap:4px;padding:16px 14px 0;z-index:2}
+  .segs i{flex:1;height:3px;border-radius:2px;background:rgba(255,255,255,.2);overflow:hidden}
+  .segs i.on{background:rgba(255,255,255,.9)}
+  .segs i.run b{display:block;height:100%;background:rgba(255,255,255,.9);transform-origin:left}
+  .who{position:absolute;left:16px;top:34px;z-index:2;font-size:13px;font-weight:600;color:rgba(244,238,227,.72)}
+
+  /* слова: лига, место, сумма и одна строка причины */
+  .txt{position:absolute;left:0;right:0;bottom:0;padding:0 22px 26px;z-index:2}
+  .txt.c{text-align:center}
+  .name{font-size:44px;line-height:1;font-weight:800;letter-spacing:-.03em;color:var(--ivory)}
+  .place{display:flex;align-items:center;gap:12px;margin-top:12px;font-size:15px;font-weight:600;color:var(--gold);font-variant-numeric:tabular-nums}
+  .txt.c .place{justify-content:center}
+  .place i{flex:0 0 34px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+  .place i:last-child{background:linear-gradient(270deg,transparent,var(--gold))}
+  .txt:not(.c) .place i:first-child{display:none}
+  .sum{display:flex;align-items:center;gap:11px;margin-top:20px;font-size:38px;line-height:1;font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .txt.c .sum{justify-content:center}
+  .sum img{width:38px;height:38px;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6))}
+  .sum .wait{font-size:20px;font-weight:650;letter-spacing:0;color:var(--soft)}
+  .cap{margin-top:13px;font-size:13px;font-weight:500;color:var(--soft);text-wrap:balance}
+  .fc{position:absolute;width:30px;height:30px;opacity:0;pointer-events:none;z-index:3;filter:drop-shadow(0 6px 8px rgba(0,0,0,.55))}
+
+  /* объёмная монета: стопка слоёв даёт настоящее ребро при повороте */
+  .c3{position:relative;width:46px;height:46px;flex:none;transform-style:preserve-3d}
+  .c3 img{position:absolute;inset:0;width:100%;height:100%;backface-visibility:visible}
+
+  /* ачивка */
+  .gem{position:absolute;left:43%;top:75%;width:26%;aspect-ratio:1;translate:-50% -50%;border-radius:50%;mix-blend-mode:screen;opacity:.55;
+    background:radial-gradient(closest-side,rgba(255,90,50,.9),rgba(255,70,40,.25) 55%,transparent)}
+  .jewels{display:flex;justify-content:center;gap:11px;margin-bottom:20px}
+  .jw{width:11px;height:11px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#fff6cf 0%,#e0ad4c 42%,#6f4b12 100%);
+    box-shadow:0 0 12px 2px rgba(224,173,76,.55)}
+  .aname{font-size:30px;line-height:1.08;font-weight:800;letter-spacing:-.025em;text-wrap:balance}
+  .clip{overflow:hidden;padding-bottom:4px}
+
+  .notes{margin:50px auto 0;max-width:760px;color:#b9bac3;font-size:14.5px}
+  .notes h2{font-size:20px;font-weight:700;letter-spacing:-.01em;margin:0 0 12px;color:var(--ink)}
+  .notes p{margin:0 0 10px;text-wrap:pretty}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>U36 · Истории наград · премиум</h1>
+  <p class="lede">Кадры собраны на настоящей графике приложения: бронзовые статуэтки лиг и золотая монета. Активная фаза около пяти секунд. Нажмите на телефон, чтобы проиграть ещё раз.</p>
+
+  <div class="bar">
+    <div class="grp" data-g="state"><span>Неделя</span>
+      <button class="chip" data-v="up">Повышение</button>
+      <button class="chip" data-v="stay">Остался</button>
+      <button class="chip" data-v="down">Спуск</button>
+      <button class="chip" data-v="summit">Вершина</button>
+      <button class="chip" data-v="pending">Награда в пути</button>
+    </div>
+    <div class="grp"><button class="chip" id="replay">Проиграть все</button></div>
+  </div>
+
+  <div class="stage">
+    <figure><div class="ph" id="pA" tabindex="0" role="button" aria-label="Проиграть вариант А"></div>
+      <figcaption><b>Вариант А · Пьедестал</b>Луч сверху. Статуэтка прежней лиги уходит, новая встаёт в свет. Монеты падают из луча в сумму.</figcaption></figure>
+    <figure><div class="ph" id="pB" tabindex="0" role="button" aria-label="Проиграть вариант Б"></div>
+      <figcaption><b>Вариант Б · Ночная галерея</b>Камера проезжает от прежней статуэтки к новой. Большая монета влетает и встаёт рядом с суммой.</figcaption></figure>
+    <figure><div class="ph" id="pC" tabindex="0" role="button" aria-label="Проиграть ачивку"></div>
+      <figcaption><b>Ачивка · 7 дней подряд</b>Статуэтка ачивки выходит из темноты, семь золотых огней зажигаются по одному.</figcaption></figure>
+  </div>
+
+  <section class="notes">
+    <h2>Что на кадре из слов</h2>
+    <p>Название лиги, место, сумма и одна строка причины. Сумма и числа в строке причины видны только когда монеты дошли до баланса.</p>
+  </section>
+</div>
+
+<script>
+const IMG = {'Гранит':'img/granite.webp','Базальт':'img/basalt.webp','Мрамор':'img/marble.webp'};
+const S = {
+  up:{from:'Гранит',to:'Базальт',dir:1,place:2,total:30,sum:300,paid:true,cap:'200 за место · 100 за повышение · +1 энергия'},
+  stay:{from:'Гранит',to:'Гранит',dir:0,place:9,total:30,sum:0,paid:true,cap:'До первой пятёрки не хватило 240 монет'},
+  down:{from:'Мрамор',to:'Базальт',dir:-1,place:27,total:30,sum:0,paid:true,cap:'Последние пять спускаются · −1 энергия'},
+  summit:{from:'Гранит',to:'Базальт',dir:1,place:8,total:30,sum:100,paid:true,cap:'Вершина башни поднимает с любого места',big:true},
+  pending:{from:'Гранит',to:'Базальт',dir:1,place:1,total:30,sum:400,paid:false,cap:'За 1 место и повышение · +1 энергия'}
+};
+const ui = {state:'up'};
+const OUT='cubic-bezier(.23,1,.32,1)', IO='cubic-bezier(.77,0,.175,1)';
+const calm = matchMedia('(prefers-reduced-motion:reduce)').matches;
+const num = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
+const segs = on => `<div class="segs">${[0,1,2,3].map(i=>`<i class="${i<on?'on':(i===on?'run':'')}">${i===on?'<b></b>':''}</i>`).join('')}</div>`;
+const fig = (src,cls,style='') => `<div class="fig ${cls}" style="${style}"><img class="refl" src="${src}" alt=""><img class="st" src="${src}" alt=""><div class="glint" style="--m:url(${src})"><i></i></div></div>`;
+const layers = '<span class="c3">'+Array.from({length:9},(_,i)=>`<img src="img/coin_s.webp" alt="" style="transform:translateZ(${((i-4)*.9).toFixed(1)}px)${i>0&&i<8?';filter:brightness(.5) saturate(.8)':''}">`).join('')+'</span>';
+
+/* ── пыль в луче и золотые искры: один холст на кадр, общий цикл ── */
+const FX = [];
+function fx(canvas, tone){
+  const dpr = Math.min(2, devicePixelRatio||1), W = canvas.clientWidth, H = canvas.clientHeight;
+  canvas.width = W*dpr; canvas.height = H*dpr;
+  const g = canvas.getContext('2d'); g.scale(dpr,dpr);
+  const mote = () => { const y = Math.random()*H*.62; return {x:W/2+(Math.random()-.5)*W*(.16+.9*y/H), y, r:.5+Math.random()*1.3, a:.12+Math.random()*.4,
+    vx:(Math.random()-.5)*5, vy:-3-Math.random()*7, ph:Math.random()*6.28}; };
+  const e = {canvas,g,W,H,tone,motes:Array.from({length:38},mote),sparks:[],mote,
+    burst(x,y,n,pow=1){ for(let i=0;i<n;i++){ const a=Math.random()*6.28, v=(40+Math.random()*150)*pow;
+      this.sparks.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-60*pow,life:1,d:.55+Math.random()*.7}); } }};
+  FX.push(e); return e;
+}
+let last = performance.now();
+function tick(t){
+  const dt = Math.min(.05,(t-last)/1000); last = t;
+  for(let i=FX.length-1;i>=0;i--){
+    const e = FX[i]; if(!e.canvas.isConnected){ FX.splice(i,1); continue; }
+    const g = e.g; g.clearRect(0,0,e.W,e.H); g.globalCompositeOperation='lighter';
+    const c = e.tone==='cool' ? '200,222,255' : '255,228,176';
+    for(const m of e.motes){ m.x+=m.vx*dt; m.y+=m.vy*dt; m.ph+=dt*1.4; if(m.y<-4) Object.assign(m,e.mote(),{y:e.H*.62});
+      g.fillStyle=`rgba(${c},${(m.a*(.55+.45*Math.sin(m.ph))).toFixed(3)})`; g.beginPath(); g.arc(m.x,m.y,m.r,0,6.28); g.fill(); }
+    for(let k=e.sparks.length-1;k>=0;k--){ const s=e.sparks[k]; const px=s.x, py=s.y;
+      s.vy+=230*dt; s.vx*=.985; s.x+=s.vx*dt; s.y+=s.vy*dt; s.life-=dt/s.d; if(s.life<=0){ e.sparks.splice(k,1); continue; }
+      g.strokeStyle=`rgba(255,214,130,${(s.life*.95).toFixed(3)})`; g.lineWidth=1.4; g.lineCap='round'; g.beginPath(); g.moveTo(px,py); g.lineTo(s.x,s.y); g.stroke(); }
+  }
+  requestAnimationFrame(tick);
+}
+if(!calm) requestAnimationFrame(tick);
+
+/* ── один прогон на телефон ── */
+const runs = new WeakMap();
+function stage(ph){
+  const old = runs.get(ph); if(old){ old.t.forEach(clearTimeout); cancelAnimationFrame(old.raf.id); }
+  const r = {t:[],raf:{id:0}}; runs.set(ph,r);
+  return {r, an:(el,kf,o)=>(!el||calm)?null:el.animate(kf,{easing:OUT,fill:'backwards',...o}), at:(ms,fn)=>{ if(!calm) r.t.push(setTimeout(fn,ms)); }};
+}
+function countTo(el,from,to,ms,r){
+  const t0 = performance.now();
+  (function step(t){ const k=Math.min(1,(t-t0)/ms), e=1-Math.pow(1-k,3);
+    el.textContent='+'+num(Math.round(from+(to-from)*e)); if(k<1&&el.isConnected) r.raf.id=requestAnimationFrame(step); })(t0);
+}
+const glintKf = [{transform:'translateX(-160%) skewX(-16deg)'},{transform:'translateX(420%) skewX(-16deg)'}];
+const textIn = [{opacity:0,transform:'translateY(18px) scale(1.05)',filter:'blur(12px)'},{opacity:1,transform:'none',filter:'blur(0)'}];
+const soft = [{opacity:0,transform:'translateY(10px)'},{opacity:1,transform:'none'}];
+
+function txtHTML(s, centered, coinHTML){
+  const sum = !s.sum ? '' : `<div class="sum">${coinHTML}${s.paid?`<span class="cnt">+${num(s.sum)}</span>`:'<span class="wait">в пути</span>'}</div>`;
+  return `<div class="txt ${centered?'c':''}">
+    <div class="name">${s.to}</div>
+    <div class="place"><i></i>${s.place} место из ${s.total}<i></i></div>
+    ${sum}<div class="cap">${s.cap}</div></div>`;
+}
+
+/* ── Вариант А · Пьедестал ── */
+function playA(ph){
+  const s = S[ui.state], X = stage(ph), {an,at,r} = X, changed = s.from!==s.to, LAND = 2700;
+  ph.innerHTML = `<div class="story warm"><div class="cone"></div><div class="pool"></div>
+    ${changed?fig(IMG[s.from],'figA old'):''}${fig(IMG[s.to],'figA new')}
+    <canvas class="fx"></canvas><div class="vig"></div><div class="grain"></div>
+    ${segs(2)}<div class="who">Пик · итог недели</div>
+    ${txtHTML(s,true,'<img class="tgt" src="img/coin_s.webp" alt="">')}</div>`;
+  const q = x => ph.querySelector(x), E = fx(q('.fx'),'warm'), W = ph.clientWidth, H = ph.clientHeight;
+  an(q('.cone'),[{opacity:0},{opacity:1}],{duration:1000,easing:'ease'});
+  an(q('.pool'),[{opacity:0,transform:'scaleX(.5)'},{opacity:1,transform:'none'}],{duration:1100});
+  const far = 120*s.dir; // вверх по лигам: сцена едет вниз, новая статуэтка приходит сверху
+  if(changed){
+    an(q('.old'),[{opacity:0,filter:'brightness(0)',transform:'translateY(18px) scale(.96)'},
+      {opacity:1,filter:'brightness(1)',transform:'none',offset:.33,easing:'linear'},
+      {opacity:1,filter:'brightness(1)',transform:'none',offset:.55,easing:IO},
+      {opacity:0,filter:'brightness(.2) blur(5px)',transform:`translateY(${far}px) scale(.84)`}],{duration:LAND,easing:OUT});
+    an(q('.old .glint i'),glintKf,{delay:800,duration:800,easing:'ease-in-out'});
+    an(q('.new'),[{opacity:0,transform:`translateY(${-far*1.1}px) scale(.86)`,filter:'brightness(.12) blur(7px)'},{opacity:1,transform:'none',filter:'brightness(1) blur(0)'}],{delay:1500,duration:1200,easing:IO});
+  } else {
+    an(q('.new'),[{opacity:0,filter:'brightness(0)',transform:'scale(.9)'},{opacity:1,filter:'brightness(1)',transform:'scale(.96)',offset:.38},{opacity:1,filter:'brightness(1)',transform:'scale(1)'}],{duration:LAND,easing:'ease-out'});
+  }
+  an(q('.new .glint i'),glintKf,{delay:LAND-150,duration:1150,easing:'ease-in-out'});
+  if(!calm && s.dir>0){
+    q('.cone').animate([{filter:'blur(22px) brightness(1)'},{filter:'blur(22px) brightness(1.9)'},{filter:'blur(22px) brightness(1)'}],{delay:LAND-200,duration:900,easing:'ease-out'});
+    at(LAND-80,()=>E.burst(W/2,H*.3,s.big?70:26,s.big?1.35:1));
+    if(s.big) at(LAND+420,()=>E.burst(W/2,H*.2,46,1.1));
+  }
+  an(q('.name'),textIn,{delay:LAND-250,duration:850});
+  an(q('.place'),soft,{delay:LAND+150,duration:600});
+  an(q('.sum'),soft,{delay:LAND+420,duration:600});
+  const cnt = q('.cnt'), tgt = q('.tgt');
+  if(tgt && !s.paid) an(tgt,[{transform:'rotateY(0deg)'},{transform:'rotateY(720deg)'}],{delay:LAND+500,duration:1600,easing:IO});
+  if(cnt && !calm){
+    // монеты падают из луча в сумму; каждая, приземлившись, добавляет свою долю
+    cnt.textContent = '+0';
+    const o = q('.story').getBoundingClientRect(), b = tgt.getBoundingClientRect(), N = 5; let got = 0;
+    for(let i=0;i<N;i++){
+      const c = document.createElement('img'); c.className='fc'; c.src='img/coin_s.webp'; c.alt='';
+      c.style.left = (b.left-o.left+4)+'px'; c.style.top = (b.top-o.top+4)+'px'; q('.story').appendChild(c);
+      const dx = (o.left+W/2-b.left-19)+(i-2)*34, dy = -(b.top-o.top)+H*.16, t = LAND+620+i*125;
+      c.animate([{opacity:0,transform:`translate(${dx}px,${dy}px) rotateY(0deg) scale(.6)`},
+        {opacity:1,transform:`translate(${dx}px,${dy+16}px) rotateY(120deg) scale(1)`,offset:.14},
+        {opacity:1,transform:`translate(${dx*.25}px,${dy*.24}px) rotateY(620deg) scale(1.12)`,offset:.74},
+        {opacity:0,transform:'translate(0,0) rotateY(900deg) scale(.85)'}],{delay:t,duration:860,easing:'cubic-bezier(.5,0,.75,.45)'});
+      at(t+800,()=>{ const from=got; got=Math.round(s.sum*(i+1)/N); countTo(cnt,from,got,260,r);
+        tgt.animate([{transform:'scale(1)'},{transform:'scale(1.22)'},{transform:'scale(1)'}],{duration:300,easing:OUT});
+        E.burst(b.left-o.left+19,b.top-o.top+19,5,.45); });
+    }
+  }
+  an(q('.cap'),[{opacity:0},{opacity:1}],{delay:LAND+1550,duration:600,easing:'ease'});
+  an(q('.segs .run b'),[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:5000,easing:'linear'});
+}
+
+/* ── Вариант Б · Ночная галерея ── */
+function playB(ph){
+  const s = S[ui.state], X = stage(ph), {an,at,r} = X, changed = s.from!==s.to, LAND = 2800;
+  // вверх по лигам камера едет вправо, вниз — влево
+  const right = s.dir>=0, oldX = right?29:79, newX = right?79:29, end = !changed?0:(right?-50:0), begin = !changed?0:(right?0:-50);
+  ph.innerHTML = `<div class="story cool"><div class="shaft"></div>
+    <div class="pan" style="transform:translateX(${end}%)">
+      ${changed?fig(IMG[s.from],'old dim',`left:${oldX}%`):''}${fig(IMG[s.to],'new',`left:${changed?newX:29}%`)}</div>
+    <canvas class="fx"></canvas><div class="vig"></div><div class="grain"></div>
+    ${segs(2)}<div class="who">Пик · итог недели</div>
+    ${txtHTML(s,false,layers)}</div>`;
+  const q = x => ph.querySelector(x), E = fx(q('.fx'),'cool'), W = ph.clientWidth, H = ph.clientHeight;
+  an(q('.shaft'),[{opacity:0},{opacity:1}],{duration:1100,easing:'ease'});
+  if(changed){
+    an(q('.pan'),[{transform:`translateX(${begin}%)`},{transform:`translateX(${end}%)`}],{delay:1300,duration:1500,easing:IO});
+    an(q('.old'),[{opacity:0,filter:'brightness(0) blur(0)'},{opacity:1,filter:'brightness(1) blur(0)',offset:.3,easing:'linear'},
+      {opacity:1,filter:'brightness(1) blur(0)',offset:.48,easing:IO},{opacity:1,filter:'brightness(.26) blur(3px)'}],{duration:LAND,easing:OUT});
+    an(q('.old .glint i'),glintKf,{delay:700,duration:800,easing:'ease-in-out'});
+    an(q('.new'),[{filter:'brightness(.2) blur(4px)',transform:'scale(.92)'},{filter:'brightness(1) blur(0)',transform:'scale(1)'}],{delay:1500,duration:1300,easing:IO});
+  } else {
+    an(q('.new'),[{opacity:0,filter:'brightness(0)',transform:'scale(.9)'},{opacity:1,filter:'brightness(1)',transform:'scale(.96)',offset:.38},{opacity:1,filter:'brightness(1)',transform:'scale(1)'}],{duration:LAND,easing:'ease-out'});
+  }
+  an(q('.new .glint i'),glintKf,{delay:LAND-150,duration:1150,easing:'ease-in-out'});
+  if(s.dir>0) at(LAND-60,()=>E.burst(W*.58,H*.28,s.big?64:22,s.big?1.3:.9));
+  an(q('.place'),soft,{delay:LAND-350,duration:600});
+  an(q('.name'),textIn,{delay:LAND-200,duration:850});
+  an(q('.sum'),[{opacity:0},{opacity:1}],{delay:LAND+250,duration:400,easing:'ease'});
+  const c3 = q('.c3'), cnt = q('.cnt');
+  if(c3){
+    // большая монета прилетает из света, крутится и встаёт лицом
+    an(c3,[{transform:`translate(${W*.5}px,${-H*.46}px) rotateY(0deg) rotateZ(-30deg) scale(3.4)`,opacity:0},
+      {opacity:1,offset:.12},{transform:`translate(${W*.1}px,${-H*.06}px) rotateY(820deg) rotateZ(-6deg) scale(1.5)`,offset:.72,opacity:1},
+      {transform:'translate(0,0) rotateY(1080deg) rotateZ(0deg) scale(1)',opacity:1}],{delay:LAND+250,duration:1500,easing:'cubic-bezier(.3,.1,.2,1)'});
+    at(LAND+1700,()=>{ const b=c3.getBoundingClientRect(), o=q('.story').getBoundingClientRect(); E.burst(b.left-o.left+23,b.top-o.top+23,16,.6); });
+    if(cnt && !calm){ cnt.textContent='+0'; at(LAND+1050,()=>countTo(cnt,0,s.sum,750,r)); }
+  }
+  an(q('.cap'),[{opacity:0},{opacity:1}],{delay:LAND+1600,duration:600,easing:'ease'});
+  an(q('.segs .run b'),[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:5000,easing:'linear'});
+}
+
+/* ── Ачивка · 7 дней подряд ── */
+function playC(ph){
+  const X = stage(ph), {an,at} = X;
+  ph.innerHTML = `<div class="story warm"><div class="cone"></div><div class="pool"></div>
+    <div class="fig figA big new"><img class="refl" src="img/streak_7.webp" alt=""><img class="st" src="img/streak_7.webp" alt="">
+      <i class="gem"></i><div class="glint" style="--m:url(img/streak_7.webp)"><i></i></div></div>
+    <canvas class="fx"></canvas><div class="vig"></div><div class="grain"></div>
+    ${segs(3)}<div class="who">Ачивка · 14 из 41</div>
+    <div class="txt c"><div class="jewels">${'<i class="jw"></i>'.repeat(7)}</div>
+      <div class="clip"><div class="aname">Неделя держит слово</div></div>
+      <div class="cap">7 дней подряд</div></div></div>`;
+  const q = x => ph.querySelector(x), E = fx(q('.fx'),'warm');
+  an(q('.cone'),[{opacity:0},{opacity:1}],{duration:1000,easing:'ease'});
+  an(q('.pool'),[{opacity:0,transform:'scaleX(.5)'},{opacity:1,transform:'none'}],{duration:1100});
+  an(q('.new'),[{opacity:0,filter:'brightness(0)',transform:'translateY(26px) scale(.92)'},{opacity:1,filter:'brightness(1)',transform:'none'}],{delay:150,duration:1300,easing:'ease-out'});
+  const T0 = 1150, GAP = 230, lit = T0+7*GAP;
+  ph.querySelectorAll('.jw').forEach((j,i)=>{
+    an(j,[{opacity:.0,transform:'scale(.2)',filter:'brightness(.3)'},{opacity:1,transform:'scale(1.7)',filter:'brightness(1.8)',offset:.5},{opacity:1,transform:'scale(1)',filter:'brightness(1)'}],{delay:T0+i*GAP,duration:520});
+    at(T0+i*GAP+200,()=>{ const b=j.getBoundingClientRect(), o=q('.story').getBoundingClientRect(); E.burst(b.left-o.left+5,b.top-o.top+5,4,.35); });
+  });
+  an(q('.gem'),[{opacity:0,transform:'scale(.4)'},{opacity:1,transform:'scale(1.9)',offset:.4},{opacity:.55,transform:'scale(1)'}],{delay:lit,duration:1100,easing:'ease-out'});
+  an(q('.glint i'),glintKf,{delay:lit+150,duration:1150,easing:'ease-in-out'});
+  at(lit+100,()=>E.burst(ph.clientWidth/2,ph.clientHeight*.3,30,1));
+  an(q('.aname'),[{transform:'translateY(115%)'},{transform:'none'}],{delay:lit+350,duration:850});
+  an(q('.cap'),[{opacity:0},{opacity:1}],{delay:lit+1050,duration:600,easing:'ease'});
+  an(q('.segs .run b'),[{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:5000,easing:'linear'});
+}
+
+const P = {pA:playA,pB:playB,pC:playC};
+function playAll(){
+  document.querySelectorAll('.ph').forEach(p=>P[p.id](p));
+  document.querySelectorAll('.grp[data-g] .chip').forEach(c=>c.setAttribute('aria-pressed',String(ui.state===c.dataset.v)));
+}
+document.addEventListener('click',e=>{
+  const chip = e.target.closest('.chip[data-v]');
+  if(chip){ ui.state = chip.dataset.v; playAll(); return; }
+  if(e.target.closest('#replay')){ playAll(); return; }
+  const ph = e.target.closest('.ph'); if(ph) P[ph.id](ph);
+});
+document.addEventListener('keydown',e=>{ if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('ph')){ e.preventDefault(); P[e.target.id](e.target); } });
+// картинки должны быть загружены до первого прогона: иначе маска блика и отражение появятся с опозданием
+Promise.all(Object.values(IMG).concat(['img/streak_7.webp','img/coin_s.webp']).map(src=>new Promise(res=>{ const i=new Image(); i.onload=res;
+  i.onerror=()=>{ console.warn('[U36-STORY] картинка не загрузилась:',src); res(); }; i.src=src; }))).then(playAll);
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+/* Светлое оформление макетов — по настоящим экранам приложения, снятым с эмулятора 11.11 (assets/elevate-was/*.jpg).
+   зачем (владелец 11.11: «показал не как в приложении, а устаревший макет… перерисовать с учётом актуального состояния»):
+   пастельный фон, белые карточки с мягкой тенью, тёмный текст, тёмно-синие кнопки — как на Главной, «Сегодня», «Карточках».
+   Включается атрибутом body[data-look="light"] (по умолчанию); тёмное оформление остаётся переключателем. */
+body[data-look="light"] {
+  --ink2: rgba(20,27,43,.64); --ink3: rgba(20,27,43,.42); --navy: #2F4A6B; --dark: #1B2533; --ink: #141B2B;
+  --ok: #17794A; --ok-bg: #D6F2E1; --no: #C0392B; --no-bg: #FBDFDB; --acc: #2F4A6B;
+  --glass: #F8F9FE; --glass-2: #FFFFFF; --soft: rgba(20,27,43,.07); --shd: 0 12px 28px -14px rgba(40,56,96,.4), 0 1px 2px rgba(40,56,96,.08);
+}
+body[data-look="light"] .ph.sky, body[data-look="light"] .ph.sky.deep { background: linear-gradient(155deg, #9FE0EA 0%, #BBD6F2 26%, #CFC3F3 50%, #B6D2EE 74%, #93DBE6 100%); color: var(--ink); }
+body[data-look="light"] .sky :is(.sun, .haze, .stars, .vig) { display: none; }
+body[data-look="light"] .sky .sb { color: var(--ink); } body[data-look="light"] .sky .sb svg { filter: invert(1); }
+body[data-look="light"] .sky .sb .bat { border-color: var(--ink); } body[data-look="light"] .sky .sb .bat::after { background: var(--ink); }
+body[data-look="light"] .sky .hi { background: var(--ink); }
+
+/* поверхности: белые карточки с мягкой тенью вместо стекла */
+body[data-look="light"] .sky :is(.gl, .at, .gbtn, .gpill, .cta2, .key, .hints .hn, .bub, .sh2) { background: var(--glass); color: var(--ink); box-shadow: var(--shd); -webkit-backdrop-filter: none; backdrop-filter: none; }
+body[data-look="light"] .sky :is(.gbtn, .gpill, .at, .key, .cta2) { background: #fff; }
+body[data-look="light"] .sky .wcta { background: var(--dark); color: #fff; box-shadow: 0 14px 26px -12px rgba(20,27,43,.6); }
+body[data-look="light"] .sky .wcta.dis { background: rgba(20,27,43,.16); color: rgba(20,27,43,.45); box-shadow: none; }
+body[data-look="light"] .sky .wcta .gpill { background: rgba(255,255,255,.16) !important; color: #fff !important; box-shadow: none; }
+body[data-look="light"] .sky :is(.cell, .lt2, .tline, .seg2, .tabs3, .fld, .fld2, .slot, .exm, .stat2 div, .recs div, .steps3 div, .miles div, .lvchips div, .chipr, .tl, .hrow .ic, .lv .n) { background: var(--soft); box-shadow: none; color: var(--ink); }
+body[data-look="light"] .sky :is(.seg2 div, .tabs3 div) { background: transparent; color: var(--ink2); }
+body[data-look="light"] .sky :is(.seg2 div.on, .tabs3 div.on, .steps3 div.on, .key.hit, .gbtn.on, .acts .gpill.on, .upt, .newtag, .protag) { background: var(--dark); color: #fff; }
+body[data-look="light"] .sky :is(.cell.full, .lt2.in) { background: #fff; box-shadow: var(--shd); }
+body[data-look="light"] .sky :is(.at.ok, .steps3 div.dn, .cells.ok .cell, .tline.ok) { background: var(--ok-bg); color: var(--ok); }
+body[data-look="light"] .sky :is(.at.no, .lt2.bad) { background: var(--no-bg); color: var(--no); }
+body[data-look="light"] .sky .at.sel { background: #E7EDF8; box-shadow: inset 0 0 0 2px var(--navy); }
+body[data-look="light"] .sky .lt2.cur { box-shadow: inset 0 0 0 2px var(--navy); }
+body[data-look="light"] .sky .bin.hot { background: #E3EAF7; }
+body[data-look="light"] .sky .mem .mc.ask { background: #DCE6F6; }
+body[data-look="light"] .sky :is(.wr.say, .vrow.new, .lv.cur, .mixrow .mx.on) { background: #fff; box-shadow: 0 0 0 2px var(--navy), var(--shd); }
+body[data-look="light"] .sky .vrow.new span { color: var(--ink); }
+body[data-look="light"] .sky .bub.r { background: var(--navy); color: #fff; } body[data-look="light"] .sky .bub.r .tr { color: rgba(255,255,255,.7); }
+body[data-look="light"] .sky .bub .x.fix { background: var(--ok-bg); color: var(--ok); }
+body[data-look="light"] .sky .micb, body[data-look="light"] .sky .micw .mb { background: var(--dark); color: #fff; }
+body[data-look="light"] .sky .micw i { background: rgba(47,74,107,.25); }
+body[data-look="light"] .sky .typing i { background: var(--navy); }
+body[data-look="light"] .sky .dim2 { background: rgba(20,27,43,.35); }
+body[data-look="light"] .sky .sh2 .grab2 { background: rgba(20,27,43,.2); }
+
+/* полосы, точки, шкалы */
+body[data-look="light"] .sky :is(.bar, .tbar, .beam, .segs i, .pkdots i, .dots i, .pips i, .tempo i, .race .ln) { background: rgba(20,27,43,.12); }
+body[data-look="light"] .sky :is(.bar i, .tbar i, .beam i, .segs i::after, .pkdots i.d, .dots i.on, .pips i.on, .tempo i.on) { background: var(--navy); box-shadow: none; }
+body[data-look="light"] .sky :is(.bar i.was, .rec.old .bar i, .cmp .bar.oth i, .pkdots i.c) { background: rgba(47,74,107,.4); }
+body[data-look="light"] .sky .pkdots i.m { background: var(--no); }
+body[data-look="light"] .sky .ringw .bg { stroke: rgba(20,27,43,.1); } body[data-look="light"] .sky .ringw .fg { stroke: var(--navy); filter: none; }
+body[data-look="light"] .sky :is(.inter .cnt svg, .bigring svg, .goalr svg, .curve svg) { filter: invert(1) hue-rotate(180deg); }
+body[data-look="light"] .sky .curve .pin, body[data-look="light"] .sky .curve .pin::before { background: var(--navy); box-shadow: none; }
+body[data-look="light"] .sky .heat2 i { filter: invert(1); }
+body[data-look="light"] .sky .b7 i { background: rgba(47,74,107,.3); } body[data-look="light"] .sky .b7 .best i { background: var(--navy); box-shadow: none; }
+body[data-look="light"] .sky .wave i { background: rgba(47,74,107,.35); } body[data-look="light"] .sky .wave.live i { background: var(--navy); }
+body[data-look="light"] .sky .wr .wv i { background: rgba(47,74,107,.45); } body[data-look="light"] .sky .wr.say .wv i { background: var(--navy); }
+body[data-look="light"] .sky .hearts svg { color: var(--no); }
+body[data-look="light"] .sky .trail svg path { stroke: var(--navy); } body[data-look="light"] .sky .trail svg path:first-child { stroke: rgba(20,27,43,.25); }
+body[data-look="light"] .sky .trail svg circle { fill: var(--navy); }
+body[data-look="light"] .sky .scan { background: linear-gradient(180deg, transparent, rgba(47,74,107,.12) 80%, rgba(47,74,107,.45)); }
+body[data-look="light"] .sky :is(.tk + .tk, .sk + .sk, .sk2 + .sk2)::before { background: rgba(20,27,43,.1); }
+body[data-look="light"] .sky .tk .o { box-shadow: inset 0 0 0 2px rgba(47,74,107,.45); } body[data-look="light"] .sky .tk.dn .o { background: var(--navy); box-shadow: none; } body[data-look="light"] .sky .tk .o svg { color: #fff; }
+body[data-look="light"] .sky :is(.tk .nm, .sk .nm, .sk2 .nm, .lvb b, .sk2 .lv2 b, .lvr b, .cmp b, .rec b, .miles b, .lvchips b, .why .tx b, .hrow .e) { color: var(--ink); }
+body[data-look="light"] .sky .tk:not(.hl) .nm { color: var(--ink2); }
+
+/* звезда навыков */
+body[data-look="light"] .sky :is(.starsvg, .radar) .grid { stroke: rgba(20,27,43,.16); } body[data-look="light"] .sky :is(.starsvg, .radar) .ax { stroke: rgba(20,27,43,.1); }
+body[data-look="light"] .sky :is(.starsvg, .radar) .shape { fill: rgba(47,74,107,.24); stroke: var(--navy); filter: none; }
+body[data-look="light"] .sky .starsvg .shape2 { fill: rgba(20,27,43,.05); stroke: rgba(20,27,43,.5); }
+body[data-look="light"] .sky :is(.starbox, .radar) .lb.on { color: var(--ink); } body[data-look="light"] .sky .radar .pt { fill: var(--navy); }
+body[data-look="light"] .sky .hugen { text-shadow: none; } body[data-look="light"] .sky .burst i { background: var(--navy); } body[data-look="light"] .sky .pulse { box-shadow: 0 0 0 2px rgba(47,74,107,.5); }
+body[data-look="light"] .sky :is(.say, .spk) span { color: rgba(20,27,43,.3); } body[data-look="light"] .sky .spk span.hit { color: var(--ink); text-shadow: none; }
+body[data-look="light"] .sky .line span { text-shadow: none; } body[data-look="light"] .sky .sent.done .w:not(.drop) { animation: none; }
+body[data-look="light"] .sky :is(.th .q em, .theory .q em, .pass mark) { background: rgba(47,74,107,.14); color: var(--ink); }
+body[data-look="light"] .sky .gap .hole { background: var(--soft); box-shadow: none; } body[data-look="light"] .sky .gap .hole.set { color: var(--ink); background: #fff; }
+body[data-look="light"] .sky .sent .w.drop { background: rgba(20,27,43,.1); }
+body[data-look="light"] .sky .rate .fld, body[data-look="light"] .sky .inp .fld2 { background: #fff; box-shadow: var(--shd); color: var(--ink3); }
+body[data-look="light"] .sky .diff u { background: var(--no-bg); }
+
+/* то, что и в приложении остаётся цветным или тёмным */
+body[data-look="light"] .sky :is(.gc, .pcard, .flip .f2) { color: #fff; }
+body[data-look="light"] .sky .scen, body[data-look="light"] .sky .hsc { color: #fff; }
+body[data-look="light"] .sky :is(.scen, .hsc) :is(.over, .sub) { color: rgba(255,255,255,.78); }
+body[data-look="light"] .sky .vcard { background: linear-gradient(170deg, #23262D, #121419); color: #fff; box-shadow: 0 20px 40px -18px rgba(0,0,0,.6); }
+body[data-look="light"] .sky .vcard :is(.mt, .sub, .lb) { color: rgba(255,255,255,.66); } body[data-look="light"] .sky .vcard .lb.on { color: #fff; }
+body[data-look="light"] .sky .vcard .starsvg .grid { stroke: rgba(255,255,255,.16); } body[data-look="light"] .sky .vcard .starsvg .ax { stroke: rgba(255,255,255,.12); }
+body[data-look="light"] .sky .vcard .starsvg .shape { fill: rgba(190,200,255,.28); stroke: #fff; } body[data-look="light"] .sky .vcard .starsvg .shape2 { stroke: rgba(255,255,255,.6); fill: rgba(255,255,255,.07); }
+body[data-look="light"] .sky .vcard .lvchips div { background: rgba(255,255,255,.1); color: rgba(255,255,255,.66); } body[data-look="light"] .sky .vcard .lvchips b { color: #fff; }
+body[data-look="light"] .sky .vcard .protag { background: #fff; color: #0B0C0E; } body[data-look="light"] .sky .vcard .lockn { color: #fff; }
+
+/* настоящая шапка-сцена и блоки Главной / «Сегодня» / «Карточек» */
+.hsc { position: relative; margin: -58px -20px 0; padding: 58px 20px 26px; border-radius: 0 0 40px 40px; color: #fff; flex: none; background: linear-gradient(165deg, #6E86B0 0%, #4E6C97 45%, #3C5A85 100%); }
+.hsc.home { background: linear-gradient(170deg, #55708F 0%, #7B7FA8 50%, #9C8FC0 100%); padding-bottom: 20px; }
+.hsc .wcta { background: #fff !important; color: #141B2B !important; width: auto; padding: 0 26px; display: inline-flex; box-shadow: 0 10px 22px -10px rgba(0,0,0,.45) !important; }
+.hsc .gpill, .hsc .gbtn { background: rgba(255,255,255,.2) !important; color: #fff !important; box-shadow: none !important; }
+.wk { display: flex; justify-content: space-between; padding: 12px 14px; border-radius: 22px; background: rgba(255,255,255,.14); margin-top: 22px; }
+.wk div { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7); } .wk div.on { color: #fff; }
+.wk i { width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,.14); } .wk .f i { background: #E3D7FA; } .wk .on i { background: #17384F; box-shadow: 0 0 0 2px #fff; }
+.tiles4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 14px; flex: none; }
+.tiles4 div { height: 92px; border-radius: 22px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 10px; gap: 6px; font-size: 14px; font-weight: 700; }
+.tiles4 svg { width: 32px; height: 32px; }
+.rw { display: flex; align-items: center; gap: 14px; min-height: 58px; position: relative; }
+.rw + .rw::before { content: ""; position: absolute; left: 54px; right: 0; top: 0; height: 1px; background: rgba(20,27,43,.08); }
+.rw .ib { width: 40px; height: 40px; border-radius: 13px; background: #2F5E8E; color: #fff; display: flex; align-items: center; justify-content: center; flex: none; }
+.rw .ib.s { background: #DCE8F7; color: #2F4A6B; }
+.rw .tx { flex: 1; min-width: 0; } .rw .e { font-size: 17px; font-weight: 700; } .rw .r { font-size: 14px; color: var(--ink2); margin-top: 1px; }
+.rw .fq { font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.rw.nw { margin: 2px -8px 6px; padding: 8px; border-radius: 18px; background: #EAF0FA; cursor: pointer; transition: background 300ms; }
+.rw.nw.dn { background: var(--ok-bg, #D6F2E1); }
+.rw.nw + .rw::before { display: none; }
+.playb { width: 44px; height: 44px; border-radius: 50%; background: #2F4A6B; color: #fff; display: flex; align-items: center; justify-content: center; flex: none; box-shadow: 0 8px 16px -8px rgba(47,74,107,.8); }
+.playb svg { width: 18px; height: 18px; margin-left: 2px; }
+.m3 { display: flex; gap: 5px; margin-top: 6px; } .m3 i { height: 5px; width: 34px; border-radius: 3px; background: rgba(20,27,43,.14); transition: background 300ms; } .m3 i.on { background: #2F4A6B; }
+.pan { padding: 14px 16px 8px; border-radius: 26px; margin-top: 14px; flex: none; }
+.pan .hd2 { display: flex; justify-content: space-between; align-items: baseline; font-size: 21px; font-weight: 800; margin-bottom: 4px; } .pan .hd2 span { font-size: 14px; font-weight: 500; color: var(--ink2); }
+.rings { position: absolute; right: 8px; top: 86px; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.3) 22%, rgba(255,255,255,.16) 23% 42%, rgba(255,255,255,.1) 43% 62%, rgba(255,255,255,.06) 63% 82%, transparent 83%); display: flex; align-items: center; justify-content: center; }
+.rings img { width: 56px; height: 56px; border-radius: 50%; }
+.crow { display: flex; align-items: center; gap: 14px; height: 78px; padding: 0 16px; border-radius: 24px; margin-top: 12px; font-size: 17px; font-weight: 700; flex: none; }
+.crow .ci { width: 46px; height: 46px; border-radius: 14px; background: #E6ECF6; display: flex; align-items: center; justify-content: center; color: #2F4A6B; flex: none; } .crow span { flex: 1; }
+body[data-look="dark"] .hsc { background: none; } body[data-look="dark"] .rw .ib.s { background: rgba(255,255,255,.14); color: #fff; }
+body[data-look="dark"] .rw.nw { background: rgba(255,255,255,.14); } body[data-look="dark"] .crow .ci { background: rgba(255,255,255,.14); color: #fff; }
+.pan .hd2 span { white-space: nowrap; margin-left: 10px; }
+.pan .hd2 { font-size: 19px; }
+
+/* ---------- разделы поверх настоящих экранов (elevate-real2.js) ---------- */
+.grid2 { display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; }
+.toast2 { position: absolute; left: 20px; right: 20px; bottom: 104px; z-index: 9; padding: 12px 16px; display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600; opacity: 0; transform: translateY(16px); transition: opacity 300ms, transform 440ms var(--out); pointer-events: none; border-radius: 20px; }
+.toast2.on { opacity: 1; transform: none; }
+.aline { min-height: 58px; margin-top: 14px; padding-bottom: 10px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 10px; font-size: 28px; font-weight: 800; letter-spacing: -.4px; border-bottom: 1.5px solid rgba(20,27,43,.14); flex: none; transition: color 300ms; }
+.aline.ok { color: var(--ok); border-bottom-color: var(--ok); }
+.caret2 { width: 3px; height: 32px; border-radius: 2px; background: #2F4A6B; animation: blink 1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.tls .at { min-height: 64px; font-size: 21px; font-weight: 600; }
+.prog { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex: none; font-size: 13px; font-weight: 700; color: var(--ink2); } .prog .bar { flex: 1; margin-top: 0; }
+.tools4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; flex: none; }
+.tools4 div { height: 68px; border-radius: 18px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 13px; font-weight: 600; }
+.tools4 div:last-child { opacity: .45; }
+.v3 { display: flex; align-items: flex-start; justify-content: center; gap: 12px; margin-top: 16px; }
+.v3 > div { display: flex; flex-direction: column; align-items: center; gap: 6px; } .v3 svg { margin-top: 12px; opacity: .6; }
+.v3 b { font-size: 24px; font-weight: 800; min-width: 74px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 12px; } .v3 span { font-size: 13px; color: var(--ink2); font-weight: 600; }
+.v3 .vh { border: 1.5px dashed rgba(20,27,43,.5); } .v3 .vh.got { border-color: transparent; background: var(--ok-bg); color: var(--ok); }
+.acc { border-radius: 22px; margin-top: 10px; padding: 14px 16px; }
+.acc .ah { display: flex; align-items: center; gap: 12px; } .acc .an { font-size: 15px; font-weight: 800; } .acc .tx { flex: 1; } .acc .tx b { display: block; font-size: 16px; } .acc .tx span { font-size: 13px; color: var(--ink2); }
+.acc .ab p { font-size: 16px; line-height: 23px; margin: 12px 0 0; } .acc .ab em { font-style: normal; font-weight: 700; color: #1F5FBF; }
+.chk2 { margin-top: 14px; padding: 14px; border-radius: 18px; background: #EAF0FA; } .chk2 .ov2 { font-size: 12px; font-weight: 800; letter-spacing: 1.2px; text-transform: uppercase; color: var(--ink2); }
+.chk2 .two { display: flex; gap: 10px; } .chk2 .two .at { flex: 1; min-height: 50px; font-size: 18px; }
+.tm2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; flex: none; } .tm2 > div { border-radius: 18px; padding: 12px 14px; }
+.pkr { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 22px; margin-top: 10px; flex: none; } .pkr .tx { flex: 1; min-width: 0; } .pkr b { font-size: 17px; }
+.tabsx { flex: 1; display: flex; gap: 18px; font-size: 17px; font-weight: 600; color: rgba(255,255,255,.7); } .tabsx .on { color: #fff; box-shadow: 0 6px 0 -3px #fff; }
+[data-ph="sk-pro"] .vcard { background: radial-gradient(120% 80% at 50% 30%, #6B5A2A 0%, #2A2412 45%, #0D0C09 100%) !important; box-shadow: inset 0 0 0 1.5px #C9A85A, 0 20px 40px -18px rgba(0,0,0,.7) !important; }
+[data-ph="sk-pro"] .vcard .protag { background: linear-gradient(180deg, #F3E2A8, #C9A85A) !important; color: #2A2108 !important; }
+[data-ph="sk-pro"] .vcard .starsvg .shape { stroke: #F3E2A8 !important; fill: rgba(243,226,168,.22) !important; }
+[data-ph="sk-pro"] .wcta { background: linear-gradient(180deg, #F3E2A8, #C9A85A) !important; color: #2A2108 !important; }
+body[data-look="dark"] .aline { border-bottom-color: rgba(255,255,255,.2); } body[data-look="dark"] .caret2 { background: #fff; } body[data-look="dark"] .chk2 { background: rgba(255,255,255,.1); }
+body[data-look="dark"] .acc .ab em { color: #9CC4FF; } body[data-look="dark"] .v3 .vh { border-color: rgba(255,255,255,.5); }

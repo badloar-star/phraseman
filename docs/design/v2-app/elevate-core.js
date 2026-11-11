@@ -9,6 +9,8 @@ window.EL = (() => {
   const SB = `<div class="sb"><span>9:41</span><span class="sys"><svg width="18" height="12" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><span class="bat"></span></span></div>`;
   const sky = (id, cls = '') => `<div class="ph sky ${cls}" data-ph="${id}">${SB}<div class="sun"></div><div class="haze"></div><div class="stars"></div><div class="vig"></div><div class="lay"></div><div class="hi"></div></div>`;
   const was = (body) => `<div class="was"><div class="tagw">Было</div><div class="wasbox"><div class="ph">${SB}<div class="scr"><div class="in">${body}</div></div><div class="hi"></div></div></div></div>`;
+  // зачем (владелец 11.11: «показал не как в приложении, а устаревший макет»): «было» — только настоящий снимок экрана приложения
+  const shot = (file) => `<div class="was shot"><div class="tagw">Сейчас в приложении</div><div class="shotbox"><img src="assets/elevate-was/${file}" alt=""></div></div>`;
   const timers = () => { let ids = []; return { after(ms, fn) { const id = setTimeout(fn, ms); ids.push(id); return id; }, clear() { ids.forEach(clearTimeout); ids = []; } }; };
   const fmt = (n) => Math.round(n).toLocaleString('ru-RU');
   function count(el, from, to, ms, suffix = '') {
@@ -152,7 +154,7 @@ window.EL = (() => {
   function mount(sections) {
     const all = sections.flatMap((s) => s.screens), stop = {};
     const run = (id, auto = true) => { const s = all.find((x) => x.id === id), ph = document.querySelector(`[data-ph="${id}"]`); if (!s) return; /* зачем: уменьшенные телефоны «было» в стиле сцены — статичные, показа у них нет */ if (stop[id]) stop[id](); stop[id] = s.fn(ph, auto) || null; log('запуск экрана', id); };
-    const colOf = (s) => `<div class="col"><div class="lbl">${s.lbl}</div><div class="pairw">${s.was ? `${s.was}<div class="arrow">${I('arrowR', 's24')}</div>` : ''}<div class="now">${s.was ? '<div class="tagw">Стало</div>' : ''}${sky(s.id, s.cls || '')}</div></div><button class="replay" data-run="${s.id}">${I('play', 's16')}Показать ещё раз</button>${s.note ? `<div class="cap2"${s.was ? ' style="max-width:640px"' : ''}>${s.note}</div>` : ''}</div>`;
+    const colOf = (s) => `<div class="col"><div class="lbl">${s.lbl}</div><div class="pairw">${(s.was = s.was && s.was.includes('was shot') ? s.was : null) ? `${s.was}<div class="arrow">${I('arrowR', 's24')}</div>` : ''}<div class="now">${s.was ? '<div class="tagw">Стало</div>' : ''}${sky(s.id, s.cls || '')}</div></div><button class="replay" data-run="${s.id}">${I('play', 's16')}Показать ещё раз</button>${s.note ? `<div class="cap2"${s.was ? ' style="max-width:640px"' : ''}>${s.note}</div>` : ''}</div>`;
     document.getElementById('root').innerHTML = sections.map((s) => `<section class="block" id="${s.id}"><h2>${s.title}</h2><p>${s.lead}</p>${s.html || ''}<div class="phones">${s.screens.map(colOf).join('')}</div></section>`).join('');
     document.querySelectorAll('.ph.sky').forEach(stars);
     document.addEventListener('click', (e) => {
@@ -164,5 +166,5 @@ window.EL = (() => {
     document.querySelectorAll('.ph.sky').forEach((p) => io.observe(p));
     K.init(); window.__elevate = { run, all };
   }
-  return { I, log, $, $$, sky, was, timers, fmt, count, bump, again, coins, top, segs, tiles, showTiles, mark, hearts, P, result, wasResult, swipe, quiz, nav, mount, SK, LVMAX, need, axis, skAxes, starSvg, starLabels, starTween };
+  return { I, log, $, $$, sky, was, shot, timers, fmt, count, bump, again, coins, top, segs, tiles, showTiles, mark, hearts, P, result, wasResult, swipe, quiz, nav, mount, SK, LVMAX, need, axis, skAxes, starSvg, starLabels, starTween };
 })();

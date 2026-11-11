@@ -15,7 +15,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Svg, { Defs, LinearGradient, Polygon, Stop } from 'react-native-svg';
 import type { Lang } from '../../../constants/i18n';
-import { DUO_TIER_COLORS, DUO_TIER_INK } from '../../paywall/duo/PaywallDuoHero';
+import { PLUS_MARK_GRADIENT, PLUS_MARK_INK } from '../../plus/plus_mark_colors';
 import { streakPlateFill } from '../../streak/moments/StreakMomentFlame';
 import { weekRange } from './story_template_dates';
 import { Art, FrameRoot, H1, Ov, P } from './story_template_kit';
@@ -35,11 +35,12 @@ export type PlusDialogOffer = Readonly<{ repliesLimit: number; bubbles: readonly
 
 type FrameProps<D> = Readonly<{ tpl: D; lang: Lang }>;
 
-// зачем: цвета знака Plus берём из пейвола «Два пути» (DUO_TIER_COLORS / DUO_TIER_INK, уровень Ultra) — один источник на окно покупки и истории.
-// Своих цветов в кадрах нет: сторож шаблонов историй запрещает жёсткие цвета в файлах кадров.
-const PLUS_GRADIENT = DUO_TIER_COLORS.ultra;
-const PLUS_INK = DUO_TIER_INK.ultra;
-const PLUS_GLOW = DUO_TIER_COLORS.ultra[1];
+// зачем: цвета знака Plus — из чистого модуля plus_mark_colors (те же, что у уровня Ultra в пейволе «Два пути»). Сам PaywallDuoHero сюда
+// не подключаем: он на уровне модуля зовёт анимации, и просмотр историй тянул бы их за собой. Своих цветов в кадрах нет — сторож шаблонов
+// историй запрещает жёсткие цвета в файлах кадров.
+const PLUS_GRADIENT = PLUS_MARK_GRADIENT;
+const PLUS_INK = PLUS_MARK_INK;
+const PLUS_GLOW = PLUS_MARK_GRADIENT[1];
 /** Шестиугольник макета (.pmark i: clip-path 50% 0, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%) в поле 100 × 100. */
 const HEX_POINTS = '50,0 93,25 93,75 50,100 7,75 7,25';
 /** Какой день недели серии показан «закрытым защитой» — пятый, как в макете. */

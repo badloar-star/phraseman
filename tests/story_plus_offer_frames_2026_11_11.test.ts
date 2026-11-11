@@ -62,7 +62,18 @@ describe('кадры-предложения Plus — разметка по ма�
     // шестиугольник макета .pmark и градиент уровня из пейвола «Два пути»
     expect(frames).toContain("const HEX_POINTS = '50,0 93,25 93,75 50,100 7,75 7,25';");
     // цвета знака — из одного источника с окном покупки; жёстких цветов в файле кадров нет (сторож шаблонов историй)
-    expect(frames).toContain('const PLUS_GRADIENT = DUO_TIER_COLORS.ultra;');
+    expect(frames).toContain('const PLUS_GRADIENT = PLUS_MARK_GRADIENT;');
+    // кадры не тянут за собой окно покупки с его анимациями (сторож просмотра историй переставал загружаться)
+    // проверяем сам импорт, а не слово: в комментарии файла название упомянуто — оно объясняет, почему импорта нет
+    expect(frames).not.toMatch(/from\s+['"][^'"]*PaywallDuoHero['"]/u);
+    expect(frames).not.toMatch(/from\s+['"][^'"]*paywall\/duo\/[^'"]*['"]/u);
+    // цвета знака равны цветам уровня Ultra в окне покупки — менять только вместе
+    const marks = read('components/plus/plus_mark_colors.ts');
+    const hero = read('components/paywall/duo/PaywallDuoHero.tsx');
+    expect(marks).toContain("export const PLUS_MARK_GRADIENT = ['#FF7A59', '#FF5F8F', '#FF4FD0'] as const;");
+    expect(hero).toContain("ultra: ['#FF7A59', '#FF5F8F', '#FF4FD0']");
+    expect(marks).toContain("export const PLUS_MARK_INK = '#2B0717';");
+    expect(hero).toContain("ultra: '#2B0717'");
     expect(frames).not.toMatch(/['"`]#[0-9a-fA-F]{3,8}['"`]/u);
   });
 

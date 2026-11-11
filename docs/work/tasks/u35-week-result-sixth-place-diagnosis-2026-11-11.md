@@ -27,6 +27,30 @@ Related epic/enabler: U33/U34 (свой недельный счёт Пика), X
 Откат: убрать ветку `ownCoinsNewer` в `runSync` — поведение вернётся к «вход раз в неделю».
 Не закрыто этой правкой: бонусы-подарки (`level_spin_grant`) в счёт недели не входят — файлы начислений заняты другой сессией, решение владельца нужно отдельно.
 
+## Дополнение 2 — «все монеты заработанные везде считать» (передано координатором 11.11; в этой сессии владельцем не подтверждено)
+
+Governance-ID: TG-14ED28ABDB0F
+Status: ЗАБЛОКИРОВАНО — `functions/src/stars_ledger.ts` и `functions/src/stars_ledger.test.ts` несут незакоммиченные правки другой сессии (снимок недели `buildStarsWeekSnapshotV1`, снятие `learning_v2_*`). Код не тронут.
+
+Связи (проверено):
+- что входит в счёт недели, решает ОДНО место — `stars_ledger.ts`, блок `if (cls === 'earn')` в `prepareStarOperations` (сейчас ~697–706): в `weekEarned` / `prevWeekEarned` идёт только класс earn;
+- читатели недели — только Пик: `spire_groups.ts:94` (снимок при входе), `spire_progress.ts:324` (снимок при ступени), `spire_finalize_cron.ts:115` и `spire_finalization_freeze.ts:248` (итог недели), ответы `starsWeek` (свой счёт на телефоне). Все берут `starsWeekEarned` — менять их не нужно;
+- клиент показывает то, что прислал сервер; правок клиента не требуется.
+
+Правка (≈15 строк в одном файле + тест):
+1. таблица `STAR_OP_COUNTS_FOR_WEEK: Record<StarOpReason, boolean>` рядом с `STAR_OP_CLASS`;
+2. в блоке начисления: недельный счётчик растёт для earn И для grant из таблицы; `earnedTotal`, `seasonEarned`, `bySource` не меняются (ранги монет и «заработано за всё время» остаются как были);
+3. датировка задним числом — та же, что у earn (`weekKeyForMs`).
+
+Умолчания по причинам (здравый смысл исполнителя, не слова владельца):
+- СЧИТАТЬ: `level_spin_grant` (бонус за урок, задания дня, полное видео, первый урок, награда за жалобу), `video_watch`, `referral_spin`, `referral_ladder`, `community_pack_sale`, `community_month_reward` — начисления за действия;
+- НЕ СЧИТАТЬ: `spire_week_reward` (приз прошлой недели дал бы топ-5 фору в 1000 монет на следующей — победители закреплялись бы наверху), `welcome_gift`, `global_broadcast`, `admin_grant` (подарки, не действия), `coin_exchange` (обмен/покупка), `account_merge_in` (перенос), `legacy_bonus` (конвертация старого).
+- Потолок недели `weekCoinsCap` (20 000) остаётся защитой от накрутки: бонусы присылает телефон.
+
+Риск: `level_spin_grant` несёт сумму с клиента (потолок 5 000 за операцию) — после правки она двигает место; защита — потолок недели и существующая проверка отпечатка операции.
+Проверка: новый блок в `stars_ledger.test.ts` (grant из таблицы растит `weekEarned`, не растит `earnedTotal`; исключённые причины не растят) + перезапуск `scripts/spire_week_u35_simulation.ts` (подарки из таблицы должны показать «дошло»).
+Откат: вернуть условие `cls === 'earn'`. Уже накопленные недельные суммы не пересчитываются ни при правке, ни при откате.
+
 ## Scope
 
 In scope (только чтение и новые диагностические файлы):
@@ -64,3 +88,18 @@ No architecture change. Зафиксированная цепочка (по ко
 ## Rollback
 
 Удалить три файла из `scripts/` и этот пакет. Боевых данных и боевого кода задача не меняла.
+
+## Дополнение 3 — правило вынесено в свой файл (11.11, владелец подтвердил в этой сессии: «Да, так»)
+
+Сделано без правки занятого журнала: `functions/src/stars_week_policy.ts` (`starOpCountsForWeek`, список `STAR_GRANTS_COUNTED_FOR_WEEK`) и сторож `functions/src/stars_week_policy.test.ts` (6 тестов, прошли 11.11).
+ПОКА НЕ ДЕЙСТВУЕТ: журнал правило не вызывает. Осталось подключение в `functions/src/stars_ledger.ts` (занят другой сессией), в `prepareStarOperations`:
+
+    import { starOpCountsForWeek } from './stars_week_policy';
+    // внутри if (cls === 'earn') оставить earnedTotal / seasonEarned / receiptWeekKey, а недельный счётчик вынести ПОСЛЕ ветвления классов:
+    if (starOpCountsForWeek(op.reason, cls)) {
+      const opWeekKey = ctx.weekKeyForMs ? ctx.weekKeyForMs(earnedAtMs) : ctx.weekKeyNow;
+      if (opWeekKey === after.weekKey) after.weekEarned += op.delta;
+      else if (opWeekKey === after.prevWeekKey) after.prevWeekEarned += op.delta;
+    }
+
+После подключения: тест в `stars_ledger.test.ts` (grant из списка растит weekEarned и не растит earnedTotal), выкладка функций — словом владельца.

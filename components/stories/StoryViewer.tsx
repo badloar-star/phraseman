@@ -218,6 +218,16 @@ function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: even
   }, [applyHold]);
   const onTouchEnd = useCallback((e: GestureResponderEvent) => { touchHeldRef.current = e.nativeEvent.touches.length > 0; applyHold('touch_end'); }, [applyHold]);
   const onTouchCancel = useCallback(() => { touchHeldRef.current = false; applyHold('touch_cancel'); }, [applyHold]);
+  // зачем (владелец 11.11: «некоторые истории показывает пауза при открытии и не воспроизводится»; журнал [STORY-VIEWER] 17:44:39–17:47:26): у кадра-объявления
+  // палец попадает в его собственные элементы (слой box-none, ключ = id события). Тап листает → слой снимается раньше, чем дойдёт «палец поднят» → onTouchEnd теряется,
+  // касание навсегда «держит» экран: следующий кадр открывается со значком паузы и стоит (в журнале — 2,5 минуты). Завершённый тап и завершённое удержание — сами по себе
+  // факт «палец поднят», поэтому касание снимаем по ним, не дожидаясь события, которое может не прийти. Обычное удержание пальцем не затронуто.
+  const fingerLifted = useCallback((why: string) => {
+    if (!touchHeldRef.current) return;
+    touchHeldRef.current = false;
+    DebugLogger.info(LOG, `палец поднят (${why}): касание снято, не дожидаясь touch_end`);
+    applyHold(why);
+  }, [applyHold]);
   useEffect(() => { runtimeRef.current = runtimeActive; syncPause(); }, [runtimeActive, syncPause]);
 
   // старт: раскрытие из аватара и первый кадр; диктор — без автоперехода
@@ -240,17 +250,19 @@ function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: even
   // зачем (аудит R58 #59, 15.10): шапка с ✕ — не зона листания; зона = вырез/статус-бар + 70 (кнопка ✕ и полоса), а не константа 110 — на вырезе ✕ раньше листал сторис
   const headerH = insets.top + HEADER_BELOW_INSET;
   const onTapAt = useCallback((x: number, y: number) => {
-    if (y < headerH) return;
+    fingerLifted('tap'); // до любых выходов: тап закончился — палец уже не на экране, где бы он ни был
+    if (y < headerH) { DebugLogger.info(LOG, `тап в шапке y=${Math.round(y)} — не листаем`); return; }
     if (ctaZoneRef.current !== null && y >= ctaZoneRef.current) { DebugLogger.info(LOG, `тап по кнопке действия y=${Math.round(y)} — не листаем`); return; }
     DebugLogger.info(LOG, `тап x=${Math.round(x)} зона=${x < winW * STORY_PREV_ZONE ? 'назад' : 'дальше'}`);
     go(x < winW * STORY_PREV_ZONE ? indexRef.current - 1 : indexRef.current + 1);
-  }, [go, headerH, winW]);
+  }, [fingerLifted, go, headerH, winW]);
 
   const gesture = useMemo(() => {
     // зачем (аудит Optimistic UI 24.10): тап короче удержания. Раньше tap=250 мс > hold=220 мс: отпустил на 230 мс — и пауза, и перелистывание сразу после неё; теперь «дольше STORY_HOLD_MS» — только удержание
     const tap = Gesture.Tap().maxDuration(STORY_HOLD_MS - 30).onEnd((e, ok) => { if (ok) runOnJS(onTapAt)(e.x, e.y); });
     const hold = Gesture.LongPress().minDuration(STORY_HOLD_MS).maxDistance(24)
       .onStart(() => { runOnJS(setHold)(true); })
+      .onEnd((_e, ok) => { if (ok) runOnJS(fingerLifted)('hold_end'); })
       .onFinalize(() => { runOnJS(setHold)(false); });
     const pan = Gesture.Pan().activeOffsetY(14).failOffsetX([-40, 40])
       .onStart(() => { runOnJS(setHold)(true); })
@@ -261,7 +273,7 @@ function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: even
       })
       .onFinalize(() => { runOnJS(setHold)(false); });
     return Gesture.Simultaneous(hold, Gesture.Exclusive(pan, tap));
-  }, [close, dragY, onTapAt, setHold]);
+  }, [close, dragY, fingerLifted, onTapAt, setHold]);
 
   // ── стили ────────────────────────────────────────────────────────────────
   const dx = (origin?.x ?? winW - 40) - winW / 2;

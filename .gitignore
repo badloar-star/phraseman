@@ -419,3 +419,9 @@ docs/phraseman-2.0/registries/copy_inventory_full.json
 /functions-content/lib/modules/learning-v2/content/factory_native/generated_release/
 # E2E: данные локальных эмуляторов Firebase (scripts/e2e)
 .e2e-emulator-data/
+
+# зачем (владелец 11.11): архив админки и сборочные каталоги функций — не исходники, мешали в статусе всем сессиям
+/admin.zip
+/functions-admin/lib/
+/functions/lib_preview_tmp/
+/functions/lib_audit_tmp/

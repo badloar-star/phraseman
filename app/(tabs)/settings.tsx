@@ -42,6 +42,7 @@ import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import { enableSmartDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
 import { actionToastTri, emitAppEvent } from '../events';
 import { requestOpenDevHub } from '../dev_hub_bus';
+import DevPlusToggle from '../../components/dev/DevPlusToggle';
 import { ENABLE_DEV_TOOLS } from '../config';
 import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
@@ -51,6 +52,7 @@ import { PlusAvatarRing, PlusTag } from '../../components/plus/PlusAvatarRing';
 import { useSubscriptionTier } from '../../components/plus/use_subscription_tier';
 import CustomSwitch from '../../components/CustomSwitch';
 import { setLiteModeOverride, useLiteMode } from '../lite_mode';
+import { setVideoSectionEnabled, useVideoSectionPreference } from '../video_section_preference';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { useTabRetapScrollTop } from '../../hooks/use_tab_retap_scroll_top';
@@ -86,10 +88,11 @@ import { patchAppSnapshot, resolveHydratedProfileName, useAppSnapshotSelector } 
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { readVipSnapshotForGeneration } from '../premium_vip_storage';
+import { readRealPremiumSnapshotForGeneration } from '../premium_real_storage';
 import { SettingsMessageSlotCard } from '../../components/settings/SettingsMessageSlotCard';
 import { APP_MESSAGES_SCREEN_MIN_INTERVAL_MS, hasAppMessageCopyForLang, peekAppMessagesSnapshot, refreshAppMessagesSnapshotOnce } from '../app_messages';
 import { selectSettingsMessageSlots, type SettingsMessageSlotSelection } from '../settings_message_slots';
-import { flushSettingsPollVotes, ownerTail } from '../settings_poll_vote';
+import { ownerTail } from '../settings_poll_vote';
 import { animateNextLayoutTransition } from '../smooth_layout';
 import { trackEvent } from '../analytics';
 import { normalizePaywallAttributionValue } from '../paywall_entry_contract';
@@ -320,6 +323,8 @@ export default function SettingsMain() {
     tr: string,
     pl: string,
   ) => triLang(lang, { ru, uk, en, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  const videoSectionEnabled = useVideoSectionPreference();
+  const videoSectionLabel = L('Видео', 'Відео', 'Video', 'Vídeos', 'Vídeos', 'Video', 'Video', 'Video', 'Wideo');
   const showInfoAlert = React.useCallback(
     (title: string, message: string) => {
       void enqueueThemedBlockingInfoAlert(title || L('Сообщение', 'Повідомлення', 'Message', 'Message', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość'), message, 'OK');
@@ -458,7 +463,6 @@ export default function SettingsMain() {
   // зачем (владелец 06.11, Plus/Ultra): годовая подписка — «Ultra» (другой цвет и значок кольца, метка «✦ Ultra»); месячная и прочее — Plus.
   const subTier = useSubscriptionTier() ?? 'plus';
   const initialSettingsMessageOwnerRef = useRef(captureAccountGeneration().stableId ?? '');
-  const [settingsMessageOwner, setSettingsMessageOwner] = useState(initialSettingsMessageOwnerRef.current);
   const [settingsMessageSelection, setSettingsMessageSelection] = useState<SettingsMessageSlotSelection>(() => {
     const initial = selectSettingsMessageSlots(peekAppMessagesSnapshot(), {
       stableId: initialSettingsMessageOwnerRef.current,
@@ -487,7 +491,6 @@ export default function SettingsMain() {
         hasPremiumAccess,
         appVersion: Constants.expoConfig?.version ?? '',
       });
-      setSettingsMessageOwner(account.stableId);
       setSettingsMessageSelection((current) => {
         const currentKey = `${current.top?.id ?? ''}:${current.bottom?.id ?? ''}:${JSON.stringify(current.assignments)}`;
         const nextKey = `${next.top?.id ?? ''}:${next.bottom?.id ?? ''}:${JSON.stringify(next.assignments)}`;
@@ -512,10 +515,6 @@ export default function SettingsMain() {
     });
   }, [settingsMessageSelection.assignments]);
 
-  useEffect(() => {
-    if (!settingsRuntimeActive || !settingsMessageOwner) return;
-    void flushSettingsPollVotes(settingsMessageOwner);
-  }, [settingsMessageOwner, settingsRuntimeActive]);
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
   const [vipPlan, setVipPlan] = useState('');
   const [vipUntilMs, setVipUntilMs] = useState(0);
@@ -747,10 +746,11 @@ export default function SettingsMain() {
     const settingsHydrationStartedAt = Date.now();
     const token = captureAccountGeneration();
     Promise.all([
-      AsyncStorage.multiGet(['user_name', 'premium_plan', 'haptics_tap']),
+      AsyncStorage.multiGet(['user_name', 'haptics_tap']),
       readVipSnapshotForGeneration(token),
+      readRealPremiumSnapshotForGeneration(token),
     ])
-      .then(([pairs, vip]) => {
+      .then(([pairs, vip, realPremium]) => {
         if (cancelled || !token.stableId || !isCurrentAccountGeneration(token, token.stableId)) {
           console.log('[SETTINGS-NAME]', JSON.stringify({ step: 'storage_skip', cancelled, owner: (token.stableId ?? '').slice(0, 8) || null, current: (captureAccountGeneration().stableId ?? '').slice(0, 8) || null }));
           return;
@@ -776,12 +776,12 @@ export default function SettingsMain() {
             ...current.settings,
             source: 'storage',
             updatedAt: Date.now(),
-            tapHaptics: pairs[2][1] === null ? current.settings.tapHaptics : pairs[2][1] !== 'false',
+            tapHaptics: pairs[1][1] === null ? current.settings.tapHaptics : pairs[1][1] !== 'false',
           } : undefined,
         } : {});
-        setPremiumPlan(getDevPlanOverride()?.plan ?? pairs[1][1]); // зачем (координатор 12.10): dev `plan=` — из памяти, в стор-сборке null
+        setPremiumPlan(getDevPlanOverride()?.plan ?? (realPremium?.active ? realPremium.plan : null)); // зачем (координатор 12.10): dev `plan=` — из памяти, в стор-сборке null
         setVipUntilMs(parseStoredExpiryMs(vip?.vip_until));
-        if (pairs[2][1] !== null) setHapticTap(pairs[2][1] !== 'false');
+        if (pairs[1][1] !== null) setHapticTap(pairs[1][1] !== 'false');
       })
       .catch(noteSwallowedHandler('settings:useEffect.all'));
     refreshSupplementalAccessState();
@@ -1256,7 +1256,6 @@ export default function SettingsMain() {
             <SettingsMessageSlotCard
               campaign={settingsMessageSelection.top}
               lang={lang}
-              ownerStableId={settingsMessageOwner}
             />
           </View>
         ) : null}
@@ -1292,6 +1291,22 @@ export default function SettingsMain() {
             title={L('Оформление', 'Оформлення', 'Appearance', 'Apariencia', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')}
             onPress={() => router.push('/settings_appearance' as any)}
           />
+          {videoSectionEnabled !== null ? (
+            <SettingsGlassRow
+              glass={glass}
+              icon="play-circle-outline"
+              title={videoSectionLabel}
+              right={(
+                <SettingsGlassSwitch
+                  testID="settings-video-section-switch"
+                  glass={glass}
+                  value={videoSectionEnabled}
+                  onValueChange={(value) => { void setVideoSectionEnabled(value); }}
+                  accessibilityLabel={videoSectionLabel}
+                />
+              )}
+            />
+          ) : null}
           {/* sound-settings-start */}
           {SHOW_SOUND_SETTINGS ? (
             <SettingsGlassRow
@@ -1552,12 +1567,12 @@ export default function SettingsMain() {
             <SettingsMessageSlotCard
               campaign={settingsMessageSelection.bottom}
               lang={lang}
-              ownerStableId={settingsMessageOwner}
               marginTop={20}
             />
           </View>
         ) : null}
 
+        {ENABLE_DEV_TOOLS ? <DevPlusToggle /> : null}
         {/* Подвал макета A: «Версия 2.0.0 (118) · Dev Hub» мелко по центру; Dev Hub — только в дев-сборке. */}
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', marginTop: 26, paddingBottom: 12 }}>
           <TouchableOpacity testID="settings-version" accessibilityRole="button" activeOpacity={0.7} hitSlop={10} onPress={onVersionPress} onLongPress={onVersionLongPress} delayLongPress={500}>

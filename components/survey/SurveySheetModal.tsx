@@ -161,6 +161,37 @@ function completionTitle(lang: Lang, configured?: string): string {
   });
 }
 
+// These exact strings can still arrive from the retired survey library.
+const LEGACY_RECOMMENDATION_QUESTION = 'Посоветуешь Phraseman другу — или сначала проведёшь ему независимое языковое расследование?'; // i18n-ok: ключ сравнения со старой библиотекой опросов, на экран не выводится
+const LEGACY_PEARL_TITLE = 'Спасибо! Жемчужина твоя'; // i18n-ok: ключ сравнения со старой библиотекой опросов, на экран не выводится
+const LEGACY_COFFEE_SUBTITLE = 'Ответ записан. Теперь у нас меньше гаданий на кофейной гуще.'; // i18n-ok: ключ сравнения со старой библиотекой опросов, на экран не выводится
+
+// зачем (сторож непереведённых строк, 11.11): подмены старых текстов библиотеки видны человеку — значит, на его языке интерфейса.
+function surveyQuestionCopy(text: string, lang: Lang): string {
+  if (text.trim() !== LEGACY_RECOMMENDATION_QUESTION) return text;
+  return triLang(lang, {
+    ru: 'Порекомендуешь Phraseman другу?', uk: 'Порадиш Phraseman другові?', en: 'Would you recommend Phraseman to a friend?',
+    es: '¿Recomendarías Phraseman a un amigo?', 'pt-BR': 'Você recomendaria o Phraseman a um amigo?',
+    vi: 'Bạn có giới thiệu Phraseman cho bạn bè không?', id: 'Maukah kamu merekomendasikan Phraseman ke teman?',
+    tr: 'Phraseman\'i bir arkadaşına önerir misin?', pl: 'Polecisz Phraseman znajomemu?',
+  });
+}
+
+function legacyAnswerSavedCopy(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'Ответ сохранён.', uk: 'Відповідь збережено.', en: 'Your answer is saved.', es: 'Respuesta guardada.',
+    'pt-BR': 'Resposta salva.', vi: 'Đã lưu câu trả lời.', id: 'Jawaban tersimpan.', tr: 'Cevabın kaydedildi.', pl: 'Odpowiedź zapisana.',
+  });
+}
+
+function legacyThanksCopy(lang: Lang): string {
+  return triLang(lang, {
+    ru: 'Спасибо за ответ!', uk: 'Дякуємо за відповідь!', en: 'Thanks for your answer!', es: '¡Gracias por tu respuesta!',
+    'pt-BR': 'Obrigado pela resposta!', vi: 'Cảm ơn câu trả lời của bạn!', id: 'Terima kasih atas jawabanmu!',
+    tr: 'Cevabın için teşekkürler!', pl: 'Dziękujemy za odpowiedź!',
+  });
+}
+
 export default function SurveySheetModal({
   visible,
   launch,
@@ -415,6 +446,16 @@ function SurveySheetContent({
   // зачем (владелец, 2026-09-21): кнопка внизу теперь на КАЖДОМ шаге. Пока её
   // не нажали, человек волен переклацывать варианты сколько угодно — ничего не
   // уходит само. Неактивна, пока на шаге нет ответа.
+  const surveyTitle = surveyQuestionCopy(survey.title, lang);
+  const questionText = surveyQuestionCopy(flow.currentQuestion.text, lang);
+  const displayQuestion = questionText === flow.currentQuestion.text
+    ? flow.currentQuestion
+    : { ...flow.currentQuestion, text: questionText };
+  const finalTitle = stripCurrencyEmoji(survey.finalTitle);
+  const finalSubtitle = stripCurrencyEmoji(survey.finalSubtitle);
+  const displayFinalSubtitle = finalSubtitle === LEGACY_COFFEE_SUBTITLE
+    ? (showReward ? legacyAnswerSavedCopy(lang) : '')
+    : finalSubtitle;
   const selectedOptionId = flow.answers[flow.currentQuestion.id]?.optionId;
   const ctaDisabled = !flow.currentAnswered || flow.submitting;
   const ctaLabel = flow.submitting
@@ -456,15 +497,15 @@ function SurveySheetContent({
               testID="survey-sheet-title"
               provenance="authored"
               accessibilityRole="header"
-              accessibilityLabel={survey.title}
+              accessibilityLabel={surveyTitle}
               style={[styles.feedbackTitle, { color: glass.text, fontSize: f.h2 }]}
             >
-              {survey.title}
+              {surveyTitle}
             </FlowText>
             <SurveyRewardPanel
               phase={feedbackPhase}
-              title={completionTitle(lang, stripCurrencyEmoji(survey.finalTitle))}
-              subtitle={stripCurrencyEmoji(survey.finalSubtitle)}
+              title={completionTitle(lang, finalTitle === LEGACY_PEARL_TITLE ? legacyThanksCopy(lang) : finalTitle)}
+              subtitle={displayFinalSubtitle}
               error={submissionError(lang, flow.submission.messageKey)}
               onDone={requestClose}
               onRetry={() => { void flow.retrySubmit(); }}
@@ -505,10 +546,10 @@ function SurveySheetContent({
                 testID="survey-sheet-title"
                 provenance="authored"
                 accessibilityRole="header"
-                accessibilityLabel={survey.title}
+                accessibilityLabel={surveyTitle}
                 style={[styles.title, { color: glass.text, fontSize: f.h2 }]}
               >
-                {survey.title}
+                {surveyTitle}
               </FlowText>
 
               {survey.subtitle.trim() ? (
@@ -537,7 +578,7 @@ function SurveySheetContent({
               <View style={styles.questionRegion}>
                 <SurveyQuestionTransition transitionKey={flow.currentQuestion.id} direction={flow.direction}>
                   <SurveyQuestionFields
-                    question={flow.currentQuestion}
+                    question={displayQuestion}
                     selectedOption={selectedOptionId}
                     comment={flow.answers[flow.currentQuestion.id]?.comment ?? ''}
                     disabled={flow.submitting}
@@ -545,7 +586,7 @@ function SurveySheetContent({
                     controller={flow}
                     questionTitleRef={questionTitleRef}
                     hideQuestionTitle={survey.questions.length === 1
-                      && flow.currentQuestion.text.trim() === survey.title.trim()}
+                      && questionText.trim() === surveyTitle.trim()}
                     onPicked={handlePicked}
                   />
                 </SurveyQuestionTransition>

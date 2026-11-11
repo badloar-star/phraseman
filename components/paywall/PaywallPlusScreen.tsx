@@ -9,7 +9,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useOverlayActiveKey } from '../OverlayArbiter'; // зачем: [WINBACK-FREEZE] — кто держит слот окон, пока открыт пейвол
 import { parseDevPaywallState } from '../../app/dev_paywall_state';
-import { BackHandler, Platform, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { BackHandler, Linking, Platform, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { PaywallSwipeSheet } from './PaywallSwipeSheet';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 
@@ -56,6 +56,8 @@ import { paywallCFactCaption } from './paywall_c_fact_caption';
 import { PaywallDuoGlow, PaywallDuoHero, useDuoTierMix } from './duo/PaywallDuoHero';
 import { PaywallDuoPlans } from './duo/PaywallDuoPlans';
 import { PaywallDuoMore, PaywallDuoStickyBuy } from './duo/PaywallDuoMore';
+import { PaywallDuoStoreOff } from './duo/PaywallDuoStoreOff';
+import { PREMIUM_TELEGRAM_BOT_URL, storeOffRoute } from './duo/paywall_store_off_copy';
 
 /** Метка единственного пейвола в аналитике и воронке. */
 export const PAYWALL_PLUS_VARIANT = 'PLUS' as const;
@@ -289,6 +291,32 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
   const duoTitle = applyTierName(contextual ? headline.title : (triLang(lang, PLUS_TAB_HEADLINE) ?? PLUS_TAB_HEADLINE.ru), paywallTier);
   const duoSubtitle = headline.subtitle ? applyTierName(headline.subtitle, paywallTier) : '';
   const { handlePurchase, savingsPct } = p;
+  // зачем (владелец 11.11, макет paywall-store-unavailable-2026-11-11): магазин на устройстве ответил «недоступен» — покупать здесь нечем.
+  // Вместо кнопок-тарифов с примерной ценой показываем выход: Android — бот в Telegram, iPhone — поддержка; рядом «У меня есть код».
+  const storeOff = duo && p.storeUnavailableReason === 'billing_unavailable';
+  const storeOffWay = storeOffRoute(Platform.OS);
+  useEffect(() => {
+    if (!storeOff) return;
+    DebugLogger.info('[PAYWALL-STOREOFF]', `показано: ctx=${ctx} source=${source} платформа=${Platform.OS} выход=${storeOffWay} код=${String(controlVisibility.promoVisible)} причина=${String(p.storeUnavailableReason)}`);
+  }, [controlVisibility.promoVisible, ctx, p.storeUnavailableReason, source, storeOff, storeOffWay]);
+  const openSupportFromStoreOff = useCallback((why: string) => {
+    DebugLogger.info('[PAYWALL-STOREOFF]', `поддержка: открываем обращение (${why}) ctx=${ctx}`);
+    // зачем («нет окна внутри окна», 26.10): обращение заменяет пейвол, а не открывается поверх него — как промокод и «Пригласить друга»
+    router.replace('/support_report' as never);
+  }, [ctx, router]);
+  const onStoreOffPrimary = useCallback(() => {
+    if (storeOffWay !== 'telegram') { openSupportFromStoreOff('button'); return; }
+    DebugLogger.info('[PAYWALL-STOREOFF]', `telegram: открываем бота ctx=${ctx} source=${source}`);
+    // зачем: если Telegram открыть нечем (нет приложения и браузера), человек не остаётся без выхода — ведём в поддержку
+    Linking.openURL(PREMIUM_TELEGRAM_BOT_URL).catch((error: unknown) => {
+      console.warn('[PAYWALL-STOREOFF] telegram: ссылка не открылась', error instanceof Error ? error.message : String(error)); // guard-ok: catch пишет причину
+      openSupportFromStoreOff('telegram_failed');
+    });
+  }, [ctx, openSupportFromStoreOff, source, storeOffWay]);
+  const onStoreOffCode = useCallback(() => {
+    DebugLogger.info('[PAYWALL-STOREOFF]', `код: открываем ввод промокода ctx=${ctx} source=${source}`);
+    openPromoCodeFromPaywall(router, { context: ctx, source });
+  }, [ctx, router, source]);
   const buySelected = useCallback(() => { void handlePurchase(); }, [handlePurchase]);
   const dockLabel = p.previewPrices ? pick(lang, COPY.pricesPreview) : labelReady && selectedPromo ? cta.label : selectedTrial ? (PAYWALL_V3_CTA_TRIAL[lang] ?? PAYWALL_V3_CTA_TRIAL.en) : (PAYWALL_V3_CTA[lang] ?? PAYWALL_V3_CTA.en);
   // зачем (макет .dock): нижняя кнопка покупки появляется, когда тарифы первого экрана прокручены за верх окна; состояние меняется только на пересечении порога — без ре-рендера на каждый кадр прокрутки
@@ -337,6 +365,11 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                       <View style={S.duoGrow} />
                     </>
                   ) : <PaywallPlusHeading g={g} title={paywallChoosePlan(lang)} />}
+                  {storeOff ? (
+                    <PaywallDuoStoreOff lang={lang} g={g} tier={paywallTier} route={storeOffWay} codeVisible={controlVisibility.promoVisible}
+                      busy={ctaBusy} onPrimary={onStoreOffPrimary} onCode={onStoreOffCode} />
+                  ) : (
+                  <>
                   {plansShown === 'loading' ? <PaywallPlusPlansSkeleton g={g} /> : null}
                   {plansShown === 'error' ? <PaywallPlusPriceNote lang={lang} g={g} reason={p.storeUnavailableReason} /> : null}
                   {plansShown === 'ready' && duo ? (
@@ -357,8 +390,12 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
                       {p.storeUnavailableReason === 'billing_unavailable' ? pick(lang, COPY.storeUnavailable) : pick(lang, COPY.priceWillConfirm)}
                     </Text>
                   ) : null}
+                  </>
+                  )}
                 </>
               )}
+              // зачем (окно «магазин недоступен»): строки про списание нет — покупки в окне нет
+              hideFine={storeOff}
               notice={p.tapNotice} purchasing={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom}
               onPress={() => { void p.handlePurchase(); }}
               // зачем (R1_PAYWALL_UX, координатор 12.10): «Восстановить» не зависит от цен — раньше она молча не нажималась всё время загрузки цен (до потолка 12 с),
@@ -390,7 +427,7 @@ export default function PaywallPlusScreen({ entry }: { readonly entry: PaywallEn
               ) : null}
             </PaywallPlusDock>
           </PaywallPlusScroll>
-          {duo ? (
+          {duo && !storeOff ? (
             <PaywallDuoStickyBuy g={g} tier={paywallTier} visible={stickyOn} label={applyTierName(dockLabel, paywallTier)} note={planPriceShown ? `${planPriceShown} ${pick(lang, p.selected === 'monthly' ? COPY.perMonth : COPY.perYear)}` : ''}
               busy={p.purchasing} disabled={ctaBusy} bottomInset={insets.bottom} onPress={buySelected} />
           ) : null}

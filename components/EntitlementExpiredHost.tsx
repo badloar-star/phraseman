@@ -1,40 +1,27 @@
-// Глобальная карточка «Premium/VIP закончился» — закрывает «немое место №1»
-// (см. docs/reports/missing_feedback_designs_2026-06-11.html): подписка истекает,
-// а приложение молчит до первого упора в пейвол.
-//
-// Слушает premium_deactivated / vip_deactivated. Показывает карточку ТОЛЬКО если
-// подписка реально была активна (флаг ставится на *_activated): события деактивации
-// эмитятся снапшотами PremiumContext и у юзеров, никогда не имевших подписки.
+// Open the contextual renewal paywall once a previously active subscription expires.
 import React, { memo, useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { usePathname, useRouter } from 'expo-router';
-import { useReferralRouletteEnabled } from '../app/referral_roulette_flag';
+import { openPremiumPaywall } from '../app/paywall_navigation';
 import {
   captureAccountGeneration,
   isCurrentAccountGeneration,
   subscribeAccountGeneration,
   type AccountGenerationToken,
 } from '../app/account_generation';
-import { emitAppEvent, onAppEvent } from '../app/events';
+import { actionToastTri, emitAppEvent, onAppEvent } from '../app/events';
 import {
   getVerifiedPremiumAccessStatus,
   getVerifiedRealPremiumStatus,
   getVerifiedVipStatus,
   invalidatePremiumCache,
 } from '../app/premium_guard';
-import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { useLang } from './LangContext';
 import { useOverlayVisible } from './OverlayArbiter';
-import PlusLaunchSplashHost from './plus-splash/PlusLaunchSplashHost';
-import HybridSheetShell from './modal_fx/HybridSheetShell';
-import { useTheme } from './ThemeContext';
-import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { DebugLogger } from '../app/debug-logger';
 import { getDevOverlaysSnapshot, subscribeDevOverlays } from '../app/dev_overlays_off';
+import { readRealPremiumSnapshotForGeneration } from '../app/premium_real_storage';
 
-const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.5)'; // theme-exempt: затемнение под окном/шторкой и тень — постоянные в любой теме
 import { noteSwallowedHandler, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 type Kind = 'premium' | 'vip';
@@ -60,96 +47,18 @@ function entitlementAccountIsCurrent(token: AccountGenerationToken): token is Ac
     && isCurrentAccountGeneration(token, token.stableId);
 }
 
-type Copy = { title: string; value: string; cta: string; invite: string; ghost: string };
-
-// зачем: владелец 2026-09-29 — карточка «Plus закончился» на Liquid Glass «1 в 1» с
-// макета coins.html PAY-09: значок, заголовок, одна строка без обещаний («Plus
-// завершён. Прогресс сохранён. Актуальные условия — в предложении магазина»),
-// «Продлить Plus» и «Позже». Старые обещания (про уроки и темы),
-// кикер и «Пригласить друга» (рулетка/рефералка удалены) убраны. Раньше en
-// падал в русский текст — добавлен явный en.
-const TEXTS: Record<string, Copy> = {
-  ru: {
-    title: 'Plus закончился',
-    value: 'Plus завершён. Прогресс сохранён. Актуальные условия доступны в предложении магазина.',
-    cta: 'Продлить Plus',
-    invite: 'Пригласить друга',
-    ghost: 'Позже',
-  },
-  uk: {
-    title: 'Plus закінчився',
-    value: 'Plus завершено. Прогрес збережено. Актуальні умови доступні в пропозиції магазину.',
-    cta: 'Продовжити Plus',
-    invite: 'Запросити друга',
-    ghost: 'Пізніше',
-  },
-  en: {
-    title: 'Plus has ended',
-    value: 'Plus has ended. Your progress is saved. Current terms are shown in the store offer.',
-    cta: 'Renew Plus',
-    invite: 'Invite a friend',
-    ghost: 'Later',
-  },
-  es: {
-    title: 'Plus terminó',
-    value: 'Plus ha terminado. Tu progreso está guardado. Las condiciones actuales están en la oferta de la tienda.',
-    cta: 'Renovar Plus',
-    invite: 'Invitar a un amigo',
-    ghost: 'Más tarde',
-  },
-  'pt-BR': {
-    title: 'O Plus acabou',
-    value: 'O Plus terminou. Seu progresso está salvo. As condições atuais estão na oferta da loja.',
-    cta: 'Renovar Plus',
-    invite: 'Convidar um amigo',
-    ghost: 'Depois',
-  },
-  vi: {
-    title: 'Plus đã hết hạn',
-    value: 'Plus đã kết thúc. Tiến độ của bạn đã được lưu. Điều kiện hiện tại có trong ưu đãi trên cửa hàng.',
-    cta: 'Gia hạn Plus',
-    invite: 'Mời bạn bè',
-    ghost: 'Để sau',
-  },
-  id: {
-    title: 'Plus berakhir',
-    value: 'Plus telah berakhir. Progresmu tersimpan. Ketentuan terkini ada di penawaran toko.',
-    cta: 'Perpanjang Plus',
-    invite: 'Undang teman',
-    ghost: 'Nanti',
-  },
-  tr: {
-    title: 'Plus bitti',
-    value: 'Plus sona erdi. İlerlemen kayıtlı. Güncel koşullar mağaza teklifinde.',
-    cta: 'Plus’ı yenile',
-    invite: 'Arkadaşını davet et',
-    ghost: 'Sonra',
-  },
-  pl: {
-    title: 'Plus się skończył',
-    value: 'Plus dobiegł końca. Twój postęp jest zapisany. Aktualne warunki są w ofercie sklepu.',
-    cta: 'Przedłuż Plus',
-    invite: 'Zaproś znajomego',
-    ghost: 'Później',
-  },
-};
-
 function EntitlementExpiredHost() {
   const { lang } = useLang();
-  const { f, liquidGlassThemeId } = useTheme();
-  const glass = liquidGlassTokens(liquidGlassThemeId);
   const router = useRouter();
-  // зачем (coins.html PAY-09; владелец 02.08, вариант А): вторая кнопка зовёт в приглашения — пока раздел включён.
-  const rouletteOn = useReferralRouletteEnabled();
   const pathname = usePathname();
-  const pathnameRef = useRef(pathname);
-  pathnameRef.current = pathname;
-  const [kind, setKind] = useState<Kind | null>(null);
+  const [pending, setPending] = useState<{ kind: Kind; account: AccountGenerationToken } | null>(null);
+  const opened = useRef<typeof pending>(null);
   const [accountGeneration, setAccountGeneration] = useState(captureAccountGeneration);
   // зачем (координатор 12.10, settings-gap-008: holder=entitlementExpired закрыл экран и шаг робота не нашёл строку): dev_state?overlays=off гасит и это окно — только dev, в памяти
   const devOverlaysSnapshot = useSyncExternalStore(subscribeDevOverlays, getDevOverlaysSnapshot, getDevOverlaysSnapshot);
   const devOverlaysOff = devOverlaysSnapshot.startsWith('1');
-  const overlayVisible = useOverlayVisible('entitlementExpired', kind != null && !devOverlaysOff);
+  const billingOpen = pathname === '/premium_modal' || pathname === '/manage_subscription' || pathname === '/promo_code_entry';
+  const overlayVisible = useOverlayVisible('entitlementExpired', pending !== null && !devOverlaysOff && !billingOpen);
 
   const maybeShow = useCallback(async (k: Kind, expectedAccount: AccountGenerationToken) => {
     if (!entitlementAccountIsCurrent(expectedAccount)) return;
@@ -176,7 +85,7 @@ function EntitlementExpiredHost() {
       const lastShown = lastShownRaw ? Number(lastShownRaw) : 0;
       if (Number.isFinite(lastShown) && Date.now() - lastShown < SHOW_COOLDOWN_MS) return;
       // prev ?? k: premium-карточка приоритетнее, второй кандидат не перетирает первого.
-      setKind((prev) => prev ?? k);
+      setPending((prev) => prev ?? { kind: k, account: expectedAccount });
     } catch (e) {
       // Состояние недоступно — лучше промолчать, чем спамить ложной карточкой.
       DebugLogger.error('EntitlementExpiredHost:lastShown', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -187,7 +96,7 @@ function EntitlementExpiredHost() {
     const acceptAccount = (next: AccountGenerationToken) => {
       // Any visible decision belongs to the previous account. Close it before
       // adopting the next generation, including direct active A → active B swaps.
-      setKind(null);
+      setPending(null);
       // зачем (аудит скорости R1_PERF_FIRST_FRAME, координатор 12.10): captureAccountGeneration() каждый раз отдаёт новый объект —
       // на монтировании это был лишний рендер хоста и повторный прогон проверки истечения. Новый объект — только при смене полей
       // (как app/(tabs)/home.tsx); смена аккаунта по-прежнему принимается.
@@ -283,23 +192,35 @@ function EntitlementExpiredHost() {
     const WARN_SHOWN_KEY = 'entitlement_trial_ending_shown';
     (async () => {
       try {
-        const rcExpiryRaw = await AsyncStorage.getItem('premium_rc_expiry_ms').catch(noteSwallowedAs('EntitlementExpiredHost:promise_4', null));
-        const rcExpiry = rcExpiryRaw ? Number(rcExpiryRaw) : 0;
+        const token = captureAccountGeneration();
+        const snapshot = await readRealPremiumSnapshotForGeneration(token)
+          .catch(noteSwallowedAs('EntitlementExpiredHost:promise_4', null));
+        if (!entitlementAccountIsCurrent(token)) return;
+        const rcExpiry = snapshot?.active ? snapshot.rcExpiryMs : 0;
         if (!Number.isFinite(rcExpiry) || rcExpiry <= 0) return;
         const remaining = rcExpiry - Date.now();
         if (remaining <= 0 || remaining > TWO_HOURS_MS) return;
-        const alreadyShown = await AsyncStorage.getItem(WARN_SHOWN_KEY).catch(noteSwallowedAs('EntitlementExpiredHost:promise_5', null));
+        const shownKey = accountEntitlementStorageKey(WARN_SHOWN_KEY, token.stableId);
+        const alreadyShown = await AsyncStorage.getItem(shownKey).catch(noteSwallowedAs('EntitlementExpiredHost:promise_5', null));
+        if (!entitlementAccountIsCurrent(token)) return;
         if (alreadyShown === '1') return;
-        await AsyncStorage.setItem(WARN_SHOWN_KEY, '1').catch(noteSwallowedHandler('EntitlementExpiredHost:promise_6'));
-        const msgRu = remaining < 30 * 60 * 1000
-          ? 'Триал заканчивается менее чем через 30 мин ⏳'
-          : 'Триал заканчивается менее чем через 2 ч ⏳';
-        emitAppEvent('action_toast', {
-          type: 'info',
-          messageRu: msgRu,
-          messageUk: msgRu,
-          messageEs: remaining < 30 * 60 * 1000 ? 'El trial termina en menos de 30 min ⏳' : 'El trial termina en menos de 2 h ⏳',
-        });
+        await AsyncStorage.setItem(shownKey, '1').catch(noteSwallowedHandler('EntitlementExpiredHost:promise_6'));
+        if (!entitlementAccountIsCurrent(token)) return;
+        // зачем (сторож непереведённых строк, 11.11): тост о конце пробного периода шёл по-русски всем, кроме испанского.
+        const soon = remaining < 30 * 60 * 1000;
+        emitAppEvent('action_toast', actionToastTri('info', soon ? {
+          ru: 'Триал заканчивается менее чем через 30 мин ⏳', uk: 'Пробний період закінчується менш ніж за 30 хв ⏳',
+          en: 'Your trial ends in less than 30 min ⏳', es: 'El trial termina en menos de 30 min ⏳',
+          'pt-BR': 'Seu teste termina em menos de 30 min ⏳', vi: 'Bản dùng thử kết thúc sau chưa đầy 30 phút ⏳',
+          id: 'Masa uji coba berakhir kurang dari 30 menit lagi ⏳', tr: 'Deneme süren 30 dakikadan kısa sürede bitiyor ⏳',
+          pl: 'Okres próbny kończy się za mniej niż 30 min ⏳',
+        } : {
+          ru: 'Триал заканчивается менее чем через 2 ч ⏳', uk: 'Пробний період закінчується менш ніж за 2 год ⏳',
+          en: 'Your trial ends in less than 2 h ⏳', es: 'El trial termina en menos de 2 h ⏳',
+          'pt-BR': 'Seu teste termina em menos de 2 h ⏳', vi: 'Bản dùng thử kết thúc sau chưa đầy 2 giờ ⏳',
+          id: 'Masa uji coba berakhir kurang dari 2 jam lagi ⏳', tr: 'Deneme süren 2 saatten kısa sürede bitiyor ⏳',
+          pl: 'Okres próbny kończy się za mniej niż 2 godz. ⏳',
+        }));
       } catch (e) {
       // ignore
       DebugLogger.error('EntitlementExpiredHost:msgRu', e instanceof Error ? e : new Error(String(e)), 'warning');
@@ -307,122 +228,24 @@ function EntitlementExpiredHost() {
     })();
   }, [lang]);
 
-  const markShownAndClose = useCallback(() => {
-    const token = captureAccountGeneration();
-    if (kind && entitlementAccountIsCurrent(token)) {
-      const key = accountEntitlementStorageKey(LAST_SHOWN_KEY[kind], token.stableId);
-      void AsyncStorage.setItem(key, String(Date.now())).catch(noteSwallowedHandler('EntitlementExpiredHost:promise_7'));
+  useEffect(() => {
+    if (!pending || !overlayVisible || billingOpen || devOverlaysOff || opened.current === pending) return;
+    if (!entitlementAccountIsCurrent(pending.account)) {
+      setPending(null);
+      return;
     }
-    setKind(null);
-  }, [kind]);
 
-  if (!kind || !overlayVisible || devOverlaysOff) return null;
+    opened.current = pending;
+    const key = accountEntitlementStorageKey(LAST_SHOWN_KEY[pending.kind], pending.account.stableId);
+    void AsyncStorage.setItem(key, String(Date.now())).catch(noteSwallowedHandler('EntitlementExpiredHost:promise_7'));
+    setPending(null);
+    openPremiumPaywall(router, {
+      context: pending.kind === 'premium' ? 'premium_expired' : 'vip_expired',
+      source: 'entitlement_expired',
+    });
+  }, [billingOpen, devOverlaysOff, overlayVisible, pending, router]);
 
-  const tx = TEXTS[lang] ?? TEXTS.ru;
-
-  return (
-    <HybridSheetShell
-      visible
-      // зачем: тап по фону/свайп/«назад» = «Позже», не CTA (как было у карточки продления).
-      onClose={markShownAndClose}
-      closeLabel={tx.ghost}
-      material="liquid-glass-opaque"
-      glowColor={EXEMPT_COLOR_1}
-      testID="entitlement-expired-sheet"
-    >
-      <ScrollView
-        bounces={false}
-        showsVerticalScrollIndicator={false}
-        style={styles.scroll}
-        contentContainerStyle={styles.content} decelerationRate="fast"
-      >
-        <View style={[styles.tile, { backgroundColor: glass.opaqueControl }]} accessible={false} importantForAccessibility="no-hide-descendants">
-          <Ionicons name="lock-closed" size={26} color={glass.text} />
-        </View>
-        <Text
-          accessibilityRole="header"
-          style={[styles.title, { color: glass.text, fontSize: 24, lineHeight: 30 }]}
-        >
-          {tx.title}
-        </Text>
-        <Text style={[styles.value, { color: glass.secondary, fontSize: 16, lineHeight: 22 }]}>
-          {tx.value}
-        </Text>
-        <TouchableOpacity
-          testID="entitlement-expired-cta"
-          accessibilityRole="button"
-          accessibilityLabel={tx.cta}
-          activeOpacity={0.88}
-          style={[styles.cta, { backgroundColor: glass.accent }]}
-          onPress={() => {
-            const context = kind === 'premium' ? 'premium_expired' : 'vip_expired';
-            navigateAfterModalClose(markShownAndClose, () => {
-              router.push({
-                pathname: '/premium_modal',
-                params: { context, source: 'entitlement_expired' },
-              } as never);
-            });
-          }}
-        >
-          <Text style={[styles.ctaText, { color: glass.accentInk, fontSize: 16 }]}>{tx.cta}</Text>
-        </TouchableOpacity>
-        {rouletteOn ? (
-          <TouchableOpacity
-            testID="entitlement-expired-invite"
-            accessibilityRole="button"
-            accessibilityLabel={tx.invite}
-            activeOpacity={0.8}
-            style={[styles.invite, { backgroundColor: glass.buttonFill }]}
-            onPress={() => {
-              navigateAfterModalClose(markShownAndClose, () => {
-                router.push({ pathname: '/referrals' } as never);
-              });
-            }}
-          >
-            <Text style={[styles.ctaText, { color: glass.text, fontSize: 16 }]}>{tx.invite}</Text>
-          </TouchableOpacity>
-        ) : null}
-        <TouchableOpacity
-          testID="entitlement-expired-ghost"
-          accessibilityRole="button"
-          accessibilityLabel={tx.ghost}
-          activeOpacity={0.7}
-          style={styles.ghost}
-          onPress={markShownAndClose}
-        >
-          <Text style={[styles.ghostText, { color: glass.text, fontSize: 16 }]}>{tx.ghost}</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    </HybridSheetShell>
-  );
+  return null;
 }
 
-const styles = StyleSheet.create({
-  scroll: { flexGrow: 0, flexShrink: 1 },
-  content: { alignItems: 'center', paddingTop: 18, paddingBottom: 4 },
-  // зачем (coins.html PAY-09): плитка 61/16, заголовок 24, текст 16 (D145), кнопки-пилюли 48/24;
-  // «Пригласить друга» — капсула с тонким контуром, «Позже» — капсула без контура.
-  tile: { width: 61, height: 61, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
-  title: { marginTop: 16, fontWeight: '700', textAlign: 'center' },
-  value: { marginTop: 7, textAlign: 'center' },
-  cta: { alignSelf: 'stretch', marginTop: 22, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 16 },
-  ctaText: { fontWeight: '700' },
-  // `.cta.gh` на кадре — тёмная капсула; рамок в этом окне нет (сторож), поэтому тон заливкой.
-  invite: { alignSelf: 'stretch', marginTop: 10, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
-  ghost: { alignSelf: 'stretch', marginTop: 10, minHeight: 48, borderRadius: 24, alignItems: 'center', justifyContent: 'center' },
-  ghostText: { fontWeight: '700' },
-});
-
-// зачем (владелец 21.10, №35 заставка Plus): оба окна — про состояние подписки, живут под одним арбитром и одними провайдерами.
-// Заставку Plus подключаем здесь, а не в app/_layout.tsx: в _layout.tsx сейчас чужие незакоммиченные правки. Когда файл освободится,
-// строку `<PlusLaunchSplashHost />` можно перенести в _layout рядом с этим хостом и убрать обёртку.
-function EntitlementExpiredHostWithPlusSplash() {
-  return (
-    <>
-      <EntitlementExpiredHost />
-      <PlusLaunchSplashHost />
-    </>
-  );
-}
-
-export default memo(EntitlementExpiredHostWithPlusSplash);
+export default memo(EntitlementExpiredHost);

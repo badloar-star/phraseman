@@ -104,4 +104,21 @@ export const HUNT_BANK_EN: Readonly<Record<number, readonly HuntTask[]>> = {
     hunt(12, 1, ['Did you find your keys?', 'Yes, I [finds|found] my keys.', 'Did she {bring} the charger?'], 'Это уже было — found.'),
     hunt(12, 2, ['Who took the last cup?', 'He [take|took] the last cup.', 'Did you {see} the sign?'], 'Это уже было — took.'),
   ],
+  // зачем (координатор 12.11): уроки 13–16; «Yes, I look for it» — живая фраза, поэтому ошибка взята «I looks»
+  13: [
+    hunt(13, 1, ['Will you be home tonight?', 'Yes, I will [am|be] home.', 'I will {call} you later.'], 'После will — be.'),
+    hunt(13, 2, ['Will the driver wait for us?', 'Yes, he will [waits|wait] outside.', 'We will {pay} by card.'], 'После will — wait, без -s.'),
+  ],
+  14: [
+    hunt(14, 1, ['Which route is the fastest?', 'This route is [short|shorter] than that one.', 'The stairs are {quicker} than the lift.'], 'Перед than — shorter.'),
+    hunt(14, 2, ['Which room is the quietest?', 'The back room is the [quiet|quietest].', 'It is {warmer} than the kitchen.'], 'Самая тихая — the quietest.'),
+  ],
+  15: [
+    hunt(15, 1, ['Whose coat is this?', 'It is [my|mine].', 'Your scarf is {on} the chair.'], 'В конце фразы — mine.'),
+    hunt(15, 2, ['Are these your headphones?', 'No, they are [her|hers].', 'My gloves are {wet}.'], 'В конце фразы — hers.'),
+  ],
+  16: [
+    hunt(16, 1, ['Did you look for it downstairs?', 'Yes, I [looks|looked] for it downstairs.', 'Can you {pick} me up at six?'], 'Это уже было — looked.'),
+    hunt(16, 2, ['Can you look after my bag?', 'Yes, I can [looks|look] after it.', 'Please {put} the milk away.'], 'После can — look, без -s.'),
+  ],
 };

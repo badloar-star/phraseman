@@ -118,4 +118,38 @@ export const EXACT_BANK_EN: Readonly<Record<number, readonly QuizRound[]>> = {
     round(12, 5, 'She ___ a spare key', 'brought', ['bring'], 1, 'Про неё в прошлом — brought.'),
     round(12, 6, 'Who ___ the last cup?', 'took', ['take'], 0, 'Это уже было — took.'),
   ],
+  // зачем (координатор 12.11): уроки 13–16; отброшены пары, где неверный вариант тоже даёт живую фразу
+  // («This chair is most comfortable», «Turn in the lamp», «Did you look at it downstairs?», «She puts her coat on»)
+  13: [
+    round(13, 1, 'I will ___ outside', 'wait', ['to wait'], 0, 'После will сразу идёт wait.'),
+    round(13, 2, 'She ___ call later', 'will', ['is'], 1, 'Позвонит потом — will call.'),
+    round(13, 3, 'Will you ___ home tonight?', 'be', ['are'], 0, 'После will — be.'),
+    round(13, 4, 'There ___ be a small fee for delivery', 'will', ['is'], 1, 'Будет — there will be.'),
+    round(13, 5, 'The shop will not ___ tomorrow', 'open', ['opens'], 0, 'После will not — open, без -s.'),
+    round(13, 6, 'He will not stay ___', 'overnight', ['at overnight'], 1, 'Overnight обходится без at.'),
+  ],
+  14: [
+    round(14, 1, 'This bag is ___', 'lighter', ['more lighter'], 0, 'Lighter уже значит «легче».'),
+    round(14, 2, 'Tea is cheaper ___ coffee here', 'than', ['that'], 1, 'Сравнивают через than.'),
+    round(14, 3, 'This chair is ___ comfortable', 'more', ['much'], 0, 'Удобнее — more comfortable.'),
+    round(14, 4, 'The last box is the ___', 'heaviest', ['more heavy'], 1, 'Самый тяжёлый — the heaviest.'),
+    round(14, 5, 'The weather is ___ today', 'worse', ['more'], 0, 'Хуже — worse.'),
+    round(14, 6, 'The second question is ___ than the first', 'easier', ['easiest'], 1, 'Перед than — easier.'),
+  ],
+  15: [
+    round(15, 1, 'This coat is ___', 'mine', ['my'], 0, 'В конце фразы — mine.'),
+    round(15, 2, 'That is ___ bag', 'your', ['yours'], 1, 'Перед bag — your.'),
+    round(15, 3, 'This key is ___', 'hers', ['her'], 0, 'В конце фразы — hers.'),
+    round(15, 4, '___ coat is this?', 'Whose', ['Who'], 1, 'Чьё — whose.'),
+    round(15, 5, 'These tickets are ___', 'theirs', ['their'], 0, 'В конце фразы — theirs.'),
+    round(15, 6, 'This is my ___ helmet', "brother's", ['brother'], 1, "Шлем брата — brother's helmet."),
+  ],
+  16: [
+    round(16, 1, 'She ___ up before six', 'gets', ['get'], 0, 'Про неё — gets.'),
+    round(16, 2, 'She ___ after the children', 'looks', ['look'], 1, 'Про неё — looks.'),
+    round(16, 3, 'We ran ___ of milk', 'out', ['off'], 0, '«Закончилось» — ran out of.'),
+    round(16, 4, 'Did you ___ for it downstairs?', 'look', ['looked'], 1, 'После did — look, без -ed.'),
+    round(16, 5, 'He handed ___ in', 'them', ['they'], 0, 'Сдал их — them.'),
+    round(16, 6, 'Can you pick ___ up at six?', 'me', ['I'], 1, 'Забрать меня — me.'),
+  ],
 };

@@ -62,4 +62,21 @@ export const ORDER_BANK_EN: Readonly<Record<number, readonly OrderTask[]>> = {
     order(12, 1, ['Did your son find his wallet?', 'Yes, he found his wallet downstairs.', 'Did he find his keys?', 'No, he did not find his keys.']),
     order(12, 2, ['When did the taxi arrive?', 'The taxi arrived at nine.', 'How much did it cost?', 'It cost ten.']),
   ],
+  // зачем (координатор 12.11): уроки 13–16 по той же схеме: вопрос о названном предмете → ответ → вопрос с it/he/she/they
+  13: [
+    order(13, 1, ['Will your sister call today?', 'Yes, she will call later.', 'Will she need a lift?', 'No, she will not need a lift.']),
+    order(13, 2, ['Will the shop open tomorrow?', 'No, the shop will not open tomorrow.', 'Will it open on Monday?', 'Yes, it will open on Monday.']),
+  ],
+  14: [
+    order(14, 1, ['Is the bus cheaper than the train?', 'Yes, the bus is cheaper.', 'Is it faster?', 'No, the train is faster.']),
+    order(14, 2, ['Which room is the quietest?', 'The back room is the quietest.', 'Is it warmer than the kitchen?', 'Yes, it is warmer.']),
+  ],
+  15: [
+    order(15, 1, ['Is this umbrella yours?', 'No, it is not mine.', 'Is it hers?', 'Yes, I think it is hers.']),
+    order(15, 2, ['Whose keys are these?', 'They are our keys.', 'Do they work?', 'No, they do not work.']),
+  ],
+  16: [
+    order(16, 1, ['Can your brother pick me up at six?', 'Yes, he can pick you up at six.', 'Will he drop me off outside?', 'Yes, he will drop you off outside.']),
+    order(16, 2, ['Did the children wake up early?', 'Yes, they got up at six.', 'Did they put their shoes on?', 'Yes, they put their shoes on.']),
+  ],
 };

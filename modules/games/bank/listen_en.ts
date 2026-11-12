@@ -115,4 +115,37 @@ export const LISTEN_BANK_EN: Readonly<Record<number, readonly QuizRound[]>> = {
     round(12, 5, 'I forgot my password', ['I forgot my ticket', 'I forgot your password'], 1, 'Я забыл свой пароль'),
     round(12, 6, 'He gave me a lift', ['He gave me a pen', 'She gave me a lift'], 2, 'Он подвёз меня'),
   ],
+  // зачем (координатор 12.11): уроки 13–16; звучат только фразы урока — у них уже есть запись курса
+  13: [
+    round(13, 1, 'I will wait outside', ['We will wait outside', 'I will wait here'], 0, 'Я подожду снаружи'),
+    round(13, 2, 'She will call later', ['He will call later', 'She will call tomorrow'], 1, 'Она позвонит позже'),
+    round(13, 3, 'We will pay by card', ['They will pay by card', 'We will pay by phone'], 2, 'Мы заплатим картой'),
+    round(13, 4, 'Will it rain tomorrow?', ['Will it rain tonight?', 'Will it rain today?'], 0, 'Завтра будет дождь?'),
+    round(13, 5, 'The soup will be ready soon', ['The soup will be ready later', 'The tea will be ready soon'], 1, 'Суп скоро будет готов'),
+    round(13, 6, 'He will check the lock', ['He will check the gate', 'She will check the lock'], 2, 'Он проверит замок'),
+  ],
+  14: [
+    round(14, 1, 'This bag is lighter', ['That bag is lighter', 'This bag is heavier'], 0, 'Эта сумка легче'),
+    round(14, 2, 'This room is warmer', ['This room is colder', 'This room is smaller'], 1, 'В этой комнате теплее'),
+    round(14, 3, 'This route is shorter', ['This route is longer', 'This road is shorter'], 2, 'Этот маршрут короче'),
+    round(14, 4, 'The bus is cheaper', ['The bus is faster', 'The train is cheaper'], 0, 'Автобус дешевле'),
+    round(14, 5, 'Which room is the quietest?', ['Which room is the smallest?', 'Which route is the quietest?'], 1, 'Какая комната самая тихая?'),
+    round(14, 6, 'This is the nearest exit', ['This is the nearest stop', 'That is the nearest exit'], 2, 'Это ближайший выход'),
+  ],
+  15: [
+    round(15, 1, 'This is my coat', ['This is my bag', 'This is your coat'], 0, 'Это моё пальто'),
+    round(15, 2, 'This key is hers', ['This key is his', 'This key is yours'], 1, 'Этот ключ её'),
+    round(15, 3, 'My gloves are wet', ['My gloves are here', 'My boots are wet'], 2, 'Мои перчатки мокрые'),
+    round(15, 4, 'Whose coat is this?', ['Whose bag is this?', 'Whose coat is that?'], 0, 'Чьё это пальто?'),
+    round(15, 5, 'Their boots are outside', ['Their bags are outside', 'Our boots are outside'], 1, 'Их ботинки снаружи'),
+    round(15, 6, 'I found my umbrella', ['I found my badge', 'I lost my umbrella'], 2, 'Я нашёл свой зонтик'),
+  ],
+  16: [
+    round(16, 1, 'I get up at seven', ['I get up at six', 'We get up at seven'], 0, 'Я встаю в семь'),
+    round(16, 2, 'Turn on the lamp', ['Turn off the lamp', 'Turn on the fan'], 1, 'Включите лампу'),
+    round(16, 3, 'Pick up the phone', ['Pick up the box', 'Pick up the bag'], 2, 'Поднимите трубку'),
+    round(16, 4, 'We ran out of milk', ['We ran out of bread', 'We ran out of paper'], 0, 'У нас закончилось молоко'),
+    round(16, 5, 'She gets off at the next stop', ['She gets on at the next stop', 'She gets off at the last stop'], 1, 'Она выходит на следующей остановке'),
+    round(16, 6, 'The alarm went off at five', ['The alarm went off at six', 'The alarm went off at seven'], 2, 'Будильник зазвонил в пять'),
+  ],
 };

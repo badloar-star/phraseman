@@ -81,6 +81,7 @@ import PracticeRuneCounter from '../components/PracticeRuneCounter';
 import AnimatedCountUpText from '../components/AnimatedCountUpText';
 import CoinRewardFlight from '../components/rewards/CoinRewardFlight';
 import { nestedBoxShadow, plateBoxShadow } from '../components/v2/ShadowSurface';
+import { useSkillSession } from '../modules/skills/use_skill_session';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight'; // зачем (PM-052, D75): полёт монет вместо рун
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
@@ -2613,6 +2614,7 @@ function WordsTrainingSkeleton({ glass, kicker, header }: { glass: ReturnType<ty
 }
 
 function Training({ words, storageKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, onCancelStart, studyTarget, onAndroidBackIntercept, headerTitle, devFakeStartRunes, devJumpToFinale }: { words:Word[]; storageKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; onCancelStart: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void; headerTitle: string; onHeaderBack: () => void; devFakeStartRunes?: number; devJumpToFinale?: boolean }) {
+  useSkillSession(); // зачем (D207): тренировка слов даёт «Словарь» — итог покажет «Навыки растут»
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { flashKey, flash } = useWordFlash();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -3011,6 +3013,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
       {renderTrainingHeader()}
       {/* зачем (владелец 01.10): итог слов = общий экран завершения 2.0, вариант learn.html F8. */}
       <V2DoneScreen
+        showSkillsGrowth
         testID="lesson-words-complete"
         title={pickTriLang(lang, { ru: 'Слова пройдены', uk: 'Слова пройдено', en: 'Words done', es: 'Palabras completadas', 'pt-BR': 'Palavras concluídas', vi: 'Đã xong từ vựng', id: 'Kosakata selesai', tr: 'Kelimeler tamam', pl: 'Słowa ukończone' })}
         subtitle={pickTriLang(lang, {

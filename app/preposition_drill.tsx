@@ -1,4 +1,6 @@
 import KitProgressFill from '../components/KitProgressFill';
+import { noteSkillAction } from '../modules/skills/skill_store';
+import { useSkillSession } from '../modules/skills/use_skill_session';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -60,6 +62,7 @@ function FrenchPrepositionDrillUnavailable({ onBack }: { lang: Lang; onBack: () 
 }
 
 function PrepositionDrillScreen() {
+  useSkillSession(); // зачем (D207): предлоги дают «Грамматику» — итог покажет «Навыки растут»
   const router = useRouter();
   const effectiveOs = useEffectivePlatformOS();
   const { id } = useLocalSearchParams<{ id?: string }>();
@@ -338,6 +341,8 @@ function PrepositionDrillScreen() {
     if (ok) {
       fk.verdict({ correct: true });
       setCorrectCount(v => v + 1);
+      // зачем (D207, строка таблицы «глаголы и предлоги»): верный предлог — «Грамматика» +2; повтор того же задания в тот же день — половина, потом ноль
+      noteSkillAction({ action: 'verbs_prepositions_correct', itemKey: `prep:${item.id}` });
       // зачем (ревью Авторизации 13.10, 🔴): монеты — только в проходе, за который списана энергия (вход в экран). После зачёта
       // «Ещё раз» / «Повторить ошибки» идут без энергии — и без монет, иначе это бесконечный фарм (в т.ч. «провалить нарочно → повторить ошибки»).
       if (prepositionSettledPassRef.current) {
@@ -649,6 +654,7 @@ function PrepositionDrillScreen() {
         </View>
       ) : (
         <V2DoneScreen
+          showSkillsGrowth
           testID="preposition-drill-complete"
           title={triLang(lang, { ru: 'Предлоги отработаны', uk: 'Прийменники відпрацьовано', en: 'Prepositions practiced', es: 'Preposiciones practicadas', 'pt-BR': 'Preposições praticadas', vi: 'Đã luyện giới từ', id: 'Preposisi dilatih', tr: 'Edatlar çalışıldı', pl: 'Przyimki przećwiczone' })}
           subtitle={triLang(lang, {

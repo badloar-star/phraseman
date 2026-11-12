@@ -1,4 +1,5 @@
 import KitProgressFill from '../components/KitProgressFill';
+import { useSkillSession } from '../modules/skills/use_skill_session';
 import { isAttemptsStopEffect } from './session_attempts/session_attempts_stop';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -291,6 +292,7 @@ function LearnTab({ renderPractice, verbs, lessonVerbs, allVerbs, lang, initCoun
   devFakeStartPoints?: number;
   devJumpToFinale?: boolean;
 }) {
+  useSkillSession(); // зачем (D207): глаголы дают «Грамматику» — итог покажет «Навыки растут»
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   // зачем (реестр energy-modes-010, вердикты Макетов 7c831a193; координатор 13.10): образец energy-modes-states `verbs` — плашка идёт сразу под полосой (`.gqc` margin-top 20), варианты через 100 (`.g4`), а не по центру свободного места.
@@ -714,6 +716,7 @@ function LearnTab({ renderPractice, verbs, lessonVerbs, allVerbs, lang, initCoun
     <>
       {/* зачем (владелец 01.10): итог глаголов = общий экран завершения 2.0 по макету learn.html. */}
       <V2DoneScreen
+        showSkillsGrowth
         testID="irregular-verbs-complete"
         title={hasNextPortion
           ? triLang(lang, { ru: 'Порция глаголов пройдена', uk: 'Порцію дієслів пройдено', en: 'Verb batch complete', es: 'Grupo de verbos completado', 'pt-BR': 'Grupo de verbos concluído', vi: 'Đã xong nhóm động từ', id: 'Kelompok kata kerja selesai', tr: 'Fiil grubu tamamlandı', pl: 'Partia czasowników ukończona' })

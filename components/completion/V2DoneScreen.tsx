@@ -26,6 +26,7 @@ import type { DoneChainAfter, DoneChainBefore } from './done_chain_gate';
 import { semanticInk } from '../../constants/liquidGlassSemanticInk';
 // зачем (контраст-гейт OTA 25.10): невыбитая звезда — тон контрола не тусклее макета (см. done_star_tone)
 import { doneStarOffTone } from './done_star_tone';
+import SkillsSessionGrowth from '../skills/SkillsSessionGrowth';
 
 /**
  * Общий экран завершения 2.0 — макет docs/design/v2-app/learn.html раздел E
@@ -61,6 +62,11 @@ export type V2DoneScreenProps = Readonly<{
   repeatErrorsTrailing?: ReactNode;
   /** Форма «Всё было понятно?» и прочие вставки режима. */
   feedbackSlot?: ReactNode;
+  /**
+   * Блок «Навыки растут» (D207). Режим, который объявил занятие (useSkillSession), ставит true — блок появится
+   * только если очки действительно выросли; иначе места не занимает.
+   */
+  showSkillsGrowth?: boolean;
   primaryLabel: string;
   /** Основное действие уже выполняется (асинхронные проверки перед переходом): кнопка остаётся в нажатом состоянии и не принимает повторный тап. Без спиннера. */
   primaryBusy?: boolean;
@@ -339,6 +345,7 @@ export default function V2DoneScreen(props: V2DoneScreenProps) {
         ) : null}
 
         {props.feedbackSlot ? <View style={{ marginTop: 14 }}>{props.feedbackSlot}</View> : null}
+        {props.showSkillsGrowth ? <SkillsSessionGrowth style={{ marginTop: 14 }} /> : null}
         </>))}
       </ScrollView>
       {/* зачем (Макеты 06b311f0d + Сверка): скрим сверху — непрозрачный на высоту шапки (inset + отступ + кнопка), ниже растворяется; плавно (160/220 мс) после прокрутки; шапка лежит поверх */}

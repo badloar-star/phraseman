@@ -201,10 +201,11 @@ describe('layout stability contract (первый кадр = финальная 
       expect({ file, live }).toEqual({ file, live: [] });
     });
 
-    it('кольцо прогресса главы рисуется сразу на финальном значении', () => {
-      const source = read('app/(tabs)/lessons.tsx');
-      expect(source).toContain('const fill = useSharedValue(clamped);');
-      expect(stripBlockComments(source)).not.toContain('withDelay(');
+    // зачем (координатор 12.11 по поручению владельца): пин «const fill = useSharedValue(clamped)» снят вместе с кодом — компонент
+    // ChapterProgressRing и его место на «Уроках» удалены с курсом Learning V2 по решению владельца (d8a0a685a); сторожить нечего.
+    // Запрет отложенных анимаций на «Уроках» остаётся в силе.
+    it('уроки не запускают отложенных анимаций (withDelay)', () => {
+      expect(stripBlockComments(read('app/(tabs)/lessons.tsx'))).not.toContain('withDelay(');
     });
 
     it('флаг входной анимации хаба карточек выключен', () => {
@@ -270,10 +271,28 @@ describe('Главная: первый кадр без нуля монет и б
   test('карточка «Продолжить обучение» с первого кадра держит место заготовкой той же формы', () => {
     expect(card).toContain('pending?: boolean;');
     expect(card).toContain("testID={pending ? 'home-continue-lesson-pending' : 'home-continue-lesson'}");
-    // P23 (15.10): заготовка держит место и пока читается прогресс занятия V2 — карточка не появляется «прыжком» с другими числами
-    expect(home).toContain('const continueCardPending = (!continueResolved || continueV2 !== null) && homeLearnVisible && !priorityCardVisible;');
-    expect(home).toContain('{priorityCardVisible || continueCardPending ? (');
     // Решение приносит loadData — в том числе из finally при сбое; заготовка уходит плавно.
     expect(home).toMatch(/finally \{[\s\S]{0,1500}setContinueResolved\(true\)/);
+  });
+
+  // зачем (координатор 12.11 по поручению владельца): правило «последний урок не вставляется прыжком» живо, сменился исполнитель — карточку
+  // «Продолжить» сняли с Главной вместе с Learning V2 (d8a0a685a), последний урок теперь показывает сцена Главной. Сторожим её:
+  // пока урок не прочитан — заготовка внутри сцены с зарезервированной высотой, ничего не вставляется в поток и не сдвигает экран.
+  test('сцена Главной держит место заготовкой, пока последний урок не прочитан', () => {
+    const scene = read('components/home/v2/scene/HomeScene.tsx');
+    const stage = read('components/home/v2/scene/HomeSceneStage.tsx');
+    // с первого кадра «не знаем» ≠ «урока нет»: без кэша урока сцена в заготовке, а не в состоянии «новичок»
+    expect(home).toContain('const [continueResolved, setContinueResolved] = useState(() => lastLesson !== null);');
+    expect(home).toContain('pending={!continueResolved && sceneLesson === null}');
+    expect(home).toContain('hasProgress={sceneLesson ? true : continueResolved ? false : null}');
+    // заготовка не вечная: потолок 20 с снимает её плавно
+    expect(home).toMatch(/setTimeout\(\(\) => \{[\s\S]{0,600}animateNextLayoutTransition\(\);\s*setContinueResolved\(true\);[\s\S]{0,40}\}, 20_000\)/);
+    // HomeScene передаёт pending в HomeSceneStage без потерь
+    expect(scene).toContain('pending={p.pending}');
+    // высота сцены зарезервирована с первого кадра и не зависит от pending; заготовка — полоски фиксированного размера на месте текста
+    expect(stage).toContain('style={[s.stage, { minHeight: stageH }');
+    expect(stage).toMatch(/\{pending \? \(\s*<>\s*<View style=\{\[s\.skel, \{ width: \d+, height: \d+ \}\]\} \/>/);
+    // пока заготовка — кнопка не ведёт никуда (нельзя открыть «не тот» урок)
+    expect(stage).toMatch(/if \(pending\) \{ console\.warn\(LOG, 'cta:ignored'/);
   });
 });

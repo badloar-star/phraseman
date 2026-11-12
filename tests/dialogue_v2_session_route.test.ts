@@ -157,6 +157,9 @@ describe('Dialogue V2 session route', () => {
     expect(mockFetchCatalogue).toHaveBeenCalledWith('de');
     expect(mockBuildModel).toHaveBeenCalledWith({
       packets: envelope.packets, studyTarget: 'de', scenarioId: 'work_01', localCoinRank: 3,
+      // зачем (владелец 11.11, D204, коммит 1e324d8ab): Plus открывает сценарий без ранга — подготовка получает
+      // признак Plus; в этом тесте аккаунт бесплатный, поэтому false, и ранг 3 решает сам.
+      hasPremiumAccess: false,
       // зачем (владелец 01.10): служебный текст сцены — на языке интерфейса.
       uiLang: 'ru',
     });

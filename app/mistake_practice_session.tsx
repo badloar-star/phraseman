@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { useSkillSession } from '../modules/skills/use_skill_session';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { facetsFromParam } from '../components/mistakes-panel/mistakeGroups';
 import { Panel, PanelCta, SheetRow } from '../components/mistakes-panel/PanelKit';
@@ -403,6 +404,7 @@ function MistakePracticeScreenFrame({ children, centered = false }: Readonly<{
 }
 
 function MistakePracticeSessionScreen() {
+  useSkillSession(); // зачем (D207): «Мои ошибки» объявляют занятие — итог покажет «Навыки растут» только по своим очкам
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
   const router = useRouter();

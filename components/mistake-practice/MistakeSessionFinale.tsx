@@ -1,4 +1,5 @@
 import React, { memo, useMemo } from 'react';
+import SkillsSessionGrowth from '../skills/SkillsSessionGrowth';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useScaledTextStyles } from '../../hooks/useLineScale';
 
@@ -79,6 +80,8 @@ function MistakeSessionFinale({
           {count(copy.repeat, missed)}
           {/* зачем (владелец 04.10: «звание и серию убрать совсем»; сверка 15–18: в макете «Итог отработки» ровно три строки) — монет в итоге нет, их видно в полёте во время отработки. */}
         </Panel>
+        {/* зачем (D207; владелец 12.11 «все подключи»): исправленные ошибки дают очки навыков — итог показывает их рост; без роста блока нет */}
+        <SkillsSessionGrowth style={styles.growth} />
 
         {fixed.length > 0 ? (
           <>
@@ -108,6 +111,7 @@ const baseStyles = StyleSheet.create({
   big: { fontSize: 58, lineHeight: 60, fontWeight: '800', letterSpacing: -1.5 },
   bigLabel: { marginTop: 2, fontSize: 16, lineHeight: 21 },
   counts: { marginTop: 22 },
+  growth: { marginTop: 22 },
   num: { marginLeft: 'auto', fontSize: 22, lineHeight: 28, fontWeight: '700' },
   section: { marginTop: 20, marginBottom: 8, fontSize: 16, lineHeight: 20, fontWeight: '600' },
   actions: { flexDirection: 'row', gap: 10 },

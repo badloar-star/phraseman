@@ -3,10 +3,17 @@ import { AppState, type AppStateStatus } from 'react-native';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import { recordSmartReminderEvent } from './smart_reminder_store';
+import { getLocalDayKey } from './local_date';
 
 const STORAGE_KEY = 'phraseman_foreground_usage_ms_v1';
-/** UTC-календарный день → миллисекунды только в foreground (активное окно). */
+/**
+ * Местный календарный день устройства → миллисекунды только в foreground (активное окно).
+ * зачем (координатор 12.11, обход экранов): раньше день брался по UTC, а экран серии и строки недели ищут дни по местному
+ * календарю (app/local_date.ts) — у поясов UTC+N время после местной полуночи уходило во «вчера», у UTC−N вечер — в «завтра».
+ * Формат ключа тот же (YYYY-MM-DD): старые записи читаются как есть, уже накопленное по старым дням не перераскладывается.
+ */
 const DAILY_STORAGE_KEY = 'phraseman_foreground_daily_ms_v1';
+const LOG = '[WEEK-TIME]';
 const FLUSH_INTERVAL_MS = 5 * 60_000;
 /** Не начислять больше за один интервал (защита от скачков часов). */
 const MAX_CHUNK_MS = FLUSH_INTERVAL_MS + 5_000;
@@ -20,13 +27,27 @@ async function readTotal(): Promise<number> {
   try {
     const v = await AsyncStorage.getItem(STORAGE_KEY);
     return Math.max(0, parseInt(v || '0', 10) || 0);
-  } catch {
+  } catch (e) {
+    DebugLogger.warn(LOG, `общее время не прочитано — считаем 0: ${e instanceof Error ? e.message : String(e)}`);
     return 0;
   }
 }
 
-function utcDateKeyFromTs(ts: number): string {
-  return new Date(ts).toISOString().split('T')[0]!;
+/**
+ * Конец куска [start, endTs), лежащего в одном местном дне. Граница суток ищется той же функцией дня (getLocalDayKey), что пишет ключ, —
+ * один календарь для ключа и разреза, переходы на летнее время учтены сами. Обычный кусок (≤ 5 мин) полночь не пересекает — поиска нет.
+ */
+function localDayChunkEnd(start: number, endTs: number): number {
+  const key = getLocalDayKey(new Date(start));
+  if (getLocalDayKey(new Date(endTs - 1)) === key) return endTs;
+  let lo = start;
+  let hi = endTs - 1;
+  while (hi - lo > 1) {
+    const mid = Math.floor((lo + hi) / 2);
+    if (getLocalDayKey(new Date(mid)) === key) lo = mid;
+    else hi = mid;
+  }
+  return hi;
 }
 
 async function readDailyMap(): Promise<Record<string, number>> {
@@ -41,7 +62,8 @@ async function readDailyMap(): Promise<Record<string, number>> {
       if (/^\d{4}-\d{2}-\d{2}$/.test(k) && Number.isFinite(n) && n > 0) out[k] = Math.min(n, 24 * 60 * 60 * 1000);
     }
     return out;
-  } catch {
+  } catch (e) {
+    DebugLogger.warn(LOG, `время по дням не прочитано — пустая карта: ${e instanceof Error ? e.message : String(e)}`);
     return {};
   }
 }
@@ -58,7 +80,7 @@ function pruneDailyMap(map: Record<string, number>): Record<string, number> {
   return next;
 }
 
-/** Раскладывает интервал [rangeStart, rangeStart + deltaMs) по UTC-дням. */
+/** Раскладывает интервал [rangeStart, rangeStart + deltaMs) по местным календарным дням устройства. */
 async function mergeDeltaIntoDailyBuckets(deltaMs: number, rangeStart: number): Promise<void> {
   if (deltaMs < 1000) return;
   const capped = Math.min(deltaMs, 48 * 60 * 60 * 1000);
@@ -66,13 +88,8 @@ async function mergeDeltaIntoDailyBuckets(deltaMs: number, rangeStart: number): 
   const map = await readDailyMap();
   let t = rangeStart;
   while (t < endTs) {
-    const dayKey = utcDateKeyFromTs(t);
-    const d = new Date(t);
-    const y = d.getUTCFullYear();
-    const mo = d.getUTCMonth();
-    const da = d.getUTCDate();
-    const nextMidnight = Date.UTC(y, mo, da + 1);
-    const chunkEnd = Math.min(endTs, nextMidnight);
+    const dayKey = getLocalDayKey(new Date(t));
+    const chunkEnd = localDayChunkEnd(t, endTs);
     const chunk = chunkEnd - t;
     if (chunk > 0) {
       map[dayKey] = Math.max(0, map[dayKey] ?? 0) + chunk;
@@ -145,7 +162,7 @@ export async function getForegroundUsageMs(): Promise<number> {
   return readTotal();
 }
 
-/** Посуточное время в foreground (мс), ключ даты `YYYY-MM-DD` (UTC, как в daily_stats). */
+/** Посуточное время в foreground (мс), ключ — местный календарный день `YYYY-MM-DD` (записи до 12.11.2026 — по UTC-дню). */
 export async function getForegroundDailyMsMap(): Promise<Record<string, number>> {
   return readDailyMap();
 }

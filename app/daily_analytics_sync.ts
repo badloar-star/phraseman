@@ -3,13 +3,15 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
+import { getLocalDayKey } from './local_date';
 
+// зачем (координатор 12.11): время по дням пишется по местному календарю — «последние 7 дней» тоже местные, иначе неделя сдвигалась на пояс
 function getLast7Keys(): string[] {
   const keys: string[] = [];
   for (let i = 6; i >= 0; i--) {
     const d = new Date();
     d.setDate(d.getDate() - i);
-    keys.push(d.toISOString().split('T')[0]!);
+    keys.push(getLocalDayKey(d));
   }
   return keys;
 }
@@ -24,7 +26,8 @@ export async function getLast7DaysTimeMs(): Promise<number> {
       total += map[k] ?? 0;
     }
     return Math.max(0, Math.round(total));
-  } catch {
+  } catch (e) {
+    console.warn('[WEEK-TIME] время за 7 дней не прочитано — считаем 0:', e instanceof Error ? e.message : String(e));
     return 0;
   }
 }

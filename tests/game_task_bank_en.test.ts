@@ -1,6 +1,6 @@
 /**
  * Сторож банка заданий игр (D207): задания «Лишнего слова», «Сортировки», «Точного слова» и «Трёх форм»
- * сверяются с фразами английского классического курса, уроки 1–8.
+ * сверяются с фразами английского классического курса, уроки 1–12 (9–12 добавлены 12.11).
  * зачем: владелец 11.11.2026 — «фразы должны корректно подбираться для режимов игры, без багов».
  * Сработал — чинить задание, а не ослаблять проверку.
  */
@@ -20,7 +20,7 @@ import { huntFixedLines, isHuntHit, isValidHuntTask, isValidOrderTask } from '..
 import { isValidOddWordTask } from '../modules/games/odd_word_core';
 import { isValidQuizRound } from '../modules/games/quiz_core';
 
-const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8] as const;
+const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 const GAP = '___';
 
 const tokens = (text: string): string[] =>
@@ -61,7 +61,7 @@ const wordsNeverSeen = (lesson: number, text: string): string[] =>
 
 const FORBIDDEN_TERMS = /инфинитив|артикл|спряжен|глагол|предлог|существительн|прилагательн|местоимен|наречи|залог/i;
 
-describe('банк заданий игр: уроки 1–8 покрыты', () => {
+describe('банк заданий игр: уроки 1–12 покрыты', () => {
   it('по каждому уроку есть 8 «Лишних слов», колода из 8 карт и 6 «Точных слов»', () => {
     for (const lesson of LESSONS) {
       expect([lesson, ODD_WORD_BANK_EN[lesson]?.length]).toEqual([lesson, 8]);
@@ -151,7 +151,7 @@ describe('«Сортировка»', () => {
 
   it('карта с пропуском заполняется названием своей корзины до фразы из слов урока', () => {
     // зачем: колоды уроков 4, 5 и 8 называют корзины самими словами (do not / does not, Do / Does, at / on)
-    for (const lesson of [4, 5, 8]) {
+    for (const lesson of [4, 5, 8, 9]) {
       const deck = SORT_BANK_EN[lesson];
       for (const card of deck.tasks) {
         expect([card.id, card.text.includes(GAP)]).toEqual([card.id, true]);

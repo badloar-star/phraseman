@@ -128,6 +128,9 @@ const CONTEXTUAL_PORTAL_PATHS: ReadonlySet<string> = new Set([
   '/game_quiz',
   '/game_hunt',
   '/game_order',
+  '/game_race',
+  '/game_minute',
+  '/game_levels',
   '/skills',
 ]);
 

@@ -125,7 +125,9 @@ async function main(): Promise<void> {
   const screen = read("components/spire/SpireHomeScreen.tsx");
   assert.ok(screen.includes("const scene = useSpireSceneTop("), "экран берёт данные сцены одной строкой");
   assert.ok(screen.includes("headerTint={runtimeOwnerId === 'spire'}"), "шапку красит только видимый «Пик»");
-  assert.ok(screen.includes("scene={scene !== null} searching={scene?.decision.state === 'search'}"), "кнопка в режиме «Сцены»");
+  // зачем (75c126084, владелец 06.11: «Играть» не блокируется отсутствием комнаты): «Ищем комнату…» на кнопке — только пока идёт старт без комнаты, а не по состоянию сцены
+  assert.ok(screen.includes("scene={scene !== null} searching={game.starting && !game.roomLoad?.room}"), "кнопка в режиме «Сцены»");
+  assert.ok(!screen.includes("searching={scene?.decision.state === 'search'}"), "поиск сцены больше не гасит «Играть»");
   assert.ok(screen.split("\n").length <= 400, "экран Пика ≤ 400 строк");
   assert.ok(screen.includes("<SpireHomeTitle ") && screen.includes("titleStyle={budget.headerThin ? thin.title : null}"), "заголовок вынесен в SpireHomeTitle, стиль тонкой шапки — из экрана");
   assert.ok(!/\/\/ Вся сеть игровой части[^\n]*SpireLiveGate/.test(screen), "склеенные ради лимита комментарии возвращены");
@@ -207,7 +209,9 @@ async function main(): Promise<void> {
   assert.ok(scene.includes("const starColor = useMemo(() => lightShade(tokens.sceneGlow, 0.25), [tokens.sceneGlow]);"), "звёзды — оттенок свечения темы, не белые (Сверка 22.10)");
   // зачем (владелец 22.10: «башню перекрашиваем в оттенки темы»; «цвета строго оттенками текущей темы»)
   assert.ok(scene.includes("themeColors={themeColors}") && scene.includes("const themeColors = useMemo(() => ({ accent: sceneAccent, sceneTop: tokens.sceneTop, sceneBottom: tokens.sceneBottom })"), "сцена передаёт башне цвета темы: акцент «Максимума» и цвета сцены");
-  assert.ok(tower.includes("sceneMode && themeColors ? spireThemedSkinForTier(devTier ?? tier, themeColors) : spireSkinForTier(devTier ?? tier)"), "на «Сцене» наряд башни — в оттенках темы, вне её — прежний наряд лиги");
+  // зачем (e73e1e57a «тема башни одним хуком»): оттенки темы — везде, где экран передал themeColors (и «Сцена», и прежнее окно); без темы — прежний наряд лиги
+  assert.ok(tower.includes("themeColors ? spireThemedSkinForTier(devTier ?? tier, themeColors) : spireSkinForTier(devTier ?? tier)"), "наряд башни — в оттенках темы при переданной теме, иначе — прежний наряд лиги");
+  assert.ok(screen.includes("<SpireTower themeColors={towerTheme} "), "прежнее окно Пика передаёт тему башни");
   assert.ok(!scene.includes("homeSceneWarmTone") && !scene.includes("p.copy.warm") && !scene.includes("spireScenePromoText"), "ЗАМОК ВЛАДЕЛЬЦА 22.10: строки «N мест до повышения» на сцене нет — ни тёплой строкой, ни у пьедестала");
   const inkPalette = read("components/spire/scene/spire_scene_palette.ts");
   assert.ok(!/#(?!FFFFFF)[0-9A-Fa-f]{6}/.test(inkPalette) && !/rgba\((?!255,255,255,|0,0,0,)/.test(inkPalette) && !scene.includes("SPIRE_SCENE_INK.warm"), "свет сцены Пика — только белый и чёрный: цветных литералов (персик, мята) нет, цвет — от темы");

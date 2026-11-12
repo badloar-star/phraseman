@@ -260,6 +260,8 @@ describe('п.4 «Мои ошибки»: три итога', () => {
 
   it('тихая строка рисуется только при mistakeSaved === false (контракт по исходнику)', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'components/spire/SpireStepScreen.tsx'), 'utf8');
-    expect(src).toContain("{fb.mistakeSaved === false ? <Text style={[s.hintSub, { color: p.textSecondary }]} testID=\"spire-step-mistake-not-saved\">{spireGameText(lang, 'mistakeNotSaved')}</Text> : null}");
+    // зачем (606a71aaa, владелец 11.11: верный ответ тоже ждёт «Дальше»): подсказка рисуется и без ошибки (okShown), поэтому fb — необязательный; условие то же — только false
+    expect(src).not.toMatch(/fb\??\.mistakeSaved \? <Text[^\n]*mistakeNotSaved/);
+    expect(src).toContain("{fb?.mistakeSaved === false ? <Text style={[s.hintSub, { color: p.textSecondary }]} testID=\"spire-step-mistake-not-saved\">{spireGameText(lang, 'mistakeNotSaved')}</Text> : null}");
   });
 });

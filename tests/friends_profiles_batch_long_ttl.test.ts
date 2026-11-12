@@ -88,11 +88,13 @@ describe('Шпиль: ручное обновление друзей — кон�
   });
 
   it('хук: потягивание — один вызов за раз, ряд не стирается при сбое, ряд меняется плавно', () => {
-    expect(refresh).toMatch(/if \(inFlightRef\.current\) \{/);
+    // зачем (def7eddff, R40 runtimeActive): замок «одно потягивание за раз» стал сеансовым — второй вызов того же сеанса игнорируется с причиной,
+    // замок снимает только свой вызов (token); сбой или чужой сеанс не трогают ряд — setFriends только после всех проверок.
+    expect(refresh).toMatch(/if \(inFlightRef\.current\?\.sessionGeneration === sessionGeneration\) \{\s*DebugLogger\.info\(LOG, 'friends: потягивание проигнорировано — обновление уже идёт'\);\s*return;/);
     expect(refresh).toMatch(/spireLoadFriendChips\(gate, \{ myUid: ids\.uid, lang \}, \{ force: true \}\)/);
-    expect(refresh).toMatch(/if \(!chips\) return;/);
-    expect(refresh).toMatch(/if \(chips\.length !== countRef\.current\) animateNextLayoutTransition\(\);\n\s*setFriends\(chips\);/);
-    expect(refresh).toMatch(/inFlightRef\.current = false;/);
+    expect(refresh).toMatch(/if \(!chips \|\| [^\n]*\) return;\n\s*loadedKeyByOwnerRef/);
+    expect(refresh).toMatch(/if \(chips\.length !== countRef\.current\) animateNextLayoutTransition\(\);\r?\n\s*setFriends\(chips\);/);
+    expect(refresh).toMatch(/\} finally \{\s*if \(inFlightRef\.current\?\.token === token\) inFlightRef\.current = null;/);
     expect(hook).toMatch(/useSpireFriendsRefresh\(\{ gate, ids, lang, friendsCount: friends\.length, setFriends, runtimeActive, ownerEpoch \}\)/);
     // аудит «пропала сеть» 13.10: ранние выходы теперь с причиной в журнале; ряд по-прежнему ставится только при живом экране и данных
     expect(hook).toMatch(/if \(!alive\) \{ DebugLogger\.info\(LOG, 'game: друзья[^']*'\); return; \}\s*if \(!chips\) \{ DebugLogger\.info\(LOG, 'game: друзей[^']*'\); return; \}\s*setFriends\(chips\);/);

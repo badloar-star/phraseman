@@ -28,6 +28,7 @@ import { useV2Palette } from '../components/v2/useV2Palette';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { flowTranslation } from '../modules/games/flow_core';
 import {
   INITIAL_RACE_STATE, answerRace, buildRaceQuestions, formatRaceClock, ghostCorrectAt, peekRaceHistory,
@@ -43,6 +44,10 @@ import { getClassicLessonPhrases, isClassicCourseLang } from './classic_course_p
 import { safeRouterBack } from './navigation_back';
 
 const LOG = '[GAME-RACE]';
+// зачем (обход экранов 12.11: ссылка «Сегодня» с открытого «Блица» открылась через 6–9 с, JS-поток был занят): постоянный
+// журнал ухода — когда нажали выход, сколько длилась очистка при размонтировании и через сколько после нажатия экран
+// ушёл; плюс «скрыт / виден» с фазой захода. Утром по нему замер на телефоне.
+const EXIT_LOG = '[GAME-RACE-EXIT]';
 
 const COPY = {
   title: { ru: 'Гонка с собой', uk: 'Перегони з собою', es: 'Carrera contigo', en: 'Race yourself' },
@@ -206,6 +211,26 @@ export default function GameRaceScreen() {
   const ghostStarted = useRef(false);
   const gameRef = useRef(game);
   gameRef.current = game;
+  // зачем (правило «замороженный фон, защищённые циклы»): часы ставили два состояния экрана раз в секунду, даже когда
+  // «Блиц» закрыт другим экраном (ссылка «Сегодня» открылась поверх игры) или приложение свёрнуто. Время захода
+  // по-прежнему идёт по реальным часам: скрытый экран не перерисовывается, но конец минуты наступает и сохраняется.
+  const runtimeActive = useRuntimeActive();
+  const runtimeActiveRef = useRef(runtimeActive);
+  runtimeActiveRef.current = runtimeActive;
+  const phaseRef = useRef(phase);
+  phaseRef.current = phase;
+  const closeTapAt = useRef<number | null>(null);
+  const firstActiveRender = useRef(true);
+  useEffect(() => {
+    if (firstActiveRender.current) { firstActiveRender.current = false; return; }
+    console.log(`${EXIT_LOG} ${runtimeActive ? 'visible' : 'hidden'} ${JSON.stringify({ phase: phaseRef.current, atMs: Date.now() - startedAt.current })}`); // guard-ok: строка журнала, не текст интерфейса
+    // вернулись на экран — сразу показать верное время, не ждать следующего тика
+    if (runtimeActive && phaseRef.current !== 'over') {
+      const now = Date.now() - startedAt.current;
+      setElapsed(now);
+      setGhostAt(now + M.tickMs);
+    }
+  }, [runtimeActive]);
 
   const question = raceQuestionAt(questions, game.asked);
 
@@ -239,9 +264,11 @@ export default function GameRaceScreen() {
     if (empty || phase === 'over') return undefined;
     const id = setInterval(() => {
       const now = Date.now() - startedAt.current;
+      // конец минуты — по реальному времени, даже на скрытом экране: заход заканчивается и сохраняется как раньше
+      if (!(now < M.durationMs)) { finish(gameRef.current); return; }
+      if (!runtimeActiveRef.current) return; // скрытый экран не перерисовываем каждую секунду
       setElapsed(now);
       setGhostAt(now + M.tickMs);
-      if (!(now < M.durationMs)) finish(gameRef.current);
     }, M.tickMs);
     // зачем: нижняя монета трогается один раз через 300 мс после старта; повторный запуск часов (догрузилась
     // история) не должен отбрасывать её назад
@@ -255,7 +282,12 @@ export default function GameRaceScreen() {
     };
   }, [empty, finish, phase]);
 
-  useEffect(() => () => clearTimers(), [clearTimers]);
+  useEffect(() => () => {
+    const t0 = Date.now();
+    clearTimers();
+    const tapAt = closeTapAt.current;
+    console.log(`${EXIT_LOG} unmount ${JSON.stringify({ phase: phaseRef.current, cleanupMs: Date.now() - t0, sinceCloseTapMs: tapAt === null ? null : t0 - tapAt })}`); // guard-ok: строка журнала, не текст интерфейса
+  }, [clearTimers]);
 
   const onPick = useCallback((index: number) => {
     if (phase !== 'play' || lock.current || !question) return; // защита от двойного тапа
@@ -280,8 +312,11 @@ export default function GameRaceScreen() {
   }, [finish, game, phase, question]);
 
   const onClose = useCallback(() => {
+    const t0 = Date.now();
+    closeTapAt.current = t0;
     clearTimers();
     safeRouterBack(router, '/(tabs)/home' as never);
+    console.log(`${EXIT_LOG} close_tap ${JSON.stringify({ phase: phaseRef.current, backCallMs: Date.now() - t0 })}`); // guard-ok: строка журнала, не текст интерфейса
   }, [clearTimers, router]);
 
   const onLane = useCallback((e: LayoutChangeEvent) => setLaneWidth(e.nativeEvent.layout.width), []);

@@ -560,7 +560,10 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // R20-хвост 15.10 (eca3aae21): +1 — currentRestoreOwner(): только чтение stableId владельца для дедупа восстановления,
         // чтобы проверка Plus аккаунта B не присоединилась к восстановлению A (ограда владельца, не смена поколения).
         // Вход 17.10 (💸): +1 — rememberSwapConfirmedStableAuthLink сверяет активное поколение перед переносом подтверждения.
-        generationFences: 19,
+        // зачем (координатор 12.11, разбор красного сторожа): +3 — writeRealPremiumServerProjection (d8a0a685a, 11.11): проекция подписки
+        // с сервера пишется на телефон только пока поколение того же владельца — проверка до расчёта, до записи и после записи. Только
+        // отказ в записи при смене аккаунта, новой власти нет.
+        generationFences: 22,
         transitionLocks: 4,
         anonymousSessionDecisions: 9,
       },
@@ -706,10 +709,13 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         // Вход 17.10 (💸): +1 — поколение при переносе подтверждения привязки после свапа (rememberSwapConfirmedStableAuthLink).
         // Вход 18.10 (координатор): +1 isForceGenerationCurrent — перепроверка поколения перед пропуском записи документа при выходе
         // (077deccd0); +1 wipeLocalAccountDataUnsafe — замок стирания зовёт тело через обёртку режима 'full' | 'signout' (89da06443).
-        occurrences: 81,
+        // зачем (координатор 12.11): +3 isCurrentAccountGeneration — writeRealPremiumServerProjection (d8a0a685a), проверки поколения
+        // до/после записи проекции подписки; +2 authLinkSafeText — маска текста ошибки в журнале [AUTH-LINK] (b3b6e9176), только лог.
+        occurrences: 86,
         imports: 2,
         census: {
           'call:adoptAuthoritativeStableIdentity': 1,
+          'call:authLinkSafeText': 2,
           'call:beginAccountGeneration': 1,
           'call:beginInitialAccountGeneration': 3,
           'call:captureAccountGeneration': 10,
@@ -721,7 +727,7 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
           'call:ensureAnonUser': 8,
           'call:ensureStableAuthLinkForStableIdDetailed': 8,
           'call:forgetAnonMergeNonce': 1,
-          'call:isCurrentAccountGeneration': 9,
+          'call:isCurrentAccountGeneration': 12,
           'call:isForceGenerationCurrent': 6,
           'call:isSyncGenerationCurrent': 15,
           'call:peekStableId': 1,
@@ -757,12 +763,15 @@ describe('Account Authority 2.0 legacy callsite guard', () => {
         },
       },
       'app/account_generation.ts': {
-        occurrences: 31,
+        // зачем (координатор 12.11, разбор красного сторожа): +1 isCurrentAccountGeneration — acquireAccountTransitionCommitPermit
+        // (d8a0a685a, 11.11): пропуск на фиксацию записи снимка подписки требует И удерживаемого замка смены аккаунта, И текущего
+        // поколения того же владельца (premium_real_storage). Строже прежнего, обхода власти нет.
+        occurrences: 32,
         imports: 0,
         census: {
           'call:beginAccountGeneration': 2,
           'call:captureAccountGeneration': 6,
-          'call:isCurrentAccountGeneration': 2,
+          'call:isCurrentAccountGeneration': 3,
           'call:normalizedStableId': 3,
           'call:notifyAccountGeneration': 2,
           'call:subscribeAccountGeneration': 1,

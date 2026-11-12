@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — испанский классический курс, уроки 1–8 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — испанский классический курс, уроки 1–12 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: произносится фраза урока; верный вариант дословно равен ей; два неверных отличаются
  * ровно одним словом и остаются правильными фразами из знакомых слов — это проверка слуха, а не грамматики.
@@ -76,5 +76,37 @@ export const LISTEN_BANK_ES: Readonly<Record<number, readonly QuizRound[]>> = {
     round(8, 4, 'Mi hermana está en casa', ['Mi hermano está en casa', 'Tu hermana está en casa'], 0, 'Моя сестра дома'),
     round(8, 5, 'Su madre está en la tienda', ['Su madre está en la farmacia', 'Tu madre está en la tienda'], 1, 'Его мама в магазине'),
     round(8, 6, '¿Dónde está mi pasaporte?', ['¿Dónde está tu pasaporte?', '¿Dónde está mi cargador?'], 2, 'Где мой паспорт?'),
+  ],
+  9: [
+    round(9, 1, 'Trabajo en casa', ['Trabajas en casa', 'Estudio en casa'], 0, 'Я работаю дома'),
+    round(9, 2, 'Hablas español', ['Hablo español', 'Hablas inglés'], 1, 'Ты говоришь по-испански'),
+    round(9, 3, 'Mi hermano estudia español', ['Mi hermana estudia español', 'Mi hermano habla español'], 2, 'Мой брат учит испанский'),
+    round(9, 4, 'Buscamos la salida', ['Buscamos la parada', 'Buscáis la salida'], 0, 'Мы ищем выход'),
+    round(9, 5, 'Trabajamos aquí', ['Trabajáis aquí', 'Estudiamos aquí'], 1, 'Мы работаем здесь'),
+    round(9, 6, 'Ana busca su pasaporte', ['Ana busca su billete', 'Luis busca su pasaporte'], 2, 'Ана ищет свой паспорт'),
+  ],
+  10: [
+    round(10, 1, 'Vivo aquí', ['Vives aquí', 'Vivimos aquí'], 0, 'Я живу здесь'),
+    round(10, 2, 'Luis bebe café', ['Luis bebe agua', 'Ana bebe café'], 1, 'Луис пьёт кофе'),
+    round(10, 3, 'Leo el mensaje', ['Leo el libro', 'Leemos el mensaje'], 2, 'Я читаю сообщение'),
+    round(10, 4, 'Abrimos la puerta', ['Abrimos la ventana', 'Abren la puerta'], 0, 'Мы открываем дверь'),
+    round(10, 5, 'Ana come en casa', ['Ana come en clase', 'Luis come en casa'], 1, 'Ана ест дома'),
+    round(10, 6, 'Escribes una carta', ['Escribís una carta', 'Escribe una carta'], 2, 'Ты пишешь письмо'),
+  ],
+  11: [
+    round(11, 1, 'Tengo una pregunta', ['Tienes una pregunta', 'Tengo una reserva'], 0, 'У меня есть вопрос'),
+    round(11, 2, 'No tengo tiempo', ['No tengo cambio', 'No tienes tiempo'], 1, 'У меня нет времени'),
+    round(11, 3, 'Tenemos dos billetes', ['Tenemos dos pasaportes', 'Tenéis dos billetes'], 2, 'У нас есть два билета'),
+    round(11, 4, 'Ana tiene una cita', ['Luis tiene una cita', 'Ana tiene una pregunta'], 0, 'У Аны назначена встреча'),
+    round(11, 5, 'Tengo las llaves de casa', ['Tienes las llaves de casa', 'Tenemos las llaves de casa'], 1, 'У меня ключи от дома'),
+    round(11, 6, 'No tengo las llaves', ['No tengo las fotos', 'No tienes las llaves'], 2, 'У меня нет ключей'),
+  ],
+  12: [
+    round(12, 1, 'El libro es nuevo', ['El bolso es nuevo', 'El libro es grande'], 0, 'Книга новая'),
+    round(12, 2, 'Las maletas son pequeñas', ['Las mochilas son pequeñas', 'Las maletas son grandes'], 1, 'Чемоданы маленькие'),
+    round(12, 3, 'Mi coche es rojo', ['Mi coche es negro', 'Tu coche es rojo'], 2, 'Моя машина красная'),
+    round(12, 4, 'La casa es grande', ['La cocina es grande', 'La casa es nueva'], 0, 'Дом большой'),
+    round(12, 5, 'Busco un libro nuevo', ['Busco un libro rojo', 'Tengo un libro nuevo'], 1, 'Я ищу новую книгу'),
+    round(12, 6, 'Tengo una mesa blanca', ['Tengo una mesa negra', 'Tengo una mesa grande'], 2, 'У меня белый стол'),
   ],
 };

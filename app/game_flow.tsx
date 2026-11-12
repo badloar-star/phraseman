@@ -28,7 +28,7 @@ import { isLightSurface } from '../constants/color_contrast';
 import { triLang, type Lang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
-import { FLOW_DEFAULT_ROUNDS, FLOW_TEMPO, buildFlowRounds, flowRoundTimings, isFlowHighTempo, nextFlowTempoLevel, type FlowItem, type FlowRound, flowTranslation } from '../modules/games/flow_core';
+import { FLOW_DEFAULT_ROUNDS, FLOW_TEMPO, buildFlowRounds, flowRoundTimings, isFlowHighTempo, nextFlowTempoLevel, type FlowItem, type FlowRound, flowDistractorsFor, flowTranslation } from '../modules/games/flow_core';
 import { currentGameLesson, isFlowAvailable } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteGameResult } from '../modules/games/game_records';
@@ -204,7 +204,7 @@ export default function GameFlowScreen() {
       return [];
     }
     const course = studyTarget;
-    const pool: FlowItem[] = getClassicLessonPhrases(lessonId, course).map((phrase) => ({ id: `${course}:${lessonId}:${String(phrase.id)}`, en: phrase.english, translation: flowTranslation(phrase, lang) }));
+    const pool: FlowItem[] = getClassicLessonPhrases(lessonId, course).map((phrase) => ({ id: `${course}:${lessonId}:${String(phrase.id)}`, en: phrase.english, translation: flowTranslation(phrase, lang), distractors: flowDistractorsFor(course, String(phrase.id), lang) }));
     const built = buildFlowRounds(pool, FLOW_DEFAULT_ROUNDS);
     if (built.length === 0) console.warn(`${LOG} rounds:empty ${JSON.stringify({ course, lessonId, pool: pool.length })}`); // guard-ok: ранний выход с причиной
     return built;

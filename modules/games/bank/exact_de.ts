@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — немецкий классический курс, уроки 1–12 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — немецкий классический курс, уроки 1–16 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или только из пройденных слов); каждый неверный
  * вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах); варианты — только
@@ -109,5 +109,37 @@ export const EXACT_BANK_DE: Readonly<Record<number, readonly QuizRound[]>> = {
     r(12, 4, 'Ich hänge die Jacke an ___ Haken', 'den', ['dem', 'der'], 0, 'Вешаю на крючок — an den Haken.'),
     r(12, 5, 'Wir ___ uns an den Tisch', 'setzen', ['setzt', 'sitzen'], 1, 'С wir — setzen.'),
     r(12, 6, 'Tom geht ___ die Schule', 'in', ['im', 'zum'], 2, 'В школу — in die Schule.'),
+  ],
+  13: [
+    r(13, 1, 'Ich ___ früh auf', 'stehe', ['stehst', 'steht'], 0, 'С ich — stehe.'),
+    r(13, 2, 'Du ___ mich an', 'rufst', ['ruft', 'rufe'], 1, 'С du — rufst.'),
+    r(13, 3, 'Wir ___ die Kiste auf', 'machen', ['macht', 'mache'], 2, 'С wir — machen.'),
+    r(13, 4, 'Anna ___ für die Feier ein', 'kauft', ['kaufe', 'kaufen'], 0, 'С Anna — kauft.'),
+    r(13, 5, 'Ich hole ___ am Bahnhof ab', 'dich', ['du', 'dir'], 1, 'Встречаю тебя — hole dich ab.'),
+    r(13, 6, 'Bringst ___ eine Decke mit?', 'du', ['dich', 'ihr'], 2, 'С bringst — du.'),
+  ],
+  14: [
+    r(14, 1, 'Du ___ hier warten', 'kannst', ['kann', 'können'], 0, 'С du — kannst.'),
+    r(14, 2, 'Ihr ___ mitkommen', 'könnt', ['kannst', 'können'], 1, 'С ihr — könnt.'),
+    r(14, 3, 'Die Kinder ___ draußen spielen', 'dürfen', ['darf', 'darfst'], 2, 'Детей несколько — dürfen.'),
+    r(14, 4, 'Ich ___ ein Zimmer buchen', 'möchte', ['möchtest', 'möchten'], 0, 'С ich — möchte.'),
+    r(14, 5, 'Wir wollen am See ___', 'bleiben', ['bleibt', 'bleibe'], 1, 'После wollen — bleiben.'),
+    r(14, 6, '___ ich einen Termin buchen?', 'Muss', ['Musst', 'Müsst'], 2, 'С ich — muss.'),
+  ],
+  15: [
+    r(15, 1, 'Gib mir ___ Karte!', 'die', ['den', 'der'], 0, 'Карта — die Karte.'),
+    r(15, 2, 'Hilf ___ kurz!', 'mir', ['mich', 'ich'], 1, 'Помоги мне — hilf mir.'),
+    r(15, 3, '___ euch hierhin!', 'Setzt', ['Setz', 'Setzen'], 2, 'С euch — setzt.'),
+    r(15, 4, 'Nehmen ___ bitte Platz!', 'Sie', ['du', 'ihr'], 0, 'Вежливо — Nehmen Sie.'),
+    r(15, 5, 'Vergiss ___ Pass nicht!', 'deinen', ['dein', 'deine'], 1, 'Паспорт — der Pass, поэтому deinen.'),
+    r(15, 6, 'Gib ___ Kind etwas Wasser!', 'dem', ['das', 'den'], 2, 'Дай ребёнку — dem Kind.'),
+  ],
+  16: [
+    r(16, 1, 'Du ___ die Karte gefunden', 'hast', ['hat', 'habe'], 0, 'С du — hast.'),
+    r(16, 2, 'Ihr ___ draußen gespielt', 'habt', ['hast', 'haben'], 1, 'С ihr — habt.'),
+    r(16, 3, 'Tom hat Brot ___', 'gekauft', ['kauft', 'kaufen'], 2, 'После hat — gekauft.'),
+    r(16, 4, 'Anna hat das Frühstück ___', 'bestellt', ['bestellen', 'bestelle'], 0, 'После hat — bestellt.'),
+    r(16, 5, 'Ich habe ___ angerufen', 'dich', ['du', 'dir'], 1, 'Звонил тебе — dich angerufen.'),
+    r(16, 6, '___ du schon gegessen?', 'Hast', ['Hat', 'Habt'], 2, 'С du — hast.'),
   ],
 };

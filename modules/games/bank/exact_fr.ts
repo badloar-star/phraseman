@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — французский классический курс, уроки 1–12 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — французский классический курс, уроки 1–16 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или только из пройденных слов); каждый неверный
  * вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах); варианты — только
@@ -109,5 +109,37 @@ export const EXACT_BANK_FR: Readonly<Record<number, readonly QuizRound[]>> = {
     r(12, 4, 'Nous ___ du jus de pomme', 'buvons', ['bois', 'boit'], 0, 'С nous — buvons.'),
     r(12, 5, 'Je voudrais un peu ___ soupe', 'de', ['du', 'des'], 1, 'После un peu — de.'),
     r(12, 6, 'Il achète un kilo ___ pommes', 'de', ['du', 'la'], 2, 'После un kilo — de.'),
+  ],
+  13: [
+    r(13, 1, 'La voiture est ___', 'neuve', ['neuf', 'neuves'], 0, 'Машина — la voiture, поэтому neuve.'),
+    r(13, 2, 'Les vélos sont ___', 'neufs', ['neuf', 'neuve'], 1, 'Велосипедов несколько — neufs.'),
+    r(13, 3, 'Les boîtes sont ___', 'pleines', ['pleine', 'vide'], 2, 'Коробок несколько — pleines.'),
+    r(13, 4, 'Le verre est ___', 'vide', ['vides', 'pleines'], 0, 'Стакан один — vide.'),
+    r(13, 5, 'Je cherche une veste ___', 'noire', ['noir', 'noires'], 1, 'Куртка — la veste, поэтому noire.'),
+    r(13, 6, 'C’est une ___ photo', 'vieille', ['vieil', 'petit'], 2, 'Фотография — la photo, поэтому vieille.'),
+  ],
+  14: [
+    r(14, 1, 'Je ___ partir', 'dois', ['doit', 'devons'], 0, 'С je — dois.'),
+    r(14, 2, 'Vous ___ signer ici', 'devez', ['dois', 'doivent'], 1, 'С vous — devez.'),
+    r(14, 3, 'Ils ___ changer de place', 'veulent', ['veut', 'voulons'], 2, 'С ils — veulent.'),
+    r(14, 4, 'Tu ___ t’asseoir ?', 'veux', ['veut', 'voulez'], 0, 'С tu — veux.'),
+    r(14, 5, 'Nous ne ___ pas rester longtemps', 'pouvons', ['peuvent', 'peux'], 1, 'С nous — pouvons.'),
+    r(14, 6, 'Elle ne ___ pas jeter le pain', 'veut', ['veux', 'voulons'], 2, 'С elle — veut.'),
+  ],
+  15: [
+    r(15, 1, 'Tu ___ prendre le bus', 'vas', ['va', 'vais'], 0, 'С tu — vas.'),
+    r(15, 2, 'Nous ___ inviter nos voisins', 'allons', ['allez', 'vont'], 1, 'С nous — allons.'),
+    r(15, 3, 'Ils ___ livrer le colis', 'vont', ['va', 'allons'], 2, 'С ils — vont.'),
+    r(15, 4, 'Vous ___ changer de train', 'allez', ['vont', 'vas'], 0, 'С vous — allez.'),
+    r(15, 5, 'Elle ___ chercher ses lunettes', 'va', ['vas', 'vont'], 1, 'С elle — va.'),
+    r(15, 6, 'On ___ passer à la banque', 'va', ['vais', 'allons'], 2, 'С on — va.'),
+  ],
+  16: [
+    r(16, 1, 'Ferme ___ porte !', 'la', ['le', 'les'], 0, 'Дверь — la porte.'),
+    r(16, 2, 'Prends ___ veste !', 'ta', ['ton', 'tes'], 1, 'Куртка — la veste, поэтому ta.'),
+    r(16, 3, 'Range ___ chaussures !', 'tes', ['ta', 'ton'], 2, 'Туфель несколько — tes.'),
+    r(16, 4, 'Montrez ___ billet, s’il vous plaît', 'votre', ['vos', 'ta'], 0, 'Билет один — votre billet.'),
+    r(16, 5, 'Appuyez sur le bouton ___', 'vert', ['verte', 'vertes'], 1, 'Кнопка — le bouton, поэтому vert.'),
+    r(16, 6, 'N’oublie pas ___ parapluie !', 'ton', ['ta', 'tes'], 2, 'Зонт — le parapluie, поэтому ton.'),
   ],
 };

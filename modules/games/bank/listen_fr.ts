@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — французский классический курс, уроки 1–12 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — французский классический курс, уроки 1–16 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: произносится дословная фраза урока; каждый неверный вариант отличается от неё ровно
  * одним словом, остаётся правильной французской фразой и собран из пройденных слов. Подмена различима на
@@ -109,5 +109,37 @@ export const LISTEN_BANK_FR: Readonly<Record<number, readonly QuizRound[]>> = {
     r(12, 4, 'Il reste du sucre', ['Il reste du pain', 'Il reste du riz'], 0, 'Осталось немного сахара'),
     r(12, 5, 'Il ne boit pas de café', ['Il ne boit pas de lait', 'Il ne prend pas de café'], 1, 'Он не пьёт кофе'),
     r(12, 6, 'Elle prend beaucoup de légumes', ['Elle prend beaucoup de fraises', 'Elle mange beaucoup de légumes'], 2, 'Она берёт много овощей'),
+  ],
+  13: [
+    r(13, 1, 'Le sac est lourd', ['Le sac est léger', 'Le pull est lourd'], 0, 'Сумка тяжелая'),
+    r(13, 2, 'La chemise est blanche', ['La chemise est verte', 'La robe est blanche'], 1, 'Рубашка белая'),
+    r(13, 3, 'Le vélo est neuf', ['Le vélo est vert', 'Le bonnet est neuf'], 2, 'Велосипед новый'),
+    r(13, 4, 'Le verre est vide', ['Le sac est vide', 'Le verre est blanc'], 0, 'Стакан пуст'),
+    r(13, 5, 'Je cherche un sac noir', ['Je cherche un sac vert', 'Je cherche un pull noir'], 1, 'Я ищу черную сумку'),
+    r(13, 6, 'Tu préfères le pull rouge ?', ['Tu préfères le pull vert ?', 'Tu préfères le sac rouge ?'], 2, 'Ты предпочитаешь красный свитер?'),
+  ],
+  14: [
+    r(14, 1, 'Je peux entrer', ['Je dois entrer', 'Je veux entrer'], 0, 'Я могу войти'),
+    r(14, 2, 'Nous devons payer', ['Nous voulons payer', 'Nous pouvons payer'], 1, 'Нам нужно заплатить'),
+    r(14, 3, 'Je veux essayer', ['Je peux essayer', 'Je dois essayer'], 2, 'Я хочу попробовать'),
+    r(14, 4, 'Vous devez signer ici', ['Vous pouvez signer ici', 'Vous devez attendre ici'], 0, 'Вы должны подписать здесь'),
+    r(14, 5, 'Tu peux fermer la porte ?', ['Tu dois fermer la porte ?', 'Tu peux ouvrir la porte ?'], 1, 'Можешь закрыть дверь?'),
+    r(14, 6, 'Je ne veux pas déranger', ['Je ne peux pas déranger', 'Je ne dois pas déranger'], 2, 'Я не хочу мешать'),
+  ],
+  15: [
+    r(15, 1, 'Je vais partir', ['Je vais rester', 'Je vais rentrer'], 0, 'Я собираюсь уйти'),
+    r(15, 2, 'Elle va téléphoner', ['Elle va marcher', 'Elle va rester'], 1, 'Она собирается позвонить'),
+    r(15, 3, 'Tu vas prendre le bus', ['Tu vas prendre le train', 'Tu vas attendre le bus'], 2, 'Ты поедешь на автобусе'),
+    r(15, 4, 'Je vais acheter du pain', ['Je vais acheter du riz', 'Je vais prendre du pain'], 0, 'Я собираюсь купить хлеб'),
+    r(15, 5, 'Ils vont rentrer', ['Ils vont rester', 'Ils vont partir'], 1, 'Они собираются вернуться домой'),
+    r(15, 6, 'Tu vas travailler demain ?', ['Tu vas travailler ici ?', 'Tu vas rentrer demain ?'], 2, 'Ты собираешься работать завтра?'),
+  ],
+  16: [
+    r(16, 1, 'Ferme la porte !', ['Ouvre la porte !', 'Ferme la fenêtre !'], 0, 'Закрой дверь!'),
+    r(16, 2, 'Reste ici !', ['Restez ici !', 'Attends ici !'], 1, 'Останься здесь!'),
+    r(16, 3, 'Tourne à gauche !', ['Tourne à droite !', 'Reste à gauche !'], 2, 'Поверни налево!'),
+    r(16, 4, 'Prends ta veste !', ['Prends ta valise !', 'Range ta veste !'], 0, 'Возьми свою куртку!'),
+    r(16, 5, 'Vérifiez le montant', ['Vérifiez le reçu', 'Gardez le montant'], 1, 'Проверьте сумму'),
+    r(16, 6, 'Allons au marché !', ['Allons au musée !', 'Allons au stade !'], 2, 'Пойдём на рынок!'),
   ],
 };

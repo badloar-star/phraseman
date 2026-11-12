@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — французский классический курс, уроки 1–12 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — французский классический курс, уроки 1–16 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза только из пройденных слов); с лишним
  * словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить. Особенности языка: лишнее
@@ -134,5 +134,45 @@ export const ODD_WORD_BANK_FR: Readonly<Record<number, readonly OddWordTask[]>> 
     t(12, 6, 'Je ne prends pas [du] de lait', 'Я не беру молоко', 'После pas — de.'),
     t(12, 7, 'Il ne boit pas [du] de café', 'Он не пьёт кофе', 'После pas — de.'),
     t(12, 8, 'Je voudrais un peu [du] de soupe', 'Я бы хотел немного супа', 'После un peu — de.'),
+  ],
+  13: [
+    t(13, 1, 'La valise est [lourd] lourde', 'Чемодан тяжелый', 'Чемодан — la valise, поэтому lourde.'),
+    t(13, 2, 'La chemise est [blanc] blanche', 'Рубашка белая', 'Рубашка — la chemise, поэтому blanche.'),
+    t(13, 3, 'La voiture est [neuf] neuve', 'Машина новая', 'Машина — la voiture, поэтому neuve.'),
+    t(13, 4, 'Les verres sont [vide] vides', 'Стаканы пусты', 'Стаканов несколько — vides.'),
+    t(13, 5, 'Je cherche une veste [noir] noire', 'Я ищу черную куртку', 'Куртка — la veste, поэтому noire.'),
+    t(13, 6, 'Il porte une chemise [bleu] bleue', 'Он в синей рубашке', 'Рубашка — la chemise, поэтому bleue.'),
+    t(13, 7, 'C’est une [petit] petite cour', 'Это небольшой дворик', 'Дворик — la cour, поэтому petite.'),
+    t(13, 8, 'Les rues sont [étroite] étroites', 'Улицы узкие', 'Улиц несколько — étroites.'),
+  ],
+  14: [
+    t(14, 1, 'Je [peut] peux entrer', 'Я могу войти', 'С je — peux.'),
+    t(14, 2, 'Nous [peut] pouvons attendre', 'Мы можем подождать', 'С nous — pouvons.'),
+    t(14, 3, 'Ils [peut] peuvent rester', 'Они могут остаться', 'С ils — peuvent.'),
+    t(14, 4, 'Tu [doit] dois attendre', 'Тебе нужно подождать', 'С tu — dois.'),
+    t(14, 5, 'Nous [doit] devons payer', 'Нам нужно заплатить', 'С nous — devons.'),
+    t(14, 6, 'Elle [veux] veut réserver', 'Она хочет забронировать', 'С elle — veut.'),
+    t(14, 7, 'Vous [peut] pouvez passer', 'Вы можете пройти', 'С vous — pouvez.'),
+    t(14, 8, 'Nous voulons visiter [la] le musée', 'Мы хотим посетить музей', 'Музей — le musée.'),
+  ],
+  15: [
+    t(15, 1, 'Je [va] vais partir', 'Я собираюсь уйти', 'С je — vais.'),
+    t(15, 2, 'Tu [vais] vas partir', 'Ты собираешься уйти', 'С tu — vas.'),
+    t(15, 3, 'Nous [va] allons marcher', 'Мы собираемся пойти пешком', 'С nous — allons.'),
+    t(15, 4, 'Ils [va] vont rentrer', 'Они собираются вернуться домой', 'С ils — vont.'),
+    t(15, 5, 'Elle va [téléphone] téléphoner', 'Она собирается позвонить', 'После va — téléphoner.'),
+    t(15, 6, 'Je vais acheter [de] du pain', 'Я собираюсь купить хлеб', 'Хлеб — du pain.'),
+    t(15, 7, 'Paul va ouvrir [la] le magasin', 'Поль собирается открыть магазин', 'Магазин — le magasin.'),
+    t(15, 8, 'Vous [va] allez rester', 'Вы собираетесь остаться', 'С vous — allez.'),
+  ],
+  16: [
+    t(16, 1, 'Ferme [le] la porte', 'Закрой дверь', 'Дверь — la porte.'),
+    t(16, 2, 'Ouvre [le] la fenêtre', 'Открой окно', 'Окно — la fenêtre.'),
+    t(16, 3, 'Prends [ton] ta veste', 'Возьми свою куртку', 'Куртка — la veste, поэтому ta veste.'),
+    t(16, 4, 'Range [ta] tes chaussures', 'Убери свою обувь', 'Туфель несколько — tes chaussures.'),
+    t(16, 5, 'Appelle [ton] ta sœur', 'Позвони своей сестре', 'Сестра — la sœur, поэтому ta sœur.'),
+    t(16, 6, 'Posez le colis sur [le] la balance', 'Положите посылку на весы', 'Весы — la balance.'),
+    t(16, 7, 'Restez derrière [le] la ligne', 'Оставайтесь за линией', 'Линия — la ligne.'),
+    t(16, 8, 'Appuyez sur le bouton [verte] vert', 'Нажмите зелёную кнопку', 'Кнопка — le bouton, поэтому vert.'),
   ],
 };

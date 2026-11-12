@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — немецкий классический курс, уроки 1–12 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — немецкий классический курс, уроки 1–16 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: произносится дословная фраза урока; каждый неверный вариант отличается от неё ровно
  * одним словом, остаётся правильной немецкой фразой (род и число согласованы) и собран из пройденных слов;
@@ -108,5 +108,37 @@ export const LISTEN_BANK_DE: Readonly<Record<number, readonly QuizRound[]>> = {
     r(12, 4, 'Anna steigt in den Bus', ['Anna steigt in den Zug', 'Tom steigt in den Bus'], 0, 'Анна садится в автобус'),
     r(12, 5, 'Fahren wir ans Meer?', ['Gehen wir ans Meer?', 'Fahren wir zum Meer?'], 1, 'Поедем к морю?'),
     r(12, 6, 'Ich gehe in die Küche', ['Ich gehe in die Schule', 'Ich gehe in die Halle'], 2, 'Я иду на кухню'),
+  ],
+  13: [
+    r(13, 1, 'Ich stehe früh auf', ['Ich stehe spät auf', 'Ich stehe heute auf'], 0, 'Я рано встаю'),
+    r(13, 2, 'Du rufst mich an', ['Du rufst uns an', 'Du rufst sie an'], 1, 'Ты звонишь мне'),
+    r(13, 3, 'Tom macht das Fenster zu', ['Tom macht das Fenster auf', 'Anna macht das Fenster zu'], 2, 'Том закрывает окно'),
+    r(13, 4, 'Der Zug kommt um zwölf an', ['Der Zug kommt um elf an', 'Der Bus kommt um zwölf an'], 0, 'Поезд прибывает в двенадцать'),
+    r(13, 5, 'Wir holen die Kinder ab', ['Wir holen die Gäste ab', 'Sie holen die Kinder ab'], 1, 'Мы забираем детей'),
+    r(13, 6, 'Wann fährt der Bus ab?', ['Wann fährt der Zug ab?', 'Wo fährt der Bus ab?'], 2, 'Когда отправляется автобус?'),
+  ],
+  14: [
+    r(14, 1, 'Ich kann hier warten', ['Ich muss hier warten', 'Ich kann hier parken'], 0, 'Я могу подождать здесь'),
+    r(14, 2, 'Kannst du mich hören?', ['Kannst du mich anrufen?', 'Kannst du uns hören?'], 1, 'Ты меня слышишь?'),
+    r(14, 3, 'Wir müssen hier aussteigen', ['Wir wollen hier aussteigen', 'Wir dürfen hier aussteigen'], 2, 'Мы должны выйти из транспорта здесь'),
+    r(14, 4, 'Ich darf hier parken', ['Ich darf hier warten', 'Ich will hier parken'], 0, 'Мне разрешено здесь парковаться'),
+    r(14, 5, 'Ich will Deutsch lernen', ['Ich will Deutsch sprechen', 'Ich muss Deutsch lernen'], 1, 'Я хочу учить немецкий'),
+    r(14, 6, 'Ich möchte ein Zimmer buchen', ['Ich möchte ein Ticket buchen', 'Ich möchte ein Zimmer reservieren'], 2, 'Я хотел бы забронировать номер'),
+  ],
+  15: [
+    r(15, 1, 'Warte hier!', ['Warte kurz!', 'Bleib hier!'], 0, 'Подожди здесь!'),
+    r(15, 2, 'Ruf mich an!', ['Ruf uns an!', 'Ruf sie an!'], 1, 'Позвони мне!'),
+    r(15, 3, 'Nimm den Schlüssel!', ['Nimm den Koffer!', 'Lass den Schlüssel!'], 2, 'Возьми ключ!'),
+    r(15, 4, 'Mach das Licht an!', ['Mach das Radio an!', 'Mach das Licht aus!'], 0, 'Включи свет!'),
+    r(15, 5, 'Wartet am Eingang!', ['Wartet am Bahnhof!', 'Wartet am Markt!'], 1, 'Подождите у входа!'),
+    r(15, 6, 'Warten Sie bitte hier!', ['Warten Sie bitte kurz!', 'Bleiben Sie bitte hier!'], 2, 'Подождите здесь, пожалуйста!'),
+  ],
+  16: [
+    r(16, 1, 'Ich habe heute gekocht', ['Ich habe gestern gekocht', 'Ich habe heute gelernt'], 0, 'Я сегодня готовил'),
+    r(16, 2, 'Tom hat Brot gekauft', ['Tom hat Obst gekauft', 'Anna hat Brot gekauft'], 1, 'Том купил хлеб'),
+    r(16, 3, 'Wir haben Tee getrunken', ['Wir haben Kaffee getrunken', 'Wir haben Tee bestellt'], 2, 'Мы пили чай'),
+    r(16, 4, 'Ich habe die Tür geschlossen', ['Ich habe die Tasche geschlossen', 'Ich habe die Tür gesehen'], 0, 'Я закрыл дверь'),
+    r(16, 5, 'Hast du schon gegessen?', ['Hast du schon gekocht?', 'Hast du schon bezahlt?'], 1, 'Ты уже поел?'),
+    r(16, 6, 'Wer hat die Rechnung bezahlt?', ['Wer hat die Rechnung bekommen?', 'Wer hat die Rechnung bestellt?'], 2, 'Кто оплатил счёт?'),
   ],
 };

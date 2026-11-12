@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — немецкий классический курс, уроки 1–12 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — немецкий классический курс, уроки 1–16 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: три реплики, после исправления каждая — фраза урока или фраза из пройденных слов;
  * неверное слово ровно одно и оно однозначно неверно; слово-обманка стоит в ДРУГОЙ реплике и само верно.
@@ -59,5 +59,21 @@ export const HUNT_BANK_DE: Readonly<Record<number, readonly HuntTask[]>> = {
   12: [
     h(12, 1, ['Wohin gehst du?', 'Ich {gehst>gehe} in den Garten.', 'Anna geht *ins Bad.'], 'С ich — gehe.'),
     h(12, 2, ['Wo ist der Pass?', 'Ich lege den Pass in {der>die} Tasche.', 'Tom stellt *den Koffer vor die Tür.'], 'Кладу в сумку — in die Tasche.'),
+  ],
+  13: [
+    h(13, 1, ['Wann fährt der Zug ab?', 'Der Zug {fahren>fährt} um elf ab.', 'Ich hole *dich am Bahnhof ab.'], 'С der Zug — fährt.'),
+    h(13, 2, ['Was bringst du mit?', 'Ich {bringst>bringe} Brot mit.', 'Anna bringt *einen Salat mit.'], 'С ich — bringe.'),
+  ],
+  14: [
+    h(14, 1, ['Kannst du mir helfen?', 'Ich {kannst>kann} helfen.', 'Wir *können zusammen kochen.'], 'С ich — kann.'),
+    h(14, 2, ['Darf der Hund mitkommen?', 'Der Hund {dürfen>darf} mitkommen.', 'Ihr *dürft das Fahrrad mitnehmen.'], 'Собака одна — darf.'),
+  ],
+  15: [
+    h(15, 1, ['Wo soll ich warten?', 'Warte {in>am} Eingang!', 'Ich komme *gleich.'], 'У входа — am Eingang.'),
+    h(15, 2, ['Kinder, kommt bitte rein!', 'Setzt {dich>euch} hierhin!', 'Nehmt *eure Jacken mit!'], 'Нескольким — setzt euch.'),
+  ],
+  16: [
+    h(16, 1, ['Was hast du gekocht?', 'Ich habe Suppe {kocht>gekocht}.', 'Anna hat *Kaffee gemacht.'], 'После habe — gekocht.'),
+    h(16, 2, ['Habt ihr den Zug verpasst?', 'Wir {hat>haben} den Zug verpasst.', 'Tom hat *den Wecker nicht gehört.'], 'С wir — haben.'),
   ],
 };

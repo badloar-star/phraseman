@@ -49,4 +49,20 @@ export const ORDER_BANK_DE: Readonly<Record<number, readonly OrderTask[]>> = {
     o(12, 1, ['Wohin stellst du die Kiste?', 'Ich stelle die Kiste in den Keller.', 'Stellst du auch das Fahrrad in den Keller?', 'Das Fahrrad stelle ich in den Flur.']),
     o(12, 2, ['Gehen wir an den See?', 'Heute gehen wir ins Kino.', 'Gehen wir auch ans Meer?', 'Am Samstag fahren wir ans Meer.']),
   ],
+  13: [
+    o(13, 1, ['Wann stehst du auf?', 'Ich stehe um sieben auf.', 'Stehst du auch am Samstag früh auf?', 'Am Samstag stehe ich spät auf.']),
+    o(13, 2, ['Wer holt die Kinder ab?', 'Tom holt die Kinder ab.', 'Holt Tom auch die Gäste ab?', 'Die Gäste hole ich ab.']),
+  ],
+  14: [
+    o(14, 1, ['Kannst du heute kommen?', 'Heute kann ich nicht kommen.', 'Kannst du auch morgen kommen?', 'Morgen kann ich kommen.']),
+    o(14, 2, ['Musst du morgen arbeiten?', 'Ich muss morgen arbeiten.', 'Musst du auch am Samstag arbeiten?', 'Am Samstag muss ich nicht arbeiten.']),
+  ],
+  15: [
+    o(15, 1, ['Wo soll ich warten?', 'Warte am Eingang!', 'Soll ich auch hier warten?', 'Warte nicht hier!']),
+    o(15, 2, ['Was soll ich mitbringen?', 'Bring bitte ein Handtuch mit!', 'Soll ich auch Brot mitbringen?', 'Bring auch Brot mit!']),
+  ],
+  16: [
+    o(16, 1, ['Was hast du bestellt?', 'Ich habe Tee bestellt.', 'Hast du auch Kaffee bestellt?', 'Kaffee habe ich nicht bestellt.']),
+    o(16, 2, ['Wer hat die Rechnung bezahlt?', 'Tom hat die Rechnung bezahlt.', 'Hat Tom auch das Frühstück bezahlt?', 'Das Frühstück hat Anna bezahlt.']),
+  ],
 };

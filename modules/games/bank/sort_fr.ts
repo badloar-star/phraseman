@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — французский классический курс, уроки 1–12 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — французский классический курс, уроки 1–16 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только пройденные слова. Пропуск в карте пишется `___` (уроки 1–4, 6, 7): корзины
@@ -132,5 +132,45 @@ export const SORT_BANK_FR: Readonly<Record<number, SortDeck>> = {
     ['J’achète ___ farine', 'right', 'farine — la farine, поэтому de la'],
     ['Je bois ___ thé', 'left', 'thé — le thé, поэтому du'],
     ['Tu ajoutes ___ moutarde', 'right', 'moutarde — la moutarde, поэтому de la'],
+  ]),
+  13: d(13, { title: 'noir', example: 'le sac, le pull' }, { title: 'noire', example: 'la veste, la jupe' }, [
+    ['Je cherche un sac ___', 'left', 'le sac — поэтому noir'],
+    ['Je cherche une veste ___', 'right', 'la veste — поэтому noire'],
+    ['Le pull est ___', 'left', 'le pull — поэтому noir'],
+    ['La jupe est ___', 'right', 'la jupe — поэтому noire'],
+    ['Le bonnet est ___', 'left', 'le bonnet — поэтому noir'],
+    ['La robe est ___', 'right', 'la robe — поэтому noire'],
+    ['Le manteau est ___', 'left', 'le manteau — поэтому noir'],
+    ['La chemise est ___', 'right', 'la chemise — поэтому noire'],
+  ]),
+  14: d(14, { title: 'peux', example: 'je peux, tu peux' }, { title: 'peut', example: 'il peut, elle peut' }, [
+    ['Je ___ entrer', 'left', 'С je — peux'],
+    ['Elle ___ venir', 'right', 'С elle — peut'],
+    ['Tu ___ entrer', 'left', 'С tu — peux'],
+    ['Paul ne ___ pas répondre maintenant', 'right', 'Поль один — peut'],
+    ['Je ___ vous aider ?', 'left', 'С je — peux'],
+    ['Il ne ___ pas ouvrir la boîte', 'right', 'С il — peut'],
+    ['Tu ___ fermer la porte ?', 'left', 'С tu — peux'],
+    ['Elle ___ déplacer la réunion', 'right', 'С elle — peut'],
+  ]),
+  15: d(15, { title: 'vais', example: 'je vais' }, { title: 'va', example: 'il va, elle va' }, [
+    ['Je ___ partir', 'left', 'С je — vais'],
+    ['Elle ___ téléphoner', 'right', 'С elle — va'],
+    ['Je ___ réserver une chambre', 'left', 'С je — vais'],
+    ['Léa ___ préparer le déjeuner', 'right', 'Леа одна — va'],
+    ['Je ___ acheter du pain', 'left', 'С je — vais'],
+    ['Paul ___ ouvrir le magasin', 'right', 'Поль один — va'],
+    ['Je ___ ranger le garage', 'left', 'С je — vais'],
+    ['Le film ___ commencer', 'right', 'Фильм один — va'],
+  ]),
+  16: d(16, { title: 'Одному на «ты»', example: 'Entre ! Attends !' }, { title: 'На «вы»', example: 'Entrez ! Attendez !' }, [
+    ['Entre !', 'left', 'Entre — просьба на «ты»'],
+    ['Entrez !', 'right', 'Entrez — просьба на «вы»'],
+    ['Attends !', 'left', 'Attends — просьба на «ты»'],
+    ['Attendez !', 'right', 'Attendez — просьба на «вы»'],
+    ['Reste ici !', 'left', 'Reste — просьба на «ты»'],
+    ['Restez ici !', 'right', 'Restez — просьба на «вы»'],
+    ['Écoute bien !', 'left', 'Écoute — просьба на «ты»'],
+    ['Écoutez bien !', 'right', 'Écoutez — просьба на «вы»'],
   ]),
 };

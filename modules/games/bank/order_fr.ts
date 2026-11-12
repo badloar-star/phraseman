@@ -53,4 +53,20 @@ export const ORDER_BANK_FR: Readonly<Record<number, readonly OrderTask[]>> = {
     o(12, 1, ['Vous buvez du café ?', 'Je ne bois pas de café.', 'Et du thé ?', 'Je bois du thé.']),
     o(12, 2, ['Il reste du riz ?', 'Il ne reste pas de riz.', 'Et des pâtes ?', 'Il reste des pâtes.']),
   ],
+  13: [
+    o(13, 1, ['Le sac est lourd ?', 'Le sac est léger.', 'Et la valise ?', 'La valise est lourde.']),
+    o(13, 2, ['Le pull est vert ?', 'Le pull est gris.', 'Et la jupe ?', 'La jupe est verte.']),
+  ],
+  14: [
+    o(14, 1, ['Tu peux venir ?', 'Je peux venir.', 'Et Paul ?', 'Paul ne peut pas venir.']),
+    o(14, 2, ['Vous voulez rester ?', 'Nous devons partir.', 'Et Paul ?', 'Paul veut rester.']),
+  ],
+  15: [
+    o(15, 1, ['Tu vas travailler demain ?', 'Je vais travailler demain.', 'Et samedi ?', 'Samedi, je vais visiter le marché.']),
+    o(15, 2, ['Vous allez prendre un dessert ?', 'Je vais prendre un café.', 'Et Léa ?', 'Léa va prendre un dessert.']),
+  ],
+  16: [
+    o(16, 1, ['Je ferme la porte ?', 'Ferme la porte.', 'Et la fenêtre ?', 'Ouvre la fenêtre.']),
+    o(16, 2, ['Je prends ma veste ?', 'Prends ta veste.', 'Et le parapluie ?', 'Prends le parapluie.']),
+  ],
 };

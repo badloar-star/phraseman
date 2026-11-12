@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — немецкий классический курс, уроки 1–12 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — немецкий классический курс, уроки 1–16 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только пройденные слова. Пропуск в карте пишется `___` (все уроки, кроме 6):
@@ -132,5 +132,45 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Ich lege den Pass ___ Tasche', 'right', 'Tasche — die Tasche, поэтому in die'],
     ['Wir bringen die Kisten ___ Keller', 'left', 'Keller — der Keller, поэтому in den'],
     ['Ich stecke den Ausweis ___ Jacke', 'right', 'Jacke — die Jacke, поэтому in die'],
+  ]),
+  13: d(13, { title: 'ab', example: 'abholen, abfahren' }, { title: 'mit', example: 'mitbringen' }, [
+    ['Tom holt das Paket ___', 'left', 'Забирает — holt … ab'],
+    ['Ich bringe Brot ___', 'right', 'Беру с собой — bringe … mit'],
+    ['Der Zug fährt um elf ___', 'left', 'Отправляется — fährt … ab'],
+    ['Anna bringt einen Salat ___', 'right', 'Берёт с собой — bringt … mit'],
+    ['Wir holen die Kinder ___', 'left', 'Забираем — holen … ab'],
+    ['Tom bringt seine Freundin ___', 'right', 'Приводит с собой — bringt … mit'],
+    ['Ich räume den Tisch ___', 'left', 'Убираю со стола — räume … ab'],
+    ['Wir bringen unsere Ausweise ___', 'right', 'Берём с собой — bringen … mit'],
+  ]),
+  14: d(14, { title: 'muss', example: 'ich muss, er muss' }, { title: 'müssen', example: 'wir müssen, die Kinder müssen' }, [
+    ['Ich ___ zur Arbeit gehen', 'left', 'С ich — muss'],
+    ['Wir ___ hier aussteigen', 'right', 'С wir — müssen'],
+    ['Tom ___ sein Ticket zeigen', 'left', 'Том один — muss'],
+    ['___ wir die Schuhe ausziehen?', 'right', 'С wir — müssen'],
+    ['Anna ___ das Formular ausfüllen', 'left', 'Анна одна — muss'],
+    ['Wir ___ morgen nicht arbeiten', 'right', 'С wir — müssen'],
+    ['Der Arzt ___ kurz telefonieren', 'left', 'Врач один — muss'],
+    ['Die Kinder ___ heute helfen', 'right', 'Детей несколько — müssen'],
+  ]),
+  15: d(15, { title: 'Одному на «ты»', example: 'Warte! Komm!' }, { title: 'Нескольким на «ты»', example: 'Wartet! Kommt!' }, [
+    ['Warte kurz!', 'left', 'Warte — просьба к одному'],
+    ['Wartet am Eingang!', 'right', 'Wartet — просьба к нескольким'],
+    ['Komm bitte mit!', 'left', 'Komm — просьба к одному'],
+    ['Kommt bitte rein!', 'right', 'Kommt — просьба к нескольким'],
+    ['Bleib bitte sitzen!', 'left', 'Bleib — просьба к одному'],
+    ['Bleibt zusammen!', 'right', 'Bleibt — просьба к нескольким'],
+    ['Nimm den Schlüssel!', 'left', 'Nimm — просьба к одному'],
+    ['Nehmt eure Jacken mit!', 'right', 'Nehmt и eure — просьба к нескольким'],
+  ]),
+  16: d(16, { title: 'habe', example: 'ich habe' }, { title: 'hat', example: 'Anna hat, er hat' }, [
+    ['Ich ___ heute gekocht', 'left', 'С ich — habe'],
+    ['Anna ___ Kaffee gemacht', 'right', 'Анна одна — hat'],
+    ['Ich ___ den Schlüssel gesucht', 'left', 'С ich — habe'],
+    ['Tom ___ den Rucksack gefunden', 'right', 'Том один — hat'],
+    ['Ich ___ dich angerufen', 'left', 'С ich — habe'],
+    ['Er ___ die Jacke angezogen', 'right', 'С er — hat'],
+    ['Ich ___ bar bezahlt', 'left', 'С ich — habe'],
+    ['Anna ___ das Radio repariert', 'right', 'Анна одна — hat'],
   ]),
 };

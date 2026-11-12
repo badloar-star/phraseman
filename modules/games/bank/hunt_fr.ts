@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — французский классический курс, уроки 1–12 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — французский классический курс, уроки 1–16 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: три реплики, после исправления каждая — фраза урока или фраза из пройденных слов;
  * неверное слово ровно одно и оно однозначно неверно; слово-обманка стоит в ДРУГОЙ реплике и само верно.
@@ -60,5 +60,21 @@ export const HUNT_BANK_FR: Readonly<Record<number, readonly HuntTask[]>> = {
   12: [
     h(12, 1, ['Tu prends du pain ?', 'Je prends {de>du} pain.', 'Elle prend *de la soupe.'], 'Хлеб — du pain.'),
     h(12, 2, ['Vous buvez du café ?', 'Je ne bois pas {du>de} café.', 'Il boit *du thé.'], 'После pas — de.'),
+  ],
+  13: [
+    h(13, 1, ['Tu cherches un sac ?', 'Je cherche une veste {noir>noire}.', 'Elle porte *un pantalon bleu.'], 'Куртка — la veste, поэтому noire.'),
+    h(13, 2, ['La valise est lourde ?', 'La valise est {léger>légère}.', 'Le sac est *lourd.'], 'Чемодан — la valise, поэтому légère.'),
+  ],
+  14: [
+    h(14, 1, ['Tu peux entrer ?', 'Je ne {peut>peux} pas entrer.', 'Elle *peut venir.'], 'С je — peux.'),
+    h(14, 2, ['Vous devez payer ?', 'Nous {doit>devons} payer.', 'Tu *dois attendre.'], 'С nous — devons.'),
+  ],
+  15: [
+    h(15, 1, ['Tu vas rester ?', 'Je {va>vais} partir.', 'Elle *va rester.'], 'С je — vais.'),
+    h(15, 2, ['Qu’est-ce que tu vas commander ?', 'Je vais commander {de>du} pain.', 'Léa *va préparer le déjeuner.'], 'Хлеб — du pain.'),
+  ],
+  16: [
+    h(16, 1, ['Je peux entrer ?', 'Entre et ferme {le>la} porte.', 'Pose *le sac ici.'], 'Дверь — la porte.'),
+    h(16, 2, ['Je pose le colis ici ?', 'Posez le colis sur {le>la} balance.', 'Gardez *votre reçu.'], 'Весы — la balance.'),
   ],
 };

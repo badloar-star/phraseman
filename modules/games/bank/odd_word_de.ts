@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — немецкий классический курс, уроки 1–12 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — немецкий классический курс, уроки 1–16 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза только из пройденных слов); с лишним
  * словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить. Поэтому нет заданий вида
@@ -132,5 +132,45 @@ export const ODD_WORD_BANK_DE: Readonly<Record<number, readonly OddWordTask[]>> 
     t(12, 6, 'Die Kinder [läuft] laufen auf den Hof', 'Дети выбегают во двор', 'Детей несколько, значит laufen.'),
     t(12, 7, 'Wir [setzt] setzen uns an den Tisch', 'Мы садимся за стол', 'С wir — setzen.'),
     t(12, 8, 'Tom stellt den Stuhl [an] ans Fenster', 'Том ставит стул к окну', 'К окну — ans Fenster.'),
+  ],
+  13: [
+    t(13, 1, 'Ich [stehst] stehe früh auf', 'Я рано встаю', 'С ich — stehe.'),
+    t(13, 2, 'Du [ruft] rufst mich an', 'Ты звонишь мне', 'С du — rufst.'),
+    t(13, 3, 'Wir [macht] machen die Kiste auf', 'Мы открываем ящик', 'С wir — machen.'),
+    t(13, 4, 'Wir [kauft] kaufen am Samstag ein', 'Мы ходим за покупками в субботу', 'С wir — kaufen.'),
+    t(13, 5, 'Anna bringt [ein] einen Salat mit', 'Анна берёт с собой салат', 'Салат — der Salat, поэтому einen Salat.'),
+    t(13, 6, 'Ich hole [du] dich am Bahnhof ab', 'Я встречаю тебя на вокзале', 'Тебя — dich.'),
+    t(13, 7, 'Wir [steigt] steigen am Markt aus', 'Мы выходим из транспорта у рынка', 'С wir — steigen.'),
+    t(13, 8, 'Tom ruft [sein] seine Mutter an', 'Том звонит своей маме', 'Мама — die Mutter, поэтому seine Mutter.'),
+  ],
+  14: [
+    t(14, 1, 'Ich [kannst] kann hier warten', 'Я могу подождать здесь', 'С ich — kann.'),
+    t(14, 2, 'Wir [kann] können helfen', 'Мы можем помочь', 'С wir — können.'),
+    t(14, 3, 'Du [muss] musst früh aufstehen', 'Тебе надо рано встать', 'С du — musst.'),
+    t(14, 4, 'Ich will Deutsch [lerne] lernen', 'Я хочу учить немецкий', 'После will — lernen.'),
+    t(14, 5, 'Ihr [dürfen] dürft das Fahrrad mitnehmen', 'Вам разрешено взять велосипед с собой', 'С ihr — dürft.'),
+    t(14, 6, 'Tom will zu Fuß [geht] gehen', 'Том хочет пойти пешком', 'После will — gehen.'),
+    t(14, 7, 'Ich möchte [einen] ein Zimmer buchen', 'Я хотел бы забронировать номер', 'Номер — das Zimmer, поэтому ein Zimmer.'),
+    t(14, 8, 'Wir müssen morgen nicht [arbeitet] arbeiten', 'Нам не нужно работать завтра', 'После müssen — arbeiten.'),
+  ],
+  15: [
+    t(15, 1, 'Gib [mich] mir die Karte', 'Дай мне карту', 'Дай мне — gib mir.'),
+    t(15, 2, 'Hilf [mich] mir kurz', 'Помоги мне на минутку', 'Помоги мне — hilf mir.'),
+    t(15, 3, 'Nehmen [ihr] Sie bitte Platz', 'Присаживайтесь, пожалуйста', 'Вежливо — Nehmen Sie.'),
+    t(15, 4, 'Setzt [dich] euch hierhin', 'Садитесь сюда', 'Нескольким — setzt euch.'),
+    t(15, 5, 'Zeigen Sie mir bitte [dein] Ihren Ausweis', 'Покажите мне, пожалуйста, ваше удостоверение', 'Вежливо — Ihren Ausweis.'),
+    t(15, 6, 'Vergiss [dein] deinen Pass nicht', 'Не забудь свой паспорт', 'Паспорт — der Pass, поэтому deinen Pass.'),
+    t(15, 7, 'Sag mir [dein] deinen Namen', 'Скажи мне своё имя', 'Имя — der Name, поэтому deinen Namen.'),
+    t(15, 8, 'Bring bitte [einen] ein Handtuch mit', 'Захвати полотенце, пожалуйста', 'Полотенце — das Handtuch, поэтому ein Handtuch.'),
+  ],
+  16: [
+    t(16, 1, 'Ich [hat] habe heute gekocht', 'Я сегодня готовил', 'С ich — habe.'),
+    t(16, 2, 'Du [habe] hast gestern gekocht', 'Ты вчера готовил', 'С du — hast.'),
+    t(16, 3, 'Wir [hat] haben zusammen gelernt', 'Мы занимались вместе', 'С wir — haben.'),
+    t(16, 4, 'Tom hat Brot [kauft] gekauft', 'Том купил хлеб', 'После hat — gekauft.'),
+    t(16, 5, 'Anna hat [ihr] ihren Namen geschrieben', 'Анна написала своё имя', 'Имя — der Name, поэтому ihren Namen.'),
+    t(16, 6, 'Ich habe [den] die Tür geschlossen', 'Я закрыл дверь', 'Дверь — die Tür.'),
+    t(16, 7, 'Die Kinder [hat] haben gelacht', 'Дети смеялись', 'Детей несколько — haben.'),
+    t(16, 8, 'Wer hat die Rechnung [bezahlen] bezahlt?', 'Кто оплатил счёт?', 'После hat — bezahlt.'),
   ],
 };

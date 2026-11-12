@@ -163,7 +163,8 @@ export default function PrivacySettings() {
     save: (state: 'granted' | 'denied') => Promise<unknown>,
     recordToCloud: () => Promise<unknown>,
   ) => {
-    void hapticTap();
+    // зачем (сторож «одна вибрация на действие», 12.11): с 2b683c3d9 (04.11) вибрацию на тап даёт сам GlassSwitch —
+    // второй hapticTap здесь давал двойную вибрацию на каждое нажатие тумблера согласия.
     setOn(val);
     const seq = (consentSeqRef.current[key] ?? 0) + 1;
     consentSeqRef.current[key] = seq;

@@ -172,6 +172,37 @@ function createHarness(initial = { analytics: 'denied', explain: 'denied', dialo
       recordAiDialogConsentToCloud: cloud('dialog'),
     },
   };
+  // зачем (12.11, 2b683c3d9 от 04.11): тумблеры экрана — общий GlassSwitch. Подключаем НАСТОЯЩИЙ компонент (заглушки — только
+  // его зависимостям), чтобы проверки «одна вибрация на действие», порядок «локально → облако» и геометрия смотрели на то,
+  // что видит человек, а не на копию. Бегунок Reanimated — та же View (анимация — UI-поток, здесь не проверяется).
+  modules['../components/settings/GlassSwitch'] = (() => {
+    const switchModule = { exports: {} };
+    const switchCode = ts.transpileModule(fs.readFileSync('components/settings/GlassSwitch.tsx', 'utf8'), {
+      compilerOptions: { jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, esModuleInterop: true },
+    }).outputText;
+    const switchReact = { ...React, useEffect: () => undefined };
+    const switchModules = {
+      react: { __esModule: true, default: switchReact, ...switchReact },
+      'react-native': { View: 'View' },
+      'react-native-reanimated': {
+        __esModule: true, default: { View: 'View' },
+        Easing: { out: easing => easing, cubic: t => t },
+        useSharedValue: initialValue => ({ value: initialValue }),
+        useAnimatedStyle: factory => factory(),
+        withTiming: target => target,
+      },
+      '../PressableHybrid': modules['../components/PressableHybrid'],
+      '../../hooks/use-haptics': modules['../hooks/use-haptics'],
+      '../../hooks/use_reduce_motion': { useReduceMotion: () => false },
+      './switch_chrome': modules['../components/settings/switch_chrome'],
+      '../SafeLinearGradient': { LinearGradient: 'LinearGradient' },
+    };
+    vm.runInNewContext(switchCode, { module: switchModule, exports: switchModule.exports, require: name => {
+      assert.ok(switchModules[name], `GlassSwitch stub exists for ${name}`);
+      return switchModules[name];
+    } }, { filename: 'GlassSwitch.tsx' });
+    return switchModule.exports;
+  })();
   const module = { exports: {} };
   const code = ts.transpileModule(candidate, {
     compilerOptions: { jsx: ts.JsxEmit.React, module: ts.ModuleKind.CommonJS, esModuleInterop: true },
@@ -362,7 +393,12 @@ test('every rendered row and local switch has the approved geometry, wrapping, g
   const switches = nodes.filter(node => node.type === 'PressableHybrid' && node.props.accessibilityRole === 'switch');
   assert.equal(switches.length, 3);
   for (const control of switches) {
-    assert.equal(flatStyle(control.props.style).minHeight, 48);
+    // зачем (12.11): с общего GlassSwitch (2b683c3d9, «размеры как у SettingsGlassSwitch») тумблер — 36 по высоте плюс
+    // расширение зоны нажатия по 8 сверху и снизу: нажимаемая высота 52 — не меньше прежних 48.
+    assert.equal(flatStyle(control.props.style).minHeight, 36);
+    assert.equal(control.props.hitSlop?.top, 8);
+    assert.equal(control.props.hitSlop?.bottom, 8);
+    assert.ok(flatStyle(control.props.style).minHeight + control.props.hitSlop.top + control.props.hitSlop.bottom >= 48, 'touch target stays >= 48');
     const track = visit(control).find(node => node.type === 'View' && flatStyle(node.props.style).height === 29);
     const thumb = visit(track).find(node => node.type === 'View' && flatStyle(node.props.style).height === 21);
     assert.equal(flatStyle(track.props.style).width, 48);

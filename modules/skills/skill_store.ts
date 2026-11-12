@@ -92,6 +92,8 @@ export function endSkillSession(token: number): void {
 }
 let queue: Promise<unknown> = Promise.resolve();
 const listeners = new Set<(state: SkillsState | null) => void>();
+// зачем (D207, макет sk-story): подъём уровня уходит в ленту историй; слушатель ставит источник историй, хранилище очков о них не знает
+const levelUpListeners = new Set<(levelUps: readonly SkillLevelUp[]) => void>();
 
 // зачем: память модуля принадлежит владельцу — без сброса следующий аккаунт увидел бы чужие уровни.
 onAccountOwnerChanged('skills', () => {
@@ -249,7 +251,9 @@ export function recordSkillAction(event: SkillActionEvent): Promise<SkillRecordR
     publish(next);
     const saved = await persist(next);
     unsaved = !saved;
-    return { skill: award.skill, points: award.points, skipped: award.skipped, levelUps: skillLevelUps(before.totals, totals), saved };
+    const levelUps = skillLevelUps(before.totals, totals);
+    if (levelUps.length > 0) notifyLevelUps(levelUps);
+    return { skill: award.skill, points: award.points, skipped: award.skipped, levelUps, saved };
   });
 }
 
@@ -286,6 +290,25 @@ export function takeSkillSessionBase(): SkillTotals | null {
 /** Мгновенное чтение для первого кадра; null — диск ещё не читали. */
 export function peekSkills(): SkillsState | null {
   return current;
+}
+
+function notifyLevelUps(levelUps: readonly SkillLevelUp[]): void {
+  log('level_up', { ups: levelUps.map((u) => `${u.skill}:${u.from}->${u.to}`), listeners: levelUpListeners.size });
+  for (const listener of levelUpListeners) {
+    try {
+      listener(levelUps);
+    } catch (error) {
+      console.warn(`${LOG} level_up:listener_failed ${errText(error)}`);
+    }
+  }
+}
+
+/** Подъёмы уровня по факту записанных очков (после записи на диск). */
+export function onSkillLevelUps(listener: (levelUps: readonly SkillLevelUp[]) => void): () => void {
+  levelUpListeners.add(listener);
+  return () => {
+    levelUpListeners.delete(listener);
+  };
 }
 
 export function subscribeSkills(listener: (state: SkillsState | null) => void): () => void {

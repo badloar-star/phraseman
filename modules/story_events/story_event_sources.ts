@@ -7,6 +7,8 @@ import { recordWeekRecapStory } from './week_recap_story';
 import { isPremiumThemeId, type PremiumThemeId } from '../../app/premium_theme_catalog';
 import { notePremiumThemeProgress } from '../../app/premium_theme_progress';
 import { isCurrentAccountGeneration, type AccountGenerationToken } from '../../app/account_generation';
+import { onSkillLevelUps } from '../skills/skill_store';
+import type { SkillLevelUp } from '../skills/skill_levels';
 
 type SpireWeekFact = Readonly<{
   weekId: string; lang: string; promoted: boolean; demoted: boolean; prevTier: number; newTier: number; roomRank: number; roomTotal: number;
@@ -121,3 +123,28 @@ export function recordThemeUnlockStory(themeId: PremiumThemeId): Promise<StoryRe
   if (!isPremiumThemeId(themeId)) return undefined;
   return recordStoryEvent('theme_unlock', { themeId });
 }
+
+/**
+ * Навык поднялся на уровень (D207). Макет elevate-skills.js, кадр sk-story: «Живёт в историях, а не всплывает поверх урока.
+ * Нажатие листает на второй кадр» — поэтому два события подряд: кадр «Новый уровень» (up) и кадр «Что дальше» (next).
+ * Кадр рисует факт по текущим очкам (components/skills/SkillLevelStorySlide.tsx); очки начислены независимо от показа.
+ */
+export async function recordSkillLevelStories(levelUps: readonly SkillLevelUp[]): Promise<void> {
+  for (const up of levelUps) {
+    const base = { skill: up.skill, fromLevel: up.from, toLevel: up.to };
+    const first = await recordStoryEvent('skill_level', { ...base, frame: 'up' });
+    // зачем: второй кадр без первого бессмыслен — не записался первый, второй не пишем
+    if (!first.recorded) {
+      DebugLogger.info('[STORY-EVENTS]', `skill_level: ${up.skill} ${up.to} — первый кадр не записан, второй пропущен`);
+      continue;
+    }
+    await recordStoryEvent('skill_level', { ...base, frame: 'next' });
+  }
+}
+
+// зачем: источник историй загружается при старте (его зовут ачивки и серия), отсюда он и слушает подъёмы уровня навыка
+onSkillLevelUps((levelUps) => {
+  recordSkillLevelStories(levelUps).catch((error: unknown) => {
+    DebugLogger.warn('[STORY-EVENTS]', `skill_level: запись не удалась ${error instanceof Error ? error.message : String(error)}`);
+  });
+});

@@ -6,7 +6,7 @@
  * (правило владельца 01.09: празднование не кладётся в постоянную очередь и показывается на своём экране).
  * Уровень на самом деле не вырос (запись устарела, итоги уже другие) — истории нет: функция вернёт null.
  */
-import { SKILL_LEVEL_MAX, skillProgressFromPoints, type SkillTotals } from './skill_levels';
+import { SKILL_LEVEL_MAX, skillLevelCost, skillProgressFromPoints, type SkillTotals } from './skill_levels';
 import { SKILL_IDS, type SkillId } from './skill_points_table';
 import { skillAxisValue } from './skill_visibility';
 
@@ -66,4 +66,29 @@ export function pickSkillLevelUpStory(before: SkillTotals, after: SkillTotals): 
     if (gain !== bestGain) return gain > bestGain ? story : best;
     return story.toLevel > best.toLevel ? story : best;
   });
+}
+
+/** Сколько очков нужно набрать с нуля, чтобы стоять в начале уровня `level`. */
+export function skillPointsAtLevelStart(level: number): number {
+  let sum = 0;
+  for (let l = 0; l < Math.min(Math.max(0, Math.floor(level)), SKILL_LEVEL_MAX); l += 1) sum += skillLevelCost(l);
+  return sum;
+}
+
+/**
+ * Кадр историй «Новый уровень» по записи события и ТЕКУЩИМ очкам (закон празднования: поздравляем фактом).
+ * Текущий уровень ниже записанного (другой аккаунт, битые данные) — null, кадра нет.
+ *   • кадр 'up' — «от и до» по записи: звезда из начала уровня `fromLevel` в начало уровня `toLevel`;
+ *   • кадр 'next' — сегодняшний путь до следующего уровня по текущим очкам; на последнем уровне — null.
+ */
+export function skillLevelStoryFromFact(
+  skill: SkillId, fromLevel: number, toLevel: number, frame: 'up' | 'next', current: SkillTotals,
+): SkillLevelUpStory | null {
+  if (!(toLevel > fromLevel) || skillProgressFromPoints(current[skill]).level < toLevel) return null;
+  const before: SkillTotals = { ...current, [skill]: skillPointsAtLevelStart(fromLevel) };
+  if (frame === 'next') {
+    const story = buildSkillLevelUpStory(skill, before, current);
+    return story && story.next ? story : null;
+  }
+  return buildSkillLevelUpStory(skill, before, { ...current, [skill]: skillPointsAtLevelStart(toLevel) });
 }

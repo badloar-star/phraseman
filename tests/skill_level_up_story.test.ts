@@ -3,7 +3,7 @@
  * уровень не вырос — истории нет (правило владельца: празднование не durable).
  */
 import { EMPTY_SKILL_TOTALS, type SkillTotals } from '../modules/skills/skill_levels';
-import { buildSkillLevelUpStory, pickSkillLevelUpStory } from '../modules/skills/skill_level_up_story';
+import { buildSkillLevelUpStory, pickSkillLevelUpStory, skillLevelStoryFromFact, skillPointsAtLevelStart } from '../modules/skills/skill_level_up_story';
 
 const totals = (patch: Partial<SkillTotals>): SkillTotals => ({ ...EMPTY_SKILL_TOTALS, ...patch });
 
@@ -49,5 +49,27 @@ describe('история «Новый уровень»', () => {
     expect(twoLevels?.skill).toBe('speed');
     const higher = pickSkillLevelUpStory(totals({ listening: 0, grammar: 60 }), totals({ listening: 60, grammar: 130 }));
     expect(higher).toMatchObject({ skill: 'grammar', fromLevel: 1, toLevel: 2 });
+  });
+});
+
+describe('кадр историй по факту текущих очков', () => {
+
+  it('начало уровня: 0, 60, 130, 210', () => {
+    expect([0, 1, 2, 3].map(skillPointsAtLevelStart)).toEqual([0, 60, 130, 210]);
+  });
+
+  it('кадр «Новый уровень» — от и до по записи, даже если навык уже вырос дальше', () => {
+    const story = skillLevelStoryFromFact('vocab', 1, 2, 'up', totals({ vocab: 215 }));
+    expect(story).toMatchObject({ skill: 'vocab', fromLevel: 1, toLevel: 2 });
+  });
+
+  it('кадр «Что дальше» — по сегодняшним очкам', () => {
+    const story = skillLevelStoryFromFact('vocab', 1, 2, 'next', totals({ vocab: 140 }));
+    expect(story?.next).toEqual({ level: 3, ratio: 10 / 80, pointsLeft: 70 });
+  });
+
+  it('текущий уровень ниже записанного — кадра нет', () => {
+    expect(skillLevelStoryFromFact('vocab', 1, 2, 'up', totals({ vocab: 100 }))).toBeNull();
+    expect(skillLevelStoryFromFact('vocab', 2, 2, 'up', totals({ vocab: 500 }))).toBeNull();
   });
 });

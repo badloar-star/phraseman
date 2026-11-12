@@ -1,5 +1,6 @@
 import AnnouncementSlide from './AnnouncementSlide';
 import HomeActivityStorySlide from './HomeActivityStorySlide';
+import SkillLevelStorySlide from '../skills/SkillLevelStorySlide';
 // ═══════════════════════════════════════════════════════════════════════════
 // StorySlides.tsx — четыре вида кадра просмотра сторис (D192): итог недели, рубеж серии, ранг монеты, ачивка.
 //
@@ -191,6 +192,8 @@ function StorySlide(props: StorySlideProps) {
     case 'coin_rank_up': return <CoinRankSlide {...props} />;
     case 'achievement': return <AchievementSlide {...props} />;
     case 'theme_unlock': return <ThemeUnlockSlide {...props} />;
+    // зачем (D207, макет sk-story): навык поднялся на уровень — кадр «Новый уровень» / «Что дальше» по текущим очкам
+    case 'skill_level': return <SkillLevelStorySlide event={props.event} />;
     default: return null;
   }
 }

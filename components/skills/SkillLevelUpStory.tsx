@@ -42,6 +42,8 @@ const FRAME_MS = 400;
 const BAR_DELAY_MS = 300;
 const BAR_MS = 1100;
 const PROGRESS_EASE = Easing.bezier(...GAME_EASE.progress);
+// кадр в просмотрщике: шапку и поля даёт просмотрщик историй
+const EMBEDDED_INSETS = { paddingTop: 0, paddingBottom: 0, paddingHorizontal: 0 };
 
 type Copy = Readonly<{ ru: string; uk: string; es: string; en: string }>;
 const T = {
@@ -108,9 +110,14 @@ type Props = Readonly<{
   /** Правый край шапки (в макете — плашка монет); экран её сам не читает. */
   topRight?: React.ReactNode;
   testID?: string;
+  /**
+   * Кадр внутри просмотрщика историй (макет sk-story: «живёт в историях»): один кадр без своей шапки, делений и кнопок —
+   * листает, закрывает и делится просмотрщик. 'up' — «Новый уровень», 'next' — «Что дальше».
+   */
+  embedded?: 'up' | 'next';
 }>;
 
-function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-level-up-story' }: Props) {
+function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-level-up-story', embedded }: Props) {
   const p = useV2Palette();
   const glass = useShadowGlass();
   const { lang } = useLang();
@@ -118,12 +125,13 @@ function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-
   const insets = useStableSafeAreaInsets();
   const reduceMotion = useReduceMotion();
   const hasNext = story.next !== null;
-  const [slide, setSlide] = useState(0);
+  const embeddedNext = embedded === 'next';
+  const [slide, setSlide] = useState(embeddedNext ? 1 : 0);
   const [go, setGo] = useState(reduceMotion);
   const [level, setLevel] = useState(reduceMotion ? story.toLevel : story.fromLevel);
   const [bumpAt, setBumpAt] = useState(0);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const frame = useSharedValue(0);
+  const frame = useSharedValue(embeddedNext ? 1 : 0);
   const bar = useSharedValue(0);
 
   const name = triLang(L, SKILL_NAME[story.skill]);
@@ -144,13 +152,19 @@ function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-
     };
   }, [hasNext, reduceMotion, story.fromLevel, story.skill, story.toLevel]);
 
+  // зачем: кадр «Что дальше» в историях открывается сразу вторым — полоска растёт, как после листания в макете
+  useEffect(() => {
+    if (!embeddedNext) return;
+    bar.value = reduceMotion ? story.next?.ratio ?? 0 : withDelay(BAR_DELAY_MS, withTiming(story.next?.ratio ?? 0, { duration: BAR_MS, easing: PROGRESS_EASE }));
+  }, [bar, embeddedNext, reduceMotion, story.next]);
+
   const showNext = useCallback(() => {
-    if (slide !== 0 || !hasNext) return;
+    if (embedded || slide !== 0 || !hasNext) return;
     setSlide(1);
     frame.value = withTiming(1, { duration: reduceMotion ? 0 : FRAME_MS });
     bar.value = reduceMotion ? story.next?.ratio ?? 0 : withDelay(BAR_DELAY_MS, withTiming(story.next?.ratio ?? 0, { duration: BAR_MS, easing: PROGRESS_EASE }));
     console.log(`${LOG} next_frame ${JSON.stringify({ skill: story.skill })}`); // guard-ok: переход ко второму кадру
-  }, [bar, frame, hasNext, reduceMotion, slide, story.next, story.skill]);
+  }, [bar, embedded, frame, hasNext, reduceMotion, slide, story.next, story.skill]);
 
   const onShare = useCallback((event: GestureResponderEvent) => {
     event.stopPropagation();
@@ -173,13 +187,14 @@ function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-
     fill: colorWithAlpha(p.accent, 0.34), stroke: p.text,
     spark: p.text, ring: colorWithAlpha(p.text, 0.5), label: p.textSecondary, labelOn: p.text,
   }), [p]);
-  const frameInsets = { paddingTop: insets.top + 60, paddingBottom: insets.bottom + 40 };
+  const frameInsets = embedded ? EMBEDDED_INSETS : { paddingTop: insets.top + 60, paddingBottom: insets.bottom + 40 };
 
   return (
-    <View testID={testID} style={[s.root, { paddingTop: insets.top + 14 }]}>
+    <View testID={testID} style={[s.root, embedded ? s.rootEmbedded : { paddingTop: insets.top + 14 }]}>
       {/* кадры лежат под шапкой: нажатие по экрану ведёт дальше, кнопки шапки — сверху */}
-      <Reanimated.View pointerEvents={slide === 0 ? 'auto' : 'none'} style={[s.frame, frameInsets, firstStyle]}>
-        <Pressable style={s.frameTap} onPress={showNext} accessibilityRole={hasNext ? 'button' : undefined}>
+      {embeddedNext ? null : (
+      <Reanimated.View pointerEvents={slide === 0 && !embedded ? 'auto' : 'none'} style={[s.frame, frameInsets, firstStyle]}>
+        <Pressable style={s.frameTap} onPress={showNext} disabled={!!embedded} accessibilityRole={hasNext && !embedded ? 'button' : undefined}>
           <Text style={[s.over, { color: p.textSecondary }]}>{triLang(L, T.over)}</Text>
           <Text style={[s.big, { color: p.text }]}>{name}</Text>
           <GameBumpText
@@ -192,13 +207,16 @@ function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-
           </View>
           <Text style={[s.sub, s.subCenter, { color: p.textSecondary }]}>{triLang(L, T.longer).replace('{name}', name)}</Text>
           <View style={s.spacer} />
-          <Pressable testID={`${testID}-share`} onPress={onShare} style={[s.cta, { backgroundColor: p.cta }]} accessibilityRole="button">
-            <Text style={[s.ctaText, { color: p.ctaText }]}>{triLang(L, T.share)}</Text>
-          </Pressable>
+          {embedded ? null : (
+            <Pressable testID={`${testID}-share`} onPress={onShare} style={[s.cta, { backgroundColor: p.cta }]} accessibilityRole="button">
+              <Text style={[s.ctaText, { color: p.ctaText }]}>{triLang(L, T.share)}</Text>
+            </Pressable>
+          )}
         </Pressable>
       </Reanimated.View>
+      )}
 
-      {hasNext && story.next ? (
+      {hasNext && story.next && embedded !== 'up' ? (
         <Reanimated.View pointerEvents={slide === 1 ? 'auto' : 'none'} style={[s.frame, frameInsets, secondStyle]}>
           <Text style={[s.over, { color: p.textSecondary }]}>{triLang(L, T.next)}</Text>
           <Text style={[s.big, { color: p.text }]}>{triLang(L, T.toLevel).replace('{n}', String(story.next.level))}</Text>
@@ -219,7 +237,7 @@ function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-
             <Text style={[s.sub, s.subSmallTop, { color: p.textSecondary }]}>{sourceTail}</Text>
           </View>
           <View style={s.spacer} />
-          {canTrain ? (
+          {canTrain && !embedded ? (
             <Pressable testID={`${testID}-train`} onPress={() => { void hapticTap(); onTrain?.(); }} style={[s.cta, { backgroundColor: p.cta }]} accessibilityRole="button">{/* guard-ok: кнопка 54 pt во всю ширину с текстом */}
               <Ionicons name="play" size={18} color={p.ctaText} />
               <Text style={[s.ctaText, { color: p.ctaText }]}>{triLang(L, T.train).replace('{name}', name.toLocaleLowerCase(L))}</Text>
@@ -228,6 +246,7 @@ function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-
         </Reanimated.View>
       ) : null}
 
+      {embedded ? null : (<>
       <View style={s.segs} pointerEvents="none">
         <Segment state={slide === 0 ? 'now' : 'done'} track={colorWithAlpha(p.text, 0.2)} fill={p.text} />
         {hasNext ? <Segment state={slide === 1 ? 'now' : 'later'} track={colorWithAlpha(p.text, 0.2)} fill={p.text} /> : null}
@@ -239,6 +258,7 @@ function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-
         <View style={s.spacer} />
         {topRight}
       </View>
+      </>)}
     </View>
   );
 }
@@ -246,6 +266,8 @@ function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-
 const s = StyleSheet.create({
   // макет `.lay`: поля 58 (от верха телефона, считая строку состояния ≈ 44) · 20 · 34
   root: { flex: 1, paddingHorizontal: 20 },
+  // в просмотрщике историй поля уже даёт область кадра (28 по бокам)
+  rootEmbedded: { paddingHorizontal: 0, alignSelf: 'stretch' },
   // `.segs`: деления по 4, шаг 6
   segs: { flexDirection: 'row', gap: 6 },
   seg: { flex: 1, height: 4, borderRadius: 2, overflow: 'hidden' },

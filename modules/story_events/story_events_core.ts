@@ -11,7 +11,7 @@
 export const STORY_EVENT_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 export const STORY_EVENT_LIMIT = 20;
 
-export type StoryEventType = 'spire_week' | 'streak_milestone' | 'coin_rank_up' | 'achievement' | 'theme_unlock' | 'announcement' | 'contest_winner' | 'referral_ladder' | 'home_activity' | 'instead' | 'dialog_done' | 'week_recap' | 'plus_offer'; // Projection and Home activity stories stay out of the persistent journal.
+export type StoryEventType = 'spire_week' | 'streak_milestone' | 'coin_rank_up' | 'achievement' | 'theme_unlock' | 'announcement' | 'contest_winner' | 'referral_ladder' | 'home_activity' | 'instead' | 'dialog_done' | 'week_recap' | 'plus_offer' | 'skill_level'; // Projection and Home activity stories stay out of the persistent journal.
 
 export type StoryEventPayload = Readonly<Record<string, string | number | boolean>>;
 
@@ -38,6 +38,8 @@ const STORY_TYPES: ReadonlySet<string> = new Set<StoryEventType>([
   'dialog_done',
   // week_recap — «Твоя неделя» участника Пика: активность с телефона + монеты недели Пика (владелец 11.11: «Монеты Пика»)
   'week_recap',
+  // skill_level — навык поднялся на уровень (D207, макет elevate-skills.js sk-story: «живёт в историях, а не всплывает поверх урока»)
+  'skill_level',
 ]);
 
 function part(payload: StoryEventPayload, name: string): string {
@@ -61,6 +63,13 @@ export function storyEventKey(type: StoryEventType, payload: StoryEventPayload):
     // День в ключе: тот же сценарий, пройденный в другой день, — новый факт; повтор в тот же день второй истории не даёт.
     // Понедельник недели в ключе: одна история на неделю, сколько бы раз ни пришёл итог Пика.
     case 'week_recap': { const start = part(payload, 'startDayKey'); return start ? `week_recap:${start}` : ''; }
+    // зачем: уровни только растут — один уровень навыка даёт одну историю; кадр up/next — два кадра макета подряд
+    case 'skill_level': {
+      const skill = part(payload, 'skill');
+      const toLevel = part(payload, 'toLevel');
+      const frame = part(payload, 'frame');
+      return skill && toLevel && frame ? `skill_level:${skill}:${toLevel}:${frame}` : '';
+    }
     case 'dialog_done': {
       const scenarioId = part(payload, 'scenarioId');
       const dayKey = part(payload, 'dayKey');

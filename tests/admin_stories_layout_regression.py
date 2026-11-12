@@ -1,4 +1,4 @@
-"""Offline responsive checks for the real Stories builder and its 36-card gallery."""
+"""Offline responsive checks for the real Stories builder and its 35-card gallery."""
 import json, os, tempfile
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -51,7 +51,7 @@ with sync_playwright() as pw:
   assert d['preview']['viewport']==412 and d['preview']['phoneWidth']==390,d
   assert 'одинтекствовсех36шаблонах' in ''.join(d['preview']['text'].split()),d
   assert not d['overflow'] and not d['legacyVisible'] and not d['gallery']['overflow'],d
-  assert d['gallery']['cards']==36 and d['gallery']['visible']==36,d
+  assert d['gallery']['cards']==35 and d['gallery']['visible']==35,d
   assert d['gallery']['contentHeight']<=d['galleryHeight']+2,d
   assert d['gallery']['animations']==0 and not d['errors'],d
   if width in [2048,1662,390]:p.screenshot(path=str(OUT/f'stories-builder-{width}.png'),full_page=True)

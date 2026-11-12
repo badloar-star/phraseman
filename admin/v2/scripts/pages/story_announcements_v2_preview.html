@@ -981,11 +981,14 @@ body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
   if (!document.body.classList.contains('ann-gallery-mode')) return;
   const engine = window.ST;
   const support = engine?.gallerySupport;
-  if (!support?.Player || engine.TPL.length !== 36) throw new Error('Stories gallery requires all 36 animated templates.');
+  // зачем (владелец 11.11, «Убрать» шаблон опроса): галерея админки показывает 35 шаблонов — все кадры макета, кроме «Опроса».
+  // Сам макет (плеер и таблица выше) по-прежнему держит все 36 кадров.
+  const ADMIN_TEMPLATES = (engine?.TPL || []).filter((template) => template.id !== 'poll');
+  if (!support?.Player || engine.TPL.length !== 36 || ADMIN_TEMPLATES.length !== 35) throw new Error('Stories gallery requires all 35 animated admin templates.');
   const origin = location.origin;
   const targetOrigin = origin === 'null' ? '*' : origin;
   const send = (message) => { if (window.parent !== window) window.parent.postMessage(message, targetOrigin); };
-  const root = document.createElement('div'); root.id = 'ann-gallery'; root.setAttribute('role', 'group'); root.setAttribute('aria-label', 'Все 36 шаблонов историй');
+  const root = document.createElement('div'); root.id = 'ann-gallery'; root.setAttribute('role', 'group'); root.setAttribute('aria-label', 'Все 35 шаблонов историй');
   document.getElementById('preview').replaceChildren(root);
   const cards = [];
   let enabled = false, selected = 'manifest', lastSignature = '', lastMessage = null, lastHeight = 0, layoutFrame = 0, renderFrame = 0, pending = null;
@@ -1022,7 +1025,7 @@ body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
   };
   const scheduleLayout = () => { if (!layoutFrame) layoutFrame = requestAnimationFrame(layout); };
   const shell = () => support.sbHtml('9:41') + '<div class="hi"></div>';
-  for (const [index, template] of engine.TPL.entries()) {
+  for (const [index, template] of ADMIN_TEMPLATES.entries()) {
     const button = document.createElement('button'); button.type = 'button'; button.className = 'ann-gallery-card'; button.dataset.design = template.id;
     button.setAttribute('aria-label', 'Выбрать шаблон «' + template.name + '»'); button.title = 'Выбрать «' + template.name + '» для этой истории. Текст сохранится.';
     const thumb = document.createElement('span'); thumb.className = 'ann-gallery-thumb'; thumb.setAttribute('aria-hidden', 'true');
@@ -1046,7 +1049,7 @@ body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
   const render = (message) => {
     lastMessage = message;
     enabled = message.enabled !== false;
-    if (engine.TPL.some((template) => template.id === message.selectedDesign)) selected = message.selectedDesign;
+    if (ADMIN_TEMPLATES.some((template) => template.id === message.selectedDesign)) selected = message.selectedDesign;
     updateSelection();
     const theme = engine.THEMES[message.theme] ? message.theme : 'ink';
     const ap = message.ap === 'light' ? 'light' : 'dark';
@@ -1054,7 +1057,7 @@ body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
     const signature = JSON.stringify([content, theme, ap]);
     if (signature !== lastSignature) {
       // Clear stale content immediately, including on account changes. While the
-      // picker is closed, wait until opening before rebuilding 36 animated scenes.
+      // picker is closed, wait until opening before rebuilding 35 animated scenes.
       for (const card of cards) destroyPlayer(card);
       lastSignature = '';
       if (enabled) {
@@ -1091,7 +1094,7 @@ body.ann-gallery-mode .st-page { padding: 0; max-width: none; }
   });
   window.addEventListener('pageshow', () => { if (lastMessage) render(lastMessage); });
   render({ content: { title: 'Ваш заголовок', badge: 'Новая история', blocks: [{ text: 'Текст истории', size: 16, style: 'normal' }] }, theme: 'ink', ap: 'dark', selectedDesign: selected, enabled: false });
-  send({ channel: 'pm-ann-gallery-ready', count: cards.length, designs: engine.TPL.map(({ id, name, group }) => ({ id, name, group })), themes: engine.IDS.map((id) => ({ id, name: engine.THEMES[id].name, gradient: !!engine.THEMES[id].gradient })) });
+  send({ channel: 'pm-ann-gallery-ready', count: cards.length, designs: ADMIN_TEMPLATES.map(({ id, name, group }) => ({ id, name, group })), themes: engine.IDS.map((id) => ({ id, name: engine.THEMES[id].name, gradient: !!engine.THEMES[id].gradient })) });
 })();
 </script>
 

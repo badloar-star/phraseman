@@ -77,7 +77,7 @@ def reach_by_wheel(page, target, x):
                  else -min(3000, max(120, clip['top'] - box['y'] - box['height'] + 100)))
         wheel(page, x, min(clip['bottom'], clip['viewportHeight']) - 40, delta)
         steps += 1
-        assert steps <= 35, 'A real wheel gesture must reach template 36'
+        assert steps <= 34, 'A real wheel gesture must reach template 35'
     return steps
 
 
@@ -130,8 +130,8 @@ def gallery_acceptance(h, width, expected_columns):
       .filter(c=>!['number','thanks'].includes(c.dataset.design))
       .every(c=>c.innerText.replace(/\s+/g,' ').toLowerCase().includes(title.toLowerCase()))''', arg=title)
     cards = frame.locator('.ann-gallery-card')
-    assert cards.count() == 36
-    assert len(set(cards.evaluate_all('(cards)=>cards.map(c=>c.dataset.design)'))) == 36
+    assert cards.count() == 35
+    assert len(set(cards.evaluate_all('(cards)=>cards.map(c=>c.dataset.design)'))) == 35
     assert body in frame.locator('[data-design="manifest"]').inner_text()
     frame.wait_for_function('[...document.images].every(img=>img.complete && img.naturalWidth>0)')
     p.wait_for_timeout(100)
@@ -159,9 +159,9 @@ def gallery_acceptance(h, width, expected_columns):
     iframe_box = p.locator('iframe.ann2-gallery-frame').bounding_box()
     gap_x = ((box1['x'] + box1['width'] + box2['x']) / 2 if expected_columns >= 2 else iframe_box['x'] + 1)
     gap_delta = wheel(p, gap_x, (clip['top'] + clip['bottom']) / 2, 400)
-    last = cards.nth(35)
+    last = cards.nth(34)
     steps = reach_by_wheel(p, last, phone_point[0])
-    assert visible_point(p, last), 'Template 36 must be visible before the mouse click'
+    assert visible_point(p, last), 'Template 35 must be visible before the mouse click'
     p.screenshot(path=str(OUT / f'stories-picker-last-{width}.png'))
     p.mouse.click(*visible_point(p, last))
     closed(p)
@@ -224,13 +224,13 @@ def fallback(h):
     opener(p).click()
     p.locator(DIALOG).wait_for(state='visible')
     choices = p.locator('.ann2-template-fallback button[data-design]')
-    assert choices.count() == 36 and choices.last.is_visible()
+    assert choices.count() == 35 and choices.last.is_visible()
     p.locator('.ann2-template-fallback button[data-design="quote"]').click()
     closed(p)
     assert p.locator('.ann2-selected-label').inner_text() == 'Цитата'
     assert p.get_by_role('textbox', name='Заголовок', exact=True).input_value() == 'Текст без загрузившихся макетов'
     assert opener(p).evaluate('(el)=>el===document.activeElement')
-    return {'fallbackChoices': 36, 'chosen': 'quote'}
+    return {'fallbackChoices': 35, 'chosen': 'quote'}
 
 
 def list_timeout(h):

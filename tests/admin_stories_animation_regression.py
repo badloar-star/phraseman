@@ -1,4 +1,4 @@
-"""Offline acceptance for motion in all 36 Stories templates.
+"""Offline acceptance for motion in all 35 admin Stories templates.
 
 The fixture serves the real renderer and assets locally. These checks observe
 actual CSS effects and text over time; no production APIs or writes are used.
@@ -100,7 +100,7 @@ def all_templates_move(h):
       .filter(c=>!['number','thanks'].includes(c.dataset.design))
       .every(c=>c.innerText.replace(/\s+/g,' ').toLowerCase().includes(title.toLowerCase()))''', arg=title)
     designs = frame.locator('.ann-gallery-card').evaluate_all('(cards)=>cards.map(c=>c.dataset.design)')
-    assert len(designs) == len(set(designs)) == 36
+    assert len(designs) == len(set(designs)) == 35
     assert frame.locator('iframe').count() == 0
     geo = geometry(frame)
     assert geo['columns'] == 3
@@ -272,10 +272,10 @@ def pending_content_survives_restore(h):
       dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true}));
       dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true}));
     }""")
-    assert frame.locator('.ann-gallery-card').count() == 36
+    assert frame.locator('.ann-gallery-card').count() == 35
     assert frame.locator('.ann-gallery-card .story').count() == 0
     assert old_text not in frame.locator('#ann-gallery').inner_text()
-    return {'pendingParentClearPreserved': True, 'staleContentRemoved': True, 'templateShells': 36}
+    return {'pendingParentClearPreserved': True, 'staleContentRemoved': True, 'templateShells': 35}
 
 
 def reduced_motion(h):
@@ -286,11 +286,11 @@ def reduced_motion(h):
     p.get_by_role('textbox', name='Заголовок', exact=True).fill('1000')
     frame = open_picker(h)
     frame.evaluate('async()=>{await document.fonts.ready}')
-    assert frame.locator('.ann-gallery-card').count() == 36
+    assert frame.locator('.ann-gallery-card').count() == 35
     frame.wait_for_function("document.querySelector('[data-design=thanks] [data-cnt]').textContent.replace(/\\D/g,'')==='1000'")
     assert frame.evaluate("document.getAnimations().filter(a=>a.playState==='running').length") == 0
     assert h.preview().evaluate("document.getAnimations().filter(a=>a.playState==='running').length") == 0
-    return {'respectsReducedMotion': True, 'finalCounter': '1000', 'templates': 36}
+    return {'respectsReducedMotion': True, 'finalCounter': '1000', 'templates': 35}
 
 
 def main():
@@ -298,7 +298,7 @@ def main():
     with sync_playwright() as pw:
         browser = chromium(pw)
         for name, fn in [
-            ('all 36 templates visibly animate without hover', all_templates_move),
+            ('all 35 templates visibly animate without hover', all_templates_move),
             ('counter animates and template repeats automatically', counter_and_repeat),
             ('offscreen and closed templates pause while selected preview animates', lifecycle_and_selection),
             ('main preview animates by default and route pauses both renderers', main_default_and_hidden),

@@ -1,8 +1,8 @@
-/* Stories workspace: publication list and a live 36-template constructor.
+/* Stories workspace: publication list and a live 35-template constructor.
    Uses existing callable, revision and account boundaries; no automatic writes. */
 (() => { 'use strict';
 const LOG = '[ANN2-ADMIN]';
-const STORIES_BUILD = '2026.10.30.8';
+const STORIES_BUILD = '2026.11.12.1';
 const PREVIEW_URL = 'scripts/pages/story_announcements_v2_preview.html?preview=1&build=' + STORIES_BUILD;
 const SIZES = [14, 16, 20]; const STYLES = [['normal', 'Обычный'], ['accent', 'Акцент'], ['quote', 'Цитата']];
 const GROUPS = { text: 'Текст', time: 'Срок', sections: 'Разделы', promo: 'Акции', community: 'Сообщество', holiday: 'Праздник', service: 'Служебные' };
@@ -12,11 +12,12 @@ const ARTS = ['lessons', 'dialogs', 'cards', 'spire_tile', 'phrase_of_day', 'tod
 const CTA_BY_DESIGN = { plus: 'open_plus', invite: 'share_invite', theme: 'use_theme' };
 const LIMITS = { badge: 35, title: 110, block: 260 };
 const DURATIONS = [5000, 8000, 12000, 15000];
-/** зачем (Ревизор 28.10): опрос нельзя публиковать, пока серверная функция storyPollVote не выложена — иначе люди увидят опрос без голосования. Включить после выкладки (Моменты). */
-const POLL_PUBLISH_ENABLED = false;
+/** зачем (владелец 11.11, «Убрать» шаблон опроса; опросы убраны из админки тем же днём): «Опрос» больше не предлагается —
+   его и так нельзя было опубликовать (голосование на сервере не выложено). Старые черновики-опросы скрыты из списка,
+   данные в базе не тронуты. Шаблонов в редакторе 35; кадр опроса остаётся только на странице-макете. */
 
 // Keep the editor usable when the independent preview frame fails to load.
-const FALLBACK_DESIGNS = [{"id":"manifest","name":"Манифест","group":"Текст"},{"id":"editorial","name":"Редакция","group":"Текст"},{"id":"quote","name":"Цитата","group":"Текст"},{"id":"list3","name":"Три пункта","group":"Текст"},{"id":"qa","name":"Вопрос и ответ","group":"Текст"},{"id":"number","name":"Большая цифра","group":"Текст"},{"id":"countdown","name":"Обратный отсчёт","group":"Срок"},{"id":"date","name":"Дата","group":"Срок"},{"id":"schedule","name":"Расписание","group":"Срок"},{"id":"soon","name":"Скоро","group":"Срок"},{"id":"today24","name":"Только сегодня","group":"Срок"},{"id":"lessons","name":"Новые уроки","group":"Разделы"},{"id":"dialogs","name":"Диалоги","group":"Разделы"},{"id":"cards","name":"Карточки","group":"Разделы"},{"id":"peak","name":"Пик","group":"Разделы"},{"id":"duels","name":"Дуэли","group":"Разделы"},{"id":"phrase","name":"Фраза дня","group":"Разделы"},{"id":"mistakes","name":"Ошибки","group":"Разделы"},{"id":"video","name":"Видео","group":"Разделы"},{"id":"exam","name":"Экзамен","group":"Разделы"},{"id":"ai","name":"Разговор с ИИ","group":"Разделы"},{"id":"plus","name":"Plus","group":"Акции"},{"id":"contest","name":"Набор месяца","group":"Акции"},{"id":"challenge","name":"Челлендж недели","group":"Акции"},{"id":"invite","name":"Пригласи друзей","group":"Акции"},{"id":"thanks","name":"Спасибо","group":"Сообщество"},{"id":"poll","name":"Опрос","group":"Сообщество"},{"id":"author","name":"Автор недели","group":"Сообщество"},{"id":"newyear","name":"Новый год","group":"Праздник"},{"id":"holiday","name":"Праздник","group":"Праздник"},{"id":"birthday","name":"День рождения","group":"Праздник"},{"id":"theme","name":"Новая тема","group":"Праздник"},{"id":"version","name":"Обновление","group":"Праздник"},{"id":"maintenance","name":"Техработы","group":"Служебные"},{"id":"feedback","name":"Мы прочитали","group":"Служебные"},{"id":"tip","name":"Совет","group":"Служебные"}];
+const FALLBACK_DESIGNS = [{"id":"manifest","name":"Манифест","group":"Текст"},{"id":"editorial","name":"Редакция","group":"Текст"},{"id":"quote","name":"Цитата","group":"Текст"},{"id":"list3","name":"Три пункта","group":"Текст"},{"id":"qa","name":"Вопрос и ответ","group":"Текст"},{"id":"number","name":"Большая цифра","group":"Текст"},{"id":"countdown","name":"Обратный отсчёт","group":"Срок"},{"id":"date","name":"Дата","group":"Срок"},{"id":"schedule","name":"Расписание","group":"Срок"},{"id":"soon","name":"Скоро","group":"Срок"},{"id":"today24","name":"Только сегодня","group":"Срок"},{"id":"lessons","name":"Новые уроки","group":"Разделы"},{"id":"dialogs","name":"Диалоги","group":"Разделы"},{"id":"cards","name":"Карточки","group":"Разделы"},{"id":"peak","name":"Пик","group":"Разделы"},{"id":"duels","name":"Дуэли","group":"Разделы"},{"id":"phrase","name":"Фраза дня","group":"Разделы"},{"id":"mistakes","name":"Ошибки","group":"Разделы"},{"id":"video","name":"Видео","group":"Разделы"},{"id":"exam","name":"Экзамен","group":"Разделы"},{"id":"ai","name":"Разговор с ИИ","group":"Разделы"},{"id":"plus","name":"Plus","group":"Акции"},{"id":"contest","name":"Набор месяца","group":"Акции"},{"id":"challenge","name":"Челлендж недели","group":"Акции"},{"id":"invite","name":"Пригласи друзей","group":"Акции"},{"id":"thanks","name":"Спасибо","group":"Сообщество"},{"id":"author","name":"Автор недели","group":"Сообщество"},{"id":"newyear","name":"Новый год","group":"Праздник"},{"id":"holiday","name":"Праздник","group":"Праздник"},{"id":"birthday","name":"День рождения","group":"Праздник"},{"id":"theme","name":"Новая тема","group":"Праздник"},{"id":"version","name":"Обновление","group":"Праздник"},{"id":"maintenance","name":"Техработы","group":"Служебные"},{"id":"feedback","name":"Мы прочитали","group":"Служебные"},{"id":"tip","name":"Совет","group":"Служебные"}];
 const GALLERY_URL = 'scripts/pages/story_announcements_v2_preview.html?gallery=1&build=' + STORIES_BUILD;
 const S = { designs: FALLBACK_DESIGNS, themes: [], rows: [], loaded: false, loading: null, listError: false, busy: false,
   current: null, dirty: false, clean: '', message: '', error: false, scope: null, epoch: 0,
@@ -108,14 +109,12 @@ function dateLabel(ms) {
 }
 function problems(f, action) {
   const out = [];
-  if (!knownDesign(f.design)) out.push('Выберите один из 36 шаблонов.');
+  if (!knownDesign(f.design)) out.push('Выберите один из 35 шаблонов.');
   if (!f.title.trim() && !f.badge.trim() && !f.blocks.some(b => b.text.trim())) out.push('Введите заголовок или текст истории.');
   if (f.title.length > LIMITS.title) out.push('Заголовок: максимум 110 знаков.');
   if (f.badge.length > LIMITS.badge) out.push('Метка: максимум 35 знаков.');
   if (f.blocks.some(b => b.text.length > LIMITS.block)) out.push('В одном текстовом поле должно быть не больше 260 знаков.');
   if (f.blocks.length > 4) out.push('Можно добавить до четырёх текстовых полей.');
-  if (f.design === 'poll' && f.blocks.filter(b => b.text.trim()).length < 2) out.push('Добавьте хотя бы два варианта ответа.');
-  if (action === 'publish' && f.design === 'poll' && !POLL_PUBLISH_ENABLED) out.push('Опрос можно сохранить в черновик. Публикация станет доступна после подключения голосования.');
   if (f.design === 'date' && (!Number.isFinite(f.eventAtMs) || !f.eventAtMs)) out.push('Укажите дату события.');
   if (!Number.isInteger(f.lifetime) || f.lifetime < 1 || f.lifetime > 365) out.push('Срок показа: целое число от 1 до 365.');
   return out;
@@ -182,7 +181,7 @@ async function load() {
       const result = await fn({}); if (!current()) return false;
       const items = result?.data?.items ?? result?.items;
       if (!Array.isArray(items)) throw Error('Не удалось прочитать список историй. Попробуйте обновить его.');
-      S.rows = items.filter(row => row && typeof row.id === 'string').map(row => ({...row, form: fromRow(row)}));
+      S.rows = items.filter(row => row && typeof row.id === 'string' && (row.content ?? row).design !== 'poll').map(row => ({...row, form: fromRow(row)}));
       S.loaded = true;
       if (!S.current) { S.current = blank(); markClean(); renderForm(); }
       if (!S.busy) say('');
@@ -359,9 +358,9 @@ function renderForm() {
   formEl.append(field('Заголовок', textInput(f.title, LIMITS.title, value => { f.title = value; }, {disabled, placeholder: 'Что хотите рассказать?'}, true), LIMITS.title));
   formEl.append(field('Метка', textInput(f.badge, LIMITS.badge, value => { f.badge = value; }, {disabled, placeholder: 'Например, Обновление'}), LIMITS.badge));
   f.blocks.forEach((block, index) => {
-    const title = f.design === 'poll' ? 'Вариант ответа ' + (index + 1) : index === 0 ? 'Текст истории' : 'Текст ' + (index + 1);
+    const title = index === 0 ? 'Текст истории' : 'Текст ' + (index + 1);
     const wrap = h('div', {class: 'ann2-text-group'}, field(title, textInput(block.text, LIMITS.block,
-      value => { block.text = value; }, {disabled, rows: 3, placeholder: f.design === 'poll' ? 'Текст ответа' : 'Введите текст и смотрите макеты'}, true), LIMITS.block));
+      value => { block.text = value; }, {disabled, rows: 3, placeholder: 'Введите текст и смотрите макеты'}, true), LIMITS.block));
     const styles = details('Оформление текста',
       field('Размер текста ' + (index + 1), select(SIZES.map(n => [String(n), n + ' px']), block.size, value => {block.size = Number(value); changed();}, {disabled})),
       field('Стиль текста ' + (index + 1), select(STYLES, block.style, value => {block.style = value; changed();}, {disabled})),
@@ -370,7 +369,7 @@ function renderForm() {
       }, {disabled, class: 'ann2-btn ann2-btn--quiet'}) : null);
     wrap.append(styles); formEl.append(wrap);
   });
-  if (f.blocks.length < 4) formEl.append(button(f.design === 'poll' ? '+ Добавить вариант' : '+ Добавить текст',
+  if (f.blocks.length < 4) formEl.append(button('+ Добавить текст',
     'Добавляет ещё одно текстовое поле. Всего можно четыре.', () => {
       if (!editable()) return; f.blocks.push({text: '', size: 16, style: 'normal'}); changed(); renderForm();
     }, {disabled, class: 'ann2-btn ann2-btn--quiet'}));
@@ -423,8 +422,7 @@ function renderActions() {
       button(stateOf(f) === 'expired' ? 'Вернуть в черновики' : 'Снять с показа', 'Возвращает эту историю в черновики. Требуется подтверждение.', () => command('stop'), {disabled: S.busy}));
   } else {
     actionBar.append(button('Сохранить черновик', 'Сохраняет текст и выбранный макет. Пользователи пока его не увидят.', () => command('save'), {disabled: !editable()}),
-      button('Опубликовать', 'Покажет эту историю всем пользователям после подтверждения.', () => command('publish'), {class: 'ann2-btn ann2-btn--primary', disabled: !editable() || (f.design === 'poll' && !POLL_PUBLISH_ENABLED)}));
-    if (f.design === 'poll' && !POLL_PUBLISH_ENABLED) actionBar.append(h('p', {class:'ann2-hint'}, 'Опрос: пока доступен только черновик.'));
+      button('Опубликовать', 'Покажет эту историю всем пользователям после подтверждения.', () => command('publish'), {class: 'ann2-btn ann2-btn--primary', disabled: !editable()}));
   }
   renderDraftState();
 }
@@ -503,7 +501,7 @@ function restartPreview(which = 'both') {
   if (which !== 'preview' && gallery) {
     S.galleryReady = false; gallery.hidden = true; fallback.hidden = false;
     gallery.src = GALLERY_URL + '&reload=' + Date.now(); clearTimeout(galleryTimer);
-    galleryNotice.textContent = 'Загружаем 36 макетов…';
+    galleryNotice.textContent = 'Загружаем 35 макетов…';
     galleryTimer = setTimeout(() => {if(!S.galleryReady) galleryNotice.replaceChildren(h('span',{},'Макеты не загрузились. Шаблон можно выбрать по названию.'), button('Загрузить макеты', 'Повторно загрузить все 36 макетов.', () => restartPreview('gallery')));}, 10000);
   }
 }
@@ -518,12 +516,12 @@ window.addEventListener('message', event => {
       renderPreviewBar();
     }
     if (fromPreview) {S.previewReady=true;clearTimeout(previewTimer);previewNotice.replaceChildren();}
-    if (fromGallery && data.count === 36) {
+    if (fromGallery && data.count === 35) {
       S.galleryReady=true;clearTimeout(galleryTimer);gallery.hidden=false;fallback.hidden=true;galleryNotice.textContent='';
     }
     pushPreview();
   } else if (fromGallery && data.channel === 'pm-ann-gallery-size' && Number.isFinite(data.height)) {
-    // One column of all 36 full-size phones exceeds 32,000px.
+    // One column of all 35 full-size phones exceeds 32,000px.
     gallery.style.setProperty('height', Math.ceil(Math.max(120, Math.min(50000, data.height))) + 'px', 'important');
   } else if (fromGallery && data.channel === 'pm-ann-gallery-select') pickDesign(data.design);
   else if (fromGallery && data.channel === 'pm-ann-gallery-close') closePicker();

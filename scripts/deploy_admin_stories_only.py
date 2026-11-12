@@ -15,11 +15,12 @@ from typing import Callable, Any
 
 SITE = 'phraseman-ea0b3'
 API = 'https://firebasehosting.googleapis.com/v1beta1/'
-BUILD = '2026.10.30.8'
+BUILD = '2026.11.12.1'
 PAYLOADS = {
-    '/scripts/pages/story_announcements_v2.js': '6cec62b56a401842e72c0c1ed515a2aaedfe95c5',
+    # зачем (владелец 11.11, «Убрать» шаблон опроса): версии без «Опроса», прошли браузерные наборы 12.11 (32/32, 8/8, 7/7).
+    '/scripts/pages/story_announcements_v2.js': 'e9cc1526758a4e5d907add8c5fac964f8aab932e',
     '/scripts/pages/story_announcements_v2.css': 'd41701a2dc5badf55f0b20d6ce892a41a15cee21',
-    '/scripts/pages/story_announcements_v2_preview.html': '292da7a7501ee15fa14888ac62e6f3b485f0e573',
+    '/scripts/pages/story_announcements_v2_preview.html': '976a27a314cd9975aff1db0631e22ccce168fe7c',
 }
 BASE_BLOBS = {
     '/scripts/pages/story_announcements_v2.js': {
@@ -34,6 +35,9 @@ BASE_BLOBS = {
         'c3e9753f4e77f6482049fcfbd35d4b5a3066d657',
         'f96f50cd0fa11a27283ed3b7fcc552bf3ce801b3',
         '4d34595a639f867a3a839e28b18da2b1ee6f78eb',
+        # Prior pinned 2026.10.30.8 build (36 templates) and its CRLF bytes — may still be live.
+        '6cec62b56a401842e72c0c1ed515a2aaedfe95c5',
+        '6e2470ec21464f0721412b82224fe3ef00e7d380',
     },
     '/scripts/pages/story_announcements_v2.css': {
         '80d07bb45d0a9e5c01c2746a51234a028f4154fe',
@@ -53,6 +57,9 @@ BASE_BLOBS = {
         '9b71e884b59eb3531780e834cc74efcac5849fa0',
         '1d18d1f97a9940402ea086183d8acfe254ff6c7b',
         'd3dd8a9bedb4670d328ee0572b287610c558cdee',
+        # Prior pinned 2026.10.30.8 build (36 templates) and its CRLF bytes — may still be live.
+        '292da7a7501ee15fa14888ac62e6f3b485f0e573',
+        'e18b14b40bb0142470ab05aa648e7cfab86be8a4',
     },
 }
 REQUIRED = {'/legacy.html', '/scripts/pages/youtube-comments.js',

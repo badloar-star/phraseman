@@ -101,7 +101,7 @@ class Harness:
   self.page.locator('iframe.ann2-gallery-frame').wait_for(state='attached')
   handle=self.page.locator('iframe.ann2-gallery-frame').element_handle()
   frame=handle.content_frame();assert frame is not None
-  frame.locator('.ann-gallery-card').nth(35).wait_for(state='attached')
+  frame.locator('.ann-gallery-card').nth(34).wait_for(state='attached')
   return frame
  def preview(self):
   handle=self.page.locator('iframe.ann2-frame').element_handle();frame=handle.content_frame();assert frame is not None
@@ -178,23 +178,25 @@ def main():
    f.evaluate('async()=>{await document.fonts.ready}')
    f.wait_for_function('[...document.images].every(img=>img.complete && img.naturalWidth>0)')
    assert f.evaluate("document.fonts.check('800 16px Inter')")
-   assert f.locator('.ann-gallery-card').count()==36
-   assert f.locator('.ann-gallery-card:visible').count()==36
-   assert len(set(f.locator('.ann-gallery-card').evaluate_all('(cards)=>cards.map(c=>c.dataset.design)')))==36
+   assert f.locator('.ann-gallery-card').count()==35
+   assert f.locator('.ann-gallery-card:visible').count()==35
+   assert len(set(f.locator('.ann-gallery-card').evaluate_all('(cards)=>cards.map(c=>c.dataset.design)')))==35
+   assert f.locator('.ann-gallery-card[data-design="poll"]').count()==0
    assert f.locator('iframe').count()==0
    f.wait_for_function("document.querySelector('[data-design=manifest] .sl').getAnimations({subtree:true}).some(a=>a.playState==='running')")
    assert f.locator('.ann-gallery-card .ph.ann-static').count()==0
    assert len(command_calls(p))==0
-  check('all 36 animated templates are available without nested frames',catalogue)
+  check('all 35 animated templates are available without nested frames',catalogue)
   def fallback(h):
    p=h.page;open_template_picker(h);buttons=p.locator('.ann2-template-fallback button[data-design]')
-   assert buttons.count()==36 and buttons.nth(35).is_visible()
+   assert buttons.count()==35 and buttons.nth(34).is_visible()
+   assert p.locator('.ann2-template-fallback button[data-design="poll"]').count()==0
    p.locator('.ann2-template-fallback button[data-design="quote"]').click()
    p.get_by_role('textbox',name='Заголовок',exact=True).fill('Offline preview still saves')
    p.get_by_role('button',name='Сохранить черновик',exact=True).click()
    p.wait_for_function("calls.some(c=>c.name==='adminStoryAnnouncementCommand')")
    assert command_calls(p)[0]['data']['content']['design']=='quote'
-  check('all 36 fallback choices and draft saving work without renderer',fallback,renderer=False)
+  check('all 35 fallback choices and draft saving work without renderer',fallback,renderer=False)
   def live_text(h):
    p=h.page;p.get_by_role('textbox',name='Заголовок',exact=True).fill('QA Marker 482')
    p.get_by_role('textbox',name='Метка',exact=True).fill('QA badge')
@@ -329,9 +331,13 @@ def main():
    assert not command_calls(p) and p.evaluate('confirmations.length')==1
   check('cancelled publish sends no command',cancelled)
   def poll(h):
-   select_design(h,'poll');assert h.page.get_by_role('button',name='Опубликовать',exact=True).is_disabled()
-   assert not command_calls(h.page)
-  check('poll publishing gate is retained',poll)
+   # зачем (владелец 11.11): шаблон опроса убран; старый черновик-опрос не показывается в списке и не открывается
+   p=h.page;p.get_by_role('tab',name='Опубликовано',exact=True).click()
+   assert p.locator('[data-story-id="poll-draft"]').count()==0
+   assert p.locator('[data-story-id="story-a"]').count()==1
+   assert_js(p,"!__ann2.rows.some(r=>r.id==='poll-draft')")
+   assert not command_calls(p)
+  check('retired poll template and its old drafts are not offered',poll,extra="items.push({...items[0],id:'poll-draft',content:{...items[0].content,design:'poll',title:'Old poll'}})")
   def scope_before_send(h):
    open_record(h);p=h.page;p.evaluate("window.getAdminSensitiveControlCallable=name=>name==='adminStoryAnnouncementCommand'?new Promise(resolve=>window.resolveCallable=resolve):__pmAdminCore.httpsCallable({},name)")
    p.get_by_role('button',name='Сохранить черновик',exact=True).click();p.wait_for_function('typeof resolveCallable===\"function\"')

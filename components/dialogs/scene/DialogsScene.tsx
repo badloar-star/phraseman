@@ -10,7 +10,7 @@ import React, { memo, useEffect, useMemo, useRef } from 'react';
 
 import type { Lang } from '../../../constants/i18n';
 import { useTheme } from '../../ThemeContext';
-import DialogsSceneStage from './DialogsSceneStage';
+import DialogsSceneStage, { type DialogsSceneTopEnd } from './DialogsSceneStage';
 import { resolveDialogsSceneArt } from './dialogs_scene_art';
 import { buildDialogsSceneCopy, type DialogsSceneDialogInfo } from './dialogs_scene_copy';
 import { pickDialogsSceneState, type DialogsSceneInput, type DialogsSceneState } from './dialogs_scene_state';
@@ -33,7 +33,7 @@ export type DialogsSceneProps = Readonly<{
   personaId?: string | null;
   topInset: number;
   topStart?: React.ReactNode;
-  topEnd?: React.ReactNode;
+  topEnd?: DialogsSceneTopEnd;
   onCta: (state: DialogsSceneState) => void;
   onRound: (state: DialogsSceneState) => void;
 }>;

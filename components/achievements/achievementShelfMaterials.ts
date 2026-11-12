@@ -15,7 +15,13 @@ export type AchievementShelfTheme = Pick<
 
 export type AchievementShelfMaterials = {
   stageGradient: [string, string, string];
+  /** Цвет у дальнего края верхней грани полки — непрозрачный; прозрачность отдельно (shelfTopStartOpacity). */
   shelfTopStart: string;
+  /**
+   * зачем (обход экранов 12.11, «Достижения» — полка «чёрным клином»): react-native-svg не берёт альфу из rgba в stopColor —
+   * задуманные 20–32 % цвета текста рисовались непрозрачными (пиксель верха полки ≈ цвет текста). Прозрачность — stopOpacity.
+   */
+  shelfTopStartOpacity: number;
   shelfTopEnd: string;
   shelfFaceStart: string;
   shelfFaceEnd: string;
@@ -53,7 +59,8 @@ export function achievementShelfMaterials(
 ): AchievementShelfMaterials {
   return {
     stageGradient: [theme.bgSurface2, theme.bgCard, theme.bgSurface],
-    shelfTopStart: colorWithAlpha(theme.textPrimary, isDark ? 0.2 : 0.32),
+    shelfTopStart: theme.textPrimary,
+    shelfTopStartOpacity: isDark ? 0.2 : 0.32,
     shelfTopEnd: theme.bgSurface2,
     shelfFaceStart: theme.bgSurface2,
     shelfFaceEnd: theme.bgCard,

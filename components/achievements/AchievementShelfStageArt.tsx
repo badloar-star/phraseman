@@ -38,7 +38,7 @@ export default function AchievementShelfStageArt({
         <Svg width="100%" height="100%" viewBox="0 0 320 56" preserveAspectRatio="none">
           <Defs>
             <SvgLinearGradient id={shelfTopId} x1="0" y1="0" x2="0" y2="1">
-              <Stop offset="0" stopColor={materials.shelfTopStart} />
+              <Stop offset="0" stopColor={materials.shelfTopStart} stopOpacity={materials.shelfTopStartOpacity} />
               <Stop offset="1" stopColor={materials.shelfTopEnd} />
             </SvgLinearGradient>
             <SvgLinearGradient id={shelfFaceId} x1="0" y1="0" x2="0" y2="1">

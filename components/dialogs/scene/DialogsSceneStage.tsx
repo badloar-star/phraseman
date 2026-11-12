@@ -44,6 +44,10 @@ const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 /** Десять фиксированных делений шкалы ответов; свои id — деления не пересортировываются. */
 const METER_SEGMENTS = ['m0', 'm1', 'm2', 'm3', 'm4', 'm5', 'm6', 'm7', 'm8', 'm9'] as const;
 
+/** Чернила сцены для значков шапки: цвет текста сцены и подложка, к которой считается контраст. */
+export type DialogsSceneTopInk = Readonly<{ color: string; fills: readonly string[] }>;
+export type DialogsSceneTopEnd = React.ReactNode | ((ink: DialogsSceneTopInk) => React.ReactNode);
+
 export type DialogsSceneStageProps = Readonly<{
   state: DialogsSceneState;
   colors: DialogsSceneColors;
@@ -54,8 +58,8 @@ export type DialogsSceneStageProps = Readonly<{
   artDim: boolean;
   /** Слева в шапке перед пилюлей остатка (например «назад»). */
   topStart?: React.ReactNode;
-  /** Справа в шапке (энергия, аватар). */
-  topEnd?: React.ReactNode;
+  /** Справа в шапке (энергия, аватар). Функция получает чернила сцены — для значков, которые сами подбирают цвет под фон. */
+  topEnd?: DialogsSceneTopEnd;
   /** Отступ сверху под системную строку и шапку. */
   topInset: number;
   onCta: () => void;
@@ -103,7 +107,8 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
           </View>
         ) : null}
         <View style={s.flex} />
-        {p.topEnd ?? null}
+        {/* зачем (обход 12.11, «Диалоги»): энергия лежит на подложке сцены — отдаём ей цвет текста сцены и цвет верха как подложку для расчёта контраста */}
+        {typeof p.topEnd === 'function' ? p.topEnd({ color: c.text, fills: [c.top] }) : p.topEnd ?? null}
       </View>
       {/* зачем: пустой слот (flex 1) прижимает текст сцены к низу; герой лежит поверх сцены абсолютно (чистая раскладка, без замеров — первый кадр уже финальный) */}
       <View style={s.heroSpace} />

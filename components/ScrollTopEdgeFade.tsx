@@ -11,8 +11,11 @@ const FADE_HEIGHT = 20;
 const styles = StyleSheet.create({
   fill: { flex: 1 },
   edge: { height: FADE_HEIGHT },
-  opaque: { flex: 1, backgroundColor: 'black' }, // theme-exempt: маска — цвет несёт только альфу
-  restCover: { position: 'absolute', top: 0, left: 0, right: 0, height: FADE_HEIGHT, backgroundColor: 'black' }, // theme-exempt: маска — цвет несёт только альфу
+  // зачем (обход экранов 12.11, «Достижения» — шов поперёк карточки): 20 dp на плотности 2,625 = 52,5 px; полоса растворения и сплошная часть
+  // маски стыковались на полупикселе, и строка стыка выходила прозрачной — сквозь первый блок просвечивал фон страницы (пиксель стыка = цвет фона).
+  // Сплошная часть заходит под низ полосы на 1 dp, накладка покоя — тоже: стыка без перекрытия нет ни в покое, ни при прокрутке.
+  opaque: { position: 'absolute', top: FADE_HEIGHT - 1, left: 0, right: 0, bottom: 0, backgroundColor: 'black' }, // theme-exempt: маска — цвет несёт только альфу
+  restCover: { position: 'absolute', top: 0, left: 0, right: 0, height: FADE_HEIGHT + 1, backgroundColor: 'black' }, // theme-exempt: маска — цвет несёт только альфу
 });
 
 /**

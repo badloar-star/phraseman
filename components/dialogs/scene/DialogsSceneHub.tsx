@@ -21,10 +21,14 @@ import { useLang } from '../../LangContext';
 import { useStudyTarget } from '../../StudyTargetContext';
 import { ScreenBackSlot } from '../../v2/ScreenBackButton';
 import DialogsScene from './DialogsScene';
+import type { DialogsSceneTopInk } from './DialogsSceneStage';
 import type { DialogsSceneState } from './dialogs_scene_state';
 import { useDialogsSceneHub } from './use_dialogs_scene_hub';
 
 const LOG = '[DIALOGS-SCENE]';
+
+// Стабильная ссылка: шапка сцены не перерисовывается из-за нового обработчика.
+const renderSceneEnergy = (ink: DialogsSceneTopInk): React.ReactNode => <EnergyBar size={30} glass solidBolt ink={ink} />;
 
 type Props = Readonly<{
   /** Прежняя шапка хаба — когда сцене нечего показать. */
@@ -84,7 +88,8 @@ function DialogsSceneHub({ fallback }: Props) {
         // ЗАМОК ВЛАДЕЛЬЦА 22.10: «назад» — одна общая кнопка (ScreenBackButton) в одном месте, слоем экрана (app/ai_dialog_home.tsx); здесь только место под неё, верхняя строка сцены стоит на её уровне
         topInset={insets.top}
         topStart={<ScreenBackSlot />}
-        topEnd={<EnergyBar size={30} glass solidBolt />}
+        // зачем (обход 12.11): энергия на тёмной подложке сцены — чернилами сцены, а не цветами светлой страницы
+        topEnd={renderSceneEnergy}
         onCta={onCta}
         onRound={onRound}
       />

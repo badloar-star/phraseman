@@ -45,6 +45,12 @@ interface Props {
    * Устарел (владелец 18.10): капсулы нет нигде, флаг ни на что не влияет — оставлен для совместимости вызовов.
    */
   noCapsule?: boolean;
+  /**
+   * Чернила сцены: значок лежит не на фоне страницы, а на своей подложке сцены (тёмная шапка «Диалогов»).
+   * color — молния и число; fills — цвета подложки, к которым доводятся смысловые цвета «мало / перезаряд» (≥ 3:1).
+   * зачем (обход экранов 12.11, «Диалоги»): цвета считались от светлого фона страницы — зелёная молния и тёмная «5» на тёмно-зелёной сцене почти не видны.
+   */
+  ink?: Readonly<{ color: string; fills: readonly string[] }>;
 }
 
 const ENERGY_PILL_WIDTH = 60;
@@ -67,7 +73,7 @@ const COLORS = Object.freeze({
   value: '#FFFFFF', // theme-exempt: значение на собственном тёмном фоне капсулы
 });
 
-function EnergyBar({ ownerActive = true, glass = false, solidBolt = false }: Props) {
+function EnergyBar({ ownerActive = true, glass = false, solidBolt = false, ink }: Props) {
   const lg = useLv2Glass();
   const { energy, bonusEnergy, bonusEnergyCapacity, maxEnergy, isUnlimited, recoveryIntervalMs } = useEnergy();
   const { hasPremiumAccess } = usePremium();
@@ -108,7 +114,12 @@ function EnergyBar({ ownerActive = true, glass = false, solidBolt = false }: Pro
       : (lg.level === 'accent' || lg.level === 'max') ? lg.accentText : (glass ? lg.text : (lg.isLight ? lg.accentGraphic : COLORS.normal));
   // зачем (Сверка 18.10, карта курса V2 светлая): без капсулы белое число лежало прямо на светлом фоне (≈1:1) — цвет текста темы; в тёмных он белый, как было.
   // ∞ тем же цветом: белый знак на светлом фоне давал 1,07:1.
-  const valueColor = glass ? lg.text : (lg.isLight ? lg.text : COLORS.value);
+  // зачем (обход 12.11): на сцене со своей подложкой — её чернила; смысловые цвета доводятся до ≥ 3 к подложке сцены, а не к странице
+  const valueColor = ink ? ink.color : (glass ? lg.text : (lg.isLight ? lg.text : COLORS.value));
+  const boltColor = !ink ? accent
+    : bonusEnergyCapacity > 0 ? lowChargeInk(COLORS.overcharge, ink.fills, ink.color)
+      : lowCharge ? lowChargeInk(COLORS.low, ink.fills, ink.color)
+        : ink.color;
   // зачем (владелец 01.10: «иконка энергии чуть больше и без фона нигде»): только значок и число.
   const iconSize = 17;
   // зачем (владелец 2026-09-30, learn.html C4 «−1 энергии при старте: 5 → 4»): в стеклянной
@@ -202,8 +213,8 @@ function EnergyBar({ ownerActive = true, glass = false, solidBolt = false }: Pro
           <EnergyIcon
             filled
             solid={solidBolt}
-            themeColor={accent}
-            tintColor={accent}
+            themeColor={boltColor}
+            tintColor={boltColor}
             size={iconSize}
             animateChange={focused && ownerActive}
             animateLoop={focused && ownerActive}

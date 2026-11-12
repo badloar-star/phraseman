@@ -10,6 +10,7 @@ import { VIDEO_FULL_REWARD_COINS, grantVideoFullReward } from '../app/video_full
 import { markVideoWatched } from '../app/home_video_watched'; // зачем (Дизайн 05.11): лента Главной читает эту же память «досмотрено»; моё событие «70 %» её и пишет
 import { holdVideoFullStory, markVideoFullStoryReady, queueVideoFullStory } from '../app/video_full_story_state';
 import { isVideoFullRewardEnabled } from './use_video_full_rewarded';
+import { noteSkillAction } from '../modules/skills/skill_store';
 
 const LOG = '[VIDEO-FULL]';
 /** Тиков нет столько мс после награды — видео остановлено/закончено: историю можно показывать. */
@@ -54,6 +55,10 @@ export function useVideoFullWatch({ videoId, durationSec, live = false, active =
       if (current.reached) { publishProgress(100, Date.now()); holdVideoFullStory(videoId); armStall(); return; } // видео снова идёт — историю прячем до остановки
       const tick = feedVideoFullTick(current, positionSec, Date.now());
       stateRef.current = tick.state;
+      // зачем (D207, таблица очков навыков): «Слух» +1 за каждую минуту просмотра. Считается тот же честный просмотр,
+      // что и для награды (перемотка не засчитывается); минута ролика в тот же день — по правилу «полностью, половина, ноль»
+      const minute = Math.floor(tick.state.accumulatedSec / 60);
+      if (minute > Math.floor(current.accumulatedSec / 60) && minute > 0) noteSkillAction({ action: 'video_minute', itemKey: `video:${videoId}:${minute}` });
       publishProgress(videoRewardProgressPercent(tick.state.accumulatedSec, videoFullTarget(durationSec)), Date.now());
       if (tick.action === 'seek_forward' || tick.action === 'seek_back') console.log(LOG, 'tick', JSON.stringify({ videoId, action: tick.action, positionSec: Math.round(positionSec), accumulatedSec: Math.round(tick.state.accumulatedSec) })); // guard-ok: перемотка не копится
       if (!tick.justReached) return;

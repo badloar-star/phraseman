@@ -31,7 +31,16 @@ import {
   readCommittedFixedDialogueReward,
   settlePracticeRuneEarningsToServer,
 } from '../app/practice_rune_settlement';
+import { noteSkillAction } from '../modules/skills/skill_store';
+import type { SkillAction } from '../modules/skills/skill_points_table';
 import { noteSwallowedHandler } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+
+/** Какой строке таблицы навыков соответствует верный ответ в этой практике (D207). */
+const PRACTICE_SKILL_ACTION: Readonly<Record<string, SkillAction>> = Object.freeze({
+  mistake_practice: 'mistake_step_done',
+  vocabulary: 'lesson_words_correct',
+  irregular_verbs: 'verbs_prepositions_correct',
+});
 
 /**
  * usePracticeRunes — единая точка подключения копилки рун к экрану сессии.
@@ -395,6 +404,11 @@ export function usePracticeRunes(input: UsePracticeRunesInput): UsePracticeRunes
     // повторено («Повторить карточки, не менее 10 слов»); в «Моих ошибках» —
     // исправленная ошибка. Считаем ДО проверок оплаты рун: повторно пройденная
     // карточка руну уже не даёт, но в задании дня считается (уникально за день).
+    // зачем (D207, таблица очков навыков): верный ответ в практике — очки своего навыка; урок не здесь (он даёт
+    // «фразу с первого раза» в lesson1), карточки — в своих экранах. Ночное умолчание 12.11 (можно откатить):
+    // исправленная ошибка идёт в «Грамматику» — вид ошибки в этом месте не известен.
+    const skillAction = enabled ? PRACTICE_SKILL_ACTION[input.activity] : undefined;
+    if (skillAction) noteSkillAction({ action: skillAction, itemKey: `${input.activity}:${itemId}`, ...(skillAction === 'mistake_step_done' ? { skill: 'grammar' as const } : {}) });
     const todayKind = enabled ? todayTaskKindForPracticeActivity(input.activity) : null;
     if (todayKind) {
       void recordTodayTaskActivity({

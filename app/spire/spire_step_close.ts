@@ -12,6 +12,7 @@ import { recordTodayTaskActivity } from '../../modules/today-tasks/today_tasks_s
 import type { SpireFlushTrigger, SpireLang, SpireWeekLocal } from '../../modules/spire/report_queue';
 import { addSpirePendingCoins, removeSpirePendingCoins, spireGoldPendingId, spirePendingCoinsHas, spireStepPendingCoins, type SpirePendingCoinsConfig } from './spire_pending_coins';
 import { peekRunes } from '../runes_system';
+import { noteSkillAction } from '../../modules/skills/skill_store';
 
 export const PEAK_CLOSE = '[PEAK-CLOSE]';
 const LOG = '[SPIRE]';
@@ -50,8 +51,11 @@ export function spireRunStepCloseTail(tail: SpireStepCloseTail): void {
       .then((place) => spireCloseMark(tail.reportId, tail.t0, `место для Главной=${place ?? '—'} (неделя из памяти)`))
       .catch((error: unknown) => DebugLogger.warn(LOG, `${PEAK_CLOSE} ${tail.reportId} место для Главной не посчиталось: ${String(error)}`));
     // зачем (D49 + PM-280-A2, «Сегодня»): пройденная НОВАЯ ступень, легшая на диск, засчитывает «Пройти N ступеней Шпиля»; ключ — reportId
-    if (tail.countToday) void recordTodayTaskActivity({ kind: 'spire_steps', unitKey: `spire:${tail.reportId}`, source: 'spire_step_passed' });
-    else DebugLogger.info('[TODAY-TASKS]', `spire:skip ${tail.skipWhy} report=${tail.reportId}`);
+    if (tail.countToday) {
+      void recordTodayTaskActivity({ kind: 'spire_steps', unitKey: `spire:${tail.reportId}`, source: 'spire_step_passed' });
+      // зачем (D207, таблица очков навыков): пройденная новая ступень — «Скорость» +5; тот же отчёт повторно очков не даст
+      noteSkillAction({ action: 'peak_step_cleared', itemKey: `spire:${tail.reportId}` });
+    } else DebugLogger.info('[TODAY-TASKS]', `spire:skip ${tail.skipWhy} report=${tail.reportId}`);
   });
 }
 

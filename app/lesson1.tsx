@@ -75,6 +75,7 @@ import { lessonMistakeFacet } from './lesson_mistake_facet';
 import { beginLessonRunErrors, collectLessonRunMistakeId, rememberLessonRunErrors } from './lesson_run_errors_memory';
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
+import { noteSkillAction } from '../modules/skills/skill_store';
 import {
   createLessonAnalyticsAttempt,
   lessonAttemptElapsedMs,
@@ -3034,6 +3035,9 @@ function LessonScreen() {
     if (isRight) {
       const awarded = practiceRunes.onCorrectAnswer(String(overridePhraseCell ?? cellIndex), correctStreakRef.current + 1);
       if (awarded > 0) runeFlight.fly(awarded);
+      // зачем (D207, таблица очков навыков): фраза урока с первого раза — «Грамматика» +3; повтор ошибок
+      // (overridePhraseCell) — не первый раз, очков не даёт. Та же фраза в тот же день — по правилу «полностью, половина, ноль».
+      if (overridePhraseCell === null) noteSkillAction({ action: 'lesson_phrase_first_try', itemKey: `lesson:${st}:${lessonId}:${cellIndex}` });
     }
     logLessonAnswer(lessonId, isRight, cellIndex, effectiveTotal, lessonAnalyticsAttemptRef.current!.id);
     void trackActivity('lesson:answer_result', {

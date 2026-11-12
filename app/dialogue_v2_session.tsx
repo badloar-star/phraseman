@@ -66,6 +66,9 @@ import {
   peekDialogVoiceAttempts,
 } from './dialogue_v2_voice_daily_limit';
 import { useVoiceAttemptGate } from '../hooks/use_voice_attempt_gate';
+import { noteSkillAction, type SkillActionEvent } from '../modules/skills/skill_store';
+import { useSkillSession } from '../modules/skills/use_skill_session';
+import { dialogueV2TurnSkillActions } from './dialogue_v2_skill_points';
 
 const V2_TARGETS = new Set(['en', 'es', 'fr', 'de']);
 const INTERFACE_LANGS = new Set(['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl', 'fr', 'de']);
@@ -188,6 +191,18 @@ function SessionContent() {
   // зачем (владелец 18.10): ответы «не понимаю» на чужой язык не повторяются подряд; подпись — первый собеседник сценария.
   const offLanguageReplyIndexRef = useRef<number | null>(null);
   const lastOffLanguageSendRef = useRef<{ text: string; at: number } | null>(null);
+  // зачем (D207, задача координатора 12.11): диалог качает «Речь» (реплика голосом) и «Слух» (реплика собеседника понята без подсказки).
+  // Занятие объявляет сам экран — на итоге «Навыки растут» покажет прирост только этого разговора. Начисления хода считаются при отправке,
+  // а записываются, только когда сервер ход принял (см. runPendingTurn); повтор того же хода их не удваивает.
+  useSkillSession();
+  const helpedPartnerIdsRef = useRef<ReadonlySet<string>>(new Set());
+  const sayHintTextsRef = useRef<readonly string[]>([]);
+  const turnSkillActionsRef = useRef<Readonly<Record<string, readonly SkillActionEvent[]>>>({});
+  const markPartnerHelped = (messageId: string, via: 'translation' | 'why') => {
+    if (helpedPartnerIdsRef.current.has(messageId)) return;
+    helpedPartnerIdsRef.current = new Set([...helpedPartnerIdsRef.current, messageId]);
+    console.log(`[DIALOG-SKILLS] helped messageId=${messageId} via=${via}`); // guard-ok: одна строка на реплику — почему «Слух» за неё не начислится
+  };
   // зачем (владелец 18.10): реплика не на изучаемом языке ходом не считается.
   learnerTurnsRef.current = messages.reduce((count, message) => (message.author === 'learner' && !message.offLanguage ? count + 1 : count), 0);
   const [draft, setDraft] = useState('');
@@ -579,6 +594,15 @@ function SessionContent() {
       });
       logDialogueV2OptimisticStep('send_tap', 'server_reply', { kind: result.kind, replies: result.kind === 'reply' ? result.replies.length : 0 });
       const callableMs = Date.now() - latencyStartedAt;
+      const skillActions = turnSkillActionsRef.current[pending.turnId] ?? [];
+      if (pending.turnId in turnSkillActionsRef.current) {
+        turnSkillActionsRef.current = Object.fromEntries(Object.entries(turnSkillActionsRef.current).filter(([turnId]) => turnId !== pending.turnId));
+      }
+      // зачем (D207): ход засчитан диалогом — сервер ответил репликой; повтор уже принятого хода (replayed) очки не даёт
+      if (result.kind === 'reply' && !result.replayed) {
+        skillActions.forEach((event) => noteSkillAction(event));
+      }
+      console.log(`[DIALOG-SKILLS] turn result=${result.kind} replayed=${String(result.kind === 'reply' && result.replayed === true)} actions=${skillActions.map((event) => event.action).join(',') || 'none'}`); // guard-ok: одна строка на ход — что начислено и почему
       if (result.kind === 'reply') {
         const appendStartedAt = Date.now();
         await appendReplies(result, pending, serverSession, studyTarget, scenarioId);
@@ -696,6 +720,21 @@ function SessionContent() {
         pending = Object.freeze({ turnId, userMessage, learnerId });
         pendingTurnRef.current = pending;
         const voiceAttachment = voice.takeVoiceAttachment(userMessage);
+        // зачем (D207): за что начислить, решается по тому, что человек видел в момент ответа; записывается после ответа сервера
+        const partnerIndex = messages.map((message) => message.author).lastIndexOf('persona');
+        const partnerMessage = partnerIndex >= 0 ? messages[partnerIndex] : undefined;
+        const beforePartner = partnerIndex > 0 ? messages[partnerIndex - 1] : undefined;
+        // местный ответ «не понимаю» на реплику не на том языке — не реплика сценария, «Слух» за него не начисляем
+        const partnerIsLocalNudge = beforePartner?.author === 'learner' && beforePartner.offLanguage === true;
+        const skillActions = dialogueV2TurnSkillActions({
+          scenarioId,
+          learnerText: userMessage,
+          voiced: !!voiceAttachment,
+          partner: partnerMessage && !partnerIsLocalNudge ? { id: partnerMessage.id, text: partnerMessage.text } : null,
+          helpedPartnerIds: helpedPartnerIdsRef.current,
+          sayHintTexts: sayHintTextsRef.current,
+        });
+        turnSkillActionsRef.current = { ...turnSkillActionsRef.current, [turnId]: skillActions };
         setDraft('');
         voice.clearFailure?.();
         setMessages((current) => Object.freeze([...current, Object.freeze({
@@ -928,6 +967,7 @@ function SessionContent() {
     screen: 'scenario', studyTarget: String(studyTarget), interfaceLang: lang, reply: hintsReply.reply, skippedNudge: hintsReply.skippedNudge,
     serverHints: serverSayHints,
   });
+  sayHintTextsRef.current = sayHints.map((hint) => hint.text);
   // зачем (координатор 12.10, dialogs-030/014): сырой и показанный текст цели — одна строка на смену цели, а не на каждый кадр
   if (currentObjective && typeof __DEV__ !== 'undefined' && __DEV__) {
     const goalLogKey = `${currentObjective.id}:${currentObjective.label}`;
@@ -1027,7 +1067,7 @@ function SessionContent() {
       // зачем (владелец 24.10): «Можно сказать…» по текущей цели шага, из локального набора — без сети
       sayHints={sayHints}
       translatedIds={coaching.translatedIds}
-      onToggleTranslation={coaching.toggleTranslation}
+      onToggleTranslation={(messageId) => { markPartnerHelped(messageId, 'translation'); coaching.toggleTranslation(messageId); }}
       whyTarget={whyMessage && whyMessage.explanation ? {
         messageId: whyMessage.id,
         quote: whyMessage.text,
@@ -1035,7 +1075,7 @@ function SessionContent() {
         translation: whyMessage.translation ?? '',
         plusGate: coaching.whyGate,
       } : null}
-      onOpenWhy={coaching.openWhy}
+      onOpenWhy={(messageId) => { markPartnerHelped(messageId, 'why'); coaching.openWhy(messageId); }}
       onCloseWhy={coaching.closeWhy}
       fixOpenIds={coaching.fixOpenIds}
       onOpenFix={coaching.openFix}

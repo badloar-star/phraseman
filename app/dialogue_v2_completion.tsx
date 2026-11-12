@@ -13,6 +13,7 @@ import { getDevDialogCompletion } from './dev_dialog_state';
 import { readDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
 import FeedbackRatingCard from '../components/FeedbackRatingCard';
 import SoftTopEdgeScrollView from '../components/SoftTopEdgeScrollView';
+import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import PlusBadge from '../components/PlusBadge';
@@ -679,6 +680,9 @@ export default function DialogueV2CompletionRoute() {
               {errorsAndFeedback}
             </DlgChain.DialogueChainBeat>
           ) : null}
+          {/* зачем (D207, задача координатора 12.11): «Навыки растут» — прирост «Речи» и «Слуха» за этот разговор (занятие объявляет экран диалога);
+              ничего не начислено — блока нет. Отступ — как на итоге карточек (CardsSessionResultV2). */}
+          <SkillsSessionGrowth style={{ marginTop: 22 }} testID="dialogue-v2-completion-skills" />
         </SoftTopEdgeScrollView>
         {footer(<>
           <DialogueGlassCta glass={glass} label={labels.done} trailingArrow onPress={close} testID="dialogue-v2-completion-done" />

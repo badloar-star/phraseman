@@ -1,0 +1,121 @@
+/**
+ * «Твоя неделя 37 ч 45 мин» при серии 0 (обход экранов 12.11): время в приложении копилось, пока оно открыто на экране, даже без касаний.
+ * Данные эмулятора: вторник 10.11 — 23 ч 17 мин, последняя практика 25.10. Блок по макету — время практики.
+ *
+ * зачем: простой без касаний дольше окна (3 мин) не засчитывается; активная работа (касания) засчитывается целиком.
+ * Тест падал бы без правки: прежний счётчик начислял все 60 минут простоя.
+ */
+const mockStore = new Map<string, string>();
+jest.mock('@react-native-async-storage/async-storage', () => ({
+  __esModule: true,
+  default: {
+    getItem: jest.fn(async (key: string) => mockStore.get(key) ?? null),
+    setItem: jest.fn(async (key: string, value: string) => { mockStore.set(key, value); }),
+  },
+}));
+
+type AppStateListener = (state: string) => void;
+const mockAppState: { currentState: string; listeners: AppStateListener[] } = { currentState: 'active', listeners: [] };
+jest.mock('react-native', () => ({
+  AppState: {
+    get currentState() { return mockAppState.currentState; },
+    addEventListener: (_event: string, listener: AppStateListener) => {
+      mockAppState.listeners.push(listener);
+      return { remove: () => { mockAppState.listeners = mockAppState.listeners.filter((l) => l !== listener); } };
+    },
+  },
+}));
+jest.mock('../app/events', () => ({ emitAppEvent: jest.fn() }));
+jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: jest.fn(), error: jest.fn() } }));
+jest.mock('../app/smart_reminder_store', () => ({ recordSmartReminderEvent: jest.fn(async () => undefined) }));
+
+const MIN = 60_000;
+const START = Date.UTC(2026, 10, 10, 9, 0, 0); // вторник 10.11, 09:00 UTC — без перехода через полночь
+
+async function settle(): Promise<void> {
+  for (let i = 0; i < 10; i += 1) await Promise.resolve();
+}
+
+async function advance(ms: number): Promise<void> {
+  // по минуте: интервал записи срабатывает в свой момент, асинхронные записи успевают завершиться
+  for (let left = ms; left > 0; left -= Math.min(MIN, left)) {
+    jest.advanceTimersByTime(Math.min(MIN, left));
+    await settle();
+  }
+}
+
+function setAppState(state: string): void {
+  mockAppState.currentState = state;
+  for (const listener of [...mockAppState.listeners]) listener(state);
+}
+
+async function creditedMinutes(): Promise<number> {
+  await settle();
+  const { getForegroundDailyMsMap } = await import('../app/foreground_usage_ms');
+  const map = await getForegroundDailyMsMap();
+  return Math.round((map['2026-11-10'] ?? 0) / MIN);
+}
+
+describe('время в приложении: простой без касаний не засчитывается', () => {
+  let uninstall: (() => void) | null = null;
+
+  beforeEach(() => {
+    jest.resetModules();
+    jest.useFakeTimers();
+    jest.setSystemTime(START);
+    mockStore.clear();
+    mockAppState.currentState = 'active';
+    mockAppState.listeners = [];
+  });
+
+  afterEach(() => {
+    uninstall?.();
+    uninstall = null;
+    jest.useRealTimers();
+  });
+
+  it('час открытого приложения без единого касания — засчитано не больше окна 3 мин (было 60)', async () => {
+    const mod = await import('../app/foreground_usage_ms');
+    uninstall = mod.installForegroundUsageMsTracker();
+    await advance(60 * MIN);
+    setAppState('background');
+    expect(await creditedMinutes()).toBe(3);
+  });
+
+  it('20 минут с касаниями раз в минуту — засчитаны все 20', async () => {
+    const mod = await import('../app/foreground_usage_ms');
+    uninstall = mod.installForegroundUsageMsTracker();
+    for (let i = 0; i < 20; i += 1) {
+      await advance(MIN);
+      mod.noteForegroundInteraction();
+    }
+    setAppState('background');
+    expect(await creditedMinutes()).toBe(20);
+  });
+
+  it('простой 30 мин, затем 10 мин работы — засчитаны окно до простоя и работа после (3 + 10), простой не догоняется', async () => {
+    const mod = await import('../app/foreground_usage_ms');
+    uninstall = mod.installForegroundUsageMsTracker();
+    await advance(30 * MIN);
+    mod.noteForegroundInteraction();
+    for (let i = 0; i < 10; i += 1) {
+      await advance(MIN);
+      mod.noteForegroundInteraction();
+    }
+    setAppState('background');
+    expect(await creditedMinutes()).toBe(13);
+  });
+
+  it('окно простоя — 3 минуты', async () => {
+    const mod = await import('../app/foreground_usage_ms');
+    expect(mod.FOREGROUND_IDLE_GRACE_MS).toBe(3 * MIN);
+  });
+
+  it('корень приложения сообщает о касаниях счётчику', () => {
+    const fs = jest.requireActual<typeof import('fs')>('fs');
+    const path = jest.requireActual<typeof import('path')>('path');
+    const layout = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
+    expect(layout).toContain('onTouchStart={noteForegroundTouch}');
+    expect(layout).toContain('const noteForegroundTouch = (): void => noteForegroundInteraction();');
+  });
+});

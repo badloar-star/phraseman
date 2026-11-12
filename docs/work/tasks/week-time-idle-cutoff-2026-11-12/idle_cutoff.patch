@@ -1,0 +1,133 @@
+diff --git a/app/_layout.tsx b/app/_layout.tsx
+index 59235acfe..6397e9452 100644
+--- a/app/_layout.tsx
++++ b/app/_layout.tsx
+@@ -260,7 +260,7 @@ import { hydrateVideoSectionPreference } from './video_section_preference';
+ import { createSettingsBootReadScope } from '../lib/startup_settings_read_scope';
+ 
+ import { hydrateHapticsTapFromStorage } from './haptics_tap_preload';
+-import { installForegroundUsageMsTracker } from './foreground_usage_ms';
++import { installForegroundUsageMsTracker, noteForegroundInteraction } from './foreground_usage_ms';
+ import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
+ import { applyContentDeliveryMigration } from './content_delivery_migration';
+ import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';
+@@ -3786,6 +3786,8 @@ const styles = StyleSheet.create({
+ // в capture-фазе корня, не захватывая responder. Когда трассировка выключена
+ // (release без EXPO_PUBLIC_TAP_LATENCY_TRACE=1) — это undefined, обработчика нет.
+ const tapLatencyCaptureHandler = createTapLatencyCaptureHandler();
++// Стабильная ссылка: корень не получает новый обработчик на каждый рендер.
++const noteForegroundTouch = (): void => noteForegroundInteraction();
+ // onTouchEnd корня всплывает от любой кнопки: отсюда берём момент отпускания пальца.
+ const tapLatencyTouchEndHandler = createTapLatencyTouchEndHandler();
+ // Profiler вокруг дерева стека: сколько раз и как долго React рендерил экраны от
+@@ -3830,6 +3832,9 @@ export default function RootLayout() {
+       style={{ flex: 1, backgroundColor: startupSplashPalette(Appearance.getColorScheme(), null).bg }}
+       onStartShouldSetResponderCapture={tapLatencyCaptureHandler}
+       onTouchEnd={tapLatencyTouchEndHandler}
++      // зачем (обход экранов 12.11, «Твоя неделя 37 ч» при серии 0): время в приложении считается, только пока человек касается экрана —
++      // касание всплывает до корня; обработчик пишет одно число, начисление только при выходе из простоя (app/foreground_usage_ms.ts)
++      onTouchStart={noteForegroundTouch}
+     >
+     <ErrorBoundary>
+       <SafeAreaProvider initialMetrics={stableInitialWindowMetrics}>
+diff --git a/app/foreground_usage_ms.ts b/app/foreground_usage_ms.ts
+index 971ec372d..99b28e2bb 100644
+--- a/app/foreground_usage_ms.ts
++++ b/app/foreground_usage_ms.ts
+@@ -11,16 +11,26 @@ const FLUSH_INTERVAL_MS = 5 * 60_000;
+ /** Не начислять больше за один интервал (защита от скачков часов). */
+ const MAX_CHUNK_MS = FLUSH_INTERVAL_MS + 5_000;
+ const MAX_DAILY_KEYS = 500;
++/**
++ * Сколько после последнего касания экрана время ещё считается занятием (чтение теории, прослушивание).
++ * зачем (обход экранов 12.11, «Твоя неделя 37 ч 45 мин» при серии 0): счётчик начислял всё время, пока приложение на экране, —
++ * на эмуляторе, оставленном открытым, вышло 23 ч 17 мин за вторник при последней практике 25.10. Блок «Твоя неделя» по макету —
++ * время практики («42 мин», «короткие занятия без больших пауз»), поэтому простой без касаний дольше этого окна не засчитывается.
++ */
++export const FOREGROUND_IDLE_GRACE_MS = 3 * 60_000;
++const LOG = '[WEEK-TIME]';
+ 
+ let activeSince: number | null = null;
+ let intervalId: ReturnType<typeof setInterval> | null = null;
+ let lastFlushAt: number | null = null;
++let lastInteractionAt: number | null = null;
+ 
+ async function readTotal(): Promise<number> {
+   try {
+     const v = await AsyncStorage.getItem(STORAGE_KEY);
+     return Math.max(0, parseInt(v || '0', 10) || 0);
+-  } catch {
++  } catch (e) {
++    DebugLogger.warn(LOG, `общее время не прочитано — считаем 0: ${e instanceof Error ? e.message : String(e)}`);
+     return 0;
+   }
+ }
+@@ -41,7 +51,8 @@ async function readDailyMap(): Promise<Record<string, number>> {
+       if (/^\d{4}-\d{2}-\d{2}$/.test(k) && Number.isFinite(n) && n > 0) out[k] = Math.min(n, 24 * 60 * 60 * 1000);
+     }
+     return out;
+-  } catch {
++  } catch (e) {
++    DebugLogger.warn(LOG, `время по дням не прочитано — пустая карта: ${e instanceof Error ? e.message : String(e)}`);
+     return {};
+   }
+ }
+@@ -106,17 +117,31 @@ async function addDelta(delta: number, rangeStart: number): Promise<number> {
+   return next;
+ }
+ 
+-function flushOpenSession(): void {
++function flushOpenSession(now: number = Date.now()): void {
+   if (activeSince == null) return;
+-  const now = Date.now();
+   const base = lastFlushAt ?? activeSince;
+-  const delta = Math.min(now - base, MAX_CHUNK_MS);
++  // зачем: засчитываем только до «последнее касание + окно»; простой сверх окна пропускается, а не копится на потом (lastFlushAt = now)
++  const creditEnd = lastInteractionAt == null ? now : Math.min(now, lastInteractionAt + FOREGROUND_IDLE_GRACE_MS);
++  const delta = Math.min(Math.max(0, creditEnd - base), MAX_CHUNK_MS);
+   if (delta >= 1000) {
+     void addDelta(delta, base);
++  } else if (now - base >= 1000) {
++    if (__DEV__) DebugLogger.info(LOG, `простой без касаний ${Math.round((now - base) / 1000)} с — не засчитан`);
+   }
+   lastFlushAt = now;
+ }
+ 
++/**
++ * Касание экрана (корень приложения, onTouchStart). Дёшево: сравнение и запись числа; начисление — только при выходе из простоя.
++ * зачем: после простоя дольше окна сначала закрываем засчитанный кусок до «касание + окно», и отсчёт идёт заново от этого касания.
++ */
++export function noteForegroundInteraction(now: number = Date.now()): void {
++  if (activeSince != null && lastInteractionAt != null && now - lastInteractionAt > FOREGROUND_IDLE_GRACE_MS) {
++    flushOpenSession(now);
++  }
++  lastInteractionAt = now;
++}
++
+ function onAppState(state: AppStateStatus): void {
+   if (state === 'active') {
+     const now = Date.now();
+@@ -125,6 +150,8 @@ function onAppState(state: AppStateStatus): void {
+     void recordSmartReminderEvent('session', now);
+     activeSince = now;
+     lastFlushAt = now;
++    // зачем: открытие приложения — тоже действие человека; окно простоя отсчитывается от него
++    lastInteractionAt = now;
+     if (intervalId) clearInterval(intervalId);
+     intervalId = setInterval(flushOpenSession, FLUSH_INTERVAL_MS);
+     return;
+@@ -137,6 +164,7 @@ function onAppState(state: AppStateStatus): void {
+     flushOpenSession();
+     activeSince = null;
+     lastFlushAt = null;
++    lastInteractionAt = null;
+   }
+ }
+ 
+@@ -168,5 +196,6 @@ export function installForegroundUsageMsTracker(): () => void {
+     flushOpenSession();
+     activeSince = null;
+     lastFlushAt = null;
++    lastInteractionAt = null;
+   };
+ }

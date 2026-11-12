@@ -34,6 +34,7 @@ import { GAME_EASE, GAME_MOTION } from '../constants/gameMotion';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { warmupIndicators } from '../modules/games/warmup_indicators';
 import { nextWarmupIndex, noteWarmupRefresh, peekWarmup, subscribeWarmup, warmupPlayedCount } from '../modules/games/warmup_state';
 import { SKILL_NAME } from '../modules/skills/skill_copy';
 import { refreshSkills } from '../modules/skills/skill_store';
@@ -203,6 +204,13 @@ export default function WarmupScreen() {
   }, [state]);
 
   const game = state.games[index] ?? null;
+  // зачем (обход экранов 12.11, «три индикатора показывают разное»): точки, деления и места карт — из одного расчёта по макету (warmup_indicators)
+  const ind = useMemo(() => warmupIndicators(state, index), [state, index]);
+  const segDone = useMemo(() => Object.fromEntries(state.games.filter((_, i) => ind.segs[i]).map((g) => [g.id, true])), [state.games, ind]);
+  useEffect(() => {
+    console.log('[WARMUP-IND]', JSON.stringify({ day: state.day, count: ind.count, front: ind.front, frontId: state.games[ind.front]?.id ?? null, // guard-ok: одна строка на смену карты или результата
+      played: ind.played, playedIds: state.games.filter((_, i) => ind.segs[i]).map((g) => g.id), cardPos: ind.cardPos, source: 'warmup_state' }));
+  }, [ind, state.day, state.games]);
   const date = useMemo(() => {
     try {
       const text = new Intl.DateTimeFormat(lang, { weekday: 'long', day: 'numeric', month: 'long' }).format(new Date());
@@ -282,12 +290,10 @@ export default function WarmupScreen() {
             <View style={[s.deck, zooming >= 0 && s.deckFront]}>
               {state.games.map((item, i) => { // guard-ok: карт не больше трёх, виртуализация не нужна
                 const result = resultLabel(state.results[item.id]);
-                const d = (i - index + count) % count;
-                const pos = d === 0 ? 0 : count > 2 && d === count - 1 ? -1 : 1;
                 return (
                   <DeckCard
                     key={item.id}
-                    pos={pos}
+                    pos={ind.cardPos[i]}
                     dealt={i < dealt}
                     mode={zooming < 0 ? 'idle' : zooming === i ? 'zoom' : 'away'}
                     colors={CARD_COLORS[i % CARD_COLORS.length]}
@@ -319,9 +325,9 @@ export default function WarmupScreen() {
           </GestureDetector>
 
           <View style={s.dots}>
-            {state.games.map((item, i) => <DeckDot key={item.id} on={i === index} />)}
+            {state.games.map((item, i) => <DeckDot key={item.id} on={ind.dots[i]} />)}
           </View>
-          <GameSegments ids={segmentIds} done={0} doneIds={state.results} track={p.track} fill={p.text} style={s.segs} />
+          <GameSegments ids={segmentIds} done={0} doneIds={segDone} track={p.track} fill={p.text} style={s.segs} />
           <V2Button testID="warmup-start" label={cta} icon={complete || !game ? undefined : 'play'} iconPosition="leading" disabled={complete || !game} onPress={() => start(index)} />
         </View>
       </SafeAreaView>

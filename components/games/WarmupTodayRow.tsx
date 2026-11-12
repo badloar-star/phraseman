@@ -7,7 +7,7 @@
  * сыграно сегодня (из памяти процесса, без диска и сети — первый кадр сразу конечной высоты), и сама ведёт
  * на экран разминки. Строка «Три игры из твоих ошибок» из макета не выводится, пока разминка не собирается из ошибок.
  */
-import React, { memo, useCallback, useEffect, useRef, useSyncExternalStore } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useSyncExternalStore } from 'react';
 import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
@@ -16,7 +16,8 @@ import { useLang } from '../LangContext';
 import { useV2Palette } from '../v2/useV2Palette';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
-import { noteWarmupRefresh, peekWarmup, subscribeWarmup, warmupPlayedCount } from '../../modules/games/warmup_state';
+import { noteWarmupRefresh, peekWarmup, subscribeWarmup } from '../../modules/games/warmup_state';
+import { warmupIndicators } from '../../modules/games/warmup_indicators';
 
 const NAV_GUARD_MS = 700;
 const TITLE = { ru: 'Разминка на 4 минуты', uk: 'Розминка на 4 хвилини', es: 'Calentamiento de 4 minutos', en: '4-minute warm-up' } as const;
@@ -31,8 +32,10 @@ function WarmupTodayRow({ style, testID = 'today-warmup-row' }: Props) {
   const lastNavAt = useRef(0);
   // зачем: после перезапуска приложения сыгранное сегодня подтягивается с устройства
   useEffect(() => noteWarmupRefresh(), []);
-  const played = warmupPlayedCount(state);
-  const total = state.games.length;
+  // зачем (обход 12.11, заход 3: «2/3 заполнено справа налево»): метки — счётчик слева, из того же расчёта, что точки и деления экрана разминки
+  const ind = useMemo(() => warmupIndicators(state, 0), [state]);
+  const played = ind.played;
+  const total = ind.count;
   const done = played >= total;
   const title = triLang(lang, TITLE);
 
@@ -61,8 +64,8 @@ function WarmupTodayRow({ style, testID = 'today-warmup-row' }: Props) {
       <View style={s.copy}>
         <Text style={[s.title, { color: p.text }]}>{title}</Text>
         <View style={s.marks}>
-          {state.games.map((game) => (
-            <View key={game.id} style={[s.mark, { backgroundColor: state.results[game.id] !== undefined ? p.correct : p.track }]} />
+          {ind.todayMarks.map((on, i) => (
+            <View key={state.games[i]?.id ?? i} style={[s.mark, { backgroundColor: on ? p.correct : p.track }]} />
           ))}
         </View>
       </View>

@@ -10,6 +10,8 @@ import { GAME_BANKS, gameBankFor, type GameBank } from '../modules/games/bank/in
 import { isValidHuntTask, isValidOrderTask, type HuntTask, type OrderTask } from '../modules/games/dialogue_core';
 import { FLOW_DEFAULT_ROUNDS, FLOW_OPTIONS, buildFlowRounds, canStartFlow, flowTranslation, type FlowItem } from '../modules/games/flow_core';
 import { isValidOddWordTask, type OddWordTask } from '../modules/games/odd_word_core';
+import { buildRaceQuestions, canStartRace, type RaceItem } from '../modules/games/race_core';
+import { RACE_MOTION } from '../modules/games/race_motion';
 import { isValidQuizRound, type QuizKind, type QuizRound } from '../modules/games/quiz_core';
 import type { SortDeck } from '../modules/games/sort_core';
 import {
@@ -19,7 +21,9 @@ import { WARMUP_GAMES_PER_DAY, WARMUP_POOL, availableWarmupGames, warmupGamesFor
 
 const LANGS: readonly ClassicCourseLang[] = ['en', 'de', 'fr', 'es', 'it'];
 const LESSONS = Array.from({ length: 32 }, (_, i) => i + 1);
-const GAMES: readonly GameId[] = ['flow', 'odd_word', 'sort', 'listen', 'memory', 'exact', 'forms', 'hunt', 'order'];
+const GAMES: readonly GameId[] = ['flow', 'odd_word', 'sort', 'listen', 'memory', 'exact', 'forms', 'hunt', 'order', 'race'];
+/** Игры на фразах урока, а не на банке: проверяются своими блоками ниже. */
+const LESSON_PHRASE_GAMES: ReadonlySet<GameId> = new Set(['flow', 'race']);
 const QUIZ_KINDS: readonly QuizKind[] = ['listen', 'memory', 'exact', 'forms'];
 const UI_LANGS = ['ru', 'uk', 'en', 'es'] as const;
 
@@ -167,7 +171,7 @@ describe('игры × языки × уроки: задания решаемы и
     const bank = GAME_BANKS[lang];
     for (const lesson of LESSONS) {
       for (const game of GAMES) {
-        if (game === 'flow') continue; // «Поток» берёт фразы прямо из уроков — проверяется отдельным блоком ниже
+        if (LESSON_PHRASE_GAMES.has(game)) continue; // «Поток» и «Гонка» берут фразы прямо из уроков — свои блоки ниже
         pairs += 1;
         const say = (id: string, what: string) => problems.push(`${lang} · урок ${lesson} · ${game} · ${id} · ${what}`);
         const open = isGameAvailable(game, lang, lesson);
@@ -199,7 +203,7 @@ describe('игры × языки × уроки: задания решаемы и
   }
 
   it('перебраны все пары язык × урок × игра', () => {
-    expect(pairs).toBe(LANGS.length * LESSONS.length * (GAMES.length - 1));
+    expect(pairs).toBe(LANGS.length * LESSONS.length * (GAMES.length - LESSON_PHRASE_GAMES.size));
     expect(available).toBeGreaterThan(0);
     expect(tasksChecked).toBeGreaterThan(0);
   });
@@ -256,7 +260,7 @@ describe('игры × языки × уроки: задания решаемы и
       for (const lesson of [0, -3, 1.7, 33, 999, Number.NaN, Number.POSITIVE_INFINITY]) {
         for (const game of GAMES) {
           const found = fetch(game, lang, lesson);
-          expect([lang, lesson, game, isGameAvailable(game, lang, lesson)]).toEqual([lang, lesson, game, game === 'flow' || found.tasks.length > 0]);
+          expect([lang, lesson, game, isGameAvailable(game, lang, lesson)]).toEqual([lang, lesson, game, LESSON_PHRASE_GAMES.has(game) || found.tasks.length > 0]);
           for (const task of found.tasks) expect([lang, lesson, game, OWNED.get(lang)?.has(task)]).toEqual([lang, lesson, game, true]);
         }
       }
@@ -335,6 +339,43 @@ describe('«Поток»: фразы своего языка, три разны�
   });
 });
 
+/** Материал «Гонки с собой» — тем же путём, что в экране игры: фразы урока и их перевод без пометок. */
+function raceItems(lang: ClassicCourseLang, lesson: number, ui: string): RaceItem[] {
+  return getClassicLessonPhrases(lesson, lang).map((p) => ({ id: `${lang}:${lesson}:${String(p.id)}`, text: p.english, translation: flowTranslation(p, ui) }));
+}
+
+describe('«Гонка с собой»: фразы своего языка, четыре разных варианта, верный среди них', () => {
+  it('для каждого языка, урока и языка интерфейса вопросы собираются и решаемы', () => {
+    const problems: string[] = [];
+    let pairs = 0;
+    for (const lang of LANGS) {
+      for (const lesson of LESSONS) {
+        for (const ui of UI_LANGS) {
+          if (ui === lang) continue; // язык интерфейса равен изучаемому — игры нет (isFlowAvailable)
+          pairs += 1;
+          const items = raceItems(lang, lesson, ui);
+          const say = (id: string, what: string) => problems.push(`${lang} · урок ${lesson} · race(${ui}) · ${id} · ${what}`);
+          if (!isGameAvailable('race', lang, lesson, ui)) { say('—', 'игра недоступна при курсе и другом языке интерфейса'); continue; }
+          const questions = buildRaceQuestions(items);
+          if (questions.length === 0) { say('—', 'вопросов нет'); continue; }
+          for (const id of duplicates(questions.map((q) => q.id))) say(id, 'фраза повторяется в одном заходе');
+          for (const q of questions) {
+            if (q.options.length !== RACE_MOTION.options) say(q.id, `вариантов ${q.options.length}`);
+            if (duplicates(q.options.map(same)).length > 0) say(q.id, 'варианты повторяются');
+            if (q.options.some(blank) || blank(q.text)) say(q.id, 'пустой вопрос или вариант');
+            if (q.options[q.correctIndex] !== items.find((x) => x.id === q.id)?.translation.trim()) say(q.id, 'верный вариант — не перевод показанной фразы');
+            if (q.options.some((o) => /[()]|Для сборки|При сборке|Для складання/u.test(o))) say(q.id, 'в варианте пометка урока');
+            if (!q.id.startsWith(`${lang}:`)) say(q.id, 'фраза не из курса этого языка');
+          }
+        }
+        expect([lang, lesson, isGameAvailable('race', lang, lesson, lang)]).toEqual([lang, lesson, false]);
+      }
+    }
+    expect(pairs).toBe(LANGS.length * LESSONS.length * UI_LANGS.length - LESSONS.length * LANGS.filter((l) => (UI_LANGS as readonly string[]).includes(l)).length);
+    expect(problems).toEqual([]);
+  });
+});
+
 describe('разминка: никогда не выдаёт игру без заданий', () => {
   const dayKeys = Array.from({ length: 60 }, (_, i) => {
     const d = new Date(Date.UTC(2026, 10, 11 + i));
@@ -356,7 +397,9 @@ describe('разминка: никогда не выдаёт игру без з�
           for (const game of games) {
             seen.add(game.id);
             if (!isGameAvailable(game.id, lang, lesson)) problems.push(`${where} · ${game.id} · игра без заданий`);
-            if (game.id !== 'flow' && fetch(game.id, lang, lesson).tasks.length === 0) problems.push(`${where} · ${game.id} · выдача пустая`);
+            if (!LESSON_PHRASE_GAMES.has(game.id) && fetch(game.id, lang, lesson).tasks.length === 0) problems.push(`${where} · ${game.id} · выдача пустая`);
+            // «Гонке» нужно четыре фразы урока с разными переводами — проверка на русском интерфейсе, как у «Потока»
+            if (game.id === 'race' && !canStartRace(raceItems(lang, lesson, 'ru'))) problems.push(`${where} · race · фраз с разными переводами меньше четырёх`);
           }
         }
         for (const game of pool) if (!seen.has(game.id)) problems.push(`${lang} · урок ${lesson} · ${game.id} · за 60 дней ни разу не попала в разминку`);

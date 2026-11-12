@@ -18,7 +18,10 @@ describe('первый кадр Главной: декоративные сло�
     expect(backdrop).toContain("const glowReady = useAfterFirstFrame('backdrop:glow', deferGlow && glow !== null);");
     expect(backdrop).toContain('const GLOW_EASE = Easing.bezier(0.23, 1, 0.32, 1);');
     expect(backdrop).toContain('entering={FadeIn.duration(280).easing(GLOW_EASE)}');
-    expect(backdrop).toContain(') : <ThemeGlow colors={glow} />');
+    // зачем (12.11, коммит b70e116c2 «Аврора»): у слоя пятен появился признак материала aurora — отсрочка та же, сверяем новую форму
+    expect(backdrop).toContain('{glow && glowReady ? (');
+    expect(backdrop).toContain('<ThemeGlow colors={glow} aurora={Boolean(tokens.aurora)} />\n          </Animated.View>');
+    expect(backdrop).toContain(') : <ThemeGlow colors={glow} aurora={Boolean(tokens.aurora)} />');
     expect(code('components/home/v2/scene/HomeSceneStage.tsx')).toContain('const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);');
   });
 
@@ -28,10 +31,14 @@ describe('первый кадр Главной: декоративные сло�
     expect(code('components/TopFadeMask.tsx')).toContain('<V2Backdrop />');
   });
 
-  it('герой «Сцены» — со 2-го кадра, тот же FadeIn при смене состояния', () => {
+  // зачем (12.11): герой «Сцены» снят решением владельца 04.11 (коммит f1dd8ecc4: «если сделано без героя, значит так надо»,
+  // компактная сцена 280 dp) — откладывать нечего. Сторож держит, что тяжёлая картинка героя не вернулась в первый кадр без отсрочки.
+  it('сцена без героя: картинки героя в первом кадре нет; если вернётся — только со 2-го кадра', () => {
     const stage = code('components/home/v2/scene/HomeSceneStage.tsx');
-    expect(stage).toContain("const heroReady = useAfterFirstFrame('home:hero');");
-    expect(stage).toContain('{art && heroReady ? (');
-    expect(stage).toContain('<Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)}');
+    const scene = code('components/home/v2/scene/HomeScene.tsx');
+    for (const src of [stage, scene]) {
+      expect(src).not.toMatch(/HERO_TOP|homeSceneHeroFade|heroSpaceH/);
+      if (/\bart\b[^\n]*\?\s*\(/.test(src) || /<Image\b/.test(src)) expect(src).toContain("useAfterFirstFrame('home:hero')");
+    }
   });
 });

@@ -9,7 +9,7 @@ import {
 } from '../modules/games/task_source';
 import { WARMUP_POOL, availableWarmupGames, warmupGamesForDay } from '../modules/games/warmup_state';
 
-const ALL: GameId[] = ['flow', 'odd_word', 'sort', 'listen', 'memory', 'exact', 'forms', 'hunt', 'order'];
+const ALL: GameId[] = ['flow', 'odd_word', 'sort', 'listen', 'memory', 'exact', 'forms', 'hunt', 'order', 'race'];
 
 it('для английского уроков 1–8 у каждой игры есть годные задания', () => {
   for (let lesson = 1; lesson <= 8; lesson += 1) {
@@ -74,4 +74,13 @@ it('«Поток» не предлагается, когда язык интер
   expect(isGameAvailable('flow', 'de', 1, 'en')).toBe(true);
   expect(availableWarmupGames('en', 'en').map((g) => g.id)).not.toContain('flow');
   expect(availableWarmupGames('en', 'ru').map((g) => g.id)).toContain('flow');
+});
+
+it('«Гонка с собой» доступна там же, где «Поток»: свой курс и другой язык интерфейса', () => {
+  expect(isGameAvailable('race', 'en', 1, 'ru')).toBe(true);
+  expect(isGameAvailable('race', 'de', 8, 'en')).toBe(true);
+  expect(isGameAvailable('race', 'en', 1, 'en')).toBe(false);
+  expect(isGameAvailable('race', 'xx', 1, 'ru')).toBe(false);
+  expect(availableWarmupGames('en', 'ru').map((g) => g.id)).toContain('race');
+  expect(availableWarmupGames('en', 'en').map((g) => g.id)).not.toContain('race');
 });

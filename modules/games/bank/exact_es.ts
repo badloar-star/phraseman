@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — испанский классический курс, уроки 1–16 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — испанский классический курс, уроки 1–20 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или из слов этого и прошлых уроков);
  * каждый неверный вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах);
@@ -141,5 +141,37 @@ export const EXACT_BANK_ES: Readonly<Record<number, readonly QuizRound[]>> = {
     round(16, 4, 'Vamos a comprar ___ verduras', 'las', ['los'], 0, 'Verdura — «она», поэтому las.'),
     round(16, 5, 'Luis va a leer el libro más ___', 'tarde', ['hoy'], 0, 'Позже — más tarde.'),
     round(16, 6, 'Ana va a pasar por ___ supermercado', 'el', ['la'], 1, 'Supermercado — «он», поэтому el.'),
+  ],
+  17: [
+    round(17, 1, 'Me ___ las fotos', 'gustan', ['gusta'], 1, 'Фотографий несколько — значит gustan.'),
+    round(17, 2, 'Me gusta ___ libro', 'este', ['estos'], 0, 'Книга одна — este libro.'),
+    round(17, 3, 'A Ana ___ gusta este hotel', 'le', ['les'], 0, 'Ана одна — значит le.'),
+    round(17, 4, 'A mis hermanos ___ gusta este hotel', 'les', ['le'], 1, 'Братьев несколько — значит les.'),
+    round(17, 5, 'No me gusta ___ música', 'esta', ['este'], 1, 'Música — «она», поэтому esta.'),
+    round(17, 6, 'Nos gustan ___ fotos de Ana', 'las', ['los'], 0, 'Foto — «она», поэтому las.'),
+  ],
+  18: [
+    round(18, 1, 'Ella la ___', 'busca', ['busco', 'buscas'], 1, 'Про неё говорят busca.'),
+    round(18, 2, 'Mis hermanos lo ___ hoy', 'necesitan', ['necesita'], 0, 'Братьев несколько — значит necesitan.'),
+    round(18, 3, 'Las guardo en ___ bolsillo', 'el', ['la'], 1, 'Bolsillo — «он», поэтому el.'),
+    round(18, 4, 'Él los ___ a casa', 'lleva', ['llevo'], 0, 'Про него говорят lleva.'),
+    round(18, 5, 'Ella lo ___ en casa', 'deja', ['dejo', 'dejas'], 2, 'Про неё говорят deja.'),
+    round(18, 6, 'La lavo ___ mano', 'a', ['en'], 1, 'Вручную — a mano.'),
+  ],
+  19: [
+    round(19, 1, 'Ana ___ escribiendo una carta', 'está', ['estoy'], 0, 'Про Ану говорят está.'),
+    round(19, 2, 'Mis hermanos ___ comiendo en casa', 'están', ['está'], 1, 'Братьев несколько — значит están.'),
+    round(19, 3, 'Luis está ___ en casa', 'comiendo', ['come'], 0, 'После está — comiendo.'),
+    round(19, 4, 'Estoy ___ la puerta', 'abriendo', ['abro'], 1, 'После estoy — abriendo.'),
+    round(19, 5, 'Ana está secando ___ platos', 'los', ['el'], 1, 'Тарелок несколько — значит los.'),
+    round(19, 6, 'Mis hermanas ___ esperando aquí', 'están', ['está', 'estamos'], 2, 'Сестёр несколько — значит están.'),
+  ],
+  20: [
+    round(20, 1, 'Ana ya ___ comprado un billete', 'ha', ['he', 'han'], 0, 'Про Ану говорят ha.'),
+    round(20, 2, 'Mis hermanos ___ vuelto a casa', 'han', ['ha'], 1, 'Братьев несколько — значит han.'),
+    round(20, 3, 'Ya he ___ al hotel', 'llamado', ['llamar'], 0, 'После he — llamado.'),
+    round(20, 4, 'Luis ha ___ el libro', 'leído', ['lee'], 1, 'После ha — leído.'),
+    round(20, 5, 'Luis ha preparado ___ cena', 'la', ['el'], 1, 'Cena — «она», поэтому la.'),
+    round(20, 6, 'Hemos recibido ___ pedido', 'el', ['la'], 0, 'Pedido — «он», поэтому el.'),
   ],
 };

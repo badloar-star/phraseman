@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — испанский классический курс, уроки 1–16 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — испанский классический курс, уроки 1–20 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: произносится фраза урока; верный вариант дословно равен ей; два неверных отличаются
  * ровно одним словом и остаются правильными фразами из знакомых слов — это проверка слуха, а не грамматики.
@@ -140,5 +140,37 @@ export const LISTEN_BANK_ES: Readonly<Record<number, readonly QuizRound[]>> = {
     round(16, 4, 'Voy a volver a casa', ['Voy a volver a clase', 'Vas a volver a casa'], 0, 'Я собираюсь вернуться домой'),
     round(16, 5, 'Ana va a pasar por el supermercado', ['Luis va a pasar por el supermercado', 'Ana va a pasar por el hotel'], 1, 'Ана собирается зайти в супермаркет'),
     round(16, 6, 'No voy a comprar leche hoy', ['No voy a comprar pan hoy', 'No voy a beber leche hoy'], 2, 'Я не собираюсь покупать молоко сегодня'),
+  ],
+  17: [
+    round(17, 1, 'Me gusta el café', ['Me gusta el pan', 'Te gusta el café'], 0, 'Мне нравится кофе'),
+    round(17, 2, 'Me gusta la música', ['Me gusta la playa', 'Nos gusta la música'], 1, 'Мне нравится музыка'),
+    round(17, 3, 'Me gustan las fotos', ['Me gustan las ideas', 'Nos gustan las fotos'], 2, 'Мне нравятся фотографии'),
+    round(17, 4, 'Nos gusta este hotel', ['Nos gusta este libro', 'Les gusta este hotel'], 0, 'Нам нравится этот отель'),
+    round(17, 5, 'Me gusta leer en casa', ['Me gusta comer en casa', 'Me gusta leer en clase'], 1, 'Мне нравится читать дома'),
+    round(17, 6, 'Nos gusta esta foto', ['Nos gusta esta mesa', 'Me gusta esta foto'], 2, 'Нам нравится эта фотография'),
+  ],
+  18: [
+    round(18, 1, 'Los devuelvo hoy', ['Los devuelvo mañana', 'Las devuelvo hoy'], 0, 'Я возвращаю их сегодня'),
+    round(18, 2, 'Luis las busca', ['Ana las busca', 'Luis los busca'], 1, 'Луис их ищет'),
+    round(18, 3, 'Las llevo a casa', ['Las llevo a clase', 'Los llevo a casa'], 2, 'Я их несу домой'),
+    round(18, 4, 'Los necesito hoy', ['Los necesito ahora', 'Las necesito hoy'], 0, 'Они мне сегодня нужны'),
+    round(18, 5, 'Las dejas en casa', ['Las dejas en clase', 'Las dejo en casa'], 1, 'Ты их оставляешь дома'),
+    round(18, 6, 'Los recojo después de clase', ['Las recojo después de clase', 'Los llevo después de clase'], 2, 'Я забираю их после занятия'),
+  ],
+  19: [
+    round(19, 1, 'Estoy leyendo el libro', ['Estás leyendo el libro', 'Estoy leyendo el mensaje'], 0, 'Я сейчас читаю книгу'),
+    round(19, 2, 'Estoy bebiendo agua', ['Estoy bebiendo café', 'Estás bebiendo agua'], 1, 'Я сейчас пью воду'),
+    round(19, 3, 'Estoy abriendo la puerta', ['Estoy abriendo la ventana', 'Estamos abriendo la puerta'], 2, 'Я сейчас открываю дверь'),
+    round(19, 4, 'Luis está comiendo en casa', ['Ana está comiendo en casa', 'Luis está trabajando en casa'], 0, 'Луис сейчас ест дома'),
+    round(19, 5, 'Estás preparando la cena', ['Estás preparando la sopa', 'Estoy preparando la cena'], 1, 'Ты сейчас готовишь ужин'),
+    round(19, 6, 'Estoy probando la sopa', ['Estoy preparando la sopa', 'Estás probando la sopa'], 2, 'Я сейчас пробую суп'),
+  ],
+  20: [
+    round(20, 1, 'Ya he llamado al hotel', ['Ya has llamado al hotel', 'Ya he vuelto al hotel'], 0, 'Я уже позвонил в отель'),
+    round(20, 2, 'Ya hemos comprado pan', ['Ya hemos comprado arroz', 'Ya han comprado pan'], 1, 'Мы уже купили хлеб'),
+    round(20, 3, 'Ya he abierto la puerta', ['Ya he abierto la ventana', 'Ya has abierto la puerta'], 2, 'Я уже открыл дверь'),
+    round(20, 4, 'Ya he pagado la factura', ['Ya he recibido la factura', 'Ya ha pagado la factura'], 0, 'Я уже оплатил счёт'),
+    round(20, 5, 'Ya he recogido el paquete', ['Ya he mandado el paquete', 'Ya has recogido el paquete'], 1, 'Я уже забрал посылку'),
+    round(20, 6, 'No hemos recibido la factura', ['No hemos pagado la factura', 'No han recibido la factura'], 2, 'Мы не получили счёт'),
   ],
 };

@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — испанский классический курс, уроки 1–16 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — испанский классический курс, уроки 1–20 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: три реплики из фраз урока (или из слов этого и прошлых уроков); ровно одно слово
  * неверное — `{неверно>верно}`; в другой реплике одно слово-обманка — `*слово`: оно нажимается, но верное.
@@ -75,5 +75,21 @@ export const HUNT_BANK_ES: Readonly<Record<number, readonly HuntTask[]>> = {
   16: [
     task(16, 1, ['¿Vas a llamar al hotel?', '*Voy a llamar a Ana.', 'Mis hermanos {va>van} a llamar al hotel.'], 'Братьев несколько — значит van.'),
     task(16, 2, ['¿Vas a comer en casa?', '*Voy a comer en casa.', 'Ella no {voy>va} a comer en casa.'], 'Про неё говорят va. Voy — про себя.'),
+  ],
+  17: [
+    task(17, 1, ['¿Te gusta el hotel?', 'Me {gustan>gusta} el hotel.', 'A Ana le *gusta la playa.'], 'Отель один — значит gusta.'),
+    task(17, 2, ['¿Te gustan mis fotos?', '*Me gustan tus fotos.', 'A mis hermanos {le>les} gustan tus fotos.'], 'Братьев несколько — значит les.'),
+  ],
+  18: [
+    task(18, 1, ['¿Dónde está el pasaporte?', 'Ella lo {tengo>tiene} en el bolso.', '*Lo necesito hoy.'], 'Про неё говорят tiene. Tengo — про себя.'),
+    task(18, 2, ['¿Llevas las fotos a casa?', '*Las llevo a casa.', 'Él las {llevo>lleva} a clase.'], 'Про него говорят lleva. Llevo — про себя.'),
+  ],
+  19: [
+    task(19, 1, ['¿Estás trabajando en casa?', '*Estoy trabajando en el hotel.', 'Mis hermanos {está>están} trabajando en casa.'], 'Братьев несколько — значит están.'),
+    task(19, 2, ['¿Estás leyendo el libro?', 'Estoy {lee>leyendo} el mensaje.', 'Ana *está leyendo el libro.'], 'После estoy — leyendo.'),
+  ],
+  20: [
+    task(20, 1, ['¿Has llamado a Ana?', '*He llamado a Ana hoy.', 'Mis hermanos {ha>han} llamado al hotel.'], 'Братьев несколько — значит han.'),
+    task(20, 2, ['¿Has leído el libro?', 'Ya lo he {leer>leído}.', '¿Luis *ha leído el mensaje?'], 'После he — leído.'),
   ],
 };

@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — итальянский классический курс, уроки 1–16 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — итальянский классический курс, уроки 1–20 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: три реплики из фраз урока (или из слов этого и прошлых уроков); ровно одно слово
  * неверное — `{неверно>верно}`; в другой реплике одно слово-обманка — `*слово`: оно нажимается, но верное.
@@ -75,5 +75,21 @@ export const HUNT_BANK_IT: Readonly<Record<number, readonly HuntTask[]>> = {
   16: [
     task(16, 1, ['Dove metto la borsa?', '*Metti la borsa qui!', 'Chiudi {il>la} porta!'], 'Porta — «она», поэтому la.'),
     task(16, 2, ['Che cosa prendo?', 'Prendi {il>la} giacca!', '*Tieni il biglietto!'], 'Giacca — «она», поэтому la.'),
+  ],
+  17: [
+    task(17, 1, ['A che ora ti alzi?', '*Mi alzo alle sette.', 'I bambini si {alza>alzano} presto.'], 'Детей несколько — значит alzano.'),
+    task(17, 2, ['Ti fai la doccia di sera?', 'Mi faccio {il>la} doccia al mattino.', 'Lei si *lava le mani.'], 'Doccia — «она», поэтому la.'),
+  ],
+  18: [
+    task(18, 1, ['Hai chiuso la porta?', '*Ho chiuso la porta.', 'Lei {ho>ha} chiuso la finestra.'], 'Про неё говорят ha. Ho — про себя.'),
+    task(18, 2, ['Hai pagato il conto?', 'Ho {pagare>pagato} il conto.', 'Lui *ha preso il treno.'], 'После ho — pagato.'),
+  ],
+  19: [
+    task(19, 1, ['Quando è arrivata?', 'Mia sorella è {arrivato>arrivata} stamattina.', '*Paolo è partito.'], 'Сестра — «она», поэтому arrivata.'),
+    task(19, 2, ['Dove sono andate?', 'Le mie sorelle sono {andati>andate} al concerto.', 'I miei genitori sono *andati al mercato.'], 'Сёстры — женщины, поэтому andate.'),
+  ],
+  20: [
+    task(20, 1, ['Dove abitavi?', '*Abitavo qui.', 'Noi {vivevano>vivevamo} in campagna.'], 'Про нас говорят vivevamo.'),
+    task(20, 2, ['Il giardino era grande?', 'Il giardino {erano>era} piccolo.', 'Le finestre *erano aperte.'], 'Сад один — значит era.'),
   ],
 };

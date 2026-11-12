@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — итальянский классический курс, уроки 1–16 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — итальянский классический курс, уроки 1–20 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или из слов этого и прошлых уроков);
  * каждый неверный вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах);
@@ -142,5 +142,37 @@ export const EXACT_BANK_IT: Readonly<Record<number, readonly QuizRound[]>> = {
     round(16, 4, 'Prema il pulsante ___', 'verde', ['verdi'], 1, 'Кнопка одна — значит verde.'),
     round(16, 5, 'Metti via ___ scarpe!', 'le', ['la'], 1, 'Туфель пара — значит le.'),
     round(16, 6, 'Apri ___ finestra!', 'la', ['il'], 0, 'Finestra — «она», поэтому la.'),
+  ],
+  17: [
+    round(17, 1, 'Lei si ___ presto', 'alza', ['alzo', 'alzano'], 1, 'Про неё говорят alza.'),
+    round(17, 2, 'I bambini si ___ la faccia', 'lavano', ['lava'], 0, 'Детей несколько — значит lavano.'),
+    round(17, 3, 'Noi ci ___ presto', 'alziamo', ['alza'], 1, 'Про нас говорят alziamo.'),
+    round(17, 4, 'Mi lavo ___ denti', 'i', ['le'], 0, 'Dente — «он», поэтому i denti.'),
+    round(17, 5, 'Lei si lava ___ mani', 'le', ['i'], 1, 'Mano — «она», поэтому le mani.'),
+    round(17, 6, 'Ti svegli ___ sette', 'alle', ['a'], 0, 'Время называют так: alle sette.'),
+  ],
+  18: [
+    round(18, 1, 'Lei ___ chiuso la finestra', 'ha', ['ho', 'hanno'], 2, 'Про неё говорят ha.'),
+    round(18, 2, 'Noi ___ visto il film', 'abbiamo', ['hanno'], 0, 'Про нас говорят abbiamo.'),
+    round(18, 3, 'Lui ha ___ il conto', 'pagato', ['pagare'], 1, 'После ha — pagato.'),
+    round(18, 4, 'Ho ___ il treno', 'preso', ['prendo'], 0, 'После ho — preso.'),
+    round(18, 5, 'Lei ha trovato ___ chiavi', 'le', ['la'], 1, 'Ключей несколько — значит le.'),
+    round(18, 6, 'Loro non ___ capito le istruzioni', 'hanno', ['ha'], 1, 'Их несколько — значит hanno.'),
+  ],
+  19: [
+    round(19, 1, 'Mia sorella è ___', 'arrivata', ['arrivato'], 0, 'Сестра — «она», поэтому arrivata.'),
+    round(19, 2, 'Mio padre è ___ a casa tardi', 'tornato', ['tornata'], 1, 'Отец — «он», поэтому tornato.'),
+    round(19, 3, 'I bambini ___ usciti in cortile', 'sono', ['è'], 0, 'Детей несколько — значит sono.'),
+    round(19, 4, 'Le mie sorelle sono ___ al concerto', 'andate', ['andati'], 1, 'Сёстры — женщины, поэтому andate.'),
+    round(19, 5, 'La chiave è ___ sotto il tavolo', 'caduta', ['caduto'], 0, 'Chiave — «она», поэтому caduta.'),
+    round(19, 6, 'I miei genitori sono ___ al mercato', 'andati', ['andata', 'andate'], 2, 'Родителей двое — значит andati.'),
+  ],
+  20: [
+    round(20, 1, 'Lei ___ spesso sola', 'era', ['ero', 'erano'], 1, 'Про неё говорят era.'),
+    round(20, 2, 'Le finestre ___ aperte', 'erano', ['era'], 0, 'Окон несколько — значит erano.'),
+    round(20, 3, 'Noi ___ in campagna', 'vivevamo', ['vivevano'], 1, 'Про нас говорят vivevamo.'),
+    round(20, 4, 'I bambini ___ freddo', 'avevano', ['aveva'], 0, 'Детей несколько — значит avevano.'),
+    round(20, 5, 'I negozi erano ___ il lunedì', 'chiusi', ['chiuse'], 1, 'Negozio — «он», поэтому chiusi.'),
+    round(20, 6, 'Lei viveva ___ Lione', 'a', ['in'], 0, 'С городом — a: a Lione.'),
   ],
 };

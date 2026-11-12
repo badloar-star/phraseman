@@ -1,5 +1,5 @@
 /**
- * Банк игры «Собери диалог» — итальянский классический курс, уроки 3–16 (D207). 2 диалога из 4 реплик на урок.
+ * Банк игры «Собери диалог» — итальянский классический курс, уроки 3–20 (D207). 2 диалога из 4 реплик на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: реплики — фразы урока или собраны из слов этого и прошлых уроков; порядок держится
  * на том, что первый вопрос называет, о ком речь, ответ повторяет это слово, а третья реплика ссылается
@@ -68,5 +68,21 @@ export const ORDER_BANK_IT: Readonly<Record<number, readonly OrderTask[]>> = {
   16: [
     task(16, 1, ['Che cosa metto qui?', 'Metti la borsa qui.', 'La borsa è pesante?', 'La borsa è leggera.']),
     task(16, 2, ['Che cosa prendo?', 'Prendi la giacca.', 'La giacca è calda?', 'La giacca è molto calda.']),
+  ],
+  17: [
+    task(17, 1, ['A che ora ti alzi?', 'Mi alzo alle sette.', 'E i bambini?', 'I bambini si alzano presto.']),
+    task(17, 2, ['Ti fai la doccia di sera?', 'Mi faccio la doccia al mattino.', 'E Paolo?', 'Paolo si fa la doccia dopo lo sport.']),
+  ],
+  18: [
+    task(18, 1, ['Hai chiuso la porta?', 'Ho chiuso la porta.', 'E la finestra?', 'Lei ha chiuso la finestra.']),
+    task(18, 2, ['Che cosa hai comprato?', 'Ho comprato del pane.', 'E Paolo?', 'Paolo ha comprato del caffè.']),
+  ],
+  19: [
+    task(19, 1, ['Lea è arrivata?', 'Lea è arrivata ieri.', 'E Paolo?', 'Paolo è partito.']),
+    task(19, 2, ['Dove sono andate le tue sorelle?', 'Le mie sorelle sono andate al concerto.', 'E i tuoi genitori?', 'I miei genitori sono andati al mercato.']),
+  ],
+  20: [
+    task(20, 1, ['Dove abitavi?', 'Abitavo in città.', 'E tua madre?', 'Mia madre viveva in campagna.']),
+    task(20, 2, ['Il giardino era grande?', 'Il giardino era piccolo.', 'E il cortile?', 'Il cortile era grande.']),
   ],
 };

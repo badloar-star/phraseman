@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — испанский классический курс, уроки 1–16 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — испанский классический курс, уроки 1–20 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза из слов этого и прошлых уроков);
  * с лишним словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить.
@@ -174,5 +174,45 @@ export const ODD_WORD_BANK_ES: Readonly<Record<number, readonly OddWordTask[]>> 
     task(16, 6, 'Ella va a preparar [el] la cena', 'Она собирается приготовить ужин', 'Cena — «она», поэтому la.'),
     task(16, 7, 'Ella va a pasar por [la] el supermercado', 'Она собирается зайти в супермаркет', 'Supermercado — «он», поэтому el.'),
     task(16, 8, 'Ella no va a [abre] abrir la puerta', 'Она не собирается открывать дверь', 'После va a слово не меняется: abrir.'),
+  ],
+  17: [
+    task(17, 1, 'Me [gustan] gusta el café', 'Мне нравится кофе', 'Кофе одно — значит gusta.'),
+    task(17, 2, 'Me gustan [este] estos libros', 'Мне нравятся эти книги', 'Книг несколько — значит estos.'),
+    task(17, 3, 'No me gusta [este] esta música', 'Мне не нравится эта музыка', 'Música — «она», поэтому esta.'),
+    task(17, 4, 'A Ana [les] le gusta este hotel', 'Ане нравится этот отель', 'Ана одна — значит le.'),
+    task(17, 5, 'A mis hermanos [le] les gusta este hotel', 'Моим братьям нравится этот отель', 'Братьев несколько — значит les.'),
+    task(17, 6, 'Me gusta [la] leer en casa', 'Мне нравится читать дома', 'Перед leer ничего не нужно.'),
+    task(17, 7, 'Nos gusta [este] esta mesa', 'Нам нравится этот стол', 'Mesa — «она», поэтому esta.'),
+    task(17, 8, 'Me gusta [el] tu casa', 'Мне нравится твой дом', 'С tu — без el.'),
+  ],
+  18: [
+    task(18, 1, 'Ella la [busco] busca', 'Она её ищет', 'Про неё говорят busca. Busco — про себя.'),
+    task(18, 2, 'Él los [llevo] lleva a casa', 'Он несёт их домой', 'Про него говорят lleva. Llevo — про себя.'),
+    task(18, 3, 'Mis hermanos lo [necesita] necesitan hoy', 'Он нужен моим братьям сегодня', 'Братьев несколько — значит necesitan.'),
+    task(18, 4, 'Ella lo [dejo] deja en casa', 'Она оставляет его дома', 'Про неё говорят deja. Dejo — про себя.'),
+    task(18, 5, 'Lo tengo [en] aquí', 'Он здесь, у меня', 'Aquí обходится без en.'),
+    task(18, 6, 'Los devuelvo [en] hoy', 'Я возвращаю их сегодня', 'Hoy обходится без en.'),
+    task(18, 7, 'Él no lo [tengo] tiene aquí', 'У него его здесь нет', 'Про него говорят tiene. Tengo — про себя.'),
+    task(18, 8, 'Las guardo en [la] el bolsillo', 'Я кладу их в карман', 'Bolsillo — «он», поэтому el.'),
+  ],
+  19: [
+    task(19, 1, 'Ella [estoy] está escribiendo una carta', 'Она сейчас пишет письмо', 'Про неё говорят está. Estoy — про себя.'),
+    task(19, 2, 'Mis hermanos [está] están pagando en efectivo', 'Мои братья сейчас платят наличными', 'Братьев несколько — значит están.'),
+    task(19, 3, 'Él está [come] comiendo en casa', 'Он сейчас ест дома', 'После está — comiendo.'),
+    task(19, 4, 'Él está abriendo [el] la puerta', 'Он сейчас открывает дверь', 'Puerta — «она», поэтому la.'),
+    task(19, 5, 'Ellos [estamos] están esperando fuera', 'Они сейчас ждут снаружи', 'Про них говорят están. Estamos — про нас.'),
+    task(19, 6, 'Ella está secando [el] los platos', 'Она сейчас вытирает тарелки', 'Тарелок несколько — значит los.'),
+    task(19, 7, 'Él está [lee] leyendo el libro', 'Он сейчас читает книгу', 'После está — leyendo.'),
+    task(19, 8, 'Mis hermanas [está] están esperando aquí', 'Мои сёстры сейчас ждут здесь', 'Сестёр несколько — значит están.'),
+  ],
+  20: [
+    task(20, 1, 'Ella ya [he] ha comprado un billete', 'Она уже купила билет', 'Про неё говорят ha. He — про себя.'),
+    task(20, 2, 'Mis hermanos [ha] han vuelto a casa', 'Мои братья вернулись домой', 'Братьев несколько — значит han.'),
+    task(20, 3, 'Él ya ha [lee] leído el libro', 'Он уже прочитал книгу', 'После ha — leído.'),
+    task(20, 4, 'Ellos [hemos] han pagado con tarjeta', 'Они заплатили картой', 'Про них говорят han. Hemos — про нас.'),
+    task(20, 5, 'Ella ha [abre] abierto la puerta', 'Она открыла дверь', 'После ha — abierto.'),
+    task(20, 6, 'Él ha preparado [el] la cena', 'Он приготовил ужин', 'Cena — «она», поэтому la.'),
+    task(20, 7, 'Él no [he] ha mandado el paquete', 'Он не отправил посылку', 'Про него говорят ha. He — про себя.'),
+    task(20, 8, 'Ella ha recibido [la] el pedido', 'Она получила заказ', 'Pedido — «он», поэтому el.'),
   ],
 };

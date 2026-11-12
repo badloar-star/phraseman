@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — итальянский классический курс, уроки 1–16 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — итальянский классический курс, уроки 1–20 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: произносится фраза урока; верный вариант дословно равен ей; два неверных отличаются
  * ровно одним словом и остаются правильными фразами из знакомых слов — это проверка слуха, а не грамматики.
@@ -140,5 +140,37 @@ export const LISTEN_BANK_IT: Readonly<Record<number, readonly QuizRound[]>> = {
     round(16, 4, 'Gira a sinistra', ['Gira a destra', 'Resta a sinistra'], 0, 'Поверни налево'),
     round(16, 5, 'Resta qui', ['Resta lì', 'Resti qui'], 1, 'Останься здесь'),
     round(16, 6, 'Metti la borsa qui', ['Metti la giacca qui', 'Prendi la borsa qui'], 2, 'Поставь сумку сюда'),
+  ],
+  17: [
+    round(17, 1, 'Mi alzo', ['Mi vesto', 'Mi sveglio'], 0, 'Я встаю'),
+    round(17, 2, 'Mi sveglio presto', ['Mi alzo presto', 'Mi sveglio tardi'], 1, 'Я просыпаюсь рано'),
+    round(17, 3, 'Ci corichiamo presto', ['Ci alziamo presto', 'Ci corichiamo tardi'], 2, 'Мы ложимся спать рано'),
+    round(17, 4, 'Mi lavo i denti', ['Ti lavo i denti', 'Mi lavo i capelli'], 0, 'Я чищу зубы'),
+    round(17, 5, 'Lei si lava le mani', ['Lui si lava le mani', 'Lei si guarda le mani'], 1, 'Она моет руки'),
+    round(17, 6, 'Ti vesti velocemente', ['Ti alzi velocemente', 'Ti prepari velocemente'], 2, 'Ты одеваешься быстро'),
+  ],
+  18: [
+    round(18, 1, 'Ho chiuso la porta', ['Hai chiuso la porta', 'Ho chiuso la finestra'], 0, 'Я закрыл дверь'),
+    round(18, 2, 'Abbiamo visto il film', ['Abbiamo visto il museo', 'Hanno visto il film'], 1, 'Мы посмотрели фильм'),
+    round(18, 3, 'Ho ricevuto il pacco', ['Ho ricevuto il conto', 'Hai ricevuto il pacco'], 2, 'Я получил посылку'),
+    round(18, 4, 'Lei ha trovato le chiavi', ['Lei ha lasciato le chiavi', 'Lui ha trovato le chiavi'], 0, 'Она нашла ключи'),
+    round(18, 5, 'Ho prenotato un tavolo', ['Ho prenotato un taxi', 'Hai prenotato un tavolo'], 1, 'Я забронировал столик'),
+    round(18, 6, 'Abbiamo detto grazie', ['Hanno detto grazie', 'Avete detto grazie'], 2, 'Мы сказали спасибо'),
+  ],
+  19: [
+    round(19, 1, 'Paolo è arrivato', ['Paolo è partito', 'Paolo è tornato'], 0, 'Паоло приехал'),
+    round(19, 2, 'Lea è partita', ['Lea è arrivata', 'Lea è tornata'], 1, 'Леа уехала'),
+    round(19, 3, 'Sono arrivati', ['Sono partiti', 'Sono arrivate'], 2, 'Они прибыли'),
+    round(19, 4, 'È arrivato mio fratello', ['È arrivato mio padre', 'È tornato mio fratello'], 0, 'Мой брат пришёл'),
+    round(19, 5, 'I vicini sono rimasti fuori', ['I vicini sono rimasti qui', 'I bambini sono rimasti fuori'], 1, 'Соседи остались на улице'),
+    round(19, 6, 'Il libro è caduto dalla borsa', ['Il libro è caduto dalla tasca', 'Il pacco è caduto dalla borsa'], 2, 'Книга выпала из сумки'),
+  ],
+  20: [
+    round(20, 1, 'Abitavo qui', ['Abitavi qui', 'Lavoravo qui'], 0, 'Я раньше здесь жил'),
+    round(20, 2, 'Il giardino era grande', ['Il giardino era piccolo', 'Il cortile era grande'], 1, 'Сад был большим'),
+    round(20, 3, 'Era già buio', ['Era già tardi', 'Era ancora buio'], 2, 'Уже было темно'),
+    round(20, 4, 'Le finestre erano aperte', ['Le finestre erano chiuse', 'Le porte erano aperte'], 0, 'Окна были открыты'),
+    round(20, 5, 'Avevamo molto tempo', ['Avevamo poco tempo', 'Avevano molto tempo'], 1, 'У нас было много времени'),
+    round(20, 6, 'La strada era deserta', ['La strada era stretta', 'La piazza era deserta'], 2, 'Улица была пустынна'),
   ],
 };

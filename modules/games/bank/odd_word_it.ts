@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — итальянский классический курс, уроки 1–16 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — итальянский классический курс, уроки 1–20 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза из слов этого и прошлых уроков);
  * с лишним словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить.
@@ -175,5 +175,45 @@ export const ODD_WORD_BANK_IT: Readonly<Record<number, readonly OddWordTask[]>> 
     task(16, 6, 'Metti via [la] le scarpe', 'Убери туфли', 'Туфель пара — значит le.'),
     task(16, 7, 'Prema il pulsante [verdi] verde', 'Нажмите зелёную кнопку', 'Кнопка одна — значит verde.'),
     task(16, 8, 'Accendi [il] la lampada', 'Включи лампу', 'Lampada — «она», поэтому la.'),
+  ],
+  17: [
+    task(17, 1, 'Lei si [alzo] alza presto', 'Она встаёт рано', 'Про неё говорят alza. Alzo — про себя.'),
+    task(17, 2, 'I bambini si [lava] lavano la faccia', 'Дети умывают лицо', 'Детей несколько — значит lavano.'),
+    task(17, 3, 'Noi ci [alza] alziamo presto', 'Мы встаём рано', 'Про нас говорят alziamo.'),
+    task(17, 4, 'Lui si [vesto] veste velocemente', 'Он одевается быстро', 'Про него говорят veste. Vesto — про себя.'),
+    task(17, 5, 'Lei si lava [la] le mani', 'Она моет руки', 'Рук две — значит le.'),
+    task(17, 6, 'Loro si [sveglia] svegliano alle sette', 'Они просыпаются в семь', 'Их несколько — значит svegliano.'),
+    task(17, 7, 'Io mi lavo [le] i denti', 'Я чищу зубы', 'Dente — «он», поэтому i denti.'),
+    task(17, 8, 'Lei si fa [il] la doccia', 'Она принимает душ', 'Doccia — «она», поэтому la.'),
+  ],
+  18: [
+    task(18, 1, 'Lei [ho] ha chiuso la finestra', 'Она закрыла окно', 'Про неё говорят ha. Ho — про себя.'),
+    task(18, 2, 'Noi [ha] abbiamo comprato due biglietti', 'Мы купили два билета', 'Про нас говорят abbiamo.'),
+    task(18, 3, 'Lui ha [pagare] pagato il conto', 'Он оплатил счёт', 'После ha — pagato.'),
+    task(18, 4, 'Loro [abbiamo] hanno visto il film', 'Они посмотрели фильм', 'Про них говорят hanno. Abbiamo — про нас.'),
+    task(18, 5, 'Lei ha trovato [la] le chiavi', 'Она нашла ключи', 'Ключей несколько — значит le.'),
+    task(18, 6, 'Lui ha lasciato [la] il cappotto qui', 'Он оставил пальто здесь', 'Cappotto — «он», поэтому il.'),
+    task(18, 7, 'Io ho [prendo] preso il treno', 'Я поехал на поезде', 'После ho — preso.'),
+    task(18, 8, 'Loro non [ha] hanno capito le istruzioni', 'Они не поняли инструкции', 'Их несколько — значит hanno.'),
+  ],
+  19: [
+    task(19, 1, 'Mia sorella è [arrivato] arrivata', 'Моя сестра приехала', 'Сестра — «она», поэтому arrivata.'),
+    task(19, 2, 'Mio padre è [tornata] tornato a casa', 'Мой отец вернулся домой', 'Отец — «он», поэтому tornato.'),
+    task(19, 3, 'Le mie sorelle sono [andati] andate al concerto', 'Мои сёстры пошли на концерт', 'Сёстры — женщины, поэтому andate.'),
+    task(19, 4, 'I bambini [è] sono usciti in cortile', 'Дети вышли во двор', 'Детей несколько — значит sono.'),
+    task(19, 5, 'Mia madre è [tornato] tornata a casa presto', 'Моя мама вернулась домой рано', 'Мама — «она», поэтому tornata.'),
+    task(19, 6, 'La chiave è [caduto] caduta sotto il tavolo', 'Ключ упал под стол', 'Chiave — «она», поэтому caduta.'),
+    task(19, 7, 'Il libro è [caduta] caduto dalla borsa', 'Книга выпала из сумки', 'Libro — «он», поэтому caduto.'),
+    task(19, 8, 'I miei genitori sono [andato] andati al mercato', 'Мои родители пошли на рынок', 'Родителей двое — значит andati.'),
+  ],
+  20: [
+    task(20, 1, 'Lei [ero] era spesso sola', 'Она часто была одна', 'Про неё говорят era. Ero — про себя.'),
+    task(20, 2, 'Noi [vivevano] vivevamo in campagna', 'Мы жили в деревне', 'Про нас говорят vivevamo.'),
+    task(20, 3, 'Le finestre [era] erano aperte', 'Окна были открыты', 'Окон несколько — значит erano.'),
+    task(20, 4, 'I negozi erano [chiuse] chiusi il lunedì', 'Магазины были закрыты по понедельникам', 'Negozio — «он», поэтому chiusi.'),
+    task(20, 5, 'Lei viveva [in] a Lione', 'Она жила в Лионе', 'С городом — a: a Lione.'),
+    task(20, 6, 'I bambini [aveva] avevano freddo', 'Детям было холодно', 'Детей несколько — значит avevano.'),
+    task(20, 7, 'Il giardino [erano] era grande', 'Сад был большим', 'Сад один — значит era.'),
+    task(20, 8, 'Noi [avevano] avevamo molto tempo', 'У нас было много времени', 'Про нас говорят avevamo.'),
   ],
 };

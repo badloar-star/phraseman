@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — итальянский классический курс, уроки 1–16 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — итальянский классический курс, уроки 1–20 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только слова этого и прошлых уроков. Пропуск в карте пишется `___`
@@ -171,5 +171,45 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Mostri il biglietto, per favore.', 'right', 'mostri — вежливо, на «вы»'],
     ['Gira a sinistra!', 'left', 'gira — на «ты»'],
     ['Tenga il passaporto con sé.', 'right', 'tenga — вежливо, на «вы»'],
+  ]),
+  17: deck(17, { title: 'про одного', example: 'si alza, si veste' }, { title: 'про нескольких', example: 'si alzano, si lavano' }, [
+    ['Si alza presto', 'left', 'alza — один человек'],
+    ['Si alzano presto', 'right', 'alzano — несколько человек'],
+    ['Si veste velocemente', 'left', 'veste — один человек'],
+    ['Si lavano la faccia', 'right', 'lavano — несколько человек'],
+    ['Si sveglia alle sette', 'left', 'sveglia — один человек'],
+    ['Si svegliano alle sette', 'right', 'svegliano — несколько человек'],
+    ['Si lava le mani', 'left', 'lava — один человек'],
+    ['Si divertono in giardino', 'right', 'divertono — несколько человек'],
+  ]),
+  18: deck(18, { title: 'ha', example: 'lei, Paolo' }, { title: 'hanno', example: 'loro, i bambini' }, [
+    ['Lei ___ chiuso la finestra', 'left', 'она одна — ha'],
+    ['Loro ___ visto il film', 'right', 'их несколько — hanno'],
+    ['Paolo ___ comprato del caffè', 'left', 'Паоло один — ha'],
+    ['I bambini ___ bevuto il succo di mela', 'right', 'детей несколько — hanno'],
+    ['Lui ___ pagato il conto', 'left', 'он один — ha'],
+    ['Le ragazze ___ prenotato un tavolo', 'right', 'девушек несколько — hanno'],
+    ['Mia sorella ___ trovato le chiavi', 'left', 'сестра одна — ha'],
+    ['I colleghi ___ annullato la consegna', 'right', 'коллег несколько — hanno'],
+  ]),
+  19: deck(19, { title: 'arrivato', example: 'Paolo, mio padre' }, { title: 'arrivata', example: 'Lea, mia madre' }, [
+    ['Paolo è ___', 'left', 'Паоло — «он», поэтому arrivato'],
+    ['Lea è ___', 'right', 'Леа — «она», поэтому arrivata'],
+    ['Mio fratello è ___', 'left', 'брат — «он», поэтому arrivato'],
+    ['Mia sorella è ___', 'right', 'сестра — «она», поэтому arrivata'],
+    ['Mio padre è ___', 'left', 'отец — «он», поэтому arrivato'],
+    ['Mia madre è ___', 'right', 'мама — «она», поэтому arrivata'],
+    ['Il postino è ___', 'left', 'почтальон — «он», поэтому arrivato'],
+    ['La postina è ___', 'right', 'почтальон-женщина — «она», поэтому arrivata'],
+  ]),
+  20: deck(20, { title: 'era', example: 'il giardino, la strada' }, { title: 'erano', example: 'le finestre, i negozi' }, [
+    ['Il giardino ___ grande', 'left', 'сад один — era'],
+    ['Le finestre ___ aperte', 'right', 'окон несколько — erano'],
+    ['La strada ___ deserta', 'left', 'улица одна — era'],
+    ['I negozi ___ chiusi', 'right', 'магазинов несколько — erano'],
+    ['La luce ___ fioca', 'left', 'свет один — era'],
+    ['I treni ___ in ritardo', 'right', 'поездов несколько — erano'],
+    ['Lei ___ spesso sola', 'left', 'она одна — era'],
+    ['Le strade ___ strette', 'right', 'улиц несколько — erano'],
   ]),
 };

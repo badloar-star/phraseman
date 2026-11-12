@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — испанский классический курс, уроки 1–16 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — испанский классический курс, уроки 1–20 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только слова этого и прошлых уроков. Пропуск в карте пишется `___`
@@ -171,5 +171,45 @@ export const SORT_BANK_ES: Readonly<Record<number, SortDeck>> = {
     ['Ellos ___ a comer en casa', 'right', 'их несколько — van'],
     ['Ella ___ a llamar al hotel', 'left', 'она одна — va'],
     ['Ellas ___ a pagar con tarjeta', 'right', 'их несколько — van'],
+  ]),
+  17: deck(17, { title: 'gusta', example: 'el café, la música' }, { title: 'gustan', example: 'las fotos, estos libros' }, [
+    ['Me ___ el café', 'left', 'кофе одно — gusta'],
+    ['Me ___ las fotos', 'right', 'фотографий несколько — gustan'],
+    ['Me ___ la música', 'left', 'музыка одна — gusta'],
+    ['Me ___ estos libros', 'right', 'книг несколько — gustan'],
+    ['Nos ___ este hotel', 'left', 'отель один — gusta'],
+    ['Nos ___ las fotos de Ana', 'right', 'фотографий несколько — gustan'],
+    ['Te ___ la playa', 'left', 'пляж один — gusta'],
+    ['Te ___ mis fotos', 'right', 'фотографий несколько — gustan'],
+  ]),
+  18: deck(18, { title: 'lo', example: 'el libro → lo tengo' }, { title: 'la', example: 'la llave → la tengo' }, [
+    ['pasaporte', 'left', 'el pasaporte — значит lo'],
+    ['maleta', 'right', 'la maleta — значит la'],
+    ['móvil', 'left', 'el móvil — значит lo'],
+    ['llave', 'right', 'la llave — значит la'],
+    ['libro', 'left', 'el libro — значит lo'],
+    ['mochila', 'right', 'la mochila — значит la'],
+    ['abrigo', 'left', 'el abrigo — значит lo'],
+    ['camiseta', 'right', 'la camiseta — значит la'],
+  ]),
+  19: deck(19, { title: 'está', example: 'Ana, Luis' }, { title: 'están', example: 'mis hermanos, ellas' }, [
+    ['Ana ___ escribiendo una carta', 'left', 'Ана одна — está'],
+    ['Mis hermanos ___ pagando en efectivo', 'right', 'братьев несколько — están'],
+    ['Luis ___ comiendo en casa', 'left', 'Луис один — está'],
+    ['Mis hermanas ___ esperando aquí', 'right', 'сестёр несколько — están'],
+    ['Mi hermana ___ lavando la camiseta', 'left', 'сестра одна — está'],
+    ['Ellos ___ trabajando en el hotel', 'right', 'их несколько — están'],
+    ['Ella ___ secando los platos', 'left', 'она одна — está'],
+    ['Ellas ___ bebiendo café', 'right', 'их несколько — están'],
+  ]),
+  20: deck(20, { title: 'ha', example: 'Ana, Luis' }, { title: 'han', example: 'mis hermanos, ellos' }, [
+    ['Ana ___ comprado un billete', 'left', 'Ана одна — ha'],
+    ['Mis hermanos ___ vuelto a casa', 'right', 'братьев несколько — han'],
+    ['Luis ___ leído el libro', 'left', 'Луис один — ha'],
+    ['Mis hermanas ___ abierto la ventana', 'right', 'сестёр несколько — han'],
+    ['Mi madre ___ preparado la cena', 'left', 'мама одна — ha'],
+    ['Ellos ___ pagado con tarjeta', 'right', 'их несколько — han'],
+    ['Ella ___ llamado al hotel', 'left', 'она одна — ha'],
+    ['Ellas ___ recibido el pedido', 'right', 'их несколько — han'],
   ]),
 };

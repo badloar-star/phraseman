@@ -28,7 +28,7 @@ function makeRouter(): RouterStub {
   };
 }
 
-const GAME_ROUTES = ['/game_flow', '/game_odd_word', '/game_sort', '/game_quiz', '/game_hunt', '/game_order'];
+const GAME_ROUTES = ['/game_flow', '/game_odd_word', '/game_sort', '/game_quiz', '/game_hunt', '/game_order', '/game_race', '/game_minute', '/game_levels'];
 const HOME = '/(tabs)/home';
 
 /** Куда ушёл «назад»: явная цель dismissTo/replace либо обычный шаг назад по стеку. */

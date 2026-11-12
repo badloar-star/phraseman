@@ -36,6 +36,7 @@ import {
 } from '../modules/games/race_core';
 import { RACE_EASE, RACE_MOTION as M } from '../modules/games/race_motion';
 import { currentGameLesson, isFlowAvailable } from '../modules/games/task_source';
+import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { useSkillSession } from '../modules/skills/use_skill_session';
 import { getClassicLessonPhrases, isClassicCourseLang } from './classic_course_phrases';
@@ -226,6 +227,8 @@ export default function GameRaceScreen() {
       setResult({ today: final.correct, yesterday: ghostRun?.correct ?? 0, best: Math.max(prevBest, final.correct) });
       console.log(`${LOG} run:over ${JSON.stringify({ correct: final.correct, misses: final.misses, lives: final.lives })}`); // guard-ok: итог захода
       void saveRaceRun(today, { correct: final.correct, marks: final.marks });
+      // зачем: разминка помечает игру сыгранной по факту итога; на карте — число верных, как «Сегодня · N» на дорожке
+      markWarmupGamePlayed('race', String(final.correct));
     }, M.endDelayMs));
   }, [clearTimers, ghostRun, today]);
 

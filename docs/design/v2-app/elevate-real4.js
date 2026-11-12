@@ -16,16 +16,15 @@
     const ang = (i) => -Math.PI / 2 + i * 2 * Math.PI / N, pt = (i, k) => [cx + Math.cos(ang(i)) * R * k, cy + Math.sin(ang(i)) * R * k];
     const poly = (k) => SK.map((_, i) => pt(i, typeof k === 'function' ? k(i) : k).map((n) => n.toFixed(1)).join(',')).join(' ');
     const weak = SK.filter((s) => s.nm !== 'Социальный').reduce((a, b) => (b.lv < a.lv ? b : a)); // зачем: владелец 11.11 — «Подтянуть» предлагает только учебные навыки
-    $(ph, '.lay').innerHTML = `${top({ back: true, mid: '<div class="ttl">Навыки</div>', right: `<span class="gpill">${I('trend', 's18')}за неделю</span>` })}
-      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:18px;flex:none"><div><div class="over">Индекс речи</div><div class="big idx" style="margin-top:4px;font-variant-numeric:tabular-nums">0</div></div><span class="gpill" style="margin-bottom:4px">Уверенный · A2</span></div>
+    $(ph, '.lay').innerHTML = `${top({ back: true, mid: '<div class="ttl">Навыки</div>', right: '<span style="width:44px"></span>' })}
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-top:18px;flex:none"><div><div class="over">Индекс речи</div><div class="big idx" style="margin-top:4px;font-variant-numeric:tabular-nums">0</div></div><span class="gpill" style="margin-bottom:4px">Уверенный</span></div>
       <div class="radar" style="height:300px;margin-top:4px"><svg viewBox="0 0 330 300">${[.34, .67, 1].map((k) => `<polygon class="grid" points="${poly(k)}"/>`).join('')}${SK.map((_, i) => { const [x, y] = pt(i, 1); return `<line class="ax" x1="${cx}" y1="${cy}" x2="${x}" y2="${y}"/>`; }).join('')}<polygon class="shape" points="${poly(0)}"/>${SK.map(() => '<circle class="pt" r="4.5"/>').join('')}</svg>
         ${SK.map((s, i) => { const [x, y] = pt(i, 1.25); return `<div class="lb" style="left:${x}px;top:${y}px">${s.nm}</div>`; }).join('')}</div>
-      <div class="over src" style="text-align:center;min-height:18px;flex:none">Нажми на навык — покажу, от чего он растёт</div>
-      <div class="gl skl" style="padding:2px 16px">${SK.map((s, i) => `<div class="sk" data-i="${i}" style="height:46px"><div class="nm">${s.nm}</div><div class="bar"><i></i></div><div class="val" style="width:64px;font-size:14px;font-weight:600;color:var(--ink2)">ур. <b style="font-size:18px;color:#fff;font-weight:800">${s.lv}</b></div><div class="dl${WEEK[s.nm] ? '' : ' z'}">${WEEK[s.nm] ? '+' + WEEK[s.nm] : '—'}</div></div>`).join('')}</div>
-      <div style="flex:1"></div><div class="wcta t">${I('play')}Подтянуть · ${weak.nm}</div>`;
+      <div class="gl skl" style="padding:2px 16px">${SK.map((s, i) => `<div class="sk" data-i="${i}" style="height:46px"><div class="nm">${s.nm}</div><div class="bar"><i></i></div><div class="val" style="width:64px;font-size:14px;font-weight:600;color:var(--ink2)">ур. <b style="font-size:18px;color:#fff;font-weight:800">${s.lv}</b></div></div>`).join('')}</div>
+      <div style="flex:1"></div>`;
     const shape = $(ph, '.shape'), pts = $$(ph, '.pt');
     const draw = (p) => { const k = (i) => axis(SK[i].lv, SK[i].p) * Math.min(1, Math.max(0, p * 1.5 - i * .08)); shape.setAttribute('points', poly(k)); pts.forEach((c, i) => { const [x, y] = pt(i, k(i)); c.setAttribute('cx', x); c.setAttribute('cy', y); }); };
-    const pick = (i) => { $$(ph, '.sk').forEach((r, k) => r.classList.toggle('on', k === i)); $$(ph, '.radar .lb').forEach((r, k) => r.classList.toggle('on', k === i)); pts.forEach((r, k) => r.classList.toggle('on', k === i)); $(ph, '.src').textContent = SRC[SK[i].nm]; log('навыки: выбран', SK[i].nm); };
+    const pick = (i) => { $$(ph, '.sk').forEach((r, k) => r.classList.toggle('on', k === i)); $$(ph, '.radar .lb').forEach((r, k) => r.classList.toggle('on', k === i)); pts.forEach((r, k) => r.classList.toggle('on', k === i)); log('навыки: выбран', SK[i].nm); };
     $(ph, '.skl').addEventListener('click', (e) => { const r = e.target.closest('.sk'); if (r) pick(+r.dataset.i); });
     draw(0);
     G.after(350, () => { const t0 = performance.now(); const f = (now) => { const p = Math.min(1, (now - t0) / 1300), e = 1 - Math.pow(1 - p, 3); draw(e); if (p < 1) raf = requestAnimationFrame(f); }; raf = requestAnimationFrame(f); count($(ph, '.idx'), 0, 1535, 1300); $$(ph, '.sk .bar i').forEach((b, i) => G.after(i * 80, () => b.style.setProperty('--p', SK[i].p))); });
@@ -74,7 +73,7 @@
   const all = [S.stats].concat(S.skills || []).filter(Boolean).flatMap((x) => x.screens || []);
   const set = (id, patch) => { const s = all.find((x) => x.id === id); if (s) Object.assign(s, patch); };
   // зачем: владелец уточнил, что разница была из-за тёмной и светлой темы — навыки и статистика остаются по переключателю оформления, насильно тёмными их не делаем
-  set('sk-skills', { fn: skills, cls: '', note: 'Индекс речи, звезда и прирост за неделю у каждого навыка. Нажатие на строку подсвечивает луч и пишет, от чего навык растёт.' });
+  set('sk-skills', { fn: skills, cls: '', note: 'Индекс речи (сумма очков), пилюля ранга по среднему уровню, звезда и уровень каждого навыка — навыки навсегда, без «за неделю» и без подсказок (решения владельца 11.11). Нажатие на строку подсвечивает луч и пишет, от чего навык растёт.' });
   set('sk-pro', { fn: cardPro, cls: 'night deep', lbl: 'Визитка «Про»: все шесть стилей', note: 'Нажимай на название стиля сверху — карточка меняется. Звезда и полоски уровней есть на каждом.' });
   set('sk-free', { fn: cardFree, cls: 'night deep', lbl: 'Обычная визитка: что вижу я и что видит посторонний', note: 'Карточка тёмная, как в приложении. Посторонний видит ту же карточку без блока навыков — никакого замка.' });
   if (S.skills && S.skills[2]) { S.skills[2].html = gallery; S.skills[2].lead = 'Сверху — все семь визиток разом: обычная и шесть стилей «Про» из приложения, на каждой звезда и полоски уровней. Ниже — живые экраны.'; }

@@ -1,0 +1,154 @@
+/* Сценки для карт разминки — макет на утверждение (решение владельца 11.11 «Нарисую макеты сценок»).
+   зачем: у семи игр разминки нет сценки на карте. Стиль — как у трёх утверждённых (elevate-mechanics.css:87–102):
+   белые полупрозрачные плашки и полосы на градиенте карты, одна короткая петля 2–3,5 с, суть механики одним жестом,
+   без текста. Карта — реальный размер 268×372, сценка — верхняя часть (inset 0 0 132px 0).
+   Все классы с префиксом ws-: kit.css и общие elevate-*.css не трогаем. */
+
+:root { --ws-out: cubic-bezier(.2,1,.3,1); --ws-spring: cubic-bezier(.3,1.4,.5,1); }
+
+.ws-intro { margin-top: 18px; color: var(--sec); font-size: 14px; line-height: 21px; max-width: 900px; }
+.ws-intro b { color: var(--text); font-weight: 600; }
+.ws-section { margin-top: 34px; }
+.ws-h2 { font-size: 13px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--muted); margin: 0 0 14px; }
+.ws-row { display: flex; flex-wrap: wrap; gap: 22px 26px; }
+.ws-game { display: flex; flex-direction: column; gap: 10px; }
+.ws-pair { display: flex; gap: 16px; }
+.ws-slot { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ws-lbl { font-size: 13px; font-weight: 600; color: var(--sec); }
+.ws-lbl b { color: var(--text); }
+.ws-note { font-size: 12px; line-height: 17px; color: var(--muted); max-width: 268px; text-align: center; }
+
+/* ---------- карта: те же числа, что .gc в elevate-mechanics.css:70–86 ---------- */
+.ws-card { position: relative; width: 268px; height: 372px; border-radius: 30px; overflow: hidden; color: #fff; flex: none;
+  box-shadow: inset 1px 1.5px 0 -.2px rgba(255,255,255,.34), inset -1px -1.5px 0 -.2px rgba(0,0,0,.35), 0 30px 50px -22px rgba(0,0,0,.75); }
+.ws-card.g1 { background: linear-gradient(165deg, #2F7C8C 0%, #14505E 52%, #0B2E38 100%); }
+.ws-card.g2 { background: linear-gradient(165deg, #6F5BC9 0%, #43328F 52%, #1E1650 100%); }
+.ws-card.g3 { background: linear-gradient(165deg, #B0568F 0%, #7A2F68 52%, #3A1236 100%); }
+.ws-art { position: absolute; inset: 0 0 132px 0; overflow: hidden; }
+.ws-tags { position: absolute; left: 16px; top: 16px; right: 16px; display: flex; justify-content: space-between; z-index: 2; }
+.ws-tag { height: 28px; padding: 0 11px; border-radius: 14px; background: rgba(0,0,0,.28); display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; }
+.ws-tag svg.i { width: 14px; height: 14px; }
+.ws-cap { position: absolute; left: 20px; right: 20px; bottom: 20px; }
+.ws-nm { font-size: 27px; line-height: 31px; font-weight: 800; letter-spacing: -.5px; }
+.ws-ds { font-size: 14px; line-height: 19px; color: rgba(255,255,255,.74); margin-top: 6px; }
+
+/* общие детали сценок. ws-stage — слой сценки со своим сдвигом сверху: плашки не заходят под метку навыка (16–44 px) */
+.ws-stage { position: absolute; left: 0; right: 0; bottom: 0; }
+.ws-art i, .ws-art b { position: absolute; display: block; }
+.ws-bar { height: 14px; border-radius: 7px; background: rgba(255,255,255,.86); }
+.ws-soft { background: rgba(255,255,255,.34); }
+.ws-ghost { background: rgba(255,255,255,.16); }
+
+/* ===== образец: три утверждённые сценки (копия elevate-mechanics.css:87–102 под префиксом ws-) ===== */
+.ws-flow i { left: -60%; height: 12px; border-radius: 6px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.85)); animation: ws-flow var(--d) linear infinite; animation-delay: var(--dl); }
+@keyframes ws-flow { to { transform: translateX(520px); } }
+.ws-cut { display: flex; align-items: center; justify-content: center; gap: 8px; padding-top: 30px; }
+.ws-cut i { position: static; height: 34px; border-radius: 10px; background: rgba(255,255,255,.86); }
+.ws-cut i.x { background: rgba(255,255,255,.34); animation: ws-cutx 3.2s var(--ws-out) infinite; }
+@keyframes ws-cutx { 0%, 30% { transform: none; opacity: 1; width: 44px; margin: 0; } 55% { transform: translateY(70px) rotate(24deg); opacity: 0; width: 44px; } 70%, 92% { transform: translateY(70px); opacity: 0; width: 0; margin: 0 -4px; } 100% { transform: none; opacity: 1; width: 44px; } }
+.ws-sort .cd { left: 50%; top: 74px; width: 96px; height: 64px; margin-left: -48px; border-radius: 16px; background: rgba(255,255,255,.9); animation: ws-sortc 3.4s var(--ws-out) infinite; }
+.ws-sort .bk { bottom: -46px; width: 120px; height: 120px; border-radius: 50%; background: rgba(255,255,255,.16); }
+.ws-sort .bk.l { left: -30px; } .ws-sort .bk.r { right: -30px; animation: ws-bkp 3.4s ease-out infinite; }
+@keyframes ws-sortc { 0%, 18% { transform: none; opacity: 1; } 46% { transform: translate(92px,96px) rotate(22deg) scale(.5); opacity: 0; } 47% { transform: translateY(-30px) scale(.9); opacity: 0; } 70%, 100% { transform: none; opacity: 1; } }
+@keyframes ws-bkp { 0%, 40% { background: rgba(255,255,255,.16); } 50% { background: rgba(255,255,255,.42); } 80%, 100% { background: rgba(255,255,255,.16); } }
+
+/* ===== 1 · На слух ===== */
+/* А: звук — столбики бьются, затихают; снизу три плашки ответа, средняя загорается */
+.ws-listenA .w { top: 46px; width: 8px; border-radius: 4px; background: rgba(255,255,255,.86); height: 46px; transform-origin: 50% 50%; animation: ws-wave 3s var(--ws-out) infinite; animation-delay: var(--dl); }
+@keyframes ws-wave { 0% { transform: scaleY(.25); } 10% { transform: scaleY(1); } 20% { transform: scaleY(.45); } 30% { transform: scaleY(.9); } 40% { transform: scaleY(.35); } 50%, 100% { transform: scaleY(.18); } }
+.ws-listenA .o { top: 132px; width: 62px; height: 30px; border-radius: 12px; background: rgba(255,255,255,.18); animation: ws-opt 3s var(--ws-out) infinite; }
+.ws-listenA .o.k { animation-name: ws-optk; }
+@keyframes ws-opt { 0%, 45% { opacity: 0; transform: translateY(10px); } 58%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes ws-optk { 0%, 45% { opacity: 0; transform: translateY(10px); } 58% { opacity: 1; transform: none; background: rgba(255,255,255,.18); } 72%, 92% { opacity: 1; transform: scale(1.06); background: rgba(255,255,255,.9); } 100% { opacity: 0; } }
+/* Б: волны расходятся от точки звука; фраза-полоса проявляется слева направо */
+.ws-listenB .src { left: 50%; top: 66px; width: 24px; height: 24px; margin: -12px 0 0 -12px; border-radius: 50%; background: rgba(255,255,255,.9); }
+.ws-listenB .ring { left: 50%; top: 66px; width: 24px; height: 24px; margin: -12px 0 0 -12px; border-radius: 50%; background: rgba(255,255,255,.22); animation: ws-ring 2.4s ease-out infinite; animation-delay: var(--dl); }
+@keyframes ws-ring { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(7); opacity: 0; } }
+.ws-listenB .ln { left: 54px; top: 154px; width: 160px; height: 14px; border-radius: 7px; background: rgba(255,255,255,.86); transform-origin: left; animation: ws-read 2.4s var(--ws-out) infinite; }
+@keyframes ws-read { 0%, 20% { transform: scaleX(0); } 70%, 90% { transform: scaleX(1); opacity: 1; } 100% { transform: scaleX(1); opacity: 0; } }
+
+/* ===== 2 · Память ===== */
+/* А: четыре пары — правая половина расплывается и гаснет, одна возвращается подсвеченной */
+.ws-memA .l, .ws-memA .r { height: 26px; border-radius: 9px; }
+.ws-memA .l { left: 46px; width: 74px; background: rgba(255,255,255,.86); }
+.ws-memA .r { left: 128px; width: 94px; background: rgba(255,255,255,.34); animation: ws-memr 3.4s var(--ws-out) infinite; }
+.ws-memA .r.k { animation-name: ws-memk; }
+@keyframes ws-memr { 0%, 35% { opacity: 1; filter: none; } 50%, 90% { opacity: .12; filter: blur(3px); } 100% { opacity: 1; filter: none; } }
+@keyframes ws-memk { 0%, 35% { opacity: 1; filter: none; } 50% { opacity: .12; filter: blur(3px); } 68%, 90% { opacity: 1; filter: none; background: rgba(255,255,255,.9); } 100% { opacity: 1; } }
+/* Б: четыре карточки переворачиваются рубашкой, одна открывается снова */
+.ws-memB .c { top: 46px; width: 44px; height: 60px; border-radius: 10px; background: rgba(255,255,255,.86); animation: ws-flip 3.2s var(--ws-out) infinite; }
+.ws-memB .c.k { animation-name: ws-flipk; }
+@keyframes ws-flip { 0%, 25% { transform: rotateY(0); background: rgba(255,255,255,.86); } 40%, 90% { transform: rotateY(180deg); background: rgba(255,255,255,.2); } 100% { transform: rotateY(360deg); background: rgba(255,255,255,.86); } }
+@keyframes ws-flipk { 0%, 25% { transform: rotateY(0); background: rgba(255,255,255,.86); } 40%, 55% { transform: rotateY(180deg); background: rgba(255,255,255,.2); } 72%, 90% { transform: rotateY(360deg) translateY(-8px); background: rgba(255,255,255,.95); } 100% { transform: rotateY(360deg); } }
+
+/* ===== 3 · Точное слово ===== */
+/* А: во фразе пропуск; из двух слов снизу одно поднимается в пропуск, другое гаснет */
+.ws-exactA .p { top: 62px; height: 22px; border-radius: 8px; background: rgba(255,255,255,.86); }
+.ws-exactA .gap { top: 62px; left: 108px; width: 52px; height: 22px; border-radius: 8px; background: rgba(255,255,255,.14); }
+.ws-exactA .ch { top: 150px; width: 52px; height: 22px; border-radius: 8px; background: rgba(255,255,255,.5); }
+.ws-exactA .ch.k { left: 74px; animation: ws-chk 3s var(--ws-out) infinite; }
+.ws-exactA .ch.n { left: 142px; animation: ws-chn 3s ease-out infinite; }
+@keyframes ws-chk { 0%, 30% { transform: none; background: rgba(255,255,255,.5); } 55%, 90% { transform: translate(34px,-88px); background: rgba(255,255,255,.95); } 100% { transform: none; opacity: 0; } }
+@keyframes ws-chn { 0%, 30% { opacity: 1; } 50%, 90% { opacity: 0; transform: translateY(12px); } 100% { opacity: 0; } }
+/* Б: пропуск мерцает; слово въезжает справа и защёлкивается с пружиной */
+.ws-exactB .p { top: 86px; height: 22px; border-radius: 8px; background: rgba(255,255,255,.86); }
+.ws-exactB .gap { top: 86px; left: 108px; width: 52px; height: 22px; border-radius: 8px; background: rgba(255,255,255,.14); animation: ws-gapp 2.8s ease-in-out infinite; }
+@keyframes ws-gapp { 0%, 20% { background: rgba(255,255,255,.14); } 30% { background: rgba(255,255,255,.3); } 40% { background: rgba(255,255,255,.14); } 100% { background: rgba(255,255,255,.14); } }
+.ws-exactB .w { top: 86px; left: 108px; width: 52px; height: 22px; border-radius: 8px; background: rgba(255,255,255,.95); animation: ws-snap 2.8s var(--ws-spring) infinite; }
+@keyframes ws-snap { 0%, 40% { transform: translateX(170px); opacity: 0; } 62%, 90% { transform: none; opacity: 1; } 100% { transform: none; opacity: 0; } }
+
+/* ===== 4 · Три формы ===== */
+/* А: три ячейки в ряд — две полные, в пустую третью падает форма */
+.ws-formsA .cell { top: 70px; width: 58px; height: 46px; border-radius: 12px; background: rgba(255,255,255,.86); }
+.ws-formsA .cell.e { background: rgba(255,255,255,.14); }
+.ws-formsA .drop { top: 70px; width: 58px; height: 46px; border-radius: 12px; background: rgba(255,255,255,.95); animation: ws-fdrop 3s var(--ws-spring) infinite; }
+@keyframes ws-fdrop { 0%, 30% { transform: translateY(-80px); opacity: 0; } 55%, 90% { transform: none; opacity: 1; } 100% { opacity: 0; } }
+/* Б: три ступени — каждая следующая выше; третья заливается снизу вверх */
+.ws-formsB .st { bottom: 34px; width: 52px; border-radius: 10px 10px 4px 4px; background: rgba(255,255,255,.86); }
+.ws-formsB .st.e { background: rgba(255,255,255,.14); overflow: hidden; }
+.ws-formsB .fill { left: 0; right: 0; bottom: 0; height: 100%; border-radius: 10px 10px 4px 4px; background: rgba(255,255,255,.95); transform-origin: bottom; animation: ws-fill 3s var(--ws-out) infinite; }
+@keyframes ws-fill { 0%, 25% { transform: scaleY(0); } 60%, 90% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+/* ===== 5 · Охота на ошибку ===== */
+/* А: две реплики, сверху вниз идёт луч; одно слово краснеет и встаёт верным */
+.ws-huntA .bub { height: 40px; border-radius: 14px; background: rgba(255,255,255,.14); }
+.ws-huntA .wd { height: 12px; border-radius: 6px; background: rgba(255,255,255,.86); }
+.ws-huntA .bad { height: 12px; border-radius: 6px; background: rgba(255,255,255,.86); animation: ws-bad 3.4s ease-out infinite; }
+@keyframes ws-bad { 0%, 40% { background: rgba(255,255,255,.86); transform: none; } 50% { background: #FFB0A6; transform: scale(1.12); } 62% { background: #FFB0A6; transform: rotateX(90deg); } 74%, 92% { background: #8FE3B0; transform: none; } 100% { background: rgba(255,255,255,.86); } }
+.ws-huntA .scan { left: 0; right: 0; top: 0; height: 40px; background: linear-gradient(180deg, rgba(255,255,255,0), rgba(255,255,255,.16) 80%, rgba(255,255,255,.5)); animation: ws-scan 3.4s linear infinite; }
+@keyframes ws-scan { 0% { transform: translateY(-40px); opacity: 0; } 8% { opacity: 1; } 45% { transform: translateY(240px); opacity: 1; } 50%, 100% { transform: translateY(240px); opacity: 0; } }
+/* Б: лупа идёт по строке слов и останавливается на неверном — оно меняется */
+.ws-huntB .wd { top: 92px; height: 14px; border-radius: 7px; background: rgba(255,255,255,.86); }
+.ws-huntB .bad { top: 92px; left: 150px; width: 40px; height: 14px; border-radius: 7px; background: rgba(255,255,255,.86); animation: ws-bad2 3.2s ease-out infinite; }
+@keyframes ws-bad2 { 0%, 48% { background: rgba(255,255,255,.86); } 56%, 66% { background: #FFB0A6; } 76%, 92% { background: #8FE3B0; } 100% { background: rgba(255,255,255,.86); } }
+.ws-huntB .lens { top: 76px; left: 30px; width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,.12); box-shadow: inset 0 0 0 4px rgba(255,255,255,.7); animation: ws-lens 3.2s var(--ws-out) infinite; }
+@keyframes ws-lens { 0% { transform: translateX(0); opacity: 0; } 10% { opacity: 1; } 48%, 80% { transform: translateX(118px); opacity: 1; } 92%, 100% { transform: translateX(118px); opacity: 0; } }
+
+/* ===== 6 · Собери диалог ===== */
+/* А: реплики по очереди вылетают снизу и встают в переписку — слева, справа, слева */
+.ws-orderA .bub { height: 26px; border-radius: 12px; background: rgba(255,255,255,.86); animation: ws-fly 3.4s var(--ws-out) infinite; animation-delay: var(--dl); opacity: 0; }
+.ws-orderA .bub.r { background: rgba(255,255,255,.5); }
+@keyframes ws-fly { 0% { transform: translateY(150px) scale(.7); opacity: 0; } 18%, 82% { transform: none; opacity: 1; } 100% { transform: none; opacity: 0; } }
+/* Б: перепутанные плашки сами встают лесенкой по порядку */
+.ws-orderB .pl { left: 54px; width: 160px; height: 22px; border-radius: 9px; background: rgba(255,255,255,.86); animation: ws-reorder 3.4s var(--ws-out) infinite; }
+.ws-orderB .pl.s { background: rgba(255,255,255,.5); }
+@keyframes ws-reorder { 0%, 25% { transform: translate(var(--fx), var(--fy)); } 60%, 90% { transform: none; } 100% { transform: translate(var(--fx), var(--fy)); } }
+
+/* ===== 7 · Гонка с собой ===== */
+/* А: две дорожки — вчерашняя монета-тень идёт ровно, твоя её обгоняет */
+.ws-raceA .ln { left: 30px; right: 30px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.22); }
+.ws-raceA .me, .ws-raceA .gh { width: 26px; height: 26px; border-radius: 50%; margin-top: -11px; left: 30px; }
+.ws-raceA .gh { background: rgba(255,255,255,.3); animation: ws-ghost 3.2s linear infinite; }
+.ws-raceA .me { background: rgba(255,255,255,.95); animation: ws-me 3.2s cubic-bezier(.55,0,.25,1) infinite; }
+@keyframes ws-ghost { 0% { transform: translateX(0); opacity: 1; } 85% { transform: translateX(150px); opacity: 1; } 100% { transform: translateX(150px); opacity: 0; } }
+@keyframes ws-me { 0% { transform: translateX(0); opacity: 1; } 85% { transform: translateX(182px) scale(1.12); opacity: 1; } 100% { transform: translateX(182px); opacity: 0; } }
+/* Б: полоса заливается и проходит отметку вчерашнего результата — отметка вспыхивает */
+.ws-raceB .tr { left: 34px; right: 34px; top: 98px; height: 18px; border-radius: 9px; background: rgba(255,255,255,.16); overflow: hidden; }
+.ws-raceB .fl { left: 0; top: 0; bottom: 0; width: 100%; border-radius: 9px; background: rgba(255,255,255,.9); transform-origin: left; animation: ws-rfill 3s cubic-bezier(.5,0,.3,1) infinite; }
+@keyframes ws-rfill { 0% { transform: scaleX(0); } 80%, 92% { transform: scaleX(.88); } 100% { transform: scaleX(.88); opacity: 0; } }
+.ws-raceB .mk { left: 156px; top: 88px; width: 4px; height: 38px; border-radius: 2px; background: rgba(255,255,255,.5); animation: ws-mark 3s ease-out infinite; }
+@keyframes ws-mark { 0%, 52% { background: rgba(255,255,255,.5); transform: none; } 60% { background: #fff; transform: scaleY(1.3); box-shadow: 0 0 14px rgba(255,255,255,.9); } 75%, 100% { background: rgba(255,255,255,.5); transform: none; box-shadow: none; } }
+
+/* замедленное движение не нужно — для снимка страницы петли останавливаются в характерном кадре */
+body.ws-still .ws-art * { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) { .ws-art * { animation: none !important; } }

@@ -183,6 +183,19 @@ describe.each(LANGS)('банк заданий игр, язык %s', (lang) => {
       }
     });
 
+    it('пример под названием корзины не повторяет слов карт своей колоды', () => {
+      // зачем (12.11, обход экранов): пример «Anna, die Tür» при карте «Die Tür ___ offen» выдавал ответ — в корзине правило, а не слово карты
+      const SERVICE = new Set(['el', 'la', 'los', 'las', 'un', 'una', 'il', 'lo', 'i', 'gli', 'le', 'del', 'della', 'a', 'de', 'di', 'en', 'in']);
+      const meaningful = (text: string): string[] => tokens(text).filter((w) => !SERVICE.has(w));
+      for (const lesson of LESSONS) {
+        const deck = bank.sort[lesson];
+        const cardWords = new Set(deck.tasks.flatMap((t) => meaningful(t.text)));
+        for (const side of ['left', 'right'] as const) {
+          expect([deck.id, side, meaningful(deck[side].example).filter((w) => cardWords.has(w))]).toEqual([deck.id, side, []]);
+        }
+      }
+    });
+
     it('текст каждой карты — только знакомые слова, у карты есть подсказка', () => {
       for (const lesson of LESSONS) {
         for (const card of bank.sort[lesson].tasks) {

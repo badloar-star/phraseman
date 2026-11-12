@@ -12,7 +12,7 @@ import { sortDeck, type SortCard } from './make_es_it';
 const deck = (lesson: number, left: SortBin, right: SortBin, cards: readonly SortCard[]): SortDeck => sortDeck('it', lesson, left, right, cards);
 
 export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
-  1: deck(1, { title: 'Про «он»', example: 'stanco, aperto' }, { title: 'Про «она»', example: 'stanca, aperta' }, [
+  1: deck(1, { title: 'Про «он»', example: 'окончание -o' }, { title: 'Про «она»', example: 'окончание -a' }, [
     ['Paolo è stanco', 'left', 'stanco — так говорят про него'],
     ['Lea è stanca', 'right', 'stanca — так говорят про неё'],
     ['Il negozio è aperto', 'left', 'negozio — «он», поэтому aperto'],
@@ -22,7 +22,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['L’ufficio è silenzioso', 'left', 'ufficio — «он», поэтому silenzioso'],
     ['La casa è vicina', 'right', 'casa — «она», поэтому vicina'],
   ]),
-  2: deck(2, { title: 'Да, так', example: 'La porta è…' }, { title: 'Нет, не так', example: 'La porta non è…' }, [
+  2: deck(2, { title: 'Да, так', example: 'фраза без «не»' }, { title: 'Нет, не так', example: 'фраза с «не»' }, [
     ['Il bar non è chiuso', 'right', 'non перед è — кафе не закрыто'],
     ['La porta è aperta', 'left', 'без non — дверь открыта'],
     ['Non siamo pronti', 'right', 'non перед siamo — мы не готовы'],
@@ -32,7 +32,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Il museo non è aperto', 'right', 'non перед è — музей не открыт'],
     ['Il negozio è aperto', 'left', 'без non — магазин открыт'],
   ]),
-  3: deck(3, { title: 'è', example: 'про одно: la porta, il treno' }, { title: 'sono', example: 'про несколько: le chiavi' }, [
+  3: deck(3, { title: 'è', example: 'одна вещь или человек' }, { title: 'sono', example: 'несколько' }, [
     ['La porta ___ aperta?', 'left', 'дверь одна — значит è'],
     ['Le chiavi ___ qui?', 'right', 'ключей несколько — значит sono'],
     ['Il treno ___ in orario?', 'left', 'поезд один — значит è'],
@@ -42,7 +42,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Il pranzo ___ pronto?', 'left', 'обед один — значит è'],
     ['Entrambe le porte ___ chiuse?', 'right', 'дверей две — значит sono'],
   ]),
-  4: deck(4, { title: 'Questo', example: 'про «он»: un amico' }, { title: 'Questa', example: 'про «она»: un’amica' }, [
+  4: deck(4, { title: 'Questo', example: 'вещь — «он»' }, { title: 'Questa', example: 'вещь — «она»' }, [
     ['___ è mio fratello', 'left', 'брат — «он», поэтому questo'],
     ['___ è mia sorella', 'right', 'сестра — «она», поэтому questa'],
     ['___ è un amico', 'left', 'amico — друг, поэтому questo'],
@@ -52,7 +52,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['___ è un biglietto', 'left', 'biglietto — «он», поэтому questo'],
     ['___ è una chiave', 'right', 'chiave — «она», поэтому questa'],
   ]),
-  5: deck(5, { title: 'ha', example: 'про одного: Lea, lui' }, { title: 'hanno', example: 'про нескольких: loro' }, [
+  5: deck(5, { title: 'ha', example: 'один человек' }, { title: 'hanno', example: 'несколько человек' }, [
     ['Lea ___ una carta', 'left', 'Леа одна — значит ha'],
     ['Loro ___ un biglietto', 'right', 'их несколько — значит hanno'],
     ['Paolo ___ paura', 'left', 'Паоло один — значит ha'],
@@ -72,7 +72,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Ai bambini ___ il cioccolato', 'left', 'шоколад один — значит piace'],
     ['A lui ___ i regali', 'right', 'подарков несколько — значит piacciono'],
   ]),
-  7: deck(7, { title: 'Я', example: 'lavoro, parlo' }, { title: 'Мы', example: 'lavoriamo, parliamo' }, [
+  7: deck(7, { title: 'Я', example: 'окончание -o' }, { title: 'Мы', example: 'окончание -iamo' }, [
     ['Lavoro qui', 'left', 'lavoro — так говорят про себя'],
     ['Lavoriamo insieme', 'right', 'lavoriamo — так говорят про нас'],
     ['Parlo francese', 'left', 'parlo — так говорят про себя'],
@@ -82,7 +82,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Ordino un tè', 'left', 'ordino — так говорят про себя'],
     ['Ordiniamo due caffè', 'right', 'ordiniamo — так говорят про нас'],
   ]),
-  8: deck(8, { title: 'Про место', example: 'Dove…  Dov’è…' }, { title: 'Про время', example: 'Quando…  A che ora…' }, [
+  8: deck(8, { title: 'Про место', example: '«где?»' }, { title: 'Про время', example: '«когда?», «во сколько?»' }, [
     ['Dove sei?', 'left', 'dove — спрашивают, где'],
     ['Quando arrivi?', 'right', 'quando — спрашивают, когда'],
     ['Dov’è la biglietteria?', 'left', 'dov’è — спрашивают, где'],
@@ -92,7 +92,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Dove abiti?', 'left', 'dove — спрашивают, где'],
     ['Quando è il concerto?', 'right', 'quando — спрашивают, когда'],
   ]),
-  9: deck(9, { title: 'mio', example: 'il mio posto' }, { title: 'mia', example: 'la mia borsa' }, [
+  9: deck(9, { title: 'mio', example: 'вещь — «он»' }, { title: 'mia', example: 'вещь — «она»' }, [
     ['Il ___ indirizzo è sulla mappa', 'left', 'indirizzo — «он», поэтому mio'],
     ['La ___ borsa è qui', 'right', 'borsa — «она», поэтому mia'],
     ['Il ___ posto è accanto al tuo', 'left', 'posto — «он», поэтому mio'],
@@ -102,7 +102,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['___ fratello ha dimenticato la sua chiave', 'left', 'fratello — «он», поэтому mio'],
     ['La ___ bicicletta è in garage', 'right', 'bicicletta — «она», поэтому mia'],
   ]),
-  10: deck(10, { title: 'c’è', example: 'одно: una panchina' }, { title: 'ci sono', example: 'несколько: due panchine' }, [
+  10: deck(10, { title: 'c’è', example: 'одна вещь' }, { title: 'ci sono', example: 'несколько вещей' }, [
     ['___ una panchina', 'left', 'скамейка одна — c’è'],
     ['___ due panchine', 'right', 'скамеек две — ci sono'],
     ['___ un tavolo', 'left', 'стол один — c’è'],
@@ -112,7 +112,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['___ del caffè', 'left', 'кофе не считают штуками — c’è'],
     ['Nel cassetto ___ delle pile', 'right', 'батареек несколько — ci sono'],
   ]),
-  11: deck(11, { title: 'a', example: 'a Lione, a scuola' }, { title: 'in', example: 'in Francia, in banca' }, [
+  11: deck(11, { title: 'a', example: 'город' }, { title: 'in', example: 'страна, банк, офис' }, [
     ['Io vado ___ Lione', 'left', 'перед городом — a'],
     ['Noi andiamo ___ Francia', 'right', 'перед страной — in'],
     ['Lei va ___ Parigi', 'left', 'перед городом — a'],
@@ -122,7 +122,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['I bambini vanno ___ scuola a piedi', 'left', 'так говорят: a scuola'],
     ['Vado ___ farmacia', 'right', 'так говорят: in farmacia'],
   ]),
-  12: deck(12, { title: 'del', example: 'del pane' }, { title: 'della', example: 'della zuppa' }, [
+  12: deck(12, { title: 'del', example: 'продукт — «он»' }, { title: 'della', example: 'продукт — «она»' }, [
     ['Prendo ___ pane', 'left', 'pane — «он», поэтому del'],
     ['Prendo ___ zuppa', 'right', 'zuppa — «она», поэтому della'],
     ['Compriamo ___ pesce', 'left', 'pesce — «он», поэтому del'],
@@ -132,7 +132,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Lei compra ___ prosciutto', 'left', 'prosciutto — «он», поэтому del'],
     ['Mangiamo ___ pasta', 'right', 'pasta — «она», поэтому della'],
   ]),
-  13: deck(13, { title: 'bianco', example: 'il maglione, il cappello' }, { title: 'bianca', example: 'la camicia, la giacca' }, [
+  13: deck(13, { title: 'bianco', example: 'вещь — «он»' }, { title: 'bianca', example: 'вещь — «она»' }, [
     ['Il lenzuolo è ___', 'left', 'lenzuolo — «он», поэтому bianco'],
     ['La camicia è ___', 'right', 'camicia — «она», поэтому bianca'],
     ['Il maglione è ___', 'left', 'maglione — «он», поэтому bianco'],
@@ -142,7 +142,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Il cappotto è ___', 'left', 'cappotto — «он», поэтому bianco'],
     ['La gonna è ___', 'right', 'gonna — «она», поэтому bianca'],
   ]),
-  14: deck(14, { title: 'può', example: 'lei, Paolo' }, { title: 'possono', example: 'loro, i bambini' }, [
+  14: deck(14, { title: 'può', example: 'один человек' }, { title: 'possono', example: 'несколько человек' }, [
     ['Lei ___ venire', 'left', 'она одна — può'],
     ['Loro ___ restare', 'right', 'их несколько — possono'],
     ['Paolo ___ aspettare', 'left', 'Паоло один — può'],
@@ -152,7 +152,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Lui ___ partire', 'left', 'он один — può'],
     ['I colleghi ___ aspettare', 'right', 'коллег несколько — possono'],
   ]),
-  15: deck(15, { title: 'sta', example: 'Ana, lei' }, { title: 'stanno', example: 'loro, i miei fratelli' }, [
+  15: deck(15, { title: 'sta', example: 'один человек' }, { title: 'stanno', example: 'несколько человек' }, [
     ['Ana ___ scrivendo una lettera', 'left', 'Ана одна — sta'],
     ['I miei fratelli ___ mangiando a casa', 'right', 'братьев несколько — stanno'],
     ['Luis ___ preparando la zuppa', 'left', 'Луис один — sta'],
@@ -162,7 +162,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Mia sorella ___ portando la valigia', 'left', 'сестра одна — sta'],
     ['I bambini ___ bevendo acqua', 'right', 'детей несколько — stanno'],
   ]),
-  16: deck(16, { title: 'на «ты»', example: 'Entra! Aspetta!' }, { title: 'на «вы»', example: 'Entri! Aspetti!' }, [
+  16: deck(16, { title: 'на «ты»', example: 'к другу, к ребёнку' }, { title: 'на «вы»', example: 'вежливо, к незнакомому' }, [
     ['Chiudi la porta!', 'left', 'chiudi — на «ты»'],
     ['Firmi in fondo, per favore.', 'right', 'firmi — вежливо, на «вы»'],
     ['Prendi la giacca!', 'left', 'prendi — на «ты»'],
@@ -172,7 +172,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Gira a sinistra!', 'left', 'gira — на «ты»'],
     ['Tenga il passaporto con sé.', 'right', 'tenga — вежливо, на «вы»'],
   ]),
-  17: deck(17, { title: 'про одного', example: 'si alza, si veste' }, { title: 'про нескольких', example: 'si alzano, si lavano' }, [
+  17: deck(17, { title: 'про одного', example: 'в конце нет -no' }, { title: 'про нескольких', example: 'в конце -no' }, [
     ['Si alza presto', 'left', 'alza — один человек'],
     ['Si alzano presto', 'right', 'alzano — несколько человек'],
     ['Si veste velocemente', 'left', 'veste — один человек'],
@@ -182,7 +182,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Si lava le mani', 'left', 'lava — один человек'],
     ['Si divertono in giardino', 'right', 'divertono — несколько человек'],
   ]),
-  18: deck(18, { title: 'ha', example: 'lei, Paolo' }, { title: 'hanno', example: 'loro, i bambini' }, [
+  18: deck(18, { title: 'ha', example: 'один человек' }, { title: 'hanno', example: 'несколько человек' }, [
     ['Lei ___ chiuso la finestra', 'left', 'она одна — ha'],
     ['Loro ___ visto il film', 'right', 'их несколько — hanno'],
     ['Paolo ___ comprato del caffè', 'left', 'Паоло один — ha'],
@@ -192,7 +192,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Mia sorella ___ trovato le chiavi', 'left', 'сестра одна — ha'],
     ['I colleghi ___ annullato la consegna', 'right', 'коллег несколько — hanno'],
   ]),
-  19: deck(19, { title: 'arrivato', example: 'Paolo, mio padre' }, { title: 'arrivata', example: 'Lea, mia madre' }, [
+  19: deck(19, { title: 'arrivato', example: 'про мужчину' }, { title: 'arrivata', example: 'про женщину' }, [
     ['Paolo è ___', 'left', 'Паоло — «он», поэтому arrivato'],
     ['Lea è ___', 'right', 'Леа — «она», поэтому arrivata'],
     ['Mio fratello è ___', 'left', 'брат — «он», поэтому arrivato'],
@@ -202,7 +202,7 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Il postino è ___', 'left', 'почтальон — «он», поэтому arrivato'],
     ['La postina è ___', 'right', 'почтальон-женщина — «она», поэтому arrivata'],
   ]),
-  20: deck(20, { title: 'era', example: 'il giardino, la strada' }, { title: 'erano', example: 'le finestre, i negozi' }, [
+  20: deck(20, { title: 'era', example: 'одна вещь или человек' }, { title: 'erano', example: 'несколько' }, [
     ['Il giardino ___ grande', 'left', 'сад один — era'],
     ['Le finestre ___ aperte', 'right', 'окон несколько — erano'],
     ['La strada ___ deserta', 'left', 'улица одна — era'],

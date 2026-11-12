@@ -13,26 +13,19 @@ export function buildLessonShareMessage(
   storeUrl: string
 ): string {
   const variantsRu = [
-    `Урок ${lessonId} уничтожен! 💥 Мой результат в Phraseman: ★ ${lessonScore}. Английский становится всё понятнее. 🔥`,
-    `Ещё один шаг к совершенству. Прошёл Урок ${lessonId} в Phraseman на ★ ${lessonScore}. Кто-нибудь, остановите этого гения! 🚀`,
-    `Приятная усталость в мозгах. Урок ${lessonId} в Phraseman завершён успешно! ★ ${lessonScore} — полёт нормальный. ✨`,
-    `Кто молодец? Я молодец! Прошёл Урок ${lessonId} в Phraseman на ★ ${lessonScore}. День прожит не зря! 😊`,
-    `Очередной уровень в Phraseman пал! Урок ${lessonId} пройден. Иду на рекорд! 🏃‍♂️💨 ★ ${lessonScore}`,
-    `Ого, я реально начинаю на этом говорить! Урок ${lessonId} в Phraseman пройден на ★ ${lessonScore}. Keep going! 🚀`,
-    `Урок ${lessonId} — в копилку! ★ ${lessonScore} в Phraseman. Мой английский становится всё мощнее! 💪🔥`,
-    `Прошёл Урок ${lessonId} в Phraseman. ★ ${lessonScore} — результат, за который не стыдно! 😎✨`,
-    `Ещё одна ступенька пройдена. Урок ${lessonId} в Phraseman закрыт на ★ ${lessonScore}. Летим дальше! 🚀`,
+    // зачем (владелец 11.11, аудит текстов; голос — docs/work/VOICE.md): человек отправляет это от своего имени — без угаданного рода, сленга и названия языка, одна улыбка на строку
+    `Урок ${lessonId} в Phraseman позади! ★ ${lessonScore} — день прожит не зря 😊`,
+    `Урок ${lessonId} пройден в Phraseman на ★ ${lessonScore}. Следующий уже стучится 🚀`,
+    `Урок ${lessonId} — в копилку! Phraseman, ★ ${lessonScore}. Приятная усталость в голове ✨`,
+    `Урок ${lessonId} закрыт в Phraseman: ★ ${lessonScore}. Результат, за который не стыдно 😎`,
+    `Урок ${lessonId} в Phraseman готов, ★ ${lessonScore}. Ещё одна ступенька наверх 🔥`,
   ];
   const variantsUk = [
-    `Урок ${lessonId} знищено! 💥 Мій результат у Phraseman: ★ ${lessonScore}. Англійська стає все зрозумілішою. 🔥`,
-    `Ще один крок до досконалості. Пройшов Урок ${lessonId} у Phraseman на ★ ${lessonScore}. Хто-небудь, зупиніть цього генія! 🚀`,
-    `Приємна втома в мізках. Урок ${lessonId} у Phraseman завершено успішно! ★ ${lessonScore} — політ нормальний. ✨`,
-    `Хто молодець? Я молодець! Пройшов Урок ${lessonId} у Phraseman на ★ ${lessonScore}. День прожитий не дарма! 😊`,
-    `Черговий рівень у Phraseman здався! Урок ${lessonId} пройдено. Йду на рекорд! 🏃‍♂️💨 ★ ${lessonScore}`,
-    `Ого, я реально починаю цим розмовляти! Урок ${lessonId} у Phraseman пройдено на ★ ${lessonScore}. Keep going! 🚀`,
-    `Урок ${lessonId} — у скарбничку! ★ ${lessonScore} у Phraseman. Моя англійська стає все потужнішою! 💪🔥`,
-    `Пройшов Урок ${lessonId} у Phraseman. ★ ${lessonScore} — результат, за який не соромно! 😎✨`,
-    `Ще одна сходинка пройдена. Урок ${lessonId} у Phraseman закритий на ★ ${lessonScore}. Летимо далі! 🚀`,
+    `Урок ${lessonId} у Phraseman позаду! ★ ${lessonScore} — день минув не дарма 😊`,
+    `Урок ${lessonId} пройдено в Phraseman на ★ ${lessonScore}. Наступний уже стукає 🚀`,
+    `Урок ${lessonId} — у скарбничку! Phraseman, ★ ${lessonScore}. Приємна втома в голові ✨`,
+    `Урок ${lessonId} закрито в Phraseman: ★ ${lessonScore}. Результат, за який не соромно 😎`,
+    `Урок ${lessonId} у Phraseman готовий, ★ ${lessonScore}. Ще одна сходинка вгору 🔥`,
   ];
   const variantsEs = [
     `¡Lección ${lessonId} pulverizada! 💥 Mi resultado en Phraseman: ★ ${lessonScore}. El inglés cada vez lo tengo más claro. 🔥`,

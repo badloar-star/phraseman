@@ -85,6 +85,7 @@ import { useGuardedNav } from '../hooks/use-guarded-nav';
 import { SafeTopBackButton, ScreenBackZone } from '../components/v2/ScreenBackButton';
 import { quietEmptyDetail, quietEmptyTitle } from '../components/cards-grid/quiet_empty_copy';
 import SkillsStatsCard from '../components/skills/SkillsStatsCard';
+import GameRecordsCard from '../components/games/GameRecordsCard';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 // зачем (results.html «Серия и статистика»): акцент карточек — тон стекла активной темы (t.accent = токен cta),
@@ -2514,6 +2515,11 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                     он самодостаточный — сам читает очки с устройства и сам ведёт на экран «Навыки». */}
                 <Reanimated.View entering={FadeInDown.duration(420).delay(120)}>
                   <SkillsStatsCard />
+                </Reanimated.View>
+                {/* зачем (макет elevate-flow «Рекорды игр»; владелец 12.11: «все подключи»): лучший результат игр на устройстве;
+                    без единого рекорда блок не рисуется — места не занимает. */}
+                <Reanimated.View entering={FadeInDown.duration(420).delay(120)}>
+                  <GameRecordsCard />
                 </Reanimated.View>
                 <Pressable
                   testID="stats-rhythm-row"

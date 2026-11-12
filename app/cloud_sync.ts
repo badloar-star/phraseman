@@ -1031,6 +1031,10 @@ const PLUS_CLOUD_CONFIRMED_PREFIX = 'plus_cloud_confirmed_v1';
 const WIPE_ONLY_ACCOUNT_KEY_PREFIXES: readonly string[] = [
   ...APP_MESSAGES_ACCOUNT_WIPE_PREFIXES, MISTAKE_RESTORE_FULL_DONE_PREFIX, FRIEND_BLOCKED_CACHE_PREFIX, STORY_EVENTS_PREFIX, ECONOMY_DAILY_STATS_TAIL_PREFIX, PROFILE_CARD_PUBLIC_CACHE_PREFIX,
   PREMIUM_THEME_ENTITLEMENTS_PREFIX, STORY_ANNOUNCEMENTS_CACHE_PREFIX, STORY_ANNOUNCEMENTS_SEEN_PREFIX, PLUS_CLOUD_CONFIRMED_PREFIX,
+  // зачем (D207; ночное решение 12.11 по совету координатора, утром владелец может откатить): очки навыков, рекорды игр,
+  // вчерашний заход «Гонки» и уровень «Блица» лежат на устройстве под ключом владельца — при выходе и удалении аккаунта
+  // стираются вместе с остальными его данными, чтобы следующий человек на телефоне их не получил
+  'skills_v1', 'game_records_v1', 'game_race_v1', 'blitz_level_v1',
 ];
 // зачем (координатор 15.10, LOGOUT_WIPE_AUDIT 🔴): ключи-утечки (список и смысл — app/account_switch_leak_keys.ts) стираются шагом
 // «только стирание»; реэкспорт — для сторожей и журнала.

@@ -39,6 +39,8 @@ export type StorySlideProps = Readonly<{
   lang: Lang;
   /** Ранг монеты человека (для маркера «ты здесь» на башне); null — базовая монета. */
   coinRank: number | null;
+  /** Закрыть просмотр перед переходом из кнопки кадра (кадр уровня навыка: «Тренировать»). */
+  onCloseViewer?: (source: string) => void;
   /** Просмотр на паузе (палец держит экран): анимации слайда стоят. */
   paused?: boolean;
 }>;
@@ -193,7 +195,7 @@ function StorySlide(props: StorySlideProps) {
     case 'achievement': return <AchievementSlide {...props} />;
     case 'theme_unlock': return <ThemeUnlockSlide {...props} />;
     // зачем (D207, макет sk-story): навык поднялся на уровень — кадр «Новый уровень» / «Что дальше» по текущим очкам
-    case 'skill_level': return <SkillLevelStorySlide event={props.event} />;
+    case 'skill_level': return <SkillLevelStorySlide event={props.event} onCloseViewer={props.onCloseViewer} />;
     default: return null;
   }
 }

@@ -28,7 +28,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { SKILL_NAME, SKILL_SOURCE } from '../../modules/skills/skill_copy';
-import { SKILL_IDS, STUDY_SKILL_IDS } from '../../modules/skills/skill_points_table';
+import { SKILL_IDS, STUDY_SKILL_IDS, type SkillId } from '../../modules/skills/skill_points_table';
 import type { SkillLevelUpStory as StoryData } from '../../modules/skills/skill_level_up_story';
 import SkillLevelUpStar from './SkillLevelUpStar';
 
@@ -57,6 +57,16 @@ const T = {
   train: { ru: 'Тренировать {name}', uk: 'Тренувати {name}', es: 'Entrenar {name}', en: 'Train {name}' },
   close: { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', en: 'Close' },
 } as const satisfies Record<string, Copy>;
+
+// зачем (сверка 12.11): «Тренировать грамматика» — в кнопке навык стоит в винительном падеже (макет: «Тренировать словарь»)
+const TRAIN_NAME: Readonly<Record<SkillId, Copy>> = {
+  listening: { ru: 'слух', uk: 'слух', es: 'la escucha', en: 'listening' },
+  speech: { ru: 'речь', uk: 'мовлення', es: 'el habla', en: 'speaking' },
+  vocab: { ru: 'словарь', uk: 'словник', es: 'el vocabulario', en: 'vocabulary' },
+  grammar: { ru: 'грамматику', uk: 'граматику', es: 'la gramática', en: 'grammar' },
+  speed: { ru: 'скорость', uk: 'швидкість', es: 'la velocidad', en: 'speed' },
+  social: { ru: 'общение', uk: 'спілкування', es: 'lo social', en: 'social' },
+};
 
 // SKILL_SOURCE начинается со слов «Растёт от…» — под заголовком «Быстрее всего растёт» повтор глагола убираем (макет: «от карточек…»)
 const SOURCE_HEAD: Copy = { ru: 'Растёт ', uk: 'Зростає ', es: 'Crece ', en: 'Grows ' };
@@ -101,6 +111,12 @@ const Segment = memo(function Segment({ state, track, fill }: Readonly<{ state: 
     </View>
   );
 });
+
+/** Обёртка первого кадра: сам по себе — нажатие листает на второй кадр; в просмотрщике историй — простой слой, листает просмотрщик. */
+function FrameTap({ embedded, onPress, accessible, children }: Readonly<{ embedded: boolean; onPress: () => void; accessible: boolean; children: React.ReactNode }>) {
+  if (embedded) return <View style={s.frameTap} pointerEvents="box-none">{children}</View>;
+  return <Pressable style={s.frameTap} onPress={onPress} accessibilityRole={accessible ? 'button' : undefined}>{children}</Pressable>;
+}
 
 type Props = Readonly<{
   story: StoryData;
@@ -166,13 +182,27 @@ function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-
     console.log(`${LOG} next_frame ${JSON.stringify({ skill: story.skill })}`); // guard-ok: переход ко второму кадру
   }, [bar, embedded, frame, hasNext, reduceMotion, slide, story.next, story.skill]);
 
+  // зачем: двойное нажатие не открывает второе системное окно «Поделиться» и не ведёт на тренировку дважды
+  const busy = useRef(false);
   const onShare = useCallback((event: GestureResponderEvent) => {
     event.stopPropagation();
+    if (busy.current) return;
+    busy.current = true;
     void hapticTap();
-    Share.share({ message: `${triLang(L, T.over)}: ${name} · ${story.toLevel}` }).catch((error: unknown) => {
-      console.warn(`${LOG} share:failed ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch называет причину
-    });
+    Share.share({ message: `${triLang(L, T.over)}: ${name} · ${story.toLevel}` })
+      .catch((error: unknown) => {
+        console.warn(`${LOG} share:failed ${error instanceof Error ? error.message : String(error)}`); // guard-ok: catch называет причину
+      })
+      .finally(() => { busy.current = false; });
   }, [L, name, story.toLevel]);
+  const onTrainPress = useCallback((event: GestureResponderEvent) => {
+    event.stopPropagation();
+    if (busy.current) return;
+    busy.current = true;
+    void hapticTap();
+    console.log(`${LOG} train ${JSON.stringify({ skill: story.skill, embedded: embedded ?? null })}`); // guard-ok: одна строка на нажатие
+    onTrain?.();
+  }, [embedded, onTrain, story.skill]);
 
   const firstStyle = useAnimatedStyle(() => ({ opacity: 1 - frame.value }));
   const secondStyle = useAnimatedStyle(() => ({ opacity: frame.value }));
@@ -193,8 +223,8 @@ function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-
     <View testID={testID} style={[s.root, embedded ? s.rootEmbedded : { paddingTop: insets.top + 14 }]}>
       {/* кадры лежат под шапкой: нажатие по экрану ведёт дальше, кнопки шапки — сверху */}
       {embeddedNext ? null : (
-      <Reanimated.View pointerEvents={slide === 0 && !embedded ? 'auto' : 'none'} style={[s.frame, frameInsets, firstStyle]}>
-        <Pressable style={s.frameTap} onPress={showNext} disabled={!!embedded} accessibilityRole={hasNext && !embedded ? 'button' : undefined}>
+      <Reanimated.View pointerEvents={embedded ? 'box-none' : slide === 0 ? 'auto' : 'none'} style={[s.frame, frameInsets, firstStyle]}>
+        <FrameTap embedded={!!embedded} onPress={showNext} accessible={hasNext && !embedded}>
           <Text style={[s.over, { color: p.textSecondary }]}>{triLang(L, T.over)}</Text>
           <Text style={[s.big, { color: p.text }]}>{name}</Text>
           <GameBumpText
@@ -207,17 +237,15 @@ function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-
           </View>
           <Text style={[s.sub, s.subCenter, { color: p.textSecondary }]}>{triLang(L, T.longer).replace('{name}', name)}</Text>
           <View style={s.spacer} />
-          {embedded ? null : (
-            <Pressable testID={`${testID}-share`} onPress={onShare} style={[s.cta, { backgroundColor: p.cta }]} accessibilityRole="button">
-              <Text style={[s.ctaText, { color: p.ctaText }]}>{triLang(L, T.share)}</Text>
-            </Pressable>
-          )}
-        </Pressable>
+          <Pressable testID={`${testID}-share`} onPress={onShare} style={[s.cta, { backgroundColor: p.cta }]} accessibilityRole="button">
+            <Text style={[s.ctaText, { color: p.ctaText }]}>{triLang(L, T.share)}</Text>
+          </Pressable>
+        </FrameTap>
       </Reanimated.View>
       )}
 
       {hasNext && story.next && embedded !== 'up' ? (
-        <Reanimated.View pointerEvents={slide === 1 ? 'auto' : 'none'} style={[s.frame, frameInsets, secondStyle]}>
+        <Reanimated.View pointerEvents={embedded ? 'box-none' : slide === 1 ? 'auto' : 'none'} style={[s.frame, frameInsets, secondStyle]}>
           <Text style={[s.over, { color: p.textSecondary }]}>{triLang(L, T.next)}</Text>
           <Text style={[s.big, { color: p.text }]}>{triLang(L, T.toLevel).replace('{n}', String(story.next.level))}</Text>
           <View style={[s.panel, s.panelFirst, { backgroundColor: p.glass }]}>
@@ -237,10 +265,10 @@ function SkillLevelUpStory({ story, onClose, onTrain, topRight, testID = 'skill-
             <Text style={[s.sub, s.subSmallTop, { color: p.textSecondary }]}>{sourceTail}</Text>
           </View>
           <View style={s.spacer} />
-          {canTrain && !embedded ? (
-            <Pressable testID={`${testID}-train`} onPress={() => { void hapticTap(); onTrain?.(); }} style={[s.cta, { backgroundColor: p.cta }]} accessibilityRole="button">{/* guard-ok: кнопка 54 pt во всю ширину с текстом */}
+          {canTrain ? (
+            <Pressable testID={`${testID}-train`} onPress={onTrainPress} style={[s.cta, { backgroundColor: p.cta }]} accessibilityRole="button">{/* guard-ok: кнопка 54 pt во всю ширину с текстом */}
               <Ionicons name="play" size={18} color={p.ctaText} />
-              <Text style={[s.ctaText, { color: p.ctaText }]}>{triLang(L, T.train).replace('{name}', name.toLocaleLowerCase(L))}</Text>
+              <Text style={[s.ctaText, { color: p.ctaText }]}>{triLang(L, T.train).replace('{name}', triLang(L, TRAIN_NAME[story.skill]))}</Text>
             </Pressable>
           ) : null}
         </Reanimated.View>

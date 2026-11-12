@@ -10,6 +10,7 @@ import { isStoryAvailable, nextLiveStoryIndex } from '../../modules/story_events
 // Пауза также при фоне приложения/уходе экрана из фокуса. Экранный диктор: автопереход выключен (читать успеть нельзя), листание — тапом «дальше». reduceMotion — без раскрытия и улёта.
 // Логи: [STORY-VIEWER] (открытие, кадр, пауза/возобновление, закрытие с причиной).
 // ═══════════════════════════════════════════════════════════════════════════
+import { RuneBalanceChip } from '../RuneBalanceChip';
 import { tryPlayV2Event } from '../../modules/sound_v2/legacy_bridge';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AccessibilityInfo, Modal, Pressable, StyleSheet, Text, View, useWindowDimensions, type GestureResponderEvent } from 'react-native';
@@ -51,6 +52,8 @@ export const STORY_ENTER_MS = 380;
 export const STORY_CLOSE_MS = 320;
 /** Левая зона «назад»: 32 % ширины (образец `.stap.l`). */
 export const STORY_PREV_ZONE = 0.32;
+/** Кадр уровня навыка: от низа экрана до верха его кнопки — низ области кадра 60 + кнопка 54 + запас 6. */
+const SKILL_LEVEL_CTA_ZONE = 60 + 54 + 6;
 /** Удержание дольше этого — пауза, мс. */
 export const STORY_HOLD_MS = 220;
 /** Фотостудия settle (Сверка и Сайт 28.10): часы кадра замирают ровно на 6000 мс — при любой длительности полосы (10 / 12 / 15 с). */
@@ -322,7 +325,9 @@ function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: even
     return annV2 ? announcementCta(annV2) : null;
   }, [annV2, lang, tpl]);
   const ctaBottom = storyCtaBottom(insets.bottom);
-  ctaZoneRef.current = cta ? winH - ctaBottom - STORY_CTA_HEIGHT - 6 : null;
+  // зачем (кадр уровня навыка, макет sk-story): кнопка кадра «Поделиться»/«Тренировать» (54 dp) стоит внизу области кадра (низ 60) — нажатие по ней не листает
+  const skillLevelFrame = event?.type === 'skill_level';
+  ctaZoneRef.current = cta ? winH - ctaBottom - STORY_CTA_HEIGHT - 6 : skillLevelFrame ? winH - SKILL_LEVEL_CTA_ZONE : null;
   // зачем (Сайт 28.10): часы кадра идут столько же, сколько полоса (runBar): у объявления 12/15 с кадр иначе шёл бы медленнее макета
   const frameDurationMs = event?.type === 'announcement' ? Math.max(STORY_SLIDE_MS, Number(event.payload.durationMs) || STORY_SLIDE_MS) : STORY_SLIDE_MS;
   const clock = useMemo<StoryFrameClock>(() => ({ progress, durationMs: frameDurationMs, final: reduceMotion || screenReader }), [progress, frameDurationMs, reduceMotion, screenReader]);
@@ -366,6 +371,19 @@ function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: even
                 </View>
               ))}
             </View>
+            {skillLevelFrame ? (
+              // зачем (макет sk-story: «✕» слева, монеты справа) — своя шапка только у кадра уровня навыка, остальные истории не тронуты
+              <View style={s.header} testID={`${testID}-skill-head`}>
+                <Pressable testID={`${testID}-close`} accessibilityRole="button" accessibilityLabel={storyText(lang, 'close')} hitSlop={6} onPress={() => close('button')} style={[s.skillClose, { backgroundColor: p.control }]}>
+                  <Ionicons name="close" size={20} color={p.text} />
+                </Pressable>
+                <View style={s.headerCopy} />
+                {/* макет `.coins`: монеты на светлой «пилюле» 40 dp */}
+                <View style={[s.skillCoins, { backgroundColor: p.control }]}>
+                  <RuneBalanceChip color={p.text} size={20} interactive={false} testID={`${testID}-coins`} />
+                </View>
+              </View>
+            ) : (
             <View style={s.header}>
               {event?.type!=='announcement' ? <SpireRankCoin rank={coinRank} size={32} /> : null}
               <View style={s.headerCopy}>
@@ -376,12 +394,13 @@ function StoryViewer({ lang, liveAnnouncementIds, liveHomeStoryIds, events: even
                 <Ionicons name="close" size={22} color={p.text} />
               </Pressable>
             </View>
+            )}
             {annV2 && event ? (
               <StoryAnnouncementV2Layer key={event.id} announcement={annV2} lang={lang} myRank={coinRank} bottom={cta ? STORY_SLIDE_BOTTOM_CTA : 60} studio={studio} testID={`${testID}-slide`} />
             ) : null}
             {tpl || annV2 ? null : (
-              <Animated.View key={event?.id ?? 'none'} testID={`${testID}-slide`} style={[s.slide, slideStyle]} pointerEvents={event?.type==='announcement'?'box-none':'none'}>
-                {event ? <StorySlide event={event} lang={lang} coinRank={coinRank} paused={pausedUi} /> : null}
+              <Animated.View key={event?.id ?? 'none'} testID={`${testID}-slide`} style={[s.slide, slideStyle]} pointerEvents={event?.type==='announcement'||skillLevelFrame?'box-none':'none'}>
+                {event ? <StorySlide event={event} lang={lang} coinRank={coinRank} paused={pausedUi} onCloseViewer={skillLevelFrame ? close : undefined} /> : null}
               </Animated.View>
             )}
             {(tpl || annV2) && cta && event ? <StoryCta key={`cta-${event.id}`} cta={cta} lang={lang} bottom={ctaBottom} onPress={onCta} testID={`${testID}-cta`} /> : null}
@@ -408,6 +427,9 @@ const s = StyleSheet.create({
   headerCopy: { flex: 1, minWidth: 0 },
   name: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   when: { fontSize: 13, lineHeight: 17 },
+  // макет `.gbtn`: круг 42 на подложке
+  skillCoins: { height: 40, borderRadius: 20, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center' },
+  skillClose: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
   closeBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   // кадр: между шапкой и низом (образец `.sslide`: top 120, bottom 60, поля 28)
   slide: { position: 'absolute', left: 0, right: 0, top: 120, bottom: 60, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 28 },

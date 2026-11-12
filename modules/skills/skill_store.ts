@@ -292,6 +292,29 @@ export function peekSkills(): SkillsState | null {
   return current;
 }
 
+/** Ключ хранилища навыков владельца — для общего стартового чтения (app_snapshot_bootstrap). */
+export function skillsStorageKey(ownerKey: string): string {
+  return `${STATE_KEY_PREFIX}${ownerKey}`;
+}
+
+/**
+ * Положить в память то, что стартовое чтение уже достало с диска.
+ * зачем (координатор 12.11, Performance Bible «первый кадр — окончательный»): экран «Навыки» и карточка статистики
+ * на холодном старте рисовали нули, пока сами не дочитают диск, — число и звезда прыгали. Стартовое чтение снимка
+ * и так делает один общий multiGet до первого кадра Главной; навыки едут в нём же, без второго похода на диск.
+ * Память не перезаписывается: если её уже заполнило начисление или чтение экрана — оно свежее.
+ */
+export function primeSkillsFromBoot(raw: string | null, ownerKey: string): void {
+  if (current) {
+    log('boot_prime:skip', { reason: 'already_in_memory', memoryOwner: current.ownerKey.slice(0, 8), bootOwner: ownerKey.slice(0, 8) });
+    return;
+  }
+  const nowMs = deps.now();
+  const state = parseSkillsState(raw, ownerKey, localDayKey(nowMs), localWeekKey(nowMs));
+  publish(state);
+  log('boot_prime', { owner: ownerKey.slice(0, 8), fromDisk: raw !== null, points: SKILL_IDS.reduce((sum, skill) => sum + state.totals[skill], 0) });
+}
+
 function notifyLevelUps(levelUps: readonly SkillLevelUp[]): void {
   log('level_up', { ups: levelUps.map((u) => `${u.skill}:${u.from}->${u.to}`), listeners: levelUpListeners.size });
   for (const listener of levelUpListeners) {

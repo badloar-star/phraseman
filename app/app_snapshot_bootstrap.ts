@@ -14,6 +14,7 @@ import { buildCustomizationSnapshot } from './customization_snapshot';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { hydratePersonalProgress } from './personal_progress_store';
 import { primeEnergyPeekFromBoot } from './energy_peek_cache';
+import { primeSkillsFromBoot, skillsStorageKey } from '../modules/skills/skill_store';
 import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — последние немые catch старта пишут причину
 import {
   migrateLegacyVipSnapshotOnce,
@@ -268,6 +269,10 @@ export async function primeAppSnapshotFromStorage(
   // зачем (пакет 07:26 [HOME-COLD]: карточка урока на холодном старте — заглушки): прогресс уроков читаем в ТОМ ЖЕ
   // multiGet (номер последнего урока до чтения неизвестен) — без второго похода в хранилище и без нового ключа.
   const lessonProgressKeys = Array.from({ length: BOOT_LESSON_COUNT }, (_, index) => lessonProgressKey(index + 1, studyTarget));
+  // зачем (координатор 12.11, «Навыки» на холодном старте рисовали нули): очки навыков — в том же multiGet. Хранилище
+  // навыков ведёт ключ на stableId только у активного аккаунта (skill_store.defaultOwnerStableId) — иначе не греем.
+  const skillsOwnerKey = accountGeneration.phase === 'active' ? ownerStableId : null;
+  const skillsKey = skillsOwnerKey ? skillsStorageKey(skillsOwnerKey) : null;
   const keys = [
     ...BOOT_PROFILE_KEYS,
     ...BOOT_PROGRESS_KEYS,
@@ -277,6 +282,7 @@ export async function primeAppSnapshotFromStorage(
     BOOT_LANG_KEY,
     BOOT_STUDY_TARGET_KEY,
     REFERRAL_STATE_STORAGE_KEY,
+    ...(skillsKey ? [skillsKey] : []),
   ];
   // зачем (пакет 09:26, прогон 2: published 8246 мс при preRead 334): время каждой части пачки — какая держит публикацию.
   const partsStartedAt = Date.now();
@@ -323,6 +329,17 @@ export async function primeAppSnapshotFromStorage(
   // стоит ранний выход, если кэш уже заполнен, — но он спасает случай, когда
   // хранилище на старте было недоступно.
   void primeEnergyPeekFromBoot().catch(noteSwallowedHandler('app_snapshot_bootstrap:primeEnergyPeekFromBoot'));
+  // зачем (координатор 12.11): навыки в память до публикации снимка — первый кадр «Навыков» и карточки статистики
+  // берёт настоящие числа из peekSkills(), а не нули с последующим прыжком.
+  if (skillsKey && skillsOwnerKey) {
+    try {
+      primeSkillsFromBoot(values.get(skillsKey) ?? null, skillsOwnerKey);
+    } catch (error) {
+      noteSwallowedHandler('app_snapshot_bootstrap:primeSkillsFromBoot')(error);
+    }
+  } else {
+    console.warn('[SKILLS] boot_prime:skip', JSON.stringify({ reason: 'account_not_active', phase: accountGeneration.phase })); // guard-ok: ранний выход логируется
+  }
   patchAppSnapshot((current) => ({
     profile,
     progress: buildProgressSnapshot(values, studyTarget, now, current, bootRunes),

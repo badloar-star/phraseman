@@ -1354,6 +1354,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const profileModalMounted = useMountedAfterFirstOpen(homeProfilePlayer !== null);
     const savedCardsFlightMounted = useMountedAfterFirstOpen(cardArrivals > 0);
     useEffect(() => runAfterHomeFirstFrame('home_lazy_modals_prewarm', prewarmHomeDeferredModules), []);
+    // зачем (координатор 12.11, «Навыки» на холодном старте — нули и прыжок): запасной прогрев памяти навыков после первого кадра — для случая, когда стартовое чтение их не положило (вход без аккаунта); основной путь — app_snapshot_bootstrap
+    useEffect(() => runAfterHomeFirstFrame('skills_warm', () => import('../../modules/skills/skill_store').then((m) => m.refreshSkills())), []);
     // зачем (PM-214, координатор 13.10): первый заход в Пик за запуск рисует экран из памяти, а не скелет — конфиг прогревается из дискового кэша после первого кадра Главной и после онбординга (сети нет)
     useEffect(() => runAfterHomeFirstFrame('spire_config_warm', () => import('../spire_config_client').then((m) => m.warmSpireConfigFromDisk()), { holdDuringOnboarding: true }), []);
     // зачем (замер 17.10 [SPIRE-LOAD]: комната с диска 1,3 с на входе в Пик): та же копия читается в память, пока человек на Главной — Пик открывается с людьми и «Играть» сразу

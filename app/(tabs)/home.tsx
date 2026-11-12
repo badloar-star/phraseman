@@ -2763,6 +2763,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     ),
                     // зачем (координатор 25.10, «одно число монет»): плашка шапки показывала кошелёк БЕЗ ожидающих Пика (690), а сцена — с ними (1110)
                     value: runesKnown ? String(homeShownCoins) : '—',
+                    // зачем (координатор 12.11, холодный старт: снимок через 19 с после первого кадра): пока баланс не известен — заготовка фиксированной ширины, не «—»
+                    valuePending: !runesKnown,
                     label: homeV2CoinsLabel,
                     accessibilityLabel: `${homeV2CoinsLabel}: ${runesKnown ? homeShownCoins : '—'}`,
                     onPress: () => { nav.push('/coin_rank'); },

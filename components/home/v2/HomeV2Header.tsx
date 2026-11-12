@@ -6,6 +6,7 @@ import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
 import { useHomePlateLog, useHomePlateStyle } from './homePlate';
 import KitSpinner from '../../v2/KitSpinner';
+import SkeletonBlock from '../../SkeletonShimmer';
 import { renderWindowEpoch, useRenderCause } from '../../../app/render_cause_probe';
 import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import { PlusAvatarRing } from '../../plus/PlusAvatarRing';
@@ -22,7 +23,14 @@ type StatChip = Readonly<{
   onPress?: () => void;
   /** Справа в той же плашке через черту (энергия рядом с монетами на «Сцене»). */
   trailing?: React.ReactNode;
+  /** Число ещё не известно (стартовый снимок не готов) — вместо «—» место держит заготовка фиксированной ширины. */
+  valuePending?: boolean;
 }>;
+
+// зачем (координатор 12.11, журнал холодного старта: первый кадр раньше снимка на 19 с, монеты «—» → 1190): ширина под
+// четыре цифры — частый баланс; плашка не меняет размер, когда число приходит. Высота = межстрочный цифры.
+const PENDING_VALUE_W = 34;
+const PENDING_VALUE_H = 13;
 
 type Props = {
   /** Колокольчик (NotificationCenterButton) — со своей логикой и шторкой. */
@@ -88,6 +96,7 @@ function sameHeaderData(a: ViewProps, b: ViewProps): boolean {
   return a.stats.every((x, i) => {
     const y = b.stats[i];
     return x.testID === y.testID && x.value === y.value && x.label === y.label && x.accessibilityLabel === y.accessibilityLabel
+      && Boolean(x.valuePending) === Boolean(y.valuePending)
       && Boolean(x.onPress) === Boolean(y.onPress) && sameElement(x.icon, y.icon) && sameElement(x.trailing, y.trailing);
   });
 }
@@ -119,7 +128,13 @@ const HomeV2HeaderView = memo(function HomeV2HeaderView({ bellSlot, avatarSlot, 
               {/* В абсолютной шапке сцены текст не ограничиваем: Stage измеряет её высоту и растёт вниз.
                   В обычной шапке сохраняем прежний лимит для длинных локализованных плашек. */}
               <View style={keep ? s.statCopyKeep : s.statCopy}>
-                <FlowText testID={`${stat.testID}-value`} provenance="authored" maxFontSizeMultiplier={scene ? undefined : 1.1} style={[headerText.statValue, { color: textColor }]}>{stat.value}</FlowText>
+                {stat.valuePending ? (
+                  <View testID={`${stat.testID}-value-pending`} style={[s.pendingValue, { height: headerText.statValue.lineHeight ?? 17 }]}>
+                    <SkeletonBlock width={PENDING_VALUE_W} height={PENDING_VALUE_H} borderRadius={6} />
+                  </View>
+                ) : (
+                  <FlowText testID={`${stat.testID}-value`} provenance="authored" maxFontSizeMultiplier={scene ? undefined : 1.1} style={[headerText.statValue, { color: textColor }]}>{stat.value}</FlowText>
+                )}
                 {/* зачем (макет rev6-home-free-0, владелец: макеты 1:1): пилюля серии — одна строка «🔥 N дней», без подписи «Серия» (она остаётся для диктора в accessibilityLabel) */}
                 {stat.testID !== 'home-v2-coins' && stat.testID !== 'home-v2-streak' ? <FlowText testID={`${stat.testID}-label`} provenance="authored" maxFontSizeMultiplier={scene ? undefined : 1.1} style={[headerText.statLabel, { color: subColor }]}>{stat.label}</FlowText> : null}
               </View>
@@ -186,6 +201,7 @@ const s = StyleSheet.create({
   },
   statIcon: { width: 20, height: 20, flexShrink: 0, alignItems: 'center', justifyContent: 'center' },
   statCopy: { flexShrink: 1, minWidth: 0 },
+  pendingValue: { justifyContent: 'center' },
   // зачем (эталон .hm-pill.glass): на сцене плашка — белый 16 %, без тени и без кромки
   scenePlate: { backgroundColor: HOME_SCENE_INK.headerPlate },
   // зачем (эталон .hm-pill i.dv): черта между монетами и энергией — 1 × 18, прозрачность 22 %

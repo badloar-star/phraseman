@@ -12,7 +12,7 @@ import Reanimated, {
   Easing, cancelAnimation, interpolateColor, useAnimatedStyle, useSharedValue, withDelay, withSequence, withTiming,
 } from 'react-native-reanimated';
 
-import { GAME_EASE, GAME_MOTION } from '../../constants/gameMotion';
+import { GAME_EASE, GAME_MOTION, GAME_MOTION_EXTRA } from '../../constants/gameMotion';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { nestedBoxShadow, useShadowGlass } from '../v2/ShadowSurface';
@@ -32,13 +32,15 @@ type Props = Readonly<{
   compact?: boolean;
   /** Меняется при каждом промахе — дрожь запускается заново, даже если плитка ещё красная. */
   pulse?: number;
+  /** Плитка из пары в ряд — как `.two .at` в макете (elevate-extra.css:168): высота 76, текст 22 / 800. */
+  pair?: boolean;
   onPress: () => void;
   testID?: string;
 }>;
 
 const bezier = (c: readonly number[]) => Easing.bezier(c[0], c[1], c[2], c[3]);
 
-function GameAnswerTile({ label, index, state, disabled = false, rise: riseIn = true, compact = false, pulse = 0, onPress, testID }: Props) {
+function GameAnswerTile({ label, index, state, disabled = false, rise: riseIn = true, compact = false, pulse = 0, pair = false, onPress, testID }: Props) {
   const p = useV2Palette();
   const g = useShadowGlass();
   const reduceMotion = useReduceMotion();
@@ -96,7 +98,7 @@ function GameAnswerTile({ label, index, state, disabled = false, rise: riseIn = 
   const textStyle = useAnimatedStyle(() => ({ color: interpolateColor(outcome.value, [0, 1], [p.text, tint]) }));
 
   return (
-    <Reanimated.View style={wrapStyle}>
+    <Reanimated.View style={[pair && s.pairWrap, wrapStyle]}>
       <Pressable
         testID={testID}
         accessibilityRole="button"
@@ -113,12 +115,12 @@ function GameAnswerTile({ label, index, state, disabled = false, rise: riseIn = 
           pressFade.value = withTiming(0, { duration: GAME_MOTION.pressOpacityMs });
         }}
         onPress={onPress}
-        style={[s.tile, compact && s.tileCompact, { backgroundColor: g.plateFillFrom, boxShadow: nestedBoxShadow(g) }]}
+        style={[s.tile, compact && s.tileCompact, pair && s.tilePair, { backgroundColor: g.plateFillFrom, boxShadow: nestedBoxShadow(g) }]}
       >
         <View pointerEvents="none" style={s.tintClip}>
           <Reanimated.View style={[StyleSheet.absoluteFill, { backgroundColor: tint }, tintStyle]} />
         </View>
-        <Reanimated.Text style={[s.text, compact && s.textCompact, textStyle]}>{label}</Reanimated.Text>
+        <Reanimated.Text style={[s.text, compact && s.textCompact, pair && s.textPair, textStyle]}>{label}</Reanimated.Text>
       </Pressable>
     </Reanimated.View>
   );
@@ -128,6 +130,9 @@ const s = StyleSheet.create({
   tile: { minHeight: 60, paddingVertical: 12, paddingHorizontal: 20, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   tileCompact: { minHeight: 54 },
   textCompact: { fontSize: 16 },
+  pairWrap: { flex: 1 },
+  tilePair: { minHeight: GAME_MOTION_EXTRA.pairTileMinHeight },
+  textPair: { fontSize: GAME_MOTION_EXTRA.pairTileFontSize, lineHeight: 28, fontWeight: '800' },
   tintClip: { ...StyleSheet.absoluteFillObject, borderRadius: 18, overflow: 'hidden' },
   text: { textAlign: 'center', fontSize: 17, lineHeight: 22, fontWeight: '600' },
 });

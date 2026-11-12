@@ -19,10 +19,12 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 import GameAnswerTile from '../components/games/GameAnswerTile';
 import GameListenWave from '../components/games/GameListenWave';
+import GameMemoryPairs from '../components/games/GameMemoryPairs';
 import GameRise from '../components/games/GameRise';
 import GameSegments from '../components/games/GameSegments';
-import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
+import { V2Button, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
+import { GAME_MOTION_EXTRA } from '../constants/gameMotion';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { inferExpoSpeechLanguage, useAudio } from '../hooks/use-audio';
@@ -71,20 +73,8 @@ function Prompt({ round, roundIndex, replayKey, phase, picked, onReplay }: Promp
   }
 
   if (prompt.kind === 'pairs') {
-    // пары видны, пока идёт показ и после ответа; во время вопроса открыта только левая часть спрашиваемой пары
-    const hidden = phase === 'answer';
-    return (
-      <View style={s.pairs}>
-        {prompt.pairs.map(([left, right], i) => (
-          <GameRise key={left} delayMs={i * 70} style={s.pairSlot}>
-            <V2Card seed={i} style={[s.pair, hidden && i !== prompt.askIndex && s.pairHidden]}>
-              <Text style={[s.pairLeft, { color: p.text }]}>{left}</Text>
-              <Text style={[s.pairRight, { color: p.textSecondary, opacity: hidden ? 0 : 1 }]}>{right}</Text>
-            </V2Card>
-          </GameRise>
-        ))}
-      </View>
-    );
+    // зачем (сверка с макетом 12.11): пары не гаснут — у переводов размытие и прозрачность .5, спрошенная подсвечена
+    return <GameMemoryPairs pairs={prompt.pairs} askIndex={prompt.askIndex} answering={phase === 'answer'} answered={answered} />;
   }
 
   if (prompt.kind === 'gap') {
@@ -234,13 +224,15 @@ export default function GameQuizScreen() {
               <Text style={[s.note, { color: p.textSecondary, opacity: phase === 'verdict' && round.note ? 1 : 0 }]}>{round.note ?? ''}</Text>
               <View style={s.stageBottom} />
               <Text style={[s.ask, { color: p.textSecondary }]}>{phase === 'show' ? '' : round.ask}</Text>
-              <View style={s.answers}>
+              {/* зачем (сверка с макетом 12.11): два варианта стоят рядом, как `.ans.two`; три — столбиком */}
+              <View style={[s.answers, round.options.length === 2 && s.answersPair]}>
                 {phase === 'show' ? null : round.options.map((option, i) => (
                   <GameAnswerTile
                     key={`${round.id}-${i}`}
                     testID={`game-quiz-option-${i}`}
                     label={option}
                     index={i}
+                    pair={round.options.length === 2}
                     disabled={phase !== 'answer'}
                     state={phase === 'answer' ? 'idle' : i === round.correctIndex ? 'correct' : i === picked ? 'wrong' : 'off'}
                     onPress={() => onPick(i)}
@@ -267,12 +259,6 @@ const s = StyleSheet.create({
   promptBox: { minHeight: 200, justifyContent: 'center' },
   audio: { alignSelf: 'center', alignItems: 'center', gap: 16, paddingVertical: 24, paddingHorizontal: 28, borderRadius: 28 },
   pressed: { opacity: 0.86 },
-  pairs: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
-  pairSlot: { width: '48%', flexGrow: 1 },
-  pair: { minHeight: 92, padding: 14, justifyContent: 'center', gap: 4 },
-  pairHidden: { opacity: 0.34 },
-  pairLeft: { fontSize: 18, lineHeight: 23, fontWeight: '800' },
-  pairRight: { fontSize: 14, lineHeight: 18, fontWeight: '500' },
   gapRow: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', columnGap: 10, rowGap: 8 },
   gapText: { fontSize: 30, lineHeight: 38, fontWeight: '800', letterSpacing: -0.6 },
   hole: { minWidth: 96, height: 48, paddingHorizontal: 12, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
@@ -283,6 +269,7 @@ const s = StyleSheet.create({
   note: { minHeight: 44, marginTop: 16, textAlign: 'center', fontSize: 15, lineHeight: 20, fontWeight: '500', paddingHorizontal: 8 },
   ask: { minHeight: 20, textAlign: 'center', fontSize: 15, lineHeight: 20, fontWeight: '500' },
   answers: { marginTop: 16, gap: 12, minHeight: 204, justifyContent: 'flex-end' },
+  answersPair: { flexDirection: 'row', alignItems: 'flex-end', gap: GAME_MOTION_EXTRA.pairTileGap },
   finish: { flex: 1, paddingTop: 48 },
   big: { textAlign: 'center', fontSize: 30, lineHeight: 36, fontWeight: '800' },
   growth: { marginTop: 22 },

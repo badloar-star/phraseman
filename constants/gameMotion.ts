@@ -192,4 +192,14 @@ export const GAME_MOTION_EXTRA = {
   skillTagFadeMs: 300,
   skillTagHeight: 22,
   skillTagMargin: 8,
+  /** elevate-games.js:19 — `G.after(3200, … add('hide'))`: пары скрываются за 400 мс до вариантов (показ 3600). */
+  memoryHideAtMs: 3200,
+  /** elevate-extra.css:162–163 — `.mem.hide .mc span { filter: blur(9px); opacity: .5 }`, переход 500 мс `ease`. */
+  memoryHideMs: 500,
+  memoryBlurPx: 9,
+  memoryHideOpacity: 0.5,
+  /** elevate-extra.css:168 — `.two .at { flex: 1; min-height: 76px; font-size: 22px; font-weight: 800 }`, промежуток 12. */
+  pairTileMinHeight: 76,
+  pairTileFontSize: 22,
+  pairTileGap: 12,
 } as const;

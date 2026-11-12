@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — испанский классический курс, уроки 1–8 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — испанский классический курс, уроки 1–12 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только слова этого и прошлых уроков. Пропуск в карте пишется `___`
@@ -91,5 +91,45 @@ export const SORT_BANK_ES: Readonly<Record<number, SortDeck>> = {
     ['___ billetes están en el bolso', 'right', 'билетов несколько — значит mis'],
     ['___ hermana está en casa', 'left', 'сестра одна — значит mi'],
     ['___ hermanos están aquí', 'right', 'братьев несколько — значит mis'],
+  ]),
+  9: deck(9, { title: 'Я', example: 'trabajo, hablo' }, { title: 'Он, она', example: 'trabaja, habla' }, [
+    ['Trabajo aquí', 'left', 'trabajo — так говорят про себя'],
+    ['Ana trabaja aquí', 'right', 'trabaja — про Ану'],
+    ['Hablo español', 'left', 'hablo — про себя'],
+    ['Ana habla español', 'right', 'habla — про Ану'],
+    ['Estudio inglés', 'left', 'estudio — про себя'],
+    ['Luis estudia en casa', 'right', 'estudia — про Луиса'],
+    ['Busco mis llaves', 'left', 'busco — про себя'],
+    ['Ana busca su pasaporte', 'right', 'busca — про Ану'],
+  ]),
+  10: deck(10, { title: 'Я', example: 'bebo, vivo' }, { title: 'Мы', example: 'bebemos, vivimos' }, [
+    ['Bebo agua', 'left', 'bebo — так говорят про себя'],
+    ['Bebemos agua', 'right', 'bebemos — про нас'],
+    ['Leo el mensaje', 'left', 'leo — про себя'],
+    ['Leemos el mensaje', 'right', 'leemos — про нас'],
+    ['Vivo aquí', 'left', 'vivo — про себя'],
+    ['Vivimos aquí', 'right', 'vivimos — про нас'],
+    ['Escribo una carta', 'left', 'escribo — про себя'],
+    ['Escribimos un mensaje', 'right', 'escribimos — про нас'],
+  ]),
+  11: deck(11, { title: 'Я', example: 'tengo' }, { title: 'Он, она', example: 'tiene' }, [
+    ['Tengo una pregunta', 'left', 'tengo — у меня'],
+    ['Ana tiene una pregunta', 'right', 'tiene — у Аны'],
+    ['Tengo la llave', 'left', 'tengo — у меня'],
+    ['Luis tiene una cita', 'right', 'tiene — у Луиса'],
+    ['No tengo cambio', 'left', 'tengo — у меня'],
+    ['Ana no tiene cambio', 'right', 'tiene — у Аны'],
+    ['Tengo el pasaporte', 'left', 'tengo — у меня'],
+    ['El médico tiene mi número', 'right', 'tiene — у врача'],
+  ]),
+  12: deck(12, { title: 'nuevo', example: 'el libro, el mapa' }, { title: 'nueva', example: 'la mochila, la llave' }, [
+    ['El libro es ___', 'left', 'libro — «он», поэтому nuevo'],
+    ['La mochila es ___', 'right', 'mochila — «она», поэтому nueva'],
+    ['El móvil es ___', 'left', 'móvil — «он», поэтому nuevo'],
+    ['La maleta es ___', 'right', 'maleta — «она», поэтому nueva'],
+    ['El mapa es ___', 'left', 'говорят el mapa — значит nuevo'],
+    ['La llave es ___', 'right', 'llave — «она», поэтому nueva'],
+    ['El coche es ___', 'left', 'coche — «он», поэтому nuevo'],
+    ['La mesa es ___', 'right', 'mesa — «она», поэтому nueva'],
   ]),
 };

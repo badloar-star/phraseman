@@ -54,12 +54,11 @@ test('continue-learning card receives the approved notepad art from the real pro
   assert.ok(fs.existsSync(assetPath));
   assert.match(assetProducer, /const HOME_LAST_LESSON_ART = require\("\.\.\/assets\/images\/home_last_lesson\/home-last-lesson-notepad\.png"\);/);
   assert.equal((assetProducer.match(/HOME_LAST_LESSON_ART/g) ?? []).length, 10);
-  assert.match(home, /const lastLessonImage = getHomeLastLessonImage\(themeMode\);/);
-  // 04.10: карточка «Продолжить» — только последний урок (владелец), арт урока.
-  // 17.10: основа и слой акцента — из ОДНОГО resolveThemedArt (priorityCardArt), картинка урока — запасная
-  assert.match(home, /const priorityCardArt = resolveThemedArt\(lastLessonCompleted \? 'today' : 'continue', homeArtTone\);/);
-  assert.match(home, /const priorityCardImage = priorityCardArt\.base \?\? lastLessonImage;/);
-  assert.match(home, /<HomeV2ContinueCard[\s\S]{0,900}art=\{priorityCardImage\}/);
+  // зачем (коммит d8a0a685a 11.11, решение владельца «Да, вместе с Главной»): карточка «Продолжить» снята с Главной вместе с курсом Learning V2 —
+  // прежние пины проводки на Главной (lastLessonImage → priorityCardArt → <HomeV2ContinueCard art>) сторожили то, чего больше нет.
+  // Теперь сторожим обратное: карточка не возвращается на Главную молча, без нового решения владельца. Картинка и сама карточка проверяются ниже, как раньше.
+  assert.doesNotMatch(home, /<HomeV2ContinueCard\b/);
+  assert.doesNotMatch(home, /getHomeLastLessonImage\(/);
   assert.match(continueCard, /<ThemedArtLayers source=\{art\}/); // 17.10: арт рисует ThemedArtLayers (основа + слой акцента темы)
   // зачем (владелец 18.10 «вариант Г», «иконка 1 и не меняется»): одна иконка постоянного размера внутри кольца, contain, без плашки-бейджа поверх арта
   assert.match(continueCard, /<ThemedArtLayers source=\{art\} accent=\{artAccent\} style=\{s\.artImage\} contentFit="contain"/);

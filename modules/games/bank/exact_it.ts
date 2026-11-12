@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — итальянский классический курс, уроки 1–8 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — итальянский классический курс, уроки 1–12 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или из слов этого и прошлых уроков);
  * каждый неверный вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах);
@@ -78,5 +78,37 @@ export const EXACT_BANK_IT: Readonly<Record<number, readonly QuizRound[]>> = {
     round(8, 4, 'Chi ___ la chiave?', 'ha', ['hai', 'ho'], 0, 'После chi говорят ha.'),
     round(8, 5, 'A che ora parte ___ treno?', 'il', ['la'], 1, 'Treno — «он», поэтому il.'),
     round(8, 6, 'Dove sono i ___ occhiali?', 'miei', ['mie', 'mio'], 0, 'Про очки говорят i miei.'),
+  ],
+  9: [
+    round(9, 1, 'Le ___ chiavi sono qui', 'mie', ['mia', 'miei'], 0, 'Chiave — «она», ключей несколько: mie.'),
+    round(9, 2, 'Il nostro treno ___ al binario', 'è', ['sono'], 1, 'Поезд один — значит è.'),
+    round(9, 3, 'La loro camera è ___', 'libera', ['libero'], 0, 'Camera — «она», поэтому libera.'),
+    round(9, 4, 'I ___ colleghi sono in ufficio', 'miei', ['mie', 'mio'], 2, 'Colleghi — «они», поэтому miei.'),
+    round(9, 5, 'La ___ borsa è qui', 'tua', ['tuo', 'tue'], 1, 'Borsa — «она», и она одна: tua.'),
+    round(9, 6, 'I nostri biglietti sono ___', 'pronti', ['pronto'], 0, 'Билетов несколько — значит pronti.'),
+  ],
+  10: [
+    round(10, 1, '___ due panchine', 'Ci sono', ['C’è'], 1, 'Скамеек две — ci sono.'),
+    round(10, 2, 'C’è ___ ascensore in hotel', 'un', ['una'], 0, 'Ascensore — «он», поэтому un.'),
+    round(10, 3, 'C’è ___ pane', 'del', ['dei'], 0, 'Pane — «он», поэтому del.'),
+    round(10, 4, 'Ci sono ___ libri sul tavolo', 'dei', ['del'], 1, 'Книг несколько — значит dei.'),
+    round(10, 5, 'Sulla scrivania c’è ___ schermo', 'uno', ['un'], 1, 'Перед schermo говорят uno.'),
+    round(10, 6, 'C’è un orologio ___ cucina', 'in', ['a'], 0, '«На кухне» — in cucina.'),
+  ],
+  11: [
+    round(11, 1, 'Lei ___ al mercato', 'va', ['vado', 'vai'], 2, 'Про неё говорят va.'),
+    round(11, 2, 'Loro ___ in ufficio', 'vanno', ['va'], 0, 'Их несколько — значит vanno.'),
+    round(11, 3, 'Io vado ___ Lione', 'a', ['in'], 1, 'Перед названием города говорят a.'),
+    round(11, 4, 'Noi andiamo ___ Francia', 'in', ['a'], 0, 'Перед названием страны говорят in.'),
+    round(11, 5, 'Vado ___ farmacia', 'in', ['a'], 1, 'Так говорят: in farmacia.'),
+    round(11, 6, 'Noi ___ a scuola', 'andiamo', ['vanno', 'vado'], 0, 'С noi говорят andiamo.'),
+  ],
+  12: [
+    round(12, 1, 'Prendo ___ pane', 'del', ['della', 'dei'], 0, 'Pane — «он», поэтому del.'),
+    round(12, 2, 'Mangiamo ___ pasta', 'della', ['del'], 1, 'Pasta — «она», поэтому della.'),
+    round(12, 3, 'Mangiano ___ fragole', 'delle', ['della'], 0, 'Ягод много — значит delle.'),
+    round(12, 4, 'Lui ___ del formaggio', 'prende', ['prendo', 'prendi'], 2, 'Про него говорят prende.'),
+    round(12, 5, 'Lui non ___ caffè', 'beve', ['bevo'], 1, 'Про него говорят beve.'),
+    round(12, 6, 'Prendiamo ___ bottiglia di latte', 'una', ['un'], 0, 'Bottiglia — «она», поэтому una.'),
   ],
 };

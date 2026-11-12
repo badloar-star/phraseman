@@ -38,6 +38,9 @@ describe('блоки над башней встают плавно', () => {
   });
 
   it('крестик на карточке итога убирает её тоже плавно', () => {
-    expect(game).toMatch(/if \(res\) animateNextLayoutTransition\(\);[^\n]*\n\s*setWeekResult\(null\)/);
+    // зачем (≤ 400 строк, 12.11): крестик «Итога недели» вынесен из use_spire_game.ts в use_spire_game_closers.ts — тот же плавный переход
+    const closers = read('app/spire/use_spire_game_closers.ts');
+    expect(game).toContain('useSpireGameClosers<SpirePendingStep, SpireStepSession>({');
+    expect(closers).toMatch(/if \(res\) animateNextLayoutTransition\(\);[^\n]*\n\s*setWeekResult\(null\)/);
   });
 });

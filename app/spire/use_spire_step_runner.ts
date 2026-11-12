@@ -18,6 +18,7 @@ import { AppState } from 'react-native';
 import { useEnergy, useEnergySessionIntent } from '../../components/EnergyContext';
 import { spireRevealChoiceIndex, spireRevealItemIndexes } from '../../modules/spire/answer_reveal';
 import type { SpireStepPick } from '../../modules/spire/pack_plan';
+import { createSpireStepClock, spireTaskText } from '../../modules/spire/step_clock';
 import { spireReportFromStepState, type SpireLang, type SpireStepReport } from '../../modules/spire/report_queue';
 import {
   advanceAfterReveal,
@@ -73,19 +74,8 @@ export type SpireStepRunnerInput = Readonly<{
   onAbort: (reason: 'no_energy' | 'cancelled') => void;
 }>;
 
-function createClock(): SpireClock & { set: (v: number) => void } {
-  let value = 0;
-  const listeners = new Set<() => void>();
-  return {
-    get: () => value,
-    set: (v: number) => { value = v; listeners.forEach((fn) => fn()); },
-    subscribe: (fn) => { listeners.add(fn); return () => { listeners.delete(fn); }; },
-  };
-}
-
-function textOf(value: unknown): string {
-  return typeof value === 'string' ? value : '';
-}
+// зачем (≤ 400 строк, 12.11): часы кольца и чтение текста задания — в modules/spire/step_clock.ts, поведение то же.
+const createClock = createSpireStepClock; const textOf = spireTaskText;
 
 export function useSpireStepRunner(input: SpireStepRunnerInput) {
   const { pick, ctx } = input;

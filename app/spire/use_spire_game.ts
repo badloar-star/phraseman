@@ -49,7 +49,8 @@ import { publishSpirePositionFeed } from './spire_position_feed';
 import { useSpireOwnerEpoch } from './spire_owner_epoch';
 import { useOwnAuthoritativeWeekCoins } from './spire_own_week_score';
 import type { SpireStepContext, SpireStepFinish } from './use_spire_step_runner';
-import { spireDismissWeekResult, spireLoadWeekResult, type SpireWeekResultView } from './spire_week_result_client';
+import { spireLoadWeekResult, type SpireWeekResultView } from './spire_week_result_client';
+import { useSpireGameClosers } from './use_spire_game_closers';
 const LOG = '[SPIRE]';
 
 export type SpireStepSession = Readonly<{ pick: SpireStepPick; ctx: SpireStepContext; attempt: number; runId: string }>;
@@ -318,19 +319,8 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeAct
     }
   }, [gate, lang, config, session, ids, tier, room]);
 
-  /** «Назад» на экране «Готовим ступень…» до пакета: закрыть без энергии и без штрафа; поздний пакет игнорируется. */
-  const cancelPendingStep = useCallback(() => {
-    const prep = prepIdRef.current;
-    if (!prep) {
-      DebugLogger.info(LOG, 'game: отмена подготовки — подготовки нет, пропуск');
-      return;
-    }
-    DebugLogger.info(LOG, `game: подготовка ${prep} отменена человеком до пакета — энергия не тронута`);
-    prepIdRef.current = null;
-    startingRef.current = false;
-    setStarting(false);
-    setPending(null);
-  }, []);
+  // зачем (≤ 400 строк, 12.11): отмена «Готовим ступень…», «ступень не началась» и крестик «Итога недели» — в use_spire_game_closers.ts, поведение то же.
+  const { cancelPendingStep, onStepAbort, dismissWeekResult } = useSpireGameClosers<SpirePendingStep, SpireStepSession>({ prepIdRef, startingRef, setStarting, setPending, setSession, weekResult, setWeekResult, ids, lang });
 
   // ── Итог ступени: сначала экран (optimistic), потом диск; не записалось — откат ──
   const onStepFinish = useCallback((finish: SpireStepFinish) => {
@@ -388,19 +378,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeAct
     });
   }, [session, ids, lang, config, setWeek, flush]);
 
-  const onStepAbort = useCallback((reason: 'no_energy' | 'cancelled') => {
-    DebugLogger.info(LOG, `game: ступень не началась (${reason}) — энергия не тронута`);
-    setSession(null);
-  }, []);
-
   const dismissOutcome = useCallback(() => setOutcome((cur) => { DebugLogger.info(LOG, `[SPIRE-AFTER-ROUND] dismissOutcome: итог ${cur ? `${cur.kind} ${cur.report.reportId}` : 'уже пуст'} → null`); return null; }), []); // зачем (Сверка 25.10): трасса закрытия итога
-  const dismissWeekResult = useCallback(() => {
-    const res = weekResult;
-    if (res) animateNextLayoutTransition(); // зачем: крестик убирает карточку из потока — башня поднимается плавно
-    setWeekResult(null);
-    if (res && ids && lang) void spireDismissWeekResult(ids.uid, lang, res.weekId);
-  }, [weekResult, ids, lang]);
-
   // зачем (смета Firebase 13.10, п. 5): ручное обновление друзей (потянуть экран) вынесено в отдельный хук — файл остаётся ≤ 400 строк (контракт spire_game_source_contract).
   const refreshFriends = useSpireFriendsRefresh({ gate, ids, lang, friendsCount: friends.length, setFriends, runtimeActive, ownerEpoch });
 

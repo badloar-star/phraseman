@@ -7,3 +7,5 @@
 // Сторож: tests/spire_floor_record_flag.test.ts — по умолчанию выключен, и SpireHomeScreen не создаёт карточку при выключенном флаге.
 // ═══════════════════════════════════════════════════════════════════════════
 export const SPIRE_FLOOR_RECORD_ENABLED: boolean = false;
+// зачем (сторож «[SPIRE] везде», spire_game_source_contract; координатор 12.11): одна строка на запуск — в журнале видно, открыт ли вход в «Рекорд этажа»
+console.log('[SPIRE]', JSON.stringify({ floorRecordFlag: SPIRE_FLOOR_RECORD_ENABLED })); // guard-ok: одна строка на процесс, только значение флага

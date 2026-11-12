@@ -125,7 +125,11 @@ function applySnapshot(
   if (
     current
     && (current.ownerStableId !== ownerStableId || current.accountGeneration !== token.generation)
-  ) publish(null);
+  ) {
+    // зачем (сторож «[SPIRE] везде», spire_game_source_contract; координатор 12.11): редкая ветка — счёт прошлого владельца снят; видно в журнале
+    console.log('[SPIRE]', JSON.stringify({ weekScore: 'reset_owner_changed', sameOwner: current.ownerStableId === ownerStableId })); // guard-ok: ветка смены владельца, без id
+    publish(null);
+  }
   if (current) {
     if (snapshot.seq < current.sourceSeq) return 'older';
     if (snapshot.seq === current.sourceSeq) {

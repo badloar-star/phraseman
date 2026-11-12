@@ -291,8 +291,12 @@ describe('скелет подиума и свайп по окну башни', (
 
   it('жест окна башни: касание блокирует прокрутку страницы и RefreshControl, отпускание — возвращает', () => {
     const home = read('components/spire/SpireHomeScreen.tsx');
-    expect(home).toContain('scrollEnabled={!towerTouch.locked}');
-    expect(home).toContain('<RefreshControl enabled={!towerTouch.locked}');
+    // зачем (e73e1e57a «сцена Пика со страничной прокруткой»): одно примитивное значение на прокрутку и обновление. На «Сцене» окна-прокрутки у башни нет
+    // (ветка sceneMode без касаний), поэтому страница там не замыкается; в прежнем окне касание по-прежнему замыкает страницу и потягивание.
+    expect(home).toContain('const pageScrollEnabled = scene !== null || !towerTouch.locked;');
+    expect(home).toContain('scrollEnabled={pageScrollEnabled}');
+    expect(home).toContain('<RefreshControl enabled={pageScrollEnabled}');
+    expect(home).not.toMatch(/scrollEnabled=\{(true|false)\}/);
     expect(home).toContain('onTouchActive={towerTouch.onTouchActive}');
     const tower = read('components/spire/SpireTower.tsx');
     expect(tower).toContain("onTouchStart={() => onTouchActive?.(true, 'tower_touch_start')}");

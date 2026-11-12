@@ -152,7 +152,7 @@ test('game hook: no network while the gate is closed', () => {
   assert.ok(flushAt > -1 && game.lastIndexOf('if (!gate || !ids || !lang) return;', flushAt) > -1, 'queue flush is behind the gate');
   assert.equal(game.split('spireFlushNow(').length - 1, 1, 'single flush call site');
   // Экран не зовёт сеть сам: только через хук.
-  assert.ok(home.includes('useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek })'), 'home passes the lock into the hook (в DEV-превью ворота закрыты, игра подменена моками)');
+  assert.ok(home.includes('useSpireGame({ config: preview ? null : config, unlocked: preview ? false : unlocked, lang: spireLang, week, setWeek, runtimeActive: spireRuntimeActive })'), 'home passes the lock into the hook (в DEV-превью ворота закрыты, игра подменена моками)');
 });
 
 test('no Firestore listeners or collection scans in the game layer', () => {

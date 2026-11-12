@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — испанский классический курс, уроки 1–8 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — испанский классический курс, уроки 1–12 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза из слов этого и прошлых уроков);
  * с лишним словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить.
@@ -94,5 +94,45 @@ export const ODD_WORD_BANK_ES: Readonly<Record<number, readonly OddWordTask[]>> 
     task(8, 6, 'Mi madre es [está] profesora', 'Моя мама — учительница', 'Про профессию говорят es. Está — про место.'),
     task(8, 7, 'Mis hermanos [está] están aquí', 'Мои братья здесь', 'Братьев несколько — значит están.'),
     task(8, 8, '¿Dónde [está] están mis llaves?', 'Где мои ключи?', 'Ключей несколько — значит están.'),
+  ],
+  9: [
+    task(9, 1, 'Él [hablo] habla español', 'Он говорит по-испански', 'Про него говорят habla. Hablo — про себя.'),
+    task(9, 2, 'Ella [trabajas] trabaja aquí', 'Она работает здесь', 'Про неё говорят trabaja. Trabajas — это «ты».'),
+    task(9, 3, 'Los estudiantes [habla] hablan español', 'Студенты говорят по-испански', 'Студентов несколько — значит hablan.'),
+    task(9, 4, 'Mis hermanos [trabaja] trabajan aquí', 'Мои братья работают здесь', 'Братьев несколько — значит trabajan.'),
+    task(9, 5, 'Busco [en] mis llaves', 'Я ищу свои ключи', 'Busco — сразу что ищу, без en.'),
+    task(9, 6, 'Trabajo [en] hoy', 'Я работаю сегодня', 'Hoy обходится без en.'),
+    task(9, 7, 'Los estudiantes [buscas] buscan sus libros', 'Студенты ищут свои книги', 'Студентов несколько — значит buscan.'),
+    task(9, 8, 'Ellas [trabaja] trabajan en casa', 'Они работают дома', 'Их несколько — значит trabajan.'),
+  ],
+  10: [
+    task(10, 1, 'Él [bebo] bebe café', 'Он пьёт кофе', 'Про него говорят bebe. Bebo — про себя.'),
+    task(10, 2, 'Ella [escribo] escribe una carta', 'Она пишет письмо', 'Про неё говорят escribe. Escribo — про себя.'),
+    task(10, 3, 'Mis hermanos [lee] leen el mensaje', 'Мои братья читают сообщение', 'Братьев несколько — значит leen.'),
+    task(10, 4, 'Vivo [en] cerca de la estación', 'Я живу рядом с вокзалом', 'Cerca обходится без en.'),
+    task(10, 5, 'Escribimos [una] un mensaje', 'Мы пишем сообщение', 'Mensaje — «он», поэтому un.'),
+    task(10, 6, 'Abrimos [el] la puerta', 'Мы открываем дверь', 'Puerta — «она», поэтому la.'),
+    task(10, 7, 'Mis hermanos [bebe] beben agua', 'Мои братья пьют воду', 'Братьев несколько — значит beben.'),
+    task(10, 8, 'Leo [la] el mensaje', 'Я читаю сообщение', 'Mensaje — «он», поэтому el.'),
+  ],
+  11: [
+    task(11, 1, 'Él [tengo] tiene una pregunta', 'У него есть вопрос', 'Про него говорят tiene. Tengo — про себя.'),
+    task(11, 2, 'Mis hermanos [tiene] tienen una pregunta', 'У моих братьев есть вопрос', 'Братьев несколько — значит tienen.'),
+    task(11, 3, 'Tenemos [las] dos billetes', 'У нас есть два билета', 'Перед dos слово las не нужно.'),
+    task(11, 4, 'Tengo [una] tu libro', 'У меня твоя книга', 'Перед tu una не ставят: tengo tu libro.'),
+    task(11, 5, '¿Tienes [una] un minuto?', 'У тебя есть минутка?', 'Minuto — «он», поэтому un.'),
+    task(11, 6, 'Ella [tienes] tiene una cita', 'У неё назначена встреча', 'Про неё говорят tiene. Tienes — это «ты».'),
+    task(11, 7, 'No tengo [la] las llaves', 'У меня нет ключей', 'Ключей несколько — значит las.'),
+    task(11, 8, 'Tenemos [es] tiempo', 'У нас есть время', 'Tenemos уже значит «у нас есть» — es не нужно.'),
+  ],
+  12: [
+    task(12, 1, 'La mochila es [nuevo] nueva', 'Рюкзак новый', 'Mochila — «она», поэтому nueva.'),
+    task(12, 2, 'Los libros [es] son pequeños', 'Книги маленькие', 'Книг несколько — значит son.'),
+    task(12, 3, 'Las maletas son [pequeños] pequeñas', 'Чемоданы маленькие', 'Maleta — «она», поэтому pequeñas.'),
+    task(12, 4, 'Mi coche es [roja] rojo', 'Моя машина красная', 'Coche — «он», поэтому rojo.'),
+    task(12, 5, 'Tengo una camiseta [rojo] roja', 'У меня красная футболка', 'Camiseta — «она», поэтому roja.'),
+    task(12, 6, 'El hotel [son] es grande', 'Отель большой', 'Отель один — значит es.'),
+    task(12, 7, '¿Son grandes [la] las ventanas?', 'Окна большие?', 'Окон несколько — значит las.'),
+    task(12, 8, 'Busco un bolso [negra] negro', 'Я ищу чёрную сумку', 'Bolso — «он», поэтому negro.'),
   ],
 };

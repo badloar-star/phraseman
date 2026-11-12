@@ -28,6 +28,7 @@ import V2Pressable from '../../../v2/V2Pressable';
 import { colorWithAlpha } from '../../../v2/plateAlpha';
 import { useTabPillTop } from '../../../../hooks/use-tab-content-bottom-pad';
 import type { HomeSceneChipKind, HomeSceneCopy } from './home_scene_copy';
+import { bodyFromCopy, peekHomeSceneBodyCopy, rememberHomeSceneBodyCopy, resolveHomeSceneBody } from './home_scene_copy_cache';
 import { homeSceneStageHeight } from './home_scene_fit';
 import { homeSceneWarmTone } from './home_scene_warm_tone';
 import { useShadowGlass } from '../../../v2/ShadowSurface';
@@ -120,8 +121,21 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const warmTone = homeSceneWarmTone(useShadowGlass().accent).flame;
   // зачем (владелец 22.10, вариант 2): сцена — 46 % экрана вместе со строкой статуса
   // зачем (Сверка 22.10, «Фраза дня» уходила под таб-бар): сцена сжимается ровно настолько, чтобы вся Главная до «Фразы дня» была видна над капсулой (home_scene_fit); остальное не сжимается
+  // зачем (координатор 12.11, [HOME-FIT] 280→325→333→306 на холодном старте): пока место продолжения читается, тело сцены
+  // рисует последний показанный текст из кэша — та же высота, что будет после ответа; заготовка — только без кэша.
+  const bodyFrame = resolveHomeSceneBody({ pending, copy, state, lang, cached: pending ? peekHomeSceneBodyCopy(lang) : null });
   const sawPendingRef = useRef(false); // скелет реально показывали → при готовности заголовок проявляется
-  if (pending) sawPendingRef.current = true;
+  if (bodyFrame.mode === 'skeleton') sawPendingRef.current = true;
+  const bodyModeLoggedRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (bodyModeLoggedRef.current === bodyFrame.mode) return;
+    bodyModeLoggedRef.current = bodyFrame.mode;
+    console.log('[HOME-SCENE-CACHE] body', JSON.stringify({ mode: bodyFrame.mode, state, cachedState: bodyFrame.mode === 'cached' ? bodyFrame.body?.state ?? null : null, pending })); // guard-ok: одна строка на смену режима
+  }, [bodyFrame.mode, bodyFrame.body?.state, pending, state]);
+  useEffect(() => {
+    if (pending || specialKey) return;
+    rememberHomeSceneBodyCopy(bodyFromCopy(copy, state, lang));
+  }, [pending, specialKey, copy, state, lang]);
   const firstLayoutLoggedRef = useRef(false); // [HOME-SCENE-FIRST]: первая раскладка сцены — одна строка
   const glowLoggedRef = useRef(false);
   const stageH = homeSceneStageHeight({ windowH, windowW, pillTop, fontScale, share: HOME_SCENE_SCREEN_SHARE });
@@ -213,12 +227,29 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}
       <View style={[s.topSpace, { height: reservedTopSpace }]} />
       <View style={s.body}>
-        {pending ? (
+        {bodyFrame.mode === 'skeleton' ? (
           <>
             <View style={[s.skel, { width: 150, height: 14 }]} />
             <View style={[s.skel, { width: '72%', height: 30, marginTop: 10 }]} />
             <View style={[s.skel, { width: 120, height: 12, marginTop: 14 }]} />
           </>
+        ) : bodyFrame.mode === 'cached' && bodyFrame.body ? (
+          <View testID="home-scene-cached-body">
+            {bodyFrame.body.kicker ? <Text testID="home-scene-kicker" style={s.kicker}>{bodyFrame.body.kicker}</Text> : null}
+            {bodyFrame.body.title ? <Text testID="home-scene-title" accessibilityRole="header" style={bodyFrame.body.title.length > TITLE_LONG_CHARS ? s.titleLong : s.title}>{bodyFrame.body.title}</Text> : null}
+            {bodyFrame.body.warm ? (
+              <View style={s.warmRow}>
+                <Ionicons name="flame" size={16} color={warmTone} />
+                <Text style={[s.warm, { color: warmTone }]}>{bodyFrame.body.warm}</Text>
+              </View>
+            ) : null}
+            {bodyFrame.body.line ? (
+              <View style={s.lineRow}>
+                {bodyFrame.body.bar !== null ? <View style={s.bar}><KitProgressFill ratio={bodyFrame.body.bar} style={s.barFill} /></View> : null}
+                <Text style={s.line}>{bodyFrame.body.line}</Text>
+              </View>
+            ) : null}
+          </View>
         ) : (
           <Animated.View key={specialKey ?? 'base'} entering={reduceMotion ? undefined : specialKey ? SPECIAL_ENTER : sawPendingRef.current ? PENDING_ENTER : undefined}>
             {/* зачем (Темы 25.10, home-scene-special-contrast + season-home-contrast: надзаголовок 86 % при крупном шрифте — 20/58 у особых и 25/58 у обычных сцен ниже 4,5): надзаголовок белый 100 % у ВСЕХ сцен */}

@@ -291,7 +291,10 @@ describe('Главная: первый кадр без нуля монет и б
     expect(scene).toContain('pending={p.pending}');
     // высота сцены зарезервирована с первого кадра и не зависит от pending; заготовка — полоски фиксированного размера на месте текста
     expect(stage).toContain('style={[s.stage, { minHeight: stageH }');
-    expect(stage).toMatch(/\{pending \? \(\s*<>\s*<View style=\{\[s\.skel, \{ width: \d+, height: \d+ \}\]\} \/>/);
+    // зачем (координатор 12.11, [HOME-FIT] 280→325→333→306): пока pending, тело сцены — последний показанный текст из кэша
+    // (та же высота, что после ответа); заготовка фиксированного размера — только когда кэша нет (самый первый запуск).
+    expect(stage).toContain("resolveHomeSceneBody({ pending, copy, state, lang, cached: pending ? peekHomeSceneBodyCopy(lang) : null })");
+    expect(stage).toMatch(/\{bodyFrame\.mode === 'skeleton' \? \(\s*<>\s*<View style=\{\[s\.skel, \{ width: \d+, height: \d+ \}\]\} \/>/);
     // пока заготовка — кнопка не ведёт никуда (нельзя открыть «не тот» урок)
     expect(stage).toMatch(/if \(pending\) \{ console\.warn\(LOG, 'cta:ignored'/);
   });

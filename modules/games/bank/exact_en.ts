@@ -84,4 +84,38 @@ export const EXACT_BANK_EN: Readonly<Record<number, readonly QuizRound[]>> = {
     round(8, 5, 'He works ___ night', 'at', ['in', 'on'], 1, 'Ночью — at night.'),
     round(8, 6, 'The rent is due ___ the first of May', 'on', ['in', 'at'], 2, 'Число месяца — с on.'),
   ],
+  // зачем (сессия макетов 12.11): уроки 9–12; отброшены пары, где неверный вариант тоже даёт правильную фразу
+  // («I call the office», «Does she check…», «arrived ten minutes later»)
+  9: [
+    round(9, 1, 'There ___ a lift', 'is', ['are'], 0, 'Лифт один — значит is.'),
+    round(9, 2, 'There ___ two queues', 'are', ['is'], 1, 'Очередей две — значит are.'),
+    round(9, 3, '___ there a quiet room?', 'Is', ['Are'], 0, 'Комната одна — значит is.'),
+    round(9, 4, 'Are there ___ blankets?', 'any', ['a'], 1, 'Одеял несколько — any; a ставят только перед одним.'),
+    round(9, 5, 'There is ___ hot water', 'no', ['not'], 0, '«Нет горячей воды» — no hot water.'),
+    round(9, 6, 'There is a toilet ___', 'upstairs', ['at upstairs'], 1, 'Upstairs обходится без at.'),
+  ],
+  10: [
+    round(10, 1, 'I can ___', 'swim', ['to swim'], 0, 'После can — swim, без to.'),
+    round(10, 2, 'She ___ drive', 'can', ['is'], 1, 'Она умеет — she can drive.'),
+    round(10, 3, 'Can I ___ here?', 'sit', ['to sit'], 0, 'После can I сразу идёт sit.'),
+    round(10, 4, 'You should ___ the receipt', 'keep', ['to keep'], 1, 'После should сразу идёт keep.'),
+    round(10, 5, 'He ___ bring his passport', 'has to', ['have to'], 0, 'С he — has to.'),
+    round(10, 6, 'We ___ to show our tickets', 'have', ['has'], 1, 'С we — have to.'),
+  ],
+  11: [
+    round(11, 1, 'We ___ late yesterday', 'worked', ['work'], 0, 'Yesterday — значит worked.'),
+    round(11, 2, 'Did you ___ the office?', 'call', ['called'], 1, 'После did — call, без -ed.'),
+    round(11, 3, 'I did not ___ the label', 'check', ['checked'], 0, 'После did not — check, без -ed.'),
+    round(11, 4, '___ the bus arrive on time?', 'Did', ['Is', 'Are'], 2, 'Вопрос о прошлом начинается с did.'),
+    round(11, 5, 'She ___ the gate', 'closed', ['close'], 1, 'Про неё в прошлом — closed.'),
+    round(11, 6, 'I ___ home yesterday', 'walked', ['walk'], 0, 'Yesterday — значит walked.'),
+  ],
+  12: [
+    round(12, 1, 'I ___ your sister yesterday', 'met', ['meet'], 1, 'Yesterday — значит met.'),
+    round(12, 2, 'Did you ___ your keys?', 'find', ['found'], 0, 'После did — find, а не found.'),
+    round(12, 3, 'She did not ___ my coat', 'take', ['took'], 1, 'После did not — take, а не took.'),
+    round(12, 4, 'Did they ___ the bus?', 'catch', ['caught'], 0, 'После did — catch, а не caught.'),
+    round(12, 5, 'She ___ a spare key', 'brought', ['bring'], 1, 'Про неё в прошлом — brought.'),
+    round(12, 6, 'Who ___ the last cup?', 'took', ['take'], 0, 'Это уже было — took.'),
+  ],
 };

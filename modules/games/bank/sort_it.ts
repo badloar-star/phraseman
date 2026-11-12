@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — итальянский классический курс, уроки 1–12 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — итальянский классический курс, уроки 1–16 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только слова этого и прошлых уроков. Пропуск в карте пишется `___`
@@ -131,5 +131,45 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['Compri ___ panna', 'right', 'panna — «она», поэтому della'],
     ['Lei compra ___ prosciutto', 'left', 'prosciutto — «он», поэтому del'],
     ['Mangiamo ___ pasta', 'right', 'pasta — «она», поэтому della'],
+  ]),
+  13: deck(13, { title: 'bianco', example: 'il maglione, il cappello' }, { title: 'bianca', example: 'la camicia, la giacca' }, [
+    ['Il lenzuolo è ___', 'left', 'lenzuolo — «он», поэтому bianco'],
+    ['La camicia è ___', 'right', 'camicia — «она», поэтому bianca'],
+    ['Il maglione è ___', 'left', 'maglione — «он», поэтому bianco'],
+    ['La giacca è ___', 'right', 'giacca — «она», поэтому bianca'],
+    ['Il vestito è ___', 'left', 'vestito — «он», поэтому bianco'],
+    ['La borsa è ___', 'right', 'borsa — «она», поэтому bianca'],
+    ['Il cappotto è ___', 'left', 'cappotto — «он», поэтому bianco'],
+    ['La gonna è ___', 'right', 'gonna — «она», поэтому bianca'],
+  ]),
+  14: deck(14, { title: 'può', example: 'lei, Paolo' }, { title: 'possono', example: 'loro, i bambini' }, [
+    ['Lei ___ venire', 'left', 'она одна — può'],
+    ['Loro ___ restare', 'right', 'их несколько — possono'],
+    ['Paolo ___ aspettare', 'left', 'Паоло один — può'],
+    ['I bambini ___ entrare', 'right', 'детей несколько — possono'],
+    ['Mia sorella ___ pagare', 'left', 'сестра одна — può'],
+    ['Le ragazze ___ passare', 'right', 'девушек несколько — possono'],
+    ['Lui ___ partire', 'left', 'он один — può'],
+    ['I colleghi ___ aspettare', 'right', 'коллег несколько — possono'],
+  ]),
+  15: deck(15, { title: 'sta', example: 'Ana, lei' }, { title: 'stanno', example: 'loro, i miei fratelli' }, [
+    ['Ana ___ scrivendo una lettera', 'left', 'Ана одна — sta'],
+    ['I miei fratelli ___ mangiando a casa', 'right', 'братьев несколько — stanno'],
+    ['Luis ___ preparando la zuppa', 'left', 'Луис один — sta'],
+    ['Le mie sorelle ___ aspettando qui', 'right', 'сестёр несколько — stanno'],
+    ['Lei ___ leggendo il libro', 'left', 'она одна — sta'],
+    ['Loro ___ lavando i piatti', 'right', 'их несколько — stanno'],
+    ['Mia sorella ___ portando la valigia', 'left', 'сестра одна — sta'],
+    ['I bambini ___ bevendo acqua', 'right', 'детей несколько — stanno'],
+  ]),
+  16: deck(16, { title: 'на «ты»', example: 'Entra! Aspetta!' }, { title: 'на «вы»', example: 'Entri! Aspetti!' }, [
+    ['Chiudi la porta!', 'left', 'chiudi — на «ты»'],
+    ['Firmi in fondo, per favore.', 'right', 'firmi — вежливо, на «вы»'],
+    ['Prendi la giacca!', 'left', 'prendi — на «ты»'],
+    ['Prema il pulsante verde.', 'right', 'prema — вежливо, на «вы»'],
+    ['Apri la finestra!', 'left', 'apri — на «ты»'],
+    ['Mostri il biglietto, per favore.', 'right', 'mostri — вежливо, на «вы»'],
+    ['Gira a sinistra!', 'left', 'gira — на «ты»'],
+    ['Tenga il passaporto con sé.', 'right', 'tenga — вежливо, на «вы»'],
   ]),
 };

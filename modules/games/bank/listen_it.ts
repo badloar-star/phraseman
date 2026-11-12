@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — итальянский классический курс, уроки 1–12 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — итальянский классический курс, уроки 1–16 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: произносится фраза урока; верный вариант дословно равен ей; два неверных отличаются
  * ровно одним словом и остаются правильными фразами из знакомых слов — это проверка слуха, а не грамматики.
@@ -108,5 +108,37 @@ export const LISTEN_BANK_IT: Readonly<Record<number, readonly QuizRound[]>> = {
     round(12, 4, 'Bevo del tè', ['Bevo del caffè', 'Bevo del latte'], 0, 'Я пью чай'),
     round(12, 5, 'Non mangiamo carne', ['Non mangiamo pesce', 'Non mangiamo pasta'], 1, 'Мы не едим мясо'),
     round(12, 6, 'Compro del burro', ['Compro del pane', 'Compri del burro'], 2, 'Я покупаю сливочное масло'),
+  ],
+  13: [
+    round(13, 1, 'La borsa è pesante', ['La valigia è pesante', 'La borsa è leggera'], 0, 'Сумка тяжёлая'),
+    round(13, 2, 'La camicia è bianca', ['La camicia è nera', 'La giacca è bianca'], 1, 'Рубашка белая'),
+    round(13, 3, 'Le scatole sono piene', ['Le scatole sono nuove', 'Le strade sono piene'], 2, 'Коробки полные'),
+    round(13, 4, 'Il maglione è verde', ['Il maglione è grigio', 'Il cappello è verde'], 0, 'Свитер зелёный'),
+    round(13, 5, 'Cerco una giacca nera', ['Cerco una borsa nera', 'Cerco una giacca verde'], 1, 'Я ищу чёрную куртку'),
+    round(13, 6, 'La strada è stretta', ['La strada è lunga', 'La stanza è stretta'], 2, 'Улица узкая'),
+  ],
+  14: [
+    round(14, 1, 'Possiamo aspettare', ['Possiamo entrare', 'Possono aspettare'], 0, 'Мы можем подождать'),
+    round(14, 2, 'Devi aspettare', ['Devo aspettare', 'Devi pagare'], 1, 'Тебе нужно подождать'),
+    round(14, 3, 'Puoi chiudere la porta?', ['Puoi aprire la porta?', 'Puoi chiudere la finestra?'], 2, 'Можешь закрыть дверь?'),
+    round(14, 4, 'Vogliamo visitare il museo', ['Vogliamo visitare il mercato', 'Vogliono visitare il museo'], 0, 'Мы хотим посетить музей'),
+    round(14, 5, 'Dobbiamo pagare', ['Dobbiamo partire', 'Dobbiamo aspettare'], 1, 'Нам нужно заплатить'),
+    round(14, 6, 'Devo caricare il telefono', ['Devi caricare il telefono', 'Devo prendere il telefono'], 2, 'Мне нужно зарядить телефон'),
+  ],
+  15: [
+    round(15, 1, 'Sto leggendo il libro', ['Stai leggendo il libro', 'Sto leggendo il messaggio'], 0, 'Я сейчас читаю книгу'),
+    round(15, 2, 'Stiamo scrivendo una lettera', ['Stiamo leggendo una lettera', 'Stanno scrivendo una lettera'], 1, 'Мы сейчас пишем письмо'),
+    round(15, 3, 'Sto bevendo acqua', ['Sto bevendo caffè', 'Stai bevendo acqua'], 2, 'Я сейчас пью воду'),
+    round(15, 4, 'Sto aprendo la porta', ['Sto aprendo la finestra', 'Stai aprendo la porta'], 0, 'Я сейчас открываю дверь'),
+    round(15, 5, 'Stiamo lavando i piatti', ['Stiamo asciugando i piatti', 'State lavando i piatti'], 1, 'Мы сейчас моем посуду'),
+    round(15, 6, 'Luis sta mangiando a casa', ['Ana sta mangiando a casa', 'Luis sta lavorando a casa'], 2, 'Луис сейчас ест дома'),
+  ],
+  16: [
+    round(16, 1, 'Chiudi la porta', ['Apri la porta', 'Chiudi la finestra'], 0, 'Закрой дверь'),
+    round(16, 2, 'Apri la finestra', ['Apri la porta', 'Chiudi la finestra'], 1, 'Открой окно'),
+    round(16, 3, 'Prendi la giacca', ['Prendi la borsa', 'Metti la giacca'], 2, 'Возьми куртку'),
+    round(16, 4, 'Gira a sinistra', ['Gira a destra', 'Resta a sinistra'], 0, 'Поверни налево'),
+    round(16, 5, 'Resta qui', ['Resta lì', 'Resti qui'], 1, 'Останься здесь'),
+    round(16, 6, 'Metti la borsa qui', ['Metti la giacca qui', 'Prendi la borsa qui'], 2, 'Поставь сумку сюда'),
   ],
 };

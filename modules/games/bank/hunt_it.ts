@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — итальянский классический курс, уроки 1–12 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — итальянский классический курс, уроки 1–16 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: три реплики из фраз урока (или из слов этого и прошлых уроков); ровно одно слово
  * неверное — `{неверно>верно}`; в другой реплике одно слово-обманка — `*слово`: оно нажимается, но верное.
@@ -59,5 +59,21 @@ export const HUNT_BANK_IT: Readonly<Record<number, readonly HuntTask[]>> = {
   12: [
     task(12, 1, ['Beve del caffè?', 'Non *bevo caffè.', 'Prendo {della>del} tè.'], 'Tè — «он», поэтому del.'),
     task(12, 2, ['Che cosa prepara?', 'Prendo *della zuppa.', 'Lui {prendo>prende} del formaggio.'], 'Про него говорят prende. Prendo — про себя.'),
+  ],
+  13: [
+    task(13, 1, ['La borsa è pesante?', 'La borsa è {leggeri>leggera}.', 'La valigia *è pesante.'], 'Borsa — «она», поэтому leggera.'),
+    task(13, 2, ['Cerchi una giacca?', 'Cerco una giacca {neri>nera}.', '*Preferisci il maglione rosso?'], 'Giacca — «она», поэтому nera.'),
+  ],
+  14: [
+    task(14, 1, ['Puoi venire?', '*Possiamo venire.', 'Lei {posso>può} venire.'], 'Про неё говорят può. Posso — про себя.'),
+    task(14, 2, ['Devi pagare?', 'Noi {devo>dobbiamo} pagare.', 'Lui *deve aspettare.'], 'Про нас говорят dobbiamo.'),
+  ],
+  15: [
+    task(15, 1, ['Che cosa stai facendo?', 'Sto {leggere>leggendo} il libro.', 'Ana *sta scrivendo una lettera.'], 'После sto — leggendo.'),
+    task(15, 2, ['Dove sono i tuoi fratelli?', 'I miei fratelli {sta>stanno} mangiando a casa.', 'Le mie sorelle *stanno aspettando qui.'], 'Братьев несколько — значит stanno.'),
+  ],
+  16: [
+    task(16, 1, ['Dove metto la borsa?', '*Metti la borsa qui!', 'Chiudi {il>la} porta!'], 'Porta — «она», поэтому la.'),
+    task(16, 2, ['Che cosa prendo?', 'Prendi {il>la} giacca!', '*Tieni il biglietto!'], 'Giacca — «она», поэтому la.'),
   ],
 };

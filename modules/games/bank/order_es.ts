@@ -1,5 +1,5 @@
 /**
- * Банк игры «Собери диалог» — испанский классический курс, уроки 3–12 (D207). 2 диалога из 4 реплик на урок.
+ * Банк игры «Собери диалог» — испанский классический курс, уроки 3–16 (D207). 2 диалога из 4 реплик на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: реплики — фразы урока или собраны из слов этого и прошлых уроков; порядок однозначен:
  * первый вопрос называет, о ком речь, ответ повторяет это слово, а третья реплика «¿Y …?» («А …?»)
@@ -52,5 +52,21 @@ export const ORDER_BANK_ES: Readonly<Record<number, readonly OrderTask[]>> = {
   12: [
     task(12, 1, ['¿Son grandes las ventanas?', 'Las ventanas son pequeñas.', '¿Y la casa?', 'La casa es grande.']),
     task(12, 2, ['¿Son grandes los libros?', 'Los libros son pequeños.', '¿Y los coches?', 'Los coches son grandes.']),
+  ],
+  13: [
+    task(13, 1, ['¿Está abierta la tienda?', 'La tienda está cerrada.', '¿Y la farmacia?', 'La farmacia está abierta.']),
+    task(13, 2, ['¿Estás cansado?', 'Estoy cansado.', '¿Y tu hermana?', 'Mi hermana está ocupada.']),
+  ],
+  14: [
+    task(14, 1, ['¿Te levantas temprano?', 'Me levanto a las siete.', '¿Y Ana?', 'Ana se levanta temprano.']),
+    task(14, 2, ['¿Dónde te duchas?', 'Me ducho en casa.', '¿Y tus hermanos?', 'Mis hermanos se duchan en el hotel.']),
+  ],
+  15: [
+    task(15, 1, ['¿Puedes esperar fuera?', 'Puedo esperar fuera.', '¿Y Luis?', 'Luis puede esperar aquí.']),
+    task(15, 2, ['¿Puedes pagar con tarjeta?', 'No puedo pagar con tarjeta.', '¿Y en efectivo?', 'Puedo pagar en efectivo.']),
+  ],
+  16: [
+    task(16, 1, ['¿Vas a llamar al hotel?', 'Voy a llamar a Ana.', '¿Y Luis?', 'Luis va a llamar al hotel.']),
+    task(16, 2, ['¿Vas a comer en casa?', 'Voy a comer en casa.', '¿Y tus hermanos?', 'Mis hermanos van a comer en el hotel.']),
   ],
 };

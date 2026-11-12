@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — испанский классический курс, уроки 1–12 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — испанский классический курс, уроки 1–16 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: три реплики из фраз урока (или из слов этого и прошлых уроков); ровно одно слово
  * неверное — `{неверно>верно}`; в другой реплике одно слово-обманка — `*слово`: оно нажимается, но верное.
@@ -59,5 +59,21 @@ export const HUNT_BANK_ES: Readonly<Record<number, readonly HuntTask[]>> = {
   12: [
     task(12, 1, ['¿Son grandes las mesas?', 'Las mesas son {pequeños>pequeñas}.', 'La cocina *es grande.'], 'Mesa — «она», поэтому pequeñas.'),
     task(12, 2, ['*Busco una mochila roja.', 'Mi mochila es {rojo>roja}.', '¿Es nueva?'], 'Mochila — «она», поэтому roja.'),
+  ],
+  13: [
+    task(13, 1, ['¿Está abierta la tienda?', 'La tienda está {cerrados>cerrada}.', 'La farmacia *está abierta.'], 'Магазин один, а tienda — «она», поэтому cerrada.'),
+    task(13, 2, ['¿Estáis listos?', 'Mis hermanos {está>están} listos.', '*Estoy listo.'], 'Братьев несколько — значит están.'),
+  ],
+  14: [
+    task(14, 1, ['¿Te levantas temprano?', '*Me levanto a las siete.', 'Mis hermanos se {levanta>levantan} temprano.'], 'Братьев несколько — значит levantan.'),
+    task(14, 2, ['¿Te duchas en casa?', '*Me ducho en casa.', 'Ana se {ducho>ducha} por la mañana.'], 'Про Ану говорят ducha. Ducho — про себя.'),
+  ],
+  15: [
+    task(15, 1, ['¿Puedes esperar fuera?', '*Puedo esperar fuera.', 'Mis hermanos {puede>pueden} esperar aquí.'], 'Братьев несколько — значит pueden.'),
+    task(15, 2, ['¿Puedo pagar aquí?', 'Puedes pagar {en>con} tarjeta.', 'Ana *puede pagar en efectivo.'], 'Картой — con tarjeta.'),
+  ],
+  16: [
+    task(16, 1, ['¿Vas a llamar al hotel?', '*Voy a llamar a Ana.', 'Mis hermanos {va>van} a llamar al hotel.'], 'Братьев несколько — значит van.'),
+    task(16, 2, ['¿Vas a comer en casa?', '*Voy a comer en casa.', 'Ella no {voy>va} a comer en casa.'], 'Про неё говорят va. Voy — про себя.'),
   ],
 };

@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — испанский классический курс, уроки 1–12 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — испанский классический курс, уроки 1–16 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: произносится фраза урока; верный вариант дословно равен ей; два неверных отличаются
  * ровно одним словом и остаются правильными фразами из знакомых слов — это проверка слуха, а не грамматики.
@@ -108,5 +108,37 @@ export const LISTEN_BANK_ES: Readonly<Record<number, readonly QuizRound[]>> = {
     round(12, 4, 'La casa es grande', ['La cocina es grande', 'La casa es nueva'], 0, 'Дом большой'),
     round(12, 5, 'Busco un libro nuevo', ['Busco un libro rojo', 'Tengo un libro nuevo'], 1, 'Я ищу новую книгу'),
     round(12, 6, 'Tengo una mesa blanca', ['Tengo una mesa negra', 'Tengo una mesa grande'], 2, 'У меня белый стол'),
+  ],
+  13: [
+    round(13, 1, 'Estoy cansado', ['Estoy ocupado', 'Estás cansado'], 0, 'Я устал'),
+    round(13, 2, 'La puerta está abierta', ['La puerta está cerrada', 'La ventana está abierta'], 1, 'Дверь открыта'),
+    round(13, 3, 'Hoy estamos ocupados', ['Hoy estamos cansados', 'Hoy están ocupados'], 2, 'Сегодня мы заняты'),
+    round(13, 4, 'El café está frío', ['El café está aquí', 'El coche está frío'], 0, 'Кофе холодный'),
+    round(13, 5, 'La farmacia está cerrada', ['La tienda está cerrada', 'La farmacia está abierta'], 1, 'Аптека закрыта'),
+    round(13, 6, 'Mi madre está cansada', ['Mi hermana está cansada', 'Mi madre está ocupada'], 2, 'Моя мама устала'),
+  ],
+  14: [
+    round(14, 1, 'Me levanto temprano', ['Me lavo temprano', 'Me levanto hoy'], 0, 'Я встаю рано'),
+    round(14, 2, 'Nos duchamos en casa', ['Nos duchamos en clase', 'Nos levantamos en casa'], 1, 'Мы принимаем душ дома'),
+    round(14, 3, 'Me lavo las manos', ['Me lava las manos', 'Me lavo las mesas'], 2, 'Я мою руки'),
+    round(14, 4, 'Ana se sienta aquí', ['Ana se sienta allí', 'Luis se sienta aquí'], 0, 'Ана садится здесь'),
+    round(14, 5, 'Luis se prepara para la clase', ['Ana se prepara para la clase', 'Luis se prepara en la clase'], 1, 'Луис готовится к занятию'),
+    round(14, 6, 'Mis hermanos se duchan en casa', ['Mis hermanas se duchan en casa', 'Mis hermanos se duchan en clase'], 2, 'Мои братья принимают душ дома'),
+  ],
+  15: [
+    round(15, 1, 'Puedo entrar en la tienda', ['Puedes entrar en la tienda', 'Puedo entrar en la oficina'], 0, 'Я могу войти в магазин'),
+    round(15, 2, 'Podemos esperar aquí', ['Podemos esperar fuera', 'Podemos pagar aquí'], 1, 'Мы можем подождать здесь'),
+    round(15, 3, 'Luis puede pagar en efectivo', ['Ana puede pagar en efectivo', 'Luis puede pagar en casa'], 2, 'Луис может заплатить наличными'),
+    round(15, 4, 'Puedo abrir la puerta', ['Puedo abrir la ventana', 'Puedes abrir la puerta'], 0, 'Я могу открыть дверь'),
+    round(15, 5, 'Ana puede comprar un billete', ['Ana puede llevar un billete', 'Ana puede comprar un libro'], 1, 'Ана может купить билет'),
+    round(15, 6, 'Puedes mandar la foto', ['Puedes mandar la carta', 'Puedo mandar la foto'], 2, 'Ты можешь отправить фотографию'),
+  ],
+  16: [
+    round(16, 1, 'Voy a llamar al hotel', ['Vas a llamar al hotel', 'Voy a volver al hotel'], 0, 'Я собираюсь позвонить в отель'),
+    round(16, 2, 'Luis va a comprar pan', ['Luis va a comprar arroz', 'Ana va a comprar pan'], 1, 'Луис собирается купить хлеб'),
+    round(16, 3, 'Vamos a comprar verduras', ['Vamos a preparar verduras', 'Van a comprar verduras'], 2, 'Мы собираемся купить овощи'),
+    round(16, 4, 'Voy a volver a casa', ['Voy a volver a clase', 'Vas a volver a casa'], 0, 'Я собираюсь вернуться домой'),
+    round(16, 5, 'Ana va a pasar por el supermercado', ['Luis va a pasar por el supermercado', 'Ana va a pasar por el hotel'], 1, 'Ана собирается зайти в супермаркет'),
+    round(16, 6, 'No voy a comprar leche hoy', ['No voy a comprar pan hoy', 'No voy a beber leche hoy'], 2, 'Я не собираюсь покупать молоко сегодня'),
   ],
 };

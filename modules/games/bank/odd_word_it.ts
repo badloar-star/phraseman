@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — итальянский классический курс, уроки 1–12 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — итальянский классический курс, уроки 1–16 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза из слов этого и прошлых уроков);
  * с лишним словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить.
@@ -135,5 +135,45 @@ export const ODD_WORD_BANK_IT: Readonly<Record<number, readonly OddWordTask[]>> 
     task(12, 6, 'Mangiano [del] delle fragole', 'Они едят клубнику', 'Ягод много, и fragola — «она»: delle.'),
     task(12, 7, 'Vorrei [del] un po’ di zuppa', 'Я бы хотел немного супа', 'Un po’ di уже значит «немного» — del не нужно.'),
     task(12, 8, 'Non ho [del] più farina', 'У меня больше нет муки', 'После non ho più — сразу продукт, без del.'),
+  ],
+  13: [
+    task(13, 1, 'La giacca è [leggeri] leggera', 'Куртка лёгкая', 'Giacca — «она», поэтому leggera.'),
+    task(13, 2, 'La camicia è [bianco] bianca', 'Рубашка белая', 'Camicia — «она», поэтому bianca.'),
+    task(13, 3, 'Il maglione è [verdi] verde', 'Свитер зелёный', 'Свитер один — значит verde.'),
+    task(13, 4, 'Le scatole sono [piena] piene', 'Коробки полные', 'Коробок несколько — значит piene.'),
+    task(13, 5, 'I bicchieri [è] sono vuoti', 'Стаканы пустые', 'Стаканов несколько — значит sono.'),
+    task(13, 6, 'Cerco una borsa [neri] nera', 'Я ищу чёрную сумку', 'Borsa — «она», поэтому nera.'),
+    task(13, 7, 'Le strade sono [stretta] strette', 'Улицы узкие', 'Улиц несколько — значит strette.'),
+    task(13, 8, 'Il cappello [sono] è grigio', 'Шляпа серая', 'Шляпа одна — значит è.'),
+  ],
+  14: [
+    task(14, 1, 'Lei [posso] può venire', 'Она может прийти', 'Про неё говорят può. Posso — про себя.'),
+    task(14, 2, 'Loro [vuole] vogliono cambiare posto', 'Они хотят пересесть', 'Их несколько — значит vogliono.'),
+    task(14, 3, 'Noi [devo] dobbiamo pagare', 'Нам нужно заплатить', 'Про нас говорят dobbiamo. Devo — про себя.'),
+    task(14, 4, 'Lui non [posso] può aprire la scatola', 'Он не может открыть коробку', 'Про него говорят può. Posso — про себя.'),
+    task(14, 5, 'Lei deve [mostri] mostrare il passaporto', 'Ей нужно показать паспорт', 'После deve слово не меняется: mostrare.'),
+    task(14, 6, 'Loro [possiamo] possono restare', 'Они могут остаться', 'Про них говорят possono. Possiamo — про нас.'),
+    task(14, 7, 'Lei vuole [prenota] prenotare', 'Она хочет забронировать', 'После vuole слово не меняется: prenotare.'),
+    task(14, 8, 'Io non [vuole] voglio disturbare', 'Я не хочу мешать', 'Про себя говорят voglio.'),
+  ],
+  15: [
+    task(15, 1, 'Lei [sto] sta scrivendo una lettera', 'Она сейчас пишет письмо', 'Про неё говорят sta. Sto — про себя.'),
+    task(15, 2, 'Noi [stai] stiamo mangiando a casa', 'Мы сейчас едим дома', 'Про нас говорят stiamo.'),
+    task(15, 3, 'I miei fratelli [sta] stanno pagando in contanti', 'Мои братья сейчас платят наличными', 'Братьев несколько — значит stanno.'),
+    task(15, 4, 'Lui sta [leggere] leggendo il libro', 'Он сейчас читает книгу', 'После sta — leggendo.'),
+    task(15, 5, 'Lei sta bevendo [una] un caffè', 'Она сейчас пьёт кофе', 'Caffè — «он», поэтому un.'),
+    task(15, 6, 'Loro [stiamo] stanno aspettando fuori', 'Они сейчас ждут снаружи', 'Про них говорят stanno. Stiamo — про нас.'),
+    task(15, 7, 'Lui sta aprendo [il] la porta', 'Он сейчас открывает дверь', 'Porta — «она», поэтому la.'),
+    task(15, 8, 'Lei sta lavando [il] i piatti', 'Она сейчас моет тарелки', 'Тарелок несколько — значит i.'),
+  ],
+  16: [
+    task(16, 1, 'Chiudi [il] la porta', 'Закрой дверь', 'Porta — «она», поэтому la.'),
+    task(16, 2, 'Apri [il] la finestra', 'Открой окно', 'Finestra — «она», поэтому la.'),
+    task(16, 3, 'Prendi [il] la giacca', 'Возьми куртку', 'Giacca — «она», поэтому la.'),
+    task(16, 4, 'Metti [le] la borsa qui', 'Поставь сумку сюда', 'Сумка одна — значит la.'),
+    task(16, 5, 'Tieni [la] il biglietto', 'Сохрани билет', 'Biglietto — «он», поэтому il.'),
+    task(16, 6, 'Metti via [la] le scarpe', 'Убери туфли', 'Туфель пара — значит le.'),
+    task(16, 7, 'Prema il pulsante [verdi] verde', 'Нажмите зелёную кнопку', 'Кнопка одна — значит verde.'),
+    task(16, 8, 'Accendi [il] la lampada', 'Включи лампу', 'Lampada — «она», поэтому la.'),
   ],
 };

@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — итальянский классический курс, уроки 1–12 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — итальянский классический курс, уроки 1–16 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или из слов этого и прошлых уроков);
  * каждый неверный вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах);
@@ -110,5 +110,37 @@ export const EXACT_BANK_IT: Readonly<Record<number, readonly QuizRound[]>> = {
     round(12, 4, 'Lui ___ del formaggio', 'prende', ['prendo', 'prendi'], 2, 'Про него говорят prende.'),
     round(12, 5, 'Lui non ___ caffè', 'beve', ['bevo'], 1, 'Про него говорят beve.'),
     round(12, 6, 'Prendiamo ___ bottiglia di latte', 'una', ['un'], 0, 'Bottiglia — «она», поэтому una.'),
+  ],
+  13: [
+    round(13, 1, 'La giacca è ___', 'leggera', ['leggeri'], 0, 'Giacca — «она», поэтому leggera.'),
+    round(13, 2, 'Le scatole sono ___', 'piene', ['piena'], 1, 'Коробок несколько — значит piene.'),
+    round(13, 3, 'Il maglione è ___', 'verde', ['verdi'], 0, 'Свитер один — значит verde.'),
+    round(13, 4, 'Cerco una borsa ___', 'nera', ['neri'], 1, 'Borsa — «она», поэтому nera.'),
+    round(13, 5, 'I bicchieri ___ vuoti', 'sono', ['è'], 0, 'Стаканов несколько — значит sono.'),
+    round(13, 6, 'La camicia è ___', 'bianca', ['bianco', 'bianchi'], 2, 'Camicia — «она», поэтому bianca.'),
+  ],
+  14: [
+    round(14, 1, 'Lei ___ venire', 'può', ['posso', 'puoi'], 2, 'Про неё говорят può.'),
+    round(14, 2, 'Noi ___ pagare', 'dobbiamo', ['devo'], 0, 'Про нас говорят dobbiamo.'),
+    round(14, 3, 'Loro ___ cambiare posto', 'vogliono', ['vuole'], 1, 'Их несколько — значит vogliono.'),
+    round(14, 4, 'Lui deve ___ a casa', 'tornare', ['torna'], 0, 'После deve слово не меняется: tornare.'),
+    round(14, 5, 'Puoi ___ la porta?', 'chiudere', ['chiudi'], 1, 'После puoi слово не меняется: chiudere.'),
+    round(14, 6, 'Io non ___ disturbare', 'voglio', ['vuole'], 1, 'Про себя говорят voglio.'),
+  ],
+  15: [
+    round(15, 1, 'Ana ___ scrivendo una lettera', 'sta', ['sto', 'stai'], 0, 'Про Ану говорят sta.'),
+    round(15, 2, 'Noi ___ mangiando a casa', 'stiamo', ['stanno'], 1, 'Про нас говорят stiamo.'),
+    round(15, 3, 'Lui sta ___ il libro', 'leggendo', ['leggere'], 0, 'После sta — leggendo.'),
+    round(15, 4, 'I miei fratelli ___ pagando in contanti', 'stanno', ['sta'], 1, 'Братьев несколько — значит stanno.'),
+    round(15, 5, 'Lei sta lavando ___ piatti', 'i', ['il'], 0, 'Тарелок несколько — значит i.'),
+    round(15, 6, 'Ana sta bevendo ___ caffè', 'un', ['una'], 1, 'Caffè — «он», поэтому un.'),
+  ],
+  16: [
+    round(16, 1, 'Chiudi ___ porta!', 'la', ['il'], 0, 'Porta — «она», поэтому la.'),
+    round(16, 2, 'Prendi ___ giacca!', 'la', ['le'], 1, 'Куртка одна — значит la.'),
+    round(16, 3, 'Tieni ___ biglietto!', 'il', ['la'], 0, 'Biglietto — «он», поэтому il.'),
+    round(16, 4, 'Prema il pulsante ___', 'verde', ['verdi'], 1, 'Кнопка одна — значит verde.'),
+    round(16, 5, 'Metti via ___ scarpe!', 'le', ['la'], 1, 'Туфель пара — значит le.'),
+    round(16, 6, 'Apri ___ finestra!', 'la', ['il'], 0, 'Finestra — «она», поэтому la.'),
   ],
 };

@@ -1,5 +1,5 @@
 /**
- * Банк игры «Собери диалог» — итальянский классический курс, уроки 3–12 (D207). 2 диалога из 4 реплик на урок.
+ * Банк игры «Собери диалог» — итальянский классический курс, уроки 3–16 (D207). 2 диалога из 4 реплик на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: реплики — фразы урока или собраны из слов этого и прошлых уроков; порядок держится
  * на том, что первый вопрос называет, о ком речь, ответ повторяет это слово, а третья реплика ссылается
@@ -52,5 +52,21 @@ export const ORDER_BANK_IT: Readonly<Record<number, readonly OrderTask[]>> = {
   12: [
     task(12, 1, ['Vuoi una tazza di tè?', 'Vorrei un bicchiere d’acqua.', 'L’acqua è fredda?', 'L’acqua è fresca.']),
     task(12, 2, ['Che cosa prepara?', 'Preparo della zuppa.', 'La zuppa è calda?', 'La zuppa è già pronta.']),
+  ],
+  13: [
+    task(13, 1, ['Che cosa cerchi?', 'Cerco una giacca nera.', 'La giacca è leggera?', 'La giacca è molto leggera.']),
+    task(13, 2, ['Che cosa prendi?', 'Prendo la piccola scatola blu.', 'La scatola è piena?', 'La scatola è vuota.']),
+  ],
+  14: [
+    task(14, 1, ['Che cosa vuoi visitare?', 'Voglio visitare il museo.', 'Il museo è aperto?', 'Il museo è aperto oggi.']),
+    task(14, 2, ['Dove devi andare?', 'Devo andare in farmacia.', 'La farmacia è lontana?', 'La farmacia è vicina.']),
+  ],
+  15: [
+    task(15, 1, ['Che cosa stai facendo?', 'Sto leggendo il libro.', 'Il libro è nuovo?', 'Il libro è vecchio.']),
+    task(15, 2, ['Che cosa sta preparando Luis?', 'Luis sta preparando la zuppa.', 'La zuppa è calda?', 'La zuppa è fredda.']),
+  ],
+  16: [
+    task(16, 1, ['Che cosa metto qui?', 'Metti la borsa qui.', 'La borsa è pesante?', 'La borsa è leggera.']),
+    task(16, 2, ['Che cosa prendo?', 'Prendi la giacca.', 'La giacca è calda?', 'La giacca è molto calda.']),
   ],
 };

@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — испанский классический курс, уроки 1–12 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — испанский классический курс, уроки 1–16 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или из слов этого и прошлых уроков);
  * каждый неверный вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах);
@@ -109,5 +109,37 @@ export const EXACT_BANK_ES: Readonly<Record<number, readonly QuizRound[]>> = {
     round(12, 4, 'Las camisetas son ___', 'blancas', ['blanca'], 0, 'Футболок несколько — значит blancas.'),
     round(12, 5, 'El hotel ___ grande', 'es', ['son'], 0, 'Отель один — значит es.'),
     round(12, 6, 'Busco una bufanda ___', 'negra', ['negro'], 1, 'Bufanda — «она», поэтому negra.'),
+  ],
+  13: [
+    round(13, 1, 'La tienda está ___', 'abierta', ['abiertos'], 0, 'Tienda — одна и «она», поэтому abierta.'),
+    round(13, 2, 'Mis hermanos ___ cansados', 'están', ['está', 'estamos'], 1, 'Братьев несколько — значит están.'),
+    round(13, 3, 'Hoy estoy ___', 'ocupado', ['ocupados'], 1, 'Про себя одного — ocupado.'),
+    round(13, 4, 'El café está ___', 'frío', ['fría'], 0, 'Café — «он», поэтому frío.'),
+    round(13, 5, '¿Está ___ la mesa?', 'libre', ['libres'], 1, 'Стол один — значит libre.'),
+    round(13, 6, 'Las mesas están ___', 'limpias', ['limpia'], 1, 'Столов несколько — значит limpias.'),
+  ],
+  14: [
+    round(14, 1, 'Ana se ___ las manos', 'lava', ['lavo', 'lavan'], 1, 'Про Ану говорят lava.'),
+    round(14, 2, 'Mis hermanos se ___ en casa', 'duchan', ['ducha'], 0, 'Братьев несколько — значит duchan.'),
+    round(14, 3, 'Me levanto ___ las siete', 'a', ['en'], 1, 'Время называют с a: a las siete.'),
+    round(14, 4, 'Ana se lava ___ cara', 'la', ['las'], 0, 'Лицо одно — la cara.'),
+    round(14, 5, 'Mis hermanas se ___ cerca de la ventana', 'sientan', ['sienta'], 1, 'Сестёр несколько — значит sientan.'),
+    round(14, 6, 'Luis se prepara para ___ clase', 'la', ['el'], 1, 'Clase — «она», поэтому la.'),
+  ],
+  15: [
+    round(15, 1, 'Ana ___ esperar aquí', 'puede', ['puedo', 'pueden'], 0, 'Про Ану говорят puede.'),
+    round(15, 2, 'Mis hermanos ___ llevar la maleta', 'pueden', ['puede'], 1, 'Братьев несколько — значит pueden.'),
+    round(15, 3, 'Puedes pagar ___ tarjeta', 'con', ['en'], 0, 'Картой — con tarjeta.'),
+    round(15, 4, 'Ana puede volver ___ casa', 'a', ['en'], 1, 'Домой — a casa.'),
+    round(15, 5, 'Puedo abrir ___ puerta', 'la', ['el'], 1, 'Puerta — «она», поэтому la.'),
+    round(15, 6, 'Ana puede comprar ___ billete', 'un', ['una'], 0, 'Billete — «он», поэтому un.'),
+  ],
+  16: [
+    round(16, 1, 'Ana ___ a entrar en la tienda', 'va', ['voy', 'vas'], 2, 'Про Ану говорят va.'),
+    round(16, 2, 'Mis hermanos ___ a preparar la cena', 'van', ['va'], 0, 'Братьев несколько — значит van.'),
+    round(16, 3, 'Voy ___ llamar al hotel', 'a', ['de'], 1, 'После voy нужно a.'),
+    round(16, 4, 'Vamos a comprar ___ verduras', 'las', ['los'], 0, 'Verdura — «она», поэтому las.'),
+    round(16, 5, 'Luis va a leer el libro más ___', 'tarde', ['hoy'], 0, 'Позже — más tarde.'),
+    round(16, 6, 'Ana va a pasar por ___ supermercado', 'el', ['la'], 1, 'Supermercado — «он», поэтому el.'),
   ],
 };

@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — испанский классический курс, уроки 1–12 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — испанский классический курс, уроки 1–16 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только слова этого и прошлых уроков. Пропуск в карте пишется `___`
@@ -131,5 +131,45 @@ export const SORT_BANK_ES: Readonly<Record<number, SortDeck>> = {
     ['La llave es ___', 'right', 'llave — «она», поэтому nueva'],
     ['El coche es ___', 'left', 'coche — «он», поэтому nuevo'],
     ['La mesa es ___', 'right', 'mesa — «она», поэтому nueva'],
+  ]),
+  13: deck(13, { title: 'está', example: 'la puerta, mi madre' }, { title: 'están', example: 'las ventanas, mis hermanos' }, [
+    ['La puerta ___ abierta', 'left', 'дверь одна — está'],
+    ['Las ventanas ___ abiertas', 'right', 'окон несколько — están'],
+    ['Mi madre ___ cansada', 'left', 'мама одна — está'],
+    ['Mis hermanos ___ cansados', 'right', 'братьев несколько — están'],
+    ['La farmacia ___ cerrada', 'left', 'аптека одна — está'],
+    ['Los hoteles ___ cerrados', 'right', 'отелей несколько — están'],
+    ['El café ___ frío', 'left', 'кофе один — está'],
+    ['Las mesas ___ limpias', 'right', 'столов несколько — están'],
+  ]),
+  14: deck(14, { title: 'про одного', example: 'se lava, se sienta' }, { title: 'про нескольких', example: 'se lavan, se sientan' }, [
+    ['Se lava la cara', 'left', 'lava — один человек'],
+    ['Se lavan las manos', 'right', 'lavan — несколько человек'],
+    ['Se ducha en casa', 'left', 'ducha — один человек'],
+    ['Se duchan por la mañana', 'right', 'duchan — несколько человек'],
+    ['Se sienta aquí', 'left', 'sienta — один человек'],
+    ['Se sientan cerca de la ventana', 'right', 'sientan — несколько человек'],
+    ['Se levanta temprano', 'left', 'levanta — один человек'],
+    ['Se preparan para el viaje', 'right', 'preparan — несколько человек'],
+  ]),
+  15: deck(15, { title: 'puede', example: 'Ana, mi madre' }, { title: 'pueden', example: 'mis hermanos, ellos' }, [
+    ['Ana ___ esperar aquí', 'left', 'Ана одна — puede'],
+    ['Mis hermanas ___ llevar la bolsa', 'right', 'сестёр несколько — pueden'],
+    ['Luis ___ pagar en efectivo', 'left', 'Луис один — puede'],
+    ['Mis hermanos ___ llevar la maleta', 'right', 'братьев несколько — pueden'],
+    ['Mi madre ___ volver a casa', 'left', 'мама одна — puede'],
+    ['Ellos ___ entrar ahora', 'right', 'их несколько — pueden'],
+    ['Ella ___ abrir la ventana', 'left', 'она одна — puede'],
+    ['Ellas ___ comprar un billete', 'right', 'их несколько — pueden'],
+  ]),
+  16: deck(16, { title: 'va', example: 'Ana, Luis' }, { title: 'van', example: 'mis hermanos, ellas' }, [
+    ['Ana ___ a entrar en la tienda', 'left', 'Ана одна — va'],
+    ['Mis hermanos ___ a preparar la cena', 'right', 'братьев несколько — van'],
+    ['Luis ___ a comprar pan', 'left', 'Луис один — va'],
+    ['Mis hermanas ___ a leer el libro', 'right', 'сестёр несколько — van'],
+    ['Mi madre ___ a volver a casa', 'left', 'мама одна — va'],
+    ['Ellos ___ a comer en casa', 'right', 'их несколько — van'],
+    ['Ella ___ a llamar al hotel', 'left', 'она одна — va'],
+    ['Ellas ___ a pagar con tarjeta', 'right', 'их несколько — van'],
   ]),
 };

@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — испанский классический курс, уроки 1–12 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — испанский классический курс, уроки 1–16 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза из слов этого и прошлых уроков);
  * с лишним словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить.
@@ -134,5 +134,45 @@ export const ODD_WORD_BANK_ES: Readonly<Record<number, readonly OddWordTask[]>> 
     task(12, 6, 'El hotel [son] es grande', 'Отель большой', 'Отель один — значит es.'),
     task(12, 7, '¿Son grandes [la] las ventanas?', 'Окна большие?', 'Окон несколько — значит las.'),
     task(12, 8, 'Busco un bolso [negra] negro', 'Я ищу чёрную сумку', 'Bolso — «он», поэтому negro.'),
+  ],
+  13: [
+    task(13, 1, 'Ella está [cansado] cansada', 'Она устала', 'Про неё говорят cansada.'),
+    task(13, 2, 'Mi madre [estoy] está cansada', 'Моя мама устала', 'Про маму говорят está. Estoy — только про себя.'),
+    task(13, 3, 'Mis hermanos están [cansado] cansados', 'Мои братья устали', 'Братьев несколько — значит cansados.'),
+    task(13, 4, 'Las tiendas [está] están cerradas', 'Магазины закрыты', 'Магазинов несколько — значит están.'),
+    task(13, 5, 'Él [estoy] está ocupado', 'Он занят', 'Про него говорят está. Estoy — только про себя.'),
+    task(13, 6, 'La puerta está [abiertas] abierta', 'Дверь открыта', 'Дверь одна — значит abierta.'),
+    task(13, 7, 'Las mesas están [limpia] limpias', 'Столы чистые', 'Столов несколько — значит limpias.'),
+    task(13, 8, 'El café está [fría] frío', 'Кофе холодный', 'Café — «он», поэтому frío.'),
+  ],
+  14: [
+    task(14, 1, 'Él se [levanto] levanta temprano', 'Он встаёт рано', 'Про него говорят levanta. Levanto — про себя.'),
+    task(14, 2, 'Ella se [ducho] ducha por la mañana', 'Она принимает душ по утрам', 'Про неё говорят ducha. Ducho — про себя.'),
+    task(14, 3, 'Mis hermanos se [lava] lavan la cara', 'Мои братья моют лицо', 'Братьев несколько — значит lavan.'),
+    task(14, 4, 'Me lavo [la] las manos', 'Я мою руки', 'Рук две — значит las.'),
+    task(14, 5, 'Ellos se [sienta] sientan aquí', 'Они садятся здесь', 'Их несколько — значит sientan.'),
+    task(14, 6, 'Ella se lava [el] la cara', 'Она моет лицо', 'Cara — «она», поэтому la.'),
+    task(14, 7, 'Ellas se [ducha] duchan en casa', 'Они принимают душ дома', 'Их несколько — значит duchan.'),
+    task(14, 8, 'Él se levanta [en] temprano', 'Он встаёт рано', 'Temprano обходится без en.'),
+  ],
+  15: [
+    task(15, 1, 'Ella [puedo] puede esperar aquí', 'Она может подождать здесь', 'Про неё говорят puede. Puedo — про себя.'),
+    task(15, 2, 'Mis hermanos [puede] pueden llevar la maleta', 'Мои братья могут отнести чемодан', 'Братьев несколько — значит pueden.'),
+    task(15, 3, 'Él puede volver [en] a casa', 'Он может вернуться домой', 'Домой — a casa, en здесь не нужно.'),
+    task(15, 4, 'Ella no [puedo] puede mandar la foto', 'Она не может отправить фотографию', 'Про неё говорят puede. Puedo — про себя.'),
+    task(15, 5, 'Ellos [podemos] pueden esperar fuera', 'Они могут подождать снаружи', 'Про них говорят pueden. Podemos — про нас.'),
+    task(15, 6, 'Él puede abrir [las] la puerta', 'Он может открыть дверь', 'Дверь одна — значит la.'),
+    task(15, 7, 'Ella puede comprar [una] un billete', 'Она может купить билет', 'Billete — «он», поэтому un.'),
+    task(15, 8, 'Ellas pueden leer [los] el libro', 'Они могут прочитать книгу', 'Книга одна — значит el.'),
+  ],
+  16: [
+    task(16, 1, 'Ella [voy] va a llamar al hotel', 'Она собирается позвонить в отель', 'Про неё говорят va. Voy — про себя.'),
+    task(16, 2, 'Mis hermanos [va] van a preparar la cena', 'Мои братья собираются приготовить ужин', 'Братьев несколько — значит van.'),
+    task(16, 3, 'Él va [de] a comprar pan', 'Он собирается купить хлеб', 'После va нужно a, а не de.'),
+    task(16, 4, 'Ellos [vamos] van a comer en casa', 'Они собираются поесть дома', 'Про них говорят van. Vamos — про нас.'),
+    task(16, 5, 'Él no [voy] va a volver hoy', 'Он не собирается возвращаться сегодня', 'Про него говорят va. Voy — про себя.'),
+    task(16, 6, 'Ella va a preparar [el] la cena', 'Она собирается приготовить ужин', 'Cena — «она», поэтому la.'),
+    task(16, 7, 'Ella va a pasar por [la] el supermercado', 'Она собирается зайти в супермаркет', 'Supermercado — «он», поэтому el.'),
+    task(16, 8, 'Ella no va a [abre] abrir la puerta', 'Она не собирается открывать дверь', 'После va a слово не меняется: abrir.'),
   ],
 };

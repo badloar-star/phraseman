@@ -42,5 +42,14 @@ export const MINUTE_MOTION = {
   barRadius: 3,
 } as const;
 
+/**
+ * Цвета подложек — ровно по макету, поверх фона экрана. Тёмный вид: elevate-extra.css (113–114, 178, 180);
+ * светлый вид: elevate-light.css (24 — --soft, 45–46, 73). Свечение у заливки полосы есть только в тёмном виде.
+ */
+export const MINUTE_TINT = {
+  dark: { mark: 'rgba(255,255,255,0.22)', example: 'rgba(0,0,0,0.16)', barTrack: 'rgba(255,255,255,0.18)', barFill: '#FFFFFF', barGlow: '0px 0px 10px rgba(255,255,255,0.7)' },
+  light: { mark: 'rgba(47,74,107,0.14)', example: 'rgba(20,27,43,0.07)', barTrack: 'rgba(20,27,43,0.12)', barFill: '#2F4A6B', barGlow: null },
+} as const;
+
 /** Сколько примеров под правилом — в макете их два. */
 export const MINUTE_EXAMPLES_MAX = 2;

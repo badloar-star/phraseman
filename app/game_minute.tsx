@@ -15,17 +15,19 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
+import { RuneBalanceChip } from '../components/RuneBalanceChip';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import GameRise from '../components/games/GameRise';
 import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
+import { isLightSurface } from '../constants/color_contrast';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { minuteCards, pickMinuteCard } from '../modules/games/minute_core';
-import { MINUTE_MOTION } from '../modules/games/minute_motion';
+import { MINUTE_MOTION, MINUTE_TINT } from '../modules/games/minute_motion';
 import { currentGameLesson, huntTasksFor, oddWordTasksFor, quizDeckFor } from '../modules/games/task_source';
 import { safeRouterBack } from './navigation_back';
 import { studySpeechLocale } from './study_speech_locale';
@@ -50,6 +52,8 @@ export default function GameMinuteScreen() {
   const { studyTarget } = useStudyTarget();
   const params = useLocalSearchParams<{ item?: string }>();
   const audio = useAudio();
+  // зачем: подложки в макете заданы отдельно для тёмного и светлого вида — вид определяется по яркости фона темы
+  const tint = isLightSurface(p.bg) ? MINUTE_TINT.light : MINUTE_TINT.dark;
 
   // зачем: правило — только для языка, который человек учит, и из урока, на котором он сейчас;
   // `item` — id задания, на котором он ошибся в другой игре; без него показывается правило дня
@@ -87,7 +91,8 @@ export default function GameMinuteScreen() {
   }, [card, leave, time]);
   useEffect(() => () => audio.stop(), [audio]);
 
-  const barStyle = useAnimatedStyle(() => ({ width: `${time.value * 100}%` }));
+  // elevate-extra.css:114 — заливка растёт от левого края: `transform: scaleX`, `transform-origin: left`
+  const barStyle = useAnimatedStyle(() => ({ transform: [{ scaleX: time.value }] }));
 
   const speak = useCallback((text: string) => {
     // зачем: язык речи — язык обучения, а не догадка по буквам фразы
@@ -103,7 +108,9 @@ export default function GameMinuteScreen() {
             <View style={[s.pill, { backgroundColor: p.glass }]}>
               <Text style={[s.pillText, { color: p.text }]}>{triLang(lang, COPY.pill)}</Text>
             </View>
-            <View style={s.topSide} />
+            <View style={[s.pill, { backgroundColor: p.glass }]}>
+              <RuneBalanceChip color={p.text} size={20} interactive={false} testID="game-minute-coins" />
+            </View>
           </View>
 
           {card ? (
@@ -113,7 +120,7 @@ export default function GameMinuteScreen() {
                 <V2Card seed={1} style={s.card}>
                   <View style={s.formula} accessible accessibilityLabel={card.parts.map((part) => part.text).join(' ')}>
                     {card.parts.map((part, i) => (
-                      <View key={`${card.id}-p${i}`} style={part.mark ? [s.mark, { backgroundColor: p.track }] : null}>
+                      <View key={`${card.id}-p${i}`} style={part.mark ? [s.mark, { backgroundColor: tint.mark }] : null}>
                         <Text style={[s.formulaText, { color: p.text }]}>{part.text}</Text>
                       </View>
                     ))}
@@ -127,7 +134,7 @@ export default function GameMinuteScreen() {
                         accessibilityLabel={`${triLang(lang, COPY.listen)}: ${example.text}`}
                         onPressIn={() => { void hapticTap(); }}
                         onPress={() => speak(example.text)}
-                        style={[s.example, { backgroundColor: p.control }]}
+                        style={[s.example, { backgroundColor: tint.example }]}
                       >
                         <Ionicons name="volume-medium" size={MINUTE_MOTION.exampleIcon} color={p.text} />
                         <View style={s.exampleCopy}>
@@ -140,8 +147,8 @@ export default function GameMinuteScreen() {
                 </V2Card>
               </GameRise>
               <View style={s.flex} />
-              <View style={[s.bar, { backgroundColor: p.track }]}>
-                <Reanimated.View style={[s.barFill, { backgroundColor: p.text }, barStyle]} />
+              <View style={[s.bar, { backgroundColor: tint.barTrack }]}>
+                <Reanimated.View style={[s.barFill, { backgroundColor: tint.barFill }, tint.barGlow ? { boxShadow: tint.barGlow } : null, barStyle]} />
               </View>
             </>
           ) : (
@@ -160,8 +167,6 @@ const s = StyleSheet.create({
   flex: { flex: 1 },
   content: { flex: 1, paddingHorizontal: V2.screenPad, paddingTop: 8, paddingBottom: 16 },
   top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: V2.iconButton },
-  // зачем: пустой блок шириной с кнопку закрытия держит название по центру (в макете справа — монеты, их здесь нет)
-  topSide: { width: V2.iconButton },
   pill: { height: 36, paddingHorizontal: 12, borderRadius: 18, justifyContent: 'center' },
   pillText: { fontSize: 14, lineHeight: 18, fontWeight: '700' },
   // elevate-mechanics.css:108 `.ask`
@@ -182,7 +187,7 @@ const s = StyleSheet.create({
   exampleText: { fontSize: MINUTE_MOTION.exampleSize, lineHeight: 21, fontWeight: '600' },
   exampleNote: { fontSize: MINUTE_MOTION.exampleNoteSize, lineHeight: 19, fontWeight: '500' },
   bar: { height: MINUTE_MOTION.barHeight, borderRadius: MINUTE_MOTION.barRadius, overflow: 'hidden', marginBottom: MINUTE_MOTION.barBottom },
-  barFill: { height: '100%', borderRadius: MINUTE_MOTION.barRadius },
+  barFill: { width: '100%', height: '100%', borderRadius: MINUTE_MOTION.barRadius, transformOrigin: 'left' },
   empty: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   emptyText: { fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center' },
 });

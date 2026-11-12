@@ -276,9 +276,10 @@ const s = StyleSheet.create({
   pillRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   pillText: { fontSize: 14, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
   segs: { marginTop: 14 },
-  stageTop: { flex: 0.6 },
+  // макет elevate-core.js:130: над блоком задания flex .7, блок .reader min-height 190
+  stageTop: { flex: 0.7 },
   stageBottom: { flex: 1 },
-  promptBox: { minHeight: 200, justifyContent: 'center' },
+  promptBox: { minHeight: 190, justifyContent: 'center' },
   audio: { alignSelf: 'center', alignItems: 'center', gap: 16, paddingVertical: 24, paddingHorizontal: 28, borderRadius: 28 },
   pressed: { opacity: 0.86 },
   gapRow: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', columnGap: 10, rowGap: 8 },

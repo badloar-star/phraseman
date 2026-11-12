@@ -7,7 +7,7 @@
 // Частей речи и подложки частицы нет. Насыщенность утверждена: lang c = 0,24, say c = 0,05 — НЕ ослаблять (первая версия была бледной, владелец: «ничего не окрашено»).
 // Светлота подбирается шагами до контраста ≥ 4,6 на всех подложках, где стоит текст (карточка, стекло, плашка, шторка, подсказка).
 // ═══════════════════════════════════════════════════════════════════════════
-import { hueOfHex, toContrast } from './liquidGlassPaletteRoles';
+import { hueOfHex, paletteContrast, toContrast } from './liquidGlassPaletteRoles';
 import { flattenOver, legibleOn } from './liquidGlassSurfaceRoles';
 import { liquidGlassTokens, type LiquidGlassThemeId } from './liquidGlassThemePalette';
 import { THEME_TUNE_S_STANDARD, parseThemeTuneId } from './theme_tune';
@@ -58,6 +58,28 @@ export function introLangRoleSurfaces(g: RoleTokens): string[] {
   return [...base, ...extra];
 }
 
+/** Шаг снижения цветности, когда утверждённая не помещается в цвета экрана при нужной светлоте. */
+const CHROMA_FALLBACK_STEP = 0.9;
+const CHROMA_FALLBACK_TRIES = 30;
+
+/**
+ * Цвет роли с контрастом ≥ min на всех подложках: сначала утверждённая цветность (подбор светлоты), и только если она не достижима —
+ * цветность снижается шагами ровно до первого читаемого цвета.
+ * зачем (владелец 12.11 «Аврора» в релизе; сторож intro_text_roles_contrast): в тёмной «Авроре» плашки вступления средне-тёмные
+ * (#74554F у tune:0:60), а розово-красный оттенок с цветностью 0,24 физически не становится светлее #FF77F6 — подбор светлоты
+ * упирался в предел цветов экрана и возвращал нечитаемый цвет (2,66–4,0 вместо 4,6). Утверждённая насыщенность не ослабляется там,
+ * где помещается (синие, зелёные, все светлые) — снижение только на тех оттенках, где иначе текст не прочесть.
+ */
+function readableRole(hue: number, chroma: number, start: number, dir: 1 | -1, min: number, surfaces: readonly string[]): string {
+  let c = chroma;
+  let color = toContrast(hue, c, start, dir, min, surfaces);
+  for (let i = 0; i < CHROMA_FALLBACK_TRIES && !surfaces.every((s) => paletteContrast(color.slice(0, 7), s) >= min); i += 1) {
+    c *= CHROMA_FALLBACK_STEP;
+    color = toContrast(hue, c, start, dir, min, surfaces);
+  }
+  return color;
+}
+
 /** Оттенок и множитель цветности роли: у настроенной темы — из tune:H:S (S / 35, не выше 1,4), у остальных — оттенок акцента темы на «Максимуме». */
 function hueAndScale(themeId: LiquidGlassThemeId, g: RoleTokens, dark: boolean): Readonly<{ hue: number; scale: number }> {
   const tune = parseThemeTuneId(themeId);
@@ -76,8 +98,8 @@ export function introTextRolesForTokens(themeId: LiquidGlassThemeId, g: RoleToke
   const { hue, scale } = hueAndScale(themeId, g, dark);
   const dir = dark ? 1 : -1;
   const roles: IntroTextRoles = Object.freeze({
-    lang: toContrast(hue, LANG_ROLE_CHROMA * scale, dark ? LANG_L.dark : LANG_L.light, dir, INTRO_ROLE_MIN_CONTRAST, surfaces),
-    say: toContrast(hue, SAY_ROLE_CHROMA * scale, dark ? SAY_L.dark : SAY_L.light, dir, INTRO_ROLE_MIN_CONTRAST, surfaces),
+    lang: readableRole(hue, LANG_ROLE_CHROMA * scale, dark ? LANG_L.dark : LANG_L.light, dir, INTRO_ROLE_MIN_CONTRAST, surfaces),
+    say: readableRole(hue, SAY_ROLE_CHROMA * scale, dark ? SAY_L.dark : SAY_L.light, dir, INTRO_ROLE_MIN_CONTRAST, surfaces),
     gloss: legibleOn(g.secondary, g.text, surfaces, INTRO_ROLE_MIN_CONTRAST),
   });
   cache.set(key, roles);

@@ -51,12 +51,18 @@ const plPl = (n: number, one: string, few: string, many: string): string => {
   return b >= 2 && b <= 4 && (a < 12 || a > 14) ? few : many;
 };
 const en = (n: number, one: string, many: string): string => (n === 1 ? one : many);
+// зачем (сторож склонений number_noun_pairs_guard, 12.11): es/pt-BR/en писали число с неизменной формой множественного —
+// «1 errores», «1 phrases!». Две формы (одна/много), как в constants/plural.ts для не-славянских языков; глагол тоже
+// согласуется («Se juntó 1 error», «1 palabra está…»).
+const latinPlural = (n: number, one: string, many: string): string => (n === 1 ? one : many);
 
 const T = {
   myMistakes: (l: Lang) => triLang(l, { ru: 'Мои ошибки', uk: 'Мої помилки', en: 'My mistakes', es: 'Mis errores', 'pt-BR': 'Meus erros', vi: 'Lỗi của tôi', id: 'Kesalahanku', tr: 'Hatalarım', pl: 'Moje błędy' }),
   pileTitle: (l: Lang, n: number) => triLang(l, {
     ru: `Накопилось ${n} ${ruPl(n, 'ошибка', 'ошибки', 'ошибок')}`, uk: `Накопичилося ${n} ${ruPl(n, 'помилка', 'помилки', 'помилок')}`,
-    en: `${n} ${en(n, 'mistake', 'mistakes')} piled up`, es: `Se juntaron ${n} errores`, 'pt-BR': `Juntaram-se ${n} erros`,
+    en: `${n} ${en(n, 'mistake', 'mistakes')} piled up`,
+    es: `${latinPlural(n, 'Se juntó', 'Se juntaron')} ${n} ${latinPlural(n, 'error', 'errores')}`,
+    'pt-BR': `${latinPlural(n, 'Juntou-se', 'Juntaram-se')} ${n} ${latinPlural(n, 'erro', 'erros')}`,
     vi: `Đã có ${n} lỗi cần xem lại`, id: `Sudah ada ${n} kesalahan`, tr: `${n} hata birikti`, pl: `Zebrało się ${n} ${plPl(n, 'błąd', 'błędy', 'błędów')}`,
   }),
   // зачем (голос PhraseMan, VOICE.md, владелец 25.10): живо, без выдуманной «половины»
@@ -77,16 +83,16 @@ const T = {
   everyDay: (l: Lang) => triLang(l, { ru: 'Целый разговорник в кармане', uk: 'Цілий розмовник у кишені', en: 'A whole phrasebook in your pocket', es: 'Un libro de frases entero en el bolsillo', 'pt-BR': 'Um guia de conversação inteiro no bolso', vi: 'Cả cuốn sổ tay hội thoại trong túi', id: 'Satu buku frasa utuh di sakumu', tr: 'Koca bir konuşma kılavuzu cebinde', pl: 'Cała rozmówka w kieszeni' }),
   myStats: (l: Lang) => triLang(l, { ru: 'Моя статистика', uk: 'Моя статистика', en: 'My stats', es: 'Mis estadísticas', 'pt-BR': 'Minhas estatísticas', vi: 'Thống kê của tôi', id: 'Statistikku', tr: 'İstatistiklerim', pl: 'Moje statystyki' }),
   milestoneKicker: (l: Lang) => triLang(l, { ru: 'Новый рубеж', uk: 'Новий рубіж', en: 'New milestone', es: 'Nuevo hito', 'pt-BR': 'Novo marco', vi: 'Cột mốc mới', id: 'Pencapaian baru', tr: 'Yeni eşik', pl: 'Nowy próg' }),
-  phrasesBang: (l: Lang, n: number) => triLang(l, { ru: `${n} ${ruPl(n, 'фраза', 'фразы', 'фраз')}!`, uk: `${n} ${ruPl(n, 'вислів', 'вислови', 'висловів')}!`, en: `${n} phrases!`, es: `¡${n} frases!`, 'pt-BR': `${n} frases!`, vi: `${n} câu!`, id: `${n} frasa!`, tr: `${n} ifade!`, pl: `${n} ${plPl(n, 'zwrot', 'zwroty', 'zwrotów')}!` }),
+  phrasesBang: (l: Lang, n: number) => triLang(l, { ru: `${n} ${ruPl(n, 'фраза', 'фразы', 'фраз')}!`, uk: `${n} ${ruPl(n, 'вислів', 'вислови', 'висловів')}!`, en: `${n} ${latinPlural(n, 'phrase', 'phrases')}!`, es: `¡${n} ${latinPlural(n, 'frase', 'frases')}!`, 'pt-BR': `${n} ${latinPlural(n, 'frase', 'frases')}!`, vi: `${n} câu!`, id: `${n} frasa!`, tr: `${n} ifade!`, pl: `${n} ${plPl(n, 'zwrot', 'zwroty', 'zwrotów')}!` }),
   phrasebook: (l: Lang) => triLang(l, { ru: 'Это уже настоящий разговорник', uk: 'Це вже справжній розмовник', en: "That's a real phrasebook now", es: 'Ya es un verdadero libro de frases', 'pt-BR': 'Já é um guia de conversação de verdade', vi: 'Đã thành một cuốn sổ tay thật sự', id: 'Sudah jadi buku frasa sungguhan', tr: 'Artık gerçek bir konuşma kılavuzu', pl: 'To już prawdziwe rozmówki' }),
-  lessonsBang: (l: Lang, n: number) => triLang(l, { ru: `${n} ${ruPl(n, 'урок', 'урока', 'уроков')}!`, uk: `${n} ${ruPl(n, 'урок', 'уроки', 'уроків')}!`, en: `${n} lessons!`, es: `¡${n} lecciones!`, 'pt-BR': `${n} lições!`, vi: `${n} bài học!`, id: `${n} pelajaran!`, tr: `${n} ders!`, pl: `${n} ${plPl(n, 'lekcja', 'lekcje', 'lekcji')}!` }),
+  lessonsBang: (l: Lang, n: number) => triLang(l, { ru: `${n} ${ruPl(n, 'урок', 'урока', 'уроков')}!`, uk: `${n} ${ruPl(n, 'урок', 'уроки', 'уроків')}!`, en: `${n} ${latinPlural(n, 'lesson', 'lessons')}!`, es: `¡${n} ${latinPlural(n, 'lección', 'lecciones')}!`, 'pt-BR': `${n} ${latinPlural(n, 'lição', 'lições')}!`, vi: `${n} bài học!`, id: `${n} pelajaran!`, tr: `${n} ders!`, pl: `${n} ${plPl(n, 'lekcja', 'lekcje', 'lekcji')}!` }),
   newRank: (l: Lang) => triLang(l, { ru: 'Новый ранг!', uk: 'Новий ранг!', en: 'New rank!', es: '¡Nuevo rango!', 'pt-BR': 'Nova patente!', vi: 'Hạng mới!', id: 'Peringkat baru!', tr: 'Yeni rütbe!', pl: 'Nowa ranga!' }),
   keepGoing: (l: Lang) => triLang(l, { ru: 'Монета стала тяжелее', uk: 'Монета стала важчою', en: 'Your coin just got heavier', es: 'Tu moneda pesa más', 'pt-BR': 'Sua moeda ficou mais pesada', vi: 'Đồng xu của bạn nặng thêm rồi', id: 'Koinmu makin berat', tr: 'Paran ağırlaştı', pl: 'Moneta zrobiła się cięższa' }),
   look: (l: Lang) => triLang(l, { ru: 'Посмотреть', uk: 'Переглянути', en: 'Take a look', es: 'Ver', 'pt-BR': 'Ver', vi: 'Xem', id: 'Lihat', tr: 'Göz at', pl: 'Zobacz' }),
   // зачем (координатор 25.10, замена данных): рекорд — серии в днях (счётчики заданий дня в разных единицах)
   bestStreakKicker: (l: Lang, n: number) => triLang(l, {
     ru: `Твой рекорд серии — ${n} ${ruPl(n, 'день', 'дня', 'дней')}`, uk: `Твій рекорд серії — ${n} ${ruPl(n, 'день', 'дні', 'днів')}`, en: `Your best streak: ${n} ${en(n, 'day', 'days')}`,
-    es: `Tu mejor racha: ${n} días`, 'pt-BR': `Sua melhor sequência: ${n} dias`, vi: `Chuỗi dài nhất của bạn: ${n} ngày`, id: `Rangkaian terbaikmu: ${n} hari`, tr: `En iyi serin: ${n} gün`, pl: `Twoja najlepsza seria: ${n} ${plPl(n, 'dzień', 'dni', 'dni')}`,
+    es: `Tu mejor racha: ${n} ${latinPlural(n, 'día', 'días')}`, 'pt-BR': `Sua melhor sequência: ${n} ${latinPlural(n, 'dia', 'dias')}`, vi: `Chuỗi dài nhất của bạn: ${n} ngày`, id: `Rangkaian terbaikmu: ${n} hari`, tr: `En iyi serin: ${n} gün`, pl: `Twoja najlepsza seria: ${n} ${plPl(n, 'dzień', 'dni', 'dni')}`,
   }),
   beatStreak: (l: Lang) => triLang(l, { ru: 'Побьёшь?', uk: 'Поб’єш?', en: 'Beat it?', es: '¿Lo superas?', 'pt-BR': 'Vai bater?', vi: 'Phá kỷ lục chứ?', id: 'Pecahkan?', tr: 'Geçer misin?', pl: 'Pobijesz?' }),
   bestKicker: (l: Lang, n: number) => triLang(l, {
@@ -99,7 +105,9 @@ const T = {
   cards: (l: Lang) => triLang(l, { ru: 'Карточки', uk: 'Картки', en: 'Cards', es: 'Tarjetas', 'pt-BR': 'Cartões', vi: 'Thẻ', id: 'Kartu', tr: 'Kartlar', pl: 'Karty' }),
   wordsDue: (l: Lang, n: number) => triLang(l, {
     ru: `${n} ${ruPl(n, 'слово вот-вот сбежит', 'слова вот-вот сбегут', 'слов вот-вот сбегут')} из памяти`, uk: `${n} ${ruPl(n, 'слово ось-ось втече', 'слова ось-ось втечуть', 'слів ось-ось втечуть')} з пам’яті`,
-    en: `${n} ${en(n, 'word is', 'words are')} about to slip away`, es: `${n} palabras están a punto de escaparse`, 'pt-BR': `${n} palavras estão quase fugindo da memória`, vi: `${n} từ sắp bay khỏi trí nhớ`, id: `${n} kata hampir kabur dari ingatan`, tr: `${n} kelime aklından kaçmak üzere`, pl: `${n} ${plPl(n, 'słowo zaraz ucieknie', 'słowa zaraz uciekną', 'słów zaraz ucieknie')} z pamięci`,
+    en: `${n} ${en(n, 'word is', 'words are')} about to slip away`,
+    es: `${n} ${latinPlural(n, 'palabra está', 'palabras están')} a punto de escaparse`,
+    'pt-BR': `${n} ${latinPlural(n, 'palavra está', 'palavras estão')} quase fugindo da memória`, vi: `${n} từ sắp bay khỏi trí nhớ`, id: `${n} kata hampir kabur dari ingatan`, tr: `${n} kelime aklından kaçmak üzere`, pl: `${n} ${plPl(n, 'słowo zaraz ucieknie', 'słowa zaraz uciekną', 'słów zaraz ucieknie')} z pamięci`,
   }),
   beforeForget: (l: Lang) => triLang(l, { ru: 'Две минуты — и поймаем', uk: 'Дві хвилини — і впіймаємо', en: "Two minutes and we'll catch them", es: 'Dos minutos y las atrapamos', 'pt-BR': 'Dois minutos e a gente pega', vi: 'Hai phút là bắt lại được', id: 'Dua menit dan kita tangkap', tr: 'İki dakika ve yakalarız', pl: 'Dwie minuty i je złapiemy' }),
   review: (l: Lang) => triLang(l, { ru: 'Повторить', uk: 'Повторити', en: 'Review', es: 'Repasar', 'pt-BR': 'Revisar', vi: 'Ôn tập', id: 'Ulang', tr: 'Tekrar et', pl: 'Powtórz' }),

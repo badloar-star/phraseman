@@ -107,8 +107,17 @@ describe('Отметка: контракт подключения', () => {
   });
   it('сессия пишет отметку рядом с «пройдено ✓» — при том же условии засчёта', () => {
     const session = read('app/dialogue_v2_session.tsx');
-    expect(session).toMatch(/markDialogueV2Done\(studyTarget, scenarioId\);\n[^\n]*\n\s*markDialogueV2DoneToday\(\);/);
-    expect(session).toMatch(/if \(endedBy === 'bot' && learnerTurns > 0 && supportedTarget\(studyTarget\)\) \{/);
+    // зачем (fb0633180, владелец 11.11 «заводи события недели и диалога»): между «пройдено ✓» и отметкой дня встала история «Диалог пройден» —
+    // отметка по-прежнему ровно в той же ветке засчёта, после «пройдено ✓», и до ветки «не засчитан»; без раннего выхода между ними.
+    const head = "if (endedBy === 'bot' && learnerTurns > 0 && supportedTarget(studyTarget)) {";
+    expect(session).toContain(head);
+    const branch = session.slice(session.indexOf(head), session.indexOf('} else {', session.indexOf(head)));
+    const doneAt = branch.indexOf('markDialogueV2Done(studyTarget, scenarioId);');
+    const todayAt = branch.indexOf('markDialogueV2DoneToday();');
+    expect(doneAt).toBeGreaterThan(-1);
+    expect(todayAt).toBeGreaterThan(doneAt);
+    expect(branch.slice(doneAt, todayAt)).not.toMatch(/\breturn\b|\bawait\b/);
+    expect(session.split('markDialogueV2DoneToday();').length - 1).toBe(1);
   });
   it('сцена берёт dayDone из отметки, голосовой лимит — только у Free с известным доступом', () => {
     const hook = read('components/dialogs/scene/use_dialogs_scene_hub.ts');

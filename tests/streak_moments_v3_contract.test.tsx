@@ -265,7 +265,16 @@ describe('рубежи серии — флаг, подключение, исхо
     // зачем (координатор 29.10, решение за Ядро): кадр «Серия» по утверждённому макету историй рисует то же пламя и те же рубежи, что момент
     // серии (StreakMomentFlame, streak_milestones, тексты рубежей); событие → кадр берёт следующий рубеж — дубль кода хуже
     'components/stories/templates/frames_streak.tsx', 'components/stories/templates/story_template_from_event.ts',
+    // зачем (владелец 11.11, кадры историй: 91329bc62 Plus, 2cb46a677 награды; то же решение 29.10 — дубль кода хуже): кадр Plus берёт тон плашки
+    // пламени (streakPlateFill), кадр ачивки — слово «день/дня/дней» рубежей (streakDayWord); только эти два чистых имени, без моментов и флага
+    'components/stories/templates/frames_plus.tsx', 'components/stories/templates/frames_reward.tsx',
   ];
+  it('кадры историй Plus и наград берут из моментов серии только по одному чистому имени', () => {
+    const plus = read('components/stories/templates/frames_plus.tsx').match(/^import [^\n]*streak\/moments\/[^\n]*$/gm) ?? [];
+    const reward = read('components/stories/templates/frames_reward.tsx').match(/^import [^\n]*streak\/moments\/[^\n]*$/gm) ?? [];
+    expect(plus).toEqual(["import { streakPlateFill } from '../../streak/moments/StreakMomentFlame';"]);
+    expect(reward).toEqual(["import { streakDayWord } from '../../streak/moments/streak_moments_strings';"]);
+  });
   it('components/streak/moments импортируют только перечисленные места; новый импортёр — осознанное решение Ядра', () => {
     const offenders: string[] = [];
     const walk = (dir: string) => {

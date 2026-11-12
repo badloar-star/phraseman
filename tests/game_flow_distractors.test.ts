@@ -15,6 +15,8 @@ const BANKS: readonly (readonly [ClassicCourseLang, typeof FLOW_DISTRACTORS_EN])
   ['en', FLOW_DISTRACTORS_EN], ['de', FLOW_DISTRACTORS_DE], ['fr', FLOW_DISTRACTORS_FR], ['es', FLOW_DISTRACTORS_ES], ['it', FLOW_DISTRACTORS_IT],
 ];
 const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8];
+/** У английского курса наборы есть и для уроков 9–12 (12.11), у остальных — 1–8. */
+const lessonsOf = (lang: ClassicCourseLang): number[] => (lang === 'en' ? [...LESSONS, 9, 10, 11, 12] : LESSONS);
 const MARKS = /[()]|Для сборки|При сборке|Для складання/u;
 
 const words = (text: string): string[] => text.trim().split(/\s+/).filter(Boolean);
@@ -51,8 +53,8 @@ describe('банк своих вариантов «Потока»', () => {
         expect(problems).toEqual([]);
       });
 
-      it(`${lang}/${ui}: на каждый урок 1–8 — не меньше шести фраз с набором (на целую игру)`, () => {
-        const perLesson = LESSONS.map((lesson) => [lesson, Object.keys(entries).filter((id) => lessonOf(id) === lesson).length]);
+      it(`${lang}/${ui}: на каждый урок с набором — не меньше шести фраз (на целую игру)`, () => {
+        const perLesson = lessonsOf(lang).map((lesson) => [lesson, Object.keys(entries).filter((id) => lessonOf(id) === lesson).length]);
         for (const [lesson, n] of perLesson) expect([lesson, n >= 6]).toEqual([lesson, true]);
       });
     }
@@ -62,7 +64,7 @@ describe('банк своих вариантов «Потока»', () => {
 describe('сборка раундов берёт свои варианты', () => {
   it('на всех пяти курсах фразы с набором идут первыми, варианты — ровно свой набор и верный перевод', () => {
     for (const [lang] of BANKS) {
-      for (const lesson of LESSONS) {
+      for (const lesson of lessonsOf(lang)) {
         const pool: FlowItem[] = getClassicLessonPhrases(lesson, lang).map((p) => ({
           id: `${lang}:${lesson}:${String(p.id)}`, en: p.english, translation: flowTranslation(p, 'ru'), distractors: flowDistractorsFor(lang, String(p.id), 'ru'),
         }));

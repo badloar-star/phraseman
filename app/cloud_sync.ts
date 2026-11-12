@@ -1384,6 +1384,18 @@ export type StableAuthLinkMetadata = {
 let stableAuthLinkPromise: Promise<StableAuthLinkEnsureResult> | null = null;
 let stableAuthLinkKey = '';
 
+/**
+ * Текст ошибки для журнала [AUTH-LINK]: до 120 знаков, длинные числа и длинные буквенно-цифровые куски (похожие на uid/stableId/токены)
+ * и почта заменяются на «*». Экспорт — для сторожа.
+ */
+export function authLinkSafeText(raw: unknown): string {
+  return String(raw ?? '')
+    .replace(/[^\s@]+@[^\s@]+/g, '*@*')
+    .replace(/[A-Za-z0-9_-]{20,}/g, '*')
+    .replace(/[0-9]{6,}/g, '*')
+    .slice(0, 120);
+}
+
 function classifyCloudAccessFailure(error: unknown): StableAuthLinkFailure {
   const code = String((error as { code?: unknown })?.code ?? '').toLowerCase();
   const message = String((error as { message?: unknown })?.message ?? error).toLowerCase();
@@ -2523,10 +2535,12 @@ export async function ensureStableAuthLinkForStableIdDetailed(
   const stableId = String(stableIdRaw || '').trim();
   if (await isAccountDeleteIdentityQuarantined()) {
     const authUid = getAuth()?.currentUser?.uid ?? null;
+    console.warn('[AUTH-LINK] ensure:skip reason=account_delete_quarantine — сервер не звали, identity_unavailable'); // guard-ok: ранний выход с причиной
     return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable', failure: 'identity_unavailable' };
   }
   const authUid = await waitForFirebaseAuthUid();
   if (!stableId || !authUid) {
+    console.warn(`[AUTH-LINK] ensure:skip reason=${!stableId ? 'no_stable_id' : 'no_auth_uid'} — сервер не звали, identity_unavailable`); // guard-ok: ранний выход с причиной
     return { ok: false, requestedStableId: stableId, stableUid: null, authUid, source: 'unavailable', failure: 'identity_unavailable' };
   }
 
@@ -2606,6 +2620,7 @@ export async function ensureStableAuthLinkForStableIdDetailed(
   if (stableAuthLinkPromise && stableAuthLinkKey === promiseKey) return stableAuthLinkPromise;
 
   stableAuthLinkKey = promiseKey;
+  const linkStartedAtMs = Date.now();
   stableAuthLinkPromise = (async () => {
     try {
       const fn = callable<
@@ -2639,6 +2654,20 @@ export async function ensureStableAuthLinkForStableIdDetailed(
       if (__DEV__) console.warn('[cloud_sync] authEnsureStableLink callable failed', error);
       const failure = classifyCloudAccessFailure(error);
       const nonceRejection = classifyAnonMergeNonceRejection('ensure_link', [stableId], failure);
+      // [AUTH-LINK] зачем (координатор 12.11, обход экранов: «authEnsureStableLink callable failed … outcome=error_no_fallback», код обрезан;
+      // урок stable_identity_unavailable — первое звено цепочки): одна строка на сбой в любой сборке — код, текст ошибки сервера и нативного
+      // слоя, как классифицировали, ждали ли авторитетного ответа и сколько длилось. Без uid, stableId и почты (длинные id в тексте маскируются).
+      console.warn('[AUTH-LINK] ensure:failed', JSON.stringify({ // guard-ok: одна строка на сбой вызова привязки, причина и классификация
+        code: String((error as { code?: unknown } | null)?.code ?? '-').slice(0, 60),
+        message: authLinkSafeText((error as { message?: unknown } | null)?.message ?? error),
+        native: authLinkSafeText((error as { nativeErrorMessage?: unknown } | null)?.nativeErrorMessage ?? ''),
+        failure,
+        nonceRejection: nonceRejection ?? null,
+        authoritative: options.requireAuthoritative === true,
+        withMetadata: hasFreshMetadata,
+        withNonce: nonceField.anonMergeNonce !== undefined,
+        ms: Date.now() - linkStartedAtMs,
+      }));
       return {
         ok: false,
         requestedStableId: stableId,

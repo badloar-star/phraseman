@@ -199,7 +199,10 @@ export async function invokeAuthCallable<TReq, TRes>(
     const reason = authRegionFallbackReason(name, error);
     const code = String((error as { code?: unknown } | null)?.code ?? '-').slice(0, 60);
     if (!reason) {
-      log(`[AUTH-REGION] fn=${name} region=${AUTH_REGION_EU} outcome=error_no_fallback code=${code} ms=${now() - startedAt}`);
+      // зачем (координатор 12.11, [AUTH-LINK]): по одному коду не понять, сервер ли отказал или нативный слой назвал так обрыв сети —
+      // добавлено начало текста ошибки (без длинных id).
+      const message = String((error as { message?: unknown } | null)?.message ?? '').replace(/[A-Za-z0-9_-]{20,}/g, '*').replace(/[0-9]{6,}/g, '*').slice(0, 80);
+      log(`[AUTH-REGION] fn=${name} region=${AUTH_REGION_EU} outcome=error_no_fallback code=${code} msg=${JSON.stringify(message)} ms=${now() - startedAt}`);
       throw error;
     }
     if (reason === 'not_deployed') markAuthRegionEuUnavailable();

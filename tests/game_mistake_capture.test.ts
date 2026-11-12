@@ -43,3 +43,23 @@ it('отказ журнала — пропуск, сбой журнала — «
   capture.mockRejectedValueOnce(new Error('disk'));
   await expect(captureGameMistake(base)).resolves.toBe('failed');
 });
+
+describe('фраза с пропуском («Точное слово», «Охота на ошибку»)', () => {
+  const gap = { game: 'exact' as const, kind: 'gap' as const, studyTarget: 'de', itemId: 'ex-de-l01-1', gapped: 'Du ___ müde', word: 'bist', distractors: ['bin', 'seid'], given: 'bin', attemptKey: 'a2' };
+
+  it('пишет фразу целиком, пропуск и верное слово', async () => {
+    capture.mockResolvedValue({ kind: 'captured' });
+    await expect(captureGameMistake(gap)).resolves.toBe('saved');
+    expect(capture.mock.calls[0][0]).toMatchObject({
+      content: { sourceKind: 'game', sourceId: 'game:exact:ex-de-l01-1', canonicalTarget: 'Du bist müde', sourcePrompt: 'Du ___ müde', distractors: ['bin', 'seid'] },
+      facet: { kind: 'missing_token', expected: 'bist', given: 'bin' },
+    });
+  });
+
+  it('без пропуска, с двумя пропусками или без слова — не пишется', async () => {
+    await expect(captureGameMistake({ ...gap, gapped: 'Du bist müde' })).resolves.toBe('skipped');
+    await expect(captureGameMistake({ ...gap, gapped: '___ ___' })).resolves.toBe('skipped');
+    await expect(captureGameMistake({ ...gap, word: ' ' })).resolves.toBe('skipped');
+    expect(capture).not.toHaveBeenCalled();
+  });
+});

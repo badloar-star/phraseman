@@ -32,7 +32,7 @@ import { FLOW_DEFAULT_ROUNDS, FLOW_TEMPO, buildFlowRounds, flowRoundTimings, isF
 import { currentGameLesson, isFlowAvailable } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteGameResult } from '../modules/games/game_records';
-import { noteGameMistake } from '../modules/games/game_mistake_capture';
+import { newGameAttemptKey, noteGameMistake } from '../modules/games/game_mistake_capture';
 import { exitGameWithMinute } from '../components/games/gameExit';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { getClassicLessonPhrases, isClassicCourseLang } from './classic_course_phrases';
@@ -217,7 +217,7 @@ export default function GameFlowScreen() {
   // лучший темп за игру — рекорд «Потока» («×1,9»)
   const bestTempoLevel = useRef(0);
   // ключ захода: один и тот же промах за заход в журнал ошибок дважды не пишется
-  const attemptKey = useRef(`${Date.now().toString(36)}`);
+  const attemptKey = useRef(newGameAttemptKey());
   const [count, setCount] = useState(3);
   const [picked, setPicked] = useState<number | null>(null);
   const [correctCount, setCorrectCount] = useState(0);

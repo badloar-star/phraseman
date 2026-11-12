@@ -19,6 +19,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { newGameAttemptKey, noteGameMistake } from '../modules/games/game_mistake_capture';
 import GameReveal from '../components/games/GameReveal';
 import GameRise from '../components/games/GameRise';
 import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
@@ -121,6 +122,7 @@ export default function GameHuntScreen() {
   const p = useV2Palette();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const attemptKey = useRef(newGameAttemptKey());
   // зачем (чтение кода перед выпуском 11.11): без номера урока брался урок 32 — человек на уроке 1 получал слова,
   // которых ещё не видел; как остальные игры, «Охота» берёт задания урока, на котором человек сейчас
   const tasks = useMemo(() => huntTasksFor(studyTarget, currentGameLesson(studyTarget)), [studyTarget]);
@@ -139,6 +141,11 @@ export default function GameHuntScreen() {
   const onTap = useCallback((line: number, word: number) => {
     if (lock.current || !task) return;
     if (!isHuntHit(task, line, word)) {
+      // зачем (D207, связь игр и ошибок): первый промах в диалоге уходит в «Мои ошибки» — реплика с пропуском и верное слово
+      if (missedTaskId.current === null) {
+        const wrongLine = task.lines[task.wrong.line];
+        if (wrongLine) noteGameMistake({ game: 'hunt', kind: 'gap', studyTarget, itemId: task.id, gapped: wrongLine.words.map((w, i) => (i === task.wrong.word ? '___' : w)).join(' '), word: task.fix, given: task.lines[line]?.words[word] ?? '', attemptKey: attemptKey.current });
+      }
       missedTaskId.current = missedTaskId.current ?? task.id;
       setMissId(`${line}:${word}`);
       // макет: красный тон снимается через 700 мс
@@ -152,7 +159,7 @@ export default function GameHuntScreen() {
     setFound(true);
     // зачем (D207, владелец 11.11): найденная ошибка — «Грамматика» +2
     noteSkillAction({ action: 'hunt_correct', itemKey: `hunt:${task.id}` });
-  }, [task]);
+  }, [task, studyTarget]);
 
   // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
   useEffect(() => {

@@ -28,6 +28,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import { MyRankCoin } from '../components/rank/MyRankCoin';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { newGameAttemptKey, noteGameMistake } from '../modules/games/game_mistake_capture';
 import ScreenGradient from '../components/ScreenGradient';
 import GameBumpText from '../components/games/GameBumpText';
 import GameReveal from '../components/games/GameReveal';
@@ -181,6 +182,7 @@ export default function GameOddWordScreen() {
   const p = useV2Palette();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const attemptKey = useRef(newGameAttemptKey());
   const reduceMotion = useReduceMotion();
   // зачем (владелец 11.11: «фразы должны корректно подбираться»): задания — из банка по уроку, на котором сейчас человек,
   // и только для языка, который он учит; порция меняется от дня к дню и не тасуется при повторном рендере
@@ -248,6 +250,8 @@ export default function GameOddWordScreen() {
     setGame(result.state);
     if (!result.correct) {
       setMisses((prev) => ({ ...prev, [index]: (prev[index] ?? 0) + 1 }));
+      // зачем (D207, связь игр и ошибок): первая ошибка на фразе уходит в «Мои ошибки» — верная фраза и её перевод
+      if (!game.missedThisRound) noteGameMistake({ game: 'odd_word', studyTarget, itemId: task.id, target: task.words.filter((_, i) => i !== task.extraIndex).join(' '), meaning: task.translation, given: task.words[index] ?? '', attemptKey: attemptKey.current });
       return;
     }
     lock.current = true;
@@ -288,7 +292,7 @@ export default function GameOddWordScreen() {
       setOrigin(null);
       lock.current = false;
     }, GAME_MOTION.oddNextMs));
-  }, [finished, game, hop, reduceMotion, step, task, tasks.length]);
+  }, [finished, game, hop, reduceMotion, step, task, tasks.length, studyTarget]);
 
   const onClose = useCallback(() => {
     timers.current.forEach(clearTimeout);

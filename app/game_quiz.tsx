@@ -16,6 +16,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
+import { newGameAttemptKey, noteGameMistake } from '../modules/games/game_mistake_capture';
 import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 import GameAnswerTile from '../components/games/GameAnswerTile';
 import GameListenWave from '../components/games/GameListenWave';
@@ -113,6 +114,7 @@ export default function GameQuizScreen() {
   const params = useLocalSearchParams<{ kind?: string }>();
   const kind = isQuizKind(params.kind) ? params.kind : 'memory';
   const { studyTarget } = useStudyTarget();
+  const attemptKey = useRef(newGameAttemptKey());
   // зачем (владелец 11.11: «фразы должны корректно подбираться»): задания — из банка по уроку, на котором сейчас человек,
   // и только для языка, который он учит; порция меняется от дня к дню и не тасуется при повторном рендере
   const deck = useMemo(() => quizDeckFor(kind, studyTarget, currentGameLesson(studyTarget)) ?? { ...QUIZ_SEED_DECKS[kind], rounds: [] }, [kind, studyTarget]);
@@ -167,6 +169,9 @@ export default function GameQuizScreen() {
     setGame(result.state);
     setPhase('verdict');
     if (result.correct) noteSkillAction({ action: deck.skillAction, itemKey: `quiz:${kind}:${round.id}` });
+    // зачем (D207, связь игр и ошибок): промах уходит в «Мои ошибки» там, где из него собирается упражнение
+    else if (round.prompt.kind === 'audio' && round.note) noteGameMistake({ game: 'listen', studyTarget, itemId: round.id, target: round.prompt.text, meaning: round.note, given: round.options[index] ?? '', attemptKey: attemptKey.current });
+    else if (round.prompt.kind === 'gap') noteGameMistake({ game: 'exact', kind: 'gap', studyTarget, itemId: round.id, gapped: `${round.prompt.before} ___ ${round.prompt.after}`, word: round.options[round.correctIndex] ?? '', distractors: round.options.filter((_, i) => i !== round.correctIndex), given: round.options[index] ?? '', attemptKey: attemptKey.current });
     timers.current.push(setTimeout(() => {
       setPicked(null);
       if (result.state.index >= rounds.length - 1) {
@@ -176,7 +181,7 @@ export default function GameQuizScreen() {
       setGame((prev) => nextQuizRound(prev));
       setPhase('show');
     }, result.correct ? AFTER_OK_MS : AFTER_MISS_MS));
-  }, [deck.skillAction, game, kind, phase, round, rounds.length]);
+  }, [deck.skillAction, game, kind, phase, round, rounds.length, studyTarget]);
 
   // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
   useEffect(() => {

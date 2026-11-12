@@ -4,10 +4,12 @@
  * размытие 9 px и прозрачность .5 (переход 500 мс), карточки остаются целиком видны, а спрошенная подсвечивается
  * тоном темы; после ответа переводы снова чёткие. Числа — constants/gameMotion.ts (GAME_MOTION_EXTRA).
  *
- * зачем два слоя текста: у текста в React Native нет фильтра размытия. Чёткий слой гаснет, размытый проявляется —
- * это и есть переход `filter + opacity` за 500 мс. Размытый слой — копии перевода, разнесённые кольцами до 9 px
- * (дискретное приближение размытия по Гауссу), одинаково на Android и iOS.
- * Отвергнуто на эмуляторе 12.11: тень прозрачного текста — Android рисует буквы чёткими, перевод читался.
+ * зачем два слоя: у текста в React Native нет фильтра размытия. Чёткий перевод гаснет, а на его месте проявляется
+ * мягкое пятно размером с текст — так выглядит blur(9px) у строки высотой 14: букв уже нет, остаётся серое облачко.
+ * Пятно — несколько скруглённых полос, раздутых на 3–12 точек с убывающей плотностью (ступенчатый Гаусс).
+ * В пятне нет ни одной буквы, поэтому прочитать перевод нельзя ни на Android, ни на iOS.
+ * Отвергнуто на эмуляторе 12.11: тень прозрачного текста — Android рисует буквы чёткими; копии текста кольцами до 6 —
+ * на обходе экранов 12.11 «не спит», «готов» читались (docs/phraseman-2.0/evidence/screen-walk/w2_quiz_memory.png).
  */
 import React, { memo, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -22,20 +24,10 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 const HIDE_EASE = Easing.bezier(GAME_EASE.ease[0], GAME_EASE.ease[1], GAME_EASE.ease[2], GAME_EASE.ease[3]);
 
 /**
- * Копии для размытия: центр и два кольца по 8 направлений на трети и двух третях радиуса 9.
- * Вес копии убывает от центра, как у Гаусса; сумма весов ≈ 1, поэтому общая плотность как у одного слоя текста.
+ * Слои пятна: насколько полоса раздута за края текста и её плотность. Плотность убывает как у Гаусса с сигмой 9;
+ * в центре слои складываются примерно в треть цвета текста — столько чернил даёт строка, размытая на 9 точек.
  */
-const SMEAR = (() => {
-  const rings = [
-    { r: 0, n: 1, w: 0.16 },
-    { r: M.memoryBlurPx / 3, n: 8, w: 0.06 },
-    { r: (M.memoryBlurPx * 2) / 3, n: 8, w: 0.045 },
-  ];
-  return rings.flatMap(({ r, n, w }) => Array.from({ length: n }, (_, i) => {
-    const a = (i * 2 * Math.PI) / n + (r > 3 ? Math.PI / 8 : 0);
-    return { dx: Math.round(Math.cos(a) * r * 10) / 10, dy: Math.round(Math.sin(a) * r * 10) / 10, w };
-  }));
-})();
+const BLOB = [0, 3, 6, 9, 12].map((grow) => ({ grow, alpha: 0.11 * Math.exp(-(grow * grow) / (2 * M.memoryBlurPx * M.memoryBlurPx)) }));
 
 type CardProps = Readonly<{ left: string; right: string; index: number; hidden: boolean; asked: boolean }>;
 
@@ -60,8 +52,11 @@ const PairCard = memo(function PairCard({ left, right, index, hidden, asked }: C
         <View style={s.rightBox} accessibilityElementsHidden={hidden} importantForAccessibility={hidden ? 'no-hide-descendants' : 'auto'}>
           <Reanimated.Text style={[s.right, { color: p.textSecondary }, sharpStyle]}>{right}</Reanimated.Text>
           <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, blurStyle]}>
-            {SMEAR.map(({ dx, dy, w }, k) => (
-              <Text key={`smear-${k}`} style={[s.right, s.smear, { color: p.textSecondary, opacity: w, transform: [{ translateX: dx }, { translateY: dy }] }]}>{right}</Text>
+            {BLOB.map(({ grow, alpha }) => (
+              <View
+                key={`blob-${grow}`}
+                style={[s.blob, { top: -grow / 2, bottom: -grow / 2, left: -grow, right: -grow, borderRadius: 9 + grow, backgroundColor: p.textSecondary, opacity: alpha }]}
+              />
             ))}
           </Reanimated.View>
         </View>
@@ -104,9 +99,10 @@ const s = StyleSheet.create({
   card: { height: 86, borderRadius: 20, paddingVertical: 12, paddingHorizontal: 14, justifyContent: 'center' },
   askTone: { borderRadius: 20 },
   left: { fontSize: 18, lineHeight: 23, fontWeight: '800' },
-  rightBox: { marginTop: 3 },
+  // зачем alignSelf: коробка по ширине самого перевода — пятно ложится ровно на текст, а не на всю карточку
+  rightBox: { marginTop: 3, alignSelf: 'flex-start' },
   right: { fontSize: 14, lineHeight: 18, fontWeight: '500' },
-  smear: { position: 'absolute', left: 0, top: 0 },
+  blob: { position: 'absolute' },
 });
 
 export default memo(GameMemoryPairs);

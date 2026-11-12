@@ -281,7 +281,8 @@ const s = StyleSheet.create({
   frame: { ...StyleSheet.absoluteFillObject, paddingHorizontal: 24, alignItems: 'center' },
   frameTap: { flex: 1, alignSelf: 'stretch', alignItems: 'center' },
   over: { fontSize: 14, lineHeight: 18, fontWeight: '500', textAlign: 'center' },
-  big: { fontSize: 38, lineHeight: 42, fontWeight: '800', letterSpacing: -0.8, marginTop: 4, textAlign: 'center' },
+  // alignSelf stretch: Android мерит жирный текст в узкой колонке с запасом и переносил «До уровня 2» на две строки
+  big: { fontSize: 38, lineHeight: 42, fontWeight: '800', letterSpacing: -0.8, marginTop: 4, textAlign: 'center', alignSelf: 'stretch' },
   // `.hugen`: 124/124, 800, трекинг −6, табличные цифры
   huge: { fontSize: 124, lineHeight: 124, fontWeight: '800', letterSpacing: -6, fontVariant: ['tabular-nums'], marginTop: 6, textAlign: 'center' },
   starBox: { width: STAR_SIZE, height: STAR_SIZE, marginTop: 2 },

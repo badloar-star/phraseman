@@ -9,6 +9,9 @@
 // Выключен → факты всё равно пишутся локально (координатор 15.10, R21: к включению 17.10 истории уже есть), но не показываются.
 // Лог: [STORY-EVENTS] — запись, отказ (повтор/срок/флаг/нет аккаунта), просмотр, загрузка, сбой хранилища.
 // ═══════════════════════════════════════════════════════════════════════════
+import { peekSkills } from '../skills/skill_store';
+import { skillProgressFromPoints } from '../skills/skill_levels';
+import { SKILL_IDS } from '../skills/skill_points_table';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from '../../app/account_generation';
 import { DebugLogger } from '../../app/debug-logger';
@@ -121,12 +124,28 @@ export function setDevStoriesFlag(mode: 'on' | 'off' | 'inherit'): boolean {
  * DEV: all — 4 непросмотренные истории (кольцо, s1-A/s2/s3), seen — те же просмотренные (кольца нет, s1-B), none — пусто (s1-C), off — снять.
  * Засев подменяет список аккаунта только в памяти. В стор-сборке отклоняется: false.
  */
-export function setDevStoriesSeed(mode: 'all' | 'seen' | 'none' | 'off' | 'announcements'): boolean {
+/**
+ * DEV (сверка кадра sk-story, 12.11): два кадра «навык поднялся» по самому высокому навыку человека — уровень «до» = текущий − 1.
+ * Навыков нет или все на нуле — набор пуст (кадр без факта не рисуется).
+ */
+function devSkillLevelStories(nowMs: number): StoryEventList {
+  const totals = peekSkills()?.totals;
+  const best = totals ? SKILL_IDS.map((skill) => ({ skill, level: skillProgressFromPoints(totals[skill]).level })).sort((a, b) => b.level - a.level)[0] : undefined;
+  info(`dev-seed: skills best=${best ? `${best.skill}:${best.level}` : 'нет данных'}`);
+  if (!best || best.level < 1) return EMPTY;
+  const make = (frame: 'up' | 'next', agoMs: number): StoryEvent => {
+    const payload = { skill: best.skill, fromLevel: best.level - 1, toLevel: best.level, frame };
+    return Object.freeze({ id: storyEventKey('skill_level', payload), type: 'skill_level' as const, payload, atMs: nowMs - agoMs, seen: false });
+  };
+  return Object.freeze([make('up', 2000), make('next', 1000)]);
+}
+
+export function setDevStoriesSeed(mode: 'all' | 'seen' | 'none' | 'off' | 'announcements' | 'skills'): boolean {
   if (!isDevBuild()) {
     info(`dev-seed: отклонено mode=${mode} (не dev-сборка)`);
     return false;
   }
-  devSeed = mode === 'off' ? null : mode === 'none' ? EMPTY : mode === 'announcements' ? devAnnouncementStories(Date.now()) : devSeedStories(mode === 'seen', Date.now());
+  devSeed = mode === 'off' ? null : mode === 'none' ? EMPTY : mode === 'announcements' ? devAnnouncementStories(Date.now()) : mode === 'skills' ? devSkillLevelStories(Date.now()) : devSeedStories(mode === 'seen', Date.now());
   info(`dev-seed: mode=${mode} stories=${devSeed?.length ?? 'storage'}`);
   recompute(`dev_seed_${mode}`);
   return true;

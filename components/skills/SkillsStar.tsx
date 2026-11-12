@@ -3,6 +3,7 @@ import Reanimated, { Easing, cancelAnimation, useAnimatedProps, useSharedValue, 
 import Svg, { Line, Path, Polygon } from 'react-native-svg';
 
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { skillStarDisplayAxis } from './skill_star_floor';
 
 /**
  * Малая звезда навыков без подписей — для блока в статистике, блока «Навыки растут» на итогах и визитки.
@@ -40,8 +41,9 @@ function SkillsStar({ size, values, from, delayMs = 0, durationMs = TWEEN_MS, gr
   const n = values.length;
   const c = size / 2;
   const r = size * 0.36;
-  const to = values.map(clamp01);
-  const start = to.map((_, i) => clamp01(from?.[i] ?? 0));
+  // зачем (обход 12.11, «стрелка» на визитке): луч не короче минимального — фигура при нулях остаётся шестиугольником (skill_star_floor.ts)
+  const to = values.map(clamp01).map(skillStarDisplayAxis);
+  const start = to.map((_, i) => skillStarDisplayAxis(clamp01(from?.[i] ?? 0)));
   const reduceMotion = useReduceMotion();
   const progress = useSharedValue(reduceMotion ? 1 : 0);
   const key = `${start.map((v) => v.toFixed(3)).join('|')}>${to.map((v) => v.toFixed(3)).join('|')}`;

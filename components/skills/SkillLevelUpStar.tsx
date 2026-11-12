@@ -17,6 +17,7 @@ import Reanimated, {
 import Svg, { Line, Path, Polygon } from 'react-native-svg';
 
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { skillStarDisplayAxis } from './skill_star_floor';
 
 const AnimatedPath = Reanimated.createAnimatedComponent(Path);
 
@@ -68,7 +69,10 @@ const Spark = memo(function Spark({ index, go, color }: Readonly<{ index: number
   return <Reanimated.View style={[s.spark, { backgroundColor: color }, style]} />;
 });
 
-function SkillLevelUpStar({ size, before, after, labels, highlight, go, colors }: Props) {
+function SkillLevelUpStar({ size, before: beforeRaw, after: afterRaw, labels, highlight, go, colors }: Props) {
+  // зачем (обход 12.11, «стрелка» при малых значениях): луч не короче минимального — как у всех звёзд навыков (skill_star_floor.ts)
+  const before = beforeRaw.map(skillStarDisplayAxis);
+  const after = afterRaw.map(skillStarDisplayAxis);
   const reduceMotion = useReduceMotion();
   const n = after.length;
   const c = size / 2;

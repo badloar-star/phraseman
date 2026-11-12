@@ -6,6 +6,7 @@ import Reanimated, {
 import Svg, { Circle, Line, Polygon } from 'react-native-svg';
 
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { skillStarDisplayAxis } from './skill_star_floor';
 
 /**
  * Звезда навыков. Геометрия — из утверждённого макета (elevate-real4.js, экран «Навыки»):
@@ -68,7 +69,8 @@ function SkillsRadar({ axes, activeIndex, gridColor, axisColor, shapeFill, shape
   const n = axes.length;
   const reduceMotion = useReduceMotion();
   const progress = useSharedValue(reduceMotion ? 1 : 0);
-  const values = axes.map((a) => Math.max(0, Math.min(1, Number.isFinite(a.value) ? a.value : 0)));
+  // зачем (обход 12.11, «стрелка» при малых значениях): луч не короче минимального — skill_star_floor.ts; подпись доступности — по настоящему значению
+  const values = axes.map((a) => skillStarDisplayAxis(a.value));
   const valuesKey = values.map((v) => v.toFixed(3)).join('|');
 
   useEffect(() => {

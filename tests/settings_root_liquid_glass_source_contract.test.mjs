@@ -10,6 +10,7 @@ import test from 'node:test';
 // (Plus, промокод, размер шрифта, отклик, кеш, оценка, реферальный shield) не потеряны.
 const source = fs.readFileSync(path.resolve('app/(tabs)/settings.tsx'), 'utf8');
 const rows = fs.readFileSync(path.resolve('components/settings/SettingsGlassRows.tsx'), 'utf8');
+const glassSwitch = fs.readFileSync(path.resolve('components/settings/GlassSwitch.tsx'), 'utf8');
 const bodyStart = source.indexOf('<Reanimated.ScrollView');
 const bodyEnd = source.indexOf('</Reanimated.ScrollView>');
 const body = source.slice(bodyStart, bodyEnd);
@@ -75,9 +76,13 @@ test('glass rows keep the approved row, tile, text and switch metrics without he
   assert.match(rows, /minHeight: 60,\s*paddingVertical: 9,\s*paddingHorizontal: 16/);
   assert.match(rows, /fontSize:\s*13,\s*lineHeight:\s*18,\s*marginTop:\s*3/);
   assert.match(rows, /name="chevron-forward"\s+size=\{18\}/);
-  assert.match(rows, /accessibilityRole="switch"[\s\S]*accessibilityState=\{\{ checked: value \}\}/);
-  assert.match(rows, /width:\s*48,\s*minWidth:\s*48,\s*minHeight:\s*48/);
-  assert.match(rows, /translateX: value \? 19 : 0/);
+  // зачем (12.11): с 04.11 (2b683c3d9) переключатель Настроек — общий GlassSwitch; строки только делегируют ему.
+  // Проверки те же по строгости, но в реальном файле: роль и состояние, дорожка 48, зона нажатия ≥ 44 (36 + hitSlop 8/8), сдвиг бегунка 19.
+  assert.match(rows, /export function SettingsGlassSwitch[\s\S]*?<GlassSwitch /);
+  assert.match(glassSwitch, /accessibilityRole="switch"[\s\S]*accessibilityState=\{\{ checked: value, disabled \}\}/);
+  assert.match(glassSwitch, /width:\s*48,\s*minWidth:\s*48,\s*minHeight:\s*36/);
+  assert.match(glassSwitch, /hitSlop=\{\{ top: 8, bottom: 8,/);
+  assert.match(glassSwitch, /translateX: progress\.value \* 19/);
   for (const text of [rows, body]) {
     // зачем (координатор 13.10, коммит 687205b5b): кап шрифта 1,15 допустим только на заголовке экрана; сжатие и любой другой кап запрещены
     assert.doesNotMatch(text, /adjustsFontSizeToFit|maxFontSizeMultiplier(?!={1.15})/);

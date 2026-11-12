@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — итальянский классический курс, уроки 1–8 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — итальянский классический курс, уроки 1–12 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: три реплики из фраз урока (или из слов этого и прошлых уроков); ровно одно слово
  * неверное — `{неверно>верно}`; в другой реплике одно слово-обманка — `*слово`: оно нажимается, но верное.
@@ -43,5 +43,21 @@ export const HUNT_BANK_IT: Readonly<Record<number, readonly HuntTask[]>> = {
   8: [
     task(8, 1, ['Dove sei?', '*Sono alla stazione.', 'A che ora parte {la>il} treno?'], 'Treno — «он», поэтому il treno.'),
     task(8, 2, ['Quanto {costano>costa} il biglietto?', 'Questo è *un biglietto per domani.', 'Quando parte il treno?'], 'Билет один — значит costa.'),
+  ],
+  9: [
+    task(9, 1, ['Dov’è il tuo portafoglio?', 'Il *mio portafoglio è qui.', 'Le mie chiavi {è>sono} lì.'], 'Ключей несколько — значит sono.'),
+    task(9, 2, ['Dove sono le vostre valigie?', 'Le nostre valigie sono {pronto>pronte}.', 'Il *nostro treno è al binario.'], 'Valigia — «она», чемоданов несколько: pronte.'),
+  ],
+  10: [
+    task(10, 1, ['C’è del latte in frigorifero?', 'Non *c’è latte.', 'Ci sono {del>dei} libri sul tavolo.'], 'Книг несколько — значит dei.'),
+    task(10, 2, ['C’è una camera libera?', 'Ci sono ancora due posti {libera>liberi}.', '*C’è un ascensore in hotel.'], 'Мест два — значит liberi.'),
+  ],
+  11: [
+    task(11, 1, ['Dove va dopo la lezione?', '*Vado in stazione.', 'Lei {vado>va} al mercato.'], 'Про неё говорят va. Vado — про себя.'),
+    task(11, 2, ['Vai all’ufficio postale?', 'Oggi non *vado al negozio.', 'Noi andiamo {a>in} Francia.'], 'Перед названием страны говорят in.'),
+  ],
+  12: [
+    task(12, 1, ['Beve del caffè?', 'Non *bevo caffè.', 'Prendo {della>del} tè.'], 'Tè — «он», поэтому del.'),
+    task(12, 2, ['Che cosa prepara?', 'Prendo *della zuppa.', 'Lui {prendo>prende} del formaggio.'], 'Про него говорят prende. Prendo — про себя.'),
   ],
 };

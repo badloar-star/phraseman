@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — французский классический курс, уроки 1–8 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — французский классический курс, уроки 1–12 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или только из пройденных слов); каждый неверный
  * вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах); варианты — только
@@ -77,5 +77,37 @@ export const EXACT_BANK_FR: Readonly<Record<number, readonly QuizRound[]>> = {
     r(8, 4, 'Combien ___ nuits restez-vous ?', 'de', ['des', 'du'], 0, 'После combien идёт de.'),
     r(8, 5, 'Où ___ mes lunettes ?', 'sont', ['est', 'es'], 1, 'Очки — их несколько, значит sont.'),
     r(8, 6, '___ s’appelle cette rue ?', 'Comment', ['Combien', 'Quel'], 2, 'Про название спрашивают comment.'),
+  ],
+  9: [
+    r(9, 1, '___ sac est ici', 'Mon', ['Ma', 'Mes'], 0, 'Сумка — le sac, поэтому mon.'),
+    r(9, 2, 'Tu cherches ___ veste', 'ta', ['ton', 'tes'], 1, 'Куртка — la veste, поэтому ta.'),
+    r(9, 3, 'Nous cherchons ___ places', 'nos', ['notre', 'nous'], 2, 'Мест несколько, поэтому nos.'),
+    r(9, 4, 'Leur chambre est ___', 'libre', ['libres'], 0, 'Комната одна — libre без -s.'),
+    r(9, 5, 'Où ___ vos valises ?', 'sont', ['est', 'es'], 1, 'Чемоданов несколько, значит sont.'),
+    r(9, 6, '___ chambres sont libres', 'Leurs', ['Leur', 'Sa'], 2, 'Комнат несколько, поэтому leurs.'),
+  ],
+  10: [
+    r(10, 1, 'Il y a ___ banc', 'un', ['une', 'des'], 0, 'Скамейка одна — un banc.'),
+    r(10, 2, 'Il y a ___ pain', 'du', ['de', 'une'], 1, 'Хлеб — du pain.'),
+    r(10, 3, 'Il n’y a pas ___ savon', 'de', ['du', 'des'], 2, 'После pas — de.'),
+    r(10, 4, 'Il y a trois ___', 'chaises', ['chaise'], 0, 'Стульев три — chaises с -s на конце.'),
+    r(10, 5, 'Il y a trop ___ bruit', 'de', ['du', 'des'], 1, 'После trop — de.'),
+    r(10, 6, 'Il y a ___ livres sur la table', 'des', ['un', 'une'], 2, 'Книг несколько — des.'),
+  ],
+  11: [
+    r(11, 1, 'Je vais ___ gare', 'à la', ['au', 'à le'], 0, 'Вокзал — la gare, поэтому à la gare.'),
+    r(11, 2, 'Nous ___ à l’école', 'allons', ['allez', 'vont'], 1, 'С nous — allons.'),
+    r(11, 3, 'Léa va ___ le médecin', 'chez', ['au', 'à'], 2, 'К врачу — chez le médecin.'),
+    r(11, 4, 'Nous allons ___ France', 'en', ['au', 'à'], 0, 'Во Францию — en France.'),
+    r(11, 5, 'Tu vas ___ Canada', 'au', ['en', 'à'], 1, 'В Канаду — au Canada.'),
+    r(11, 6, 'Je vais au travail ___ pied', 'à', ['en', 'de'], 2, 'Пешком — à pied.'),
+  ],
+  12: [
+    r(12, 1, 'Je prends ___ pain', 'du', ['de', 'de la'], 0, 'Хлеб — du pain.'),
+    r(12, 2, 'Elles ___ de la salade', 'prennent', ['prend', 'prenons'], 1, 'С elles — prennent.'),
+    r(12, 3, 'Je ne prends pas ___ lait', 'de', ['du', 'des'], 2, 'После pas — de.'),
+    r(12, 4, 'Nous ___ du jus de pomme', 'buvons', ['bois', 'boit'], 0, 'С nous — buvons.'),
+    r(12, 5, 'Je voudrais un peu ___ soupe', 'de', ['du', 'des'], 1, 'После un peu — de.'),
+    r(12, 6, 'Il achète un kilo ___ pommes', 'de', ['du', 'la'], 2, 'После un kilo — de.'),
   ],
 };

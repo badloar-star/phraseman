@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — французский классический курс, уроки 1–8 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — французский классический курс, уроки 1–12 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: три реплики, после исправления каждая — фраза урока или фраза из пройденных слов;
  * неверное слово ровно одно и оно однозначно неверно; слово-обманка стоит в ДРУГОЙ реплике и само верно.
@@ -44,5 +44,21 @@ export const HUNT_BANK_FR: Readonly<Record<number, readonly HuntTask[]>> = {
   8: [
     h(8, 1, ['Où es-tu ?', 'Je *suis à la gare.', 'À {quel>quelle} heure part le train ?'], 'С heure пишут quelle.'),
     h(8, 2, ['Où {est>sont} les clés ?', 'Elles sont *dans le tiroir.', 'Qui a la clé de la voiture ?'], 'Ключей несколько, значит sont.'),
+  ],
+  9: [
+    h(9, 1, ['Où est ton portefeuille ?', '{Ma>Mon} portefeuille est dans le sac.', 'Ta clé est *ici.'], 'Кошелёк — le portefeuille, поэтому mon.'),
+    h(9, 2, ['Où sont vos valises ?', 'Nos valises {est>sont} dans le train.', 'Mon sac est *ici.'], 'Чемоданов несколько, значит sont.'),
+  ],
+  10: [
+    h(10, 1, ['Est-ce qu’il y a un bus ce soir ?', 'Il y a {une>un} bus à minuit.', 'Il y a *encore deux places.'], 'Автобус — un bus.'),
+    h(10, 2, ['Il y a du lait au frigo ?', 'Il n’y a pas {du>de} lait.', 'Il y a *du café.'], 'После pas — de.'),
+  ],
+  11: [
+    h(11, 1, ['Tu vas à la poste ?', 'Je vais {à>au} marché.', 'Paul va *chez le médecin.'], 'Рынок — le marché, поэтому au marché.'),
+    h(11, 2, ['Où allez-vous après le cours ?', 'Nous {allez>allons} chez des amis.', 'Ils vont *au concert ensemble.'], 'С nous — allons.'),
+  ],
+  12: [
+    h(12, 1, ['Tu prends du pain ?', 'Je prends {de>du} pain.', 'Elle prend *de la soupe.'], 'Хлеб — du pain.'),
+    h(12, 2, ['Vous buvez du café ?', 'Je ne bois pas {du>de} café.', 'Il boit *du thé.'], 'После pas — de.'),
   ],
 };

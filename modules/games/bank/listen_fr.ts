@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — французский классический курс, уроки 1–8 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — французский классический курс, уроки 1–12 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: произносится дословная фраза урока; каждый неверный вариант отличается от неё ровно
  * одним словом, остаётся правильной французской фразой и собран из пройденных слов. Подмена различима на
@@ -77,5 +77,37 @@ export const LISTEN_BANK_FR: Readonly<Record<number, readonly QuizRound[]>> = {
     r(8, 4, 'Combien coûte le billet ?', ['Combien coûte le ticket ?', 'Combien coûte le vélo ?'], 1, 'Сколько стоит билет?'),
     r(8, 5, 'Qui prépare le dîner ?', ['Qui prépare le déjeuner ?', 'Qui commande le dîner ?'], 0, 'Кто готовит ужин?'),
     r(8, 6, 'Où habites-tu ?', ['Où travailles-tu ?', 'Où es-tu ?'], 2, 'Где ты живёшь?'),
+  ],
+  9: [
+    r(9, 1, 'Mon sac est ici', ['Ton sac est ici', 'Mon sac est là'], 0, 'Моя сумка здесь'),
+    r(9, 2, 'Nos billets sont prêts', ['Vos billets sont prêts', 'Nos billets sont ici'], 1, 'Наши билеты готовы'),
+    r(9, 3, 'Je cherche mon manteau', ['Je cherche mon parapluie', 'Je prends mon manteau'], 2, 'Я ищу своё пальто'),
+    r(9, 4, 'Notre train est à quai', ['Votre train est à quai', 'Notre bus est à quai'], 0, 'Наш поезд у платформы'),
+    r(9, 5, 'Mes collègues sont au bureau', ['Mes collègues sont au parc', 'Mes amis sont au bureau'], 1, 'Мои коллеги в офисе'),
+    r(9, 6, 'Son père habite à Lyon', ['Son frère habite à Lyon', 'Son père travaille à Lyon'], 2, 'Его отец живёт в Лионе'),
+  ],
+  10: [
+    r(10, 1, 'Il y a une pharmacie ici', ['Il y a une boulangerie ici', 'Il y a une table ici'], 0, 'Здесь есть аптека'),
+    r(10, 2, 'Il y a deux bancs', ['Il y a trois bancs', 'Il y a deux chaises'], 1, 'Есть две скамейки'),
+    r(10, 3, 'Il y a du café', ['Il y a du pain', 'Il y a du lait'], 2, 'Есть кофе'),
+    r(10, 4, 'Il n’y a pas de sucre', ['Il n’y a pas de savon', 'Il n’y a plus de sucre'], 0, 'Нет сахара'),
+    r(10, 5, 'Il y a beaucoup de monde', ['Il y a trop de monde', 'Il y a beaucoup de bruit'], 1, 'Много людей'),
+    r(10, 6, 'Il y a un arrêt juste en face', ['Il y a un parc juste en face', 'Il y a un arrêt juste en bas'], 2, 'Прямо напротив есть остановка'),
+  ],
+  11: [
+    r(11, 1, 'Je vais à la gare', ['Je vais à la poste', 'Je vais à la banque'], 0, 'Я иду на вокзал'),
+    r(11, 2, 'Elle va au marché', ['Elle va au cinéma', 'Il va au marché'], 1, 'Она идёт на рынок'),
+    r(11, 3, 'Nous allons en France', ['Nous allons en Italie', 'Nous allons en Espagne'], 2, 'Мы едем во Францию'),
+    r(11, 4, 'Je vais chez ma sœur', ['Je vais chez ma mère', 'Je vais chez ma voisine'], 0, 'Я иду к сестре'),
+    r(11, 5, 'Il va au stade en métro', ['Il va au stade en bus', 'Il va au musée en métro'], 1, 'Он едет на стадион на метро'),
+    r(11, 6, 'Paul ne va pas à la réunion', ['Léa ne va pas à la réunion', 'Paul ne va pas à la poste'], 2, 'Поль не идёт на собрание'),
+  ],
+  12: [
+    r(12, 1, 'Je prends du pain', ['Je prends du lait', 'Je prends du riz'], 0, 'Я беру хлеб'),
+    r(12, 2, 'Nous mangeons des pâtes', ['Nous mangeons des fraises', 'Nous achetons des pâtes'], 1, 'Мы едим макароны'),
+    r(12, 3, 'Je bois du thé', ['Je bois du café', 'Je bois du lait'], 2, 'Я пью чай'),
+    r(12, 4, 'Il reste du sucre', ['Il reste du pain', 'Il reste du riz'], 0, 'Осталось немного сахара'),
+    r(12, 5, 'Il ne boit pas de café', ['Il ne boit pas de lait', 'Il ne prend pas de café'], 1, 'Он не пьёт кофе'),
+    r(12, 6, 'Elle prend beaucoup de légumes', ['Elle prend beaucoup de fraises', 'Elle mange beaucoup de légumes'], 2, 'Она берёт много овощей'),
   ],
 };

@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — французский классический курс, уроки 1–8 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — французский классический курс, уроки 1–12 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только пройденные слова. Пропуск в карте пишется `___` (уроки 1–4, 6, 7): корзины
@@ -92,5 +92,45 @@ export const SORT_BANK_FR: Readonly<Record<number, SortDeck>> = {
     ['Quand ferme la banque ?', 'right', 'quand — «когда»'],
     ['Où travaillez-vous ?', 'left', 'où — «где»'],
     ['Combien de temps dure le trajet ?', 'right', 'combien de temps — «сколько времени»'],
+  ]),
+  9: d(9, { title: 'mon', example: 'le sac, le vélo' }, { title: 'ma', example: 'la clé, la place' }, [
+    ['Je cherche ___ manteau', 'left', 'manteau — le manteau, поэтому mon'],
+    ['___ clé est là', 'right', 'clé — la clé, поэтому ma'],
+    ['Je prends ___ parapluie', 'left', 'parapluie — le parapluie, поэтому mon'],
+    ['___ place est à côté de la tienne', 'right', 'place — la place, поэтому ma'],
+    ['___ vélo est au garage', 'left', 'vélo — le vélo, поэтому mon'],
+    ['___ sœur travaille ici', 'right', 'sœur — la sœur, поэтому ma'],
+    ['___ frère a oublié sa clé', 'left', 'frère — le frère, поэтому mon'],
+    ['Tu cherches ___ veste', 'right', 'veste — la veste, поэтому ma'],
+  ]),
+  10: d(10, { title: 'un', example: 'un banc, un parc' }, { title: 'une', example: 'une table, une lettre' }, [
+    ['Il y a ___ banc', 'left', 'скамейка — un banc'],
+    ['Il y a ___ table', 'right', 'стол — une table'],
+    ['Il y a ___ message pour vous', 'left', 'сообщение — un message'],
+    ['Il y a ___ pharmacie ici', 'right', 'аптека — une pharmacie'],
+    ['Il y a ___ colis à la réception', 'left', 'посылка — un colis'],
+    ['Il y a ___ lettre pour Léa', 'right', 'письмо — une lettre'],
+    ['Il y a ___ parc près de la gare', 'left', 'парк — un parc'],
+    ['Il y a ___ boulangerie au coin de la rue', 'right', 'пекарня — une boulangerie'],
+  ]),
+  11: d(11, { title: 'au', example: 'le marché, le bureau' }, { title: 'à la', example: 'la gare, la banque' }, [
+    ['Elle va ___ marché', 'left', 'marché — le marché, поэтому au'],
+    ['Je vais ___ gare', 'right', 'gare — la gare, поэтому à la'],
+    ['Ils vont ___ bureau', 'left', 'bureau — le bureau, поэтому au'],
+    ['Tu vas ___ piscine', 'right', 'piscine — la piscine, поэтому à la'],
+    ['Je vais ___ cinéma', 'left', 'cinéma — le cinéma, поэтому au'],
+    ['Elles vont ___ banque', 'right', 'banque — la banque, поэтому à la'],
+    ['Il va ___ garage', 'left', 'garage — le garage, поэтому au'],
+    ['Je vais ___ pharmacie', 'right', 'pharmacie — la pharmacie, поэтому à la'],
+  ]),
+  12: d(12, { title: 'du', example: 'le pain, le lait' }, { title: 'de la', example: 'la soupe, la salade' }, [
+    ['Je prends ___ pain', 'left', 'pain — le pain, поэтому du'],
+    ['Je prends ___ soupe', 'right', 'soupe — la soupe, поэтому de la'],
+    ['Vous prenez ___ lait', 'left', 'lait — le lait, поэтому du'],
+    ['Elles prennent ___ salade', 'right', 'salade — la salade, поэтому de la'],
+    ['Il prend ___ fromage', 'left', 'fromage — le fromage, поэтому du'],
+    ['J’achète ___ farine', 'right', 'farine — la farine, поэтому de la'],
+    ['Je bois ___ thé', 'left', 'thé — le thé, поэтому du'],
+    ['Tu ajoutes ___ moutarde', 'right', 'moutarde — la moutarde, поэтому de la'],
   ]),
 };

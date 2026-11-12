@@ -1,5 +1,5 @@
 /**
- * Банк игры «Собери диалог» — французский классический курс, уроки 3–8 (D207). 2 диалога на урок.
+ * Банк игры «Собери диалог» — французский классический курс, уроки 3–12 (D207). 2 диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: четыре реплики из пройденных слов, порядок один. Его держат слова-заменители
  * (il, elle, ils, elles): первая реплика называет человека или вещь, следующие говорят о них «он / она» и
@@ -36,5 +36,21 @@ export const ORDER_BANK_FR: Readonly<Record<number, readonly OrderTask[]>> = {
   8: [
     o(8, 1, ['Qui est à la porte ?', 'C’est mon frère.', 'Il habite ici ?', 'Il habite au-dessus.']),
     o(8, 2, ['Où est Paul ?', 'Il est avec Léa.', 'Ils sont au marché ?', 'Ils sont au concert.']),
+  ],
+  9: [
+    o(9, 1, ['Où est ton portefeuille ?', 'Il est dans le sac.', 'Le sac est là ?', 'Le sac est à la maison.']),
+    o(9, 2, ['Où sont vos valises ?', 'Elles sont dans le train.', 'Le train est à quai ?', 'Notre train est à quai.']),
+  ],
+  10: [
+    o(10, 1, ['Est-ce qu’il y a une chambre libre ?', 'Il y a une chambre au fond.', 'Elle est propre ?', 'La chambre est propre.']),
+    o(10, 2, ['Il y a un parc près de la gare ?', 'Il y a un parc juste en face.', 'Il y a des jeux dans le parc ?', 'Dans le parc, il y a des jeux pour enfants.']),
+  ],
+  11: [
+    o(11, 1, ['Où allez-vous après le cours ?', 'Nous allons au cinéma.', 'Vous allez au cinéma à pied ?', 'Nous allons au cinéma en bus.']),
+    o(11, 2, ['Est-ce que tu vas à la poste ?', 'Je vais à la pharmacie.', 'La pharmacie est loin ?', 'Elle est au bout de la rue.']),
+  ],
+  12: [
+    o(12, 1, ['Vous buvez du café ?', 'Je ne bois pas de café.', 'Et du thé ?', 'Je bois du thé.']),
+    o(12, 2, ['Il reste du riz ?', 'Il ne reste pas de riz.', 'Et des pâtes ?', 'Il reste des pâtes.']),
   ],
 };

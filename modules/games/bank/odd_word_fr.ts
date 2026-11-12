@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — французский классический курс, уроки 1–8 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — французский классический курс, уроки 1–12 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза только из пройденных слов); с лишним
  * словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить. Особенности языка: лишнее
@@ -94,5 +94,45 @@ export const ODD_WORD_BANK_FR: Readonly<Record<number, readonly OddWordTask[]>> 
     t(8, 6, 'Comment [est] allez-vous ?', 'Как у вас дела?', 'Allez справляется само, est тут не нужно.'),
     t(8, 7, 'Avec [que] qui travailles-tu ?', 'С кем ты работаешь?', '«С кем» — avec qui.'),
     t(8, 8, 'Pourquoi [es] êtes-vous en retard ?', 'Почему вы опаздываете?', 'С vous идёт êtes, а не es.'),
+  ],
+  9: [
+    t(9, 1, 'Mon [Ma] sac est ici', 'Моя сумка здесь', 'Сумка — le sac, поэтому mon.'),
+    t(9, 2, 'Ta [ton] clé est là', 'Твой ключ там', 'Ключ — la clé, поэтому ta.'),
+    t(9, 3, 'Mes clés [est] sont ici', 'Мои ключи здесь', 'Ключей несколько, значит sont.'),
+    t(9, 4, 'Nos billets sont [prêt] prêts', 'Наши билеты готовы', 'Билетов несколько — prêts с -s на конце.'),
+    t(9, 5, 'Leurs chambres sont [libre] libres', 'Их комнаты свободны', 'Комнат несколько — libres с -s на конце.'),
+    t(9, 6, 'Je cherche [ma] mon manteau', 'Я ищу своё пальто', 'Пальто — le manteau, поэтому mon.'),
+    t(9, 7, 'Nous cherchons [notre] nos places', 'Мы ищем свои места', 'Мест несколько, поэтому nos.'),
+    t(9, 8, 'Où sont vos [votre] valises ?', 'Где ваши чемоданы?', 'Чемоданов несколько, поэтому vos.'),
+  ],
+  10: [
+    t(10, 1, 'Il y a [une] un banc', 'Есть скамейка', 'Скамейка — un banc.'),
+    t(10, 2, 'Il y a [un] une table', 'Есть стол', 'Стол — une table.'),
+    t(10, 3, 'Il y a deux [banc] bancs', 'Есть две скамейки', 'Скамеек две — bancs с -s на конце.'),
+    t(10, 4, 'Il y a [de] du pain', 'Есть хлеб', 'Хлеб — du pain.'),
+    t(10, 5, 'Il y a des livres sur [le] la table', 'Есть книги на столе', 'Стол — la table, le тут лишнее.'),
+    t(10, 6, 'Il n’y a pas de [du] savon', 'Нет мыла', 'После pas — de.'),
+    t(10, 7, 'Il y a [un] une erreur sur le reçu ?', 'Есть ли ошибка в чеке?', 'Ошибка — une erreur.'),
+    t(10, 8, 'Il y a trop de [du] bruit', 'Слишком много шума', 'После trop — de.'),
+  ],
+  11: [
+    t(11, 1, 'Je vais [au] à la gare', 'Я иду на вокзал', 'Вокзал — la gare, поэтому à la gare.'),
+    t(11, 2, 'Elle va [à] au marché', 'Она идёт на рынок', 'Рынок — le marché, поэтому au marché.'),
+    t(11, 3, 'Nous [vont] allons à l’école', 'Мы идём в школу', 'С nous — allons.'),
+    t(11, 4, 'Ils [va] vont au bureau', 'Они идут в офис', 'С ils — vont.'),
+    t(11, 5, 'Léa va [à] chez le médecin', 'Леа идёт к врачу', 'К врачу — chez le médecin.'),
+    t(11, 6, 'Nous allons [à] en France', 'Мы едем во Францию', 'Во Францию — en France.'),
+    t(11, 7, 'Tu vas [en] au Canada', 'Ты едешь в Канаду', 'В Канаду — au Canada.'),
+    t(11, 8, 'Je vais au travail [en] à pied', 'Я иду на работу пешком', 'Пешком — à pied.'),
+  ],
+  12: [
+    t(12, 1, 'Je prends [de] du pain', 'Я беру хлеб', 'Хлеб — du pain.'),
+    t(12, 2, 'Je prends de la [du] soupe', 'Я беру суп', 'Суп — la soupe, поэтому de la soupe.'),
+    t(12, 3, 'Nous [prend] prenons de l’eau', 'Мы берём воду', 'С nous — prenons.'),
+    t(12, 4, 'Elles [prend] prennent de la salade', 'Они берут салат', 'С elles — prennent.'),
+    t(12, 5, 'Nous achetons [de] du poisson', 'Мы покупаем рыбу', 'Рыба — du poisson.'),
+    t(12, 6, 'Je ne prends pas [du] de lait', 'Я не беру молоко', 'После pas — de.'),
+    t(12, 7, 'Il ne boit pas [du] de café', 'Он не пьёт кофе', 'После pas — de.'),
+    t(12, 8, 'Je voudrais un peu [du] de soupe', 'Я бы хотел немного супа', 'После un peu — de.'),
   ],
 };

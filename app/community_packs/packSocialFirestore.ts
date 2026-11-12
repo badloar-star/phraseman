@@ -27,6 +27,7 @@ import {
 } from './packSocial';
 import { DebugLogger } from '../debug-logger';
 import { getDevCommunityPack, isDevCommunityLiked, isDevCommunityOwned, isDevCommunityPackId } from '../dev_cards_state';
+import { noteSkillAction } from '../../modules/skills/skill_store';
 
 /** зачем (съёмка R1): счётчики демо-набора — из его меты в памяти (лайк/добавление «этого телефона» учтены). */
 function devCommunityCounts(packId: string): PackSocialCounts {
@@ -186,6 +187,9 @@ export async function setCommunityPackLikeRemote(
     const res = await firestore().runTransaction(async (tx: any) =>
       applyPackLike(firestoreTx(tx, contestEnabled), packId, userId, nextLiked),
     );
+    // зачем (D207, таблица очков навыков): поставленное сердце — «Социальный» +1, не больше 5 в день; снятое и
+    // повторно поставленное то же сердце в тот же день очков не добавит (itemKey — набор)
+    if (res.changed && nextLiked) noteSkillAction({ action: 'social_heart_given', itemKey: `pack_like:${packId}` });
     return { ...res, ok: true };
   } catch (e) {
     // зачем логируем причину (правило проекта «сперва логи»): немой catch здесь

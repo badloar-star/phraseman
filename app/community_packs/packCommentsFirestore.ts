@@ -36,6 +36,7 @@ import {
 } from './packComments';
 import { DebugLogger } from '../debug-logger';
 import { devCommunityRecordPosted, getDevCommunityComments, isDevCardsFail, isDevCardsHeld, isDevCommunityOwned, isDevCommunityPackId } from '../dev_cards_state';
+import { noteSkillAction } from '../../modules/skills/skill_store';
 
 /** зачем (съёмка R1): действия с откликом демо-набора (удалить/скрыть/закрепить/реакция) — успех без записи в прод. */
 function devCommentNoop(action: string, packId: string, commentId: string): boolean {
@@ -291,6 +292,8 @@ export async function publishPackComment(
       });
     });
     console.warn(`${LOG} отклик опубликован`, { packId, commentId: ref.id, мсек: Date.now() - startedAt });
+    // зачем (D207, таблица очков навыков): отклик к набору — «Социальный» +2, не больше 3 в день
+    noteSkillAction({ action: 'social_comment', itemKey: `pack_comment:${ref.id}` });
     return { ok: true, commentId: ref.id };
   } catch (e) {
     const code = String((e as { code?: string } | null)?.code ?? '');

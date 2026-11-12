@@ -29,7 +29,7 @@ import {
   type TodayTaskKindCore,
   type TodayTasksDayState,
 } from '../modules/today-tasks/today_tasks_core';
-import { peekTodayTasks, refreshTodayTasks, subscribeTodayTasks } from '../modules/today-tasks/today_tasks_store';
+import { peekTodayTasks, peekTodayTasksAvailableKinds, refreshTodayTasks, subscribeTodayTasks } from '../modules/today-tasks/today_tasks_store';
 import { todayTasksToView } from '../modules/today-tasks/today_tasks_view';
 import { getDevTodayTaskSpire, subscribeDevTodayTasks } from '../app/dev_today_tasks';
 import { isSurfaceLocked, useRankAccess } from './use_rank_access';
@@ -94,7 +94,11 @@ function firstFrameState(target: LearningLanguageTarget): TodayTasksDayState {
   if (peeked && peeked.dayKey === dayKey) return peeked;
   const token = captureAccountGeneration();
   const owner = token.phase === 'active' && token.stableId ? token.stableId : 'anon';
-  return createTodayTasksDay(owner, dayKey, availableTodayTaskKinds(target, isSpireTabEnabled()));
+  // зачем (координатор 12.11, обход 4: «Сегодня» подменялось через секунду после холодного старта): новый день loadDay
+  // собирает из сохранённого списка видов — первый кадр берёт тот же список (его кладёт стартовое чтение), иначе набор
+  // «на глазок» отличался от настоящего. Списка ещё нет (первый запуск) — прежний расчёт.
+  const storedKinds = peekTodayTasksAvailableKinds();
+  return createTodayTasksDay(owner, dayKey, storedKinds ? [...storedKinds] : availableTodayTaskKinds(target, isSpireTabEnabled()));
 }
 
 // зачем (координатор 04.11, «шторм» при навигации: refresh(foreground) 42 за 5 мин): каждый возврат AppState 'active' и каждая копия хука (при нескольких (tabs) в стеке)

@@ -556,6 +556,47 @@ export function peekTodayTasks(): TodayTasksDayState | null {
   return current;
 }
 
+/** Ключи состояния дня и доступных видов — для общего стартового чтения (app_snapshot_bootstrap). */
+export function todayTasksBootKeys(ownerKey: string): Readonly<{ state: string; available: string }> {
+  return { state: stateKey(ownerKey), available: AVAILABLE_KEY };
+}
+
+/** Доступные виды из памяти (те же, из которых loadDay собирает новый день); null — ещё не читали. */
+export function peekTodayTasksAvailableKinds(): readonly TodayTaskKindCore[] | null {
+  return availableKinds;
+}
+
+/**
+ * Положить в память то, что стартовое чтение уже достало с диска.
+ * зачем (координатор 12.11, обход 4: холодный старт Главной — «Сегодня» на первом кадре один набор, через секунду
+ * другой): память была пуста до первого loadDay, и первый кадр строил набор «на глазок» — без сохранённого дня и без
+ * сохранённого списка видов. Теперь первый кадр видит тот же день, что потом прочитает loadDay. Память не перезаписывается:
+ * событие или загрузка, успевшие раньше, — свежее. День другого числа или владельца в память не кладётся.
+ */
+export function primeTodayTasksFromBoot(rawState: string | null, rawAvailable: string | null, ownerKey: string): void {
+  if (!availableKinds && rawAvailable) {
+    try {
+      const parsed = JSON.parse(rawAvailable) as unknown;
+      if (Array.isArray(parsed)) availableKinds = Object.freeze(TODAY_TASK_POOL.filter((kind) => parsed.includes(kind)));
+      else log('boot_prime:available_not_array', { action: 'skip' });
+    } catch (error) {
+      console.warn(`${LOG} boot_prime:available_bad_json ${JSON.stringify({ error: errText(error), action: 'skip' })}`); // guard-ok: причина в журнале
+    }
+  }
+  if (current) {
+    log('boot_prime:skip', { reason: 'already_in_memory', dayKey: current.dayKey });
+    return;
+  }
+  const dayKey = todayLocalDayKey(deps.now());
+  const stored = parseTodayTasksDayState(rawState);
+  if (!stored || needsNewTodayTasksDay(stored, ownerKey, dayKey)) {
+    log('boot_prime:no_today_state', { hasRaw: rawState !== null, storedDay: stored?.dayKey ?? null, dayKey, availableKnown: availableKinds !== null });
+    return;
+  }
+  publish(stored);
+  log('boot_prime', { dayKey, kinds: stored.tasks.map((t) => t.kind) });
+}
+
 /** Владелец текущего дня — для истории недели (тот же ключ, что у заданий); null — день ещё не загружен. */
 export function peekTodayTasksOwnerKey(): string | null {
   return current ? current.ownerKey : null;

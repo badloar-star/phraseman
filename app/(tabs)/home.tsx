@@ -166,6 +166,7 @@ function streakTodaySnapshot(): 'unknown' | 'counted' | 'pending' {
   return state.counted ? 'counted' : 'pending';
 }
 import { runAfterHomeFirstFrame } from '../first_frame_deferred_warmups';
+import { peekTodayTasks } from '../../modules/today-tasks/today_tasks_store';
 import { readStoredItem, readStoredItems } from '../storage_snapshot';
 import { nestedBoxShadow, plateBoxShadow, raisedBoxShadow, RAISED_LIFT, useShadowGlass } from '../../components/v2/ShadowSurface';
 import { gcDelta, gcSnapshot } from '../mem_probe';
@@ -1017,6 +1018,15 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             videos: homeV2Videos.length,
             videoStatus: homeV2VideoStatus,
             catalogRail: homeVideoRailUsesCatalog(studyTarget),
+            // зачем (координатор 12.11, обход 4: холодный старт — «—» вместо монет и энергии, «Сегодня» подменяется): что первый кадр
+            // знал о монетах, энергии и заданиях и успел ли к нему стартовый снимок (primedAt null — снимок ещё не опубликован).
+            coinsKnown: runesKnown,
+            coins: runesKnown ? runesBalance : null,
+            energy: energyPeekNow?.energy ?? null,
+            snapshotPrimedAt: getAppSnapshot().primedAt ?? null,
+            msSincePrimed: getAppSnapshot().primedAt ? Date.now() - (getAppSnapshot().primedAt as number) : null,
+            todayKinds: todayTasks.tasks.map((task) => task.kind),
+            todayFromStore: peekTodayTasks() !== null,
         })); // guard-ok: одна строка за запуск
     }, []);
     const latestVideoIdRef = useRef<string | null>(null);

@@ -15,6 +15,7 @@ import { captureAccountGeneration, isCurrentAccountGeneration } from './account_
 import { hydratePersonalProgress } from './personal_progress_store';
 import { primeEnergyPeekFromBoot } from './energy_peek_cache';
 import { primeSkillsFromBoot, skillsStorageKey } from '../modules/skills/skill_store';
+import { primeTodayTasksFromBoot, todayTasksBootKeys } from '../modules/today-tasks/today_tasks_store';
 import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — последние немые catch старта пишут причину
 import {
   migrateLegacyVipSnapshotOnce,
@@ -273,6 +274,9 @@ export async function primeAppSnapshotFromStorage(
   // навыков ведёт ключ на stableId только у активного аккаунта (skill_store.defaultOwnerStableId) — иначе не греем.
   const skillsOwnerKey = accountGeneration.phase === 'active' ? ownerStableId : null;
   const skillsKey = skillsOwnerKey ? skillsStorageKey(skillsOwnerKey) : null;
+  // зачем (координатор 12.11, обход 4: «Сегодня» подменялось после первого кадра): сохранённый день заданий и список видов —
+  // в том же multiGet; владелец — по тому же правилу, что у today_tasks_store (активный аккаунт).
+  const todayKeys = skillsOwnerKey ? todayTasksBootKeys(skillsOwnerKey) : null;
   const keys = [
     ...BOOT_PROFILE_KEYS,
     ...BOOT_PROGRESS_KEYS,
@@ -283,6 +287,7 @@ export async function primeAppSnapshotFromStorage(
     BOOT_STUDY_TARGET_KEY,
     REFERRAL_STATE_STORAGE_KEY,
     ...(skillsKey ? [skillsKey] : []),
+    ...(todayKeys ? [todayKeys.state, todayKeys.available] : []),
   ];
   // зачем (пакет 09:26, прогон 2: published 8246 мс при preRead 334): время каждой части пачки — какая держит публикацию.
   const partsStartedAt = Date.now();
@@ -339,6 +344,13 @@ export async function primeAppSnapshotFromStorage(
     }
   } else {
     console.warn('[SKILLS] boot_prime:skip', JSON.stringify({ reason: 'account_not_active', phase: accountGeneration.phase })); // guard-ok: ранний выход логируется
+  }
+  if (todayKeys && skillsOwnerKey) {
+    try {
+      primeTodayTasksFromBoot(values.get(todayKeys.state) ?? null, values.get(todayKeys.available) ?? null, skillsOwnerKey);
+    } catch (error) {
+      noteSwallowedHandler('app_snapshot_bootstrap:primeTodayTasksFromBoot')(error);
+    }
   }
   patchAppSnapshot((current) => ({
     profile,

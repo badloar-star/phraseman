@@ -25,7 +25,7 @@ const AnimatedTextInput = Animated.createAnimatedComponent(TextInput);
 
 /**
  * AnimatedCountUpText — UI-thread решение для нейтральных числовых значений в
- * ResultsSequence.tsx (Learning V2/Урок), но переиспользуемое отдельно от
+ * ResultsSequence.tsx (итог урока), но переиспользуемое отдельно от
  * той секвенции — для экранов, у которых нет полноценного ResultsSequence
  * (словарь, глаголы, блиц, тренировка, ошибки, голос).
  *

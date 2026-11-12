@@ -6,12 +6,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { LESSON_EXIT_LANGS, LESSON_EXIT_STRING_KEYS, lessonExitText } from '../components/lesson_exit/lesson_exit_strings';
 import { normalizeEol } from './helpers/read_source';
 
 const ROOT = path.join(__dirname, '..');
 const read = (rel: string) => normalizeEol(fs.readFileSync(path.join(ROOT, rel), 'utf8')).split(String.fromCharCode(13, 10)).join(String.fromCharCode(10));
 
+// зачем (11.11): строки карточки продолжения эпизода удалены вместе с курсом занятий — их подключал только его плеер.
 describe('окно выхода из урока снято (владелец 22.10)', () => {
 
   // зачем (владелец 11.11, пересмотр обрезанных тестов): случай был вырезан целиком вместе с курсом занятий; живая часть возвращена
@@ -59,9 +59,4 @@ describe('окно выхода из урока снято (владелец 22.
     expect(src).toContain('// Восстанавливаем позицию строго из CELL_KEY');
   });
 
-  it('карточка продолжения эпизода: строка есть на 9 языках, подстановки работают', () => {
-    for (const key of LESSON_EXIT_STRING_KEYS) for (const lang of LESSON_EXIT_LANGS) expect([key, lang, lessonExitText(lang, key, { n: 3, m: 12 }).length > 0]).toEqual([key, lang, true]);
-    expect(lessonExitText('ru', 'resumeFrom', { n: 3, m: 12 })).toBe('Продолжить с задания 3 из 12');
-    expect(lessonExitText('en', 'resumeFrom', { n: 3, m: 12 })).toBe('Continue from task 3 of 12');
-  });
 });

@@ -122,7 +122,7 @@ export interface ResultsSequenceProps {
   badge?: React.ReactNode;
   /** Optional form/content kept in normal scroll flow before the result actions. */
   feedbackSlot?: React.ReactNode;
-  /** Premium card layout used by the owner-approved Learning V2 completion. */
+  /** Premium card layout of the removed course completion (owner-approved); no caller since 11.11. */
   layoutVariant?: 'default' | 'learning-v2-pulse' | 'learning-v2-orbit';
   /** Small completion context above the main title. */
   eyebrow?: string;

@@ -59,7 +59,7 @@ export function pickRuneGlyphs(count: number): readonly string[] {
  *
  * ru/uk/pl — славянская тройка форм (1 руна / 2 руны / 5 рун), остальные языки
  * различают единственное и множественное. Образец взят у `ruStar`
- * (app/learning_v2_session_copy.ts), чтобы формы совпадали со стилем проекта.
+ * (тексты удалённого курса занятий), чтобы формы совпадали со стилем проекта.
  */
 type PluralForms = Readonly<{ one: string; few: string; many: string }>;
 

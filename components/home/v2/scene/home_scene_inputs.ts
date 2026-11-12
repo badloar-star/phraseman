@@ -48,7 +48,7 @@ export function homeSceneStreakLost(input: Readonly<{ daysAway: number | null; s
 
 /**
  * «Всё выпущенное пройдено»: в уроке продолжения пройдены все выпущенные эпизоды, а первый эпизод следующего урока не выпущен.
- * isReleased — та же проверка выпуска, что у курса (isLearningV2SessionReleasedV1), передаётся снаружи.
+ * isReleased — проверка выпуска эпизода, передаётся снаружи.
  */
 export function homeSceneAllReleasedDone(
   progress: Readonly<{ lessonOrdinal: number; done: number; total: number }> | null,

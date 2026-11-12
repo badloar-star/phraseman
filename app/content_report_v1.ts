@@ -17,7 +17,7 @@ const DATA_TEXT_MAX = 1800;
 const USER_ANSWER_MAX = 600;
 
 export type ContentReportInputV1 = Readonly<{
-  /** Экран-источник: ключ для админки («dialogue_v2_session», «learning_v2_placement», …). */
+  /** Экран-источник: ключ для админки («dialogue_v2_session», …). */
   screen: string;
   /** Машинный ключ места: id диалога/задания и реплики/номера. */
   dataId: string;

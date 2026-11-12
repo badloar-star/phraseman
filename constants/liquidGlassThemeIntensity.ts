@@ -49,7 +49,7 @@ export function quantizeLiquidGlassIntensity(value: number): number {
 
 /**
  * Уровень-«корзина» для ~10 экранов, которые ветвятся по `level` (EnergyBar, V2-палитра,
- * Друзья, Learning V2). 0 — ровно «Спокойно»; всё цветное — «Акцент», с 0.75 — «Максимум».
+ * Друзья). 0 — ровно «Спокойно»; всё цветное — «Акцент», с 0.75 — «Максимум».
  */
 export function liquidGlassLevelForIntensity(value: number): LiquidGlassColorLevel {
   const q = quantizeLiquidGlassIntensity(value);

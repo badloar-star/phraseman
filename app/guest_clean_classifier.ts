@@ -180,7 +180,7 @@ function isEmptySpinProjection(value: string): boolean {
 
 const LEARNING_V2_INDEX_MARKER_KEY_PREFIX = 'v2:required-session-local-commit-index:v1:';
 const LEARNING_V2_INDEX_MARKER_VALUE_PREFIX = 'learning-v2-required-session-spool-index-legacy-scan-complete.v1:';
-/** Равен LEARNING_V2_COMPLETION_RETRY_CURSOR_PREFIX (app/learning_v2_completion_retry_cursor.ts); строкой — чтобы не тянуть тяжёлый модуль, равенство сторожит тест. */
+/** Префикс курсора повтора завершений удалённого курса занятий: такие ключи остались на телефонах — у гостя их след стирается. */
 export const LEARNING_V2_COMPLETION_RETRY_CURSOR_KEY_PREFIX = 'v2:required-session-completion-scheduler:v1:';
 
 /**

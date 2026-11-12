@@ -15,7 +15,7 @@ import { useLang } from './LangContext';
 import ReportErrorButton from './ReportErrorButton';
 
 type Props = Readonly<{
-  /** Экран-источник для админки («dialogue_v2_session», «learning_v2_placement», …). */
+  /** Экран-источник для админки («dialogue_v2_session», …). */
   screen: string;
   /** Машинный ключ места: id диалога/задания и реплики/номера. */
   dataId: string;

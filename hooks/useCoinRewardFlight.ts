@@ -5,8 +5,8 @@ import { useReduceMotionPreference } from './use_reduce_motion';
 import type { CoinRewardFlightPoint } from '../components/rewards/CoinRewardFlight';
 
 /**
- * useCoinRewardFlight (зачем (PM-052, D75): полёт монет вместо рун) — та же механика полёта рун, что в Learning V2
- * (`learning_v2_direct_session_player_v1.tsx`: settleSessionRuneAward +
+ * useCoinRewardFlight (зачем (PM-052, D75): полёт монет вместо рун) — та же механика полёта рун, что была в плеере
+ * удалённого курса занятий (settleSessionRuneAward +
  * awardSessionRunes), обёрнутая в переиспользуемый хук для семи учебных
  * экранов (владелец, 2026-08-27: «анимация полёта точно такая же, как в
  * Learning V2»).

@@ -6,7 +6,7 @@
 //     карточек (блиц, вспоминание+свайп/верно-неверно, произношение) → 'cards';
 //   • mistake_practice — «Мои ошибки» → 'mistakes';
 //   • lesson / vocabulary / irregular_verbs — НЕ засчитывают ответами: урок
-//     засчитывается целиком на экране итога (lesson_complete / Learning V2).
+//     засчитывается целиком на экране итога (lesson_complete).
 import type { TodayTaskKindCore } from './today_tasks_core';
 
 const PRACTICE_TO_TODAY: Readonly<Record<string, TodayTaskKindCore>> = Object.freeze({

@@ -10,7 +10,7 @@ type SemanticGlass = Readonly<{ good: string; bad: string; goodSoft: string; bad
 
 const cache = new WeakMap<object, Readonly<{ goodText: string; badText: string }>>();
 
-/** Доля заливки чипа «верно / неверно» в занятии (LearningV2Glass: goodFill / badFill). */
+/** Доля заливки чипа «верно / неверно» в занятии. */
 const CHIP_FILL_ALPHA = 0.18;
 const withAlpha = (hex: string, a: number): string => `${hex.slice(0, 7)}${Math.round(a * 255).toString(16).padStart(2, '0')}`;
 

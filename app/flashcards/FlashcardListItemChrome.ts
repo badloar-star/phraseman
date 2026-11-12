@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 
 /**
- * Каноническая геометрия компактного FlashcardListItem. И раздел «Карточки»,
- * и Learning V2 импортируют один объект стилей и одну формулу высоты.
+ * Каноническая геометрия компактного FlashcardListItem: один объект стилей и одна
+ * формула высоты для всех мест раздела «Карточки».
  */
 export const FLASHCARD_LIST_ITEM_CARD_STYLE = StyleSheet.create({
   card: {

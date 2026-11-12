@@ -187,7 +187,7 @@ export const SOUND_EVENTS = Object.freeze({
    */
   // зачем: D83 — клиентская Арена удалена целиком; её звуковые файлы сняты из
   // бандла, события остаются немыми (их зовёт только общий каталог звуков,
-  // который делит Learning V2 speed-match).
+  // который делил speed-match удалённого курса занятий).
   'pm.arena.search_start': event(null, 0.35, 55, 600, 2000, 'arena'), // D83: Арена удалена, файл снят
   // зачем: единственный луп Арены — файл 3с бесшовный, повторный запрос идёт
   // интервалом из arena_matchmaking (см. там), cooldown 1800 гасит дребезг.
@@ -281,7 +281,7 @@ export const SOUND_EVENTS = Object.freeze({
   'pm.energy.spend': event(require('../../assets/audio/sfx/v1/energy/pm_energy_spend_v1.m4a'), 0.26, 44, 300, 300, 'energy'),
 
   // зачем: механика сердечек СУЩЕСТВУЕТ — это система попыток session_attempts
-  // (SESSION_ATTEMPTS_MAX=3, HUD на 10 экранах: flashcards_*, learning-v2,
+  // (SESSION_ATTEMPTS_MAX=3, HUD на экранах: flashcards_*,
   // lesson1, lesson_words, mistake_practice…). Вывод 2026-08-28 «механики нет»
   // был ошибкой поиска: искали heartsLeft/loseHeart/livesLeft, а имена другие.
   // Файлы одобрены владельцем на слух (choices_final: оба «a»), вызовы живут в

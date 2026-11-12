@@ -126,7 +126,7 @@ type Props = {
   getOverlayAnim: (cardId: string) => Animated.Value;
   getDeleteAnim: (cardId: string) => { opacity: Animated.Value; scale: Animated.Value };
   onFlipCard: (cardId: string) => void;
-  /** Learning V2 word encounters must react on the first touch frame. */
+  /** Flip on the first touch frame instead of on release. */
   flipOnPressIn?: boolean;
   onOpenDelete: (cardId: string) => void;
   onCloseDelete: () => void;
@@ -286,7 +286,7 @@ function FlashcardListItemImpl({
    * зачем: отступ грани (22 в общей геометрии) тоже ужимаем по высоте — иначе на
    * низком экране текст уменьшился, а поля остались прежними, и карточка не стала
    * компактнее. Переопределяем локально ПОСЛЕ cardStyle, чтобы не менять общий
-   * FLASHCARD_LIST_ITEM_CARD_STYLE: его же использует Learning V2.
+   * FLASHCARD_LIST_ITEM_CARD_STYLE.
    */
   const cardFacePadStyle = useMemo(
     () => ({ padding: savedGlass ? 8 : Math.max(14, Math.round(22 * cardScale)) }),

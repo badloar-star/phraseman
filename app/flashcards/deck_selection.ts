@@ -21,7 +21,7 @@ import { legacyRuUk, type Lang } from '../../constants/i18n';
  *  - 'saved'     — «Все сохранённые» (flashcards_v1);
  *  - 'custom'    — «Мои карточки» (custom_flashcards_v2);
  *  - 'pack:<id>' — добавленный набор;
- *  - 'lv2:<id>'  — слова, выбранные в словаре Learning V2 (app/learning_v2_dictionary_training_deck_v1.ts).
+ *  - 'lv2:<id>'  — уже сохранённые колоды слов из словаря удалённого курса занятий (только чтение: app/flashcards/dictionary_training_deck.ts).
  */
 export type FcDeckId = 'weak' | 'saved' | 'custom' | `pack:${string}` | `lv2:${string}`;
 

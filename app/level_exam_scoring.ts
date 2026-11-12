@@ -47,15 +47,8 @@ function lessonTitle(phrase: LessonPhrase | undefined, lessonId: number, sourceL
   return phrase.lessonTitleRU || `Lesson ${lessonId}`;
 }
 
-export function scoreLevelExam(
-  blueprint: LevelExamBlueprint,
-  answers: LevelExamAnswers,
-  finishReason: LevelExamFinishReason,
-): LevelExamScoreResult {
-  if (blueprint.scoredUnitIds.length !== 30 || new Set(blueprint.scoredUnitIds).size !== 30) {
-    throw new Error('level_exam_scoring_blueprint_invalid');
-  }
-
+/** Каждый засчитываемый балл попытки — верен ли он. Одна проверка на подсчёт итога и на очки навыков. */
+function scoredUnitsOf(blueprint: LevelExamBlueprint, answers: LevelExamAnswers): ScoredUnit[] {
   const units: ScoredUnit[] = [];
   for (const task of blueprint.tasks) {
     if (task.format === 'speed_match') {
@@ -98,6 +91,28 @@ export function scoreLevelExam(
     }
   }
 
+  return units;
+}
+
+/**
+ * Номера засчитанных верными баллов попытки.
+ * зачем (D207, владелец 11.11.2026): «Грамматика» +3 за каждый верный ответ экзамена — проверка та же, что у итога,
+ * иначе очки навыков и счёт экзамена разошлись бы.
+ */
+export function levelExamCorrectUnitIds(blueprint: LevelExamBlueprint, answers: LevelExamAnswers): string[] {
+  return scoredUnitsOf(blueprint, answers).filter((unit) => unit.correct).map((unit) => unit.scoreUnitId);
+}
+
+export function scoreLevelExam(
+  blueprint: LevelExamBlueprint,
+  answers: LevelExamAnswers,
+  finishReason: LevelExamFinishReason,
+): LevelExamScoreResult {
+  if (blueprint.scoredUnitIds.length !== 30 || new Set(blueprint.scoredUnitIds).size !== 30) {
+    throw new Error('level_exam_scoring_blueprint_invalid');
+  }
+
+  const units = scoredUnitsOf(blueprint, answers);
   if (units.length !== 30
     || new Set(units.map((unit) => unit.scoreUnitId)).size !== 30
     || blueprint.scoredUnitIds.some((scoreUnitId) => !units.some((unit) => unit.scoreUnitId === scoreUnitId))) {

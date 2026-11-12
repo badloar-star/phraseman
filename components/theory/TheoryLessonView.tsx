@@ -31,6 +31,7 @@ import {
 } from '../../app/theory_progress';
 import { noteSwallowedHandler } from '../../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import { pluralWithCount } from '../../constants/plural';
+import { noteSkillAction } from '../../modules/skills/skill_store';
 // зачем (решение владельца 05.11, макет target_lang_one_color_approved): слова изучаемого языка — один жирный цвет из оттенка темы, «Читается» — say курсивом, ✗ серый без красного/зелёного
 import { LANG_WEIGHT, LearnLangSpans, ReadingLineSpans, splitReadingLine, useLearnLangPalette } from '../learn_lang_text';
 
@@ -298,6 +299,9 @@ export default function TheoryLessonView({
   const [openSet, setOpenSet] = useState<Set<string>>(() => new Set(initialOpenNums));
   const [seenSet, setSeenSet] = useState<Set<string>>(() => new Set(initialOpenNums));
   const [drillProgress, setDrillProgress] = useState<Record<string, TheoryDrillProgressState>>({});
+  // зачем (D207): «было ли задание уже решено» читается синхронно — два быстрых сигнала подряд не дадут очки дважды
+  const drillProgressRef = useRef<Record<string, TheoryDrillProgressState>>({});
+  useEffect(() => { drillProgressRef.current = drillProgress; }, [drillProgress]);
 
   const toggleSection = useCallback((num: string) => {
     const willOpen = !openSet.has(num);
@@ -379,6 +383,14 @@ export default function TheoryLessonView({
   ]);
 
   const updateDrillProgress = useCallback((drillId: string, state: TheoryDrillProgressState) => {
+    // зачем (D207, владелец 11.11.2026): «Грамматика» +2 за задание теории — в момент, когда оно стало решённым, один раз.
+    // Решённое раньше (восстановлено с диска) и повторные сигналы того же задания очков не дают; повтор в другой день
+    // гасит правило повтора таблицы навыков.
+    const isSolved = (value: TheoryDrillProgressState | undefined) => value?.status === 'solved' || value?.solved === true;
+    if (isSolved(state) && !isSolved(drillProgressRef.current[drillId])) {
+      noteSkillAction({ action: 'theory_task', itemKey: `theory:${progressStorageKey ?? `lesson:${lessonId}`}:${drillId}` });
+    }
+    drillProgressRef.current = { ...drillProgressRef.current, [drillId]: { ...(drillProgressRef.current[drillId] ?? {}), ...state } };
     setDrillProgress((prev) => ({
       ...prev,
       [drillId]: {
@@ -386,7 +398,7 @@ export default function TheoryLessonView({
         ...state,
       },
     }));
-  }, []);
+  }, [progressStorageKey, lessonId]);
 
   const seenCount = sections.reduce((acc, section) => acc + (seenSet.has(section.num) ? 1 : 0), 0);
   const completedDrillCount = useMemo(

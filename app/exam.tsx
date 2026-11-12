@@ -75,6 +75,9 @@ import { classicFinalExamTarget, loadClassicFinalExamQuestions } from './classic
 import { DebugLogger } from './debug-logger';
 import { notifyActivityStartFailed, useScreenOpenRef } from './activity_start_failed_toast';
 import { useSilentLeave } from '../hooks/use_silent_leave';
+import { noteSkillAction } from '../modules/skills/skill_store';
+import { useSkillSession } from '../modules/skills/use_skill_session';
+import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
@@ -394,6 +397,7 @@ export default function ExamScreen() {
   // зачем (владелец 11.11, F01): у ES/DE/IT/FR свой банк из фраз курса этого языка. Раньше всё, что не fr,
   // получало английский EXAM_POOL, а fr — пустой список. null = английский (его банк ниже, без изменений).
   const classicExamTarget = classicFinalExamTarget(storageStudyTarget(studyTarget));
+  useSkillSession(); // зачем (D207): занятие объявляет сам экзамен — его прирост попадёт в «Навыки растут» на итоге
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const t3 = (
@@ -762,6 +766,13 @@ export default function ExamScreen() {
     submitExamInFlightRef.current = true;
     try {
       const s = choices.filter((c, i) => c !== null && c === questions[i]?.correct).length;
+      // зачем (D207, владелец 11.11.2026): «Грамматика» +3 за каждый верный ответ — раз за сдачу (замок выше не пускает вторую);
+      // повтор того же вопроса в тот же день гасит правило повтора таблицы.
+      questions.forEach((question, questionIndex) => {
+        if (choices[questionIndex] === null || choices[questionIndex] !== question.correct) return;
+        const itemId = question.phraseId ? question.phraseId : `${question.lessonNum}:${question.q}`;
+        noteSkillAction({ action: 'exam_correct', itemKey: `exam:${studyTarget}:${itemId}` });
+      });
       const p = questions.length > 0 ? Math.round(s / questions.length * 100) : 0;
       // зачем (22.09): узкий список языков не пускал запись ошибок экзамена
       // для испанского и немецкого — раздел «Мои ошибки» их не получал.
@@ -1412,6 +1423,8 @@ export default function ExamScreen() {
                 </View>
               ))}
             </View>
+            {/* зачем (D207, владелец 11.11): «Навыки растут» — прирост за этот экзамен; нет прироста — блок не рисуется */}
+            <SkillsSessionGrowth style={{ marginTop: 22 }} />
             {certificate ? <View style={{marginTop:18}}>{renderCertificateBlock(420)}</View> : null}
           </BouncyScrollView>
           {/* зачем (PM-086, владелец 2026-09-24): ценник энергии над кнопкой убран — расход энергии за повтор не меняется. */}

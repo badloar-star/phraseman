@@ -20,6 +20,7 @@ import ScreenGradient from '../ScreenGradient';
 import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
 import TonalSurface from '../TonalSurface';
+import SkillsSessionGrowth from '../skills/SkillsSessionGrowth';
 import { SafeTopCloseButton, ScreenBackZone } from '../v2/ScreenBackButton';
 
 export type LevelExamRewardState = 'earned' | 'pending' | 'already_claimed' | 'none';
@@ -142,7 +143,10 @@ export default function LevelExamResult({ lang, attemptId, result, rewardState, 
             </TonalSurface>
           ) : null}
 
-          <TonalSurface tone="raised" radius={ds.radius.lg} style={[styles.reward, { padding: ds.spacing.md }]}> 
+          {/* зачем (D207): «Навыки растут» — прирост за этот экзамен; отступ даёт gap списка, нет прироста — блок не рисуется */}
+          <SkillsSessionGrowth />
+
+          <TonalSurface tone="raised" radius={ds.radius.lg} style={[styles.reward, { padding: ds.spacing.md }]}>
             <Ionicons name={result.passed ? 'sparkles' : 'bulb-outline'} size={22} color={result.passed ? t.accentText : t.accentText} />
             <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '800' }}>
               {rewardText}

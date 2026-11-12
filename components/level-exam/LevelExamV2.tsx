@@ -29,7 +29,9 @@ import {
   persistActiveLevelExamAttempt,
   recordCompletedLevelExamAttemptOnce,
 } from '../../app/level_exam_attempts';
-import { scoreLevelExam, type LevelExamScoreResult } from '../../app/level_exam_scoring';
+import { levelExamCorrectUnitIds, scoreLevelExam, type LevelExamScoreResult } from '../../app/level_exam_scoring';
+import { noteSkillAction } from '../../modules/skills/skill_store';
+import { useSkillSession } from '../../modules/skills/use_skill_session';
 import {
   CURRENT_LEVEL_EXAM_BLUEPRINT_VERSION,
   type LevelExamBlueprint,
@@ -181,6 +183,7 @@ export default function LevelExamV2({ level, lang, studyTarget = 'en', accessSta
   const beginQuizInFlightRef = useRef(false);
   const [noEnergy, setNoEnergy] = useState(false);
   const screenOpenRef = useScreenOpenRef();
+  useSkillSession(); // зачем (D207): занятие объявляет сам экзамен — его прирост попадёт в «Навыки растут» на итоге
   const [reviewPromptVisible, setReviewPromptVisible] = useState(false);
   // зачем: заголовок «Зачёт A1» в шапках блокировки и вопросов берём из общей копии экзамена
   const examTitle = getLevelExamCopy(lang, {
@@ -222,6 +225,11 @@ export default function LevelExamV2({ level, lang, studyTarget = 'en', accessSta
     setPhase('result');
     // зачем: неверные ответы попытки уходят в «Мои ошибки» один раз, когда экзамен посчитан; показ итога запись не ждёт
     captureLevelExamMistakes({ blueprint: sourceBlueprint, answers: finishing.answers, level, studyTarget, attemptId: finishing.attemptId });
+    // зачем (D207, владелец 11.11.2026): «Грамматика» +3 за каждый верный ответ. Вердикт в зачёте виден только в итоге,
+    // поэтому очки — здесь, раз за попытку; повтор того же задания в тот же день гасит правило повтора таблицы.
+    for (const scoreUnitId of levelExamCorrectUnitIds(sourceBlueprint, finishing.answers)) {
+      noteSkillAction({ action: 'exam_correct', itemKey: `level_exam:${studyTarget}:${scoreUnitId}` });
+    }
 
     try {
       const previousPassed = await AsyncStorage.getItem(levelExamKey(level, 'passed', studyTarget));

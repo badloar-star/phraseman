@@ -1417,6 +1417,13 @@ function classifyCloudAccessFailure(error: unknown): StableAuthLinkFailure {
     || code.includes('network-request-failed')
     || combined.includes('timeout')
     || combined.includes('network')
+    // зачем (координатор 12.11, факты [AUTH-LINK] с эмулятора 07:06: 7 строк code=unknown,
+    // «java.util.concurrent.ExecutionException: 1 out of 2 underlying tasks failed»): так нативный слой Firebase на Android
+    // сообщает, что ДО отправки не собрал данные запроса (ключ входа / контекст вызова, Tasks.whenAll) — при обрыве сети.
+    // Запрос до сервера не дошёл, поэтому это сбой связи, а не «личность недоступна» (урок stable_identity_unavailable).
+    // Поведение не меняется: оба исхода временные и повторяются (auth_provider AUTH_LINK_TRANSIENT_FAILURES,
+    // startup_cloud_recovery_presentation) — меняется только честность диагноза в журнале и разборе.
+    || combined.includes('underlying tasks failed')
   ) {
     return 'transport_unavailable';
   }

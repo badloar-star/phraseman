@@ -37,6 +37,27 @@ describe('[AUTH-LINK] трассировка привязки аккаунта',
     expect(src).toContain("[AUTH-LINK] ensure:skip reason=${!stableId ? 'no_stable_id' : 'no_auth_uid'}");
   });
 
+  it('отказ нативного слоя до отправки («underlying tasks failed») — сбой связи, а не «личность недоступна»', () => {
+    // факт с эмулятора 12.11 07:06 ([AUTH-LINK] ensure:failed ×7); функцию берём из исходника и переводим в JS — тяжёлый модуль не грузим
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const ts = require('typescript') as typeof import('typescript');
+    const src = read('app/cloud_sync.ts');
+    const fnText = /function classifyCloudAccessFailure\(error: unknown\): StableAuthLinkFailure \{[\s\S]*?\n\}/.exec(src)?.[0];
+    expect(fnText).toBeTruthy();
+    const js = ts.transpileModule(`${fnText}\nmodule.exports = classifyCloudAccessFailure;`, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText;
+    const mod = { exports: {} as unknown };
+    // eslint-disable-next-line no-new-func
+    new Function('module', js)(mod);
+    const classify = mod.exports as (error: unknown) => string;
+    const android = { code: 'unknown', message: 'java.util.concurrent.ExecutionException: 1 out of 2 underlying tasks failed' };
+    expect(classify(android)).toBe('transport_unavailable');
+    // остальное не задето: серверные отказы по-прежнему узнаются, неизвестное — identity_unavailable
+    expect(classify({ code: 'functions/failed-precondition', message: 'identity_retired' })).toBe('identity_retired');
+    expect(classify({ code: 'functions/permission-denied', message: 'stable_id_mismatch' })).toBe('stable_id_mismatch');
+    expect(classify({ code: 'functions/internal', message: 'INTERNAL' })).toBe('identity_unavailable');
+    expect(classify({ code: 'functions/unavailable', message: '' })).toBe('transport_unavailable');
+  });
+
   it('«нет запасного пути» в регионе печатает и начало текста ошибки', () => {
     expect(read('app/auth_callable_fetch.ts')).toMatch(/outcome=error_no_fallback code=\$\{code\} msg=\$\{JSON\.stringify\(message\)\}/);
   });

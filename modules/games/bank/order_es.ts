@@ -1,5 +1,5 @@
 /**
- * Банк игры «Собери диалог» — испанский классический курс, уроки 3–8 (D207). 2 диалога из 4 реплик на урок.
+ * Банк игры «Собери диалог» — испанский классический курс, уроки 3–12 (D207). 2 диалога из 4 реплик на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: реплики — фразы урока или собраны из слов этого и прошлых уроков; порядок однозначен:
  * первый вопрос называет, о ком речь, ответ повторяет это слово, а третья реплика «¿Y …?» («А …?»)
@@ -36,5 +36,21 @@ export const ORDER_BANK_ES: Readonly<Record<number, readonly OrderTask[]>> = {
   8: [
     task(8, 1, ['¿Dónde está mi pasaporte?', 'Tu pasaporte está en mi bolso.', '¿Y mis llaves?', 'Tus llaves están en la mesa.']),
     task(8, 2, ['¿Dónde está tu hermana?', 'Mi hermana está en clase.', '¿Y tu madre?', 'Mi madre está en la farmacia.']),
+  ],
+  9: [
+    task(9, 1, ['¿Dónde trabaja tu madre?', 'Mi madre trabaja en la farmacia.', '¿Y tu hermana?', 'Mi hermana trabaja en el hotel.']),
+    task(9, 2, ['¿Hablas inglés?', 'No hablo inglés.', '¿Y español?', 'Hablo español.']),
+  ],
+  10: [
+    task(10, 1, ['¿Lees el periódico en casa?', 'Leo el periódico en el tren.', '¿Y Luis?', 'Luis lee el libro.']),
+    task(10, 2, ['¿Vives cerca de la estación?', 'Vivo cerca de la estación.', '¿Y tus hermanas?', 'Mis hermanas no viven cerca de la estación.']),
+  ],
+  11: [
+    task(11, 1, ['¿Tienes una reserva?', 'No tengo reserva.', '¿Y Luis?', 'Luis tiene una reserva.']),
+    task(11, 2, ['¿Tienes las llaves de casa?', 'No tengo las llaves.', '¿Y tu madre?', 'Mi madre tiene las llaves de casa.']),
+  ],
+  12: [
+    task(12, 1, ['¿Son grandes las ventanas?', 'Las ventanas son pequeñas.', '¿Y la casa?', 'La casa es grande.']),
+    task(12, 2, ['¿Son grandes los libros?', 'Los libros son pequeños.', '¿Y los coches?', 'Los coches son grandes.']),
   ],
 };

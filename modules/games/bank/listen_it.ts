@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — итальянский классический курс, уроки 1–8 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — итальянский классический курс, уроки 1–12 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: произносится фраза урока; верный вариант дословно равен ей; два неверных отличаются
  * ровно одним словом и остаются правильными фразами из знакомых слов — это проверка слуха, а не грамматики.
@@ -76,5 +76,37 @@ export const LISTEN_BANK_IT: Readonly<Record<number, readonly QuizRound[]>> = {
     round(8, 4, 'A che ora apre il museo?', ['A che ora chiude il museo?', 'A che ora apre il mercato?'], 0, 'Во сколько открывается музей?'),
     round(8, 5, 'Chi lavora qui?', ['Chi abita qui?', 'Chi lavora lì?'], 1, 'Кто работает здесь?'),
     round(8, 6, 'Dov’è l’uscita?', ['Dov’è l’ingresso?', 'Dov’è l’ufficio?'], 2, 'Где выход?'),
+  ],
+  9: [
+    round(9, 1, 'La mia borsa è qui', ['La tua borsa è qui', 'La mia borsa è lì'], 0, 'Моя сумка здесь'),
+    round(9, 2, 'Le mie chiavi sono qui', ['Le tue chiavi sono qui', 'Le mie chiavi sono lì'], 1, 'Мои ключи здесь'),
+    round(9, 3, 'Il nostro treno è al binario', ['Il vostro treno è al binario', 'Il loro treno è al binario'], 2, 'Наш поезд на платформе'),
+    round(9, 4, 'La loro camera è libera', ['La loro camera è pulita', 'La nostra camera è libera'], 0, 'Их комната свободна'),
+    round(9, 5, 'I nostri biglietti sono pronti', ['I vostri biglietti sono pronti', 'I nostri posti sono pronti'], 1, 'Наши билеты готовы'),
+    round(9, 6, 'Sua sorella lavora qui', ['Mia sorella lavora qui', 'Sua sorella abita qui'], 2, 'Его сестра работает здесь'),
+  ],
+  10: [
+    round(10, 1, 'C’è un tavolo', ['C’è un parco', 'C’è un orologio'], 0, 'Есть стол'),
+    round(10, 2, 'Ci sono tre sedie', ['Ci sono due sedie', 'Ci sono tre panchine'], 1, 'Есть три стула'),
+    round(10, 3, 'Non c’è zucchero', ['Non c’è sapone', 'Non c’è caffè'], 2, 'Нет сахара'),
+    round(10, 4, 'C’è un messaggio per te', ['C’è un pacco per te', 'C’è un biglietto per te'], 0, 'Есть сообщение для тебя'),
+    round(10, 5, 'C’è posto?', ['C’è pane?', 'C’è latte?'], 1, 'Есть ли свободное место?'),
+    round(10, 6, 'C’è troppo rumore', ['C’è poco rumore', 'C’è troppo traffico'], 2, 'Здесь слишком много шума'),
+  ],
+  11: [
+    round(11, 1, 'Vado in stazione', ['Vai in stazione', 'Vado in farmacia'], 0, 'Я иду на вокзал'),
+    round(11, 2, 'Lei va al mercato', ['Lui va al mercato', 'Lei va al cinema'], 1, 'Она идёт на рынок'),
+    round(11, 3, 'Loro vanno in banca', ['Loro vanno in ufficio', 'Loro vanno in piscina'], 2, 'Они идут в банк'),
+    round(11, 4, 'Io vado a Lione', ['Io vado a Parigi', 'Io abito a Lione'], 0, 'Я еду в Лион'),
+    round(11, 5, 'Noi andiamo in Francia', ['Noi andiamo in Spagna', 'Noi andiamo in Belgio'], 1, 'Мы едем во Францию'),
+    round(11, 6, 'Paolo va in Italia', ['Paolo va in Spagna', 'Lea va in Italia'], 2, 'Паоло едет в Италию'),
+  ],
+  12: [
+    round(12, 1, 'Prendo del pane', ['Prendi del pane', 'Prendo del riso'], 0, 'Я беру хлеб'),
+    round(12, 2, 'Lei prende della zuppa', ['Lei prende della pasta', 'Lui prende della zuppa'], 1, 'Она берёт суп'),
+    round(12, 3, 'Compriamo del pesce', ['Compriamo del pane', 'Compriamo del pollo'], 2, 'Мы покупаем рыбу'),
+    round(12, 4, 'Bevo del tè', ['Bevo del caffè', 'Bevo del latte'], 0, 'Я пью чай'),
+    round(12, 5, 'Non mangiamo carne', ['Non mangiamo pesce', 'Non mangiamo pasta'], 1, 'Мы не едим мясо'),
+    round(12, 6, 'Compro del burro', ['Compro del pane', 'Compri del burro'], 2, 'Я покупаю сливочное масло'),
   ],
 };

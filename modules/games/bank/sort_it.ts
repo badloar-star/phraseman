@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — итальянский классический курс, уроки 1–8 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — итальянский классический курс, уроки 1–12 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только слова этого и прошлых уроков. Пропуск в карте пишется `___`
@@ -91,5 +91,45 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['A che ora parte il treno?', 'right', 'a che ora — спрашивают, во сколько'],
     ['Dove abiti?', 'left', 'dove — спрашивают, где'],
     ['Quando è il concerto?', 'right', 'quando — спрашивают, когда'],
+  ]),
+  9: deck(9, { title: 'mio', example: 'il mio posto' }, { title: 'mia', example: 'la mia borsa' }, [
+    ['Il ___ indirizzo è sulla mappa', 'left', 'indirizzo — «он», поэтому mio'],
+    ['La ___ borsa è qui', 'right', 'borsa — «она», поэтому mia'],
+    ['Il ___ posto è accanto al tuo', 'left', 'posto — «он», поэтому mio'],
+    ['La ___ chiave è lì', 'right', 'chiave — «она», поэтому mia'],
+    ['Sto cercando il ___ cappotto', 'left', 'cappotto — «он», поэтому mio'],
+    ['La ___ busta è vuota', 'right', 'busta — «она», поэтому mia'],
+    ['___ fratello ha dimenticato la sua chiave', 'left', 'fratello — «он», поэтому mio'],
+    ['La ___ bicicletta è in garage', 'right', 'bicicletta — «она», поэтому mia'],
+  ]),
+  10: deck(10, { title: 'c’è', example: 'одно: una panchina' }, { title: 'ci sono', example: 'несколько: due panchine' }, [
+    ['___ una panchina', 'left', 'скамейка одна — c’è'],
+    ['___ due panchine', 'right', 'скамеек две — ci sono'],
+    ['___ un tavolo', 'left', 'стол один — c’è'],
+    ['___ tre sedie', 'right', 'стульев три — ci sono'],
+    ['Qui ___ una farmacia', 'left', 'аптека одна — c’è'],
+    ['___ dei libri sul tavolo', 'right', 'книг несколько — ci sono'],
+    ['___ del caffè', 'left', 'кофе не считают штуками — c’è'],
+    ['Nel cassetto ___ delle pile', 'right', 'батареек несколько — ci sono'],
+  ]),
+  11: deck(11, { title: 'a', example: 'a Lione, a scuola' }, { title: 'in', example: 'in Francia, in banca' }, [
+    ['Io vado ___ Lione', 'left', 'перед городом — a'],
+    ['Noi andiamo ___ Francia', 'right', 'перед страной — in'],
+    ['Lei va ___ Parigi', 'left', 'перед городом — a'],
+    ['Loro vanno ___ Belgio', 'right', 'перед страной — in'],
+    ['Noi andiamo ___ scuola', 'left', 'так говорят: a scuola'],
+    ['Loro vanno ___ banca', 'right', 'так говорят: in banca'],
+    ['I bambini vanno ___ scuola a piedi', 'left', 'так говорят: a scuola'],
+    ['Vado ___ farmacia', 'right', 'так говорят: in farmacia'],
+  ]),
+  12: deck(12, { title: 'del', example: 'del pane' }, { title: 'della', example: 'della zuppa' }, [
+    ['Prendo ___ pane', 'left', 'pane — «он», поэтому del'],
+    ['Prendo ___ zuppa', 'right', 'zuppa — «она», поэтому della'],
+    ['Compriamo ___ pesce', 'left', 'pesce — «он», поэтому del'],
+    ['Compro ___ farina', 'right', 'farina — «она», поэтому della'],
+    ['Bevo ___ tè', 'left', 'tè — «он», поэтому del'],
+    ['Compri ___ panna', 'right', 'panna — «она», поэтому della'],
+    ['Lei compra ___ prosciutto', 'left', 'prosciutto — «он», поэтому del'],
+    ['Mangiamo ___ pasta', 'right', 'pasta — «она», поэтому della'],
   ]),
 };

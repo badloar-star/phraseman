@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — французский классический курс, уроки 1–16 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — французский классический курс, уроки 1–20 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: три реплики, после исправления каждая — фраза урока или фраза из пройденных слов;
  * неверное слово ровно одно и оно однозначно неверно; слово-обманка стоит в ДРУГОЙ реплике и само верно.
@@ -76,5 +76,21 @@ export const HUNT_BANK_FR: Readonly<Record<number, readonly HuntTask[]>> = {
   16: [
     h(16, 1, ['Je peux entrer ?', 'Entre et ferme {le>la} porte.', 'Pose *le sac ici.'], 'Дверь — la porte.'),
     h(16, 2, ['Je pose le colis ici ?', 'Posez le colis sur {le>la} balance.', 'Gardez *votre reçu.'], 'Весы — la balance.'),
+  ],
+  17: [
+    h(17, 1, ['Tu te lèves tôt ?', 'Je me {lèves>lève} à sept heures.', 'Elle se *lève avant moi.'], 'С je — lève.'),
+    h(17, 2, ['Les enfants se réveillent ?', 'Les enfants se {réveille>réveillent} en même temps.', 'Je me *réveille tôt.'], 'Детей несколько — réveillent.'),
+  ],
+  18: [
+    h(18, 1, ['Vous avez fermé la porte ?', 'Nous {a>avons} fermé la porte.', 'Elle a *fermé la fenêtre.'], 'С nous — avons.'),
+    h(18, 2, ['Qui a payé l’addition ?', 'Il a {payer>payé} l’addition.', 'Nous avons *commandé le dessert.'], 'После a — payé.'),
+  ],
+  19: [
+    h(19, 1, ['Léa est arrivée ?', 'Léa est {arrivé>arrivée} ce matin.', 'Paul est *parti.'], 'Леа — поэтому arrivée.'),
+    h(19, 2, ['Où sont-ils allés ?', 'Ils {est>sont} allés au marché.', 'Ma sœur est *restée dehors.'], 'С ils — sont.'),
+  ],
+  20: [
+    h(20, 1, ['Vous habitiez en ville ?', 'Nous {habitait>habitions} à la campagne.', 'Elle *habitait à Lyon.'], 'С nous — habitions.'),
+    h(20, 2, ['Il faisait froid ?', 'Les enfants {avait>avaient} froid.', 'Nous *avions beaucoup de temps.'], 'Детей несколько — avaient.'),
   ],
 };

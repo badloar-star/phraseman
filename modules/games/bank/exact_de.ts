@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — немецкий классический курс, уроки 1–16 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — немецкий классический курс, уроки 1–20 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или только из пройденных слов); каждый неверный
  * вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах); варианты — только
@@ -141,5 +141,37 @@ export const EXACT_BANK_DE: Readonly<Record<number, readonly QuizRound[]>> = {
     r(16, 4, 'Anna hat das Frühstück ___', 'bestellt', ['bestellen', 'bestelle'], 0, 'После hat — bestellt.'),
     r(16, 5, 'Ich habe ___ angerufen', 'dich', ['du', 'dir'], 1, 'Звонил тебе — dich angerufen.'),
     r(16, 6, '___ du schon gegessen?', 'Hast', ['Hat', 'Habt'], 2, 'С du — hast.'),
+  ],
+  17: [
+    r(17, 1, 'Du ___ angekommen', 'bist', ['ist', 'bin'], 0, 'С du — bist.'),
+    r(17, 2, 'Ihr ___ angekommen', 'seid', ['sind', 'bist'], 1, 'С ihr — seid.'),
+    r(17, 3, 'Die Kinder ___ früh aufgewacht', 'sind', ['ist', 'hat'], 2, 'Детей несколько — sind.'),
+    r(17, 4, 'Anna ___ sofort eingeschlafen', 'ist', ['hat', 'sind'], 0, 'Уснула — ist eingeschlafen.'),
+    r(17, 5, 'Ich bin nach Hause ___', 'gegangen', ['gehen', 'geht'], 1, 'После bin — gegangen.'),
+    r(17, 6, 'Wann ___ du aufgestanden?', 'bist', ['hast', 'ist'], 2, 'С du — bist: встал — bist aufgestanden.'),
+  ],
+  18: [
+    r(18, 1, 'Du ___ müde', 'warst', ['war', 'waren'], 0, 'С du — warst.'),
+    r(18, 2, 'Ihr ___ pünktlich', 'wart', ['warst', 'waren'], 1, 'С ihr — wart.'),
+    r(18, 3, 'Du ___ Hunger', 'hattest', ['hatte', 'hatten'], 2, 'С du — hattest.'),
+    r(18, 4, 'Tom ___ Durst', 'hatte', ['hattest', 'hatten'], 0, 'Том один — hatte.'),
+    r(18, 5, 'Ihr ___ zwei Tickets', 'hattet', ['hattest', 'hatten'], 1, 'С ihr — hattet.'),
+    r(18, 6, 'Die Wohnung hatte ___ Balkon', 'keinen', ['keine', 'kein'], 2, 'Балкон — der Balkon, поэтому keinen.'),
+  ],
+  19: [
+    r(19, 1, 'Du ___ dich', 'wäschst', ['wasche', 'wäscht'], 0, 'С du — wäschst.'),
+    r(19, 2, 'Ihr ___ euch', 'wascht', ['wäscht', 'waschen'], 1, 'С ihr — wascht.'),
+    r(19, 3, 'Ich ziehe ___ an', 'mich', ['mir', 'sich'], 2, 'С ich — mich.'),
+    r(19, 4, 'Beeilst du ___?', 'dich', ['dir', 'mich'], 0, 'С du — dich.'),
+    r(19, 5, 'Tom ___ sich aufs Sofa', 'legt', ['lege', 'legen'], 1, 'С Tom — legt.'),
+    r(19, 6, 'Du putzt ___ die Zähne', 'dir', ['dich', 'sich'], 2, 'Чистишь зубы себе — dir.'),
+  ],
+  20: [
+    r(20, 1, 'Das Taxi ist teurer ___ die Bahn', 'als', ['so', 'am'], 0, 'После teurer — als.'),
+    r(20, 2, 'Eure Küche ist so groß ___ unsere', 'wie', ['als', 'am'], 1, 'После so groß — wie.'),
+    r(20, 3, 'Heute geht es ___ besser', 'mir', ['mich', 'ich'], 2, 'Мне — mir.'),
+    r(20, 4, 'Mein Koffer ist leichter als ___', 'deiner', ['dein', 'dich'], 0, 'Твой чемодан — deiner.'),
+    r(20, 5, 'Wir ___ lieber zu Hause', 'kochen', ['kocht', 'koche'], 1, 'С wir — kochen.'),
+    r(20, 6, 'Ich bin genauso müde ___ du', 'wie', ['als', 'so'], 2, 'После genauso — wie.'),
   ],
 };

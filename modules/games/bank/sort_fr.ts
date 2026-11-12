@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — французский классический курс, уроки 1–16 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — французский классический курс, уроки 1–20 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только пройденные слова. Пропуск в карте пишется `___` (уроки 1–4, 6, 7): корзины
@@ -172,5 +172,45 @@ export const SORT_BANK_FR: Readonly<Record<number, SortDeck>> = {
     ['Restez ici !', 'right', 'Restez — просьба на «вы»'],
     ['Écoute bien !', 'left', 'Écoute — просьба на «ты»'],
     ['Écoutez bien !', 'right', 'Écoutez — просьба на «вы»'],
+  ]),
+  17: d(17, { title: 'me', example: 'je me lève' }, { title: 'te', example: 'tu te lèves' }, [
+    ['Je ___ lève', 'left', 'С je — me'],
+    ['Tu ___ lèves', 'right', 'С tu — te'],
+    ['Je ___ prépare', 'left', 'С je — me'],
+    ['Tu ___ prépares', 'right', 'С tu — te'],
+    ['Je ___ douche le matin', 'left', 'С je — me'],
+    ['Tu ___ réveilles à sept heures', 'right', 'С tu — te'],
+    ['Je ___ brosse les dents', 'left', 'С je — me'],
+    ['Tu ___ regardes dans le miroir', 'right', 'С tu — te'],
+  ]),
+  18: d(18, { title: 'a', example: 'il a, elle a' }, { title: 'ont', example: 'ils ont, elles ont' }, [
+    ['Elle ___ fermé la fenêtre', 'left', 'С elle — a'],
+    ['Ils ___ fermé la salle', 'right', 'С ils — ont'],
+    ['Paul ___ acheté du café', 'left', 'Поль один — a'],
+    ['Elles ___ partagé un taxi', 'right', 'С elles — ont'],
+    ['Léa ___ lu le message', 'left', 'Леа одна — a'],
+    ['Ils ___ bu le jus de pomme', 'right', 'С ils — ont'],
+    ['Il ___ mis la table', 'left', 'С il — a'],
+    ['Ils ___ annulé la livraison', 'right', 'С ils — ont'],
+  ]),
+  19: d(19, { title: 'arrivé', example: 'Paul est arrivé' }, { title: 'arrivée', example: 'Léa est arrivée' }, [
+    ['Paul est ___', 'left', 'Поль — arrivé'],
+    ['Léa est ___', 'right', 'Леа — arrivée'],
+    ['Son père est ___ en avance', 'left', 'Отец — arrivé'],
+    ['Ma sœur est ___', 'right', 'Сестра — arrivée'],
+    ['Mon frère est ___', 'left', 'Брат — arrivé'],
+    ['Ma mère est ___', 'right', 'Мама — arrivée'],
+    ['Le facteur est ___', 'left', 'Почтальон — arrivé'],
+    ['La voisine est ___', 'right', 'Соседка — arrivée'],
+  ]),
+  20: d(20, { title: 'était', example: 'le jardin était' }, { title: 'étaient', example: 'les fenêtres étaient' }, [
+    ['Le jardin ___ grand', 'left', 'Сад один — était'],
+    ['Les fenêtres ___ ouvertes', 'right', 'Окон несколько — étaient'],
+    ['La rue ___ déserte', 'left', 'Улица одна — était'],
+    ['Les enfants ___ dehors', 'right', 'Детей несколько — étaient'],
+    ['La lumière ___ faible', 'left', 'Свет один — était'],
+    ['Les rues ___ étroites', 'right', 'Улиц несколько — étaient'],
+    ['La soupe ___ froide', 'left', 'Суп один — était'],
+    ['Les verres ___ vides', 'right', 'Стаканов несколько — étaient'],
   ]),
 };

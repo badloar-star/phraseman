@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — французский классический курс, уроки 1–16 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — французский классический курс, уроки 1–20 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или только из пройденных слов); каждый неверный
  * вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах); варианты — только
@@ -141,5 +141,37 @@ export const EXACT_BANK_FR: Readonly<Record<number, readonly QuizRound[]>> = {
     r(16, 4, 'Montrez ___ billet, s’il vous plaît', 'votre', ['vos', 'ta'], 0, 'Билет один — votre billet.'),
     r(16, 5, 'Appuyez sur le bouton ___', 'vert', ['verte', 'vertes'], 1, 'Кнопка — le bouton, поэтому vert.'),
     r(16, 6, 'N’oublie pas ___ parapluie !', 'ton', ['ta', 'tes'], 2, 'Зонт — le parapluie, поэтому ton.'),
+  ],
+  17: [
+    r(17, 1, 'Je me ___', 'lève', ['lèves', 'lèvent'], 0, 'С je — lève.'),
+    r(17, 2, 'Nous nous ___', 'levons', ['levez', 'lève'], 1, 'С nous — levons.'),
+    r(17, 3, 'Vous vous ___ souvent la nuit ?', 'réveillez', ['réveillons', 'réveille'], 2, 'С vous — réveillez.'),
+    r(17, 4, 'Ils se ___', 'lèvent', ['lève', 'levez'], 0, 'С ils — lèvent.'),
+    r(17, 5, 'Nous nous ___ tôt', 'couchons', ['couche', 'levez'], 1, 'С nous — couchons.'),
+    r(17, 6, 'Tu te ___ le soir ?', 'douches', ['douche', 'levez'], 2, 'С tu — douches.'),
+  ],
+  18: [
+    r(18, 1, 'Tu ___ réservé une chambre', 'as', ['a', 'avez'], 0, 'С tu — as.'),
+    r(18, 2, 'Nous ___ commandé le dessert', 'avons', ['avez', 'ont'], 1, 'С nous — avons.'),
+    r(18, 3, 'Vous ___ gardé le reçu', 'avez', ['avons', 'as'], 2, 'С vous — avez.'),
+    r(18, 4, 'J’ai ___ le train', 'pris', ['prendre', 'prends'], 0, 'После ai — pris.'),
+    r(18, 5, 'Léa a ___ le message', 'lu', ['lire', 'prendre'], 1, 'После a — lu.'),
+    r(18, 6, 'Elle a ___ une copie', 'fait', ['faisons', 'prendre'], 2, 'После a — fait.'),
+  ],
+  19: [
+    r(19, 1, 'Paul est ___', 'parti', ['partie', 'partis'], 0, 'Поль один — parti.'),
+    r(19, 2, 'Elles sont ___', 'parties', ['partie', 'partis'], 1, 'Их несколько, все женщины — parties.'),
+    r(19, 3, 'Mes parents sont ___ au marché', 'allés', ['allé', 'allée'], 2, 'Родителей несколько — allés.'),
+    r(19, 4, 'Léa ___ entrée dans la salle', 'est', ['a', 'sont'], 0, 'Вошла — est entrée.'),
+    r(19, 5, 'La clé est ___ sous la table', 'tombée', ['tombé', 'tombées'], 1, 'Ключ — la clé, поэтому tombée.'),
+    r(19, 6, 'Les invités sont ___ ici', 'restés', ['restées', 'reste'], 2, 'Гостей несколько — restés.'),
+  ],
+  20: [
+    r(20, 1, 'Tu ___ ici', 'habitais', ['habitait', 'habitions'], 0, 'С tu — habitais.'),
+    r(20, 2, 'Vous ___ en ville', 'habitiez', ['habitions', 'habitaient'], 1, 'С vous — habitiez.'),
+    r(20, 3, 'Nous ___ voisins', 'étions', ['était', 'étaient'], 2, 'С nous — étions.'),
+    r(20, 4, 'Le jardin ___ grand', 'était', ['étions', 'étaient'], 0, 'Сад один — était.'),
+    r(20, 5, 'Nous ___ beaucoup de temps', 'avions', ['avait', 'avaient'], 1, 'С nous — avions.'),
+    r(20, 6, 'Elle n’avait pas ___ vélo', 'de', ['du', 'des'], 2, 'После pas — de.'),
   ],
 };

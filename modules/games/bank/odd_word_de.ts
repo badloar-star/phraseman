@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — немецкий классический курс, уроки 1–16 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — немецкий классический курс, уроки 1–20 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза только из пройденных слов); с лишним
  * словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить. Поэтому нет заданий вида
@@ -172,5 +172,45 @@ export const ODD_WORD_BANK_DE: Readonly<Record<number, readonly OddWordTask[]>> 
     t(16, 6, 'Ich habe [den] die Tür geschlossen', 'Я закрыл дверь', 'Дверь — die Tür.'),
     t(16, 7, 'Die Kinder [hat] haben gelacht', 'Дети смеялись', 'Детей несколько — haben.'),
     t(16, 8, 'Wer hat die Rechnung [bezahlen] bezahlt?', 'Кто оплатил счёт?', 'После hat — bezahlt.'),
+  ],
+  17: [
+    t(17, 1, 'Ich [ist] bin angekommen', 'Я приехал', 'С ich — bin.'),
+    t(17, 2, 'Du [ist] bist angekommen', 'Ты приехал', 'С du — bist.'),
+    t(17, 3, 'Wir [ist] sind angekommen', 'Мы приехали', 'С wir — sind.'),
+    t(17, 4, 'Ihr [sind] seid angekommen', 'Вы приехали', 'С ihr — seid.'),
+    t(17, 5, 'Tom [hat] ist spät aufgestanden', 'Том поздно встал', 'Встал — ist aufgestanden, а не hat.'),
+    t(17, 6, 'Anna ist mit [den] dem Bus gefahren', 'Анна поехала на автобусе', 'После mit автобус — mit dem Bus.'),
+    t(17, 7, 'Die Gäste [ist] sind angekommen', 'Гости приехали', 'Гостей несколько — sind.'),
+    t(17, 8, 'Ich bin heute zu Hause [bleiben] geblieben', 'Я сегодня остался дома', 'После bin — geblieben.'),
+  ],
+  18: [
+    t(18, 1, 'Ich [warst] war müde', 'Я был уставшим', 'С ich — war.'),
+    t(18, 2, 'Du [war] warst müde', 'Ты был уставшим', 'С du — warst.'),
+    t(18, 3, 'Wir [war] waren zu Hause', 'Мы были дома', 'С wir — waren.'),
+    t(18, 4, 'Ich [hattest] hatte Zeit', 'У меня было время', 'С ich — hatte.'),
+    t(18, 5, 'Wir [hatte] hatten Glück', 'Нам повезло', 'С wir — hatten.'),
+    t(18, 6, 'Die Fenster [war] waren offen', 'Окна были открыты', 'Окон несколько — waren.'),
+    t(18, 7, 'Anna hatte [einen] eine Frage', 'У Анны был вопрос', 'Вопрос — die Frage, поэтому eine Frage.'),
+    t(18, 8, 'Wir hatten [eine] einen Plan', 'У нас был план', 'План — der Plan, поэтому einen Plan.'),
+  ],
+  19: [
+    t(19, 1, 'Ich [wäschst] wasche mich', 'Я умываюсь', 'С ich — wasche.'),
+    t(19, 2, 'Anna [wäschst] wäscht sich', 'Анна умывается', 'С Anna — wäscht.'),
+    t(19, 3, 'Die Kinder [zieht] ziehen sich an', 'Дети одеваются', 'Детей несколько — ziehen.'),
+    t(19, 4, 'Wir [setzt] setzen uns ins Café', 'Мы садимся в кафе', 'С wir — setzen.'),
+    t(19, 5, 'Tom [legen] legt sich aufs Sofa', 'Том ложится на диван', 'С Tom — legt.'),
+    t(19, 6, 'Ich [freut] freue mich auf morgen', 'Я с нетерпением жду завтрашнего дня', 'С ich — freue.'),
+    t(19, 7, 'Wir [trefft] treffen uns am Bahnhof', 'Мы встречаемся на вокзале', 'С wir — treffen.'),
+    t(19, 8, 'Ich wasche [mich] mir die Hände', 'Я мою руки', 'Мою руки себе — mir die Hände.'),
+  ],
+  20: [
+    t(20, 1, 'Der Zug ist schneller als [die] der Bus', 'Поезд быстрее автобуса', 'Автобус — der Bus.'),
+    t(20, 2, 'Mein Koffer ist leichter als [dein] deiner', 'Мой чемодан легче твоего', 'Твой чемодан — deiner.'),
+    t(20, 3, 'Meine Tasche ist schwerer als [dein] deine', 'Моя сумка тяжелее твоей', 'Твоя сумка — deine.'),
+    t(20, 4, 'Anna fährt lieber mit [den] dem Zug', 'Анна предпочитает ездить поездом', 'После mit поезд — mit dem Zug.'),
+    t(20, 5, 'Wir [kocht] kochen lieber zu Hause', 'Мы предпочитаем готовить дома', 'С wir — kochen.'),
+    t(20, 6, 'Ich bin genauso müde [als] wie du', 'Я так же устал, как ты', 'Так же, как — genauso … wie.'),
+    t(20, 7, 'Der Bus ist so voll [als] wie gestern', 'Автобус так же полон, как вчера', 'Так же, как — so … wie.'),
+    t(20, 8, 'Heute geht es [mich] mir besser', 'Сегодня мне лучше', 'Мне — mir.'),
   ],
 };

@@ -69,4 +69,20 @@ export const ORDER_BANK_FR: Readonly<Record<number, readonly OrderTask[]>> = {
     o(16, 1, ['Je ferme la porte ?', 'Ferme la porte.', 'Et la fenêtre ?', 'Ouvre la fenêtre.']),
     o(16, 2, ['Je prends ma veste ?', 'Prends ta veste.', 'Et le parapluie ?', 'Prends le parapluie.']),
   ],
+  17: [
+    o(17, 1, ['Tu te lèves tôt ?', 'Je me lève à sept heures.', 'Et Léa ?', 'Elle se lève avant moi.']),
+    o(17, 2, ['Tu te douches le soir ?', 'Je me douche le matin.', 'Et Paul ?', 'Il se douche après le sport.']),
+  ],
+  18: [
+    o(18, 1, ['Tu as pris le train ?', 'J’ai pris le train.', 'Et Léa ?', 'Léa a pris le bus.']),
+    o(18, 2, ['Vous avez fermé le magasin ?', 'Nous avons fermé le magasin.', 'Et le garage ?', 'Nous avons fermé le garage.']),
+  ],
+  19: [
+    o(19, 1, ['Paul est arrivé ?', 'Paul est arrivé ce matin.', 'Et Léa ?', 'Léa est partie.']),
+    o(19, 2, ['Où est allé Paul ?', 'Paul est allé à la gare.', 'Et Léa ?', 'Léa est allée à la banque.']),
+  ],
+  20: [
+    o(20, 1, ['Vous habitiez en ville ?', 'Nous habitions à la campagne.', 'Et tes parents ?', 'Ils habitaient près du port.']),
+    o(20, 2, ['Tu travaillais le samedi ?', 'Je travaillais le samedi.', 'Et le dimanche ?', 'Le dimanche, nous mangions ensemble.']),
+  ],
 };

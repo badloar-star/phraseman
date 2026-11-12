@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — французский классический курс, уроки 1–16 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — французский классический курс, уроки 1–20 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза только из пройденных слов); с лишним
  * словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить. Особенности языка: лишнее
@@ -174,5 +174,45 @@ export const ODD_WORD_BANK_FR: Readonly<Record<number, readonly OddWordTask[]>> 
     t(16, 6, 'Posez le colis sur [le] la balance', 'Положите посылку на весы', 'Весы — la balance.'),
     t(16, 7, 'Restez derrière [le] la ligne', 'Оставайтесь за линией', 'Линия — la ligne.'),
     t(16, 8, 'Appuyez sur le bouton [verte] vert', 'Нажмите зелёную кнопку', 'Кнопка — le bouton, поэтому vert.'),
+  ],
+  17: [
+    t(17, 1, 'Je [se] me lève', 'Я встаю', 'С je — me.'),
+    t(17, 2, 'Tu [se] te lèves', 'Ты встаешь', 'С tu — te.'),
+    t(17, 3, 'Nous [se] nous levons', 'Мы встаем', 'С nous — nous levons.'),
+    t(17, 4, 'Vous [se] vous levez', 'Вы встаёте', 'С vous — vous levez.'),
+    t(17, 5, 'Ils se [lève] lèvent', 'Они встают', 'С ils — lèvent.'),
+    t(17, 6, 'Je me [réveilles] réveille tôt', 'Я просыпаюсь рано', 'С je — réveille.'),
+    t(17, 7, 'Elle se [lavent] lave les mains', 'Она моет руки', 'С elle — lave.'),
+    t(17, 8, 'Je me brosse [la] les dents', 'Я чищу зубы', 'Зубов много — les dents.'),
+  ],
+  18: [
+    t(18, 1, 'Tu [a] as fermé la porte', 'Ты закрыл дверь', 'С tu — as.'),
+    t(18, 2, 'Nous [a] avons fermé le magasin', 'Мы закрыли магазин', 'С nous — avons.'),
+    t(18, 3, 'Ils [a] ont fermé la salle', 'Они закрыли зал', 'С ils — ont.'),
+    t(18, 4, 'Vous [a] avez fermé le garage', 'Вы закрыли гараж', 'С vous — avez.'),
+    t(18, 5, 'Elle a acheté [un] une écharpe', 'Она купила шарф', 'Шарф — une écharpe.'),
+    t(18, 6, 'Paul a [acheter] acheté du café', 'Поль купил кофе', 'После a — acheté.'),
+    t(18, 7, 'Nous avons [voir] vu le film', 'Мы посмотрели фильм', 'После avons — vu.'),
+    t(18, 8, 'Elle a fait [un] une copie', 'Она сделала копию', 'Копия — la copie, поэтому une copie.'),
+  ],
+  19: [
+    t(19, 1, 'Léa est [arrivé] arrivée', 'Леа приехала', 'Леа — поэтому arrivée.'),
+    t(19, 2, 'Léa est [parti] partie', 'Леа уехала', 'Леа — поэтому partie.'),
+    t(19, 3, 'Ils sont [arrivé] arrivés', 'Они прибыли', 'Их несколько — arrivés.'),
+    t(19, 4, 'Ma sœur est [venu] venue', 'Моя сестра пришла', 'Сестра — поэтому venue.'),
+    t(19, 5, 'Paul [a] est allé à la gare', 'Поль пошел на вокзал', 'Пошёл — est allé, а не a allé.'),
+    t(19, 6, 'Mon père est [rentrée] rentré tard', 'Мой отец вернулся домой поздно', 'Отец — поэтому rentré.'),
+    t(19, 7, 'Les enfants [est] sont sortis dans la cour', 'Дети вышли во двор', 'Детей несколько — sont.'),
+    t(19, 8, 'Le livre est tombé [de] du sac', 'Книга выпала из сумки', 'Из сумки — du sac.'),
+  ],
+  20: [
+    t(20, 1, 'Nous [habitais] habitions à la campagne', 'Мы жили в сельской местности', 'С nous — habitions.'),
+    t(20, 2, 'Vous [habitais] habitiez en ville', 'Вы жили в городе', 'С vous — habitiez.'),
+    t(20, 3, 'Ils [habitait] habitaient près du port', 'Они жили недалеко от порта', 'С ils — habitaient.'),
+    t(20, 4, 'Elle [étions] était souvent seule', 'Она часто была одна', 'С elle — était.'),
+    t(20, 5, 'Nous [était] étions voisins', 'Мы были соседями', 'С nous — étions.'),
+    t(20, 6, 'Les enfants [avait] avaient froid', 'Детям было холодно', 'Детей несколько — avaient.'),
+    t(20, 7, 'Mon père prenait toujours [la] le bus', 'Мой отец всегда ездил на автобусе', 'Автобус — le bus.'),
+    t(20, 8, 'Elle n’avait pas [du] de vélo', 'У неё не было велосипеда', 'После pas — de.'),
   ],
 };

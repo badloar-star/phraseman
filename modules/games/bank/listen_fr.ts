@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — французский классический курс, уроки 1–16 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — французский классический курс, уроки 1–20 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: произносится дословная фраза урока; каждый неверный вариант отличается от неё ровно
  * одним словом, остаётся правильной французской фразой и собран из пройденных слов. Подмена различима на
@@ -141,5 +141,37 @@ export const LISTEN_BANK_FR: Readonly<Record<number, readonly QuizRound[]>> = {
     r(16, 4, 'Prends ta veste !', ['Prends ta valise !', 'Range ta veste !'], 0, 'Возьми свою куртку!'),
     r(16, 5, 'Vérifiez le montant', ['Vérifiez le reçu', 'Gardez le montant'], 1, 'Проверьте сумму'),
     r(16, 6, 'Allons au marché !', ['Allons au musée !', 'Allons au stade !'], 2, 'Пойдём на рынок!'),
+  ],
+  17: [
+    r(17, 1, 'Je me lève', ['Je me lave', 'Je me prépare'], 0, 'Я встаю'),
+    r(17, 2, 'Tu te prépares', ['Tu te lèves', 'Tu te douches'], 1, 'Ты готовишься'),
+    r(17, 3, 'Je me réveille tôt', ['Je me lève tôt', 'Je me couche tôt'], 2, 'Я просыпаюсь рано'),
+    r(17, 4, 'Nous nous couchons tôt', ['Nous nous levons tôt', 'Nous nous couchons tard'], 0, 'Мы ложимся спать рано'),
+    r(17, 5, 'Elle se lave les mains', ['Il se lave les mains', 'Elle se lave les cheveux'], 1, 'Она моет руки'),
+    r(17, 6, 'Je me brosse les dents', ['Je me brosse les cheveux', 'Je me lave les dents'], 2, 'Я чищу зубы'),
+  ],
+  18: [
+    r(18, 1, 'J’ai fermé la porte', ['J’ai fermé la fenêtre', 'J’ai fermé la salle'], 0, 'Я закрыл дверь'),
+    r(18, 2, 'Paul a acheté du café', ['Paul a acheté du pain', 'Paul a commandé du café'], 1, 'Поль купил кофе'),
+    r(18, 3, 'J’ai réservé une table', ['J’ai réservé une chambre', 'J’ai choisi une table'], 2, 'Я забронировал столик'),
+    r(18, 4, 'J’ai pris le train', ['J’ai pris le bus', 'J’ai pris le taxi'], 0, 'Я поехал на поезде'),
+    r(18, 5, 'Nous avons vu le film', ['Nous avons vu le marché', 'Nous avons fini le film'], 1, 'Мы посмотрели фильм'),
+    r(18, 6, 'J’ai reçu le colis', ['J’ai reçu le message', 'J’ai envoyé le colis'], 2, 'Я получил посылку'),
+  ],
+  19: [
+    r(19, 1, 'Paul est arrivé', ['Paul est parti', 'Paul est venu'], 0, 'Поль приехал'),
+    r(19, 2, 'Léa est partie', ['Léa est arrivée', 'Léa est venue'], 1, 'Леа уехала'),
+    r(19, 3, 'Mon frère est venu', ['Mon frère est parti', 'Mon père est venu'], 2, 'Мой брат пришел'),
+    r(19, 4, 'Paul est allé à la gare', ['Paul est allé à la banque', 'Paul est allé à la mairie'], 0, 'Поль пошел на вокзал'),
+    r(19, 5, 'Ma mère est rentrée tôt', ['Ma mère est rentrée tard', 'Ma sœur est rentrée tôt'], 1, 'Моя мама вернулась домой рано'),
+    r(19, 6, 'Le livre est tombé du sac', ['Le livre est tombé du mur', 'Le livre est tombé du lit'], 2, 'Книга выпала из сумки'),
+  ],
+  20: [
+    r(20, 1, 'J’habitais ici', ['J’habitais là', 'J’habitais loin'], 0, 'Я раньше здесь жил'),
+    r(20, 2, 'Elle habitait à Lyon', ['Elle habitait à Lille', 'Elle travaillait à Lyon'], 1, 'Она жила в Лионе'),
+    r(20, 3, 'Le jardin était grand', ['Le jardin était petit', 'Le garage était grand'], 2, 'Сад был большим'),
+    r(20, 4, 'Il faisait chaud', ['Il faisait froid', 'Il faisait nuit'], 0, 'Было жарко'),
+    r(20, 5, 'Les enfants avaient froid', ['Les enfants avaient faim', 'Les enfants avaient peur'], 1, 'Детям было холодно'),
+    r(20, 6, 'Nous avions beaucoup de temps', ['Nous avions beaucoup de travail', 'Nous avions peu de temps'], 2, 'У нас было много времени'),
   ],
 };

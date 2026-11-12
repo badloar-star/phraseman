@@ -19,7 +19,7 @@ const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8];
  * До какого урока у курса есть свои наборы (12.11): английский — до 16, испанский, итальянский, немецкий и
  * французский — до 12, остальные — до 8. Новый урок в банке — новое число здесь, тогда сторож проверяет и его.
  */
-const LAST_LESSON: Partial<Record<ClassicCourseLang, number>> = { en: 16, es: 20, it: 20, de: 16, fr: 16 }; // зачем (12.11, координатор): банк de/fr продлён до урока 16
+const LAST_LESSON: Partial<Record<ClassicCourseLang, number>> = { en: 24, es: 24, it: 24, de: 20, fr: 20 }; // зачем (12.11, координатор): банк de/fr продлён до урока 20, английский — до 24
 const lessonsOf = (lang: ClassicCourseLang): number[] => Array.from({ length: LAST_LESSON[lang] ?? LESSONS.length }, (_, i) => i + 1);
 const MARKS = /[()]|Для сборки|При сборке|Для складання/u;
 

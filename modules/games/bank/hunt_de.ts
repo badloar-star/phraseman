@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — немецкий классический курс, уроки 1–16 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — немецкий классический курс, уроки 1–20 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: три реплики, после исправления каждая — фраза урока или фраза из пройденных слов;
  * неверное слово ровно одно и оно однозначно неверно; слово-обманка стоит в ДРУГОЙ реплике и само верно.
@@ -75,5 +75,21 @@ export const HUNT_BANK_DE: Readonly<Record<number, readonly HuntTask[]>> = {
   16: [
     h(16, 1, ['Was hast du gekocht?', 'Ich habe Suppe {kocht>gekocht}.', 'Anna hat *Kaffee gemacht.'], 'После habe — gekocht.'),
     h(16, 2, ['Habt ihr den Zug verpasst?', 'Wir {hat>haben} den Zug verpasst.', 'Tom hat *den Wecker nicht gehört.'], 'С wir — haben.'),
+  ],
+  17: [
+    h(17, 1, ['Wann bist du aufgestanden?', 'Ich bin früh {aufstehen>aufgestanden}.', 'Tom ist *spät aufgestanden.'], 'После bin — aufgestanden.'),
+    h(17, 2, ['Wo ist Tom ausgestiegen?', 'Tom {hat>ist} am Markt ausgestiegen.', 'Anna ist *vorne eingestiegen.'], 'Вышел — ist ausgestiegen.'),
+  ],
+  18: [
+    h(18, 1, ['Wie war die Fahrt?', 'Der Bus {hattest>hatte} Verspätung.', 'Wir *hatten Glück.'], 'Автобус один — hatte.'),
+    h(18, 2, ['Wo wart ihr gestern?', 'Wir {war>waren} zu Hause.', 'Anna *war krank.'], 'С wir — waren.'),
+  ],
+  19: [
+    h(19, 1, ['Wo trefft ihr euch?', 'Wir {trefft>treffen} uns am Bahnhof.', 'Anna *setzt sich neben Tom.'], 'С wir — treffen.'),
+    h(19, 2, ['Beeilst du dich?', 'Ich {beeilst>beeile} mich.', 'Wir *müssen uns beeilen.'], 'С ich — beeile.'),
+  ],
+  20: [
+    h(20, 1, ['Ist der Zug schneller?', 'Der Zug ist schneller {wie>als} der Bus.', 'Das Taxi ist *teurer als die Bahn.'], 'После schneller — als.'),
+    h(20, 2, ['Wie geht es dir?', 'Heute geht es {mich>mir} besser.', 'Ich bin *genauso müde wie du.'], 'Мне — mir.'),
   ],
 };

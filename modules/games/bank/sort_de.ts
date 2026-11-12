@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — немецкий классический курс, уроки 1–16 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — немецкий классический курс, уроки 1–20 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только пройденные слова. Пропуск в карте пишется `___` (все уроки, кроме 6):
@@ -172,5 +172,45 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Er ___ die Jacke angezogen', 'right', 'С er — hat'],
     ['Ich ___ bar bezahlt', 'left', 'С ich — habe'],
     ['Anna ___ das Radio repariert', 'right', 'Анна одна — hat'],
+  ]),
+  17: d(17, { title: 'ist', example: 'ist angekommen, ist gefahren' }, { title: 'hat', example: 'hat gemacht, hat gekauft' }, [
+    ['Anna ___ angekommen', 'left', 'Приехала — ist angekommen'],
+    ['Anna ___ Kaffee gemacht', 'right', 'Приготовила — hat gemacht'],
+    ['Tom ___ spät aufgestanden', 'left', 'Встал — ist aufgestanden'],
+    ['Tom ___ Brot gekauft', 'right', 'Купил — hat gekauft'],
+    ['Der Zug ___ schon abgefahren', 'left', 'Ушёл — ist abgefahren'],
+    ['Tom ___ den Rucksack gefunden', 'right', 'Нашёл — hat gefunden'],
+    ['Anna ___ mit dem Bus gefahren', 'left', 'Поехала — ist gefahren'],
+    ['Anna ___ das Radio repariert', 'right', 'Починила — hat repariert'],
+  ]),
+  18: d(18, { title: 'war', example: 'ich war, Anna war' }, { title: 'waren', example: 'wir waren, die Gäste waren' }, [
+    ['Ich ___ müde', 'left', 'С ich — war'],
+    ['Wir ___ zu Hause', 'right', 'С wir — waren'],
+    ['Anna ___ krank', 'left', 'Анна одна — war'],
+    ['Die Gäste ___ zufrieden', 'right', 'Гостей несколько — waren'],
+    ['Das Zimmer ___ sauber', 'left', 'Комната одна — war'],
+    ['Die Fenster ___ offen', 'right', 'Окон несколько — waren'],
+    ['Der Parkplatz ___ frei', 'left', 'Место одно — war'],
+    ['Die Kinder ___ leise', 'right', 'Детей несколько — waren'],
+  ]),
+  19: d(19, { title: 'sich', example: 'Anna freut sich' }, { title: 'uns', example: 'wir freuen uns' }, [
+    ['Anna verspätet ___', 'left', 'Анна — sich'],
+    ['Wir müssen ___ beeilen', 'right', 'С wir — uns'],
+    ['Tom freut ___ auf die Fahrt', 'left', 'Том — sich'],
+    ['Wir freuen ___ über das Geschenk', 'right', 'С wir — uns'],
+    ['Die Gäste fühlen ___ wohl', 'left', 'Гости — sich'],
+    ['Wir ruhen ___ aus', 'right', 'С wir — uns'],
+    ['Tom und Anna verabschieden ___', 'left', 'Том и Анна — sich'],
+    ['Wir entschuldigen ___ für die Verspätung', 'right', 'С wir — uns'],
+  ]),
+  20: d(20, { title: 'als', example: 'schneller als, älter als' }, { title: 'wie', example: 'so voll wie, genauso müde wie' }, [
+    ['Der Zug ist schneller ___ der Bus', 'left', 'Быстрее чем — schneller als'],
+    ['Der Bus ist so voll ___ gestern', 'right', 'Так же, как — so … wie'],
+    ['Anna ist älter ___ Tom', 'left', 'Старше чем — älter als'],
+    ['Eure Küche ist so groß ___ unsere', 'right', 'Такая же, как — so … wie'],
+    ['Tom ist jünger ___ Anna', 'left', 'Младше чем — jünger als'],
+    ['Ich bin genauso müde ___ du', 'right', 'Так же, как — genauso … wie'],
+    ['Heute ist es kälter ___ gestern', 'left', 'Холоднее чем — kälter als'],
+    ['Die Suppe ist nicht so heiß ___ der Tee', 'right', 'Не такой, как — nicht so … wie'],
   ]),
 };

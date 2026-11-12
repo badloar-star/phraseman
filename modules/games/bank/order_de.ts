@@ -65,4 +65,20 @@ export const ORDER_BANK_DE: Readonly<Record<number, readonly OrderTask[]>> = {
     o(16, 1, ['Was hast du bestellt?', 'Ich habe Tee bestellt.', 'Hast du auch Kaffee bestellt?', 'Kaffee habe ich nicht bestellt.']),
     o(16, 2, ['Wer hat die Rechnung bezahlt?', 'Tom hat die Rechnung bezahlt.', 'Hat Tom auch das Frühstück bezahlt?', 'Das Frühstück hat Anna bezahlt.']),
   ],
+  17: [
+    o(17, 1, ['Wann bist du aufgestanden?', 'Ich bin früh aufgestanden.', 'Und wann ist Tom aufgestanden?', 'Tom ist spät aufgestanden.']),
+    o(17, 2, ['Wohin seid ihr gefahren?', 'Wir sind nach Berlin gefahren.', 'Und wohin ist Anna gefahren?', 'Anna ist nach Hause gefahren.']),
+  ],
+  18: [
+    o(18, 1, ['Warst du gestern im Büro?', 'Ich war gestern im Büro.', 'Und war Anna auch im Büro?', 'Anna war zu Hause.']),
+    o(18, 2, ['Hattest du deinen Ausweis?', 'Ich hatte meinen Ausweis.', 'Hatte Tom auch einen Ausweis?', 'Tom hatte keinen Ausweis.']),
+  ],
+  19: [
+    o(19, 1, ['Wann trefft ihr euch?', 'Wir treffen uns morgen.', 'Und wo trefft ihr euch?', 'Wir treffen uns am Bahnhof.']),
+    o(19, 2, ['Freut ihr euch auf die Fahrt?', 'Wir freuen uns auf die Fahrt.', 'Freut sich Tom auch auf die Fahrt?', 'Tom freut sich auf den Kurs.']),
+  ],
+  20: [
+    o(20, 1, ['Ist das Bad größer?', 'Das Bad ist kleiner.', 'Und die Küche?', 'Die Küche ist heller.']),
+    o(20, 2, ['Fährt Anna lieber mit dem Bus?', 'Anna fährt lieber mit dem Zug.', 'Und Tom?', 'Tom fährt lieber mit dem Fahrrad.']),
+  ],
 };

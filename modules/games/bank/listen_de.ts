@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — немецкий классический курс, уроки 1–16 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — немецкий классический курс, уроки 1–20 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: произносится дословная фраза урока; каждый неверный вариант отличается от неё ровно
  * одним словом, остаётся правильной немецкой фразой (род и число согласованы) и собран из пройденных слов;
@@ -140,5 +140,37 @@ export const LISTEN_BANK_DE: Readonly<Record<number, readonly QuizRound[]>> = {
     r(16, 4, 'Ich habe die Tür geschlossen', ['Ich habe die Tasche geschlossen', 'Ich habe die Tür gesehen'], 0, 'Я закрыл дверь'),
     r(16, 5, 'Hast du schon gegessen?', ['Hast du schon gekocht?', 'Hast du schon bezahlt?'], 1, 'Ты уже поел?'),
     r(16, 6, 'Wer hat die Rechnung bezahlt?', ['Wer hat die Rechnung bekommen?', 'Wer hat die Rechnung bestellt?'], 2, 'Кто оплатил счёт?'),
+  ],
+  17: [
+    r(17, 1, 'Ich bin angekommen', ['Ich bin gekommen', 'Ich bin gegangen'], 0, 'Я приехал'),
+    r(17, 2, 'Tom ist spät aufgestanden', ['Tom ist früh aufgestanden', 'Anna ist spät aufgestanden'], 1, 'Том поздно встал'),
+    r(17, 3, 'Anna ist mit dem Bus gefahren', ['Anna ist mit dem Zug gefahren', 'Tom ist mit dem Bus gefahren'], 2, 'Анна поехала на автобусе'),
+    r(17, 4, 'Der Zug ist schon abgefahren', ['Der Bus ist schon abgefahren', 'Der Zug ist schon angekommen'], 0, 'Поезд уже ушёл'),
+    r(17, 5, 'Bist du zu Fuß gekommen?', ['Bist du zu Fuß gegangen?', 'Bist du zu Fuß gelaufen?'], 1, 'Ты пришёл пешком?'),
+    r(17, 6, 'Ich bin heute zu Hause geblieben', ['Ich bin gestern zu Hause geblieben', 'Ich bin lange zu Hause geblieben'], 2, 'Я сегодня остался дома'),
+  ],
+  18: [
+    r(18, 1, 'Ich war müde', ['Ich war krank', 'Ich war draußen'], 0, 'Я был уставшим'),
+    r(18, 2, 'Anna war krank', ['Anna war müde', 'Tom war krank'], 1, 'Анна была больна'),
+    r(18, 3, 'Ich hatte Zeit', ['Ich hatte Hunger', 'Ich hatte Durst'], 2, 'У меня было время'),
+    r(18, 4, 'Der Parkplatz war frei', ['Der Parkplatz war besetzt', 'Der Platz war frei'], 0, 'Парковочное место было свободно'),
+    r(18, 5, 'War die Apotheke offen?', ['War die Kasse offen?', 'War die Apotheke zu?'], 1, 'Аптека была открыта?'),
+    r(18, 6, 'Der Bus hatte Verspätung', ['Der Zug hatte Verspätung', 'Der Bus hatte Glück'], 2, 'Автобус опаздывал'),
+  ],
+  19: [
+    r(19, 1, 'Ich wasche mich', ['Ich wasche dich', 'Ich wasche uns'], 0, 'Я умываюсь'),
+    r(19, 2, 'Wir treffen uns am Bahnhof', ['Wir treffen uns am Markt', 'Wir treffen uns am Eingang'], 1, 'Мы встречаемся на вокзале'),
+    r(19, 3, 'Ich beeile mich', ['Ich melde mich', 'Ich freue mich'], 2, 'Я тороплюсь'),
+    r(19, 4, 'Anna verspätet sich', ['Anna meldet sich', 'Anna freut sich'], 0, 'Анна опаздывает'),
+    r(19, 5, 'Ich wasche mir die Hände', ['Ich wasche mir die Haare', 'Ich wasche dir die Hände'], 1, 'Я мою руки'),
+    r(19, 6, 'Wir haben uns gestern getroffen', ['Wir haben uns heute getroffen', 'Wir haben uns gestern verabredet'], 2, 'Мы вчера встречались'),
+  ],
+  20: [
+    r(20, 1, 'Der Zug ist schneller als der Bus', ['Der Zug ist langsamer als der Bus', 'Der Zug ist billiger als der Bus'], 0, 'Поезд быстрее автобуса'),
+    r(20, 2, 'Das Bad ist kleiner', ['Das Bad ist größer', 'Das Zimmer ist kleiner'], 1, 'Ванная меньше'),
+    r(20, 3, 'Die Küche ist heller', ['Die Küche ist kleiner', 'Die Küche ist ruhiger'], 2, 'Кухня светлее'),
+    r(20, 4, 'Ich trinke lieber Tee', ['Ich trinke lieber Kaffee', 'Ich trinke lieber Wasser'], 0, 'Я предпочитаю пить чай'),
+    r(20, 5, 'Anna ist älter als Tom', ['Anna ist jünger als Tom', 'Anna ist größer als Tom'], 1, 'Анна старше Тома'),
+    r(20, 6, 'Heute geht es mir besser', ['Heute geht es dir besser', 'Heute geht es mir schlecht'], 2, 'Сегодня мне лучше'),
   ],
 };

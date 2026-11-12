@@ -55,6 +55,9 @@ export const DIALOGS_SCENE_COPY = {
   allDialogs: ['Все диалоги', 'Усі діалоги', 'All dialogues', 'Todos los diálogos', 'Todos os diálogos', 'Tất cả hội thoại', 'Semua dialog', 'Tüm diyaloglar', 'Wszystkie dialogi'],
   showMore: ['Показать ещё', 'Показати ще', 'Show more', 'Mostrar más', 'Mostrar mais', 'Xem thêm', 'Tampilkan lebih banyak', 'Daha fazla göster', 'Pokaż więcej'],
   noOpenTitle: ['Пока всё открытое пройдено', 'Поки все відкрите пройдено', 'You’ve finished everything unlocked', 'Ya completaste todo lo desbloqueado', 'Tudo o que está liberado foi concluído', 'Đã xong mọi hội thoại đang mở', 'Semua yang terbuka sudah selesai', 'Açık olan her şey tamamlandı', 'Wszystko odblokowane już ukończone'],
+  // зачем (обход 12.11): ничего ещё не пройдено и ничего не открыто — «всё пройдено» было бы неправдой
+  noneOpenTitle: ['Диалоги откроются с новым рангом', 'Діалоги відкриються з новим рангом', 'Dialogues unlock with a new rank', 'Los diálogos se abren con un nuevo rango', 'Os diálogos abrem com um novo rank', 'Hội thoại sẽ mở khi bạn lên hạng mới', 'Dialog terbuka dengan peringkat baru', 'Diyaloglar yeni rütbeyle açılır', 'Dialogi odblokują się z nową rangą'],
+  noneOpenSub: ['Проходи уроки и копи монеты — с рангом откроется первый диалог.', 'Проходь уроки й збирай монети — з рангом відкриється перший діалог.', 'Do lessons and collect coins — your first dialogue opens as you rank up.', 'Haz lecciones y junta monedas: al subir de rango se abre tu primer diálogo.', 'Faça lições e junte moedas: ao subir de rank, abre o seu primeiro diálogo.', 'Học bài và gom xu — lên hạng là mở hội thoại đầu tiên.', 'Kerjakan pelajaran dan kumpulkan koin — naik peringkat, dialog pertama terbuka.', 'Ders yap, para biriktir — rütben yükselince ilk diyalog açılır.', 'Rób lekcje i zbieraj monety — z nową rangą otworzy się pierwszy dialog.'],
   noOpenSub: ['Следующие диалоги откроются с новым рангом.', 'Наступні діалоги відкриються з новим рангом.', 'The next dialogues open with a new rank.', 'Los siguientes diálogos se abren con un nuevo rango.', 'Os próximos diálogos abrem com um novo rank.', 'Hội thoại tiếp theo sẽ mở khi bạn lên hạng mới.', 'Dialog berikutnya terbuka dengan peringkat baru.', 'Sonraki diyaloglar yeni rütbeyle açılır.', 'Kolejne dialogi odblokują się z nową rangą.'],
   voiceA11y: ['Сказать голосом', 'Сказати голосом', 'Speak', 'Hablar', 'Falar', 'Nói bằng giọng', 'Bicara', 'Sesle söyle', 'Powiedz głosem'],
 } as const satisfies Record<string, Nine>;
@@ -230,6 +233,10 @@ export function buildDialogsSceneCopy(input: DialogsSceneCopyInput): DialogsScen
   // зачем (координатор 22.10): следующий — первый ОТКРЫТЫЙ непройденный диалог. Если его нет (всё открытое пройдено, остальное закрыто по рангу),
   // кнопка «Начать/Продолжить» вела бы в пустоту или в закрытый диалог — рисуем честный текст без кнопки.
   if ((state === 'first' || state === 'low' || state === 'next') && dialog === null) {
+    // зачем (обход 12.11, «всё открытое пройдено» при «0 из 76»): ничего не пройдено — значит ничего и не открывалось; говорим про ранг, а не «всё пройдено»
+    if (input.doneCount === 0) {
+      return { ...done, title: dialogsSceneText(lang, 'noneOpenTitle'), sub: dialogsSceneText(lang, 'noneOpenSub'), cta: null, ctaIcon: null };
+    }
     return { ...done, title: dialogsSceneText(lang, 'noOpenTitle'), sub: dialogsSceneText(lang, 'noOpenSub'), cta: null, ctaIcon: null };
   }
   switch (state) {

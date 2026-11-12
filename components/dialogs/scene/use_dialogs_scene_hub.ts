@@ -19,6 +19,8 @@ import {
 import { projectAuthorizedDialogueV2Catalogue } from '../../../app/dialogue_v2_authorized_catalogue_projection';
 import { getDialogueV2DoneVersion, hydrateDialogueV2DoneIds, isDialogueV2DoneHydrated, peekDialogueV2DoneIds, subscribeDialogueV2Done } from '../../../app/dialogue_v2_done_store';
 import { noteDialogHubCounter } from '../../../app/dialog_theme_progress_diagnostics';
+import { isDialogueRankShiftActive } from '../../../app/dialogue_rank_shift';
+import { logDialogsUnlock } from './dialogs_unlock_log';
 import { dialogueV2UiCopy } from '../../../app/dialogue_v2_ui_copy';
 import { getDialogueV2DoneTodayVersion, hydrateDialogueV2DoneToday, peekDialogueV2DoneToday, subscribeDialogueV2DoneToday } from '../../../app/dialogue_v2_day_mark';
 import { FREE_DIALOG_VOICE_DAILY_LIMIT } from '../../../app/dialogue_v2_voice_daily_limit';
@@ -138,6 +140,11 @@ export function useDialogsSceneHub(): DialogsSceneHubData {
     // зачем (жалоба Надежды 29.10, «сперва логи»): что хаб взял для счётчика «пройдено» — размер набора id, сколько совпало с каталогом,
     // прочитан ли диск (иначе только память процесса). Расхождение «ids > 0, d = 0» = id сценария не совпадает с каталогом.
     noteDialogHubCounter(base.doneScenarioIds.size, built.doneCount, built.totalCount, isDialogueV2DoneHydrated(studyTarget));
+    // зачем (обход 12.11, «0 из 76» и «всё открытое пройдено»): почему сцена без следующего диалога — ранг, Plus, сдвиг для новых, сколько открыто
+    logDialogsUnlock({
+      studyTarget, rank: localCoinRank, plus: hasPremiumAccess, rankShiftForNew: isDialogueRankShiftActive(),
+      knownDoneIds: base.doneScenarioIds.size, items: projected.items,
+    });
     return built;
     // doneVersion — будит пересчёт, когда диалог отмечен пройденным (peekDialogueV2DoneIds читается внутри)
     // eslint-disable-next-line react-hooks/exhaustive-deps

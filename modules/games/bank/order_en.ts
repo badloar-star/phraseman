@@ -96,4 +96,21 @@ export const ORDER_BANK_EN: Readonly<Record<number, readonly OrderTask[]>> = {
     order(20, 1, ['Is the hotel near the station?', 'Yes, the hotel is near the station.', 'Is it expensive?', 'No, it is not expensive.']),
     order(20, 2, ['Is the seat by the door free?', 'Yes, the seat by the door is free.', 'Is it comfortable?', 'Yes, it is comfortable.']),
   ],
+  // зачем (координатор 12.11): уроки 21–24; та же схема: вопрос о названном предмете → ответ → вопрос с it/he/she/they → ответ
+  21: [
+    order(21, 1, ['Is the key on the shelf?', 'No, the key is not on the shelf.', 'Did someone take it?', 'Yes, someone took it.']),
+    order(21, 2, ['Is your sister at home?', 'No, nobody is at home.', 'Is she at work?', 'Yes, she is at work.']),
+  ],
+  22: [
+    order(22, 1, ['Does your brother enjoy cooking?', 'Yes, my brother enjoys cooking.', 'Is he good at it?', 'Yes, he is good at it.']),
+    order(22, 2, ['Is swimming good for you?', 'Yes, swimming is good for you.', 'Is it difficult?', 'No, it is not difficult.']),
+  ],
+  23: [
+    order(23, 1, ['Was the parcel delivered?', 'Yes, the parcel was delivered next door.', 'Was it damaged?', 'No, it was not damaged.']),
+    order(23, 2, ['Is the spare key kept downstairs?', 'Yes, the spare key is kept downstairs.', 'Is it kept in the drawer?', 'Yes, it is kept in the drawer.']),
+  ],
+  24: [
+    order(24, 1, ['Has your sister found her card?', 'Yes, my sister has found her card.', 'Has she paid?', 'Yes, she has already paid.']),
+    order(24, 2, ['Has the parcel arrived?', 'Yes, the parcel has arrived.', 'Is it damaged?', 'No, it is not damaged.']),
+  ],
 };

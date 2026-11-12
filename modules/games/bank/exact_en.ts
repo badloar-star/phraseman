@@ -186,4 +186,37 @@ export const EXACT_BANK_EN: Readonly<Record<number, readonly QuizRound[]>> = {
     round(20, 5, 'They have breakfast at ___', 'home', ['the home'], 0, 'At home — без the.'),
     round(20, 6, 'He walks to ___', 'work', ['the work'], 1, 'To work — без the.'),
   ],
+  // зачем (координатор 12.11): уроки 21–24; отброшены пары, где неверный вариант тоже даёт верную фразу («Did someone see…», «Have you never…», «He is already paid»)
+  21: [
+    round(21, 1, 'I did not see ___ downstairs', 'anyone', ['nobody'], 0, 'После did not — anyone.'),
+    round(21, 2, 'There is ___ to sit', 'nowhere', ['anywhere'], 1, 'Сесть негде — nowhere.'),
+    round(21, 3, 'Everybody ___ a ticket', 'needs', ['need'], 0, 'Про everybody — как про одного: needs.'),
+    round(21, 4, 'She did not buy ___ today', 'anything', ['nothing'], 1, 'После did not — anything.'),
+    round(21, 5, 'We have ___ to declare', 'nothing', ['anything'], 0, 'Нечего — nothing.'),
+    round(21, 6, 'Everything ___ ready now', 'is', ['are'], 1, 'Про everything — как про одно: is.'),
+  ],
+  22: [
+    round(22, 1, 'I enjoy ___ for friends', 'cooking', ['cook'], 0, 'После enjoy — cooking.'),
+    round(22, 2, 'Thank you for ___ me', 'helping', ['help'], 1, 'После for — helping.'),
+    round(22, 3, '___ saves money', 'Walking', ['Walk'], 0, 'Само занятие — walking.'),
+    round(22, 4, 'Do you mind ___ here?', 'waiting', ['wait'], 1, 'После mind — waiting.'),
+    round(22, 5, 'She is good ___ fixing bikes', 'at', ['in'], 0, 'Хорошо умеет — good at.'),
+    round(22, 6, 'I am tired ___ carrying this bag', 'of', ['for'], 1, 'Устал от — tired of.'),
+  ],
+  23: [
+    round(23, 1, 'The rooms ___ cleaned daily', 'are', ['is'], 0, 'Комнат несколько — are.'),
+    round(23, 2, 'The bill is ___ by email', 'sent', ['send'], 1, 'Присылают — is sent.'),
+    round(23, 3, 'The flight was delayed because ___ fog', 'of', ['for'], 0, 'Из-за — because of.'),
+    round(23, 4, 'The boxes must ___ labelled', 'be', ['are'], 1, 'После must — be.'),
+    round(23, 5, 'The lights ___ switched off at ten', 'were', ['was'], 0, 'Ламп несколько — were.'),
+    round(23, 6, 'The milk ___ delivered in the morning', 'is', ['are'], 1, 'Молоко — одно, is.'),
+  ],
+  24: [
+    round(24, 1, 'I have ___ the form', 'sent', ['send'], 0, 'После have — sent.'),
+    round(24, 2, 'She ___ found her card', 'has', ['have'], 1, 'Про неё — has.'),
+    round(24, 3, 'I have lived here ___ a year', 'for', ['since'], 0, 'Срок — for a year.'),
+    round(24, 4, 'I have not seen Tom ___ Friday', 'since', ['for'], 1, 'С пятницы — since Friday.'),
+    round(24, 5, 'Has he ___ yet?', 'paid', ['pay'], 0, 'После has — paid.'),
+    round(24, 6, '___ she ever lived abroad?', 'Has', ['Have'], 1, 'С she — has.'),
+  ],
 };

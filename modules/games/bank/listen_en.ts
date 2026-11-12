@@ -181,4 +181,37 @@ export const LISTEN_BANK_EN: Readonly<Record<number, readonly QuizRound[]>> = {
     round(20, 5, 'I buy fruit at the market', ['I buy bread at the market', 'I buy fruit at the shop'], 1, 'Я покупаю фрукты на рынке'),
     round(20, 6, 'The bread on the table is fresh', ['The bread on the shelf is fresh', 'The bread on the table is cold'], 2, 'Хлеб на столе свежий'),
   ],
+  // зачем (координатор 12.11): уроки 21–24; звучат только фразы урока; неверный вариант отличается одним словом
+  21: [
+    round(21, 1, 'Someone is at the door', ['Someone is at the gate', 'Nobody is at the door'], 0, 'Кто-то у двери'),
+    round(21, 2, 'Something is burning', ['Something is boiling', 'Nothing is burning'], 1, 'Что-то горит'),
+    round(21, 3, 'Nobody answered the phone', ['Nobody answered the door', 'Someone answered the phone'], 2, 'Никто не ответил на телефон'),
+    round(21, 4, 'Is anything missing?', ['Is anyone missing?', 'Is anything open?'], 0, 'Что-нибудь пропало?'),
+    round(21, 5, 'Everything is ready now', ['Everything is ready here', 'Everyone is ready now'], 1, 'Теперь всё готово'),
+    round(21, 6, 'Can anyone hear me?', ['Can anyone help me?', 'Can anyone see me?'], 2, 'Кто-нибудь меня слышит?'),
+  ],
+  22: [
+    round(22, 1, 'Walking saves money', ['Walking saves time', 'Cooking saves money'], 0, 'Ходьба экономит деньги'),
+    round(22, 2, 'Cooking takes practice', ['Cooking takes time', 'Driving takes practice'], 1, 'Готовка требует практики'),
+    round(22, 3, 'I enjoy cooking for friends', ['I enjoy cooking with friends', 'I enjoy cooking for children'], 2, 'Мне нравится готовить для друзей'),
+    round(22, 4, 'Do you mind waiting here?', ['Do you mind waiting outside?', 'Do you mind working here?'], 0, 'Вы не против подождать здесь?'),
+    round(22, 5, 'She keeps losing her keys', ['She keeps losing her bag', 'She keeps losing her phone'], 1, 'Она постоянно теряет ключи'),
+    round(22, 6, 'Wash your hands before cooking', ['Wash your hands after cooking', 'Wash your hands before lunch'], 2, 'Мойте руки перед готовкой'),
+  ],
+  23: [
+    round(23, 1, 'The rooms are cleaned daily', ['The rooms are checked daily', 'The rooms were cleaned daily'], 0, 'Комнаты убирают ежедневно'),
+    round(23, 2, 'The tickets are sold online', ['The tickets are sent online', 'The tickets are sold here'], 1, 'Билеты продаются онлайн'),
+    round(23, 3, 'Is this seat taken?', ['Is this seat free?', 'Is this room taken?'], 2, 'Это место занято?'),
+    round(23, 4, 'The flight was delayed because of fog', ['The flight was delayed because of rain', 'The train was delayed because of fog'], 0, 'Рейс задержали из-за тумана'),
+    round(23, 5, 'Is breakfast included?', ['Is lunch included?', 'Is breakfast ready?'], 1, 'Завтрак включён?'),
+    round(23, 6, 'The parcel was not damaged', ['The parcel was not delivered', 'The box was not damaged'], 2, 'Посылка не повреждена'),
+  ],
+  24: [
+    round(24, 1, 'I have lost my keys', ['I have lost my card', 'I have found my keys'], 0, 'Я потерял ключи'),
+    round(24, 2, 'Your parcel has arrived', ['Your order has arrived', 'Your taxi has arrived'], 1, 'Ваша посылка прибыла'),
+    round(24, 3, 'He has already paid', ['He has already left', 'She has already paid'], 2, 'Он уже заплатил'),
+    round(24, 4, 'Have you finished yet?', ['Have you ordered yet?', 'Have you paid yet?'], 0, 'Вы уже закончили?'),
+    round(24, 5, 'The bus has not left yet', ['The bus has not arrived yet', 'The train has not left yet'], 1, 'Автобус ещё не уехал'),
+    round(24, 6, 'She called at eight', ['She called at seven', 'She called at nine'], 2, 'Она звонила в восемь'),
+  ],
 };

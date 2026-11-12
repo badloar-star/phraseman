@@ -138,4 +138,21 @@ export const HUNT_BANK_EN: Readonly<Record<number, readonly HuntTask[]>> = {
     hunt(20, 1, ['What do you need?', 'I need [a|an] envelope.', 'She has {a} receipt.'], 'Перед envelope — an.'),
     hunt(20, 2, ['What did he buy?', 'He bought [a|an] umbrella.', 'She wants {a} sandwich.'], 'Перед umbrella — an.'),
   ],
+  // зачем (координатор 12.11): уроки 21–24; неверное слово ломает фразу при любом прочтении
+  21: [
+    hunt(21, 1, ['Is anyone waiting here?', 'No, nobody [are|is] waiting.', 'Everything {is} ready now.'], 'Про nobody — как про одного: is.'),
+    hunt(21, 2, ['Did you buy anything?', 'No, I did not buy [nothing|anything].', 'I {checked} everything twice.'], 'После did not — anything.'),
+  ],
+  22: [
+    hunt(22, 1, ['Do you enjoy cooking?', 'Yes, I enjoy [cook|cooking] for friends.', 'I {am} good at it.'], 'После enjoy — cooking.'),
+    hunt(22, 2, ['Do you mind waiting here?', 'No, I do not mind [wait|waiting].', 'Thank you for {helping} me.'], 'После mind — waiting.'),
+  ],
+  23: [
+    hunt(23, 1, ['Is breakfast included?', 'Yes, breakfast [are|is] included.', 'The rooms {are} cleaned daily.'], 'Завтрак один — is.'),
+    hunt(23, 2, ['When was the room booked?', 'It was [book|booked] yesterday.', 'The bill {is} sent by email.'], 'Забронировали — was booked.'),
+  ],
+  24: [
+    hunt(24, 1, ['Have you found your keys?', 'Yes, I have [find|found] them.', 'They {were} in my bag.'], 'После have — found.'),
+    hunt(24, 2, ['Has the bus left yet?', 'No, it [have|has] not left yet.', 'I {can} see it now.'], 'Про автобус — has.'),
+  ],
 };

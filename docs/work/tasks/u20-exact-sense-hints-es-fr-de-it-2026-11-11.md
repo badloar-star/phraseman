@@ -1,6 +1,7 @@
 # Task packet: U20 — точный смысл подсказок в курсах испанского, французского, немецкого и итальянского
 
 Governance-ID: TG-0C4B373BB715
+Governance-ID: TG-AAEB945CBBFA
 Governance-ID: TG-D17009E59149
 Governance-ID: TG-F9C0FB107DAF
 Governance-ID: TG-0226D05C3C20
@@ -59,7 +60,14 @@ In scope:
 (`docs/work/tasks/remove-explain-simpler-buttons-2026-11-11.md`). Сторож приводится к четырём местам; `app/lesson1.tsx`
 не трогается.
 
-Out of scope: цели, плитки, соблазны, допустимые ответы, id; свободный текст теории; код приложения.
+Дополнение (владелец 11.11, ответы на вопросы кнопками):
+- «Фраза 28.38 → Вопрос в цели»: `it:28:38` `Potrebbe passare dopo la lezione.` → `…lezione?` — все девять подсказок
+  вопросительные, ошибка была в самой цели. Внесено в `modules/classic-courses/it/lessons-28.json` (target; прежний
+  target уходит в alternatives — так же, как делает сборщик) и в слой `scripts/classic_audit_layer.json` (раздел target),
+  чтобы правка пережила пересборку. Плитки и допустимые пути не меняются: знаки препинания в них не входят.
+- «Свободный текст теории → Оставить»: ~70 старых формулировок в прозе объяснений не трогаются.
+
+Out of scope: плитки, соблазны, id; свободный текст теории; код приложения.
 
 ## Architecture
 

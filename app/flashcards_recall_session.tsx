@@ -631,7 +631,8 @@ export default function FlashcardsRecallSession() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [practiceRunes.hydrating, result]);
 
-  const recordVerdict = useCallback((correct: boolean, kind: RecallFeedback['kind']) => {
+  // зачем (владелец 11.11, «Мои ошибки 3.0»): `typed` — что набрал человек; без него паспорт ошибки не покажет «Твой ответ».
+  const recordVerdict = useCallback((correct: boolean, kind: RecallFeedback['kind'], typed?: string) => {
     const card = activeCard;
     if (!card || answerLockedRef.current || attemptsPhase !== 'active') return;
     answerLockedRef.current = true;
@@ -683,7 +684,9 @@ export default function FlashcardsRecallSession() {
             canonicalTarget: card.en,
             sourceMeaning: card.translation,
           },
-          facet: { kind: 'meaning', expected: card.en },
+          // зачем: ответ пишем, только когда ждали английское слово (строка «Правильно» в паспорте — английская); набранный
+          // перевод (направление to_source) встал бы рядом с английским словом на другом языке.
+          facet: { kind: 'meaning', expected: card.en, ...(direction !== 'to_source' && typed?.trim() ? { given: typed.trim() } : {}) },
         }).catch((error: unknown) => { console.warn('[FC-RECALL] captureCurrentAccountObjectiveAttempt: не удалось (продолжаем без неё)', error); });
       }
       fcHaptic('wrong');
@@ -695,7 +698,7 @@ export default function FlashcardsRecallSession() {
     });
     setRemainingQueueCount(queueRef.current.length);
     setFeedback({ kind, expected: answerOf(card) });
-  }, [activeCard, answerOf, answerRevealed, attemptSessionId, attemptsPhase, practiceRunes, registerAttemptVerdict, runeFlight, studyTarget]);
+  }, [activeCard, answerOf, answerRevealed, attemptSessionId, attemptsPhase, direction, practiceRunes, registerAttemptVerdict, runeFlight, studyTarget]);
 
   const checkAnswer = useCallback(() => {
     if (!activeCard || feedback || answerRevealed || !input.trim()) return;
@@ -705,7 +708,7 @@ export default function FlashcardsRecallSession() {
       : [answerOf(activeCard)];
     const verdict = isFullPhraseFuzzyCorrect(input, main ?? answerOf(activeCard), alternatives);
     if (verdict.ok) recordVerdict(true, verdict.typo ? 'typo' : 'correct');
-    else recordVerdict(false, 'wrong');
+    else recordVerdict(false, 'wrong', input);
   }, [activeCard, answerOf, answerRevealed, direction, feedback, input, recordVerdict]);
 
   const advance = useCallback(() => {

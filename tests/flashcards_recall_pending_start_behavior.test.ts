@@ -29,6 +29,12 @@ jest.mock('react-native', () => ({
   ActivityIndicator: 'ActivityIndicator', Pressable: 'Pressable', ScrollView: 'ScrollView', StatusBar: 'StatusBar',
   Text: 'Text', TextInput: 'TextInput', View: 'View', findNodeHandle: () => 1,
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style },
+  // зачем (12.11, по просьбе координатора): экран с c3c35eaa9 (11.11) читает размеры окна для подгонки фразы под ширину и
+  // системный шрифт; заглушка их не знала, и тест падал до своей проверки. Размеры — как в соседних моках тестов.
+  useWindowDimensions: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }),
+  // зачем: та же правка экрана (поле ввода над клавиатурой, ширина колонки) читает клавиатуру и размер окна через свои хуки
+  Dimensions: { get: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }), addEventListener: () => ({ remove: () => undefined }) },
+  Keyboard: { addListener: () => ({ remove: () => undefined }), dismiss: () => undefined },
 }));
 jest.mock('react-native-reanimated', () => ({
   __esModule: true, default: { View: 'AnimatedView' }, FadeInDown: { duration: () => undefined }, FadeInUp: { duration: () => undefined }, useReducedMotion: () => true,
@@ -36,7 +42,8 @@ jest.mock('react-native-reanimated', () => ({
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 // зачем (Карточки 2.0 12.10, «Продолжить»): запись позиции — отдельный хук (покрыт pack_continue_recorder.test.ts); в поведенческом тесте экрана он заглушка
 jest.mock('../app/flashcards/use_pack_continue_recorder', () => ({ usePackContinueRecorder: () => ({ record: () => undefined, flush: () => undefined }) }));
-jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: 'SafeAreaView' }));
+// зачем (12.11): экран вычитает нижний отступ безопасной зоны из высоты клавиатуры — нулевые отступы, как в соседних моках
+jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: 'SafeAreaView', useSafeAreaInsets: () => ({ top: 0, right: 0, bottom: 0, left: 0 }) }));
 // зачем (координатор §47, 2026-10-01): квота тренировок переехала из
 // revenue_quota_access.consumeFlashcardTrainingQuota в monthly_training_sessions;
 // без этого мока экран звал настоящую квоту, и шпион не видел ни одного вызова.

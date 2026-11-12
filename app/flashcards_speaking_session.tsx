@@ -1087,7 +1087,8 @@ export default function FlashcardsSpeakingSession() {
               canonicalTarget: failedCard.en,
               sourceMeaning: failedCard.translation,
             },
-            facet: { kind: 'pronunciation', expected: failedCard.en },
+            // зачем (владелец 11.11, «Мои ошибки 3.0»): что распознал микрофон — «Твой ответ» в паспорте ошибки (английский, как и «Правильно»)
+            facet: { kind: 'pronunciation', expected: failedCard.en, ...(retainedSpeakingTranscript(attempt) ? { given: retainedSpeakingTranscript(attempt) as string } : {}) },
           }).catch((error: unknown) => { console.warn('[FC-SPEAKING] captureCurrentAccountObjectiveAttempt: не удалось (продолжаем без неё)', error); });
         }
         fcHaptic('wrong');

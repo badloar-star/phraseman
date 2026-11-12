@@ -28,12 +28,22 @@ describe('mistake capture carries the learner answer from every objective source
     ['app/lesson1.tsx', 'given: answer'],
     ['app/lesson_words.tsx', 'given: picked'],
     ['app/lesson_irregular_verbs.tsx', 'given: word'],
-    ['app/flashcards_blitz_session.tsx', 'given: question.options[optIdx]'],
     ['app/exam.tsx', 'given: question.opts[pickedIndex]'],
+    // «говори»: распознанная речь — тот же язык, что и «Правильно»
+    ['app/flashcards_speaking_session.tsx', 'given: retainedSpeakingTranscript(attempt) as string'],
     // зачем (владелец 11.11.2026, «Проверен, вырезать»): прежний встроенный экран экзамена уровня удалён из app/level_exam.tsx; запись ошибок экзамена уровня — в отдельном модуле
     ['app/level_exam_mistake_capture.ts', 'given: mistake.given.slice(0, MISTAKE_GIVEN_MAX_CHARS)'],
   ])('%s writes facet.given', (relative, needle) => {
     expect(captureCallBody(read(relative))).toContain(needle);
+  });
+
+  // зачем (12.11): в паспорте «Твой ответ» стоит рядом с английской фразой. Ответ-перевод туда не пишем: в блице варианты —
+  // переводы, в «вспомни» — перевод при направлении to_source. Иначе рядом встало бы «дети / Grandchildren».
+  test('a translation is never written as the learner answer', () => {
+    expect(captureCallBody(read('app/flashcards_blitz_session.tsx'))).not.toContain('given');
+    const recall = read('app/flashcards_recall_session.tsx');
+    expect(captureCallBody(recall)).toContain("direction !== 'to_source' && typed?.trim() ? { given: typed.trim() } : {}");
+    expect(recall).toContain("else recordVerdict(false, 'wrong', input);");
   });
 
   // зачем: у диагностики ответ приходит из трёх обработчиков (выбор, ввод, сборка); таймаут ответа не имеет.

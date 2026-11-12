@@ -34,7 +34,7 @@ import {
 } from '../../modules/spire/step_machine';
 import { DebugLogger } from '../debug-logger';
 import { spireBumpStepAttempt } from './spire_local_store';
-import { spireCaptureMistakeOutcome } from './spire_mistake_capture';
+import { spireCaptureMistakeOutcome } from './spire_mistake_capture'; import { noteSpireTaskSkill } from './spire_skill_points';
 import { useSpireCountdown } from './use_spire_countdown';
 import { revealTokensAfterPaint } from './spire_reveal_deferred';
 import { useSpireStreakHeart } from './use_spire_streak_heart';
@@ -250,7 +250,7 @@ export function useSpireStepRunner(input: SpireStepRunnerInput) {
   const afterAnswer = useCallback((raw: SpireStepState, fb: SpireFeedback, given: string, correctOrLater: string | readonly string[] | null | Promise<readonly string[] | null>) => {
     const next = streakHeart.apply(raw, fb.ok, fb.taskIndex + 1); commit(next); gold.onAnswer(fb.taskIndex, fb.ok); // зачем (владелец 25.10, ТЗ §2): 5 верных подряд — сердце назад, под флагом
     setFeedback(fb);
-    if (fb.ok) return; // автоперехода нет: ответ висит до «Дальше» (continueAfterReveal); финал ступени — тоже по кнопке
+    if (fb.ok) noteSpireTaskSkill(pick.tasks[fb.taskIndex]); if (fb.ok) return; // D207 очки навыка; автоперехода нет: ответ висит до «Дальше» (continueAfterReveal); финал ступени — тоже по кнопке
     const task = pick.tasks[fb.taskIndex];
     // зачем (обзор R1 п.4): «не сохранилось» человеку — только при настоящем сбое записи (false); штатный пропуск
     // (пары, «найди лишнее», язык без журнала) оставляет null и ничего не показывает.

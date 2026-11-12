@@ -41,6 +41,16 @@ export const QUIET_ROUTE_PATHS: readonly string[] = [
   'ai_companion_session',
   'lingman_video_quiz',
   'lingman_video_watch',
+  // зачем (аудит 12.11, заход 3): игры Elevate — тоже занятие на время; служебное окно поверх игры с таймером сбивает партию.
+  // Экраны выбора (разминка, уровни игры) не тихие: там игрок ещё не играет.
+  'game_flow',
+  'game_hunt',
+  'game_minute',
+  'game_odd_word',
+  'game_order',
+  'game_quiz',
+  'game_race',
+  'game_sort',
 ];
 
 const QUIET_ROUTE_SET: ReadonlySet<string> = new Set(QUIET_ROUTE_PATHS);

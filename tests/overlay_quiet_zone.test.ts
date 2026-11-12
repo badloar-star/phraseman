@@ -43,6 +43,14 @@ describe('тишина в уроке: какие экраны тихие', () =>
       expect({ route, exists: fs.existsSync(file) }).toEqual({ route, exists: true });
     }
   });
+
+  it('аудит 12.11: игры Elevate — тихие (окно не встаёт поверх партии), экраны выбора — нет', () => {
+    for (const game of ['game_flow', 'game_hunt', 'game_minute', 'game_odd_word', 'game_order', 'game_quiz', 'game_race', 'game_sort']) {
+      expect({ game, quiet: isQuietRoute(`/${game}`) }).toEqual({ game, quiet: true });
+    }
+    expect(isQuietRoute('/warmup')).toBe(false);
+    expect(isQuietRoute('/game_levels')).toBe(false);
+  });
 });
 
 describe('тишина в уроке: какие окна откладываются', () => {

@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — итальянский классический курс, уроки 1–8 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — итальянский классический курс, уроки 1–12 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза из слов этого и прошлых уроков);
  * с лишним словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить.
@@ -95,5 +95,45 @@ export const ODD_WORD_BANK_IT: Readonly<Record<number, readonly OddWordTask[]>> 
     task(8, 6, 'Dove sono i [mio] miei occhiali?', 'Где мои очки?', 'Про очки говорят i miei.'),
     task(8, 7, 'Quando chiude [il] la banca?', 'Когда закрывается банк?', 'Banca — «она», поэтому la.'),
     task(8, 8, 'Chi [lavori] lavora qui?', 'Кто работает здесь?', 'После chi говорят lavora.'),
+  ],
+  9: [
+    task(9, 1, 'La mia borsa [sono] è qui', 'Моя сумка здесь', 'Сумка одна — значит è.'),
+    task(9, 2, 'Le mie chiavi [è] sono qui', 'Мои ключи здесь', 'Ключей несколько — значит sono.'),
+    task(9, 3, 'La [mio] mia chiave è lì', 'Мой ключ там', 'Chiave — «она», поэтому mia.'),
+    task(9, 4, 'I [mie] miei colleghi sono in ufficio', 'Мои коллеги в офисе', 'Colleghi — «они», поэтому miei.'),
+    task(9, 5, 'Il nostro treno [sono] è al binario', 'Наш поезд на платформе', 'Поезд один — значит è.'),
+    task(9, 6, 'La loro camera è [libero] libera', 'Их комната свободна', 'Camera — «она», поэтому libera.'),
+    task(9, 7, 'I nostri biglietti sono [pronto] pronti', 'Наши билеты готовы', 'Билетов несколько — значит pronti.'),
+    task(9, 8, 'Le [mia] mie scarpe sono bagnate', 'Мои туфли мокрые', 'Туфель несколько — значит mie.'),
+  ],
+  10: [
+    task(10, 1, 'Ci sono [una] due panchine', 'Есть две скамейки', 'Скамеек две — una не нужно.'),
+    task(10, 2, 'C’è [dei] del pane', 'Есть хлеб', 'Pane — «он», поэтому del.'),
+    task(10, 3, 'Ci sono [un] dei libri sul tavolo', 'Есть книги на столе', 'Книг несколько — un не подходит.'),
+    task(10, 4, 'Non [ci] c’è zucchero', 'Нет сахара', 'В c’è это ci уже есть.'),
+    task(10, 5, 'C’è un ascensore [a] in hotel', 'Есть лифт в отеле', '«В отеле» — in hotel, без a.'),
+    task(10, 6, 'Ci sono [c’è] tre sedie', 'Есть три стула', 'Стульев три — ci sono, а не c’è.'),
+    task(10, 7, 'C’è [una] un parco vicino alla stazione ferroviaria', 'Есть парк рядом с вокзалом', 'Parco — «он», поэтому un.'),
+    task(10, 8, 'Sulla scrivania c’è [un] uno schermo', 'На письменном столе есть экран', 'Перед schermo говорят uno.'),
+  ],
+  11: [
+    task(11, 1, 'Lei [vado] va al mercato', 'Она идёт на рынок', 'Про неё говорят va. Vado — про себя.'),
+    task(11, 2, 'Loro [va] vanno in ufficio', 'Они идут в офис', 'Их несколько — значит vanno.'),
+    task(11, 3, 'Vado [a] in farmacia', 'Я иду в аптеку', '«В аптеку» — in farmacia, без a.'),
+    task(11, 4, 'Io vado [in] a Lione', 'Я еду в Лион', 'Перед названием города говорят a.'),
+    task(11, 5, 'Noi andiamo [a] in Francia', 'Мы едем во Францию', 'Перед названием страны говорят in.'),
+    task(11, 6, 'Tu [vado] vai in piscina', 'Ты идёшь в бассейн', 'С tu говорят vai. Vado — про себя.'),
+    task(11, 7, 'Vado in [la] stazione', 'Я иду на вокзал', '«На вокзал» — in stazione, без la.'),
+    task(11, 8, 'Andiamo [al] a scuola', 'Мы идём в школу', '«В школу» — a scuola, без al.'),
+  ],
+  12: [
+    task(12, 1, 'Prendo [della] del pane', 'Я беру хлеб', 'Pane — «он», поэтому del.'),
+    task(12, 2, 'Prendo [del] della zuppa', 'Я беру суп', 'Zuppa — «она», поэтому della.'),
+    task(12, 3, 'Lei [prendo] prende della zuppa', 'Она берёт суп', 'Про неё говорят prende. Prendo — про себя.'),
+    task(12, 4, 'Compriamo [della] del pesce', 'Мы покупаем рыбу', 'Pesce — «он», поэтому del.'),
+    task(12, 5, 'Lui non [bevo] beve caffè', 'Он не пьёт кофе', 'Про него говорят beve. Bevo — про себя.'),
+    task(12, 6, 'Mangiano [del] delle fragole', 'Они едят клубнику', 'Ягод много, и fragola — «она»: delle.'),
+    task(12, 7, 'Vorrei [del] un po’ di zuppa', 'Я бы хотел немного супа', 'Un po’ di уже значит «немного» — del не нужно.'),
+    task(12, 8, 'Non ho [del] più farina', 'У меня больше нет муки', 'После non ho più — сразу продукт, без del.'),
   ],
 };

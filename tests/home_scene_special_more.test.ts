@@ -49,8 +49,11 @@ describe('[HOME-SCENE] тексты и подключение пачки 3', () 
   });
   it('кнопки: фраза — к карточке фразы, Пик — во вкладку Пика; карточку фразы увидели — отметка', () => {
     const home = read('app/(tabs)/home.tsx');
-    expect(home).toContain("if (route === 'peak') { nav.push('/(tabs)/community?section=spire' as never); return; }");
-    expect(home).toContain("if (route === 'phrase') {");
+    // зачем (12.11): с d8a0a685a кнопки сцены разбирает switch, а «Послушать» — функция openScenePhrase; поведение то же:
+    // Пик — вкладка Пика, фраза — прокрутка к карточке фразы с записью причины, если карточка ещё не размещена.
+    expect(home).toContain("case 'peak': return nav.push('/(tabs)/community?section=spire' as never);");
+    expect(home).toContain("case 'phrase': return openScenePhrase();");
+    expect(home).toMatch(/const openScenePhrase = \(\) => \{[\s\S]{0,400}if \(top <= 0\) \{ console\.warn\('\[HOME-SCENE\] special:phrase_ignored'[\s\S]{0,200}homeScrollRef\.current\?\.scrollTo\(\{ y: Math\.max\(0, top - 12\), animated: true \}\);/);
     expect(home).toContain('if (next) markHomeScenePhraseSeen();');
   });
 });

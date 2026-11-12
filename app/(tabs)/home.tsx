@@ -2772,7 +2772,10 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         };
         const openScenePhrase = () => {
           const top = dailyPhraseLayoutRef.current.top;
-          if (top > 0) homeScrollRef.current?.scrollTo({ y: Math.max(0, top - 12), animated: true });
+          // зачем (12.11): при переписке через switch (d8a0a685a) ранний выход стал немым — по правилу «каждый ранний
+          // выход пишет причину» возвращаем запись: кнопка «Послушать» нажата, а карточка фразы ещё не размещена.
+          if (top <= 0) { console.warn('[HOME-SCENE] special:phrase_ignored', JSON.stringify({ reason: 'phrase_card_not_laid_out' })); return; } // guard-ok: ранний выход называет причину
+          homeScrollRef.current?.scrollTo({ y: Math.max(0, top - 12), animated: true });
         };
         const renderHomeV2 = () => (
           <BouncyScrollView ref={homeScrollRef} scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} decelerationRate="fast" onScrollWorklet={homeScrollWorklet} androidStretch={homeTopOverscroll} onScrollBeginDrag={() => { homeDraggedAfterLangRef.current = true; noteScrollDrag('home', true); startHomeScrollWindow(); }} onContentSizeChange={(_w: number, h: number) => { noteScrollContentHeight('home', h); correctHomeScrollAfterLang('content_height'); }} onScrollEndDrag={handleHomeScrollSettled} onMomentumScrollEnd={handleHomeScrollSettled} onLayout={(event: LayoutChangeEvent) => {

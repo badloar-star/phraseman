@@ -36,6 +36,7 @@ import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { noteSkillAction } from '../modules/skills/skill_store';
+import { noteGameResult } from '../modules/games/game_records';
 import { useSkillSession } from '../modules/skills/use_skill_session';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
 import { readDevPracticeRunesFakeState } from './dev_practice_runes_seed';
@@ -3032,6 +3033,24 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [done, practiceRunes.hydrating, swipeAccessGranted]);
 
+  // зачем («Рекорды игр», решение координатора 12.11 — можно откатить утром): заход «Правда / ложь» дошёл до финала —
+  // среднее время ответа в секундах уходит в рекорд «Смахни» (меньше — лучше; хранилище само решает, рекорд ли это).
+  // Один раз на заход: после записи времена очищаются; переход в финал из меню разработчика рекордом не считается.
+  // Времена ответов текущего захода — только в памяти; пишет их answerCurrent.
+  const answerMsRef = useRef<number[]>([]);
+  useEffect(() => {
+    if (!done || !isTrueFalseSession || devJumpToFinale) return;
+    const times = answerMsRef.current;
+    answerMsRef.current = [];
+    if (times.length === 0) {
+      console.log('[GAME-RECORDS] swipe:skip', JSON.stringify({ reason: 'no_answers' })); // guard-ok: ранний выход называет причину
+      return;
+    }
+    const avgSec = times.reduce((sum, ms) => sum + ms, 0) / times.length / 1000;
+    console.log('[GAME-RECORDS] swipe:result', JSON.stringify({ answers: times.length, avgSec: Number(avgSec.toFixed(2)) })); // guard-ok: одна строка на заход
+    noteGameResult('swipe', avgSec);
+  }, [done, isTrueFalseSession, devJumpToFinale]);
+
   useEffect(() => {
     if (!swipeAccessGranted || phase !== 'play' || trainingCards.length === 0) return;
     if (done || queue.length === 0) {
@@ -3354,6 +3373,8 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       // возвращается из-под пальца и разворачивается разбором.
       const correct = saysMatch === currentPrompt.isMatch;
       if (isTrueFalseSession) {
+        // зачем («Рекорды игр», строка «Смахни · на ответ»): время от показа карточки до ответа — для среднего за заход
+        if (cardShownAtRef.current > 0) answerMsRef.current.push(Date.now() - cardShownAtRef.current);
         applyAnswer(currentPrompt, saysMatch, true);
         return;
       }

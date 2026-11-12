@@ -18,6 +18,14 @@ it('первые три игры списка — как в макете', () =>
   expect(new Set(WARMUP_POOL.map((g) => g.id)).size).toBe(WARMUP_POOL.length);
 });
 
+it('«Гонка с собой» стоит в списке разминки: свой маршрут, навык «Скорость», подписи на четырёх языках', () => {
+  const race = WARMUP_POOL.find((g) => g.id === 'race');
+  expect(race?.route).toBe('/game_race');
+  expect(race?.skill).toBe('speed');
+  expect(race?.name).toEqual({ ru: 'Гонка с собой', uk: 'Перегони з собою', es: 'Carrera contigo', en: 'Race yourself' });
+  expect(WARMUP_POOL[WARMUP_POOL.length - 1].id).toBe('race');
+});
+
 it('в дне всегда три разные игры, и одна дата всегда даёт одни и те же', () => {
   const games = warmupGamesForDay('2026-11-11');
   expect(games).toHaveLength(3);

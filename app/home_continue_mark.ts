@@ -2,7 +2,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useSyncExternalStore } from 'react';
 import { onAccountOwnerChanged } from './account_owner_change';
-import { homeContinueMarkKey, homeContinueMarkKeys, type RuntimeStudyTarget } from './target_storage_keys';
+import { HOME_CONTINUE_MARK_KINDS, homeContinueMarkKey, homeContinueMarkKeys, type HomeContinueMarkKind, type RuntimeStudyTarget } from './target_storage_keys';
 import { triLang, type Lang } from '../constants/i18n';
 
 const LOG = '[HOME-CONTINUE]';
@@ -82,18 +82,18 @@ export async function loadHomeContinueMarks(target: RuntimeStudyTarget): Promise
   if (known && hydratedTargets.has(key)) return known;
   const revision = ownerRevision;
   try {
-    const pairs = await AsyncStorage.multiGet([
-      homeContinueMarkKey('at', target),
-      placeKey(target, 'dialog'),
-      placeKey(target, 'cards'),
-    ]);
+    // зачем (сторож home_continue_marks_account_wipe, 12.11): ключи — только общим построителем, тем же, что берут общее
+    // стирание аккаунта и аварийная копия; при удалении курса V2 (d8a0a685a) сюда попал ручной список видов. Значения берём
+    // по имени вида, а не по номеру — новый вид метки не сдвинет чтение.
+    const pairs = await AsyncStorage.multiGet(homeContinueMarkKeys(target));
     if (revision !== ownerRevision) return EMPTY_MARKS;
-    const at = Number(pairs[0]?.[1]);
+    const rawOf = (kind: HomeContinueMarkKind): string | null => pairs[HOME_CONTINUE_MARK_KINDS.indexOf(kind)]?.[1] ?? null;
+    const at = Number(rawOf('at'));
     const current = memory.get(key);
     const marks: HomeContinueMarks = {
       legacyAtMs: current?.legacyAtMs ?? (Number.isFinite(at) && at > 0 ? at : null),
-      dialog: current?.dialog ?? parsePlace(pairs[1]?.[1] ?? null, 'dialog'),
-      cards: current?.cards ?? parsePlace(pairs[2]?.[1] ?? null, 'cards'),
+      dialog: current?.dialog ?? parsePlace(rawOf('dialog'), 'dialog'),
+      cards: current?.cards ?? parsePlace(rawOf('cards'), 'cards'),
     };
     hydratedTargets.add(key);
     memory.set(key, marks);

@@ -36,7 +36,7 @@ import GameSegments from '../components/games/GameSegments';
 import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
-import { GAME_EASE, GAME_MOTION } from '../constants/gameMotion';
+import { GAME_EASE, GAME_MOTION, GAME_MOTION_EXTRA } from '../constants/gameMotion';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { hapticTap } from '../hooks/use-haptics';
@@ -398,9 +398,12 @@ export default function GameSortScreen() {
               );
             })}
             {showFinish ? (
+              // зачем (сверка движения 11.11, п. 5): итог лежит на стеклянной карточке `.gl.fin` — как в макете
               <GameRise style={s.finish}>
-                <Text style={[s.big, { color: p.text }]}>{`${deck.tasks.length} ${triLang(lang, COPY.of)} ${deck.tasks.length}`}</Text>
-                <Text style={[s.sub, { color: p.textSecondary }]}>{game.misses > 0 ? `${triLang(lang, COPY.hinted)} ${game.misses}` : triLang(lang, COPY.clean)}</Text>
+                <V2Card seed={4} radius={GAME_MOTION_EXTRA.sortFinishRadius} style={s.finishCard}>
+                  <Text style={[s.big, { color: p.text }]}>{`${deck.tasks.length} ${triLang(lang, COPY.of)} ${deck.tasks.length}`}</Text>
+                  <Text style={[s.sub, { color: p.textSecondary }]}>{game.misses > 0 ? `${triLang(lang, COPY.hinted)} ${game.misses}` : triLang(lang, COPY.clean)}</Text>
+                </V2Card>
                 <SkillsSessionGrowth style={s.growth} />
               </GameRise>
             ) : null}
@@ -447,7 +450,10 @@ const s = StyleSheet.create({
   binCount: { fontSize: 26, lineHeight: 26, fontWeight: '800', fontVariant: ['tabular-nums'] },
   countEnd: { alignSelf: 'flex-end' },
   countStart: { alignSelf: 'flex-start' },
-  finish: { position: 'absolute', left: 0, right: 0, top: '20%' },
+  // elevate-mechanics.app.js:195 — `.gl.fin`: left/right 24, top 34 %, padding 24
+  // зачем: отступ 24 — только у карточки итога; «Навыки растут» под ней остаётся во всю ширину, иначе «Грамматика» рвётся по слогам
+  finish: { position: 'absolute', left: 0, right: 0, top: GAME_MOTION_EXTRA.sortFinishTop },
+  finishCard: { marginHorizontal: GAME_MOTION_EXTRA.sortFinishInset, padding: GAME_MOTION_EXTRA.sortFinishPadding },
   big: { textAlign: 'center', fontSize: 30, lineHeight: 36, fontWeight: '800' },
   sub: { textAlign: 'center', marginTop: 6, fontSize: 16, lineHeight: 22, fontWeight: '500' },
   growth: { marginTop: 22 },

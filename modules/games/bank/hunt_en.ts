@@ -86,4 +86,22 @@ export const HUNT_BANK_EN: Readonly<Record<number, readonly HuntTask[]>> = {
     hunt(8, 1, ['I work every Monday.', 'We meet [in|on] Tuesday.', 'I start {at} seven.'], 'Дни недели — с on.'),
     hunt(8, 2, ['The film starts tonight.', 'The concert starts {at} eight fifteen.', 'The last bus leaves [on|at] eleven.'], 'Время на часах — с at.'),
   ],
+  // зачем (сессия макетов 12.11): уроки 9–12; неверное слово ломает фразу при любом прочтении («I find my keys» —
+  // правильная фраза, поэтому ошибка взята «I finds»)
+  9: [
+    hunt(9, 1, ['Is there a bus stop nearby?', 'Yes, there [are|is] a stop by the gate.', 'There {are} no buses tonight.'], 'Остановка одна — значит is.'),
+    hunt(9, 2, ['Are there any blankets?', 'Yes, there {are} blankets upstairs.', 'Is there [a|any] hot water?'], 'Hot water не считают штуками — any, а не a.'),
+  ],
+  10: [
+    hunt(10, 1, ['Can I pay by card?', 'Yes, you {can} pay by card.', 'Can I [pays|pay] here?'], 'После can I — pay, без -s.'),
+    hunt(10, 2, ['Should I book in advance?', 'Yes, you should [booked|book] today.', 'We {can} wait.'], 'После should — book, без -ed.'),
+  ],
+  11: [
+    hunt(11, 1, ['Did you call the office?', 'Yes, I [calls|called] the office.', 'Did she {check} the address?'], 'Ответ о прошлом — called.'),
+    hunt(11, 2, ['Did the bus arrive on time?', 'No, it [arrive|arrived] ten minutes late.', 'We {waited} for the driver.'], 'Это уже было — arrived.'),
+  ],
+  12: [
+    hunt(12, 1, ['Did you find your keys?', 'Yes, I [finds|found] my keys.', 'Did she {bring} the charger?'], 'Это уже было — found.'),
+    hunt(12, 2, ['Who took the last cup?', 'He [take|took] the last cup.', 'Did you {see} the sign?'], 'Это уже было — took.'),
+  ],
 };

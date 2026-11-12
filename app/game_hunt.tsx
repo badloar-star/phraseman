@@ -90,8 +90,24 @@ const HuntWord = memo(function HuntWord({ text, tappable, fixed, missed, onPress
   );
 });
 
-/** «Сканер» над диалогом — `.scan` макета: полоса 70 с переливом к белому, идёт от −70 до нижнего края ленты. */
-const HuntScan = memo(function HuntScan({ height, running }: Readonly<{ height: number; running: boolean }>) {
+/**
+ * Цвета «сканера» по теме — как в макете: на тёмном фоне перелив к белому (elevate-extra.css:174), на светлом —
+ * к тёмно-синему (elevate-light.css:59). зачем (обход экранов 12.11, w2_game_hunt.png): белая полоса на светлом фоне
+ * выглядела как резкая граница фона — «верх светлее, низ обычный»; в светлом макете полоса тёмная и почти незаметная.
+ */
+const SCAN_ON_DARK = ['rgba(255,255,255,0)', 'rgba(255,255,255,0.16)', 'rgba(255,255,255,0.5)'] as const;
+const SCAN_ON_LIGHT = ['rgba(47,74,107,0)', 'rgba(47,74,107,0.12)', 'rgba(47,74,107,0.45)'] as const;
+
+/** Тёмный ли цвет текста (значит, тема светлая). Неизвестный формат цвета — считаем тему светлой, как по умолчанию. */
+function isDarkInk(color: string): boolean {
+  const hex = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/i.exec(color);
+  if (!hex) return true;
+  const [r, g, b] = [hex[1], hex[2], hex[3]].map((v) => parseInt(v, 16));
+  return 0.299 * r + 0.587 * g + 0.114 * b < 128;
+}
+
+/** «Сканер» над диалогом — `.scan` макета: полоса 70 с переливом, идёт от −70 до нижнего края ленты. */
+const HuntScan = memo(function HuntScan({ height, running, ink }: Readonly<{ height: number; running: boolean; ink: string }>) {
   const reduceMotion = useReduceMotion();
   const active = useRuntimeActive(running) && !reduceMotion && height > 0;
   const t = useSharedValue(0);
@@ -111,7 +127,7 @@ const HuntScan = memo(function HuntScan({ height, running }: Readonly<{ height: 
   }));
   return (
     <Reanimated.View pointerEvents="none" style={[s.scan, style]}>
-      <LinearGradient colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.16)', 'rgba(255,255,255,0.5)']} locations={[0, 0.8, 1]} style={StyleSheet.absoluteFill} />
+      <LinearGradient colors={isDarkInk(ink) ? SCAN_ON_LIGHT : SCAN_ON_DARK} locations={[0, 0.8, 1]} style={StyleSheet.absoluteFill} />
     </Reanimated.View>
   );
 });
@@ -196,7 +212,7 @@ export default function GameHuntScreen() {
 
           {task ? (
             <View style={s.chat} onLayout={(e) => setChatHeight(e.nativeEvent.layout.height)}>
-              <HuntScan height={chatHeight} running={!found} />
+              <HuntScan height={chatHeight} running={!found} ink={p.text} />
               {task.lines.map((line, li) => (
                 <GameRise key={`${task.id}-${li}`} delayMs={li * GAME_MOTION.huntStaggerMs} style={[s.bubbleRow, line.right && s.bubbleRowRight]}>
                   <V2Card seed={li} style={s.bubble}>

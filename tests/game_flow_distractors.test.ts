@@ -15,9 +15,12 @@ const BANKS: readonly (readonly [ClassicCourseLang, typeof FLOW_DISTRACTORS_EN])
   ['en', FLOW_DISTRACTORS_EN], ['de', FLOW_DISTRACTORS_DE], ['fr', FLOW_DISTRACTORS_FR], ['es', FLOW_DISTRACTORS_ES], ['it', FLOW_DISTRACTORS_IT],
 ];
 const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8];
-/** У английского, испанского и итальянского курсов наборы есть и для уроков 9–12 (12.11), у остальных — 1–8. */
-const TO_LESSON_12: ReadonlySet<ClassicCourseLang> = new Set(['en', 'es', 'it']);
-const lessonsOf = (lang: ClassicCourseLang): number[] => (TO_LESSON_12.has(lang) ? [...LESSONS, 9, 10, 11, 12] : LESSONS);
+/**
+ * До какого урока у курса есть свои наборы (12.11): английский — до 16, испанский и итальянский — до 12,
+ * остальные — до 8. Новый урок в банке — новое число здесь, тогда сторож проверяет и его.
+ */
+const LAST_LESSON: Partial<Record<ClassicCourseLang, number>> = { en: 16, es: 12, it: 12 };
+const lessonsOf = (lang: ClassicCourseLang): number[] => Array.from({ length: LAST_LESSON[lang] ?? LESSONS.length }, (_, i) => i + 1);
 const MARKS = /[()]|Для сборки|При сборке|Для складання/u;
 
 const words = (text: string): string[] => text.trim().split(/\s+/).filter(Boolean);

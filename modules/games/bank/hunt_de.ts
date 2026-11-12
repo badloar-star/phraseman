@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — немецкий классический курс, уроки 1–8 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — немецкий классический курс, уроки 1–12 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: три реплики, после исправления каждая — фраза урока или фраза из пройденных слов;
  * неверное слово ровно одно и оно однозначно неверно; слово-обманка стоит в ДРУГОЙ реплике и само верно.
@@ -43,5 +43,21 @@ export const HUNT_BANK_DE: Readonly<Record<number, readonly HuntTask[]>> = {
   8: [
     h(8, 1, ['Ist das dein Koffer?', 'Das ist {kein>nicht} mein Koffer.', 'Ich habe *keinen Koffer.'], 'Перед mein ставят nicht.'),
     h(8, 2, ['Hast du Zeit?', 'Ich habe {keinen>keine} Zeit.', 'Tom kommt heute *nicht.'], 'Время — die Zeit, поэтому keine.'),
+  ],
+  9: [
+    h(9, 1, ['Ist das dein Koffer?', 'Das ist {meine>mein} Koffer.', 'Hier ist *deine Jacke.'], 'Чемодан — der Koffer, поэтому mein.'),
+    h(9, 2, ['Wo sind meine Schuhe?', 'Deine Schuhe {ist>sind} hier.', 'Tom hat *seinen Pass.'], 'Туфель несколько, значит sind.'),
+  ],
+  10: [
+    h(10, 1, ['Kommst du mit dem Bus?', 'Ich komme mit {die>der} Bahn.', 'Tom kommt *mit dem Fahrrad.'], 'Поезд — die Bahn, а после mit — der Bahn.'),
+    h(10, 2, ['Wo ist Anna?', 'Anna ist {bei>beim} Arzt.', 'Tom geht *zur Post.'], 'У врача — beim Arzt.'),
+  ],
+  11: [
+    h(11, 1, ['Wo ist der Pass?', 'Der Pass liegt in {die>der} Tasche.', 'Das Handy liegt *im Auto.'], 'Лежит в сумке — in der Tasche.'),
+    h(11, 2, ['Wo sind die Kinder?', 'Die Kinder {sitzt>sitzen} im Bus.', 'Anna ist *im Garten.'], 'Детей несколько, значит sitzen.'),
+  ],
+  12: [
+    h(12, 1, ['Wohin gehst du?', 'Ich {gehst>gehe} in den Garten.', 'Anna geht *ins Bad.'], 'С ich — gehe.'),
+    h(12, 2, ['Wo ist der Pass?', 'Ich lege den Pass in {der>die} Tasche.', 'Tom stellt *den Koffer vor die Tür.'], 'Кладу в сумку — in die Tasche.'),
   ],
 };

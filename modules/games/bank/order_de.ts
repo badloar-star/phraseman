@@ -1,5 +1,5 @@
 /**
- * Банк игры «Собери диалог» — немецкий классический курс, уроки 4–8 (D207). 2 задания на урок.
+ * Банк игры «Собери диалог» — немецкий классический курс, уроки 4–12 (D207). 2 задания на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: четыре реплики из пройденных слов, порядок один. В уроке 4 вопросов ещё нет — порядок
  * задаёт время (часы, дни недели). С урока 5 это вопрос — ответ — вопрос с auch — ответ: auch ставит второй
@@ -32,5 +32,21 @@ export const ORDER_BANK_DE: Readonly<Record<number, readonly OrderTask[]>> = {
   8: [
     o(8, 1, ['Ist der Laden offen?', 'Der Laden ist nicht offen.', 'Ist das Café auch zu?', 'Das Café ist offen.']),
     o(8, 2, ['Kommt Anna heute?', 'Anna kommt heute nicht.', 'Kommt Tom auch nicht?', 'Tom kommt um acht.']),
+  ],
+  9: [
+    o(9, 1, ['Ist das dein Pass?', 'Das ist mein Pass.', 'Ist das auch dein Ausweis?', 'Mein Ausweis ist hier.']),
+    o(9, 2, ['Wo sind meine Schuhe?', 'Deine Schuhe sind hier.', 'Und wo ist mein Ladegerät?', 'Dein Ladegerät ist dort.']),
+  ],
+  10: [
+    o(10, 1, ['Kommst du mit dem Bus?', 'Ich komme mit dem Fahrrad.', 'Kommt Anna auch mit dem Fahrrad?', 'Anna kommt mit der Bahn.']),
+    o(10, 2, ['Wo ist der Schlüssel?', 'Der Schlüssel ist bei mir.', 'Ist der Ausweis auch bei dir?', 'Der Ausweis ist bei Anna.']),
+  ],
+  11: [
+    o(11, 1, ['Wo liegt der Ausweis?', 'Der Ausweis liegt in der Jacke.', 'Liegt der Pass auch in der Jacke?', 'Der Pass liegt in der Tasche.']),
+    o(11, 2, ['Wo ist Tom?', 'Tom ist in der Schule.', 'Ist Anna auch in der Schule?', 'Anna ist im Garten.']),
+  ],
+  12: [
+    o(12, 1, ['Wohin stellst du die Kiste?', 'Ich stelle die Kiste in den Keller.', 'Stellst du auch das Fahrrad in den Keller?', 'Das Fahrrad stelle ich in den Flur.']),
+    o(12, 2, ['Gehen wir an den See?', 'Heute gehen wir ins Kino.', 'Gehen wir auch ans Meer?', 'Am Samstag fahren wir ans Meer.']),
   ],
 };

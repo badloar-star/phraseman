@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — немецкий классический курс, уроки 1–8 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — немецкий классический курс, уроки 1–12 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или только из пройденных слов); каждый неверный
  * вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах); варианты — только
@@ -77,5 +77,37 @@ export const EXACT_BANK_DE: Readonly<Record<number, readonly QuizRound[]>> = {
     r(8, 4, 'Anna isst ___ Fleisch', 'kein', ['keinen', 'keine'], 0, 'Мясо — das Fleisch, поэтому kein.'),
     r(8, 5, 'Das ist ___ mein Koffer', 'nicht', ['kein', 'keinen'], 1, 'Перед mein ставят nicht.'),
     r(8, 6, 'Ich finde den Parkplatz ___', 'nicht', ['kein', 'keinen'], 0, '«Не нахожу» — nicht в конце.'),
+  ],
+  9: [
+    r(9, 1, 'Das ist ___ Jacke', 'meine', ['mein', 'meinen'], 0, 'Куртка — die Jacke, поэтому meine.'),
+    r(9, 2, 'Tom hat ___ Pass', 'seinen', ['sein', 'seine'], 1, 'Паспорт — der Pass, после hat он seinen Pass.'),
+    r(9, 3, 'Anna holt ___ Tasche', 'ihre', ['ihren', 'ihr'], 2, 'Сумка — die Tasche, поэтому ihre.'),
+    r(9, 4, '___ Gäste kommen', 'Unsere', ['Unser'], 1, 'Гостей несколько, поэтому unsere.'),
+    r(9, 5, 'Euer Bus ___', 'wartet', ['warten', 'warte'], 0, 'Автобус один, значит wartet.'),
+    r(9, 6, 'Sind das ___ Schlüssel?', 'Ihre', ['Ihr', 'Ihren'], 2, 'Ключей несколько, поэтому Ihre.'),
+  ],
+  10: [
+    r(10, 1, 'Ich komme mit ___ Bus', 'dem', ['der', 'den'], 0, 'После mit автобус — mit dem Bus.'),
+    r(10, 2, 'Anna kommt mit ___ Bahn', 'der', ['dem', 'die'], 1, 'После mit поезд — mit der Bahn.'),
+    r(10, 3, 'Tom geht ___ Arzt', 'zum', ['zur', 'zu'], 2, 'К врачу — zum Arzt.'),
+    r(10, 4, 'Er spricht mit ___', 'mir', ['ich', 'du'], 0, 'После mit говорят mir.'),
+    r(10, 5, 'Wir bleiben bei ___ Kindern', 'den', ['die', 'dem'], 1, 'После bei дети — bei den Kindern.'),
+    r(10, 6, 'Anna wohnt bei ___ Mutter', 'ihrer', ['ihre', 'ihren'], 2, 'После bei мать — bei ihrer Mutter.'),
+  ],
+  11: [
+    r(11, 1, 'Der Schlüssel liegt auf ___ Tisch', 'dem', ['den', 'der'], 0, 'Лежит на столе — auf dem Tisch.'),
+    r(11, 2, 'Ich bin in ___ Küche', 'der', ['die', 'dem'], 1, 'Я уже там — in der Küche.'),
+    r(11, 3, 'Die Brille liegt ___ Auto', 'im', ['in', 'in die'], 2, 'В машине — im Auto.'),
+    r(11, 4, 'Die Kinder ___ im Bus', 'sitzen', ['sitzt', 'liegt'], 0, 'Детей несколько, значит sitzen.'),
+    r(11, 5, 'Ihr seid ___ Bahnhof', 'am', ['an', 'an der'], 1, 'На вокзале — am Bahnhof.'),
+    r(11, 6, 'Wo ___ der Ausweis?', 'liegt', ['sitzen', 'stehen'], 2, 'Удостоверение одно и лежит — liegt.'),
+  ],
+  12: [
+    r(12, 1, 'Ich lege den Schlüssel auf ___ Tisch', 'den', ['dem', 'der'], 0, 'Кладу на стол — auf den Tisch.'),
+    r(12, 2, 'Wir gehen ___ Café', 'ins', ['in', 'in den'], 1, 'В кафе — ins Café.'),
+    r(12, 3, 'Anna steigt in ___ Bus', 'den', ['dem', 'der'], 2, 'Садится в автобус — in den Bus.'),
+    r(12, 4, 'Ich hänge die Jacke an ___ Haken', 'den', ['dem', 'der'], 0, 'Вешаю на крючок — an den Haken.'),
+    r(12, 5, 'Wir ___ uns an den Tisch', 'setzen', ['setzt', 'sitzen'], 1, 'С wir — setzen.'),
+    r(12, 6, 'Tom geht ___ die Schule', 'in', ['im', 'zum'], 2, 'В школу — in die Schule.'),
   ],
 };

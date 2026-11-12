@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — немецкий классический курс, уроки 1–8 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — немецкий классический курс, уроки 1–12 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза только из пройденных слов); с лишним
  * словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить. Поэтому нет заданий вида
@@ -92,5 +92,45 @@ export const ODD_WORD_BANK_DE: Readonly<Record<number, readonly OddWordTask[]>> 
     t(8, 6, 'Tom ist nicht [in] im Büro', 'Том не в офисе', 'В офисе — im Büro.'),
     t(8, 7, 'Wir bezahlen [kein] nicht mit Karte', 'Мы платим не картой', '«Не картой» — nicht mit Karte.'),
     t(8, 8, 'Das Zimmer hat [keine] keinen Balkon', 'В комнате нет балкона', 'Балкон — der Balkon, поэтому keinen.'),
+  ],
+  9: [
+    t(9, 1, 'Das ist mein [meine] Pass', 'Это мой паспорт', 'Паспорт — der Pass, поэтому mein.'),
+    t(9, 2, 'Das ist deine [dein] Jacke', 'Это твоя куртка', 'Куртка — die Jacke, поэтому deine.'),
+    t(9, 3, 'Das sind [ist] meine Schuhe', 'Это мои туфли', 'Туфель несколько, значит sind.'),
+    t(9, 4, 'Tom sucht seinen [seine] Schal', 'Том ищет свой шарф', 'Шарф — der Schal, поэтому seinen.'),
+    t(9, 5, 'Unser [Unsere] Zug kommt', 'Наш поезд прибывает', 'Поезд — der Zug, поэтому unser.'),
+    t(9, 6, 'Eure Freunde [wartet] warten', 'Ваши друзья ждут', 'Друзей несколько, значит warten.'),
+    t(9, 7, 'Hast du [dein] deinen Ausweis?', 'У тебя с собой твоё удостоверение?', 'После hast удостоверение — deinen Ausweis.'),
+    t(9, 8, 'Ist das Ihr [Ihre] Mantel?', 'Это ваше пальто?', 'Пальто — der Mantel, поэтому Ihr.'),
+  ],
+  10: [
+    t(10, 1, 'Ich komme mit [den] dem Bus', 'Я приезжаю на автобусе', 'После mit автобус — mit dem Bus.'),
+    t(10, 2, 'Anna kommt mit [dem] der Bahn', 'Анна приезжает на электричке', 'После mit поезд — mit der Bahn.'),
+    t(10, 3, 'Tom geht [zur] zum Arzt', 'Том идёт к врачу', 'К врачу — zum Arzt.'),
+    t(10, 4, 'Du gehst [zum] zur Schule', 'Ты идёшь в школу', 'В школу — zur Schule.'),
+    t(10, 5, 'Ich bin [bei] beim Arzt', 'Я у врача', 'У врача — beim Arzt.'),
+    t(10, 6, 'Er spricht mit [ich] mir', 'Он разговаривает со мной', 'После mit говорят mir.'),
+    t(10, 7, 'Ich komme aus [die] dem Büro', 'Я выхожу из офиса', 'Из офиса — aus dem Büro.'),
+    t(10, 8, 'Wir sprechen mit den [die] Gästen', 'Мы разговариваем с гостями', 'После mit гости — mit den Gästen.'),
+  ],
+  11: [
+    t(11, 1, 'Der Schlüssel liegt auf [den] dem Tisch', 'Ключ лежит на столе', 'Лежит на столе — auf dem Tisch.'),
+    t(11, 2, 'Der Pass liegt in [dem] der Tasche', 'Паспорт лежит в сумке', 'Лежит в сумке — in der Tasche.'),
+    t(11, 3, 'Die Jacke hängt [in] im Flur', 'Куртка висит в прихожей', 'В прихожей — im Flur.'),
+    t(11, 4, 'Die Kinder [sitzt] sitzen im Bus', 'Дети сидят в автобусе', 'Детей несколько, значит sitzen.'),
+    t(11, 5, 'Ich bin in der [die] Küche', 'Я на кухне', 'Я уже там — in der Küche.'),
+    t(11, 6, 'Anna ist [in] im Garten', 'Анна в саду', 'В саду — im Garten.'),
+    t(11, 7, 'Das Bild hängt an [die] der Wand', 'Картина висит на стене', 'Висит на стене — an der Wand.'),
+    t(11, 8, 'Die Lampe steht neben [das] dem Bett', 'Лампа стоит рядом с кроватью', 'Стоит рядом с кроватью — neben dem Bett.'),
+  ],
+  12: [
+    t(12, 1, 'Das Kind springt [in] ins Wasser', 'Ребёнок прыгает в воду', 'В воду — ins Wasser.'),
+    t(12, 2, 'Wir gehen [in] ins Café', 'Мы идём в кафе', 'В кафе — ins Café.'),
+    t(12, 3, 'Du gehst in [die] den Garten', 'Ты идёшь в сад', 'Сад — der Garten, поэтому in den Garten.'),
+    t(12, 4, 'Tom geht [ins] in die Schule', 'Том идёт в школу', 'Школа — die Schule, поэтому in die Schule.'),
+    t(12, 5, 'Anna steigt in [dem] den Bus', 'Анна садится в автобус', 'Садится в автобус — in den Bus.'),
+    t(12, 6, 'Die Kinder [läuft] laufen auf den Hof', 'Дети выбегают во двор', 'Детей несколько, значит laufen.'),
+    t(12, 7, 'Wir [setzt] setzen uns an den Tisch', 'Мы садимся за стол', 'С wir — setzen.'),
+    t(12, 8, 'Tom stellt den Stuhl [an] ans Fenster', 'Том ставит стул к окну', 'К окну — ans Fenster.'),
   ],
 };

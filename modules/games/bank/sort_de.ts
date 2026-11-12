@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — немецкий классический курс, уроки 1–8 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — немецкий классический курс, уроки 1–12 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только пройденные слова. Пропуск в карте пишется `___` (все уроки, кроме 6):
@@ -92,5 +92,45 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Das ist ___ Hotel', 'right', 'Hotel — «не гостиница» говорят с kein'],
     ['Tom ist ___ im Büro', 'left', 'im Büro — «не в офисе» говорят с nicht'],
     ['Die Küche hat ___ Fenster', 'right', 'Fenster — «нет окна» говорят с kein'],
+  ]),
+  9: d(9, { title: 'mein', example: 'der Pass, das Fahrrad' }, { title: 'meine', example: 'die Jacke, die Schuhe' }, [
+    ['Das ist ___ Pass', 'left', 'Pass — der Pass, поэтому mein'],
+    ['Das ist ___ Jacke', 'right', 'Jacke — die Jacke, поэтому meine'],
+    ['Das ist ___ Fahrrad', 'left', 'Fahrrad — das Fahrrad, поэтому mein'],
+    ['Das sind ___ Schuhe', 'right', 'Schuhe — их несколько, поэтому meine'],
+    ['Hier ist ___ Ausweis', 'left', 'Ausweis — der Ausweis, поэтому mein'],
+    ['Wo sind ___ Schuhe?', 'right', 'Schuhe — их несколько, поэтому meine'],
+    ['Wo ist ___ Ladegerät?', 'left', 'Ladegerät — das Ladegerät, поэтому mein'],
+    ['Ich zeige ___ Karte', 'right', 'Karte — die Karte, поэтому meine'],
+  ]),
+  10: d(10, { title: 'zum', example: 'der Arzt, das Taxi' }, { title: 'zur', example: 'die Schule, die Kasse' }, [
+    ['Tom geht ___ Arzt', 'left', 'Arzt — der Arzt, поэтому zum'],
+    ['Ich fahre ___ Arbeit', 'right', 'Arbeit — die Arbeit, поэтому zur'],
+    ['Anna fährt ___ Bahnhof', 'left', 'Bahnhof — der Bahnhof, поэтому zum'],
+    ['Du gehst ___ Schule', 'right', 'Schule — die Schule, поэтому zur'],
+    ['Wir bringen den Koffer ___ Taxi', 'left', 'Taxi — das Taxi, поэтому zum'],
+    ['Wir gehen ___ Kasse', 'right', 'Kasse — die Kasse, поэтому zur'],
+    ['Wie komme ich ___ Bahnhof?', 'left', 'Bahnhof — der Bahnhof, поэтому zum'],
+    ['Sie geht ___ Apotheke', 'right', 'Apotheke — die Apotheke, поэтому zur'],
+  ]),
+  11: d(11, { title: 'im', example: 'der Flur, das Bad' }, { title: 'in der', example: 'die Küche, die Tasche' }, [
+    ['Die Jacke hängt ___ Flur', 'left', 'Flur — der Flur, поэтому im'],
+    ['Ich bin ___ Küche', 'right', 'Küche — die Küche, поэтому in der'],
+    ['Du bist ___ Bad', 'left', 'Bad — das Bad, поэтому im'],
+    ['Tom ist ___ Schule', 'right', 'Schule — die Schule, поэтому in der'],
+    ['Anna ist ___ Garten', 'left', 'Garten — der Garten, поэтому im'],
+    ['Der Pass liegt ___ Tasche', 'right', 'Tasche — die Tasche, поэтому in der'],
+    ['Wir sind ___ Zimmer', 'left', 'Zimmer — das Zimmer, поэтому im'],
+    ['Der Löffel liegt ___ Schublade', 'right', 'Schublade — die Schublade, поэтому in der'],
+  ]),
+  12: d(12, { title: 'in den', example: 'der Garten, der Bus' }, { title: 'in die', example: 'die Küche, die Tasche' }, [
+    ['Du gehst ___ Garten', 'left', 'Garten — der Garten, поэтому in den'],
+    ['Ich gehe ___ Küche', 'right', 'Küche — die Küche, поэтому in die'],
+    ['Anna steigt ___ Bus', 'left', 'Bus — der Bus, поэтому in den'],
+    ['Tom geht ___ Schule', 'right', 'Schule — die Schule, поэтому in die'],
+    ['Ich packe die Schuhe ___ Koffer', 'left', 'Koffer — der Koffer, поэтому in den'],
+    ['Ich lege den Pass ___ Tasche', 'right', 'Tasche — die Tasche, поэтому in die'],
+    ['Wir bringen die Kisten ___ Keller', 'left', 'Keller — der Keller, поэтому in den'],
+    ['Ich stecke den Ausweis ___ Jacke', 'right', 'Jacke — die Jacke, поэтому in die'],
   ]),
 };

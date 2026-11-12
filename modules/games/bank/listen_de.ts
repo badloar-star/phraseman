@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — немецкий классический курс, уроки 1–8 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — немецкий классический курс, уроки 1–12 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно подбираться».
  * Правила вычитки: произносится дословная фраза урока; каждый неверный вариант отличается от неё ровно
  * одним словом, остаётся правильной немецкой фразой (род и число согласованы) и собран из пройденных слов;
@@ -76,5 +76,37 @@ export const LISTEN_BANK_DE: Readonly<Record<number, readonly QuizRound[]>> = {
     r(8, 4, 'Wir kochen heute nicht', ['Wir kommen heute nicht', 'Wir kochen morgen nicht'], 1, 'Мы сегодня не готовим'),
     r(8, 5, 'Die Bahn fährt heute nicht', ['Die Bahn fährt morgen nicht', 'Die Bahn kommt heute nicht'], 0, 'Поезд сегодня не ходит'),
     r(8, 6, 'Das ist nicht mein Koffer', ['Das ist nicht dein Koffer', 'Das ist nicht mein Kaffee'], 2, 'Это не мой чемодан'),
+  ],
+  9: [
+    r(9, 1, 'Das ist mein Pass', ['Das ist dein Pass', 'Das ist mein Ausweis'], 0, 'Это мой паспорт'),
+    r(9, 2, 'Unser Zug kommt', ['Unser Bus kommt', 'Unser Zug wartet'], 1, 'Наш поезд прибывает'),
+    r(9, 3, 'Anna findet ihre Schlüssel', ['Anna sucht ihre Schlüssel', 'Anna findet ihre Schuhe'], 2, 'Анна находит свои ключи'),
+    r(9, 4, 'Ich zeige meine Karte', ['Ich zeige meine Adresse', 'Ich hole meine Karte'], 0, 'Я показываю свою карту'),
+    r(9, 5, 'Wo sind meine Schuhe?', ['Wo sind deine Schuhe?', 'Wo sind meine Schlüssel?'], 1, 'Где мои туфли?'),
+    r(9, 6, 'Eure Freunde warten', ['Eure Freunde kommen', 'Unsere Freunde warten'], 2, 'Ваши друзья ждут'),
+  ],
+  10: [
+    r(10, 1, 'Ich komme mit dem Bus', ['Ich komme mit dem Zug', 'Ich komme mit dem Taxi'], 0, 'Я приезжаю на автобусе'),
+    r(10, 2, 'Tom geht zum Arzt', ['Anna geht zum Arzt', 'Tom geht zum Bahnhof'], 1, 'Том идёт к врачу'),
+    r(10, 3, 'Wir gehen zur Kasse', ['Wir gehen zur Post', 'Wir gehen zur Schule'], 2, 'Мы идём к кассе'),
+    r(10, 4, 'Ich bin beim Arzt', ['Ich bin beim Nachbarn', 'Ich bin beim Sport'], 0, 'Я у врача'),
+    r(10, 5, 'Der Schlüssel ist bei mir', ['Der Schlüssel ist bei dir', 'Der Ausweis ist bei mir'], 1, 'Ключ у меня'),
+    r(10, 6, 'Nach der Pause beginnt der Kurs', ['Vor der Pause beginnt der Kurs', 'Nach der Fahrt beginnt der Kurs'], 2, 'После перерыва начинается занятие'),
+  ],
+  11: [
+    r(11, 1, 'Der Schlüssel liegt auf dem Tisch', ['Der Schlüssel liegt unter dem Tisch', 'Der Ball liegt auf dem Tisch'], 0, 'Ключ лежит на столе'),
+    r(11, 2, 'Die Jacke hängt im Flur', ['Die Jacke hängt im Büro', 'Die Jacke liegt im Flur'], 1, 'Куртка висит в прихожей'),
+    r(11, 3, 'Anna sitzt auf der Bank', ['Anna sitzt auf der Treppe', 'Tom sitzt auf der Bank'], 2, 'Анна сидит на скамейке'),
+    r(11, 4, 'Ich bin in der Küche', ['Ich bin in der Schule', 'Ich bin in der Halle'], 0, 'Я на кухне'),
+    r(11, 5, 'Die Gäste sind im Café', ['Die Gäste sind im Garten', 'Die Kinder sind im Café'], 1, 'Гости в кафе'),
+    r(11, 6, 'Der Hund schläft unter dem Tisch', ['Der Hund schläft unter dem Bett', 'Der Hund schläft auf dem Tisch'], 2, 'Собака спит под столом'),
+  ],
+  12: [
+    r(12, 1, 'Ich lege den Schlüssel auf den Tisch', ['Ich lege den Pass auf den Tisch', 'Ich lege den Schlüssel auf den Stuhl'], 0, 'Я кладу ключ на стол'),
+    r(12, 2, 'Anna geht ins Bad', ['Tom geht ins Bad', 'Anna geht ins Café'], 1, 'Анна идёт в ванную'),
+    r(12, 3, 'Wir gehen ins Café', ['Wir gehen ins Kino', 'Wir kommen ins Café'], 2, 'Мы идём в кафе'),
+    r(12, 4, 'Anna steigt in den Bus', ['Anna steigt in den Zug', 'Tom steigt in den Bus'], 0, 'Анна садится в автобус'),
+    r(12, 5, 'Fahren wir ans Meer?', ['Gehen wir ans Meer?', 'Fahren wir zum Meer?'], 1, 'Поедем к морю?'),
+    r(12, 6, 'Ich gehe in die Küche', ['Ich gehe in die Schule', 'Ich gehe in die Halle'], 2, 'Я иду на кухню'),
   ],
 };

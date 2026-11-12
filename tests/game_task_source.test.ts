@@ -38,9 +38,9 @@ it('язык без банка не получает ни чужих задан�
 });
 
 it('урок старше банка берёт ближайший предыдущий, а не будущий и не пустоту', () => {
-  // зачем (12.11): банк английского дорос до урока 16 — ближайший предыдущий для урока 20 теперь 16
-  expect(sortDeckFor('en', 20)?.id).toBe(sortDeckFor('en', 16)?.id);
-  expect(sortDeckFor('en', 20)?.id).toBe('sort-en-l16');
+  // зачем (12.11): банк английского дорос до урока 20 — ближайший предыдущий для урока 25 теперь 20
+  expect(sortDeckFor('en', 25)?.id).toBe(sortDeckFor('en', 20)?.id);
+  expect(sortDeckFor('en', 25)?.id).toBe('sort-en-l20');
   const bank = { 2: ['b'], 5: ['e'] };
   expect(bankEntryForLesson(bank, 4, (x) => x.length > 0)).toEqual(['b']);
   expect(bankEntryForLesson(bank, 5, (x) => x.length > 0)).toEqual(['e']);

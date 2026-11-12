@@ -1,6 +1,6 @@
 /**
  * Сторож банка заданий игр (D207): задания «Лишнего слова», «Сортировки», «Точного слова» и «Трёх форм»
- * сверяются с фразами английского классического курса, уроки 1–16 (9–16 добавлены 12.11).
+ * сверяются с фразами английского классического курса, уроки 1–20 (9–20 добавлены 12.11).
  * зачем: владелец 11.11.2026 — «фразы должны корректно подбираться для режимов игры, без багов».
  * Сработал — чинить задание, а не ослаблять проверку.
  */
@@ -20,7 +20,7 @@ import { huntFixedLines, isHuntHit, isValidHuntTask, isValidOrderTask } from '..
 import { isValidOddWordTask } from '../modules/games/odd_word_core';
 import { isValidQuizRound } from '../modules/games/quiz_core';
 
-const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16] as const;
+const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] as const;
 const GAP = '___';
 
 const tokens = (text: string): string[] =>
@@ -61,7 +61,7 @@ const wordsNeverSeen = (lesson: number, text: string): string[] =>
 
 const FORBIDDEN_TERMS = /инфинитив|артикл|спряжен|глагол|предлог|существительн|прилагательн|местоимен|наречи|залог/i;
 
-describe('банк заданий игр: уроки 1–16 покрыты', () => {
+describe('банк заданий игр: уроки 1–20 покрыты', () => {
   it('по каждому уроку есть 8 «Лишних слов», колода из 8 карт и 6 «Точных слов»', () => {
     for (const lesson of LESSONS) {
       expect([lesson, ODD_WORD_BANK_EN[lesson]?.length]).toEqual([lesson, 8]);
@@ -140,6 +140,17 @@ describe('«Сортировка»', () => {
     }
   });
 
+  it('пример корзины не повторяет слов карт — правило, а не подсказка ответа', () => {
+    // зачем (сессия Elevate 12.11): в немецкой колоде пример «Anna, die Tür» выдавал ответ на карту «Die Tür ___ offen»
+    for (const lesson of LESSONS) {
+      const deck = SORT_BANK_EN[lesson];
+      const cardWords = new Set(deck.tasks.flatMap((t) => tokens(t.text)));
+      for (const bin of [deck.left, deck.right]) {
+        expect([deck.id, bin.example, tokens(bin.example).filter((w) => cardWords.has(w))]).toEqual([deck.id, bin.example, []]);
+      }
+    }
+  });
+
   it('текст каждой карты — только слова урока, у карты есть подсказка', () => {
     for (const lesson of LESSONS) {
       for (const card of SORT_BANK_EN[lesson].tasks) {
@@ -150,8 +161,8 @@ describe('«Сортировка»', () => {
   });
 
   it('карта с пропуском заполняется названием своей корзины до фразы из слов урока', () => {
-    // зачем: колоды уроков 4, 5 и 8 называют корзины самими словами (do not / does not, Do / Does, at / on)
-    for (const lesson of [4, 5, 8, 9]) {
+    // зачем: колоды уроков 4, 5, 8, 9 и 20 называют корзины самими словами (do not / does not, Do / Does, at / on, is / are, a / an)
+    for (const lesson of [4, 5, 8, 9, 20]) {
       const deck = SORT_BANK_EN[lesson];
       for (const card of deck.tasks) {
         expect([card.id, card.text.includes(GAP)]).toEqual([card.id, true]);

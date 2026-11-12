@@ -4,10 +4,16 @@
  * Сработал — чинить вариант в банке, а не ослаблять проверку.
  */
 import { getClassicLessonPhrases, type ClassicCourseLang } from '../app/classic_course_phrases';
+import { FLOW_DISTRACTORS_DE } from '../modules/games/bank/flow_de';
 import { FLOW_DISTRACTORS_EN } from '../modules/games/bank/flow_en';
+import { FLOW_DISTRACTORS_ES } from '../modules/games/bank/flow_es';
+import { FLOW_DISTRACTORS_FR } from '../modules/games/bank/flow_fr';
+import { FLOW_DISTRACTORS_IT } from '../modules/games/bank/flow_it';
 import { buildFlowRounds, flowDistractorsFor, flowTranslation, type FlowItem } from '../modules/games/flow_core';
 
-const BANKS: readonly (readonly [ClassicCourseLang, typeof FLOW_DISTRACTORS_EN])[] = [['en', FLOW_DISTRACTORS_EN]];
+const BANKS: readonly (readonly [ClassicCourseLang, typeof FLOW_DISTRACTORS_EN])[] = [
+  ['en', FLOW_DISTRACTORS_EN], ['de', FLOW_DISTRACTORS_DE], ['fr', FLOW_DISTRACTORS_FR], ['es', FLOW_DISTRACTORS_ES], ['it', FLOW_DISTRACTORS_IT],
+];
 const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8];
 const MARKS = /[()]|Для сборки|При сборке|Для складання/u;
 
@@ -54,18 +60,20 @@ describe('банк своих вариантов «Потока»', () => {
 });
 
 describe('сборка раундов берёт свои варианты', () => {
-  it('фразы с набором идут первыми, варианты — ровно свой набор и верный перевод', () => {
-    for (const lesson of LESSONS) {
-      const pool: FlowItem[] = getClassicLessonPhrases(lesson, 'en').map((p) => ({
-        id: `en:${lesson}:${String(p.id)}`, en: p.english, translation: flowTranslation(p, 'ru'), distractors: flowDistractorsFor('en', String(p.id), 'ru'),
-      }));
-      const rounds = buildFlowRounds(pool, 6, () => 0.42);
-      expect(rounds).toHaveLength(6);
-      for (const round of rounds) {
-        const own = round.item.distractors ?? [];
-        expect([lesson, round.item.id, own.length]).toEqual([lesson, round.item.id, 2]);
-        expect([...round.options].sort()).toEqual([round.item.translation, ...own].sort());
-        expect(round.options[round.correctIndex]).toBe(round.item.translation);
+  it('на всех пяти курсах фразы с набором идут первыми, варианты — ровно свой набор и верный перевод', () => {
+    for (const [lang] of BANKS) {
+      for (const lesson of LESSONS) {
+        const pool: FlowItem[] = getClassicLessonPhrases(lesson, lang).map((p) => ({
+          id: `${lang}:${lesson}:${String(p.id)}`, en: p.english, translation: flowTranslation(p, 'ru'), distractors: flowDistractorsFor(lang, String(p.id), 'ru'),
+        }));
+        const rounds = buildFlowRounds(pool, 6, () => 0.42);
+        expect([lang, lesson, rounds.length]).toEqual([lang, lesson, 6]);
+        for (const round of rounds) {
+          const own = round.item.distractors ?? [];
+          expect([lang, lesson, round.item.id, own.length]).toEqual([lang, lesson, round.item.id, 2]);
+          expect([...round.options].sort()).toEqual([round.item.translation, ...own].sort());
+          expect(round.options[round.correctIndex]).toBe(round.item.translation);
+        }
       }
     }
   });

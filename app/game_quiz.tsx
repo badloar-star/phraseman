@@ -18,6 +18,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 import GameAnswerTile from '../components/games/GameAnswerTile';
+import GameListenWave from '../components/games/GameListenWave';
 import GameRise from '../components/games/GameRise';
 import GameSegments from '../components/games/GameSegments';
 import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
@@ -50,7 +51,9 @@ const COPY = {
 
 type Phase = 'show' | 'answer' | 'verdict' | 'done';
 
-function Prompt({ round, phase, picked, onReplay }: Readonly<{ round: QuizRound; phase: Phase; picked: number | null; onReplay: () => void }>) {
+type PromptProps = Readonly<{ round: QuizRound; roundIndex: number; replayKey: number; phase: Phase; picked: number | null; onReplay: () => void }>;
+
+function Prompt({ round, roundIndex, replayKey, phase, picked, onReplay }: PromptProps) {
   const p = useV2Palette();
   const prompt = round.prompt;
   const answered = phase === 'verdict';
@@ -61,11 +64,8 @@ function Prompt({ round, phase, picked, onReplay }: Readonly<{ round: QuizRound;
     return (
       <Pressable testID="game-quiz-replay" accessibilityRole="button" accessibilityLabel={round.ask} onPressIn={() => { void hapticTap(); }} onPress={onReplay} style={({ pressed }) => [s.audio, { backgroundColor: p.glass }, pressed && s.pressed]}>
         <Ionicons name="volume-high" size={36} color={p.text} />
-        <View style={s.wave}>
-          {Array.from({ length: 22 }, (_, k) => (
-            <View key={`wave-${k}`} style={[s.waveBar, { height: 12 + ((k * 37) % 44), backgroundColor: p.text, opacity: answered ? 0.3 : 0.8 }]} />
-          ))}
-        </View>
+        {/* зачем (сверка движения 11.11, п. 4): волна живая, как в макете, а не нарисованная — см. GameListenWave */}
+        <GameListenWave roundIndex={roundIndex} color={p.text} replayKey={replayKey} />
       </Pressable>
     );
   }
@@ -137,12 +137,19 @@ export default function GameQuizScreen() {
 
   const round = rounds[Math.min(game.index, Math.max(0, rounds.length - 1))];
   const audio = useAudio();
+  const [replayKey, setReplayKey] = useState(0);
   const speakRound = useCallback(() => {
     if (!round || round.prompt.kind !== 'audio') return;
     // зачем: язык речи берётся из языка обучения, а не угадывается по тексту — немецкую фразу без умлаутов телефон
     // прочитал бы с английским произношением
     audio.speak(round.prompt.text, round.prompt.rate, { language: SPEECH_LANGUAGE[studyTarget] ?? inferExpoSpeechLanguage(round.prompt.text) });
   }, [audio, round, studyTarget]);
+
+  // повтор фразы нажатием оживляет волну заново, как при первом звучании
+  const onReplay = useCallback(() => {
+    setReplayKey((k) => k + 1);
+    speakRound();
+  }, [speakRound]);
 
   // «На слух»: фраза произносится в начале раунда; уход с экрана останавливает речь
   useEffect(() => {
@@ -222,7 +229,7 @@ export default function GameQuizScreen() {
             <>
               <View style={s.stageTop} />
               <View style={s.promptBox}>
-                <Prompt key={round.id} round={round} phase={phase} picked={picked} onReplay={speakRound} />
+                <Prompt key={round.id} round={round} roundIndex={game.index} replayKey={replayKey} phase={phase} picked={picked} onReplay={onReplay} />
               </View>
               <Text style={[s.note, { color: p.textSecondary, opacity: phase === 'verdict' && round.note ? 1 : 0 }]}>{round.note ?? ''}</Text>
               <View style={s.stageBottom} />
@@ -260,8 +267,6 @@ const s = StyleSheet.create({
   promptBox: { minHeight: 200, justifyContent: 'center' },
   audio: { alignSelf: 'center', alignItems: 'center', gap: 16, paddingVertical: 24, paddingHorizontal: 28, borderRadius: 28 },
   pressed: { opacity: 0.86 },
-  wave: { flexDirection: 'row', alignItems: 'center', gap: 4, height: 60 },
-  waveBar: { width: 4, borderRadius: 2 },
   pairs: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
   pairSlot: { width: '48%', flexGrow: 1 },
   pair: { minHeight: 92, padding: 14, justifyContent: 'center', gap: 4 },

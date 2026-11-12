@@ -144,3 +144,52 @@ export const GAME_MOTION = {
   dotWidth: 7,
   dotWidthOn: 22,
 } as const;
+
+/**
+ * Сверка движения 11–12.11.2026, пункты 4–8: волна «На слух», итог «Сортировки», «Навыки растут».
+ * Каждое число — из макета, источник указан рядом.
+ */
+export const GAME_MOTION_EXTRA = {
+  /** elevate-games.js:11–12 + elevate-extra.css:156–159 — волна «На слух». */
+  listenWaveBars: 22,
+  listenWaveBarWidth: 6,
+  listenWaveGap: 5,
+  listenWaveHeight: 110,
+  /** `.wave i` в покое и `@keyframes wv2 from`. */
+  listenWaveRestHeight: 14,
+  listenWaveLowHeight: 12,
+  /** `--h: 24 + ((k * 37) % 70)px`. */
+  listenWaveBase: 24,
+  listenWaveStep: 37,
+  listenWaveSpread: 70,
+  /** `--d` по раундам: 520 / 420 / 340 мс, дальше — последнее. */
+  listenWaveCycleMs: [520, 420, 340],
+  /** `animation-delay: calc(var(--k) * -90ms)` — сдвиг фазы на столбик. */
+  listenWavePhaseMs: 90,
+  /** `G.after(2200, … remove('live'))` — волна живёт 2200 мс от начала раунда. */
+  listenWaveLiveMs: 2200,
+  /** `.wave i { transition: height 300ms, background 300ms }`. */
+  listenWaveSettleMs: 300,
+  /** `.wave i` в покое — `rgba(255,255,255,.35)`, живая — `#fff`. */
+  listenWaveRestOpacity: 0.35,
+  /** elevate-mechanics.app.js:195 — `.gl.fin`: left/right 24, top 34 %, padding 24; `.gl` — радиус 22 (elevate-mechanics.css:48). */
+  sortFinishInset: 24,
+  sortFinishTop: '34%',
+  sortFinishPadding: 24,
+  sortFinishRadius: 22,
+  /** elevate-core.js:89 — `starTween(…, 1500, 200)`, кубическое затухание (elevate-core.js:76). */
+  skillStarMs: 1500,
+  skillStarDelayMs: 200,
+  /** elevate-mechanics.css:207 + elevate-extra.css:220 — `.nowb`: 1100 мс cubic-bezier(.2,.8,.2,1), без задержки. */
+  skillBarMs: 1100,
+  skillBarEase: [0.2, 0.8, 0.2, 1],
+  /** elevate-core.js:86 — `G.after(1200, …)`: щелчок уровня после того, как полоса дошла до конца. */
+  skillLevelUpAtMs: 1200,
+  /** elevate-mechanics.css:208 — `.bar i.was`: прежний уровень, `rgba(255,255,255,.38)`. */
+  skillWasOpacity: 0.38,
+  /** elevate-extra.css:221–222 — `.upt`: высота и отступ 420 мс `--out`, прозрачность 300 мс `ease`; высота 22, отступ 8. */
+  skillTagGrowMs: 420,
+  skillTagFadeMs: 300,
+  skillTagHeight: 22,
+  skillTagMargin: 8,
+} as const;

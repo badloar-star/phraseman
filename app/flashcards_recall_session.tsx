@@ -17,7 +17,9 @@ import {
   View,
 } from 'react-native';
 import Reanimated, { FadeInDown, FadeInUp, useReducedMotion } from 'react-native-reanimated';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
+// зачем (сторож layout_stability: сырой useSafeAreaInsets отдаёт 0 до нативных метрик): нижний отступ для вычета из клавиатуры — стабильный
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 
 import ContentWrap from '../components/ContentWrap';
 import { useScreen } from '../hooks/use-screen';
@@ -164,7 +166,7 @@ export default function FlashcardsRecallSession() {
   // не сжимает окно под клавиатуру — поле ввода и «Проверить» оставались под ней, человек печатал вслепую. На Android список ужимается
   // на высоту клавиатуры и прокручивается к полю ввода. На iPhone это делает automaticallyAdjustKeyboardInsets у списка — там не трогаем.
   // зачем: нижний безопасный отступ экран уже отдал SafeAreaView — из высоты клавиатуры его вычитаем, иначе над клавиатурой пустая полоса.
-  const safeBottomInset = useSafeAreaInsets().bottom;
+  const safeBottomInset = useStableSafeAreaInsets().bottom;
   const keyboardInset = Math.max(0, useKeyboardBottomInset(Platform.OS === 'android') - safeBottomInset);
   const recallScrollRef = useRef<ScrollView>(null);
   const inputShellBottomRef = useRef(0);

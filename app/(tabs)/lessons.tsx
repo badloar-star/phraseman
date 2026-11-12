@@ -1,7 +1,7 @@
 import { useTabTopBleedInset } from "../../components/tab_top_bleed";
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { View, Text, TouchableOpacity, Animated, ScrollView, TextInput } from "react-native";
-import Reanimated, { withSpring, Easing, FadeIn, FadeOut, LinearTransition } from "react-native-reanimated";
+import Reanimated, { withSpring, Easing, FadeOut, LinearTransition } from "react-native-reanimated";
 import { Image } from "expo-image";
 import Svg, { Path } from "react-native-svg";
 import TapScale from "../../components/TapScale";
@@ -406,7 +406,6 @@ function TabUnderlineButton({
 
 // ── LessonCard — мемоизированный тайл урока ──────────────────────────────────
 const CLASSIC_SEARCH_LAYOUT = LinearTransition.duration(LUM.contentMs).easing(Easing.inOut(Easing.quad));
-const CLASSIC_SEARCH_ENTER = FadeIn.duration(LUM.heroFadeMs);
 const CLASSIC_SEARCH_EXIT = FadeOut.duration(LUM.heroFadeMs);
 
 // ── Главный компонент ─────────────────────────────────────────────────────────
@@ -781,7 +780,6 @@ export default function LessonsTab({
   // гейт, квитанция «видел», ник пропуска. Карта и прогрев занятия от него больше не зависят. Ключи квитанции в AsyncStorage не трогаем.
   const [legacySearchExpanded, setLegacySearchExpanded] = useState(false);
   const legacySearchLayout = reduceMotionPreference === false ? CLASSIC_SEARCH_LAYOUT : undefined;
-  const legacySearchEnter = reduceMotionPreference === false ? CLASSIC_SEARCH_ENTER : undefined;
   const legacySearchExit = reduceMotionPreference === false ? CLASSIC_SEARCH_EXIT : undefined;
   const [legacyLessonQuery, setLegacyLessonQuery] = useState("");
   const handleLessonsBack = useCallback(() => {
@@ -1936,7 +1934,8 @@ export default function LessonsTab({
               >
                 {legacySearchExpanded ? (
                   <Reanimated.View
-                    entering={legacySearchEnter}
+                    // зачем (сторож layout_stability «уроки открываются статично», 12.11): у поля нет входной анимации — его открывает плавный
+                    // рост контейнера (layout + overflow hidden), содержимое проявляется вместе с ним; исчезновение при закрытии остаётся
                     exiting={legacySearchExit}
                     testID="legacy-lessons-search-field"
                     style={{

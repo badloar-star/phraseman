@@ -1,5 +1,5 @@
 /**
- * Банк игры «Собери диалог» — итальянский классический курс, уроки 3–8 (D207). 2 диалога из 4 реплик на урок.
+ * Банк игры «Собери диалог» — итальянский классический курс, уроки 3–12 (D207). 2 диалога из 4 реплик на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: реплики — фразы урока или собраны из слов этого и прошлых уроков; порядок держится
  * на том, что первый вопрос называет, о ком речь, ответ повторяет это слово, а третья реплика ссылается
@@ -36,5 +36,21 @@ export const ORDER_BANK_IT: Readonly<Record<number, readonly OrderTask[]>> = {
   8: [
     task(8, 1, ['Dove sei?', 'Sono alla stazione.', 'Perché?', 'Il treno è in ritardo.']),
     task(8, 2, ['Quando è l’appuntamento?', 'L’appuntamento è domani.', 'A che ora?', 'A mezzogiorno.']),
+  ],
+  9: [
+    task(9, 1, ['Dov’è il tuo portafoglio?', 'Il mio portafoglio è nel cassetto.', 'Il cassetto è aperto?', 'Il cassetto è chiuso.']),
+    task(9, 2, ['Dove sono le vostre valigie?', 'Le nostre valigie sono in macchina.', 'La macchina è aperta?', 'La macchina è chiusa.']),
+  ],
+  10: [
+    task(10, 1, ['C’è una farmacia qui?', 'C’è una farmacia vicino alla stazione ferroviaria.', 'È aperta stasera?', 'Non è aperta stasera.']),
+    task(10, 2, ['C’è un posto a sedere in fondo?', 'Ci sono ancora due posti liberi.', 'Sono vicino alla finestra?', 'Sono vicino alla porta.']),
+  ],
+  11: [
+    task(11, 1, ['Dove va dopo la lezione?', 'Vado in farmacia.', 'La farmacia è lontana?', 'La farmacia è vicino alla stazione.']),
+    task(11, 2, ['Lea va dal medico?', 'Lea va dal dentista.', 'Il dentista è lontano?', 'Il dentista è vicino al parco.']),
+  ],
+  12: [
+    task(12, 1, ['Vuoi una tazza di tè?', 'Vorrei un bicchiere d’acqua.', 'L’acqua è fredda?', 'L’acqua è fresca.']),
+    task(12, 2, ['Che cosa prepara?', 'Preparo della zuppa.', 'La zuppa è calda?', 'La zuppa è già pronta.']),
   ],
 };

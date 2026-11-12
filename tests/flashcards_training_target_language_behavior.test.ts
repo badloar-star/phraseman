@@ -38,6 +38,13 @@ jest.mock('react-native', () => ({
   ActivityIndicator: 'ActivityIndicator', Pressable: 'Pressable', ScrollView: 'ScrollView', StatusBar: 'StatusBar',
   Text: 'Text', TextInput: 'TextInput', View: 'View', findNodeHandle: () => 1,
   StyleSheet: { create: (styles: unknown) => styles, flatten: (style: unknown) => style },
+  // зачем (11.11, жалоба Стеллы): «Вспомни» подгоняет фразу под ширину окна и системный шрифт — экран читает размер окна
+  // (тот же коммит c3c35eaa9): размер окна читают и общий useScreen / безопасные поля через Dimensions
+  useWindowDimensions: () => ({ width: 390, height: 844, scale: 3, fontScale: 1 }),
+  Dimensions: { get: () => ({ width: 390, height: 844, scale: 3, fontScale: 1 }) },
+  AppState: { currentState: 'active', addEventListener: () => ({ remove: () => undefined }) },
+  // (тот же коммит): поле ввода и «Проверить» держатся над клавиатурой — components/keyboardAvoidance слушает Keyboard
+  Keyboard: { addListener: () => ({ remove: () => undefined }), dismiss: () => undefined },
 }));
 jest.mock('react-native-reanimated', () => ({
   __esModule: true, default: { View: 'AnimatedView' }, FadeInDown: { duration: () => undefined }, FadeInUp: { duration: () => undefined }, useReducedMotion: () => true,
@@ -45,7 +52,12 @@ jest.mock('react-native-reanimated', () => ({
 jest.mock('@expo/vector-icons/Ionicons', () => 'Ionicons');
 // зачем (Карточки 2.0 12.10, «Продолжить»): запись позиции — отдельный хук (покрыт pack_continue_recorder.test.ts); в поведенческом тесте экрана он заглушка
 jest.mock('../app/flashcards/use_pack_continue_recorder', () => ({ usePackContinueRecorder: () => ({ record: () => undefined, flush: () => undefined }) }));
-jest.mock('react-native-safe-area-context', () => ({ SafeAreaView: 'SafeAreaView' }));
+// зачем (c3c35eaa9, 11.11): экран берёт безопасные поля через общий useScreen → useSafeAreaInsets
+jest.mock('react-native-safe-area-context', () => ({
+  SafeAreaView: 'SafeAreaView',
+  useSafeAreaInsets: () => ({ top: 0, bottom: 0, left: 0, right: 0 }),
+  initialWindowMetrics: { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 0, bottom: 0, left: 0, right: 0 } },
+}));
 // зачем (координатор §47, 2026-10-01): квота тренировок переехала из
 // revenue_quota_access.consumeFlashcardTrainingQuota в monthly_training_sessions;
 // без этого мока экран звал настоящую квоту, и шпион не видел ни одного вызова.

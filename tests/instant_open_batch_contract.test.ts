@@ -55,13 +55,12 @@ describe('instant open batch', () => {
     expect(read('app/explain_phrase_request.ts')).toContain('export async function prefillExplainResultFromDisk(');
   });
 
-  it('the lessons tab arms the V2 warmup after the first frame, not only after opening V2', () => {
+  // зачем (d8a0a685a, 11.11 «удаление курса занятий Learning V2»): курса V2 больше нет — вкладке нечего греть.
+  // Прежняя проверка сторожила тяжёлый прогрев каталога V2 после паузы в касаниях; теперь сторожим, что вкладка
+  // не тянет за собой ни прогрева, ни маршрутов удалённого курса (тяжёлая работа на вкладке без причины — регресс скорости).
+  it('the lessons tab no longer warms the removed Learning V2 course', () => {
     const src = read('app/(tabs)/lessons.tsx');
-    // зачем (R1 перф, 1968ed8f2): прогрев V2 включается тем же условием, что и сам V2, — без особого случая для dev-сборок, чтобы замеры dev совпадали с релизом
-    // зачем (работа 19.10, восстановлена 22.10): тяжёлый прогрев каталога V2 ждёт паузы в касаниях (2,5 с без жестов),
-    // чтобы первый вход в /learning-v2/course принимал касания; прогресс V2 по-прежнему греется сразу на вкладке V2.
-    expect(src).toContain('const learningV2WarmupEnabled = learningV2WarmupArmed;');
-    expect(src).toContain('const learningV2ProgressWarmupEnabled = page === "v2" || learningV2WarmupArmed;');
-    expect(src).toContain('timer = setTimeout(waitForIdle, 2500);');
+    expect(src).not.toMatch(/learningV2|learning-v2|learning_v2/i);
+    expect(src).not.toContain('setTimeout(waitForIdle, 2500)');
   });
 });

@@ -32,7 +32,8 @@ describe('аудит кнопок: Карточки', () => {
 
   it('#16/#17: у Plus нет «N/30» ни на хабе, ни в настройке тренировки', () => {
     const hub = read('app/flashcards/FlashcardsHubScreen.tsx');
-    expect(hub).toContain('const trainingLimitShown = accessResolved && !hasPremiumAccess;');
+    // зачем (d8a0a685a, 11.11): лимит без потолка (limit 0) счётчик «N/0» не рисует — условие стало строже, а не мягче
+    expect(hub).toContain('const trainingLimitShown = quotaPreview.limit > 0 && accessResolved && !hasPremiumAccess;');
     expect(hub).toContain("quotaPreview.status === 'waiting' || !trainingLimitShown ? null");
     expect(hub).toContain("quotaPreview.status === 'allowed' && trainingLimitShown");
     expect(read('app/flashcards_training_setup.tsx')).toContain("quotaPreview.status === 'waiting' || !accessResolved || hasPremiumAccess ? null");
@@ -101,11 +102,18 @@ describe('аудит кнопок: Видео, добавки Макетов R57
     expect(playlist).toContain("const shownCount = allChannel.status === 'ready' ? videos.length : playlist?.itemCount ?? 0;");
   });
 
-  it('закладка в сетке держит прокрутку: строка «Сохранённые» сдвигает список на свою высоту', () => {
+  // зачем (1458fd3a7, 26.10 «replace saved destination with shared like stars»): строка «Сохранённые» над сеткой убрана —
+  // отметка стала звездой «Избранного» на карточке, а избранное — фильтром той же ленты. Прыгать списку больше нечему;
+  // сторожим новую форму: звезда меняется сразу и откатывается с понятным тостом, лента фильтруется по отметкам.
+  it('«Избранное» вместо строки «Сохранённые»: звезда без ожидания сети, откат с тостом, лента фильтруется по отметкам', () => {
     const videos = read('app/lingman_videos.tsx');
-    expect(videos).toContain('const hasSavedRow = !savedOnly && savedVideos.length > 0;');
-    expect(videos).toContain('scrollToOffset({ offset: Math.max(0, scrollYRef.current) + h + SAVED_ROW_MARGIN, animated: false })');
-    expect(videos).toContain('onScroll={(e) => { scrollYRef.current = e.nativeEvent.contentOffset.y; reportTabScroll(e); }}');
+    expect(videos).not.toContain('hasSavedRow');
+    expect(videos).not.toContain('SAVED_ROW_MARGIN');
+    expect(videos).toContain('void favorites.toggle(videoId).then((outcome) => {');
+    expect(videos).toContain("if (outcome === 'ok') return;");
+    expect(videos).toContain("ru: 'Не удалось изменить отметку, попробуй ещё раз'");
+    expect(videos).toContain('filterVideoFeed(homeListUnfiltered, feedFilter, { isSaved: favorites.isSaved, watchedIds: watchedVideoIds })');
+    expect(videos).toContain('onToggleSave={() => toggleSave(item.id)}');
   });
 });
 
@@ -139,18 +147,23 @@ describe('таббар: вкладка «Видео» сообщает прок�
     const src = read('app/lingman_videos.tsx');
     expect(src).toContain("import { useTopFadeScroll } from '../components/TopFadeScrollContext';");
     expect(src).toContain('if (inTab && screenRuntimeActiveRef.current) topFadeScroll?.onScroll?.(e);');
-    expect(src).toContain('reportTabScroll(e); }}');
+    // зачем (1458fd3a7, 26.10): обёртка прокрутки строки «Сохранённые» ушла вместе со строкой — обе ленты отдают
+    // прокрутку напрямую; сторожим, что ни одна из них не потеряла сообщение таб-оболочке
     expect(src).toContain('renderItem={renderPlaylist} onScroll={reportTabScroll}');
+    expect(src).toMatch(/ref=\{homeListRef\}\s+onScroll=\{reportTabScroll\}/);
+    expect(src.match(/onScroll=\{reportTabScroll\}/g)?.length).toBeGreaterThanOrEqual(2);
   });
 });
 
 describe('аудит кнопок: Видео 🟡 (15.10)', () => {
-  it('поставленные напоминания читаются при открытии, «Сохранённые видео» без роликов — с подписью, строка сохранённых с hitSlop', () => {
+  // зачем (1458fd3a7, 26.10): подпись «Пока нет сохранённых видео» и hitSlop строки сохранённых ушли вместе со строкой;
+  // пустое «Избранное» теперь — пустое состояние фильтра ленты, звезда на карточке держит свою зону нажатия
+  it('поставленные напоминания читаются при открытии, пустое «Избранное» — с подписью фильтра, у звезды запас нажатия', () => {
     const src = read('app/lingman_videos.tsx');
     expect(src).toContain('void loadYoutubePremiereReminders().then((stored) => {');
-    expect(src).toContain('{copy.noSaved}');
-    expect(src).toContain("ru: 'Пока нет сохранённых видео'");
-    expect(src).toContain('hitSlop={{ top: 6, bottom: 6, left: 0, right: 0 }}');
+    expect(src).toContain("ListEmptyComponent={feedFilter !== 'all' ? <VideoFeedFilterEmpty filter={feedFilter} />");
+    expect(read('components/youtube/YoutubeVideoCard.tsx')).toMatch(/testID=\{`video-save-\$\{video\.id\}`\}[\s\S]{0,200}hitSlop=\{4\}/);
+    expect(read('components/youtube/YoutubeVideoGridCard.tsx')).toMatch(/testID=\{`video-save-\$\{video\.id\}`\}[\s\S]{0,200}hitSlop=\{8\}/);
   });
 });
 

@@ -57,7 +57,10 @@ describe('выбор наборов: старт не ждёт чтения кв�
   const setup = read('app', 'flashcards_training_setup.tsx');
 
   it('кнопка старта блокируется только доказанным exhausted', () => {
-    expect(setup).toContain("quotaPreview.status !== 'exhausted' && loadState === 'ready'");
+    // зачем (d8a0a685a, 11.11): готовность списка стала `listReady` — он же покрывает просмотр наборов другого языка;
+    // условие старта по-прежнему «список готов И квота не доказанно исчерпана», без ожидания чтения квоты
+    expect(setup).toContain("const listReady = viewLang === studyTarget ? loadState === 'ready' : viewDecks !== null;");
+    expect(setup).toMatch(/const canStart = listReady\s+&& quotaAllowsStart\s/);
     expect(setup).toContain("const quotaAllowsStart = quotaPreview.status !== 'exhausted';");
     // «Ждём чтение квоты» больше не условие старта.
     expect(setup).not.toContain("quotaPreview.status === 'allowed' && loadState === 'ready'");

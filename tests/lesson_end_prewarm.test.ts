@@ -20,7 +20,9 @@ describe('lesson_end_prewarm — когда греть звуки конца у�
   it('вход в занятие распознаётся по первому сегменту целиком', () => {
     expect(isSessionEntryPath('/lesson1')).toBe(true);
     expect(isSessionEntryPath('/exam?level=A1')).toBe(true);
-    expect(isSessionEntryPath('/learning_v2_direct_session_player_v1')).toBe(true);
+    // зачем (d8a0a685a, 11.11): курс Learning V2 удалён вместе со своим маршрутом — вместо него занятие диалога
+    expect(isSessionEntryPath('/learning_v2_direct_session_player_v1')).toBe(false);
+    expect(isSessionEntryPath('/dialogue_v2_session')).toBe(true);
     expect(isSessionEntryPath('/flashcards_blitz_session')).toBe(true);
     expect(isSessionEntryPath('/mistake_practice_session')).toBe(true);
     // Итог — уже поздно; список уроков, вкладки и похожие имена — не вход.
@@ -41,11 +43,15 @@ describe('lesson_end_prewarm — когда греть звуки конца у�
     expect(missing).toEqual([]);
   });
 
-  it('корень греет вторую волну по плану: вслед за нажатиями на старте или на входе в занятие', () => {
-    // зачем (координатор 13.10, вариант «б»): вторая волна идёт той же очередью сразу после нажатий (scheduleStartupSfxPrewarm),
-    // а не своим таймером — иначе первым (дорогим) плеером снова мог стать звук конца урока в окне премаунта вкладок.
+  // зачем (d8a0a685a, 11.11): по политике владельца (modules/audio/sfx_music_policy.ts) звуков интерфейса в выпуске нет —
+  // корень больше не греет ни нажатия, ни конец урока. Сторожим новую форму: прогрев не вернулся в корень молча,
+  // а сама политика по-прежнему запрещает звуки в выпуске. Вернут звуки — вернуть и прежнюю проверку двух волн
+  // (вторая волна той же очередью сразу после нажатий: `if (lessonEndPlan === 'startup_timer') prewarmLessonEndSfx(reason)`).
+  it('корень не греет звуки интерфейса: в выпуске их нет по политике владельца', () => {
     const layout = fs.readFileSync(path.join(__dirname, '..', 'app', '_layout.tsx'), 'utf8');
-    expect(layout).toMatch(/if \(lessonEndPlan === 'startup_timer'\) prewarmLessonEndSfx\(reason\)/);
-    expect(layout).toMatch(/lessonEndPrewarmPlan\(\) !== 'on_session_entry' \|\| !isSessionEntryPath\(pathname\)/);
+    expect(layout).not.toMatch(/prewarmLessonEndSfx|scheduleStartupSfxPrewarm|lessonEndPrewarmPlan/);
+    expect(layout).toContain('Production policy removes SFX/music, so no startup or session-entry SFX');
+    const policy = fs.readFileSync(path.join(__dirname, '..', 'modules', 'audio', 'sfx_music_policy.ts'), 'utf8');
+    expect(policy).toContain('Owner policy: production SFX/music is removed');
   });
 });

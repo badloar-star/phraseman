@@ -55,8 +55,10 @@ describe('dev-подмены для робота', () => {
     expect(hub).toContain('if (isDevMistakesDemoOn()) {');
     const friends = read('app/(tabs)/friends.tsx');
     // демо до подписок: возврат раньше startFriendsTabSwrPrime и подписок; кэш вкладки и профили не трогаются; принять/отклонить — только экран
-    expect(friends.indexOf('if (isDevFriendsDemoOn()) {\n        const demo')).toBeGreaterThan(-1);
-    expect(friends.indexOf('if (isDevFriendsDemoOn()) {\n        const demo')).toBeLessThan(friends.indexOf('await startFriendsTabSwrPrime();'));
+    // зачем (2e2a53a01, 11.11): демо сначала отмечает список загруженным — иначе «нет друзей» мелькало до данных
+    const demoStart = "if (isDevFriendsDemoOn()) {\n        settleFriendsList('dev_demo');\n        const demo";
+    expect(friends.indexOf(demoStart)).toBeGreaterThan(-1);
+    expect(friends.indexOf(demoStart)).toBeLessThan(friends.indexOf('await startFriendsTabSwrPrime();'));
     expect(friends).toContain('if (isDevFriendsDemoOn()) return undefined; // зачем: демо-данные не пишем в кэш вкладки (диск)');
     expect(friends).toContain('if (isDevFriendsDemoOn()) return; // зачем: демо-друзья вымышленные');
     expect(friends.match(/\[DEV-STATE\] friends: demo (accept|decline)/g)).toHaveLength(2);

@@ -9,11 +9,13 @@
  */
 import React, { memo, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Reanimated, { Easing, cancelAnimation, runOnJS, useAnimatedStyle, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
+import Reanimated, { Easing, cancelAnimation, useAnimatedStyle, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
 
 import { useLang } from '../LangContext';
+import GameBumpText from '../games/GameBumpText';
 import { V2Card } from '../v2/V2Kit';
 import { useV2Palette } from '../v2/useV2Palette';
+import { GAME_EASE, GAME_MOTION_EXTRA as M } from '../../constants/gameMotion';
 import { triLang } from '../../constants/i18n';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { SKILL_NAME } from '../../modules/skills/skill_copy';
@@ -23,9 +25,11 @@ import { skillGrowthRows, type SkillGrowthRow } from '../../modules/skills/skill
 import SkillsStar from './SkillsStar';
 
 const STAR_SIZE = 128;
-const START_DELAY_MS = 500;
-const GROW_MS = 1100;
-const EASE = Easing.bezier(0.2, 0.8, 0.2, 1);
+// зачем (сверка движения 11.11, пп. 7–9): тайминги — из макета (elevate-core.js:81–89, elevate-extra.css:220–222):
+// полоски растут сразу и без лесенки, звезда — 1500 мс с паузой 200, новый уровень щёлкает на 1200 мс
+const BAR_EASE = Easing.bezier(M.skillBarEase[0], M.skillBarEase[1], M.skillBarEase[2], M.skillBarEase[3]);
+const TAG_GROW_EASE = Easing.bezier(GAME_EASE.out[0], GAME_EASE.out[1], GAME_EASE.out[2], GAME_EASE.out[3]);
+const TAG_FADE_EASE = Easing.bezier(GAME_EASE.ease[0], GAME_EASE.ease[1], GAME_EASE.ease[2], GAME_EASE.ease[3]);
 
 const COPY = {
   title: { ru: 'Навыки растут', uk: 'Навички зростають', es: 'Tus habilidades crecen', en: 'Skills are growing' },
@@ -40,51 +44,62 @@ function starValues(totals: SkillTotals): number[] {
   });
 }
 
-type RowProps = Readonly<{ row: SkillGrowthRow; index: number; name: string; levelWord: string; levelUpWord: string }>;
+type RowProps = Readonly<{ row: SkillGrowthRow; name: string; levelWord: string; levelUpWord: string }>;
 
-const GrowthRow = memo(function GrowthRow({ row, index, name, levelWord, levelUpWord }: RowProps) {
+const GrowthRow = memo(function GrowthRow({ row, name, levelWord, levelUpWord }: RowProps) {
   const p = useV2Palette();
   const reduceMotion = useReduceMotion();
   const fill = useSharedValue(reduceMotion ? row.ratioAfter : row.ratioBefore);
-  const tag = useSharedValue(reduceMotion && row.leveledUp ? 1 : 0);
+  // `.bar i.was` — прежний уровень бледной полосой; при новом уровне обнуляется
+  const was = useSharedValue(reduceMotion && row.leveledUp ? 0 : row.ratioBefore);
+  const tagGrow = useSharedValue(reduceMotion && row.leveledUp ? 1 : 0);
+  const tagFade = useSharedValue(reduceMotion && row.leveledUp ? 1 : 0);
   const [level, setLevel] = useState(reduceMotion ? row.levelAfter : row.levelBefore);
 
   useEffect(() => {
     if (reduceMotion) return undefined;
-    const delay = START_DELAY_MS + index * 160;
-    if (row.leveledUp) {
-      // зачем: при новом уровне полоска доходит до конца, цифра меняется, и полоска начинает новый уровень с нуля
-      fill.value = withDelay(delay, withSequence(
-        withTiming(1, { duration: GROW_MS * 0.6, easing: EASE }, (done) => {
-          if (done) runOnJS(setLevel)(row.levelAfter);
-        }),
-        withTiming(0, { duration: 0 }),
-        withTiming(row.ratioAfter, { duration: GROW_MS * 0.4, easing: EASE }),
-      ));
-      tag.value = withDelay(delay + GROW_MS * 0.6, withTiming(1, { duration: 260 }));
-    } else {
-      fill.value = withDelay(delay, withTiming(row.ratioAfter, { duration: GROW_MS, easing: EASE }));
+    if (!row.leveledUp) {
+      fill.value = withTiming(row.ratioAfter, { duration: M.skillBarMs, easing: BAR_EASE });
+      return () => cancelAnimation(fill);
     }
+    // зачем: полоса сначала доходит до конца (1100 мс), на 1200 мс уровень щёлкает с подскоком цифры, прежняя полоса
+    // обнуляется, и новая растёт с нуля ещё 1100 мс — как `starGrow` в макете
+    fill.value = withSequence(
+      withTiming(1, { duration: M.skillBarMs, easing: BAR_EASE }),
+      withDelay(M.skillLevelUpAtMs - M.skillBarMs, withTiming(0, { duration: 0 })),
+      withTiming(row.ratioAfter, { duration: M.skillBarMs, easing: BAR_EASE }),
+    );
+    was.value = withDelay(M.skillLevelUpAtMs, withTiming(0, { duration: 0 }));
+    tagGrow.value = withDelay(M.skillLevelUpAtMs, withTiming(1, { duration: M.skillTagGrowMs, easing: TAG_GROW_EASE }));
+    tagFade.value = withDelay(M.skillLevelUpAtMs, withTiming(1, { duration: M.skillTagFadeMs, easing: TAG_FADE_EASE }));
+    const id = setTimeout(() => setLevel(row.levelAfter), M.skillLevelUpAtMs);
     return () => {
+      clearTimeout(id);
       cancelAnimation(fill);
-      cancelAnimation(tag);
+      cancelAnimation(was);
+      cancelAnimation(tagGrow);
+      cancelAnimation(tagFade);
     };
-  }, [fill, index, reduceMotion, row.leveledUp, row.levelAfter, row.ratioAfter, tag]);
+  }, [fill, reduceMotion, row.leveledUp, row.levelAfter, row.ratioAfter, tagFade, tagGrow, was]);
 
   const fillStyle = useAnimatedStyle(() => ({ width: `${Math.max(0, Math.min(1, fill.value)) * 100}%` }));
+  const wasStyle = useAnimatedStyle(() => ({ width: `${Math.max(0, Math.min(1, was.value)) * 100}%` }));
   // зачем (владелец 11.11, ответ «Ровно как на макете»): метка выезжает — высота 0 → 22 и отступ 0 → 8, блок раздвигается.
   // Это осознанное исключение из правила стабильной геометрии: движение происходит один раз, после полоски, по слову владельца.
-  const tagStyle = useAnimatedStyle(() => ({ opacity: tag.value, height: 22 * tag.value, marginTop: 8 * tag.value }));
+  const tagStyle = useAnimatedStyle(() => ({ opacity: tagFade.value, height: M.skillTagHeight * tagGrow.value, marginTop: M.skillTagMargin * tagGrow.value }));
 
   return (
     <View>
       <View style={s.head}>
         <Text style={[s.name, { color: p.text }]}>{name}</Text>
-        <Text style={[s.levelWord, { color: p.textSecondary }]}>
-          {levelWord} <Text style={[s.levelValue, { color: p.text }]}>{level}</Text>
-        </Text>
+        {/* зачем: цифра — отдельный элемент, иначе внутри строки подскок (сдвиг и масштаб) не работает */}
+        <View style={s.levelBox}>
+          <Text style={[s.levelWord, { color: p.textSecondary }]}>{levelWord}</Text>
+          <GameBumpText value={String(level)} style={[s.levelValue, { color: p.text }]} />
+        </View>
       </View>
       <View style={[s.track, { backgroundColor: p.track }]}>
+        <Reanimated.View style={[s.fill, s.was, { backgroundColor: p.progressFill }, wasStyle]} />
         <Reanimated.View style={[s.fill, { backgroundColor: p.progressFill }, fillStyle]} />
       </View>
       {row.leveledUp ? (
@@ -110,10 +125,10 @@ function SkillsGrowthPanel({ before, after, testID = 'skills-growth-panel' }: Pr
     <V2Card seed={3} style={s.card} testID={testID}>
       <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{triLang(lang, COPY.title)}</Text>
       <View style={s.body}>
-        <SkillsStar size={STAR_SIZE} values={to} from={from} delayMs={START_DELAY_MS} gridColor={p.divider} axisColor={p.divider} shapeFill={p.accentSoft} shapeStroke={p.text} />
+        <SkillsStar size={STAR_SIZE} values={to} from={from} delayMs={M.skillStarDelayMs} durationMs={M.skillStarMs} gridColor={p.divider} axisColor={p.divider} shapeFill={p.accentSoft} shapeStroke={p.text} />
         <View style={s.rows}>
-          {rows.map((row, i) => (
-            <GrowthRow key={row.skill} row={row} index={i} name={triLang(lang, SKILL_NAME[row.skill])} levelWord={triLang(lang, COPY.level)} levelUpWord={triLang(lang, COPY.levelUp)} />
+          {rows.map((row) => (
+            <GrowthRow key={row.skill} row={row} name={triLang(lang, SKILL_NAME[row.skill])} levelWord={triLang(lang, COPY.level)} levelUpWord={triLang(lang, COPY.levelUp)} />
           ))}
         </View>
       </View>
@@ -128,10 +143,13 @@ const s = StyleSheet.create({
   rows: { flex: 1, minWidth: 0, gap: 14 },
   head: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   name: { flex: 1, minWidth: 0, fontSize: 16, lineHeight: 20, fontWeight: '600' },
+  levelBox: { flexDirection: 'row', alignItems: 'baseline', gap: 4 },
   levelWord: { fontSize: 13, lineHeight: 24, fontWeight: '600' },
-  levelValue: { fontSize: 20, fontWeight: '800', fontVariant: ['tabular-nums'] },
+  levelValue: { fontSize: 20, lineHeight: 24, fontWeight: '800', fontVariant: ['tabular-nums'] },
   track: { height: 6, borderRadius: 3, overflow: 'hidden', marginTop: 8 },
-  fill: { height: 6, borderRadius: 3 },
+  fill: { position: 'absolute', left: 0, top: 0, height: 6, borderRadius: 3 },
+  // elevate-mechanics.css:208 — `.bar i.was`: прежний уровень на 38 % яркости полосы
+  was: { opacity: M.skillWasOpacity },
   tag: { alignSelf: 'flex-start', paddingHorizontal: 10, borderRadius: 11, justifyContent: 'center', overflow: 'hidden' },
   tagText: { fontSize: 12, lineHeight: 16, fontWeight: '700' },
 });

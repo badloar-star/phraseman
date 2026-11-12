@@ -7,7 +7,8 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 /**
  * Малая звезда навыков без подписей — для блока в статистике, блока «Навыки растут» на итогах и визитки.
  * Геометрия из макета (elevate-core.js, `geo`): центр size/2, радиус 0,36 размера, сетка 0,34 / 0,67 / 1.
- * Анимация: значения переходят от `from` к `values` за 1300 мс по кубическому затуханию (`starTween`).
+ * Анимация: значения переходят от `from` к `values` за 1300 мс по кубическому затуханию (`starTween`); на итоге
+ * «Навыки растут» — 1500 мс (`durationMs`, elevate-core.js:89).
  */
 const GRID = [0.34, 0.67, 1] as const;
 const TWEEN_MS = 1300;
@@ -23,6 +24,8 @@ type Props = Readonly<{
   /** С каких значений начать движение; по умолчанию — из центра. */
   from?: readonly number[];
   delayMs?: number;
+  /** Длительность движения; по умолчанию 1300 мс (`starTween`), на итоге «Навыки растут» — 1500 мс. */
+  durationMs?: number;
   gridColor: string;
   axisColor: string;
   shapeFill: string;
@@ -33,7 +36,7 @@ function clamp01(v: number): number {
   return Math.max(0, Math.min(1, Number.isFinite(v) ? v : 0));
 }
 
-function SkillsStar({ size, values, from, delayMs = 0, gridColor, axisColor, shapeFill, shapeStroke }: Props) {
+function SkillsStar({ size, values, from, delayMs = 0, durationMs = TWEEN_MS, gridColor, axisColor, shapeFill, shapeStroke }: Props) {
   const n = values.length;
   const c = size / 2;
   const r = size * 0.36;
@@ -49,10 +52,10 @@ function SkillsStar({ size, values, from, delayMs = 0, gridColor, axisColor, sha
       return undefined;
     }
     progress.value = 0;
-    progress.value = withDelay(delayMs, withTiming(1, { duration: TWEEN_MS, easing: Easing.out(Easing.cubic) }));
+    progress.value = withDelay(delayMs, withTiming(1, { duration: durationMs, easing: Easing.out(Easing.cubic) }));
     return () => cancelAnimation(progress);
     // зачем: новое значение (например, прирост на итоге) запускает движение заново от прежней фигуры
-  }, [key, delayMs, reduceMotion, progress]);
+  }, [key, delayMs, durationMs, reduceMotion, progress]);
 
   const shapeProps = useAnimatedProps(() => {
     let d = '';

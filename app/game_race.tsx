@@ -46,6 +46,8 @@ const LOG = '[GAME-RACE]';
 
 const COPY = {
   title: { ru: 'Гонка с собой', uk: 'Перегони з собою', es: 'Carrera contigo', en: 'Race yourself' },
+  // зачем (сверка с макетом 12.11, elevate-games.js:23): гонка — это «Блиц» с дорожками; в шапке «Блиц», длинное название не влезало в строку и обрезалось
+  header: { ru: 'Блиц', uk: 'Бліц', es: 'Blitz', en: 'Blitz' },
   pick: { ru: 'Выбери перевод', uk: 'Обери переклад', es: 'Elige la traducción', en: 'Choose the translation' },
   today: { ru: 'Сегодня', uk: 'Сьогодні', es: 'Hoy', en: 'Today' },
   yesterday: { ru: 'Вчера', uk: 'Учора', es: 'Ayer', en: 'Yesterday' },
@@ -299,7 +301,7 @@ export default function GameRaceScreen() {
         <View style={s.content}>
           <View style={s.top}>
             <V2IconButton icon="close" onPress={onClose} accessibilityLabel={triLang(lang, COPY.close)} testID="game-race-close" />
-            <Text style={[s.title, { color: p.text }]}>{triLang(lang, COPY.title)}</Text>
+            <Text style={[s.title, { color: p.text }]}>{triLang(lang, COPY.header)}</Text>
             <View style={[s.pill, { backgroundColor: p.glass }]}>
               <View style={s.hearts}>
                 {/* guard-ok: сердца одного захода в памяти экрана, не баланс и не опыт */}

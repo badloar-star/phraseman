@@ -396,6 +396,10 @@ describe('Dialogue V2 session route', () => {
         mood: 'smile',
         activeObjectiveId: 'goal_1',
         dialogueEnded: false,
+        // зачем (12.11): разбор хода — DialogueV2TurnCoaching; клиент всегда отдаёт allObjectivesComplete и sayHints
+        // (c0601b8ce, 11.11: готовые ответы на реплику собеседника). Подставной ответ без них ронял экран на sayHints.length.
+        allObjectivesComplete: false,
+        sayHints: [],
       },
     });
     await render(h(DialogueV2SessionRoute));
@@ -471,7 +475,7 @@ describe('Dialogue V2 session route', () => {
       quota: null,
       coaching: {
         replyTranslations: null, replyExplanations: null, betterPhrasing: null, hint: null,
-        mood: 'happy', activeObjectiveId: null, dialogueEnded: true,
+        mood: 'happy', activeObjectiveId: null, dialogueEnded: true, allObjectivesComplete: false, sayHints: [],
       },
     });
     await render(h(DialogueV2SessionRoute));
@@ -504,7 +508,7 @@ describe('Dialogue V2 session route', () => {
       quota: null,
       coaching: {
         replyTranslations: null, replyExplanations: null, betterPhrasing: null, hint: null,
-        mood: 'happy', activeObjectiveId: null, dialogueEnded: true,
+        mood: 'happy', activeObjectiveId: null, dialogueEnded: true, allObjectivesComplete: false, sayHints: [],
       },
     });
     await render(h(DialogueV2SessionRoute));

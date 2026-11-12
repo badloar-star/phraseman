@@ -34,7 +34,7 @@ import GameBumpText from '../components/games/GameBumpText';
 import GameRise from '../components/games/GameRise';
 import GameSegments from '../components/games/GameSegments';
 import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
-import { V2Button, V2Card, V2IconButton } from '../components/v2/V2Kit';
+import { V2Card, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { GAME_EASE, GAME_MOTION, GAME_MOTION_EXTRA } from '../constants/gameMotion';
 import { triLang } from '../constants/i18n';
@@ -378,7 +378,7 @@ export default function GameSortScreen() {
             </View>
           </View>
 
-          <Text style={[s.ask, { color: p.textSecondary }]}>{finished ? '' : triLang(lang, COPY.ask)}</Text>
+          <Text style={[s.ask, { color: p.textSecondary }]}>{triLang(lang, COPY.ask) /* макет: подсказка остаётся и на итоге */}</Text>
 
           <View style={s.pile}>
             {deck.tasks.map((task, i) => {
@@ -409,14 +409,11 @@ export default function GameSortScreen() {
             ) : null}
           </View>
 
-          {showFinish ? (
-            <V2Button testID="game-sort-done" label={triLang(lang, COPY.done)} onPress={onClose} />
-          ) : (
-            <View style={s.bins}>
-              <BinTile bin={deck.left} count={game.left} side="left" hotX={hotX} yesKey={binYes.left} noKey={binNo.left} disabled={finished} onPress={() => drop('left')} />
-              <BinTile bin={deck.right} count={game.right} side="right" hotX={hotX} yesKey={binYes.right} noKey={binNo.right} disabled={finished} onPress={() => drop('right')} />
-            </View>
-          )}
+          {/* зачем (сверка с макетом 12.11, elevate-mechanics.app.js:189–232): на итоге корзины со счётом остаются внизу, кнопки «Готово» нет — выход ✕ */}
+          <View style={s.bins}>
+            <BinTile bin={deck.left} count={game.left} side="left" hotX={hotX} yesKey={binYes.left} noKey={binNo.left} disabled={finished} onPress={() => drop('left')} />
+            <BinTile bin={deck.right} count={game.right} side="right" hotX={hotX} yesKey={binYes.right} noKey={binNo.right} disabled={finished} onPress={() => drop('right')} />
+          </View>
         </View>
       </SafeAreaView>
     </ScreenGradient>

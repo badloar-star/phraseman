@@ -9,7 +9,6 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -20,6 +19,7 @@ import { newGameAttemptKey, noteGameMistake } from '../modules/games/game_mistak
 import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 import GameAnswerTile from '../components/games/GameAnswerTile';
 import GameListenWave from '../components/games/GameListenWave';
+import GameBumpText from '../components/games/GameBumpText';
 import GameMemoryPairs from '../components/games/GameMemoryPairs';
 import GameRise from '../components/games/GameRise';
 import GameSegments from '../components/games/GameSegments';
@@ -46,6 +46,7 @@ const AFTER_MISS_MS = 2300;
 const ROUNDS = 6;
 
 const COPY = {
+  speed: { ru: 'Скорость', uk: 'Швидкість', es: 'Velocidad', en: 'Speed' },
   of: { ru: 'из', uk: 'із', es: 'de', en: 'of' },
   done: { ru: 'Готово', uk: 'Готово', es: 'Listo', en: 'Done' },
   close: { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', en: 'Close' },
@@ -53,6 +54,12 @@ const COPY = {
 } as const;
 
 type Phase = 'show' | 'answer' | 'verdict' | 'done';
+
+/** Множитель скорости, как в макете: «1,0», «1,25»; в английском интерфейсе — с точкой. */
+function formatRate(rate: number, lang: string): string {
+  const text = Number.isInteger(rate) ? rate.toFixed(1) : String(rate);
+  return lang === 'en' ? text : text.replace('.', ',');
+}
 
 type PromptProps = Readonly<{ round: QuizRound; roundIndex: number; replayKey: number; phase: Phase; picked: number | null; onReplay: () => void }>;
 
@@ -65,8 +72,8 @@ function Prompt({ round, roundIndex, replayKey, phase, picked, onReplay }: Promp
   if (prompt.kind === 'audio') {
     // зачем: фразу можно переслушать нажатием — проверяется слух, а не память на один показ
     return (
-      <Pressable testID="game-quiz-replay" accessibilityRole="button" accessibilityLabel={round.ask} onPressIn={() => { void hapticTap(); }} onPress={onReplay} style={({ pressed }) => [s.audio, { backgroundColor: p.glass }, pressed && s.pressed]}>
-        <Ionicons name="volume-high" size={36} color={p.text} />
+      // зачем (сверка с макетом 12.11): в макете волна стоит сама по себе — без стеклянной рамки и значка динамика; нажатие по ней по-прежнему переслушивает
+      <Pressable testID="game-quiz-replay" accessibilityRole="button" accessibilityLabel={round.ask} onPressIn={() => { void hapticTap(); }} onPress={onReplay} style={({ pressed }) => [s.audio, pressed && s.pressed]}>
         {/* зачем (сверка движения 11.11, п. 4): волна живая, как в макете, а не нарисованная — см. GameListenWave */}
         <GameListenWave roundIndex={roundIndex} color={p.text} replayKey={replayKey} />
       </Pressable>
@@ -203,11 +210,20 @@ export default function GameQuizScreen() {
         <View style={s.content}>
           <View style={s.top}>
             <V2IconButton icon="close" onPress={onClose} accessibilityLabel={triLang(lang, COPY.close)} testID="game-quiz-close" />
-            <View style={[s.pill, { backgroundColor: p.glass }]}>
-              <Text style={[s.pillText, { color: p.text }]}>{deck.pill}</Text>
+            <View style={[s.pill, s.pillRow, { backgroundColor: p.glass }]}>
+              {round?.prompt.kind === 'audio' ? (
+                // зачем (макет elevate-games.js:8): у «На слух» в шапке множитель скорости раунда, число подпрыгивает при смене
+                <>
+                  <Text style={[s.pillText, { color: p.text }]}>{`${triLang(lang, COPY.speed)} ×`}</Text>
+                  <GameBumpText value={formatRate(round.prompt.rate, lang)} trigger={game.index} style={[s.pillText, { color: p.text }]} />
+                </>
+              ) : (
+                <Text style={[s.pillText, { color: p.text }]}>{deck.pill}</Text>
+              )}
             </View>
             <View style={[s.pill, { backgroundColor: p.glass }]}>
-              <Text style={[s.pillText, { color: p.text }]}>{`${Math.min(doneCount, rounds.length)} / ${rounds.length}`}</Text>
+              {/* зачем (макет elevate-core.js:135): справа номер текущего раунда «1 / 3», а не число отвеченных */}
+              <Text style={[s.pillText, { color: p.text }]}>{`${Math.min(game.index + 1, rounds.length)} / ${rounds.length}`}</Text>
             </View>
           </View>
 
@@ -257,6 +273,7 @@ const s = StyleSheet.create({
   content: { flex: 1, paddingHorizontal: V2.screenPad, paddingTop: 8, paddingBottom: 16 },
   top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: V2.iconButton },
   pill: { height: 36, paddingHorizontal: 12, borderRadius: 18, justifyContent: 'center' },
+  pillRow: { flexDirection: 'row', alignItems: 'center', gap: 4 },
   pillText: { fontSize: 14, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
   segs: { marginTop: 14 },
   stageTop: { flex: 0.6 },

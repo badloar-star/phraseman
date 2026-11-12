@@ -38,6 +38,8 @@ import { PracticeRuneCounter } from '../components/PracticeRuneCounter';
 import { CoinRewardFlight } from '../components/rewards/CoinRewardFlight';
 import { usePracticeRunes } from '../hooks/usePracticeRunes';
 import { noteSkillAction } from '../modules/skills/skill_store';
+import { recordBlitzRun, refreshBlitzLevel, type BlitzRunOutcome } from '../modules/games/blitz_level_store';
+import { noteGameResult } from '../modules/games/game_records';
 import { useSkillSession } from '../modules/skills/use_skill_session';
 import { practiceCoinsAllowedForDeckKeys } from './flashcards/dictionary_training_deck';
 import { useCoinRewardFlight } from '../hooks/useCoinRewardFlight';
@@ -360,6 +362,9 @@ export default function FlashcardsBlitzSession() {
   const shownAtRef = useRef(Date.now());
   const endAtRef = useRef(0);
   const finishingRef = useRef(false);
+  // зачем (макет «Уровни игры · на примере „Блица“»): сдвиг уровня — факт ЭТОГО захода, держится только в памяти экрана
+  // (празднование не durable, правило 01.09); по нему «Готово» итога открывает лестницу
+  const levelOutcomeRef = useRef<BlitzRunOutcome | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const pausedRemainingMsRef = useRef(roundDurationMs);
@@ -470,7 +475,25 @@ export default function FlashcardsBlitzSession() {
     const roundMs = roundDurationMsRef.current ?? roundDurationMs;
     const playedSec = Math.max(0, roundMs - Math.max(0, endAtRef.current - Date.now())) / 1000;
     setResult({ summary, playedSec });
+    // зачем (макеты «Рекорды игр» и «Уровни игры»): итог захода — в рекорд «Блица» (верных за заход) и в уровень;
+    // обе записи только на устройстве и не бросают — итог показывается сразу, не дожидаясь диска
+    noteGameResult('blitz', summary.correct);
+    levelOutcomeRef.current = null;
+    // зачем: поздний ответ диска не должен приписать сдвиг этого захода следующему («Ещё раз» заводит новый список ответов)
+    const runEvents = eventsRef.current;
+    recordBlitzRun(summary.correct, summary.total)
+      .then((outcome) => { if (eventsRef.current === runEvents) levelOutcomeRef.current = outcome; })
+      .catch((error: unknown) => {
+        console.warn(`[BLITZ-LEVEL] finish:record_failed ${error instanceof Error ? error.message : String(error)}`); // guard-ok: лог в catch обязателен
+      });
   }, [clearRoundTimers, progress, roundDurationMs]);
+
+  // прогрев уровня с диска: к концу захода уровень уже в памяти и запись идёт без чтения
+  useEffect(() => {
+    refreshBlitzLevel().catch((error: unknown) => {
+      console.warn(`[BLITZ-LEVEL] warm:failed ${error instanceof Error ? error.message : String(error)}`); // guard-ok: лог в catch обязателен
+    });
+  }, []);
 
   const pauseBlitzCountdown = useCallback(() => {
     pausedRemainingMsRef.current = Math.max(0, endAtRef.current - Date.now());
@@ -874,6 +897,7 @@ export default function FlashcardsBlitzSession() {
       return;
     }
     finishingRef.current = false;
+    levelOutcomeRef.current = null; // зачем: новый заход — сдвиг прошлого больше не показываем
     eventsRef.current = [];
     const durableManifest = blitzPlayableManifestRef.current;
     blitzPlayableManifestRef.current = null;
@@ -1140,7 +1164,8 @@ export default function FlashcardsBlitzSession() {
     onRestored: resetBlitzAfterSessionRuneForfeit,
   });
 
-  const leave = useCallback(() => {
+  // зачем: и обычный уход, и переход на лестницу уровней обязаны одинаково закрыть неистраченную энергию захода
+  const releaseBlitzOnLeave = useCallback(() => {
     fcHaptic('tap');
     blitzExplicitlyAbandonedRef.current = true;
     const pending = blitzPendingGrantRef.current;
@@ -1152,8 +1177,25 @@ export default function FlashcardsBlitzSession() {
         refundBlitzEnergy,
       ).catch((error: unknown) => { console.warn('[FC-BLITZ] abandonFlashcardTrainingPendingGrant: не удалось (продолжаем без неё)', error); });
     }
-    safeRouterBack(router, '/flashcards' as never);
-  }, [refundBlitzEnergy, router]);
+  }, [refundBlitzEnergy]);
+
+  // «Готово» на итоге и любой другой уход. Уровень этого захода сдвинулся — вместо обычного ухода показываем лестницу
+  // «Уровни игры» (макет elevate-games.js, levels()). зачем (ночное решение 12.11, пакет blitz-levels-and-record-2026-11-12):
+  // лестница — только при сдвиге, а не после каждого захода; сдвиг ещё не записан (диск медленный) — обычный уход, игра не ждёт.
+  // Проводка идёт через этот же обработчик, чтобы вызов экрана итога остался прежним (сторож session_result_liquid_glass).
+  const leave = useCallback(() => {
+    const outcome = levelOutcomeRef.current;
+    levelOutcomeRef.current = null;
+    releaseBlitzOnLeave();
+    if (!outcome || outcome.moved === 0) {
+      safeRouterBack(router, '/flashcards' as never);
+      return;
+    }
+    const { after, before } = outcome;
+    console.warn(`[BLITZ-LEVEL] result:open_ladder ${JSON.stringify({ from: before.level, to: after.level, good: after.good })}`); // guard-ok: редкое событие, видно в журнале
+    markNextNavigationAsReplace();
+    router.replace(`/game_levels?level=${after.level}&good=${after.good}&from=${before.level}` as never);
+  }, [releaseBlitzOnLeave, router]);
 
   /** «Ещё разок!» — драйвер сессий/день (§3.9): мгновенный рестарт раунда. */
   const restart = useCallback(() => {

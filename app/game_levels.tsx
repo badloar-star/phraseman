@@ -5,9 +5,10 @@
  * Движение — из макета в точности: прозрачность строки 400 мс, подложка 400 мс, увеличение 500 мс cubic-bezier(.2,1,.3,1),
  * монета 300 мс, деление 300 мс. Числа и цвета — в modules/games/levels_motion.ts.
  * зачем так: правило «три хороших подряд — вверх, два слабых — вниз» — в modules/games/levels_core; экран показывает
- * состояние из адреса (`level`, `good`) и ничего не хранит. Экран пока никуда не подключён.
+ * состояние из адреса (`level`, `good`, `from`) и ничего не хранит. Уровень хранит modules/games/blitz_level_store;
+ * открывает экран «Блиц» после итога, когда уровень сдвинулся.
  */
-import React, { memo, useEffect, useMemo } from 'react';
+import React, { memo, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Reanimated, { Easing, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -130,11 +131,27 @@ export default function GameLevelsScreen() {
   const router = useRouter();
   const p = useV2Palette();
   const { lang } = useLang();
-  const params = useLocalSearchParams<{ level?: string; good?: string }>();
+  const params = useLocalSearchParams<{ level?: string; good?: string; from?: string }>();
   // зачем: адрес — внешние данные; номер ступени и серия обрезаются до допустимых значений
-  const state = useMemo(() => normalizeLevelsState({ level: params.level, good: params.good }), [params.good, params.level]);
+  const target = useMemo(() => normalizeLevelsState({ level: params.level, good: params.good }), [params.good, params.level]);
+  // `from` — уровень до захода (его передаёт «Блиц», когда уровень сдвинулся): лестница сначала стоит на нём,
+  // а потом переходит на новый — так, как сдвиг показан в макете (подскок надписи, смена ступени)
+  const start = useMemo(() => {
+    if (params.from === undefined) return target;
+    const from = normalizeLevelsState({ level: params.from }).level;
+    if (from === target.level) return target;
+    return { level: from, good: from < target.level ? LEVELS_GOOD_TO_RISE - 1 : 0, weak: 0 };
+  }, [params.from, target]);
+  const [state, setState] = useState(start);
+  useEffect(() => {
+    setState(start);
+    if (start === target) return undefined;
+    const id = setTimeout(() => setState(target), LEVELS_MOTION.moveDelayMs);
+    return () => clearTimeout(id);
+  }, [start, target]);
   const tint = isLightSurface(p.bg) ? LEVELS_TINT.light : LEVELS_TINT.dark;
-  const onBack = () => safeRouterBack(router, '/(tabs)/home' as never);
+  // зачем: лестница открывается после итога «Блица» — без истории «назад» ведёт в раздел карточек
+  const onBack = () => safeRouterBack(router, '/flashcards' as never);
 
   return (
     <ScreenGradient>

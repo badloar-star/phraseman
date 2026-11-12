@@ -15,6 +15,8 @@ export const LEVELS_MOTION = {
   rowScaleCur: 1.03,
   /** elevate-extra.css:187 `.lv .cn { transition: opacity 300ms }`. */
   coinFadeMs: 300,
+  /** elevate-games.js:101 — первый шаг показа сдвига (`[1400, …]`): столько лестница стоит на прежнем уровне. */
+  moveDelayMs: 1400,
   /** elevate-extra.css:189 `.pips i { transition: background 300ms }`. */
   pipMs: 300,
   /** elevate-games.js:95 — отступы блока сверху: 20, крупная надпись 6, пояснение 8, деления 14; :97 — 8 под лестницей. */

@@ -12,6 +12,25 @@ export const LEVELS_GOOD_TO_RISE = 3;
 /** Сколько слабых заходов подряд опускают уровень. */
 export const LEVELS_WEAK_TO_DROP = 2;
 
+/**
+ * «Хороший заход» — точность не ниже 80 % при 8 и больше ответах (ночное умолчание 12.11, решение на утро владельцу;
+ * пакет docs/work/tasks/blitz-levels-and-record-2026-11-12.md).
+ */
+export const LEVELS_GOOD_ACCURACY = 0.8;
+export const LEVELS_MIN_ANSWERS = 8;
+
+export type LevelRunVerdict = 'good' | 'weak' | 'skip';
+
+/**
+ * Итог захода для лестницы. Меньше 8 ответов — заход не засчитывается никак.
+ * зачем: короткий заход (вышел через 10 секунд, упал таймер) не должен ронять уровень, который человек не выбирает.
+ */
+export function levelRunVerdict(correct: number, total: number): LevelRunVerdict {
+  if (!Number.isFinite(correct) || !Number.isFinite(total) || correct < 0 || total < correct) return 'skip';
+  if (total < LEVELS_MIN_ANSWERS) return 'skip';
+  return correct / total >= LEVELS_GOOD_ACCURACY ? 'good' : 'weak';
+}
+
 export interface LevelsState {
   /** Номер ступени с нуля: 0 — «Старт». */
   readonly level: number;

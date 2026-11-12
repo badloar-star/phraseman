@@ -3,7 +3,8 @@
  * зачем: уровень человек не выбирает — значит, правило обязано быть точным и не уводить за края лестницы.
  */
 import {
-  INITIAL_LEVELS_STATE, LEVELS_COUNT, LEVELS_GOOD_TO_RISE, LEVELS_WEAK_TO_DROP, applyLevelRun, levelRowState, normalizeLevelsState, type LevelsState,
+  INITIAL_LEVELS_STATE, LEVELS_COUNT, LEVELS_GOOD_ACCURACY, LEVELS_GOOD_TO_RISE, LEVELS_MIN_ANSWERS, LEVELS_WEAK_TO_DROP,
+  applyLevelRun, levelRowState, levelRunVerdict, normalizeLevelsState, type LevelsState,
 } from '../modules/games/levels_core';
 import { LEVELS_MOTION } from '../modules/games/levels_motion';
 
@@ -41,6 +42,13 @@ it('внешние данные приводятся к допустимому �
   expect(normalizeLevelsState({ level: 2.9 })).toEqual({ level: 2, good: 0, weak: 0 });
   expect(normalizeLevelsState(undefined)).toEqual(INITIAL_LEVELS_STATE);
   expect(applyLevelRun({ level: 9, good: 7, weak: 0 }, true).state.level).toBe(LEVELS_COUNT - 1);
+});
+
+it('итог захода: хороший — ≥ 80 % при 8+ ответах, слабый — ниже 80 %, короткий и битый не засчитываются', () => {
+  expect([levelRunVerdict(8, 10), levelRunVerdict(10, 10), levelRunVerdict(8, 8)]).toEqual(['good', 'good', 'good']);
+  expect([levelRunVerdict(7, 10), levelRunVerdict(0, 8)]).toEqual(['weak', 'weak']);
+  expect([levelRunVerdict(7, 7), levelRunVerdict(0, 0), levelRunVerdict(5, 4), levelRunVerdict(-1, 9), levelRunVerdict(Number.NaN, 9)]).toEqual(['skip', 'skip', 'skip', 'skip', 'skip']);
+  expect([LEVELS_GOOD_ACCURACY, LEVELS_MIN_ANSWERS]).toEqual([0.8, 8]);
 });
 
 it('вид строк лестницы: пройденные ниже текущей, впереди — выше', () => {

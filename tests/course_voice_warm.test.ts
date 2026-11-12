@@ -61,6 +61,10 @@ describe('подкачка записей озвучки заранее', () => 
     expect(read('components/DailyPhraseCard.tsx')).toMatch(/warmCourseVoiceSoon\('daily_phrase'/);
     // зачем: сторож карточки запрещает в ней таймеры — отсрочка живёт в модуле подкачки
     expect(read('components/DailyPhraseCard.tsx')).not.toContain('setTimeout');
-    expect(read('app/spire/use_spire_game.ts')).toMatch(/warmCourseVoice\('spire_step', pick\.tasks\.filter\(\(t\) => t\.kind === 'listen' \|\| t\.kind === 'dictate'\)/);
+    // 11.11: вызов переехал в модуль «ступень подготовлена» — у файла подготовки ступени сторож длины
+    expect(read('app/spire/use_spire_game.ts')).toContain('spireOnStepPrepared(floor, pick.plan.budgetMs, { tier: stepTier, tasks: pick.tasks, lang });');
+    const prepared = read('app/spire/spire_step_prepared.ts');
+    expect(prepared).toContain("detail.tasks.filter((task) => task.kind === 'listen' || task.kind === 'dictate')");
+    expect(prepared).toContain("warmCourseVoice('spire_step', listen.map((task) => task.payload.phrase), detail.lang)");
   });
 });

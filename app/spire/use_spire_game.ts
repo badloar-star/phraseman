@@ -39,10 +39,9 @@ import { getCanonicalUserId } from '../user_id_policy';
 import { spireLoadFriendChips } from './spire_friends_client';
 import { useSpireFriendsRefresh } from './use_spire_friends_refresh';
 import { spireOpenLiveGate, type SpireLiveGate } from './spire_live_gate';
-import { spireEstimateStepBudgetMs, spireRememberStepBudget } from './spire_step_budget';
+import { spireEstimateStepBudgetMs, spireOnStepPrepared } from './spire_step_prepared';
 import { spirePeekStepAttempt } from './spire_local_store';
 import { spireEnsureWeekPack, type SpirePackLoad } from './spire_pack_client';
-import { warmCourseVoice } from '../../hooks/course_voice_warm';
 import { spireSyncRoom, type SpireRoomLoad } from './spire_room_client';
 import { spireMergeRoomLoad, useSpireRoomSync } from './use_spire_room_sync';
 import { spireFirstFrameRoom, spirePeekFirstFrameIds, spirePeekFirstFrameRoomLoad } from './spire_load_trace';
@@ -301,9 +300,7 @@ export function useSpireGame({ config, unlocked, lang, week, setWeek, runtimeAct
         failStart('pack_missing', `в пакете нет ступени этаж=${floor} ступень=${stepInFloor + 1}`);
         return;
       }
-      spireRememberStepBudget(floor, pick.plan.budgetMs, { tier: stepTier, tasks: pick.tasks }); // [SPIRE-TIME]
-      // зачем (владелец 11.11.2026: задания Пика «на слух» звучат записью): записи фраз этой ступени качаются на диск до первого задания
-      warmCourseVoice('spire_step', pick.tasks.filter((t) => t.kind === 'listen' || t.kind === 'dictate').map((t) => t.payload.phrase), lang);
+      spireOnStepPrepared(floor, pick.plan.budgetMs, { tier: stepTier, tasks: pick.tasks, lang }); // [SPIRE-TIME] + подкачка записей «на слух»
       const runId = `${weekKey}:${floor}:${stepInFloor + 1}:${attempt}:${Date.now()}`;
       DebugLogger.info(LOG, `game: открываем ступень этаж=${floor} ступень=${stepInFloor + 1} попытка=${attempt} пакет=${packLoad.source} за ${Date.now() - startedAt} мс (бюджет ${pick.plan.budgetMs} мс)`);
       setSession({ pick, ctx: { lang, weekKey, tier: stepTier, floor, stepInFloor, stepNumber }, attempt, runId });

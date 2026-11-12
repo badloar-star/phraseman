@@ -14,15 +14,16 @@ import { huntFixedLines, isValidHuntTask, isValidOrderTask } from '../modules/ga
 import { isValidOddWordTask } from '../modules/games/odd_word_core';
 import { isValidQuizRound, type QuizRound } from '../modules/games/quiz_core';
 
-const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8] as const;
+// зачем (12.11): банк продлён на уроки 9–12 — после урока 8 игры брали задания урока 8
+const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 const GAP = '___';
 
 type Lang = 'de' | 'fr';
 
 /** Чего ждём от банка: с какого урока идёт «Собери диалог» и в каких колодах «Сортировки» карта с пропуском. */
 const EXPECTED: Record<Lang, { orderLessons: readonly number[]; gapDecks: readonly number[]; forms: boolean }> = {
-  de: { orderLessons: [4, 5, 6, 7, 8], gapDecks: [1, 2, 3, 4, 5, 7, 8], forms: true },
-  fr: { orderLessons: [3, 4, 5, 6, 7, 8], gapDecks: [1, 2, 3, 4, 6, 7], forms: false },
+  de: { orderLessons: [4, 5, 6, 7, 8, 9, 10, 11, 12], gapDecks: [1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12], forms: true },
+  fr: { orderLessons: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12], gapDecks: [1, 2, 3, 4, 6, 7, 9, 10, 11, 12], forms: false },
 };
 
 const tokens = (text: string): string[] =>

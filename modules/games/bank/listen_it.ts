@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — итальянский классический курс, уроки 1–20 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — итальянский классический курс, уроки 1–24 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: произносится фраза урока; верный вариант дословно равен ей; два неверных отличаются
  * ровно одним словом и остаются правильными фразами из знакомых слов — это проверка слуха, а не грамматики.
@@ -172,5 +172,37 @@ export const LISTEN_BANK_IT: Readonly<Record<number, readonly QuizRound[]>> = {
     round(20, 4, 'Le finestre erano aperte', ['Le finestre erano chiuse', 'Le porte erano aperte'], 0, 'Окна были открыты'),
     round(20, 5, 'Avevamo molto tempo', ['Avevamo poco tempo', 'Avevano molto tempo'], 1, 'У нас было много времени'),
     round(20, 6, 'La strada era deserta', ['La strada era stretta', 'La piazza era deserta'], 2, 'Улица была пустынна'),
+  ],
+  21: [
+    round(21, 1, 'Leggevo quando hai chiamato', ['Dormivo quando hai chiamato', 'Leggevo quando hai scritto'], 0, 'Я читал, когда ты позвонил'),
+    round(21, 2, 'Pioveva quando siamo usciti', ['Pioveva quando siamo arrivati', 'Pioveva quando sono usciti'], 1, 'Шёл дождь, когда мы вышли'),
+    round(21, 3, 'Stavamo mangiando quando è arrivato Paolo', ['Stavamo parlando quando è arrivato Paolo', 'Stavamo mangiando quando è uscito Paolo'], 2, 'Мы ели, когда приехал Паоло'),
+    round(21, 4, 'Ho perso il guanto mentre correvo', ['Ho perso il guanto mentre camminavo', 'Ho trovato il guanto mentre correvo'], 0, 'Я потерял перчатку, когда бежал'),
+    round(21, 5, 'Lea camminava quando ha cominciato a piovere', ['Paolo camminava quando ha cominciato a piovere', 'Lea leggeva quando ha cominciato a piovere'], 1, 'Леа шла, когда начался дождь'),
+    round(21, 6, 'Ero alla stazione quando hai scritto', ['Ero alla stazione quando hai chiamato', 'Ero alla fermata quando hai scritto'], 2, 'Я был на вокзале, когда ты написала'),
+  ],
+  22: [
+    round(22, 1, 'Lo vedo', ['Lo cerco', 'La vedo'], 0, 'Я вижу его'),
+    round(22, 2, 'Li conosci', ['Li cerchi', 'Lo conosci'], 1, 'Ты их знаешь'),
+    round(22, 3, 'Lei la cerca', ['Lei la porta', 'Lei lo cerca'], 2, 'Она ищет её'),
+    round(22, 4, 'Li aspettiamo', ['Li vediamo', 'La aspettiamo'], 0, 'Мы ждём их'),
+    round(22, 5, 'Non lo trovo', ['Non lo vedo', 'Non la trovo'], 1, 'Я его не нахожу'),
+    round(22, 6, 'Posso tenerlo?', ['Posso provarlo?', 'Vuoi tenerlo?'], 2, 'Можно я его оставлю себе?'),
+  ],
+  23: [
+    round(23, 1, 'Gli parlo', ['Gli scrivo', 'Le parlo'], 0, 'Я разговариваю с ним'),
+    round(23, 2, 'Io le scrivo', ['Io le parlo', 'Io gli scrivo'], 1, 'Я ей пишу'),
+    round(23, 3, 'Paolo le risponde', ['Paolo gli risponde', 'Lea le risponde'], 2, 'Паоло ей отвечает'),
+    round(23, 4, 'Gli presto la mia penna', ['Gli presto la mia borsa', 'Le presto la mia penna'], 0, 'Я одалживаю ему свою ручку'),
+    round(23, 5, 'Le telefonerò stasera', ['Le telefonerò domani', 'Gli telefonerò stasera'], 1, 'Я позвоню ей сегодня вечером'),
+    round(23, 6, 'Non le rispondo subito', ['Non gli rispondo subito', 'Non le rispondo mai'], 2, 'Я не отвечаю ей сразу'),
+  ],
+  24: [
+    round(24, 1, 'Ci vado adesso', ['Ci vado domani', 'Ci vai adesso'], 0, 'Я иду туда сейчас'),
+    round(24, 2, 'Ci vai domani', ['Ci vado domani', 'Ci vai adesso'], 1, 'Ты пойдёшь туда завтра'),
+    round(24, 3, 'Lui ci va a piedi', ['Lei ci va a piedi', 'Lui ci va a casa'], 2, 'Он идёт туда пешком'),
+    round(24, 4, 'Ci andiamo in autobus', ['Ci andiamo in treno', 'Ci andate in autobus'], 0, 'Мы едем туда на автобусе'),
+    round(24, 5, 'Ci passi spesso', ['Ci torni spesso', 'Ci passi domani'], 1, 'Ты часто там бываешь'),
+    round(24, 6, 'Non ci vado la sera', ['Non ci vado la mattina', 'Non ci vai la sera'], 2, 'Я не хожу туда по вечерам'),
   ],
 };

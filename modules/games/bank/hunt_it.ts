@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — итальянский классический курс, уроки 1–20 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — итальянский классический курс, уроки 1–24 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: три реплики из фраз урока (или из слов этого и прошлых уроков); ровно одно слово
  * неверное — `{неверно>верно}`; в другой реплике одно слово-обманка — `*слово`: оно нажимается, но верное.
@@ -91,5 +91,21 @@ export const HUNT_BANK_IT: Readonly<Record<number, readonly HuntTask[]>> = {
   20: [
     task(20, 1, ['Dove abitavi?', '*Abitavo qui.', 'Noi {vivevano>vivevamo} in campagna.'], 'Про нас говорят vivevamo.'),
     task(20, 2, ['Il giardino era grande?', 'Il giardino {erano>era} piccolo.', 'Le finestre *erano aperte.'], 'Сад один — значит era.'),
+  ],
+  21: [
+    task(21, 1, ['Leggevo quando hai chiamato.', 'Lei {dormivo>dormiva} quando hai chiamato.', '*Stavamo mangiando.'], 'Про неё говорят dormiva. Dormivo — про себя.'),
+    task(21, 2, ['Stavamo aspettando.', 'Mentre aspettavamo, è uscito {la>il} dottore.', 'Lea *camminava.'], 'Dottore — «он», поэтому il.'),
+  ],
+  22: [
+    task(22, 1, ['Dove sono le chiavi?', '*Le porto con me.', 'Lei le {cerco>cerca}.'], 'Про неё говорят cerca. Cerco — про себя.'),
+    task(22, 2, ['Dove sono i bambini?', 'Noi non li {vedo>vediamo}.', 'Li *aspettiamo qui.'], 'Про нас говорят vediamo.'),
+  ],
+  23: [
+    task(23, 1, ['Scrivi a Paolo?', '*Gli scrivo ogni domenica.', 'Lei {rispondo>risponde} a loro.'], 'Про неё говорят risponde. Rispondo — про себя.'),
+    task(23, 2, ['Che cosa le regali?', 'Le regalo un libro per {la>il} suo compleanno.', 'Lei *parla a loro.'], 'Compleanno — «он», поэтому il.'),
+  ],
+  24: [
+    task(24, 1, ['Vai al mercato?', '*Ci vado adesso.', 'Lui ci {vado>va} a piedi.'], 'Про него говорят va. Vado — про себя.'),
+    task(24, 2, ['Lei è già stata al museo?', 'Lei ci è già {stato>stata}.', '*Ci vado domani.'], 'Про неё — stata.'),
   ],
 };

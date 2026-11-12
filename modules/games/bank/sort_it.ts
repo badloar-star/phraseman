@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — итальянский классический курс, уроки 1–20 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — итальянский классический курс, уроки 1–24 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только слова этого и прошлых уроков. Пропуск в карте пишется `___`
@@ -211,5 +211,45 @@ export const SORT_BANK_IT: Readonly<Record<number, SortDeck>> = {
     ['I treni ___ in ritardo', 'right', 'поездов несколько — erano'],
     ['Lei ___ spesso sola', 'left', 'она одна — era'],
     ['Le strade ___ strette', 'right', 'улиц несколько — erano'],
+  ]),
+  21: deck(21, { title: 'шло долго', example: 'фон: что происходило' }, { title: 'случилось вдруг', example: 'то, что прервало' }, [
+    ['Dormivo', 'left', 'сон шёл — dormivo'],
+    ['hai chiamato', 'right', 'звонок случился вдруг — hai chiamato'],
+    ['Stavamo mangiando', 'left', 'еда шла — stavamo mangiando'],
+    ['è arrivato Paolo', 'right', 'приход случился вдруг — è arrivato'],
+    ['Pioveva', 'left', 'дождь шёл — pioveva'],
+    ['siamo usciti', 'right', 'выход случился вдруг — siamo usciti'],
+    ['Lea camminava', 'left', 'прогулка шла — camminava'],
+    ['ha cominciato a piovere', 'right', 'дождь начался вдруг — ha cominciato'],
+  ]),
+  22: deck(22, { title: 'lo', example: 'одна вещь — «он»' }, { title: 'li', example: 'несколько — «они»' }, [
+    ['pane', 'left', 'il pane — значит lo'],
+    ['biglietti', 'right', 'i biglietti — значит li'],
+    ['maglione', 'left', 'il maglione — значит lo'],
+    ['bicchieri', 'right', 'i bicchieri — значит li'],
+    ['giornale', 'left', 'il giornale — значит lo'],
+    ['guanti', 'right', 'i guanti — значит li'],
+    ['pacco', 'left', 'il pacco — значит lo'],
+    ['bambini', 'right', 'i bambini — значит li'],
+  ]),
+  23: deck(23, { title: 'я', example: 'про себя' }, { title: 'он, она', example: 'про другого' }, [
+    ['Gli parlo', 'left', 'parlo — я'],
+    ['Paolo le risponde', 'right', 'risponde — он'],
+    ['Io le scrivo', 'left', 'scrivo — я'],
+    ['Lui gli manda una foto', 'right', 'manda — он'],
+    ['Gli presto la mia penna', 'left', 'presto — я'],
+    ['Lei parla a loro', 'right', 'parla — она'],
+    ['Gli racconto del mio viaggio', 'left', 'racconto — я'],
+    ['Lei non gli dice il prezzo', 'right', 'dice — она'],
+  ]),
+  24: deck(24, { title: 'va', example: 'один человек' }, { title: 'vanno', example: 'несколько человек' }, [
+    ['Lea ci ___ adesso', 'left', 'Леа одна — va'],
+    ['I bambini ci ___ dopo la scuola', 'right', 'детей несколько — vanno'],
+    ['Mia sorella ci ___ a pranzo', 'left', 'сестра одна — va'],
+    ['Le infermiere ci ___ dopo il turno', 'right', 'медсестёр несколько — vanno'],
+    ['Lei ci ___ spesso', 'left', 'она одна — va'],
+    ['I miei amici ci ___ insieme', 'right', 'друзей несколько — vanno'],
+    ['Paolo ci ___ domani', 'left', 'Паоло один — va'],
+    ['Le ragazze ci ___ a piedi', 'right', 'девушек несколько — vanno'],
   ]),
 };

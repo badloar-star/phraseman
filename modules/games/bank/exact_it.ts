@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — итальянский классический курс, уроки 1–20 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — итальянский классический курс, уроки 1–24 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или из слов этого и прошлых уроков);
  * каждый неверный вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах);
@@ -174,5 +174,37 @@ export const EXACT_BANK_IT: Readonly<Record<number, readonly QuizRound[]>> = {
     round(20, 4, 'I bambini ___ freddo', 'avevano', ['aveva'], 0, 'Детей несколько — значит avevano.'),
     round(20, 5, 'I negozi erano ___ il lunedì', 'chiusi', ['chiuse'], 1, 'Negozio — «он», поэтому chiusi.'),
     round(20, 6, 'Lei viveva ___ Lione', 'a', ['in'], 0, 'С городом — a: a Lione.'),
+  ],
+  21: [
+    round(21, 1, 'Lei ___ quando hai chiamato', 'dormiva', ['dormivo'], 1, 'Про неё говорят dormiva.'),
+    round(21, 2, 'Noi ___ mangiando quando è arrivato Paolo', 'stavamo', ['stavo', 'stavano'], 0, 'Про нас говорят stavamo.'),
+    round(21, 3, 'Loro ___ parlando', 'stavano', ['stavamo'], 1, 'Про них говорят stavano.'),
+    round(21, 4, 'Lea camminava quando ha cominciato ___ piovere', 'a', ['di'], 0, 'Начать что-то делать — cominciare a.'),
+    round(21, 5, 'Mentre aspettavamo, è uscito ___ dottore', 'il', ['la'], 1, 'Dottore — «он», поэтому il.'),
+    round(21, 6, 'Le persiane erano ___', 'chiuse', ['chiusi'], 0, 'Persiana — «она», поэтому chiuse.'),
+  ],
+  22: [
+    round(22, 1, 'Lei lo ___', 'cerca', ['cerco'], 1, 'Про неё говорят cerca.'),
+    round(22, 2, 'Noi non li ___', 'vediamo', ['vedo'], 0, 'Про нас говорят vediamo.'),
+    round(22, 3, 'Loro non lo ___', 'prendono', ['prendo'], 1, 'Про них говорят prendono.'),
+    round(22, 4, 'Vorrei ___', 'provarlo', ['provo'], 0, 'После vorrei — provarlo.'),
+    round(22, 5, 'Possiamo ___ online', 'comprarli', ['compriamo'], 1, 'После possiamo — comprarli.'),
+    round(22, 6, 'Il giornale, preferisco ___ domani', 'leggerlo', ['leggo'], 0, 'После preferisco — leggerlo.'),
+  ],
+  23: [
+    round(23, 1, 'Lui le ___', 'risponde', ['rispondo'], 1, 'Про него говорят risponde.'),
+    round(23, 2, 'Lui gli manda ___ foto', 'una', ['un'], 0, 'Foto — «она», поэтому una.'),
+    round(23, 3, 'Loro gli ___ un bicchiere d’acqua', 'portano', ['porto'], 1, 'Про них говорят portano.'),
+    round(23, 4, 'Noi non le ___ niente', 'diciamo', ['dice'], 0, 'Про нас говорят diciamo.'),
+    round(23, 5, 'Gli spiego ___ regole del gioco', 'le', ['la'], 1, 'Правил несколько — значит le.'),
+    round(23, 6, 'Gli presto la ___ penna', 'mia', ['mio'], 0, 'Penna — «она», поэтому mia.'),
+  ],
+  24: [
+    round(24, 1, 'Lui ci ___ a piedi', 'va', ['vado', 'vanno'], 2, 'Про него говорят va.'),
+    round(24, 2, 'Noi ci ___ in autobus', 'andiamo', ['vado'], 0, 'Про нас говорят andiamo.'),
+    round(24, 3, 'Lei ci ___ con sua sorella', 'abita', ['abito'], 1, 'Про неё говорят abita.'),
+    round(24, 4, 'Lei ci è già ___', 'stata', ['stato'], 0, 'Про неё — stata.'),
+    round(24, 5, 'Lei non ci ___ il lunedì', 'lavora', ['lavoro'], 1, 'Про неё говорят lavora.'),
+    round(24, 6, 'Ci andiamo ___ pranzo', 'a', ['in'], 0, 'На обед — a pranzo.'),
   ],
 };

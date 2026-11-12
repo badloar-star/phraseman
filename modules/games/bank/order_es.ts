@@ -1,5 +1,5 @@
 /**
- * Банк игры «Собери диалог» — испанский классический курс, уроки 3–20 (D207). 2 диалога из 4 реплик на урок.
+ * Банк игры «Собери диалог» — испанский классический курс, уроки 3–24 (D207). 2 диалога из 4 реплик на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: реплики — фразы урока или собраны из слов этого и прошлых уроков; порядок однозначен:
  * первый вопрос называет, о ком речь, ответ повторяет это слово, а третья реплика «¿Y …?» («А …?»)
@@ -84,5 +84,21 @@ export const ORDER_BANK_ES: Readonly<Record<number, readonly OrderTask[]>> = {
   20: [
     task(20, 1, ['¿Has llamado al hotel?', 'Ya he llamado al hotel.', '¿Y a Ana?', 'No he llamado a Ana.']),
     task(20, 2, ['¿Has pagado la factura?', 'Ya he pagado la factura.', '¿Y el pedido?', 'No he recibido el pedido.']),
+  ],
+  21: [
+    task(21, 1, ['¿Compraste queso ayer?', 'Compré queso en el mercado.', '¿Y Ana?', 'Ana compró fruta ayer.']),
+    task(21, 2, ['¿Llamaste al hotel ayer?', 'No llamé al hotel.', '¿Y a Ana?', 'Llamé a Ana ayer.']),
+  ],
+  22: [
+    task(22, 1, ['¿Fuiste al médico ayer?', 'Fui al médico ayer.', '¿Y tus hermanos?', 'Mis hermanos fueron al centro.']),
+    task(22, 2, ['¿Viniste en tren ayer?', 'Vine en taxi.', '¿Y Ana?', 'Ana vino en tren.']),
+  ],
+  23: [
+    task(23, 1, ['¿Bebías café antes?', 'Bebía agua cada día.', '¿Y Ana?', 'Ana bebía café cada día.']),
+    task(23, 2, ['¿Comías en la cocina antes?', 'Comía en casa antes.', '¿Y Luis?', 'Luis comía en la cocina.']),
+  ],
+  24: [
+    task(24, 1, ['¿Leías el mensaje?', 'Leía el mensaje cuando sonó el móvil.', '¿Y Ana?', 'Ana preparaba la cena.']),
+    task(24, 2, ['¿Bebías café?', 'Bebía café cuando llegó el tren.', '¿Y Luis?', 'Luis escribía una carta.']),
   ],
 };

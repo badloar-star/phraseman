@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — испанский классический курс, уроки 1–20 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — испанский классический курс, уроки 1–24 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или из слов этого и прошлых уроков);
  * каждый неверный вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах);
@@ -173,5 +173,37 @@ export const EXACT_BANK_ES: Readonly<Record<number, readonly QuizRound[]>> = {
     round(20, 4, 'Luis ha ___ el libro', 'leído', ['lee'], 1, 'После ha — leído.'),
     round(20, 5, 'Luis ha preparado ___ cena', 'la', ['el'], 1, 'Cena — «она», поэтому la.'),
     round(20, 6, 'Hemos recibido ___ pedido', 'el', ['la'], 0, 'Pedido — «он», поэтому el.'),
+  ],
+  21: [
+    round(21, 1, 'Ana ___ un billete ayer', 'compró', ['compré', 'compraron'], 1, 'Про Ану говорят compró.'),
+    round(21, 2, 'Mis hermanos ___ la maleta anoche', 'llevaron', ['llevaste'], 0, 'Братьев несколько — значит llevaron.'),
+    round(21, 3, 'Luis preparó ___ cena ayer', 'la', ['el'], 1, 'Cena — «она», поэтому la.'),
+    round(21, 4, 'Compramos un kilo ___ arroz', 'de', ['en'], 0, 'Килограмм чего — de arroz.'),
+    round(21, 5, 'Ana ___ un mensaje anoche', 'escribió', ['escribí'], 1, 'Про Ану говорят escribió.'),
+    round(21, 6, 'Mis hermanas no ___ con tarjeta', 'pagaron', ['pagamos'], 0, 'Сестёр несколько — значит pagaron.'),
+  ],
+  22: [
+    round(22, 1, 'Ana ___ a la estación', 'fue', ['fui', 'fueron'], 2, 'Про Ану говорят fue.'),
+    round(22, 2, 'Mis hermanos ___ al médico ayer', 'fueron', ['fue'], 0, 'Братьев несколько — значит fueron.'),
+    round(22, 3, 'Ana ___ una idea', 'tuvo', ['tuve'], 1, 'Про Ану говорят tuvo.'),
+    round(22, 4, 'Luis fue ___ casa', 'a', ['en'], 0, 'Домой — a casa.'),
+    round(22, 5, 'Ana vino ___ tren', 'en', ['con'], 1, 'На поезде — en tren.'),
+    round(22, 6, 'Ana no ___ llamar al hotel', 'pudo', ['pude'], 0, 'Про Ану говорят pudo.'),
+  ],
+  23: [
+    round(23, 1, 'Mis hermanos ___ en casa a menudo', 'trabajaban', ['trabajaba'], 1, 'Братьев несколько — значит trabajaban.'),
+    round(23, 2, 'Ana bebía café ___ día', 'cada', ['en'], 0, 'Каждый день — cada día.'),
+    round(23, 3, 'Mi madre iba al mercado ___ autobús', 'en', ['con'], 1, 'На автобусе — en autobús.'),
+    round(23, 4, 'Mis hermanas ___ el libro a menudo', 'leían', ['leía'], 0, 'Сестёр несколько — значит leían.'),
+    round(23, 5, 'Vivía ___ de la estación', 'cerca', ['en'], 1, 'Рядом с — cerca de.'),
+    round(23, 6, 'Mis vecinos paseaban por ___ parque', 'el', ['la'], 0, 'Parque — «он», поэтому el.'),
+  ],
+  24: [
+    round(24, 1, 'Leía el mensaje cuando sonó ___ móvil', 'el', ['la'], 0, 'Móvil — «он», поэтому el.'),
+    round(24, 2, 'Mis hermanos ___ cuando entró el médico', 'trabajaban', ['trabajaba'], 1, 'Братьев несколько — значит trabajaban.'),
+    round(24, 3, 'Esperábamos el autobús cuando empezó ___ llover', 'a', ['de'], 1, 'Начал что-то делать — empezó a.'),
+    round(24, 4, 'Preparaba la sopa cuando sonó ___ timbre', 'el', ['la'], 0, 'Timbre — «он», поэтому el.'),
+    round(24, 5, 'Ana ___ el periódico cuando llegó el taxi', 'leía', ['leían'], 0, 'Ана одна — значит leía.'),
+    round(24, 6, 'Los estudiantes ___ cuando llegó mi hermana', 'leían', ['leía'], 1, 'Студентов несколько — значит leían.'),
   ],
 };

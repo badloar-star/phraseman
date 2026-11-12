@@ -1,5 +1,5 @@
 /**
- * Банк игры «Сортировка» — испанский классический курс, уроки 1–20 (D207). Одна колода из 8 карт на урок.
+ * Банк игры «Сортировка» — испанский классический курс, уроки 1–24 (D207). Одна колода из 8 карт на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: противопоставление корзин реально есть в уроке; каждая карта подходит ровно к одной
  * корзине; текст карты — только слова этого и прошлых уроков. Пропуск в карте пишется `___`
@@ -211,5 +211,45 @@ export const SORT_BANK_ES: Readonly<Record<number, SortDeck>> = {
     ['Ellos ___ pagado con tarjeta', 'right', 'их несколько — han'],
     ['Ella ___ llamado al hotel', 'left', 'она одна — ha'],
     ['Ellas ___ recibido el pedido', 'right', 'их несколько — han'],
+  ]),
+  21: deck(21, { title: 'compró', example: 'один человек' }, { title: 'compraron', example: 'несколько человек' }, [
+    ['Ana ___ un billete ayer', 'left', 'Ана одна — compró'],
+    ['Mis hermanos ___ cebollas', 'right', 'братьев несколько — compraron'],
+    ['Luis ___ pan ayer', 'left', 'Луис один — compró'],
+    ['Mis hermanas ___ fruta', 'right', 'сестёр несколько — compraron'],
+    ['Mi madre ___ queso', 'left', 'мама одна — compró'],
+    ['Ellos ___ un regalo', 'right', 'их несколько — compraron'],
+    ['Ella ___ huevos', 'left', 'она одна — compró'],
+    ['Ellas ___ arroz', 'right', 'их несколько — compraron'],
+  ]),
+  22: deck(22, { title: 'fue', example: 'один человек' }, { title: 'fueron', example: 'несколько человек' }, [
+    ['Ana ___ a la estación', 'left', 'Ана одна — fue'],
+    ['Mis hermanos ___ al médico', 'right', 'братьев несколько — fueron'],
+    ['Luis ___ a casa', 'left', 'Луис один — fue'],
+    ['Mis hermanas ___ al centro', 'right', 'сестёр несколько — fueron'],
+    ['Mi madre ___ al mercado', 'left', 'мама одна — fue'],
+    ['Ellos ___ al hotel', 'right', 'их несколько — fueron'],
+    ['Ella ___ al supermercado', 'left', 'она одна — fue'],
+    ['Ellas ___ al banco', 'right', 'их несколько — fueron'],
+  ]),
+  23: deck(23, { title: 'раньше, обычно', example: 'было много раз' }, { title: 'один раз, вчера', example: 'случилось однажды' }, [
+    ['Bebía agua cada día', 'left', 'cada día — много раз'],
+    ['Compré queso ayer', 'right', 'ayer — один раз'],
+    ['Comíamos en casa antes', 'left', 'antes — так было раньше'],
+    ['Fui al médico ayer', 'right', 'ayer — один раз'],
+    ['Luis trabajaba en casa a menudo', 'left', 'a menudo — много раз'],
+    ['Ana escribió un mensaje anoche', 'right', 'anoche — один раз'],
+    ['Íbamos al colegio en bicicleta', 'left', 'так было много раз'],
+    ['Hicimos la compra ayer', 'right', 'ayer — один раз'],
+  ]),
+  24: deck(24, { title: 'шло долго', example: 'фон: что происходило' }, { title: 'случилось вдруг', example: 'то, что прервало' }, [
+    ['leía el mensaje', 'left', 'чтение шло — leía'],
+    ['sonó el móvil', 'right', 'звонок случился вдруг — sonó'],
+    ['esperábamos el tren', 'left', 'ожидание шло — esperábamos'],
+    ['llegó mi hermana', 'right', 'приход случился вдруг — llegó'],
+    ['Ana preparaba la cena', 'left', 'готовка шла — preparaba'],
+    ['se abrió la puerta', 'right', 'дверь открылась вдруг — se abrió'],
+    ['bebía café', 'left', 'кофе пили долго — bebía'],
+    ['empezó a llover', 'right', 'дождь начался вдруг — empezó'],
   ]),
 };

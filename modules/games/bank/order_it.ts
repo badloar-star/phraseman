@@ -1,5 +1,5 @@
 /**
- * Банк игры «Собери диалог» — итальянский классический курс, уроки 3–20 (D207). 2 диалога из 4 реплик на урок.
+ * Банк игры «Собери диалог» — итальянский классический курс, уроки 3–24 (D207). 2 диалога из 4 реплик на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: реплики — фразы урока или собраны из слов этого и прошлых уроков; порядок держится
  * на том, что первый вопрос называет, о ком речь, ответ повторяет это слово, а третья реплика ссылается
@@ -84,5 +84,21 @@ export const ORDER_BANK_IT: Readonly<Record<number, readonly OrderTask[]>> = {
   20: [
     task(20, 1, ['Dove abitavi?', 'Abitavo in città.', 'E tua madre?', 'Mia madre viveva in campagna.']),
     task(20, 2, ['Il giardino era grande?', 'Il giardino era piccolo.', 'E il cortile?', 'Il cortile era grande.']),
+  ],
+  21: [
+    task(21, 1, ['Pioveva quando siete usciti?', 'Pioveva quando siamo usciti.', 'E quando è arrivato il treno?', 'Il tempo era bello.']),
+    task(21, 2, ['Che cosa stavi facendo?', 'Stavo lavorando.', 'E Paolo?', 'Paolo stava pagando.']),
+  ],
+  22: [
+    task(22, 1, ['Dove metti la giacca?', 'La giacca, la metto via.', 'E le chiavi?', 'Le chiavi, le porto con me.']),
+    task(22, 2, ['Dove sono i guanti?', 'I guanti, li metto in tasca.', 'E il pacco?', 'Il pacco, lo ritiriamo allo sportello.']),
+  ],
+  23: [
+    task(23, 1, ['Che cosa le regali?', 'Le regalo un libro.', 'E a Paolo?', 'Gli presto la mia penna.']),
+    task(23, 2, ['Scrivi a Lea?', 'Io le scrivo.', 'E ai bambini?', 'Gli scrivo ogni domenica.']),
+  ],
+  24: [
+    task(24, 1, ['Vai al mercato?', 'Ci vado adesso.', 'E Paolo?', 'Paolo ci va domani.']),
+    task(24, 2, ['Abiti a Lione?', 'Ci abito da un anno.', 'E tua sorella?', 'Lei ci abita con me.']),
   ],
 };

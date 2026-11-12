@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — итальянский классический курс, уроки 1–20 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — итальянский классический курс, уроки 1–24 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза из слов этого и прошлых уроков);
  * с лишним словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить.
@@ -215,5 +215,45 @@ export const ODD_WORD_BANK_IT: Readonly<Record<number, readonly OddWordTask[]>> 
     task(20, 6, 'I bambini [aveva] avevano freddo', 'Детям было холодно', 'Детей несколько — значит avevano.'),
     task(20, 7, 'Il giardino [erano] era grande', 'Сад был большим', 'Сад один — значит era.'),
     task(20, 8, 'Noi [avevano] avevamo molto tempo', 'У нас было много времени', 'Про нас говорят avevamo.'),
+  ],
+  21: [
+    task(21, 1, 'Lei [dormivo] dormiva quando hai chiamato', 'Она спала, когда ты позвонил', 'Про неё говорят dormiva. Dormivo — про себя.'),
+    task(21, 2, 'Noi [stavo] stavamo mangiando quando è arrivato Paolo', 'Мы ели, когда приехал Паоло', 'Про нас говорят stavamo.'),
+    task(21, 3, 'Loro [stavamo] stavano parlando', 'Они разговаривали', 'Про них говорят stavano. Stavamo — про нас.'),
+    task(21, 4, 'Lei [leggevo] leggeva l’etichetta', 'Она читала этикетку', 'Про неё говорят leggeva. Leggevo — про себя.'),
+    task(21, 5, 'Io stavo [pagare] pagando', 'Я расплачивался', 'После stavo — pagando.'),
+    task(21, 6, 'Mentre aspettavamo, è uscito [la] il dottore', 'Пока мы ждали, вышел врач', 'Dottore — «он», поэтому il.'),
+    task(21, 7, 'Le persiane erano [chiusi] chiuse', 'Ставни были закрыты', 'Persiana — «она», поэтому chiuse.'),
+    task(21, 8, 'Lea camminava quando ha cominciato [di] a piovere', 'Леа шла, когда начался дождь', 'Начать что-то делать — cominciare a.'),
+  ],
+  22: [
+    task(22, 1, 'Lei lo [cerco] cerca', 'Она ищет его', 'Про неё говорят cerca. Cerco — про себя.'),
+    task(22, 2, 'Noi non li [vedo] vediamo', 'Мы их не видим', 'Про нас говорят vediamo. Vedo — про себя.'),
+    task(22, 3, 'Loro non lo [prendo] prendono', 'Они его не берут', 'Про них говорят prendono. Prendo — про себя.'),
+    task(22, 4, 'Possiamo [compriamo] comprarli online', 'Мы можем купить их онлайн', 'После possiamo — comprarli.'),
+    task(22, 5, 'Vorrei [provo] provarlo', 'Я хотел бы его примерить', 'После vorrei — provarlo.'),
+    task(22, 6, 'I guanti, li metto in [la] tasca', 'Перчатки я кладу в карман', 'В карман — in tasca, без la.'),
+    task(22, 7, 'Puoi [lasci] lasciarla qui', 'Ты можешь оставить её здесь', 'После puoi — lasciarla.'),
+    task(22, 8, 'Il giornale, preferisco [leggo] leggerlo domani', 'Газету я предпочитаю почитать завтра', 'После preferisco — leggerlo.'),
+  ],
+  23: [
+    task(23, 1, 'Lui le [rispondo] risponde', 'Он ей отвечает', 'Про него говорят risponde. Rispondo — про себя.'),
+    task(23, 2, 'Lui gli manda [un] una foto', 'Он отправляет им фотографию', 'Foto — «она», поэтому una.'),
+    task(23, 3, 'Loro gli [porto] portano un bicchiere d’acqua', 'Они приносят ему стакан воды', 'Про них говорят portano. Porto — про себя.'),
+    task(23, 4, 'Noi non le [dice] diciamo niente', 'Мы ей ничего не говорим', 'Про нас говорят diciamo.'),
+    task(23, 5, 'Lei non gli [diciamo] dice il prezzo', 'Она не говорит им цену', 'Про неё говорят dice. Diciamo — про нас.'),
+    task(23, 6, 'Le regalo un libro per [la] il suo compleanno', 'Я дарю ей книгу на день рождения', 'Compleanno — «он», поэтому il.'),
+    task(23, 7, 'Gli spiego [la] le regole del gioco', 'Я объясняю им правила игры', 'Правил несколько — значит le.'),
+    task(23, 8, 'Gli presto la [mio] mia penna', 'Я одалживаю ему свою ручку', 'Penna — «она», поэтому mia.'),
+  ],
+  24: [
+    task(24, 1, 'Lui ci [vado] va a piedi', 'Он идёт туда пешком', 'Про него говорят va. Vado — про себя.'),
+    task(24, 2, 'I bambini ci [giocavo] giocano dopo la scuola', 'Дети играют там после школы', 'Детей несколько — значит giocano.'),
+    task(24, 3, 'Lei ci [abito] abita con sua sorella', 'Она живёт там со своей сестрой', 'Про неё говорят abita. Abito — про себя.'),
+    task(24, 4, 'Noi ci [vado] andiamo in autobus', 'Мы едем туда на автобусе', 'Про нас говорят andiamo.'),
+    task(24, 5, 'Lei ci è già [stato] stata', 'Она уже там была', 'Про неё — stata.'),
+    task(24, 6, 'Loro non ci sono mai [stata] stati', 'Они там никогда не были', 'Их несколько — значит stati.'),
+    task(24, 7, 'Lei non ci [lavoro] lavora il lunedì', 'Она не работает там по понедельникам', 'Про неё говорят lavora. Lavoro — про себя.'),
+    task(24, 8, 'Ci andiamo [in] a pranzo', 'Мы идём туда на обед', 'На обед — a pranzo.'),
   ],
 };

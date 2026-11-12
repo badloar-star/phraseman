@@ -1,5 +1,5 @@
 /**
- * Банк игры «Лишнее слово» — испанский классический курс, уроки 1–20 (D207). 8 заданий на урок.
+ * Банк игры «Лишнее слово» — испанский классический курс, уроки 1–24 (D207). 8 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: без лишнего слова остаётся фраза урока (или фраза из слов этого и прошлых уроков);
  * с лишним словом фраза неверна; убрав любое ДРУГОЕ слово, верную фразу не получить.
@@ -214,5 +214,45 @@ export const ODD_WORD_BANK_ES: Readonly<Record<number, readonly OddWordTask[]>> 
     task(20, 6, 'Él ha preparado [el] la cena', 'Он приготовил ужин', 'Cena — «она», поэтому la.'),
     task(20, 7, 'Él no [he] ha mandado el paquete', 'Он не отправил посылку', 'Про него говорят ha. He — про себя.'),
     task(20, 8, 'Ella ha recibido [la] el pedido', 'Она получила заказ', 'Pedido — «он», поэтому el.'),
+  ],
+  21: [
+    task(21, 1, 'Ella [compré] compró un billete ayer', 'Она купила билет вчера', 'Про неё говорят compró. Compré — про себя.'),
+    task(21, 2, 'Mis hermanos [compró] compraron cebollas', 'Мои братья купили лук', 'Братьев несколько — значит compraron.'),
+    task(21, 3, 'Él [escribí] escribió un mensaje anoche', 'Он написал сообщение вчера вечером', 'Про него говорят escribió. Escribí — про себя.'),
+    task(21, 4, 'Ellos [compramos] compraron fruta ayer', 'Они купили фрукты вчера', 'Про них говорят compraron. Compramos — про нас.'),
+    task(21, 5, 'Él preparó [el] la cena ayer', 'Он приготовил ужин вчера', 'Cena — «она», поэтому la.'),
+    task(21, 6, 'Él abrió [el] la puerta anoche', 'Он открыл дверь вчера вечером', 'Puerta — «она», поэтому la.'),
+    task(21, 7, 'Compramos un kilo [en] de arroz', 'Мы купили килограмм риса', 'Килограмм чего — de arroz.'),
+    task(21, 8, 'Mis hermanas no [pagamos] pagaron con tarjeta', 'Мои сёстры не заплатили картой', 'Сестёр несколько — значит pagaron.'),
+  ],
+  22: [
+    task(22, 1, 'Ella [fui] fue a la estación', 'Она сходила на вокзал', 'Про неё говорят fue. Fui — про себя.'),
+    task(22, 2, 'Mis hermanos [fue] fueron al médico ayer', 'Мои братья сходили к врачу вчера', 'Братьев несколько — значит fueron.'),
+    task(22, 3, 'Él [tuve] tuvo una idea', 'У него появилась идея', 'Про него говорят tuvo. Tuve — про себя.'),
+    task(22, 4, 'Ella [hice] hizo una foto', 'Она сделала фотографию', 'Про неё говорят hizo. Hice — про себя.'),
+    task(22, 5, 'Ellos [vino] vinieron a casa ayer', 'Они пришли домой вчера', 'Их несколько — значит vinieron.'),
+    task(22, 6, 'Ella no [pude] pudo llamar al hotel', 'Она не смогла позвонить в отель', 'Про неё говорят pudo. Pude — про себя.'),
+    task(22, 7, 'Él fue [en] a casa', 'Он пошёл домой', 'Домой — a casa, en здесь не нужно.'),
+    task(22, 8, 'Ella vino [con] en tren', 'Она приехала на поезде', 'На поезде — en tren.'),
+  ],
+  23: [
+    task(23, 1, 'Mis hermanos [trabajaba] trabajaban en casa', 'Мои братья раньше работали дома', 'Братьев несколько — значит trabajaban.'),
+    task(23, 2, 'Mis hermanas [leía] leían el libro a menudo', 'Мои сёстры часто читали книгу', 'Сестёр несколько — значит leían.'),
+    task(23, 3, 'Mis hermanos [escribía] escribían un mensaje a menudo', 'Мои братья часто писали сообщение', 'Братьев несколько — значит escribían.'),
+    task(23, 4, 'Ella bebía café [en] cada día', 'Она каждый день пила кофе', 'Каждый день — cada día, без en.'),
+    task(23, 5, 'Mi madre iba al mercado [con] en autobús', 'Моя мама ездила на рынок на автобусе', 'На автобусе — en autobús.'),
+    task(23, 6, 'De niño iba [en] a ese colegio', 'В детстве я ходил в ту школу', 'Куда — a ese colegio.'),
+    task(23, 7, 'Él vivía [en] cerca de la estación', 'Он жил рядом с вокзалом', 'Cerca de обходится без en.'),
+    task(23, 8, 'Ellas [esperabas] esperaban aquí antes', 'Они раньше ждали здесь', 'Про них говорят esperaban. Esperabas — про тебя.'),
+  ],
+  24: [
+    task(24, 1, 'Mis hermanos [trabajaba] trabajaban cuando entró el médico', 'Мои братья работали, когда вошёл врач', 'Братьев несколько — значит trabajaban.'),
+    task(24, 2, 'Ella [leían] leía el periódico', 'Она читала газету', 'Она одна — значит leía.'),
+    task(24, 3, 'Él escribía una carta cuando [se] llegó el tren', 'Он писал письмо, когда прибыл поезд', 'Llegó — без se.'),
+    task(24, 4, 'Esperábamos [a] el tren cuando llegó mi hermana', 'Мы ждали поезд, когда пришла моя сестра', 'Поезд ждут без a: esperábamos el tren.'),
+    task(24, 5, 'Ella bebía café cuando sonó [la] el móvil', 'Она пила кофе, когда зазвонил телефон', 'Móvil — «он», поэтому el.'),
+    task(24, 6, 'Ellos [trabajábamos] trabajaban cuando sonó el móvil', 'Они работали, когда зазвонил телефон', 'Про них говорят trabajaban. Trabajábamos — про нас.'),
+    task(24, 7, 'Mientras él bebía café, sonó [la] el timbre', 'Пока он пил кофе, раздался звонок в дверь', 'Timbre — «он», поэтому el.'),
+    task(24, 8, 'Ella leía cuando empezó [de] a llover', 'Она читала, когда пошёл дождь', 'Начал что-то делать — empezó a.'),
   ],
 };

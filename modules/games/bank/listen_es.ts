@@ -1,5 +1,5 @@
 /**
- * Банк игры «На слух» — испанский классический курс, уроки 1–20 (D207). 6 заданий на урок.
+ * Банк игры «На слух» — испанский классический курс, уроки 1–24 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: произносится фраза урока; верный вариант дословно равен ей; два неверных отличаются
  * ровно одним словом и остаются правильными фразами из знакомых слов — это проверка слуха, а не грамматики.
@@ -172,5 +172,37 @@ export const LISTEN_BANK_ES: Readonly<Record<number, readonly QuizRound[]>> = {
     round(20, 4, 'Ya he pagado la factura', ['Ya he recibido la factura', 'Ya ha pagado la factura'], 0, 'Я уже оплатил счёт'),
     round(20, 5, 'Ya he recogido el paquete', ['Ya he mandado el paquete', 'Ya has recogido el paquete'], 1, 'Я уже забрал посылку'),
     round(20, 6, 'No hemos recibido la factura', ['No hemos pagado la factura', 'No han recibido la factura'], 2, 'Мы не получили счёт'),
+  ],
+  21: [
+    round(21, 1, 'Llamé al hotel ayer', ['Llamaste al hotel ayer', 'Llamé al banco ayer'], 0, 'Я позвонил в отель вчера'),
+    round(21, 2, 'Compré queso en el mercado', ['Compré pan en el mercado', 'Compré queso en el supermercado'], 1, 'Я купил сыр на рынке'),
+    round(21, 3, 'Ana escribió un mensaje anoche', ['Luis escribió un mensaje anoche', 'Ana escribió un mensaje ayer'], 2, 'Ана написала сообщение вчера вечером'),
+    round(21, 4, 'Mandé la foto anoche', ['Mandé la carta anoche', 'Mandamos la foto anoche'], 0, 'Я отправил фотографию вчера вечером'),
+    round(21, 5, 'Pagamos en efectivo ayer', ['Pagamos en efectivo hoy', 'Pagaron en efectivo ayer'], 1, 'Мы заплатили наличными вчера'),
+    round(21, 6, 'Me levanté temprano ayer', ['Me levanté temprano hoy', 'Me duché temprano ayer'], 2, 'Я встал рано вчера'),
+  ],
+  22: [
+    round(22, 1, 'Fui al médico ayer', ['Fui al banco ayer', 'Fuiste al médico ayer'], 0, 'Я сходил к врачу вчера'),
+    round(22, 2, 'Ana tuvo una idea', ['Ana tuvo una cita', 'Luis tuvo una idea'], 1, 'У Аны появилась идея'),
+    round(22, 3, 'Hice la compra ayer', ['Hice la cena ayer', 'Hiciste la compra ayer'], 2, 'Я сделал покупки вчера'),
+    round(22, 4, 'Ana vino en tren', ['Ana vino en taxi', 'Luis vino en tren'], 0, 'Ана приехала на поезде'),
+    round(22, 5, 'Pude entrar ayer', ['Pude volver ayer', 'Pudo entrar ayer'], 1, 'Я смог войти вчера'),
+    round(22, 6, 'Luis fue a casa', ['Ana fue a casa', 'Luis fue a clase'], 2, 'Луис пошёл домой'),
+  ],
+  23: [
+    round(23, 1, 'Vivía aquí antes', ['Vivías aquí antes', 'Comía aquí antes'], 0, 'Я раньше жил здесь'),
+    round(23, 2, 'Bebía agua cada día', ['Bebía café cada día', 'Bebía agua cada semana'], 1, 'Я каждый день пил воду'),
+    round(23, 3, 'Comíamos en casa antes', ['Comíamos en clase antes', 'Trabajábamos en casa antes'], 2, 'Мы раньше ели дома'),
+    round(23, 4, 'Luis trabajaba en casa antes', ['Ana trabajaba en casa antes', 'Luis trabajaba en clase antes'], 0, 'Луис раньше работал дома'),
+    round(23, 5, 'Escribía una carta cada día', ['Escribía una carta cada semana', 'Leía una carta cada día'], 1, 'Я каждый день писал письмо'),
+    round(23, 6, 'Mis vecinos paseaban por el parque', ['Mis hermanos paseaban por el parque', 'Mis vecinos paseaban por el centro'], 2, 'Мои соседи гуляли по парку'),
+  ],
+  24: [
+    round(24, 1, 'Leía el mensaje cuando sonó el móvil', ['Leía el libro cuando sonó el móvil', 'Leía el mensaje cuando sonó el timbre'], 0, 'Я читал сообщение, когда зазвонил телефон'),
+    round(24, 2, 'Bebía café cuando llegó el tren', ['Bebía agua cuando llegó el tren', 'Bebía café cuando llegó el taxi'], 1, 'Я пил кофе, когда прибыл поезд'),
+    round(24, 3, 'Comíamos en casa cuando sonó el móvil', ['Comíamos en clase cuando sonó el móvil', 'Comíamos en casa cuando sonó el timbre'], 2, 'Мы ели дома, когда зазвонил телефон'),
+    round(24, 4, 'Esperábamos el autobús cuando empezó a llover', ['Esperábamos el tren cuando empezó a llover', 'Esperábamos el taxi cuando empezó a llover'], 0, 'Мы ждали автобус, когда пошёл дождь'),
+    round(24, 5, 'Preparaba la sopa cuando sonó el timbre', ['Preparaba la cena cuando sonó el timbre', 'Preparaba la sopa cuando sonó el móvil'], 1, 'Я готовил суп, когда раздался звонок в дверь'),
+    round(24, 6, 'Mientras bebía café, sonó el móvil', ['Mientras bebía agua, sonó el móvil', 'Mientras bebía café, sonó el timbre'], 2, 'Пока я пил кофе, зазвонил телефон'),
   ],
 };

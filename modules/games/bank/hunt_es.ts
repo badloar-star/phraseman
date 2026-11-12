@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — испанский классический курс, уроки 1–20 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — испанский классический курс, уроки 1–24 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: три реплики из фраз урока (или из слов этого и прошлых уроков); ровно одно слово
  * неверное — `{неверно>верно}`; в другой реплике одно слово-обманка — `*слово`: оно нажимается, но верное.
@@ -91,5 +91,21 @@ export const HUNT_BANK_ES: Readonly<Record<number, readonly HuntTask[]>> = {
   20: [
     task(20, 1, ['¿Has llamado a Ana?', '*He llamado a Ana hoy.', 'Mis hermanos {ha>han} llamado al hotel.'], 'Братьев несколько — значит han.'),
     task(20, 2, ['¿Has leído el libro?', 'Ya lo he {leer>leído}.', '¿Luis *ha leído el mensaje?'], 'После he — leído.'),
+  ],
+  21: [
+    task(21, 1, ['¿Compraste queso ayer?', '*Compré queso en el mercado.', 'Mis hermanos {compró>compraron} cebollas.'], 'Братьев несколько — значит compraron.'),
+    task(21, 2, ['¿Luis abrió la ventana ayer?', 'Luis abrió {el>la} ventana anoche.', 'Ana *abrió la puerta.'], 'Ventana — «она», поэтому la.'),
+  ],
+  22: [
+    task(22, 1, ['¿Fuiste al médico ayer?', '*Fui al médico ayer.', 'Mis hermanos {fue>fueron} al centro.'], 'Братьев несколько — значит fueron.'),
+    task(22, 2, ['¿Viniste en tren ayer?', 'Vine {con>en} taxi desde el aeropuerto.', 'Ana *vino en tren.'], 'На такси — en taxi.'),
+  ],
+  23: [
+    task(23, 1, ['¿Vivías aquí antes?', '*Vivía cerca de la estación.', 'Mis hermanos {trabajaba>trabajaban} aquí.'], 'Братьев несколько — значит trabajaban.'),
+    task(23, 2, ['¿Bebías café antes?', 'Bebía café {en>cada} día.', 'Ana *bebía agua.'], 'Каждый день — cada día.'),
+  ],
+  24: [
+    task(24, 1, ['¿Leías el mensaje?', 'Leía el mensaje cuando sonó {la>el} móvil.', 'Ana *preparaba la cena.'], 'Móvil — «он», поэтому el.'),
+    task(24, 2, ['¿Trabajaban tus hermanos?', 'Mis hermanos {trabajaba>trabajaban} cuando entró el médico.', 'La profesora *hablaba.'], 'Братьев несколько — значит trabajaban.'),
   ],
 };

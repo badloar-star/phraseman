@@ -249,7 +249,8 @@ export function useAudio() {
     lastSpeakAtRef.current = now;
     // зачем (§126, «озвучка слов урока 9 заикается»): сперва логи. Один вызов speak должен дать РОВНО один голос — либо клип, либо системный.
     // Подозрение: пока клип грузится, таймер запуска отдаёт озвучку системному голосу, а клип потом всё равно стартует → два голоса подряд.
-    console.warn(`[WORD-AUDIO] speak:enter gen=${generation} text=${JSON.stringify(normalized.slice(0, 40))}`);
+    // зачем (обход экранов 12.11): вход в speak — рядовое событие, а warn со стеком на каждую фразу копил дев-плашку «Open debugger»
+    console.log(`[WORD-AUDIO] speak:enter gen=${generation} text=${JSON.stringify(normalized.slice(0, 40))}`);
 
     // зачем: скорость применяется ТОЛЬКО к системному TTS. Готовые клипы озвучки
     // играют в оригинальной длине (решение владельца 2026-08-24) — им safeRate

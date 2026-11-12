@@ -1,0 +1,18 @@
+# stable sense | lemma | attested forms | display | RU | UK | option group
+ser_id|ser|soy eres es somos sois son|ser|быть кем-то; указывать, кто или что это|бути кимось; вказувати, хто чи що це|verb
+medico|médico|médico médica médicos médicas|el médico / la médica|врач|лікар / лікарка|role
+profesor|profesor|profesor profesora profesores profesoras|el profesor / la profesora|преподаватель / преподавательница|викладач / викладачка|role
+estudiante|estudiante|estudiante estudiantes|el / la estudiante|студент / студентка|студент / студентка|role
+guia_person|guía|guía guías|el / la guía|гид, экскурсовод (человек)|гід, гідеса (людина)|role
+enfermero|enfermero|enfermero enfermera|el enfermero / la enfermera|медбрат / медсестра|медбрат / медсестра|role
+usted_p|usted|usted ustedes|usted / ustedes|вы: вежливо к одному; ustedes — к нескольким|ви: ввічливо до однієї людини; ustedes — до кількох людей|person
+donde_q|dónde|dónde|dónde|где? (запрос места)|де? (запит про місце)|wh
+quien_q|quién|quién quiénes|quién / quiénes|кто? (об одном / нескольких людях)|хто? (про одну / кількох людей)|wh
+que_q|qué|qué|qué|что? какой? (вопрос о предмете или выборе)|що? який? (запитання про річ або вибір)|wh
+esto_demo|esto|esto|esto|это, вот это (нейтральное указание)|це, ось це (нейтральна вказівка)|demo
+eso_demo|eso|eso|eso|то, это (в примере — возле собеседника)|те, оте (у прикладі — біля співрозмовника)|demo
+maleta|maleta|maleta maletas|la maleta|чемодан|валіза|noun
+tren|tren|tren trenes|el tren|поезд|потяг|noun
+mapa|mapa|mapa mapas|el mapa|карта местности|мапа місцевості|noun
+foto|foto|foto fotos|la foto|фотография|фотографія|noun
+# EXISTING entries are extended by FORM_EXT in language.py. Do not create a second plural card.

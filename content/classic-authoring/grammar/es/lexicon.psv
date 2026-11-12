@@ -1,0 +1,28 @@
+# sense | lemma | attested word forms | RU | UK | tier | option group. Keep accents (el ≠ él).
+estar_loc|estar|estoy estás está estamos estáis están|находиться (о месте)|перебувати (про місце)|core|verb
+aqui|aquí|aquí|здесь|тут|core|place
+alli|allí|allí|вон там|он там|core|place
+cerca|cerca|cerca|рядом|поруч|core|place
+lejos|lejos|lejos|далеко|далеко|core|place
+fuera|fuera|fuera|снаружи|зовні|core|place
+dentro|dentro|dentro|внутри|усередині|core|place
+en_loc|en|en|в, на (место)|у, в, на (місце)|core|prep
+casa|casa|casa|дом; en casa — дома|дім; en casa — вдома|core|noun
+clase|clase|clase|занятие; en clase — на занятии|заняття; en clase — на занятті|core|noun
+el_person|él|él|он|він|support|person
+ella_person|ella|ella|она|вона|support|person
+ellos_person|ellos|ellos|они (мужская или смешанная группа)|вони (чоловіча або змішана група)|support|person
+ellas_person|ellas|ellas|они (женская группа)|вони (жіноча група)|support|person
+ana|Ana|ana|Ана (имя)|Ана (ім’я)|name|name
+luis|Luis|luis|Луис (имя)|Луїс (ім’я)|name|name
+y|y|y|и|і, й|support|join
+art_def|el / la|el la los las|определённый артикль перед существительным|означений артикль перед іменником|support|article
+movil|móvil|móvil|мобильный телефон|мобільний телефон|recognize|noun
+llave|llave|llaves llave|ключ|ключ|recognize|noun
+mesa|mesa|mesa|стол|стіл|recognize|noun
+coche|coche|coche coches|машина|машина|recognize|noun
+libro|libro|libros libro|книга|книжка|recognize|noun
+mochila|mochila|mochila|рюкзак|рюкзак|recognize|noun
+cocina|cocina|cocina|кухня|кухня|recognize|noun
+puerta|puerta|puerta|дверь|двері|recognize|noun
+estacion|estación|estación|станция|станція|recognize|noun

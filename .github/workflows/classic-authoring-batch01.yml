@@ -1,0 +1,49 @@
+name: Classic ES batch 01-03
+on:
+  pull_request:
+    branches: [feature/referral-roulette]
+    paths:
+      - 'content/classic-authoring/grammar/**'
+      - '.github/workflows/classic-authoring-batch01.yml'
+permissions:
+  contents: read
+concurrency:
+  group: classic-es-batch-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          sparse-checkout: content/classic-authoring
+      - name: Validate original lesson and complete three-lesson export
+        working-directory: content/classic-authoring/grammar
+        run: |
+          python3 -B -m unittest -v test_grammar test_guided
+          cd batch01
+          python3 -B -m unittest -v test_package
+      - name: Build offline course twice and compare every byte
+        working-directory: content/classic-authoring/grammar/batch01
+        run: |
+          PYTHONHASHSEED=313 python3 -B compile_batch.py --out "$RUNNER_TEMP/es-batch"
+          PYTHONHASHSEED=271 python3 -B compile_batch.py --out "$RUNNER_TEMP/es-again"
+          diff -qr "$RUNNER_TEMP/es-batch" "$RUNNER_TEMP/es-again"
+      - name: Exercise the 150 word builders in Russian and Ukrainian
+        working-directory: content/classic-authoring/grammar/batch01
+        run: |
+          set -o pipefail
+          python3 -B smoke.py "$RUNNER_TEMP/es-batch/START.html" | tee "$RUNNER_TEMP/es-batch/browser-receipt.txt"
+      - name: Package self-contained authoring sources
+        run: |
+          mkdir -p "$RUNNER_TEMP/es-batch/source"
+          cp -R content/classic-authoring/grammar "$RUNNER_TEMP/es-batch/source/grammar"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: PhraseMan-Classic-ES-01-03
+          path: ${{ runner.temp }}/es-batch
+          if-no-files-found: error
+          retention-days: 14

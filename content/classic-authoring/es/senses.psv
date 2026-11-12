@@ -1,0 +1,59 @@
+# stable sense | lemma or expression | part | tier | RU gloss | UK gloss | possible attested spans (semicolon)
+buenos_dias|buenos días|formula|core|доброе утро|доброго ранку|buenos días
+buenas_tardes|buenas tardes|formula|recognize|добрый день (после полудня)|добрий день (після полудня)|buenas tardes
+buenas_noches|buenas noches|formula|recognize|добрый вечер (при встрече)|добрий вечір (при зустрічі)|buenas noches
+hola|hola|interjection|core|привет|привіт|hola
+que_tal|qué tal|formula|core|как дела?|як справи?|qué tal
+muy|muy|adverb|support|очень|дуже|muy
+bien|bien|adverb|core|хорошо|добре|bien
+gracias|gracias|formula|core|спасибо|дякую|gracias
+y|y|conjunction|support|и; а (встречный вопрос)|і; а (зустрічне запитання)|y
+tu_pron|tú|pronoun|support|ты|ти|tú
+usted|usted|pronoun|support|вы (об одном человеке)|ви (про одну людину)|usted
+todo|todo|pronoun|support|всё|усе|todo
+mas_o_menos|más o menos|formula|recognize|более-менее|більш-менш|más o menos
+yo|yo|pronoun|support|я|я|yo
+tambien|también|adverb|recognize|тоже|теж|también
+llamarse|llamarse|verb|core|зваться; кого как зовут|зватися; кого як звати|me llamo;te llamas;se llama
+ana|Ana|proper|name|Ана|Ана|ana
+como|cómo|interrogative|support|как|як|cómo
+ser_id|ser|verb|core|быть: кто это|бути: хто це|soy;eres;es;somos
+luis|Luis|proper|name|Луис|Луїс|luis
+mi|mi|possessive|support|мой, моя|мій, моя|mi
+nombre|nombre|noun|recognize|имя|ім’я|nombre
+elena|Elena|proper|name|Елена|Олена|elena
+marta|Marta|proper|name|Марта|Марта|marta
+si|sí|affirmation|core|да|так|sí
+no|no|negation|core|нет; не|ні; не|no
+el_pron|él|pronoun|support|он|він|él
+diego|Diego|proper|name|Диего|Дієго|diego
+este|este|demonstrative|support|этот, эта (при представлении: это)|цей, ця (під час знайомства: це)|este;esta
+amigo|amigo, amiga|noun|recognize|друг, подруга|друг, подруга|amiga;amigas
+tu_pos|tu|possessive|support|твой, твоя|твій, твоя|tu
+hermano|hermano|noun|recognize|брат|брат|hermano
+mucho_gusto|mucho gusto|formula|core|приятно познакомиться|приємно познайомитися|mucho gusto
+encantado|encantado, encantada|adjective|recognize|рад, рада знакомству|радий, рада знайомству|encantada
+igualmente|igualmente|adverb|recognize|взаимно|взаємно|igualmente
+un_placer|un placer|formula|recognize|очень приятно (при знакомстве)|дуже приємно (при знайомстві)|un placer
+de|de|preposition|support|из, откуда родом|з, звідки родом|de
+donde|dónde|interrogative|core|где; после de: откуда|де; після de: звідки|dónde
+ser_origin|ser|verb|core|быть родом из|бути родом із|soy;eres;es
+mexico|México|proper|name|Мексика|Мексика|méxico
+aqui|aquí|adverb|recognize|здесь; de aquí — отсюда|тут; de aquí — звідси|aquí
+madrid|Madrid|proper|name|Мадрид|Мадрид|madrid
+lima|Lima|proper|name|Лима|Ліма|lima
+vivir|vivir|verb|core|жить, проживать|жити, мешкати|vivo;vives
+en|en|preposition|support|в (место жительства)|у, в (місце проживання)|en
+cerca|cerca|adverb|recognize|рядом, недалеко|поруч, недалеко|cerca
+irse|irse|verb|recognize|уходить|іти геть, вирушати|me voy;te vas
+ya|ya|adverb|support|уже|вже|ya
+ser_time|ser|verb|support|употребляется, когда говорят о времени|уживається, коли говорять про час|es
+tarde|tarde|adverb|recognize|поздно|пізно|tarde
+hasta_luego|hasta luego|formula|core|до встречи|до зустрічі|hasta luego
+verse|verse|verb|recognize|видеться, встречаться|бачитися, зустрічатися|nos vemos
+manana|mañana|adverb|recognize|завтра|завтра|mañana
+a_que_hora|a qué hora|formula|recognize|во сколько|о котрій годині|a qué hora
+a_las|a las|construction|support|в … часов|о … годині|a las
+diez|diez|numeral|recognize|десять|десять|diez
+hasta_entonces|hasta entonces|formula|recognize|до того времени (при прощании)|до того часу (під час прощання)|hasta entonces
+cuidarse|cuidarse|verb|recognize|беречь себя|берегти себе|cuídate

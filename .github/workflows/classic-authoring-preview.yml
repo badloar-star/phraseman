@@ -1,0 +1,43 @@
+name: Classic course authoring preview
+on:
+  pull_request:
+    branches: [feature/referral-roulette]
+    paths:
+      - 'content/classic-authoring/**'
+      - '.github/workflows/classic-authoring-preview.yml'
+permissions:
+  contents: read
+concurrency:
+  group: classic-authoring-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  check-and-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          sparse-checkout: content/classic-authoring
+      - name: Test grammar, bilingual intro and full theory contracts
+        working-directory: content/classic-authoring/grammar
+        run: python3 -B -m unittest -v test_grammar test_guided
+      - name: Build twice and compare every byte
+        working-directory: content/classic-authoring/grammar
+        run: |
+          PYTHONHASHSEED=101 python3 -B guided_build.py --target es --out "$RUNNER_TEMP/es-grammar"
+          PYTHONHASHSEED=202 python3 -B guided_build.py --target es --out "$RUNNER_TEMP/es-replay"
+          diff -qr "$RUNNER_TEMP/es-grammar" "$RUNNER_TEMP/es-replay"
+      - name: Open the exported lesson in Chromium and solve in RU and UK
+        working-directory: content/classic-authoring/grammar
+        run: python3 -B smoke_guided.py "$RUNNER_TEMP/es-grammar/ES-01.html"
+      - name: Include editable materials and common authoring standard
+        run: cp -R content/classic-authoring/grammar "$RUNNER_TEMP/es-grammar/source"
+      - name: Save offline grammar preview and editorial audit
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: PhraseMan-Classic-Grammar-ES
+          path: ${{ runner.temp }}/es-grammar
+          if-no-files-found: error
+          retention-days: 14

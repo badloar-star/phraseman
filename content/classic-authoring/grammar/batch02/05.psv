@@ -1,0 +1,51 @@
+# target | RU | UK | EN | optional context RU | context UK
+¿Dónde estás?|Где ты?|Де ти?|Where are you?
+¿Dónde está Ana?|Где Ана?|Де Ана?|Where is Ana?
+¿Dónde está Luis?|Где Луис?|Де Луїс?|Where is Luis?
+¿Dónde estamos?|Где мы?|Де ми?|Where are we?
+¿Dónde estoy?|Где я?|Де я?|Where am I?|Ты смотришь на карту и просишь показать своё место.|Дивишся на мапу й просиш показати, де ти.
+¿Dónde está la llave?|Где ключ?|Де ключ?|Where is the key?
+¿Dónde están las llaves?|Где ключи?|Де ключі?|Where are the keys?
+¿Dónde está el móvil?|Где телефон?|Де телефон?|Where is the phone?
+¿Dónde está la salida?|Где выход?|Де вихід?|Where is the exit?
+¿Dónde está la parada?|Где остановка?|Де зупинка?|Where is the stop?
+¿Quién está aquí?|Кто здесь?|Хто тут?|Who is here?
+¿Quién está en casa?|Кто дома?|Хто вдома?|Who is at home?
+¿Quién está en clase?|Кто на занятии?|Хто на занятті?|Who is in class?
+¿Quién está en la puerta?|Кто у двери?|Хто біля дверей?|Who is at the door?
+¿Quién está en la cocina?|Кто на кухне?|Хто на кухні?|Who is in the kitchen?
+¿Quién está en la oficina?|Кто в офисе?|Хто в офісі?|Who is at the office?
+¿Quién está fuera?|Кто снаружи?|Хто надворі?|Who is outside?
+¿Quién está dentro?|Кто внутри?|Хто всередині?|Who is inside?
+¿Quién está en el coche?|Кто в машине?|Хто в машині?|Who is in the car?
+¿Quién está en la tienda?|Кто в магазине?|Хто в магазині?|Who is in the shop?
+¿Quién es él?|Кто он?|Хто він?|Who is he?
+¿Quién es ella?|Кто она?|Хто вона?|Who is she?
+¿Quién eres?|Кто ты?|Хто ти?|Who are you?|На «ты», например в игре, когда надо угадать персонажа.|На «ти», наприклад у грі, коли треба вгадати персонажа.
+¿Quién es usted?|Кто вы?|Хто ви?|Who are you?|Обращение к одному человеку на usted, не просьба назвать имя.|Звернення до однієї людини на usted, не прохання назвати ім’я.
+¿Quiénes son ellos?|Кто они?|Хто вони?|Who are they?|Спрашиваешь о нескольких мужчинах.|Питаєш про кількох чоловіків.
+¿Quiénes son ellas?|Кто они?|Хто вони?|Who are they?|Спрашиваешь о нескольких женщинах.|Питаєш про кількох жінок.
+¿Quién es el guía?|Кто у нас гид?|Хто в нас гід?|Who is the guide?|Выбери мужчину из группы.|Назви чоловіка з групи.
+¿Quién es la profesora?|Кто здесь преподавательница?|Хто тут викладачка?|Who is the teacher?|Нужно указать человека, а не место. Здесь — контекст группы.|Треба вказати на людину, а не на місце. Тут — контекст групи.
+¿Quién es el médico?|Кто из вас врач?|Хто з вас лікар?|Who is the doctor?|Ищешь конкретного врача-мужчину в группе.|Шукаєш конкретного лікаря-чоловіка в групі.
+¿Quiénes son los estudiantes?|Кто из них студенты?|Хто з них студенти?|Who are the students?|Нужно указать нескольких людей из смешанной группы.|Треба вказати на кількох людей зі змішаної групи.
+¿Qué es esto?|Что это?|Що це?|What is this?|Предмет у тебя в руках.|Предмет у тебе в руках.
+¿Qué es eso?|Что это такое?|Що то таке?|What is that?|Указываешь на предмет у собеседника.|Показуєш на предмет біля співрозмовника.
+¿Qué libro está en la mesa?|Какая книга на столе?|Яка книжка на столі?|Which book is on the table?
+¿Qué libros están en casa?|Какие книги дома?|Які книжки вдома?|Which books are at home?
+¿Qué llave está en el bolso?|Какой ключ в сумке?|Який ключ у сумці?|Which key is in the bag?
+¿Qué llaves están en el coche?|Какие ключи в машине?|Які ключі в машині?|Which keys are in the car?
+¿Qué billete está en la mochila?|Какой билет в рюкзаке?|Який квиток у рюкзаку?|Which ticket is in the backpack?
+¿Qué billetes están en el bolsillo?|Какие билеты в кармане?|Які квитки в кишені?|Which tickets are in the pocket?
+¿Qué estudiante está en la oficina?|Какой студент в офисе?|Який студент в офісі?|Which student is at the office?
+¿Qué profesores están en clase?|Какие преподаватели на занятии?|Які викладачі на занятті?|Which teachers are in class?
+¿Dónde está el médico?|Где врач?|Де лікар?|Where is the doctor?|Ты знаешь, кто врач. Нужно его найти.|Знаєш, хто лікар. Треба його знайти.
+¿Quién está en el hotel?|Кто в отеле?|Хто в готелі?|Who is at the hotel?
+¿Dónde está el pasaporte?|Где паспорт?|Де паспорт?|Where is the passport?
+¿Dónde están los pasaportes?|Где паспорта?|Де паспорти?|Where are the passports?
+¿Dónde estáis?|Где вы?|Де ви?|Where are you?|Сообщение нескольким друзьям в Испании, vosotros.|Повідомлення кільком друзям в Іспанії, vosotros.
+¿Dónde están ustedes?|Где вы сейчас находитесь?|Де ви зараз перебуваєте?|Where are you?|Спрашиваешь о месте группы. Уточни адресата словом ustedes; «сейчас» — контекст.|Питаєш про місце групи. Уточни адресата словом ustedes; «зараз» — контекст.
+¿Quién es la enfermera?|Кто здесь медсестра?|Хто тут медсестра?|Who is the nurse?|Нужно указать на человека из группы.|Треба вказати на людину з групи.
+¿Dónde está la enfermera?|Где медсестра?|Де медсестра?|Where is the nurse?
+¿Qué mochila está en el coche?|Какой рюкзак в машине?|Який рюкзак у машині?|Which backpack is in the car?
+¿Dónde están Ana y Luis?|Где Ана и Луис?|Де Ана й Луїс?|Where are Ana and Luis?

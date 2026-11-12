@@ -29,9 +29,15 @@ describe('dev-кнопка «решить задание»', () => {
 });
 
 describe('таймеры раннера ступени', () => {
-  it('сработавший таймер убирается из списка (список не растёт от задания к заданию)', () => {
+  // зачем (12.11): 606a71aaa (владелец 11.11: «я должен сам переходить по нажатию кнопки») убрал автопереход после
+  // верного ответа — вместе с ним ушли все разовые таймеры раннера и их список. Утечка «список растёт» теперь невозможна
+  // в принципе; сторожим, чтобы так и осталось: ни одного setTimeout, один тик часов — и он снимается при уходе из фазы.
+  it('таймеры раннера ступени не копятся: разовых таймеров нет, единственный тик часов снимается', () => {
     const runner = read('app', 'spire', 'use_spire_step_runner.ts');
-    expect(runner).toContain('const t = setTimeout(() => { timersRef.current = timersRef.current.filter((x) => x !== t); fn(); }, ms);');
+    expect(runner).not.toMatch(/setTimeout\(/);
+    expect(runner.match(/setInterval\(/g)).toHaveLength(1);
+    expect(runner).toContain('return () => clearInterval(id);');
+    expect(runner).toMatch(/if \(fb\.ok\) return; \/\/ D207[^\n]*автоперехода нет: ответ висит до «Дальше» \(continueAfterReveal\)/);
   });
 });
 

@@ -14,7 +14,12 @@ describe('lesson runtime animation ownership', () => {
   });
 
   it('stops each migrated repeating value while inactive', () => {
-    expect(read('app/lesson1.tsx')).toContain('if (!lessonRuntimeActive || selectedWords.length > 0)');
+    // зачем (12.11): d8a0a685a вынес условие в признак hasSelectedWords — эффект мигания курсора перезапускается только
+    // при смене «есть слова / нет слов», а не на каждое слово; остановка вне активного урока та же.
+    const lesson = read('app/lesson1.tsx').replace(/\r\n/g, '\n');
+    expect(lesson).toContain('const hasSelectedWords = selectedWords.length > 0;');
+    expect(lesson).toContain('if (!lessonRuntimeActive || hasSelectedWords) {\n      cursorAnim.stopAnimation();');
+    expect(lesson).toContain('}, [cursorAnim, lessonRuntimeActive, hasSelectedWords]);');
     expect(read('app/lesson_intro_screens.tsx')).toContain('if (!lessonIntroRuntimeActive || allRevealed)');
     expect(read('app/lesson_intro_screens.tsx')).toContain('if (!lessonIntroRuntimeActive || !ctaReady)');
     expect(read('app/lesson_complete.tsx')).toContain('if (!lessonCompleteRuntimeActive || !seqDone)');

@@ -1,5 +1,5 @@
 /**
- * Сторож банка заданий игр (D207) для испанского и итальянского курсов, уроки 1–8: «Лишнее слово»,
+ * Сторож банка заданий игр (D207) для испанского и итальянского курсов, уроки 1–12: «Лишнее слово»,
  * «Сортировка», «Точное слово», «На слух», «Память», «Охота на ошибку», «Собери диалог».
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «фразы должны корректно
  * подбираться для режимов игры, без багов». Задания сверяются с фразами уроков курса.
@@ -27,14 +27,15 @@ import { huntFixedLines, isValidHuntTask, isValidOrderTask } from '../modules/ga
 import { isValidOddWordTask } from '../modules/games/odd_word_core';
 import { isValidQuizRound } from '../modules/games/quiz_core';
 
-const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8] as const;
+// зачем (12.11.2026): банк расширен на уроки 9–12 — сторож проверяет их теми же правилами
+const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 /** «Собери диалог» начинается с урока 3: в уроках 1–2 ещё нет вопросов, порядок реплик не однозначен. */
-const ORDER_LESSONS = [3, 4, 5, 6, 7, 8] as const;
+const ORDER_LESSONS = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 const GAP = '___';
 
 const BANKS = {
-  es: { oddWord: ODD_WORD_BANK_ES, sort: SORT_BANK_ES, exact: EXACT_BANK_ES, listen: LISTEN_BANK_ES, memory: MEMORY_BANK_ES, hunt: HUNT_BANK_ES, order: ORDER_BANK_ES, gapDecks: [3, 6, 7, 8] },
-  it: { oddWord: ODD_WORD_BANK_IT, sort: SORT_BANK_IT, exact: EXACT_BANK_IT, listen: LISTEN_BANK_IT, memory: MEMORY_BANK_IT, hunt: HUNT_BANK_IT, order: ORDER_BANK_IT, gapDecks: [3, 4, 5, 6] },
+  es: { oddWord: ODD_WORD_BANK_ES, sort: SORT_BANK_ES, exact: EXACT_BANK_ES, listen: LISTEN_BANK_ES, memory: MEMORY_BANK_ES, hunt: HUNT_BANK_ES, order: ORDER_BANK_ES, gapDecks: [3, 6, 7, 8, 12] },
+  it: { oddWord: ODD_WORD_BANK_IT, sort: SORT_BANK_IT, exact: EXACT_BANK_IT, listen: LISTEN_BANK_IT, memory: MEMORY_BANK_IT, hunt: HUNT_BANK_IT, order: ORDER_BANK_IT, gapDecks: [3, 4, 5, 6, 9, 10, 11, 12] },
 } as const;
 type Lang = keyof typeof BANKS;
 const LANGS: readonly Lang[] = ['es', 'it'];

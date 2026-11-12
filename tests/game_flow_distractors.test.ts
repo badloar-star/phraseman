@@ -15,8 +15,9 @@ const BANKS: readonly (readonly [ClassicCourseLang, typeof FLOW_DISTRACTORS_EN])
   ['en', FLOW_DISTRACTORS_EN], ['de', FLOW_DISTRACTORS_DE], ['fr', FLOW_DISTRACTORS_FR], ['es', FLOW_DISTRACTORS_ES], ['it', FLOW_DISTRACTORS_IT],
 ];
 const LESSONS = [1, 2, 3, 4, 5, 6, 7, 8];
-/** У английского курса наборы есть и для уроков 9–12 (12.11), у остальных — 1–8. */
-const lessonsOf = (lang: ClassicCourseLang): number[] => (lang === 'en' ? [...LESSONS, 9, 10, 11, 12] : LESSONS);
+/** У английского, испанского и итальянского курсов наборы есть и для уроков 9–12 (12.11), у остальных — 1–8. */
+const TO_LESSON_12: ReadonlySet<ClassicCourseLang> = new Set(['en', 'es', 'it']);
+const lessonsOf = (lang: ClassicCourseLang): number[] => (TO_LESSON_12.has(lang) ? [...LESSONS, 9, 10, 11, 12] : LESSONS);
 const MARKS = /[()]|Для сборки|При сборке|Для складання/u;
 
 const words = (text: string): string[] => text.trim().split(/\s+/).filter(Boolean);

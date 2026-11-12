@@ -42,12 +42,24 @@ describe('eas.json: профиль production и сабмит', () => {
   });
   it('скрипт сборки из HEAD: --auto-submit только в строках iOS; у Android сабмита нет', () => {
     const script = fs.readFileSync(path.join(root, 'scripts/eas_build_from_head.sh'), 'utf8').replace(/\r\n/g, '\n');
-    const commands = script.split('\n').filter((l) => /^\s*npx eas build\b/.test(l));
+    const commands = script.split('\n').filter((l) => /^\s*(eas_step\s+)?npx eas build\b/.test(l));
     expect(commands.length).toBeGreaterThanOrEqual(2);
     for (const line of commands.filter((l) => l.includes('--auto-submit'))) expect(line).toContain('--platform ios');
     for (const line of commands.filter((l) => l.includes('--platform android'))) {
       expect(line).not.toContain('--auto-submit');
       expect(line).toContain('--non-interactive');
     }
+  });
+  // зачем (выпуск 2.1.2, 11→12.11): снимок через git clone и повторный клон eas-cli дважды падали на перехватчике git, запрещающем
+  // новые ветки; сборка прошла только через git archive + EAS_NO_VCS=1. Возврат clone/checkout снова сломает выпуск в ночь релиза.
+  it('скрипт сборки из HEAD: снимок через git archive без git clone, EAS_NO_VCS=1, код сборки не маскируется tee', () => {
+    const script = fs.readFileSync(path.join(root, 'scripts/eas_build_from_head.sh'), 'utf8').replace(/\r\n/g, '\n');
+    const code = script.split('\n').filter((l) => !/^\s*#/.test(l)).join('\n');
+    expect(code).toMatch(/git -C "\$REPO" -c core\.autocrlf=false archive "\$FULL"/);
+    expect(code).toMatch(/export EAS_NO_VCS=1/);
+    expect(code).not.toMatch(/\bgit\b[^\n]*\bclone\b/);
+    expect(code).not.toMatch(/\bgit\b[^\n]*\bcheckout\b/);
+    expect(code).toMatch(/PIPESTATUS\[0\]/);
+    expect(code).not.toMatch(/npx eas build[^\n]*\|\s*tee[^\n]*\|\|\s*RC=1/);
   });
 });

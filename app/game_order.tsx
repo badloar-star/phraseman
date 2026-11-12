@@ -26,7 +26,9 @@ import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { INITIAL_ORDER_STATE, shuffledOrder, tapOrderLine } from '../modules/games/dialogue_core';
-import { currentGameLesson, dailyPortion, orderTasksFor } from '../modules/games/task_source';
+import { gameBankFor } from '../modules/games/bank';
+import { orderEntry } from '../modules/games/order_entry';
+import { currentGameLesson, orderTasksFor } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { useSkillSession } from '../modules/skills/use_skill_session';
@@ -37,6 +39,9 @@ const COPY = {
   ask: { ru: 'Нажимай реплики по порядку', uk: 'Натискай репліки по порядку', es: 'Toca las réplicas en orden', en: 'Tap the lines in order' },
   done: { ru: 'Готово', uk: 'Готово', es: 'Listo', en: 'Done' },
   close: { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', en: 'Close' },
+  noneTitle: { ru: 'Здесь пока нет диалогов', uk: 'Тут поки немає діалогів', es: 'Aún no hay diálogos aquí', en: 'No dialogues here yet' },
+  noneFrom: { ru: 'Диалоги появятся с урока', uk: 'Діалоги з’являться з уроку', es: 'Los diálogos llegan en la lección', en: 'Dialogues start at lesson' },
+  noneLater: { ru: 'Диалоги для этого языка ещё готовятся', uk: 'Діалоги для цієї мови ще готуються', es: 'Los diálogos de este idioma aún se preparan', en: 'Dialogues for this language are still coming' },
 } as const;
 
 type Point = Readonly<{ x: number; y: number }>;
@@ -94,10 +99,15 @@ export default function GameOrderScreen() {
   const { studyTarget } = useStudyTarget();
   // зачем (чтение кода перед выпуском 11.11): без номера урока брался урок 32 — человек на уроке 1 получал реплики
   // из поздних уроков; берём задания урока, на котором человек сейчас, и меняем диалог от дня к дню
-  const task = useMemo(() => {
-    const tasks = orderTasksFor(studyTarget, currentGameLesson(studyTarget));
-    return dailyPortion(tasks, 1, Math.floor(Date.now() / 86400000))[0] ?? null;
+  const entry = useMemo(() => {
+    const lesson = currentGameLesson(studyTarget);
+    const tasks = orderTasksFor(studyTarget, lesson);
+    const next = orderEntry(tasks, gameBankFor(studyTarget)?.order, Math.floor(Date.now() / 86400000));
+    // зачем (обход экранов 12.11, 🔴 «0 / 0»): журнал показывает язык, урок, сколько диалогов нашёл подбор и с какого урока они есть
+    if (!next.task) console.warn(`[GAME-ORDER] entry:none ${JSON.stringify({ studyTarget, lesson, found: tasks.length, firstLesson: next.firstLesson })}`); // guard-ok: ранний выход с причиной, остаётся навсегда
+    return next;
   }, [studyTarget]);
+  const task = entry.task;
   // порядок кнопок фиксируется на вход: повторный рендер не перетасовывает их под пальцем
   const buttons = useMemo(() => (task ? shuffledOrder(task.lines.length) : []), [task]);
   const [game, setGame] = useState(INITIAL_ORDER_STATE);
@@ -139,9 +149,10 @@ export default function GameOrderScreen() {
 
   const onClose = useCallback(() => safeRouterBack(router, '/(tabs)/home' as never), [router]);
   const total = task ? task.lines.length : 0;
-  // зачем (прогон на телефоне 11.11): у урока без диалога экран открывался пустым тупиком «0 / 0» без кнопки —
-  // теперь сразу показывается «Готово», и человек выходит одним нажатием
-  const finished = !task || (total > 0 && game.placed >= total);
+  // зачем (обход экранов 12.11, 🔴): у урока без диалога экран не изображает сыгранную игру — без «0 / 0» и «Готово»,
+  // со строкой, с какого урока появятся диалоги, и кнопкой «Закрыть» (прежде, 11.11, сразу показывалось «Готово»)
+  const empty = !task;
+  const finished = total > 0 && game.placed >= total;
 
   // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
   useEffect(() => {
@@ -160,12 +171,22 @@ export default function GameOrderScreen() {
             <View style={[s.pill, { backgroundColor: p.glass }]}>
               <Text style={[s.pillText, { color: p.text }]}>{triLang(lang, COPY.pill)}</Text>
             </View>
-            <View style={[s.pill, { backgroundColor: p.glass }]}>
-              <GameBumpText value={`${game.placed} / ${total}`} style={[s.pillText, { color: p.text }]} />
-            </View>
+            {empty ? <View style={s.pillSpacer} /> : (
+              <View style={[s.pill, { backgroundColor: p.glass }]}>
+                <GameBumpText value={`${game.placed} / ${total}`} style={[s.pillText, { color: p.text }]} />
+              </View>
+            )}
           </View>
 
-          <Text style={[s.ask, { color: p.textSecondary }]}>{finished ? '' : triLang(lang, COPY.ask)}</Text>
+          <Text style={[s.ask, { color: p.textSecondary }]}>{finished || empty ? '' : triLang(lang, COPY.ask)}</Text>
+          {empty ? (
+            <View style={s.none} testID="game-order-none">
+              <Text style={[s.noneTitle, { color: p.text }]}>{triLang(lang, COPY.noneTitle)}</Text>
+              <Text style={[s.noneSub, { color: p.textSecondary }]}>
+                {entry.firstLesson ? `${triLang(lang, COPY.noneFrom)} ${entry.firstLesson}` : triLang(lang, COPY.noneLater)}
+              </Text>
+            </View>
+          ) : null}
 
           <View style={s.chat}>
             {task ? task.lines.map((line, i) => (
@@ -184,7 +205,9 @@ export default function GameOrderScreen() {
           </View>
 
           <View style={s.flex} />
-          {finished ? (
+          {empty ? (
+            <V2Button testID="game-order-close-empty" label={triLang(lang, COPY.close)} variant="secondary" onPress={onClose} />
+          ) : finished ? (
             <V2Button testID="game-order-done" label={triLang(lang, COPY.done)} onPress={onClose} />
           ) : (
             <View style={s.options}>
@@ -213,6 +236,11 @@ export default function GameOrderScreen() {
 
 const s = StyleSheet.create({
   flex: { flex: 1 },
+  // место пилюли счётчика держится и без неё — заголовок не сдвигается
+  pillSpacer: { width: V2.iconButton },
+  none: { marginTop: 40, alignItems: 'center', gap: 8, paddingHorizontal: 12 },
+  noneTitle: { fontSize: 20, lineHeight: 26, fontWeight: '700', textAlign: 'center' },
+  noneSub: { fontSize: 15, lineHeight: 20, fontWeight: '500', textAlign: 'center' },
   content: { flex: 1, paddingHorizontal: V2.screenPad, paddingTop: 8, paddingBottom: 16 },
   top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: V2.iconButton },
   pill: { height: 36, paddingHorizontal: 12, borderRadius: 18, justifyContent: 'center' },

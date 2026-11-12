@@ -45,6 +45,8 @@ import {
 } from '../modules/games/odd_word_core';
 import { currentGameLesson, dailyPortion, oddWordTasksFor } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
+import { noteGameResult } from '../modules/games/game_records';
+import { exitGameWithMinute } from '../components/games/gameExit';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { useSkillSession } from '../modules/skills/use_skill_session';
 import { safeRouterBack } from './navigation_back';
@@ -230,7 +232,10 @@ export default function GameOddWordScreen() {
 
   // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
   useEffect(() => {
-    if (finished && tasks.length > 0) markWarmupGamePlayed('odd_word', `${game.solved}/${tasks.length}`);
+    if (!finished || tasks.length === 0) return;
+    markWarmupGamePlayed('odd_word', `${game.solved}/${tasks.length}`);
+    // рекорд — сколько фраз очищено за минуту; запись никогда не бросает
+    noteGameResult('odd_word', game.solved);
   }, [finished, game.solved, tasks.length]);
 
   const onPlace = useCallback((index: number, at: Point) => {
@@ -289,6 +294,11 @@ export default function GameOddWordScreen() {
     timers.current.forEach(clearTimeout);
     safeRouterBack(router, '/(tabs)/home' as never);
   }, [router]);
+  // «Готово» после итога: была ошибка — сначала «Минута знаний»
+  const onDone = useCallback(() => {
+    timers.current.forEach(clearTimeout);
+    exitGameWithMinute(router, { misses: game.misses });
+  }, [game.misses, router]);
 
   const scale = trailWidth > 0 ? trailWidth / ODD_WORD_TRAIL_W : 0;
   const stops = trail.stops;
@@ -349,7 +359,7 @@ export default function GameOddWordScreen() {
               <Text style={[s.sub, { color: p.textSecondary }]}>{`${triLang(lang, COPY.solved)}: ${game.solved}`}</Text>
               <SkillsSessionGrowth style={s.growth} />
               <View style={s.flex} />
-              <V2Button testID="game-odd-done" label={triLang(lang, COPY.doneTitle)} onPress={onClose} />
+              <V2Button testID="game-odd-done" label={triLang(lang, COPY.doneTitle)} onPress={onDone} />
             </View>
           ) : (
             <View style={s.stage}>

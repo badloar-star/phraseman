@@ -11,6 +11,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from '
 import { StyleSheet, Text, View } from 'react-native';
 import Reanimated, { Easing, cancelAnimation, useAnimatedStyle, useSharedValue, withDelay, withSequence, withTiming } from 'react-native-reanimated';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import Svg, { Defs, Ellipse, RadialGradient, Stop } from 'react-native-svg';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
@@ -23,12 +24,15 @@ import GameSegments from '../components/games/GameSegments';
 import { V2Button, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { GAME_EASE, GAME_MOTION } from '../constants/gameMotion';
+import { isLightSurface } from '../constants/color_contrast';
 import { triLang, type Lang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { FLOW_DEFAULT_ROUNDS, FLOW_TEMPO, buildFlowRounds, flowRoundTimings, isFlowHighTempo, nextFlowTempoLevel, type FlowItem, type FlowRound, flowTranslation } from '../modules/games/flow_core';
 import { currentGameLesson, isFlowAvailable } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
+import { noteGameResult } from '../modules/games/game_records';
+import { exitGameWithMinute } from '../components/games/gameExit';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { getClassicLessonPhrases, isClassicCourseLang } from './classic_course_phrases';
 import { useSkillSession } from '../modules/skills/use_skill_session';
@@ -56,7 +60,8 @@ const COPY = {
   next: { ru: 'Следующая фраза', uk: 'Наступна фраза', es: 'Siguiente frase', en: 'Next phrase' },
   ask: { ru: 'Что было сказано?', uk: 'Що було сказано?', es: '¿Qué se dijo?', en: 'What was said?' },
   ok: { ru: 'Верно — темп растёт', uk: 'Правильно — темп зростає', es: 'Correcto: el ritmo sube', en: 'Correct — tempo goes up' },
-  miss: { ru: 'Мимо — темп ниже', uk: 'Повз — темп нижчий', es: 'Fallo: el ritmo baja', en: 'Missed — tempo goes down' },
+  // макет (elevate-mechanics.app.js:111): «Мимо — темп ниже, фраза уйдёт в «Ошибки»»
+  miss: { ru: 'Мимо — темп ниже, фраза уйдёт в «Ошибки»', uk: 'Повз — темп нижчий, фраза піде в «Помилки»', es: 'Fallo: el ritmo baja, la frase irá a «Errores»', en: 'Missed — tempo goes down, the phrase goes to Mistakes' },
   doneTitle: { ru: 'Поток пройден', uk: 'Потік пройдено', es: 'Flujo completado', en: 'Flow complete' },
   // зачем (найдено на эмуляторе 11.11): «1 верных из 6» — число перед словом заставляет склонять; пишем «Верно: 1 из 6»
   score: { ru: 'Верно', uk: 'Правильно', es: 'Aciertos', en: 'Correct' },
@@ -118,7 +123,7 @@ const FlowWord = memo(function FlowWord({ text, inAt, holdMs, fadeMs, still, col
 });
 
 /** Столбик индикатора темпа: смена состояния за 300 мс (elevate-mechanics.css:124, `.tempo i`). */
-const TempoBar = memo(function TempoBar({ index, lit, on, off }: Readonly<{ index: number; lit: boolean; on: string; off: string }>) {
+const TempoBar = memo(function TempoBar({ index, lit, on, off, glow }: Readonly<{ index: number; lit: boolean; on: string; off: string; glow: boolean }>) {
   const reduceMotion = useReduceMotion();
   const value = useSharedValue(lit ? 1 : 0);
   useEffect(() => {
@@ -128,8 +133,39 @@ const TempoBar = memo(function TempoBar({ index, lit, on, off }: Readonly<{ inde
   const style = useAnimatedStyle(() => ({ opacity: value.value }));
   return (
     <View style={[s.tempoBar, { height: 8 + index * 1.5, backgroundColor: off }]}>
-      <Reanimated.View style={[StyleSheet.absoluteFill, s.tempoBarOn, { backgroundColor: on }, style]} />
+      {/* `.tempo i.on { box-shadow: 0 0 10px rgba(255,255,255,.6) }`; в светлом виде `box-shadow: none` (elevate-light.css:46) */}
+      <Reanimated.View style={[StyleSheet.absoluteFill, s.tempoBarOn, { backgroundColor: on }, glow && s.tempoBarGlow, style]} />
     </View>
+  );
+});
+
+/**
+ * «Солнце» за сценой — `.sky .sun` макета (elevate-mechanics.css:36–37): пятно света слева сверху, радиальный переход
+ * цвета пятна в прозрачность; растёт с темпом `scale(1 + уровень · .12)` за 1200 мс `--out` (elevate-mechanics.app.js:89).
+ * Цвет — пятно света фона текущей темы (glowA), а не фиксированный цвет макета: у приложения свои темы.
+ */
+// числа «солнца» из макета; лежат здесь, а не в gameMotion.ts — тот файл сейчас дописывает другая сессия
+const FLOW_SUN = { step: 0.12, ms: 1200 } as const;
+const FlowSun = memo(function FlowSun({ level, color }: Readonly<{ level: number; color: string }>) {
+  const reduceMotion = useReduceMotion();
+  const scale = useSharedValue(1 + level * FLOW_SUN.step);
+  useEffect(() => {
+    scale.value = withTiming(1 + level * FLOW_SUN.step, { duration: reduceMotion ? 0 : FLOW_SUN.ms, easing: bezier(GAME_EASE.out) });
+    return () => cancelAnimation(scale);
+  }, [level, reduceMotion, scale]);
+  const style = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
+  return (
+    <Reanimated.View pointerEvents="none" style={[s.sun, style]}>
+      <Svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <Defs>
+          <RadialGradient id="flowSun" cx="50" cy="50" r="50" gradientUnits="userSpaceOnUse">
+            <Stop offset="0" stopColor={color} stopOpacity={0.72} />
+            <Stop offset="1" stopColor={color} stopOpacity={0} />
+          </RadialGradient>
+        </Defs>
+        <Ellipse cx="50" cy="50" rx="50" ry="50" fill="url(#flowSun)" />
+      </Svg>
+    </Reanimated.View>
   );
 });
 
@@ -151,6 +187,7 @@ export default function GameFlowScreen() {
   const router = useRouter();
   useSkillSession(); // занятие объявляет сам режим — только его прирост попадёт в «Навыки растут»
   const p = useV2Palette();
+  const lightSurface = isLightSurface(p.bg);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const params = useLocalSearchParams<{ lesson?: string }>();
@@ -176,6 +213,8 @@ export default function GameFlowScreen() {
   const [phase, setPhase] = useState<Phase>(rounds.length > 0 ? 'intro' : 'empty');
   const [roundIndex, setRoundIndex] = useState(0);
   const [tempoLevel, setTempoLevel] = useState(0);
+  // лучший темп за игру — рекорд «Потока» («×1,9»)
+  const bestTempoLevel = useRef(0);
   const [count, setCount] = useState(3);
   const [picked, setPicked] = useState<number | null>(null);
   const [correctCount, setCorrectCount] = useState(0);
@@ -198,7 +237,10 @@ export default function GameFlowScreen() {
 
   // зачем: разминка помечает игру сыгранной по факту итога; результат уходит в метку на карте игры
   useEffect(() => {
-    if (phase === 'done') markWarmupGamePlayed('flow', `${correctCount}/${rounds.length}`);
+    if (phase !== 'done') return;
+    markWarmupGamePlayed('flow', `${correctCount}/${rounds.length}`);
+    // зачем (владелец 11.11/12.11: «все подключи»): рекорд «Потока» — лучший темп за игру; запись никогда не бросает
+    if (rounds.length > 0) noteGameResult('flow', Number(FLOW_TEMPO[bestTempoLevel.current].label.replace(',', '.')));
   }, [correctCount, phase, rounds.length]);
 
   const round = rounds[Math.min(roundIndex, Math.max(0, rounds.length - 1))];
@@ -239,6 +281,7 @@ export default function GameFlowScreen() {
     setPicked(index);
     setPhase('verdict');
     setTempoLevel(nextLevel);
+    bestTempoLevel.current = Math.max(bestTempoLevel.current, nextLevel);
     if (correct) {
       setCorrectCount((n) => n + 1);
       // зачем (D207): «Скорость» — только верный ответ быстрее трёх секунд; порог проверяет таблица навыков
@@ -259,6 +302,11 @@ export default function GameFlowScreen() {
     clearTimers();
     safeRouterBack(router, '/(tabs)/home' as never);
   }, [clearTimers, router]);
+  // «Готово» после итога: была ошибка — сначала «Минута знаний» (макет: «показывается после игры, только если была ошибка»)
+  const onDone = useCallback(() => {
+    clearTimers();
+    exitGameWithMinute(router, { misses: Math.max(0, rounds.length - correctCount) });
+  }, [clearTimers, correctCount, rounds.length, router]);
 
   const beamStyle = useAnimatedStyle(() => ({ transform: [{ scaleX: beam.value }] }));
   // полоса под фразой гаснет и проявляется за 300 мс (elevate-mechanics.css:132, `.beam`)
@@ -292,6 +340,7 @@ export default function GameFlowScreen() {
 
   return (
     <ScreenGradient>
+      <FlowSun level={tempoLevel} color={p.glowA} />
       <SafeAreaView style={s.flex} edges={['top', 'left', 'right', 'bottom']}>
         <View style={s.content}>
           <View style={s.top}>
@@ -299,7 +348,7 @@ export default function GameFlowScreen() {
             <View style={s.tempoWrap}>
               <View style={s.tempoBars}>
                 {Array.from({ length: 10 }, (_, i) => (
-                  <TempoBar key={`bar-${i}`} index={i} lit={i < tempo.bars} on={p.text} off={p.track} />
+                  <TempoBar key={`bar-${i}`} index={i} lit={i < tempo.bars} on={p.text} off={p.track} glow={!lightSurface} />
                 ))}
               </View>
               <View style={[s.pill, { backgroundColor: p.glass }]}>
@@ -356,7 +405,7 @@ export default function GameFlowScreen() {
             )) : null}
             {phase === 'intro' ? <V2Button testID="game-flow-start" label={triLang(lang, COPY.start)} icon="play" iconPosition="leading" onPress={onStart} /> : null}
             {phase === 'done' ? <SkillsSessionGrowth /> : null}
-            {phase === 'done' || phase === 'empty' ? <V2Button testID="game-flow-done" label={triLang(lang, COPY.done)} onPress={onClose} /> : null}
+            {phase === 'done' || phase === 'empty' ? <V2Button testID="game-flow-done" label={triLang(lang, COPY.done)} onPress={phase === 'done' ? onDone : onClose} /> : null}
           </View>
         </View>
       </SafeAreaView>
@@ -371,6 +420,9 @@ const s = StyleSheet.create({
   tempoWrap: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   tempoBars: { flexDirection: 'row', alignItems: 'center', gap: 4, height: 26 },
   tempoBar: { width: 5, borderRadius: 3, overflow: 'hidden' },
+  tempoBarGlow: { boxShadow: '0px 0px 10px rgba(255,255,255,0.6)' },
+  // `.sky .sun { left: -44%; top: -21%; width: 124%; height: 46% }`
+  sun: { position: 'absolute', left: '-44%', top: '-21%', width: '124%', height: '46%' },
   tempoBarOn: { borderRadius: 3 },
   pill: { height: 36, paddingHorizontal: 12, borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
   pillText: { fontSize: 14, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },

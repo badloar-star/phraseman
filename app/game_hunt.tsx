@@ -32,6 +32,7 @@ import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { isHuntHit } from '../modules/games/dialogue_core';
 import { currentGameLesson, huntTasksFor } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
+import { exitGameWithMinute } from '../components/games/gameExit';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { useSkillSession } from '../modules/skills/use_skill_session';
 import { safeRouterBack } from './navigation_back';
@@ -126,6 +127,8 @@ export default function GameHuntScreen() {
   const [index, setIndex] = useState(0);
   const [found, setFound] = useState(false);
   const [missId, setMissId] = useState('');
+  // id задания, на котором была ошибка: по нему «Минута знаний» находит своё правило
+  const missedTaskId = useRef<string | null>(null);
   const [chatHeight, setChatHeight] = useState(0);
   const lock = useRef(false);
   const missTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -136,6 +139,7 @@ export default function GameHuntScreen() {
   const onTap = useCallback((line: number, word: number) => {
     if (lock.current || !task) return;
     if (!isHuntHit(task, line, word)) {
+      missedTaskId.current = missedTaskId.current ?? task.id;
       setMissId(`${line}:${word}`);
       // макет: красный тон снимается через 700 мс
       if (missTimer.current) clearTimeout(missTimer.current);
@@ -158,13 +162,14 @@ export default function GameHuntScreen() {
   const onClose = useCallback(() => safeRouterBack(router, '/(tabs)/home' as never), [router]);
   const onNext = useCallback(() => {
     if (isLast) {
-      onClose();
+      // «Готово» на последнем диалоге: была ошибка — сначала «Минута знаний» по тому заданию, где ошиблись
+      exitGameWithMinute(router, { misses: missedTaskId.current ? 1 : 0, itemId: missedTaskId.current });
       return;
     }
     lock.current = false;
     setFound(false);
     setIndex((i) => i + 1);
-  }, [isLast, onClose]);
+  }, [isLast, router]);
 
   return (
     <ScreenGradient>
@@ -241,7 +246,9 @@ const s = StyleSheet.create({
   pillText: { fontSize: 14, lineHeight: 18, fontWeight: '700', fontVariant: ['tabular-nums'] },
   ask: { marginTop: 22, textAlign: 'center', fontSize: 15, lineHeight: 20, fontWeight: '500' },
   chat: { marginTop: 22, gap: 10 },
-  scan: { position: 'absolute', top: 0, left: -GAME_MOTION.huntScanBleed, right: -GAME_MOTION.huntScanBleed, height: GAME_MOTION.huntScanHeight, zIndex: 2 },
+  scan: { position: 'absolute', top: 0, left: -GAME_MOTION.huntScanBleed, right: -GAME_MOTION.huntScanBleed, height: GAME_MOTION.huntScanHeight, zIndex: 0 },
+  // зачем (сверка на телефоне 11.11: полоса резала текст реплики): в макете `.scan` стоит первым в `.chat`, а реплики
+  // с подъёмом рисуются поверх неё — сканер виден только в просветах между пузырями
   bubbleRow: { flexDirection: 'row', justifyContent: 'flex-start' },
   bubbleRowRight: { justifyContent: 'flex-end' },
   bubble: { maxWidth: '86%', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', columnGap: 6, rowGap: 4, paddingVertical: 12, paddingHorizontal: 14 },

@@ -45,4 +45,21 @@ export const ORDER_BANK_EN: Readonly<Record<number, readonly OrderTask[]>> = {
     order(8, 1, ['When does the concert start?', 'It starts at eight fifteen.', 'When does it finish?', 'It finishes at midnight.']),
     order(8, 2, ['Does your sister work at night?', 'No, she works in the morning.', 'Does she work on Sundays?', 'Yes, she works every Sunday.']),
   ],
+  // зачем (сессия макетов 12.11): уроки 9–12 по той же схеме: вопрос о названном предмете → ответ → вопрос с it/he/she/they
+  9: [
+    order(9, 1, ['Is there a cash machine here?', 'Yes, there is a cash machine by the door.', 'Is it open?', 'Yes, it is open.']),
+    order(9, 2, ['Are there lockers at the station?', 'Yes, there are lockers upstairs.', 'Are they free?', 'No, they are not free.']),
+  ],
+  10: [
+    order(10, 1, ['Can I use your phone?', 'Yes, you can use my phone.', 'Does it work?', 'Yes, it works well.']),
+    order(10, 2, ['Can your sister drive?', 'Yes, she can drive.', 'Can she come today?', 'No, she cannot come today.']),
+  ],
+  11: [
+    order(11, 1, ['Did your sister call the office?', 'Yes, she called the office.', 'Did she book a room?', 'Yes, she booked a single room.']),
+    order(11, 2, ['Did the train arrive on time?', 'No, it arrived ten minutes late.', 'Did it stop at the station?', 'Yes, it stopped by the gate.']),
+  ],
+  12: [
+    order(12, 1, ['Did your son find his wallet?', 'Yes, he found his wallet downstairs.', 'Did he find his keys?', 'No, he did not find his keys.']),
+    order(12, 2, ['When did the taxi arrive?', 'The taxi arrived at nine.', 'How much did it cost?', 'It cost ten.']),
+  ],
 };

@@ -16,7 +16,10 @@ describe('LocalSwitch on-state uses the shared switchOnTone token', () => {
   it('GlassSwitch (общий): on-state из switchOnTone, экраны Уведомлений и Приватности делегируют ему', () => {
     const g = read('components/settings/GlassSwitch.tsx');
     expect(g).toContain('const onTone = switchOnTone(glass);');
-    expect(g).toContain('backgroundColor: value ? onTone.knob : offTone.knob');
+    // зачем (12.11, b70e116c2 «Аврора», макет aurora_rassvet.html утверждён владельцем «1 в 1»): у материала «Аврора»
+    // включённая дорожка — градиент главной кнопки, бегунок — её «чернила»; у остальных тем — прежний токен switchOnTone.
+    expect(g).toContain('backgroundColor: value ? (glass.aurora ? glass.aurora.ctaInk : onTone.knob) : offTone.knob');
+    expect(g).toContain("backgroundColor: glass.aurora ? 'transparent' : onTone.track");
     expect(g).not.toMatch(/value ? glass.selected/);
     expect(read('app/settings_notifications.tsx')).toContain('return <GlassSwitch {...');
     expect(read('app/privacy_settings.tsx')).toContain('return <GlassSwitch {...');

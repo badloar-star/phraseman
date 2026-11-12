@@ -1,6 +1,8 @@
 # Task packet: три красных теста после чужих правок (маршрут диалога, приватность, склонения)
 
 Governance-ID: TG-749D0A4FA074
+Governance-ID: TG-EAF488356536
+Governance-ID: TG-8EB52F6CA61E
 Status: In progress
 Owner: сессия Claude (U20), задача координатора 12.11 по слову владельца «если есть хоть 1 работа — не прекращается»
 Related epic/enabler: none
@@ -38,6 +40,16 @@ Out of scope: файлы с чужими несохранёнными правк
   `components/home/v2/today_scene/today_scene_state.ts:60`; Пик — `components/spire/SpireStepScreen.tsx:120`,
   `modules/spire/ghost.ts:124,126`, владелец по сканеру «Ядро/Темы», строки призрака проверяют spire_ghost_*) и
   свойство вёрстки `lang={lang} cards={…}` (`app/community_pack_create.tsx:1222`). Решение — за координатором.
+
+## Второй заход (решения координатора 12.11)
+
+- Склонения: исключения в allowlist не добавляются. Сканер `scripts/scan_number_noun_pairs.mjs` не считает словом
+  ключ служебного синтаксиса — слово, за которым сразу стоит `=` (`hour=`, `step=`, `ступень=`, `дней=`, JSX-проп
+  `cards={…}`). В тест сторожа добавлены случаи: прежние 5 ошибок `home_scene_special_copy.ts` (как были до правки)
+  по-прежнему ловятся, служебные строки — нет.
+- Маршрут диалога: экран закоммичен в 13804f8ab (D207) — перепрогон и разбор трёх падений.
+- Попутные красные: `tests/home_scene_special_more.test.ts` (строка Пика в `app/(tabs)/home.tsx`) и
+  `tests/local_switch_on_tone_contract.test.ts` (бегунок GlassSwitch после b70e116c2 «Аврора»).
 
 ## Architecture
 

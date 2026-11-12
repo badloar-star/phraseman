@@ -34,7 +34,7 @@ import { GAME_EASE, GAME_MOTION } from '../constants/gameMotion';
 import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
-import { nextWarmupIndex, peekWarmup, subscribeWarmup, warmupPlayedCount } from '../modules/games/warmup_state';
+import { nextWarmupIndex, noteWarmupRefresh, peekWarmup, subscribeWarmup, warmupPlayedCount } from '../modules/games/warmup_state';
 import { SKILL_NAME } from '../modules/skills/skill_copy';
 import { refreshSkills } from '../modules/skills/skill_store';
 import { safeRouterBack } from './navigation_back';
@@ -178,6 +178,9 @@ export default function WarmupScreen() {
       if (navTimer.current) clearTimeout(navTimer.current);
     };
   }, []));
+
+  // зачем: после перезапуска приложения сыгранное сегодня подтягивается с устройства
+  useEffect(() => noteWarmupRefresh(), []);
 
   useEffect(() => {
     // зачем: прогрев очков навыков до первой игры — итог игры покажет прирост без ожидания диска

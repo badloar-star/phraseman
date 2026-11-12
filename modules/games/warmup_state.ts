@@ -7,6 +7,8 @@
  * каждый день) — за три дня человек встречает каждую игру, и ни одного экрана выбора не появляется.
  * Состояние «какие игры сегодня сыграны» живёт в памяти процесса и привязано к дню.
  */
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { onAccountOwnerChanged } from '../../app/account_owner_change';
 import { peekAppLang, peekStudyTargetRaw } from '../../app/app_snapshot_bootstrap';
 import type { SkillId } from '../skills/skill_points_table';
 import { currentGameLesson, isGameAvailable } from './task_source';
@@ -177,7 +179,92 @@ export function markWarmupGamePlayed(id: WarmupGameId, result: string): void {
   rollDay();
   state = { ...state, results: { ...state.results, [id]: result } };
   listeners.forEach((listener) => listener());
+  persistWarmup(state);
 }
+
+/* ── Хранение на устройстве ────────────────────────────────────────────────────────────────────────────
+ * зачем (проверка на телефоне 12.11): прогресс разминки жил только в памяти процесса — после перезапуска
+ * приложения сыгранные сегодня игры снова показывались несыгранными («0/3»). Теперь итоги дня пишутся под
+ * ключом владельца аккаунта; чужой день или другой язык обучения не подхватываются. Ключ стирается при выходе
+ * и удалении аккаунта (app/cloud_sync.ts, WIPE_ONLY_ACCOUNT_KEY_PREFIXES). */
+const WARMUP_KEY_PREFIX = 'warmup_v1:';
+const WARMUP_LOG = '[WARMUP]';
+type WarmupStoreDeps = Readonly<{ ownerStableId: () => Promise<string | null> }>;
+
+async function defaultWarmupOwner(): Promise<string | null> {
+  const { captureAccountGeneration } = await import('../../app/account_generation');
+  const token = captureAccountGeneration();
+  return token.phase === 'active' && token.stableId ? token.stableId : null;
+}
+
+let storeDeps: WarmupStoreDeps = { ownerStableId: defaultWarmupOwner };
+let hydratedFor: string | null = null;
+
+function persistWarmup(snapshot: WarmupState): void {
+  void (async () => {
+    const owner = await storeDeps.ownerStableId();
+    if (!owner) {
+      console.log(`${WARMUP_LOG} persist:skip no_owner`); // guard-ok: ранний выход называет причину
+      return;
+    }
+    await AsyncStorage.setItem(`${WARMUP_KEY_PREFIX}${owner}`, JSON.stringify({ v: 1, day: snapshot.day, target: snapshot.target, results: snapshot.results }));
+  })().catch((error: unknown) => {
+    console.warn(`${WARMUP_LOG} persist:failed ${error instanceof Error ? error.message : String(error)}`);
+  });
+}
+
+/** Разобрать сохранённый день; null — чужой день, другой язык или битая запись. */
+export function parseStoredWarmupResults(raw: string | null, day: string, target: string): Readonly<Partial<Record<WarmupGameId, string>>> | null {
+  if (!raw) return null;
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object') return null;
+    const rec = parsed as { day?: unknown; target?: unknown; results?: unknown };
+    if (rec.day !== day || rec.target !== target || !rec.results || typeof rec.results !== 'object') return null;
+    const out: Partial<Record<WarmupGameId, string>> = {};
+    for (const game of WARMUP_POOL) {
+      const value = (rec.results as Record<string, unknown>)[game.id];
+      if (typeof value === 'string' && value) out[game.id] = value;
+    }
+    return out;
+  } catch (error) {
+    console.warn(`${WARMUP_LOG} parse:failed ${error instanceof Error ? error.message : String(error)}`);
+    return null;
+  }
+}
+
+/** Подтянуть сыгранное сегодня с диска (вход на экран). Память первична: сыгранное в этом процессе не затирается. */
+export async function refreshWarmup(): Promise<WarmupState> {
+  rollDay();
+  const owner = await storeDeps.ownerStableId();
+  if (!owner) return state;
+  const marker = `${owner}:${state.day}:${state.target}`;
+  if (hydratedFor === marker) return state;
+  const raw = await AsyncStorage.getItem(`${WARMUP_KEY_PREFIX}${owner}`);
+  hydratedFor = marker;
+  const stored = parseStoredWarmupResults(raw, state.day, state.target);
+  if (!stored) return state;
+  const merged = { ...stored, ...state.results };
+  if (Object.keys(merged).length === Object.keys(state.results).length) return state;
+  state = { ...state, results: merged };
+  console.log(`${WARMUP_LOG} hydrate ${JSON.stringify({ played: Object.keys(merged).length })}`); // guard-ok: одна строка на подтяжку
+  listeners.forEach((listener) => listener());
+  return state;
+}
+
+/** Безопасный вызов с экрана: не ждёт и не бросает. */
+export function noteWarmupRefresh(): void {
+  refreshWarmup().catch((error: unknown) => {
+    console.warn(`${WARMUP_LOG} refresh:failed ${error instanceof Error ? error.message : String(error)}`);
+  });
+}
+
+// смена владельца аккаунта: память разминки принадлежит прежнему — сбрасываем
+onAccountOwnerChanged('warmup', () => {
+  hydratedFor = null;
+  state = freshState(localDayKey(now()));
+  listeners.forEach((listener) => listener());
+});
 
 /** Сколько из трёх игр дня сыграно. */
 export function warmupPlayedCount(current: WarmupState): number {
@@ -194,9 +281,11 @@ export function nextWarmupIndex(current: WarmupState, fromIndex: number): number
 }
 
 export const __warmupTestHooks = Object.freeze({
-  reset(nowFn: () => number = () => Date.now()): void {
+  reset(nowFn: () => number = () => Date.now(), owner: () => Promise<string | null> = async () => null): void {
     now = nowFn;
     state = freshState(localDayKey(now()));
     listeners.clear();
+    hydratedFor = null;
+    storeDeps = { ownerStableId: owner };
   },
 });

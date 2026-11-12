@@ -7,7 +7,7 @@
  * сыграно сегодня (из памяти процесса, без диска и сети — первый кадр сразу конечной высоты), и сама ведёт
  * на экран разминки. Строка «Три игры из твоих ошибок» из макета не выводится, пока разминка не собирается из ошибок.
  */
-import React, { memo, useCallback, useRef, useSyncExternalStore } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useSyncExternalStore } from 'react';
 import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter } from 'expo-router';
@@ -16,7 +16,7 @@ import { useLang } from '../LangContext';
 import { useV2Palette } from '../v2/useV2Palette';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
-import { peekWarmup, subscribeWarmup, warmupPlayedCount } from '../../modules/games/warmup_state';
+import { noteWarmupRefresh, peekWarmup, subscribeWarmup, warmupPlayedCount } from '../../modules/games/warmup_state';
 
 const NAV_GUARD_MS = 700;
 const TITLE = { ru: 'Разминка на 4 минуты', uk: 'Розминка на 4 хвилини', es: 'Calentamiento de 4 minutos', en: '4-minute warm-up' } as const;
@@ -29,6 +29,8 @@ function WarmupTodayRow({ style, testID = 'today-warmup-row' }: Props) {
   const { lang } = useLang();
   const state = useSyncExternalStore(subscribeWarmup, peekWarmup, peekWarmup);
   const lastNavAt = useRef(0);
+  // зачем: после перезапуска приложения сыгранное сегодня подтягивается с устройства
+  useEffect(() => noteWarmupRefresh(), []);
   const played = warmupPlayedCount(state);
   const total = state.games.length;
   const done = played >= total;

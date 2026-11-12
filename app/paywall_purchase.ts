@@ -1360,6 +1360,15 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
           ...paywallImpressionParams(impression),
         });
         releaseReason('purchase', 'no_entitlement', 'blocked');
+        // [PURCHASE-TRACE] зачем (владелец 12.11 «подписка после оплаты не включается», сперва логи): ЧТО именно вернул магазин —
+        // есть ли право доступа premium, совпал ли его товар с купленным, есть ли купленный товар среди активных подписок, есть ли
+        // вообще активные права. Только да/нет, без идентификаторов.
+        {
+          const activeEnts = (customerInfo?.entitlements?.active ?? {}) as Record<string, { productIdentifier?: unknown }>;
+          const premiumEnt = activeEnts.premium ?? null;
+          const yn = (v: boolean): string => (v ? 'y' : 'n');
+          releaseReason('purchase', `noent_p${yn(premiumEnt !== null)}_m${yn(String(premiumEnt?.productIdentifier ?? '') === pkg.product.identifier)}_s${yn((customerInfo?.activeSubscriptions ?? []).includes(pkg.product.identifier))}_a${yn(Object.keys(activeEnts).length > 0)}`, 'info');
+        }
         DebugLogger.warn('[PAYWALL]', `purchase:no_entitlement plan=${selected} product=${pkg.product.identifier} source=${source} — тост «оплата обрабатывается», пейвол закрывается`);
         console.log(`[PURCHASE] pending reason=no_entitlement product=${pkg.product.identifier} source=${source} доступ НЕ выдан — ждём подтверждения магазина (слушатель customerInfo)`); // guard-ok: ветка ожидания
         showPurchasePendingAlert(lang, `product:${pkg.product.identifier}`);
@@ -1404,6 +1413,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         return;
       }
       accessApplied = true;
+      releaseReason('purchase', `applied_${confirmedPlan}`, 'info'); // [PURCHASE-TRACE] покупка подтверждена магазином и записана на телефоне
       // зачем (Бандл-диета Ф1): план куплен → сразу фоновый префетч всех его
       // день-строк с сервера, чтобы контент лежал в кэше до входа в любой день.
       // Передаём состояние целиком: присваивание идёт внутри async-колбэка,

@@ -60,9 +60,12 @@ describe('releaseReason wiring in money flows', () => {
 
   test('purchase and restore failure branches report a code', () => {
     const src = read('app/paywall_purchase.ts');
-    expect((src.match(/releaseReason\('purchase', /g) ?? []).length).toBe(11);
+    // зачем (владелец 12.11 «подписка после оплаты не включается», [PURCHASE-TRACE]): + purchase:applied_<план> на успехе и
+    // purchase:noent_… с подробностями ответа магазина, когда он не подтвердил доступ (tests/purchase_trace_codes_2026_11_12.test.ts)
+    expect((src.match(/releaseReason\('purchase', /g) ?? []).length).toBe(13);
     // зачем (d6e5470c9, 15.10): + restore_purchase:load_timeout — потолок ожидания старта магазина при «Восстановить покупки»
-    expect((src.match(/releaseReason\('restore_purchase', /g) ?? []).length).toBe(6);
+    // зачем (d75e10503, 11.11 U23 «Восстановить покупки» только аккаунту-владельцу): +2 кода восстановления — счётчик не был обновлён тем коммитом
+    expect((src.match(/releaseReason\('restore_purchase', /g) ?? []).length).toBe(8);
   });
 
   test('every energy start refusal reports its reason; the gate without deps too', () => {

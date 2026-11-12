@@ -56,6 +56,7 @@ import { DebugLogger } from '../app/debug-logger';
 import { publishContestLastWin } from '../modules/story_events/contest_win_store';
 import { publishReferralLastReward } from '../modules/story_events/referral_ladder_store';
 import { rnfbInstance } from '../app/rnfb_modular';
+import { releaseReason } from '../app/release_reason';
 import { noteSwallowedHandler, noteSwallowedAs } from '../app/swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 interface PremiumContextValue {
@@ -841,6 +842,9 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       );
       void (async () => {
         const disposition = await readPremiumActivationDisposition(activationGuard, IS_STORE_RELEASE);
+        // [PURCHASE-TRACE] зачем (владелец 12.11 «подписка после оплаты не включается», сперва логи): что экран подписки сделал
+        // с событием «Plus включён» — включил сразу (activate), перепроверил (reload) или отбросил как устаревшее (stale)
+        releaseReason('purchase', `activation_${disposition}`, 'info');
         if (disposition === 'stale') return;
         if (disposition === 'reload') {
           invalidatePremiumCache();

@@ -24,6 +24,7 @@ import {
 } from './premium_real_storage';
 import { readTesterFlags, resolveTesterNoPremiumOverride } from './tester_premium_override';
 import { emitAppEvent } from './events';
+import { releaseReason } from './release_reason';
 import { notePlusSource, type PlusSource } from './plus_source_diagnostics';
 import { markPlusCloudConfirmed } from './plus_cloud_confirmed_marker';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -347,6 +348,19 @@ function realSnapshotGrantsLocalAccess(snapshot: RealPremiumSnapshotV1, now: num
   );
 }
 
+/**
+ * Почему локальный снимок больше не даёт доступ — короткий код для журнала поддержки (без идентификаторов).
+ * зачем (владелец 12.11 «Подписка после оплаты (TestFlight, тестовая) не включается. Расследование срочно. Ничего не отключать»;
+ * правило «сперва логи»): выключение Plus в релизе было немым — если доступ включился и тут же снялся, причину не увидеть.
+ */
+function revokeReasonCode(snapshot: RealPremiumSnapshotV1, now: number): string {
+  if (!snapshot.active) return 'inactive';
+  if (snapshot.rcExpiryMs > 0 && snapshot.rcExpiryMs <= now) return 'rc_expired';
+  if (snapshot.premiumExpiryMs > 0 && snapshot.premiumExpiryMs <= now) return 'premium_expired';
+  if (snapshot.rcLastSeenAtMs <= 0) return 'rc_never_seen';
+  return 'rc_stale';
+}
+
 /** deactivated — снимок выключен; kept — снимок на момент записи уже не подлежит отключению (продлён); failed — запись не прошла. */
 type RealPremiumDeactivateOutcome = 'deactivated' | 'kept' | 'failed';
 
@@ -452,6 +466,7 @@ function refreshRealPremiumInBackground(
           if (current.rcLastSeenAtMs > 0 && at - current.rcLastSeenAtMs <= RC_STALE_GRACE_MS) return false;
           return true;
         });
+        releaseReason('purchase', `revoke_bg_${outcome}_${revokeReasonCode(snapshot, now)}`, 'info'); // [PURCHASE-TRACE] фоновое отключение Plus
         if (outcome !== 'deactivated') return;
         cacheReal(false, generation);
         emitAppEvent('premium_deactivated');
@@ -538,6 +553,7 @@ export async function getVerifiedRealPremiumStatus(
         (current) => !realSnapshotGrantsLocalAccess(current, Date.now()),
         options?.lease,
       );
+      releaseReason('purchase', `revoke_check_${outcome}_${revokeReasonCode(snapshot, Date.now())}`, 'info'); // [PURCHASE-TRACE] отключение Plus проверкой статуса
       if (outcome === 'failed') return false;
       if (!accountGenerationIsCurrent(generation)) return false;
       // kept: в хранилище уже лежит снимок с доступом (продление пришло, пока мы решали) — отвечаем по нему.

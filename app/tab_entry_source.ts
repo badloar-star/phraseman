@@ -7,8 +7,13 @@
 // видимой без такой отметки, открыта ссылкой (Главная, «Сегодня», пуш) — у неё есть «откуда пришли».
 // ═══════════════════════════════════════════════════════════════════════════
 
-/** Сколько живёт отметка: вкладка становится видимой в том же жесте, сотни миллисекунд. */
-const MENU_ENTRY_TTL_MS = 2000;
+/**
+ * Сколько живёт отметка. зачем (обход экранов 12.11, заход 3 + журнал эмулятора: тап по «Друзьям» 07:19:02.783, решение вкладки
+ * 07:19:04.833 — 2,05 с): отложенная/замороженная вкладка на занятом потоке становится видимой позже 2 с, вход из меню принимался
+ * за вход ссылкой и рисовалась «назад» на корне. Окно 10 с; чтобы длинное окно не дало «без назад» позднему входу ссылкой,
+ * отметка одноразовая — вкладка, прочитавшая её, гасит её (tabEnteredByMenu).
+ */
+const MENU_ENTRY_TTL_MS = 10_000;
 
 let lastMenuEntry: Readonly<{ route: string; at: number }> | null = null;
 
@@ -17,9 +22,14 @@ export function noteTabEnteredByMenu(route: string): void {
   lastMenuEntry = { route, at: Date.now() };
 }
 
-/** Вкладка `route` только что открыта из меню (а не ссылкой с другого экрана). */
+/** Вкладка `route` только что открыта из меню (а не ссылкой с другого экрана). Отметка своей вкладки гасится при чтении. */
 export function tabEnteredByMenu(route: string, now: number = Date.now()): boolean {
-  return lastMenuEntry !== null && lastMenuEntry.route === route && now - lastMenuEntry.at <= MENU_ENTRY_TTL_MS;
+  if (lastMenuEntry === null || lastMenuEntry.route !== route) return false;
+  const ageMs = now - lastMenuEntry.at;
+  lastMenuEntry = null;
+  // зачем: по журналу видно, во сколько вкладка проснулась после тапа — если снова «назад» на корне, сразу ясно, окно ли виновато
+  console.log('[BACK-TAB] отметка меню', JSON.stringify({ route, ageMs, ttlMs: MENU_ENTRY_TTL_MS })); // guard-ok: одна строка на вход во вкладку
+  return ageMs <= MENU_ENTRY_TTL_MS;
 }
 
 /** Только для тестов. */

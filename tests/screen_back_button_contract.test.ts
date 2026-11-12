@@ -89,7 +89,16 @@ describe('кнопка «назад»: одна и в одном месте', ()
     entry.noteTabEnteredByMenu('/(tabs)/community');
     expect(entry.tabEnteredByMenu('/(tabs)/community')).toBe(true); // из меню — «назад» нет
     expect(entry.tabEnteredByMenu('/(tabs)/home')).toBe(false);
-    expect(entry.tabEnteredByMenu('/(tabs)/community', Date.now() + 5000)).toBe(false); // старая отметка не действует
+    expect(entry.tabEnteredByMenu('/(tabs)/community', Date.now() + 5000)).toBe(false); // прочитанная отметка не действует повторно
+    // обход 12.11: вкладка проснулась через 2,05 с после тапа — это всё ещё вход из меню
+    entry.noteTabEnteredByMenu('/(tabs)/community');
+    expect(entry.tabEnteredByMenu('/(tabs)/community', Date.now() + 2050)).toBe(true);
+    // отметка одноразовая: следующий вход той же вкладки ссылкой — с «назад»
+    expect(entry.tabEnteredByMenu('/(tabs)/community')).toBe(false);
+    // чужая вкладка отметку не гасит, но слишком старая отметка не действует
+    entry.noteTabEnteredByMenu('/(tabs)/community');
+    expect(entry.tabEnteredByMenu('/(tabs)/home')).toBe(false);
+    expect(entry.tabEnteredByMenu('/(tabs)/community', Date.now() + 11_000)).toBe(false);
     const layout = read('app/(tabs)/_layout.tsx');
     expect(layout.match(/noteTabEnteredByMenu\(IDX_TO_TAB_ROUTE\[idx\] \?\? ''\)/g)?.length).toBe(2); // тап по меню и свайп
     const community = read('app/(tabs)/community.tsx');

@@ -10,6 +10,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import Reanimated from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useLang } from '../components/LangContext';
@@ -21,7 +22,7 @@ import GameAnswerTile from '../components/games/GameAnswerTile';
 import GameListenWave from '../components/games/GameListenWave';
 import GameBumpText from '../components/games/GameBumpText';
 import GameMemoryPairs from '../components/games/GameMemoryPairs';
-import GameRise from '../components/games/GameRise';
+import { gameRiseEntering } from '../components/games/gameRiseEntering';
 import GameSegments from '../components/games/GameSegments';
 import { V2Button, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
@@ -30,6 +31,7 @@ import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { inferExpoSpeechLanguage, useAudio } from '../hooks/use-audio';
 import { hapticTap } from '../hooks/use-haptics';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import {
   INITIAL_QUIZ_STATE, QUIZ_SEED_DECKS, answerQuiz, isQuizKind, isValidQuizRound, nextQuizRound, shuffledQuizRound, type QuizRound,
 } from '../modules/games/quiz_core';
@@ -64,6 +66,9 @@ function formatRate(rate: number, lang: string): string {
 type PromptProps = Readonly<{ round: QuizRound; roundIndex: number; replayKey: number; phase: Phase; picked: number | null; onReplay: () => void }>;
 
 function Prompt({ round, roundIndex, replayKey, phase, picked, onReplay }: PromptProps) {
+  // зачем (обход экранов 12.11): подъём задания — анимация входа, она не ждёт эффекта, и на смене раунда нет пустого кадра
+  const reduceMotion = useReduceMotion();
+  const rise = (delayMs: number) => (reduceMotion ? undefined : gameRiseEntering(delayMs));
   const p = useV2Palette();
   const prompt = round.prompt;
   const answered = phase === 'verdict';
@@ -87,7 +92,7 @@ function Prompt({ round, roundIndex, replayKey, phase, picked, onReplay }: Promp
 
   if (prompt.kind === 'gap') {
     return (
-      <GameRise style={s.gapRow}>
+      <Reanimated.View entering={rise(0)} style={s.gapRow}>
         {prompt.before ? <Text style={[s.gapText, { color: p.text }]}>{prompt.before}</Text> : null}
         <View style={[s.hole, { backgroundColor: p.track }]}>
           {/* зачем: в пропуск всегда встаёт верное слово — его и красим по исходу ответа */}
@@ -95,20 +100,20 @@ function Prompt({ round, roundIndex, replayKey, phase, picked, onReplay }: Promp
           <Text accessible={answered} importantForAccessibility={answered ? 'auto' : 'no-hide-descendants'} style={[s.gapText, { color: ok ? p.correct : p.wrong, opacity: answered ? 1 : 0 }]}>{round.options[round.correctIndex]}</Text>
         </View>
         {prompt.after ? <Text style={[s.gapText, { color: p.text }]}>{prompt.after}</Text> : null}
-      </GameRise>
+      </Reanimated.View>
     );
   }
 
   return (
     <View style={s.cells}>
       {prompt.known.map((form, i) => (
-        <GameRise key={form} delayMs={i * 120} style={[s.cell, { backgroundColor: p.glass }]}>
+        <Reanimated.View key={form} entering={rise(i * 120)} style={[s.cell, { backgroundColor: p.glass }]}>
           <Text style={[s.cellText, { color: p.text }]}>{form}</Text>
-        </GameRise>
+        </Reanimated.View>
       ))}
-      <GameRise delayMs={240} style={[s.cell, s.cellHole, { backgroundColor: p.track }]}>
+      <Reanimated.View entering={rise(240)} style={[s.cell, s.cellHole, { backgroundColor: p.track }]}>
         <Text accessible={answered} importantForAccessibility={answered ? 'auto' : 'no-hide-descendants'} style={[s.cellText, { color: p.correct, opacity: answered ? 1 : 0 }]}>{round.options[round.correctIndex]}</Text>
-      </GameRise>
+      </Reanimated.View>
     </View>
   );
 }
@@ -285,7 +290,9 @@ const s = StyleSheet.create({
   gapRow: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', columnGap: 10, rowGap: 8 },
   gapText: { fontSize: 30, lineHeight: 38, fontWeight: '800', letterSpacing: -0.6 },
   hole: { minWidth: 96, height: 48, paddingHorizontal: 12, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  cells: { flexDirection: 'row', justifyContent: 'center', gap: 10 },
+  // зачем (запись 12.11): длинные формы («schreiben · schrieb») не помещались в строку и обрезались по краям экрана —
+  // третья ячейка переносится на следующую строку, текст не режется
+  cells: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 10 },
   cell: { height: 60, minWidth: 84, paddingHorizontal: 14, borderRadius: 16, alignItems: 'center', justifyContent: 'center' },
   cellHole: { minWidth: 96 },
   cellText: { fontSize: 24, lineHeight: 30, fontWeight: '800' },

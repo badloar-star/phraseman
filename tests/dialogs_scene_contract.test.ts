@@ -93,7 +93,7 @@ describe('Сцена Диалогов: тексты', () => {
   });
   it('русские тексты — дословно из эталона', () => {
     expect(copyFor('consent').title).toBe('Разговоры с персонажами');
-    expect(copyFor('consent').cta).toBe('Включить AI-диалоги');
+    expect(copyFor('consent').cta).toBe('Включить ИИ-диалоги');
     expect(copyFor('offline').title).toBe('Диалоги недоступны');
     expect(copyFor('offline').kicker).toBe('Продолжить · Общение');
     expect(copyFor('offline').offlineLine?.bold).toBe('Нет сети.');

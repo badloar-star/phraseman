@@ -14,7 +14,7 @@ describe('premium motivation gates contract', () => {
     // зачем (D196, 15.10): пейвол лимита голоса открывает общий гейт хука, а не сам экран диалога — литерал контекста живёт там
     expect(read('hooks', 'use_voice_attempt_gate.ts')).toContain("context: 'ai_voice_input'");
     expect(source).toContain("useVoiceAttemptGate({ surface: 'ai_dialog', source: 'ai_dialog_voice_input' })");
-    expect(verdict).toContain('AI-разбор ошибок — в Plus');
+    expect(verdict).toContain('ИИ-разбор ошибок — в Plus');
     expect(source).toContain("source: 'dialog_analysis'");
     expect(source).toContain("context: 'dialog_analysis'");
     expect(source).toContain('locked={!hasPremiumAccess}');

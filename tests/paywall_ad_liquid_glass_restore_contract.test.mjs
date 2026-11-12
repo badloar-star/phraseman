@@ -39,7 +39,7 @@ test('Plus benefit model: five highlights and the approved 14-row comparison', (
   const source = read('components/paywall/PaywallBenefitComparison.tsx');
   const main = block(source, 'PAYWALL_MAIN_BENEFITS');
   assert.equal((main.match(/icon: '/g) ?? []).length, 5, 'exactly five main benefit rows');
-  for (const title of ['Карточки без ограничений', 'Все 32 урока курса', 'AI разбирает каждую ошибку', 'Энергия не тратится', '3 заморозки серии в месяц']) {
+  for (const title of ['Карточки без ограничений', 'Все 32 урока курса', 'ИИ разбирает каждую ошибку', 'Энергия не тратится', '3 заморозки серии в месяц']) {
     assert.ok(main.includes(`LP('${title}'`), `approved main row «${title}»`);
   }
 

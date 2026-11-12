@@ -26,7 +26,7 @@ function AiExplainConsentModal({ visible, lang, onAccept, onDecline, motionVaria
       motionVariant={motionVariant}
       title={triLang(lang, {
         ru: 'Включить ИИ-разбор ошибок?',
-        uk: 'Увімкнути ІІ-розбір помилок?',
+        uk: 'Увімкнути ШІ-розбір помилок?',
         en: 'Turn on AI mistake analysis?',
         es: '¿Activar el análisis de errores con IA?',
         'pt-BR': 'Ativar a análise de erros com IA?',
@@ -37,7 +37,7 @@ function AiExplainConsentModal({ visible, lang, onAccept, onDecline, motionVaria
       })}
       body={triLang(lang, {
         ru: 'ИИ объяснит ошибку своими словами. Для этого ответ отправляется в OpenAI.\n\nМожно выключить в настройках в любой момент.',
-        uk: 'ІІ пояснить помилку своїми словами. Для цього відповідь надсилається в OpenAI.\n\nМожна вимкнути в налаштуваннях будь-коли.',
+        uk: 'ШІ пояснить помилку своїми словами. Для цього відповідь надсилається в OpenAI.\n\nМожна вимкнути в налаштуваннях будь-коли.',
         en: 'AI will explain the mistake in its own words. To do this, your answer is sent to OpenAI.\n\nYou can turn this off in settings at any time.',
         es: 'La IA explicará el error con sus palabras. Para eso, tu respuesta se envía a OpenAI.\n\nPuedes desactivarlo en ajustes cuando quieras.',
         'pt-BR': 'A IA vai explicar o erro com suas próprias palavras. Para isso, sua resposta é enviada à OpenAI.\n\nVocê pode desativar isso nas configurações quando quiser.',

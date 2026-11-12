@@ -221,8 +221,8 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
       pl: t('Dodaj własny zwrot', 'Usłyszałeś w serialu albo w pracy? Zapisz, a aplikacja będzie go ćwiczyć.', 'Własne zwroty z tłumaczeniem i nagraniem'),
     },
     pack_create: {
-      ru: t('Собери свой набор', 'Фразы для поездки, работы или сериала — в одном месте.', 'Своя колода под любую задачу'),
-      uk: t('Збери свій набір', 'Вислови для подорожі, роботи чи серіалу — в одному місці.', 'Власна колода під будь-яку задачу'),
+      ru: t('Собери свой набор', 'Фразы для поездки, работы или сериала — в одном месте.', 'Свой набор под любую задачу'),
+      uk: t('Збери свій набір', 'Вислови для подорожі, роботи чи серіалу — в одному місці.', 'Власний набір під будь-яку задачу'),
       en: t('Build your own set', 'Phrases for a trip, work or a show — all in one place.', 'Your own deck for any goal'),
       es: t('Arma tu propio set', 'Frases para un viaje, el trabajo o una serie, en un solo lugar.', 'Tu propio mazo para cualquier meta'),
       'pt-BR': t('Monte seu próprio conjunto', 'Frases para viagem, trabalho ou uma série — tudo em um só lugar.', 'Seu baralho para qualquer objetivo'),

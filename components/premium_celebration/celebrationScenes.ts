@@ -96,7 +96,7 @@ export const ALL_SCENES: readonly CelebrationScene[] = [
     sound: 'dialog_spark',
     icon: 'chatbubbles',
     durationMs: 900,
-    title: L8('AI-диалоги', 'AI-діалоги', 'Diálogos con IA', 'Diálogos com IA', 'Đối thoại AI', 'Dialog AI', 'AI diyalogları', 'Dialogi AI', 'AI dialogues'),
+    title: L8('ИИ-диалоги', 'ШІ-діалоги', 'Diálogos con IA', 'Diálogos com IA', 'Đối thoại AI', 'Dialog AI', 'AI diyalogları', 'Dialogi AI', 'AI dialogues'),
     sub: L8('Собеседник не устанет и не осудит', 'Співрозмовник не втомиться й не осудить', 'Un interlocutor que nunca juzga', 'Um interlocutor que nunca julga', 'Người trò chuyện không phán xét', 'Lawan bicara tanpa menghakimi', 'Yargılamayan bir muhatap', 'Rozmówca, który nie oceni', 'A partner who never tires or judges'),
   },
   {
@@ -120,7 +120,7 @@ export const ALL_SCENES: readonly CelebrationScene[] = [
     sound: 'error_fix',
     icon: 'search',
     durationMs: 1180,
-    title: L8('ИИ-разбор ошибок', 'AI-розбір помилок', 'Análisis de errores con IA', 'Análise de erros com IA', 'AI phân tích lỗi', 'Analisis error AI', 'AI hata analizi', 'Analiza błędów AI', 'AI error review'),
+    title: L8('ИИ-разбор ошибок', 'ШІ-розбір помилок', 'Análisis de errores con IA', 'Análise de erros com IA', 'AI phân tích lỗi', 'Analisis error AI', 'AI hata analizi', 'Analiza błędów AI', 'AI error review'),
     sub: L8('Что не так и как сказать правильно', 'Що не так і як сказати правильно', 'Qué falla y cómo decirlo bien', 'O que falhou e como dizer certo', 'Sai ở đâu và nói sao cho đúng', 'Apa yang salah dan cara benarnya', 'Ne yanlış ve doğrusu nasıl', 'Co jest źle i jak powiedzieć dobrze', 'What is wrong and how to say it right'),
   },
   {
@@ -144,7 +144,7 @@ export const ALL_SCENES: readonly CelebrationScene[] = [
     sound: 'streak_shield',
     icon: 'shield-checkmark',
     durationMs: 1000,
-    title: L8('Защита цепочки', 'Захист ланцюжка', 'Protección de racha', 'Proteção de sequência', 'Bảo vệ chuỗi', 'Lindungi rangkaian', 'Seri koruması', 'Ochrona serii', 'Streak protection'),
+    title: L8('Защита серии', 'Захист серії', 'Protección de racha', 'Proteção de sequência', 'Bảo vệ chuỗi', 'Lindungi rangkaian', 'Seri koruması', 'Ochrona serii', 'Streak protection'),
     sub: L8('3 заморозки серии каждый месяц', '3 заморозки серії щомісяця', '3 congelaciones de racha al mes', '3 congelamentos por mês', '3 lần đóng băng chuỗi mỗi tháng', '3 pembekuan rangkaian tiap bulan', 'Her ay 3 seri dondurma', '3 zamrożenia serii co miesiąc', '3 streak freezes every month'),
   },
   {

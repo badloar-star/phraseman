@@ -371,7 +371,7 @@ export const STRINGS = {
   home: {
     greeting:     (name: string) => `Привет, ${name}`,
     sub:          'Продолжим сегодня?',
-    streakLabel:  'Цепочка',
+    streakLabel:  'Серия',
     streakDays:   'дней подряд',
     continueBtn:  'Продолжить',
     startBtn:     'Начать',

@@ -278,7 +278,7 @@ export function getPremiumDialogErrorMessage(
     case 'age_restricted':
       return triLang(lang, {
         ru: 'ИИ-диалоги доступны только с 16 лет. Сейчас этот режим закрыт настройками безопасности.',
-        uk: 'AI-діалоги доступні лише з 16 років. Зараз цей режим закрито налаштуваннями безпеки.',
+        uk: 'ШІ-діалоги доступні лише з 16 років. Зараз цей режим закрито налаштуваннями безпеки.',
         en: 'AI dialogues are available from age 16 only. This mode is currently locked by safety settings.',
         es: 'Los diálogos con IA están disponibles solo desde los 16 años. Este modo está bloqueado por seguridad.',
         'pt-BR': 'Os diálogos com IA estão disponíveis apenas a partir dos 16 anos. Este modo está bloqueado por segurança.',

@@ -150,8 +150,8 @@ export default function AiDialogConsentGate({ children, onDeclined, mode = 'scen
       </Text>
       <Text style={[styles.declinedBody, { color: glass.secondary }]}>
         {triLang(lang, {
-          ru: 'AI-диалоги выключены в настройках приватности. Их можно включить в любой момент.',
-          uk: 'AI-діалоги вимкнено в налаштуваннях конфіденційності. Їх можна ввімкнути будь-коли.',
+          ru: 'ИИ-диалоги выключены в настройках приватности. Их можно включить в любой момент.',
+          uk: 'ШІ-діалоги вимкнено в налаштуваннях конфіденційності. Їх можна ввімкнути будь-коли.',
           en: 'You turned off AI dialogues in Privacy settings. You can turn them back on at any time.',
           es: 'Desactivaste los diálogos con IA en los ajustes de privacidad. Puedes activarlos de nuevo cuando quieras.',
           'pt-BR': 'Você desativou os diálogos com IA nos ajustes de privacidade. Pode ativá-los novamente a qualquer momento.',
@@ -170,7 +170,7 @@ export default function AiDialogConsentGate({ children, onDeclined, mode = 'scen
         onPress={onAccept}
         accessibilityRole="button"
         accessibilityLabel={triLang(lang, {
-          ru: 'Включить AI-диалоги', uk: 'Увімкнути AI-діалоги', en: 'Turn on AI dialogues', es: 'Activar los diálogos con IA', 'pt-BR': 'Ativar os diálogos com IA', vi: 'Bật hội thoại AI', id: 'Nyalakan dialog AI', tr: 'Yapay zeka diyaloglarını aç', pl: 'Włącz dialogi AI',
+          ru: 'Включить ИИ-диалоги', uk: 'Увімкнути ШІ-діалоги', en: 'Turn on AI dialogues', es: 'Activar los diálogos con IA', 'pt-BR': 'Ativar os diálogos com IA', vi: 'Bật hội thoại AI', id: 'Nyalakan dialog AI', tr: 'Yapay zeka diyaloglarını aç', pl: 'Włącz dialogi AI',
         })}
         style={[styles.primaryAction, { backgroundColor: glass.accent }]}
       >

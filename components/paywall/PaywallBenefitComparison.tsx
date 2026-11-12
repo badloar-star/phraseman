@@ -46,7 +46,7 @@ export const PAYWALL_MAIN_BENEFITS: readonly MainBenefit[] = [
   },
   {
     icon: 'sparkles-outline',
-    title: LP('AI разбирает каждую ошибку', 'AI розбирає кожну помилку', 'AI explains every mistake', 'La IA explica cada error', 'A IA explica cada erro', 'AI phân tích từng lỗi', 'AI menjelaskan setiap kesalahan', 'AI her hatayı açıklar', 'AI wyjaśnia każdy błąd'),
+    title: LP('ИИ разбирает каждую ошибку', 'ШІ розбирає кожну помилку', 'AI explains every mistake', 'La IA explica cada error', 'A IA explica cada erro', 'AI phân tích từng lỗi', 'AI menjelaskan setiap kesalahan', 'AI her hatayı açıklar', 'AI wyjaśnia każdy błąd'),
     detail: LP('Бесплатно — 3 разбора в день', 'Безкоштовно — 3 розбори на день', 'Free: 3 a day', 'Gratis: 3 al día', 'Grátis: 3 por dia', 'Miễn phí: 3 lượt mỗi ngày', 'Gratis: 3 per hari', 'Ücretsiz: günde 3', 'Za darmo: 3 dziennie'),
   },
   {
@@ -73,11 +73,11 @@ export const PAYWALL_COMPARISON_ROWS: readonly ComparisonRow[] = [
   { id: 'course_lessons', label: LP('Основной курс', 'Основний курс', 'Main course', 'Curso principal', 'Curso principal', 'Khóa học chính', 'Kursus utama', 'Ana kurs', 'Kurs główny'),
     free: LP('Уроки 1–3', 'Уроки 1–3', 'Lessons 1–3', 'Lecciones 1–3', 'Lições 1–3', 'Bài 1–3', 'Pelajaran 1–3', 'Dersler 1–3', 'Lekcje 1–3'),
     plus: LP('Все 32', 'Усі 32', 'All 32', 'Las 32', 'Todas as 32', 'Đủ 32', 'Semua 32', '32’nin tümü', 'Wszystkie 32') },
-  { id: 'dialogue_replies', label: LP('Реплики в AI-диалогах', 'Репліки в AI-діалогах', 'AI dialogue replies', 'Respuestas en diálogos IA', 'Respostas em diálogos IA', 'Lượt nói hội thoại AI', 'Balasan dialog AI', 'AI diyalog yanıtları', 'Odpowiedzi w dialogach AI'),
+  { id: 'dialogue_replies', label: LP('Реплики в ИИ-диалогах', 'Репліки в ШІ-діалогах', 'AI dialogue replies', 'Respuestas en diálogos IA', 'Respostas em diálogos IA', 'Lượt nói hội thoại AI', 'Balasan dialog AI', 'AI diyalog yanıtları', 'Odpowiedzi w dialogach AI'),
     free: LP('30 в месяц', '30 на місяць', '30 a month', '30 al mes', '30 por mês', '30 mỗi tháng', '30 per bulan', 'Ayda 30', '30 miesięcznie'), plus: UNLIMITED },
   { id: 'pronunciation', label: LP('Произношение', 'Вимова', 'Pronunciation', 'Pronunciación', 'Pronúncia', 'Phát âm', 'Pengucapan', 'Telaffuz', 'Wymowa'),
     free: LP('3 в день', '3 на день', '3 a day', '3 al día', '3 por dia', '3 mỗi ngày', '3 per hari', 'Günde 3', '3 dziennie'), plus: UNLIMITED },
-  { id: 'ai_mistake_explain', label: LP('AI-разборы ошибок', 'AI-розбори помилок', 'AI mistake reviews', 'Análisis de errores IA', 'Análise de erros IA', 'AI phân tích lỗi', 'Ulasan kesalahan AI', 'AI hata incelemesi', 'Analizy błędów AI'),
+  { id: 'ai_mistake_explain', label: LP('ИИ-разборы ошибок', 'ШІ-розбори помилок', 'AI mistake reviews', 'Análisis de errores IA', 'Análise de erros IA', 'AI phân tích lỗi', 'Ulasan kesalahan AI', 'AI hata incelemesi', 'Analizy błędów AI'),
     free: LP('3 в день', '3 на день', '3 a day', '3 al día', '3 por dia', '3 mỗi ngày', '3 per hari', 'Günde 3', '3 dziennie'), plus: UNLIMITED },
   { id: 'mistake_practice', label: LP('Работа над ошибками', 'Робота над помилками', 'Mistake practice', 'Práctica de errores', 'Prática de erros', 'Luyện lại lỗi sai', 'Latihan kesalahan', 'Hata pratiği', 'Praca nad błędami'),
     free: LP('1 в день', '1 на день', '1 a day', '1 al día', '1 por dia', '1 mỗi ngày', '1 per hari', 'Günde 1', '1 dziennie'), plus: UNLIMITED },

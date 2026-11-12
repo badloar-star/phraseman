@@ -784,8 +784,8 @@ export default function DialogVerdictScreen({
                 <Ionicons name="school-outline" size={16} color={t.accentText} />
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flex: 1 }}>
                   {triLang(lang, {
-                    ru: 'AI-разбор ошибок — в Plus',
-                    uk: 'AI-розбір помилок — у Plus',
+                    ru: 'ИИ-разбор ошибок — в Plus',
+                    uk: 'ШІ-розбір помилок — у Plus',
                     en: 'AI mistake breakdown — in Plus',
                     es: 'Análisis de errores con IA — en Plus',
                     'pt-BR': 'Análise de erros com IA — no Plus',

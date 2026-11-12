@@ -69,8 +69,8 @@ function AiDialogConsentModal({ visible, lang, onAccept, onDecline, motionVarian
         pl: 'Mów o czym chcesz — rozmówca podtrzyma rozmowę w języku, którego się uczysz. Błędy są w porządku: to ćwiczenie.',
       });
   const title = triLang(lang, {
-        ru: 'Включить AI-диалоги?',
-        uk: 'Увімкнути AI-діалоги?',
+        ru: 'Включить ИИ-диалоги?',
+        uk: 'Увімкнути ШІ-діалоги?',
         en: 'Turn on AI dialogues?',
         es: '¿Activar los diálogos con IA?',
         'pt-BR': 'Ativar os diálogos com IA?',

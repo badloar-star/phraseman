@@ -44,14 +44,18 @@ const NOUNS = [
   'tarjetas?', 'palabras?', 'd[ií]as?', 'monedas?', 'lecciones', 'minutos?', 'segundos?', 'horas?', 'errores', 'intentos?', 'preguntas?',
   'cartões', 'cartão', 'palavras?', 'dias?', 'moedas?', 'lições', 'minutos?', 'segundos?', 'horas?', 'erros', 'tentativas?', 'perguntas?',
 ];
-const NOUN_RX = new RegExp(`\\$\\{[^}]+\\}\\s+(?:${NOUNS.join('|')})(?![\\p{L}])`, 'iu');
+// зачем (координатор 12.11, без исключений в allowlist): слово, за которым сразу стоит «=», — ключ служебного синтаксиса,
+// а не текст для человека: `hour=${h}`, `ступень=${n}`, `дней=${d}`, JSX-проп `cards={…}`. Такие пары сторож больше не
+// принимает за «число + существительное»; что настоящие ошибки он ловит по-прежнему, доказывает его тест.
+const NOT_KEY = '(?!=)';
+const NOUN_RX = new RegExp(`\\$\\{[^}]+\\}\\s+(?:${NOUNS.join('|')})(?![\\p{L}])${NOT_KEY}`, 'iu');
 const HELPER_RX = /pluralWithCount|pluralWord|pluralFormFor|spirePlural|Plural/;
 /** Строки журнала и служебные: человек их не видит. */
 const NON_UI_RX = /console\.|DebugLogger|logPublish|logger\.|trace\(|throw new |\[[A-Z][A-Z0-9-]+\]|identityTrace|noteSwallowed/;
 /** Языки без форм числа (vi/id/tr): слово после числа не меняется — пропускаем строки, начинающиеся с этих ключей. */
 const NO_PLURAL_LANG_RX = /^\s*(?:vi|id|tr):/;
 /** JSX-текст «{count} слов» и конкатенация «n + ' карточек'» — тот же дефект без шаблонной строки. */
-const JSX_NOUN_RX = new RegExp(`\\{[^{}]+\\}\\s+(?:${NOUNS.join('|')})(?![\\p{L}])`, 'iu');
+const JSX_NOUN_RX = new RegExp(`\\{[^{}]+\\}\\s+(?:${NOUNS.join('|')})(?![\\p{L}])${NOT_KEY}`, 'iu');
 const CONCAT_NOUN_RX = new RegExp(`\\+\\s*['"]\\s*(?:${NOUNS.join('|')})(?![\\p{L}])`, 'iu');
 export const matchesNounPair = (line) => NOUN_RX.test(line) || (/<Text|<\/Text|>\s*\{/.test(line) && JSX_NOUN_RX.test(line)) || CONCAT_NOUN_RX.test(line);
 

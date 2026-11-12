@@ -40,6 +40,32 @@ describe('число + существительное на экранах R1', (
     ])).toEqual([false, false]);
   });
 
+  // зачем (координатор 12.11): сканер перестал считать ключи служебного синтаксиса (`hour=`, `step=`, `cards={…}`) словом
+  // при числе. Здесь доказательство, что это не ослабление: прежние настоящие ошибки — пять строк сцен Главной до
+  // правки 93e7b9a25 — ловятся, как раньше, в том числе на строке, где рядом есть и служебный ключ.
+  it('настоящие ошибки ловит по-прежнему, служебный синтаксис key=value и JSX-пропы — нет', () => {
+    expect(matcher([
+      "    en: `${n} ${en(n, 'mistake', 'mistakes')} piled up`, es: `Se juntaron ${n} errores`, 'pt-BR': `Juntaram-se ${n} erros`,",
+      "  phrasesBang: (l: Lang, n: number) => triLang(l, { ru: `${n} ${ruPl(n, 'фраза', 'фразы', 'фраз')}!`, en: `${n} phrases!`, es: `¡${n} frases!`, 'pt-BR': `${n} frases!`",
+      "  lessonsBang: (l: Lang, n: number) => triLang(l, { ru: `${n} ${ruPl(n, 'урок', 'урока', 'уроков')}!`, en: `${n} lessons!`, es: `¡${n} lecciones!`, 'pt-BR': `${n} lições!`",
+      "    es: `Tu mejor racha: ${n} días`, 'pt-BR': `Sua melhor sequência: ${n} dias`, vi: `Chuỗi dài nhất của bạn: ${n} ngày`,",
+      "    en: `${n} ${en(n, 'word is', 'words are')} about to slip away`, es: `${n} palabras están a punto de escaparse`, 'pt-BR': `${n} palavras estão quase fugindo da memória`,",
+      // настоящая ошибка рядом со служебным ключом на той же строке
+      'ru: `${n} дней подряд`, reason: `streak=${n} days=${d}`,',
+      'ru: `Осталось ${n} дней`,',
+      '<Text>{count} карточек</Text>',
+    ])).toEqual([true, true, true, true, true, true, true, true]);
+    expect(matcher([
+      "    ? `цена=${String(intro.price)} период=${String(intro.periodNumberOfUnits ?? '')}${String(intro.periodUnit ?? '')}/${String(intro.period ?? '')} дней=${parsePhaseDays(intro) ?? '—'}`",
+      "  return decide('continue', `default hasProgress=${String(input.hasProgress)} hour=${input.hour} energy=${String(input.energy)}`);",
+      "  if (doneCount === 0) return make('morning', `doneCount=0/${total} hour=${input.hour} dayCounted=${String(input.dayCounted)}`);",
+      "  usePeakPerfProbe('step', `floor=${ctx.floor} step=${ctx.stepInFloor + 1} task=${counter}`);",
+      '  if (!pick.ghost) return `нет призрака: причина=${pick.reason} ступень=${stepNumber}`;',
+      '  return `друг #${g.ordinal} steps=${g.steps} avgMs=${g.avgMs} ступень=${stepNumber}`;',
+      "  if (contestReview) return <SafeAreaView style={{ flex: 1 }}><CommunityPackCheckScene lang={lang} cards={rows.map(row => row.id)} /></SafeAreaView>;",
+    ])).toEqual([false, false, false, false, false, false, false]);
+  });
+
   it('значения констант, от которых зависят разрешённые исключения, не менялись (форма слова в тексте рассчитана на них)', () => {
     const read = (rel: string) => fs.readFileSync(path.join(ROOT, rel), 'utf8');
     expect(read('app/community_packs/schema.ts')).toMatch(/COMMUNITY_PACK_CARD_COUNT_MIN = 10;/);

@@ -634,6 +634,9 @@ function PlayerProfileModal({ player, myInfo, onClose, onDismissed }: Props) {
   const onDismissedRef = useRef(onDismissed);
   onDismissedRef.current = onDismissed;
   const notifyDismissed = useCallback(() => {
+    // зачем (координатор 12.11, обход экранов: тап по меню сразу после закрытия визитки не срабатывал 12 с): когда система убрала
+    // окно визитки — пара к [TABBAR-PRESS] grant по времени: касание раньше этой строки могло уйти в закрывающееся окно
+    console.log('[PROFILE-CARD] dismissed', JSON.stringify({ open: modalOpenRef.current, wasPresented: wasPresentedRef.current, platform: Platform.OS, atMs: Date.now() })); // guard-ok: одна строка на закрытие визитки
     if (modalOpenRef.current || !wasPresentedRef.current) return;
     wasPresentedRef.current = false;
     onDismissedRef.current?.();

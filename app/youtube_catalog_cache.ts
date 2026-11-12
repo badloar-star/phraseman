@@ -12,6 +12,7 @@ import {
 } from '../shared/youtube_catalog_contract';
 import {
   peekScreenSnapshotForToken,
+  probeScreenSnapshotForToken,
   rememberScreenSnapshot,
   screenSnapshotKey,
 } from './screen_snapshot_store';
@@ -133,16 +134,45 @@ export function rememberYoutubeCatalogScreenSnapshot(
   rememberScreenSnapshot(screenSnapshotKey(SCREEN_ID, token), snapshot);
 }
 
+/** Что первый кадр «Видео» нашёл в кэше каталога и почему (для журнала [VIDEO-FEED]). */
+export type YoutubeCatalogCacheProbe = Readonly<{
+  snapshot: YoutubeCatalogScreenSnapshot | null;
+  /** hit · account_not_ready · missing · expired · invalid:<причина> */
+  reason: string;
+  ageMs: number | null;
+  storeEntries: number;
+  videos: number;
+  channelId: string | null;
+  version: string | null;
+}>;
+
+export function probeYoutubeCatalogScreenSnapshot(token: AccountGenerationToken): YoutubeCatalogCacheProbe {
+  const store = probeScreenSnapshotForToken(SCREEN_ID, token);
+  const miss = (reason: string): YoutubeCatalogCacheProbe => ({
+    snapshot: null, reason, ageMs: store.ageMs, storeEntries: store.entries, videos: 0, channelId: null, version: null,
+  });
+  if (store.reason !== 'hit') return miss(store.reason);
+  const cached = peekScreenSnapshotForToken<unknown>(SCREEN_ID, token);
+  if (!cached) return miss('missing');
+  try {
+    const snapshot = parseCachedSnapshot(cached);
+    return {
+      snapshot, reason: 'hit', ageMs: store.ageMs, storeEntries: store.entries,
+      videos: snapshot.videos.length, channelId: snapshot.channel.id, version: snapshot.version,
+    };
+  } catch (error) {
+    // зачем (координатор 12.11, обход экранов: «Видео» — скелетоны вместо кэша): немой catch молча выбрасывал сохранённый
+    // снимок, и первый кадр шёл со скелетонами без единого следа — теперь причина в журнале
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn('[VIDEO-FEED] cache:invalid', JSON.stringify({ reason: message, ageMs: store.ageMs })); // guard-ok: catch называет причину
+    return miss(`invalid:${message}`);
+  }
+}
+
 export function peekYoutubeCatalogScreenSnapshot(
   token: AccountGenerationToken,
 ): YoutubeCatalogScreenSnapshot | null {
-  const cached = peekScreenSnapshotForToken<unknown>(SCREEN_ID, token);
-  if (!cached) return null;
-  try {
-    return parseCachedSnapshot(cached);
-  } catch {
-    return null;
-  }
+  return probeYoutubeCatalogScreenSnapshot(token).snapshot;
 }
 
 export function catalogSnapshotsEqual(

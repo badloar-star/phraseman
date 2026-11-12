@@ -16,6 +16,7 @@ import {
   buildYoutubeScreenSnapshot,
   catalogSnapshotsEqual,
   peekYoutubeCatalogScreenSnapshot,
+  probeYoutubeCatalogScreenSnapshot,
   rememberYoutubeCatalogScreenSnapshot,
   type YoutubeCatalogScreenSnapshot,
 } from './youtube_catalog_cache';
@@ -24,6 +25,7 @@ export {
   buildYoutubeScreenSnapshot,
   catalogSnapshotsEqual,
   peekYoutubeCatalogScreenSnapshot,
+  probeYoutubeCatalogScreenSnapshot,
   rememberYoutubeCatalogScreenSnapshot,
 };
 export type { YoutubeCatalogScreenSnapshot } from './youtube_catalog_cache';

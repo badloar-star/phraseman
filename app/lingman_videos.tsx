@@ -79,6 +79,7 @@ import {
 import {
   fetchYoutubeCatalogManifest,
   peekYoutubeCatalogScreenSnapshot,
+  probeYoutubeCatalogScreenSnapshot,
   revalidateYoutubeChannelCatalog,
   type YoutubeCatalogScreenSnapshot,
 } from './youtube_catalog_client';
@@ -159,7 +160,11 @@ function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
   // остаться от другого языка: тогда берём снимок нужного канала из памяти, а без него — шапку по манифесту и скелетон
   // ленты (геометрия итоговая, без спиннера на весь экран). Чужой канал под пилюлей нового языка не показываем.
   const [initialChannelView] = useState(() => {
+    // зачем (координатор 12.11, обход экранов: «Видео» — сплошные скелетоны, кэш не показан; правило «сперва логи»): что первый
+    // кадр нашёл в кэше каталога и почему его нет (аккаунт не готов / нет записи / просрочен / не прошёл проверку)
     const peeked = peekYoutubeCatalogScreenSnapshot(renderToken);
+    const missProbe = peeked ? null : probeYoutubeCatalogScreenSnapshot(renderToken); // причину спрашиваем только при промахе — при попадании снимок проверяется один раз
+    console.log('[VIDEO-FEED] enter', JSON.stringify({ cache: missProbe?.reason ?? 'hit', ageMs: missProbe?.ageMs ?? null, videos: peeked?.videos.length ?? 0, channel: peeked?.channel.id ?? null, version: peeked?.version ?? null, storeEntries: missProbe?.storeEntries ?? null, studyTarget: String(studyTarget), inTab })); // guard-ok: одна строка на вход, не в цикле — нужна для разбора с устройства
     if (!peeked) return { catalog: null, pending: null };
     rememberYoutubeChannelMemorySnapshot(renderAccountScope, peeked);
     const routeChannel = deepLinkedChannelId && peeked.manifest.channels.some((item) => item.id === deepLinkedChannelId) ? deepLinkedChannelId : '';
@@ -307,12 +312,15 @@ function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
   // отменялась, пока личность не активна, и экран навсегда оставался пустым.
   const loadCatalog = useCallback(async (requestedChannelId?: string, refresh = false) => {
     if (!screenRuntimeActiveRef.current) {
-      if (__DEV__) console.log(`[VIDEO-LANG-PILL] channel_load_skipped reason=screen_inactive studyTarget=${studyTarget}`);
+      console.log(`[VIDEO-FEED] net:skipped reason=screen_inactive studyTarget=${studyTarget}`); // guard-ok: ранний выход называет причину
       return;
     }
     const token = captureAccountGeneration();
     const signal = getVideoSectionSignal();
-    if (!signal) return;
+    if (!signal) {
+      console.warn('[VIDEO-FEED] net:skipped reason=no_section_signal'); // guard-ok: ранний выход называет причину (раздел «Видео» выключен или ещё не готов)
+      return;
+    }
     const tokenScope = accountScopeKey(token);
     if (tokenScope && renderAccountScope && tokenScope !== renderAccountScope) {
       console.warn(`[VIDEO-LANG-PILL] channel_load_skipped reason=account_scope_changed studyTarget=${studyTarget}`);
@@ -329,6 +337,7 @@ function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
     if (refresh) setRefreshing(true); else if (!catalogRef.current) setLoading(true);
     let channelId = '';
     let switchingToUncachedChannel = false;
+    let netStartMs = 0;
     try {
       const manifestFrom = catalogRef.current?.manifest ? 'catalog' : manifestRef.current ? 'memory' : 'network';
       const manifest = catalogRef.current?.manifest ?? manifestRef.current ?? await fetchYoutubeCatalogManifest(signal);
@@ -376,6 +385,9 @@ function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
       }
       const previous = view.kind === 'pending' ? null : view.catalog;
       if (__DEV__) console.log(`[VIDEO-LANG-PILL] channel_load seq=${seq} channelId=${channelId} source=${requestedChannelId ? 'requested' : routeChannel ? 'deepLink' : 'resolution'} view=${view.kind} previousVersion=${previous?.version ?? '-'}`);
+      // зачем (координатор 12.11): сколько шёл ответ каталога и чем закончился — ниже net:done / net:error
+      netStartMs = Date.now();
+      console.log('[VIDEO-FEED] net:start', JSON.stringify({ seq, channelId, manifestFrom, view: view.kind, previousVersion: previous?.version ?? null, refresh }));
       const next = await revalidateYoutubeChannelCatalog({ channelId, token, previous, isCurrent: isCurrentLoad, force: refresh, signal, commit: (value) => {
         if (!isCurrentLoad()) { logStale('commit', channelId); return; }
         catalogRef.current = value;
@@ -384,6 +396,7 @@ function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
         rememberYoutubeChannelMemorySnapshot(tokenScope, value);
       } });
       if (!isCurrentLoad()) { logStale('revalidate', channelId); return; }
+      console.log('[VIDEO-FEED] net:done', JSON.stringify({ seq, channelId, ms: Date.now() - netStartMs, videos: next?.videos.length ?? null, version: next?.version ?? null }));
       if (next) {
         catalogRef.current = next;
         setCatalog(next);
@@ -397,6 +410,7 @@ function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
       }
     } catch (error) {
       if (!isCurrentLoad()) { logStale('error', channelId); return; }
+      console.warn('[VIDEO-FEED] net:error', JSON.stringify({ seq, channelId: channelId || null, ms: netStartMs ? Date.now() - netStartMs : null, error: error instanceof Error ? error.message : String(error), hasCatalog: Boolean(catalogRef.current), switching: switchingToUncachedChannel })); // guard-ok: catch называет причину
       DebugLogger.error('[VIDEO-TAB]:loadCatalog', error, 'warning');
       setIssue(catalogRef.current ? 'offline' : 'error');
       if (switchingToUncachedChannel) {
@@ -463,19 +477,42 @@ function LingmanVideosContent({ presentation }: LingmanVideosScreenProps) {
     return () => clearTimeout(timer);
   }, [issue, nothingToShow, screenRuntimeActive, loadCatalog, catalogExhausted]);
   // D158: загрузка, не ответившая ни каталогом, ни ошибкой, не держит скелетоны вечно.
+  // зачем (координатор 12.11, обход экранов: «Видео» — скелетоны и через минуту): таймер взводился заново на КАЖДОЙ попытке —
+  // при молчащей сети 12 с + повтор + 12 с … ≈ минута скелетонов вместо одного потолка D158 (~12 с). Теперь потолок считается
+  // от первого скелетона этого захода и по нему сразу «Сейчас недоступно»; тихие повторы при быстрой ошибке сети — как раньше.
+  const skeletonSinceRef = useRef<number | null>(null);
+  useEffect(() => {
+    if (!nothingToShow || !screenRuntimeActive) skeletonSinceRef.current = null; // показали ленту или ушли с вкладки — новый заход считает заново
+  }, [nothingToShow, screenRuntimeActive]);
   useEffect(() => {
     if (!visibleLoading || !nothingToShow || !screenRuntimeActive || catalogExhausted) return;
+    if (skeletonSinceRef.current === null) skeletonSinceRef.current = Date.now();
+    const waitedMs = Date.now() - skeletonSinceRef.current;
     const timer = setTimeout(() => {
-      console.warn('[VIDEO-TAB] watchdog: каталог не ответил за потолок → цикл тихих повторов', { ceilingMs: LOAD_GATE_TOTAL_MS });
+      console.warn('[VIDEO-TAB] watchdog: каталог не ответил за потолок → «Сейчас недоступно»', { ceilingMs: LOAD_GATE_TOTAL_MS, waitedMs: Date.now() - (skeletonSinceRef.current ?? Date.now()), retries: catalogRetryRef.current }); // guard-ok: ранний выход называет причину
+      console.warn(`[NO-ERROR-SCREEN] screen=lingman_videos reason=catalog_ceiling_no_cache shown=calm_empty attempts=${catalogRetryRef.current} next=foreground`); // guard-ok: причина спокойного вида
       setIssue('error');
       setLoading(false);
-    }, LOAD_GATE_TOTAL_MS);
+      setCatalogExhausted(true);
+    }, Math.max(0, LOAD_GATE_TOTAL_MS - waitedMs));
     return () => clearTimeout(timer);
   }, [visibleLoading, nothingToShow, screenRuntimeActive, catalogExhausted]);
+  // зачем (координатор 12.11, обход экранов): что человек видит в ленте и почему — одна строка на смену вида, с временем от входа.
+  // Разбор «скелетоны вместо кэша»: view=skeleton долго без net:done / net:error — экран ждёт; enter.cache≠hit — кэша не было.
+  const feedView = noChannel && !catalog ? 'no_channel'
+    : catalogExhausted && !catalog && !snapshot ? 'unavailable'
+    : (visibleLoading || issue === 'error') && !catalog && !snapshot ? 'skeleton'
+    : catalog ? 'catalog' : snapshot ? 'rss_fallback' : 'empty';
+  const feedEnterMsRef = useRef(Date.now());
+  useEffect(() => {
+    console.log('[VIDEO-FEED] view', JSON.stringify({ view: feedView, sinceEnterMs: Date.now() - feedEnterMsRef.current, loading, issue, videos: catalog?.videos.length ?? snapshot?.videos.length ?? 0, pendingChannel: pendingChannel?.id ?? null, retries: catalogRetryRef.current, active: screenRuntimeActive }));
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: строка только на смену вида, остальное — снимок состояния в этот момент
+  }, [feedView]);
   const retryCatalogAfterUnavailable = useCallback((source: 'tap' | 'foreground') => {
     console.warn('[VIDEO-TAB] повтор после «Сейчас недоступно»', { source });
     if (source === 'tap') hapticTap();
     catalogRetryRef.current = 0;
+    skeletonSinceRef.current = null; // зачем: ручной повтор / возврат в приложение — новый потолок D158
     setCatalogExhausted(false);
     setIssue('none');
     void loadCatalog();

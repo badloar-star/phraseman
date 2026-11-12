@@ -323,6 +323,8 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
   const endGesture = (cancelled: boolean) => {
     const g = gestureRef.current;
     gestureRef.current = null;
+    // зачем (координатор 12.11): отпускание или отбор жеста — тап закончится переходом только при cancelled=false
+    console.log('[TABBAR-PRESS] end', JSON.stringify({ cancelled, idx: g?.idx ?? null, moved: g?.moved ?? null, dragging: draggingRef.current, atMs: Date.now() })); // guard-ok: одна строка на касание меню
     if (!g) return;
     if (g.timer) clearTimeout(g.timer);
     if (draggingRef.current) {
@@ -350,9 +352,15 @@ function V2TabBar({ items, activeIndex, onSelect, onInteract, bottomOffset, coll
     // Пока капсулу тащат, жест у таббара не отбирают.
     onPanResponderTerminationRequest: () => !draggingRef.current,
     onPanResponderGrant: (e) => {
-      if (live.current.slotW <= 0) return;
+      // зачем (координатор 12.11, обход экранов, заход 5: «Видео» в меню сразу после закрытия визитки — 12 с без перехода; правило
+      // «сперва логи»): доходит ли касание до капсулы и где теряется. Раньше этот ранний выход съедал тап молча.
+      if (live.current.slotW <= 0) {
+        console.warn('[TABBAR-PRESS] grant:ignored', JSON.stringify({ reason: 'slot_not_measured', slotW: live.current.slotW })); // guard-ok: ранний выход называет причину
+        return;
+      }
       const x0 = e.nativeEvent.locationX;
       const idx = clampIdx(Math.floor((x0 - PAD) / live.current.slotW));
+      console.log('[TABBAR-PRESS] grant', JSON.stringify({ idx, x0: Math.round(x0), atMs: Date.now() })); // guard-ok: одна строка на касание меню
       live.current.onInteract?.();
       pressIn(idx);
       const g: Gesture = { x0, idx, moved: false, timer: null };

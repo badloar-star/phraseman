@@ -97,10 +97,16 @@ export function rememberScreenSnapshot<T>(
   let serializedLength = 0;
   try {
     serializedLength = JSON.stringify(value)?.length ?? 0;
-  } catch {
-    return; // не сериализуется (циклы/функции) — на диск такому нельзя
+  } catch (error) {
+    // не сериализуется (циклы/функции) — на диск такому нельзя; зачем (12.11): немой catch прятал, почему экран потом открывался без кэша
+    console.warn('[SCREEN-SNAPSHOT] remember:skipped', JSON.stringify({ key, reason: 'not_serializable', error: error instanceof Error ? error.message : String(error) })); // guard-ok: catch называет причину
+    return;
   }
-  if (serializedLength === 0 || serializedLength > MAX_ENTRY_CHARS) return;
+  if (serializedLength === 0 || serializedLength > MAX_ENTRY_CHARS) {
+    // зачем (12.11, «Видео» без кэша): слишком большой снапшот отбрасывался молча — следующее открытие шло со скелетонами
+    console.warn('[SCREEN-SNAPSHOT] remember:skipped', JSON.stringify({ key, reason: serializedLength === 0 ? 'empty' : 'too_large', chars: serializedLength, limit: MAX_ENTRY_CHARS })); // guard-ok: ранний выход называет причину
+    return;
+  }
 
   // Map сохраняет порядок вставки: переустановка двигает запись в конец, поэтому
   // вытесняем всегда САМУЮ давно записанную (см. цикл ниже).
@@ -169,6 +175,27 @@ export function peekScreenSnapshotForToken<T>(
 ): T | null {
   if (!isCurrentAccountGeneration(token)) return null;
   return peekScreenSnapshot<T>(screenSnapshotKey(screenId, token, options?.variant), options);
+}
+
+/** Почему снапшот экрана есть или его нет — только чтение, для журналов первого кадра ([VIDEO-FEED] и др.). */
+export type ScreenSnapshotProbe = Readonly<{
+  reason: 'hit' | 'account_not_ready' | 'missing' | 'expired';
+  ageMs: number | null;
+  /** Сколько снапшотов всего в памяти: при MAX_ENTRIES старые вытесняются. */
+  entries: number;
+}>;
+
+export function probeScreenSnapshotForToken(
+  screenId: string,
+  token: AccountGenerationToken,
+  options?: { variant?: string; ttlMs?: number; nowMs?: number },
+): ScreenSnapshotProbe {
+  const key = isCurrentAccountGeneration(token) ? screenSnapshotKey(screenId, token, options?.variant) : null;
+  if (!key) return { reason: 'account_not_ready', ageMs: null, entries: entries.size };
+  const entry = entries.get(key);
+  if (!entry) return { reason: 'missing', ageMs: null, entries: entries.size };
+  const ageMs = (options?.nowMs ?? Date.now()) - entry.writtenAtMs;
+  return { reason: ageMs > (options?.ttlMs ?? DEFAULT_TTL_MS) ? 'expired' : 'hit', ageMs, entries: entries.size };
 }
 
 function schedulePersist(): void {

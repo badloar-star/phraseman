@@ -1,5 +1,5 @@
 /**
- * Банк игры «Точное слово» — испанский классический курс, уроки 1–8 (D207). 6 заданий на урок.
+ * Банк игры «Точное слово» — испанский классический курс, уроки 1–12 (D207). 6 заданий на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: фраза с верным вариантом — фраза урока (или из слов этого и прошлых уроков);
  * каждый неверный вариант даёт грамматически неверную фразу (правило владельца о неверных вариантах);
@@ -77,5 +77,37 @@ export const EXACT_BANK_ES: Readonly<Record<number, readonly QuizRound[]>> = {
     round(8, 4, 'Sus pasaportes ___ en el bolso', 'están', ['está'], 0, 'Паспортов несколько — значит están.'),
     round(8, 5, 'Tus fotos están en ___ móvil', 'mi', ['mis'], 1, 'Телефон один — значит mi.'),
     round(8, 6, '¿Dónde están ___ maletas?', 'sus', ['su'], 0, 'Чемоданов несколько — значит sus.'),
+  ],
+  9: [
+    round(9, 1, 'Él ___ español', 'habla', ['hablo', 'hablas'], 0, 'Про него говорят habla.'),
+    round(9, 2, 'Mis hermanos ___ aquí', 'trabajan', ['trabaja'], 1, 'Братьев несколько — значит trabajan.'),
+    round(9, 3, 'Busco ___ llaves', 'mis', ['mi'], 0, 'Ключей несколько — значит mis.'),
+    round(9, 4, 'Trabajo ___', 'hoy', ['en hoy'], 1, 'Hoy обходится без en.'),
+    round(9, 5, 'Los estudiantes ___ español', 'hablan', ['habla'], 0, 'Студентов несколько — значит hablan.'),
+    round(9, 6, '¿Dónde ___ tu madre?', 'trabaja', ['trabajas', 'trabajo'], 2, 'Про маму говорят trabaja.'),
+  ],
+  10: [
+    round(10, 1, 'Él ___ café', 'bebe', ['bebo', 'bebes'], 1, 'Про него говорят bebe.'),
+    round(10, 2, 'Mis hermanos ___ agua', 'beben', ['bebe'], 0, 'Братьев несколько — значит beben.'),
+    round(10, 3, 'Leemos ___ mensaje', 'el', ['la'], 1, 'Mensaje — «он», поэтому el.'),
+    round(10, 4, 'Abrimos ___ puerta', 'la', ['el'], 0, 'Puerta — «она», поэтому la.'),
+    round(10, 5, 'Vivo ___ de la estación', 'cerca', ['en cerca'], 0, 'Cerca обходится без en.'),
+    round(10, 6, 'Ella ___ un mensaje', 'escribe', ['escribo', 'escribes'], 2, 'Про неё говорят escribe.'),
+  ],
+  11: [
+    round(11, 1, 'Él ___ una pregunta', 'tiene', ['tengo', 'tienes'], 2, 'Про него говорят tiene.'),
+    round(11, 2, 'Mis hermanas ___ las llaves de casa', 'tienen', ['tiene'], 0, 'Сестёр несколько — значит tienen.'),
+    round(11, 3, '¿Tienes ___ minuto?', 'un', ['una'], 1, 'Minuto — «он», поэтому un.'),
+    round(11, 4, 'No tengo ___ llaves', 'las', ['la'], 0, 'Ключей несколько — значит las.'),
+    round(11, 5, 'Tenemos ___ reserva', 'una', ['un'], 1, 'Reserva — «она», поэтому una.'),
+    round(11, 6, 'Ella ___ una cita', 'tiene', ['tienes', 'tengo'], 0, 'Про неё говорят tiene.'),
+  ],
+  12: [
+    round(12, 1, 'La tienda es ___', 'nueva', ['nuevo'], 0, 'Tienda — «она», поэтому nueva.'),
+    round(12, 2, 'Los coches son ___', 'pequeños', ['pequeñas'], 1, 'Coche — «он», поэтому pequeños.'),
+    round(12, 3, 'Mi mochila es ___', 'roja', ['rojo'], 1, 'Mochila — «она», поэтому roja.'),
+    round(12, 4, 'Las camisetas son ___', 'blancas', ['blanca'], 0, 'Футболок несколько — значит blancas.'),
+    round(12, 5, 'El hotel ___ grande', 'es', ['son'], 0, 'Отель один — значит es.'),
+    round(12, 6, 'Busco una bufanda ___', 'negra', ['negro'], 1, 'Bufanda — «она», поэтому negra.'),
   ],
 };

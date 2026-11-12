@@ -36,7 +36,7 @@ import { TODAY_RING_ON_CARD_MIN, todayRingOnCard, todaySceneRingLook } from './t
 import type { TodaySceneDecision } from './today_scene_state';
 // зачем (Темы 25.10, перепись цветов b5a22eebb): белые чернила, стекло и кнопка сцены — свет сцены, одинаковый во всех темах; живут в одном модуле (как SPIRE_SCENE_INK у Пика), замер контраста читает отсюда
 import { HOME_SCENE_INK } from '../scene/home_scene_ink';
-import WarmupTodayRow from '../../../games/WarmupTodayRow';
+import WarmupTodayPanel, { useWarmupHasGames } from '../../../games/WarmupTodayPanel';
 
 /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
 const STAGE_SCREEN_SHARE = 392 / 844;
@@ -82,6 +82,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
   const heroScale = heroBounded && slotH > 0 ? Math.max(0.5, Math.min(1, slotH / HERO_SIZE)) : 1;
   const p = useV2Palette();
   const glass = useShadowGlass();
+  const warmupShown = useWarmupHasGames();
   const insets = useStableSafeAreaInsets();
   const evening = decision.state === 'evening';
   // зачем (владелец 22.10 «Сцена всегда как в макете»; эталон today-scene-concepts.html = home-scene-states.html): цвета сцены — токены темы УРОВНЯ «Максимум»
@@ -171,10 +172,10 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
         </View>
       </View>
       </SceneBlockShadow>
-      <View testID="today-scene-panel" style={[s.panel, { backgroundColor: card.opaqueCard, boxShadow: plateBoxShadow(glass) }]}>
-        {/* зачем (владелец 11.11, D207, макет elevate-real.js): разминка — отдельная строка каждый день НАД тремя заданиями, в счёт «N из 3» не входит;
-            строка самодостаточная: сама читает состояние из памяти и сама ведёт на экран разминки */}
-        <WarmupTodayRow style={{ marginBottom: 12 }} />
+      {/* зачем (сверка 11.11 + макет elevate-real.js:44): разминка — отдельным блоком над «Заданиями дня», а не строкой внутри;
+          блок сам решает, есть ли сегодня игры, и без них не рисуется. Нахлёст на сцену берёт первый из блоков. */}
+      <WarmupTodayPanel style={[s.panel, { backgroundColor: card.opaqueCard, boxShadow: plateBoxShadow(glass) }]} titleColor={card.text} noteColor={card.secondary} />
+      <View testID="today-scene-panel" style={[s.panel, warmupShown && s.panelAfterWarmup, { backgroundColor: card.opaqueCard, boxShadow: plateBoxShadow(glass) }]}>
         <View style={s.panelHead}>
           <Text accessibilityRole="header" style={[s.panelTitle, { color: card.text }]}>{copy.panelTitle}</Text>
           <Text style={[s.panelCount, { color: card.secondary }]}>{copy.panelCount}</Text>
@@ -260,6 +261,8 @@ const baseStyles = StyleSheet.create({
   cta: { minHeight: 50, paddingVertical: 8, borderRadius: 28, backgroundColor: HOME_SCENE_INK.cta, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 24 },
   ctaText: { color: HOME_SCENE_INK.ctaInk, fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   panel: { marginTop: -PANEL_OVERLAP, marginHorizontal: 16, borderRadius: 24, paddingTop: 14, paddingHorizontal: 16, paddingBottom: 6 },
+  // второй блок под разминкой: обычный зазор между блоками (`.pan { margin-top: 14px }`), без нахлёста на сцену
+  panelAfterWarmup: { marginTop: 14 },
   panelHead: { flexDirection: 'row', alignItems: 'baseline', gap: 8, marginBottom: 2 },
   panelTitle: { flex: 1, fontSize: 20, lineHeight: 26, fontWeight: '700', letterSpacing: -0.2 },
   panelCount: { fontSize: 13, lineHeight: 17, fontVariant: ['tabular-nums'] },

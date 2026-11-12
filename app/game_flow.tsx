@@ -32,6 +32,7 @@ import { FLOW_DEFAULT_ROUNDS, FLOW_TEMPO, buildFlowRounds, flowRoundTimings, isF
 import { currentGameLesson, isFlowAvailable } from '../modules/games/task_source';
 import { markWarmupGamePlayed } from '../modules/games/warmup_state';
 import { noteGameResult } from '../modules/games/game_records';
+import { noteGameMistake } from '../modules/games/game_mistake_capture';
 import { exitGameWithMinute } from '../components/games/gameExit';
 import { noteSkillAction } from '../modules/skills/skill_store';
 import { getClassicLessonPhrases, isClassicCourseLang } from './classic_course_phrases';
@@ -215,6 +216,8 @@ export default function GameFlowScreen() {
   const [tempoLevel, setTempoLevel] = useState(0);
   // лучший темп за игру — рекорд «Потока» («×1,9»)
   const bestTempoLevel = useRef(0);
+  // ключ захода: один и тот же промах за заход в журнал ошибок дважды не пишется
+  const attemptKey = useRef(`${Date.now().toString(36)}`);
   const [count, setCount] = useState(3);
   const [picked, setPicked] = useState<number | null>(null);
   const [correctCount, setCorrectCount] = useState(0);
@@ -286,6 +289,9 @@ export default function GameFlowScreen() {
       setCorrectCount((n) => n + 1);
       // зачем (D207): «Скорость» — только верный ответ быстрее трёх секунд; порог проверяет таблица навыков
       noteSkillAction({ action: isFlowHighTempo(tempoLevel) ? 'flow_correct_high_tempo' : 'flow_correct', itemKey: round.item.id, answerMs });
+    } else {
+      // зачем (макет: «фраза уйдёт в «Ошибки»»; решение D207 — связь игр и ошибок): промах пишется в «Мои ошибки»
+      noteGameMistake({ game: 'flow', studyTarget, itemId: round.item.id, target: round.item.en, meaning: round.item.translation, given: round.options[index] ?? '', attemptKey: attemptKey.current });
     }
     const isLast = roundIndex >= rounds.length - 1;
     after(correct ? AFTER_OK_MS : AFTER_MISS_MS, () => {
@@ -296,7 +302,7 @@ export default function GameFlowScreen() {
       setPhase('cue');
       after(NEXT_CUE_MS, () => startReading(roundIndex + 1, nextLevel));
     });
-  }, [after, phase, round, roundIndex, rounds.length, startReading, tempoLevel]);
+  }, [after, phase, round, roundIndex, rounds.length, startReading, studyTarget, tempoLevel]);
 
   const onClose = useCallback(() => {
     clearTimers();

@@ -13,7 +13,7 @@ import { isValidOddWordTask, type OddWordTask } from './odd_word_core';
 import { QUIZ_SEED_DECKS, isValidQuizRound, type QuizDeck, type QuizKind, type QuizRound } from './quiz_core';
 import type { SortDeck } from './sort_core';
 
-export type GameId = 'flow' | 'odd_word' | 'sort' | 'listen' | 'memory' | 'exact' | 'forms' | 'hunt' | 'order';
+export type GameId = 'flow' | 'odd_word' | 'sort' | 'listen' | 'memory' | 'exact' | 'forms' | 'hunt' | 'order' | 'race';
 
 const LESSON_MIN = 1;
 const LESSON_MAX = 32;
@@ -87,10 +87,12 @@ export function isFlowAvailable(studyTarget: string, uiLang?: string | null): bo
   return !uiLang || uiLang !== studyTarget;
 }
 
-/** Есть ли у игры задания для этого языка и урока. `uiLang` — язык интерфейса, он нужен только «Потоку». */
+/** Есть ли у игры задания для этого языка и урока. `uiLang` — язык интерфейса, он нужен «Потоку» и «Гонке с собой». */
 export function isGameAvailable(id: GameId, studyTarget: string, lesson: number, uiLang?: string | null): boolean {
   switch (id) {
     case 'flow': return isFlowAvailable(studyTarget, uiLang);
+    // зачем: «Гонка с собой» берёт тот же материал, что «Поток», — фразы урока и их переводы; правило то же
+    case 'race': return isFlowAvailable(studyTarget, uiLang);
     case 'odd_word': return oddWordTasksFor(studyTarget, lesson).length > 0;
     case 'sort': return sortDeckFor(studyTarget, lesson) !== null;
     case 'listen':

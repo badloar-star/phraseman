@@ -333,7 +333,8 @@ const s = StyleSheet.create({
   flex: { flex: 1 },
   content: { flex: 1, paddingTop: 8, paddingBottom: 16, paddingHorizontal: V2.screenPad },
   top: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: V2.iconButton },
-  title: { position: 'absolute', left: 64, right: 64, textAlign: 'center', fontSize: 17, lineHeight: 22, fontWeight: '700' },
+  // макет elevate-mechanics.app.js:36 (`.top .ttl`): «Разминка» слева сразу за кнопкой, 20/700, занимает остаток строки
+  title: { flex: 1, marginLeft: 12, fontSize: 20, lineHeight: 26, fontWeight: '700' },
   coins: { height: 36, paddingHorizontal: 12, borderRadius: 18, justifyContent: 'center' },
   head: { marginTop: 22, minHeight: 122 },
   over: { minHeight: 18, fontSize: 14, lineHeight: 18, fontWeight: '500' },

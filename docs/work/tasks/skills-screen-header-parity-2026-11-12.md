@@ -37,3 +37,9 @@ N считается из тех же очков, что строки экран
 
 Снимок: `docs/phraseman-2.0/evidence/parity/elevate-skills-header-check_2026-11-12.png` — «Навыки» слева за кнопкой, справа «Всего 1».
 Проверки: типы 0, тесты skills_core 18, skills_exam_theory_wiring 5, profile_card_skill_accent 1, game_quiz_core 9, layout_stability 16 — passed.
+
+## Дополнение: шапка «Разминки» (12.11)
+
+Макет `elevate-mechanics.app.js:36`: `<div class="top">…back…<div class="ttl">Разминка</div><span class="gpill">монеты</span>` —
+заголовок слева за кнопкой (`.top .ttl` 20/700, flex 1). В приложении стоял по центру 17/700 (снимок 03:36). Поправлено так же,
+как у «Навыков». Файл: `app/warmup.tsx` (только стиль заголовка).

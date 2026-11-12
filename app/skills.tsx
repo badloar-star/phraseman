@@ -33,6 +33,7 @@ import { safeRouterBack } from './navigation_back';
 const LOG = '[SKILLS]';
 const ROW_STAGGER_MS = 80;
 const OPEN_DELAY_MS = 350;
+const TOTAL = { ru: 'Всего', uk: 'Усього', es: 'Total', en: 'Total' } as const;
 
 export default function SkillsScreen() {
   const router = useRouter();
@@ -56,6 +57,7 @@ export default function SkillsScreen() {
     // зачем: корень, как в макете, — первые уровни уже дают заметный луч
     value: Math.sqrt((row.progress.level + row.progress.ratio) / SKILL_LEVEL_MAX),
   })), [rows]);
+  const levelSum = useMemo(() => rows.reduce((sum, row) => sum + row.progress.level, 0), [rows]);
   const index = useMemo(() => Math.floor(SKILL_IDS.reduce((sum, id) => sum + totals[id], 0)), [totals]);
 
   const onBack = useCallback(() => safeRouterBack(router, '/(tabs)/home' as never), [router]);
@@ -69,7 +71,10 @@ export default function SkillsScreen() {
             <V2IconButton icon="chevron-back" onPress={onBack} accessibilityLabel={triLang(lang, SKILLS_SCREEN_COPY.back)} testID="skills-back" />
             <Text accessibilityRole="header" style={[s.title, { color: p.text }]}>{triLang(lang, SKILLS_SCREEN_COPY.title)}</Text>
             {/* зачем (владелец 11.11: «навыки навсегда, а не за неделю»): пилюли «за неделю» и колонки недельного прироста нет */}
-            <View style={s.headerSpacer} />
+            {/* зачем (макет elevate-skills.js:20): справа плашка «Всего N» — сумма уровней всех навыков */}
+            <View style={[s.totalPill, { backgroundColor: p.glass }]} testID="skills-total">
+              <Text style={[s.totalText, { color: p.text }]}>{`${triLang(lang, TOTAL)} ${levelSum}`}</Text>
+            </View>
           </View>
 
           <View style={s.indexBlock}>
@@ -127,14 +132,17 @@ const s = StyleSheet.create({
   flex: { flex: 1 },
   content: { flexGrow: 1, paddingHorizontal: V2.screenPad, paddingTop: 8, paddingBottom: 16 },
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: V2.iconButton },
-  title: { position: 'absolute', left: 64, right: 64, textAlign: 'center', fontSize: 17, lineHeight: 22, fontWeight: '700' },
+  // макет `.top .ttl`: заголовок слева сразу за кнопкой, 20/700, занимает остаток строки
+  title: { flex: 1, marginLeft: 12, fontSize: 20, lineHeight: 26, fontWeight: '700' },
+  // макет `.gpill`: 34 высота, радиус 17, поля 14, 15/700
+  totalPill: { height: 34, borderRadius: 17, paddingHorizontal: 14, justifyContent: 'center' },
+  totalText: { fontSize: 15, lineHeight: 20, fontWeight: '700', fontVariant: ['tabular-nums'] },
   pill: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 36, paddingHorizontal: 12, borderRadius: 18 },
   pillText: { fontSize: 13, lineHeight: 17, fontWeight: '600' },
   indexBlock: { marginTop: 18, height: 70, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between' },
   rankPill: { marginBottom: 4 },
   over: { fontSize: 14, lineHeight: 18, fontWeight: '500' },
   big: { marginTop: 4, fontSize: 44, lineHeight: 48, fontWeight: '800', letterSpacing: -1, fontVariant: ['tabular-nums'] },
-  headerSpacer: { width: V2.iconButton },
   list: { marginTop: 14, paddingVertical: 2, paddingHorizontal: 16 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, height: 46 },
   pressed: { opacity: 0.86 },

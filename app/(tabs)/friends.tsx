@@ -1781,6 +1781,7 @@ export default function FriendsTabScreen() {
         setNudgeVerdicts({});
         setOptimisticNudgedUids(new Set());
         void primeFriendsTogetherSnapshot().then((snap) => { if (!cancelled && snap) setTogetherSnapshot(snap); });
+        void primeNudgedTodayCache().then(() => { if (!cancelled) setNudgedTick((n) => n + 1); }); // отметки «позвано сегодня» — нового владельца
       }
       if (canonical) friendsListOwnerRef.current = canonical;
 

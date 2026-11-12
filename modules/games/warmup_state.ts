@@ -11,7 +11,7 @@ import { peekAppLang, peekStudyTargetRaw } from '../../app/app_snapshot_bootstra
 import type { SkillId } from '../skills/skill_points_table';
 import { currentGameLesson, isGameAvailable } from './task_source';
 
-export type WarmupGameId = 'flow' | 'odd_word' | 'sort' | 'listen' | 'memory' | 'exact' | 'forms' | 'hunt' | 'order';
+export type WarmupGameId = 'flow' | 'odd_word' | 'sort' | 'listen' | 'memory' | 'exact' | 'forms' | 'hunt' | 'order' | 'race';
 
 type Copy = Readonly<{ ru: string; uk: string; es: string; en: string }>;
 
@@ -19,7 +19,7 @@ export interface WarmupGame {
   readonly id: WarmupGameId;
   readonly route: string;
   readonly skill: SkillId;
-  readonly icon: 'flash' | 'checkmark' | 'layers' | 'albums' | 'locate' | 'git-branch' | 'search' | 'chatbubbles' | 'ear';
+  readonly icon: 'flash' | 'checkmark' | 'layers' | 'albums' | 'locate' | 'git-branch' | 'search' | 'chatbubbles' | 'ear' | 'speedometer';
   readonly name: Copy;
   readonly description: Copy;
 }
@@ -70,6 +70,13 @@ export const WARMUP_POOL: readonly WarmupGame[] = [
     id: 'order', route: '/game_order', skill: 'grammar', icon: 'chatbubbles',
     name: { ru: 'Собери диалог', uk: 'Збери діалог', es: 'Arma el diálogo', en: 'Build the dialogue' },
     description: { ru: 'Расставь реплики по порядку', uk: 'Розстав репліки по порядку', es: 'Ordena las réplicas', en: 'Put the lines in order' },
+  },
+  {
+    // зачем (сессия макетов 12.11, задача владельца «продолжай»): игра из elevate-games.js, `race`; подписи карточки в макете
+    // нет — взята по заметке макета «нижняя монета — твой вчерашний заход»
+    id: 'race', route: '/game_race', skill: 'speed', icon: 'speedometer',
+    name: { ru: 'Гонка с собой', uk: 'Перегони з собою', es: 'Carrera contigo', en: 'Race yourself' },
+    description: { ru: 'Обгони свой вчерашний заход', uk: 'Обжени свій учорашній забіг', es: 'Supera tu partida de ayer', en: 'Beat yesterday’s run' },
   },
 ];
 

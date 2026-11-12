@@ -14,8 +14,9 @@ test('live tab bar takes surface, rim, cap and labels from the selected glass th
   // зачем (владелец 12.10, стиль «Тень»): ободка капсулы больше нет — бар отделяют тон стекла темы и внешняя тень.
   assert.doesNotMatch(source, /<BarRim/);
   // зачем (темы 2.0): капсула и активный значок — роли цвета темы; в «Спокойно» они равны cta (проверено ниже).
-  assert.match(source, /<CapFill\s+width=\{slotW\}\s+color=\{palette\.accentCap\}/);
-  assert.match(source, /const color = on \? palette\.accentBright/);
+  // зачем (12.11): плашка шириной capW (tabCapMetrics, планшет), активный значок — отдельным слоем activeColor (844f32108); роли цвета те же
+  assert.match(source, /<CapFill\s+width=\{capW\}\s+color=\{palette\.accentCap\}/);
+  assert.match(source, /const activeColor = .*palette\.accentBright;/);
   assert.match(source, /palette\.mutedText/);
   assert.doesNotMatch(source, /const\s+(?:COLOR|GLASS_FILL)\s*=/);
 });

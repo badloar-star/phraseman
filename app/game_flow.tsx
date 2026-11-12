@@ -25,7 +25,7 @@ import { V2Button, V2IconButton } from '../components/v2/V2Kit';
 import { useV2Palette } from '../components/v2/useV2Palette';
 import { GAME_EASE, GAME_MOTION } from '../constants/gameMotion';
 import { isLightSurface } from '../constants/color_contrast';
-import { triLang, type Lang } from '../constants/i18n';
+import { triLang } from '../constants/i18n';
 import { V2 } from '../constants/v2Style';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { FLOW_DEFAULT_ROUNDS, FLOW_TEMPO, buildFlowRounds, flowRoundTimings, isFlowHighTempo, nextFlowTempoLevel, type FlowItem, type FlowRound, flowDistractorsFor, flowTranslation } from '../modules/games/flow_core';

@@ -82,4 +82,37 @@ export const LISTEN_BANK_EN: Readonly<Record<number, readonly QuizRound[]>> = {
     round(8, 5, 'The film starts tonight', ['The film starts today', 'The concert starts tonight'], 1, 'Фильм начинается сегодня вечером'),
     round(8, 6, 'The last bus leaves at eleven', ['The last bus leaves at seven', 'The last train leaves at eleven'], 2, 'Последний автобус отправляется в одиннадцать'),
   ],
+  // зачем (сессия макетов 12.11): уроки 9–12; звучат только фразы урока — у них уже есть запись курса
+  9: [
+    round(9, 1, 'There is a lift', ['There is a queue', 'There is a map'], 0, 'Есть лифт'),
+    round(9, 2, 'There are two queues', ['There are two stops', 'There are three queues'], 1, 'Есть две очереди'),
+    round(9, 3, 'There is no hot water', ['There is no cold water', 'There is no hot soup'], 2, 'Нет горячей воды'),
+    round(9, 4, 'Is there a direct train?', ['Is there a direct bus?', 'Is there a late train?'], 0, 'Есть ли прямой поезд?'),
+    round(9, 5, 'There are no trains after midnight', ['There are no buses after midnight', 'There are no trains after nine'], 1, 'Нет поездов после полуночи'),
+    round(9, 6, 'There is bread on the table', ['There is bread on the shelf', 'There is soup on the table'], 2, 'Есть хлеб на столе'),
+  ],
+  10: [
+    round(10, 1, 'I can swim', ['I can wait', 'We can swim'], 0, 'Я умею плавать'),
+    round(10, 2, 'We can wait', ['We can stay', 'They can wait'], 1, 'Мы можем подождать'),
+    round(10, 3, 'Can I sit here?', ['Can I stay here?', 'Can we sit here?'], 2, 'Можно мне сесть здесь?'),
+    round(10, 4, 'Can you say that again?', ['Can you write that again?', 'Can you say that slowly?'], 0, 'Можете сказать это ещё раз?'),
+    round(10, 5, 'You should keep the receipt', ['You should check the receipt', 'You should keep the ticket'], 1, 'Вам следует сохранить чек'),
+    round(10, 6, 'He has to bring his passport', ['He has to bring his ticket', 'She has to bring his passport'], 2, 'Он должен принести свой паспорт'),
+  ],
+  11: [
+    round(11, 1, 'I called the office', ['I called the driver', 'We called the office'], 0, 'Я позвонил в офис'),
+    round(11, 2, 'She called a taxi', ['She called a friend', 'She booked a taxi'], 1, 'Она вызвала такси'),
+    round(11, 3, 'We cleaned the kitchen', ['We cleaned the room', 'We locked the kitchen'], 2, 'Мы убрали кухню'),
+    round(11, 4, 'He signed the receipt', ['He signed the form', 'He checked the receipt'], 0, 'Он подписал чек'),
+    round(11, 5, 'Did you call the office?', ['Did you call the driver?', 'Did they call the office?'], 1, 'Вы звонили в офис?'),
+    round(11, 6, 'They booked two seats', ['They booked two rooms', 'They booked three seats'], 2, 'Они забронировали два места'),
+  ],
+  12: [
+    round(12, 1, 'I bought fresh bread', ['I bought fresh milk', 'We bought fresh bread'], 0, 'Я купил свежий хлеб'),
+    round(12, 2, 'She lost her bus pass', ['She lost her bus ticket', 'He lost her bus pass'], 1, 'Она потеряла свой проездной'),
+    round(12, 3, 'We caught the early train', ['We caught the last train', 'We caught the early bus'], 2, 'Мы сели на ранний поезд'),
+    round(12, 4, 'Did you see the sign?', ['Did you see the map?', 'Did you read the sign?'], 0, 'Ты видел знак?'),
+    round(12, 5, 'I forgot my password', ['I forgot my ticket', 'I forgot your password'], 1, 'Я забыл свой пароль'),
+    round(12, 6, 'He gave me a lift', ['He gave me a pen', 'She gave me a lift'], 2, 'Он подвёз меня'),
+  ],
 };

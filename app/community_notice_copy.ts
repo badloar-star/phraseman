@@ -39,8 +39,8 @@ export const COMMUNITY_NOTICE_TEXTS: ReadonlyArray<Readonly<Record<Lang, string>
     pl: "Zestawy od użytkowników. Nie sprawdzaliśmy, ale szanujemy odwagę.",
   },
   {
-    ru: "Наборы пользовательские. Опечатка — ваше новое слово.",
-    uk: "Набори користувацькі. Друкарська помилка — ваше нове слово.",
+    ru: "Наборы пользовательские. Опечатка — твоё новое слово.",
+    uk: "Набори користувацькі. Друкарська помилка — твоє нове слово.",
     en: "User-made sets. A typo is your new word.",
     es: "Sets de usuarios. Una errata: tu nueva palabra.",
     'pt-BR': "Conjuntos de usuários. Um erro de digitação: sua nova palavra.",

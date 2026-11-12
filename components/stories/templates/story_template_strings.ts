@@ -76,7 +76,7 @@ const S = {
   // 11 · новый друг
   friendsOverline: ['Друзья', 'Друзі', 'Friends', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi'],
   friendJoinedTitle: ['{name} теперь в друзьях', '{name} тепер у друзях', '{name} is now your friend', '{name} ya está en tus amigos', '{name} agora está nos seus amigos', '{name} đã là bạn của bạn', '{name} sekarang temanmu', '{name} artık arkadaşın', '{name} jest teraz w znajomych'],
-  friendJoinedText: ['Вы видите серии друг друга', 'Ви бачите серії одне одного', 'You can see each other’s streaks', 'Podéis ver la racha del otro', 'Vocês veem a sequência um do outro', 'Hai bạn thấy chuỗi của nhau', 'Kalian bisa melihat rangkaian satu sama lain', 'Birbirinizin serisini görüyorsunuz', 'Widzicie nawzajem swoje serie'],
+  friendJoinedText: ['Вы оба видите серии друг друга', 'Ви обоє бачите серії одне одного', 'You can see each other’s streaks', 'Podéis ver la racha del otro', 'Vocês veem a sequência um do outro', 'Hai bạn thấy chuỗi của nhau', 'Kalian bisa melihat rangkaian satu sama lain', 'Birbirinizin serisini görüyorsunuz', 'Widzicie nawzajem swoje serie'],
   // 12 · набор выучен
   packLearnedOverline: ['Набор выучен', 'Набір вивчено', 'Pack learned', 'Pack aprendido', 'Pacote aprendido', 'Đã học xong bộ thẻ', 'Paket dikuasai', 'Paket öğrenildi', 'Zestaw opanowany'],
   packLearnedTitle: ['«{packTitle}» — все {cards}', '«{packTitle}» — усі {cards}', '“{packTitle}” — all {cards}', '«{packTitle}»: las {cards}', '“{packTitle}”: todos os {cards}', '“{packTitle}” — cả {cards} thẻ', '“{packTitle}” — semua {cards}', '“{packTitle}” — {cards} kartın hepsi', '„{packTitle}” — wszystkie {cards}'],

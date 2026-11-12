@@ -146,11 +146,11 @@ describe('разметка', () => {
     expect(all).not.toContain('из 3');
     expect(view.queryByTestId('referral-ladder-bar')).toBeNull();
   });
-  it('один засчитанный друг с именем: «Аня — первый урок пройден · по 500 монет вам обоим» (без рода и падежа); без имени или при нескольких — «Засчитано друзей: N»', async () => {
+  it('один засчитанный друг с именем: «Аня — первый урок пройден · вы оба получаете по 500 монет» (без рода и падежа); без имени или при нескольких — «Засчитано друзей: N»', async () => {
     const one = deriveReferralLadder(data(1), [{ ladder: 'counted', refereeName: '  Аня ' }, { ladder: 'waiting', refereeName: 'Марк' }]);
     expect(one.firstName).toBe('Аня');
     const named = await render(<ReferralLadder {...props(1)} view={one} />);
-    expect(textsOf(named.toJSON())).toContain('Аня — первый урок пройден · по 500 монет вам обоим');
+    expect(textsOf(named.toJSON())).toContain('Аня — первый урок пройден · вы оба получаете по 500 монет');
     // имя не используем, если засчитанных приглашений в списке не ровно одно или у друга нет имени
     expect(deriveReferralLadder(data(1), [{ ladder: 'counted', refereeName: '' }]).firstName).toBeNull();
     expect(deriveReferralLadder(data(1), [{ ladder: 'counted', refereeName: 'Аня' }, { ladder: 'counted', refereeName: 'Марк' }]).firstName).toBeNull();

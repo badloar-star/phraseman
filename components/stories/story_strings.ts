@@ -27,7 +27,7 @@ const S = {
   activityLesson: ['Урок {n}', 'Урок {n}', 'Lesson {n}', 'Lección {n}', 'Lição {n}', 'Bài học {n}', 'Pelajaran {n}', 'Ders {n}', 'Lekcja {n}'],
   activityCards: ['Последний набор', 'Останній набір', 'Last deck', 'Último mazo', 'Último baralho', 'Bộ thẻ gần nhất', 'Set kartu terakhir', 'Son deste', 'Ostatni zestaw'],
   activityDialog: ['Последний диалог', 'Останній діалог', 'Last dialogue', 'Último diálogo', 'Último diálogo', 'Hội thoại gần nhất', 'Dialog terakhir', 'Son diyalog', 'Ostatni dialog'],
-  activityStreak: ['Текущая серия', 'Поточна серія', 'Current streak', 'Racha actual', 'Sequência atual', 'Chuỗi hiện tại', 'Runtunan saat ini', 'Güncel seri', 'Aktualna seria'],
+  activityStreak: ['Текущая серия', 'Поточна серія', 'Current streak', 'Racha actual', 'Sequência atual', 'Chuỗi hiện tại', 'Rangkaian saat ini', 'Güncel seri', 'Aktualna seria'],
   // ── слайд «итог недели» ──
   weekResult: ['Итог недели', 'Підсумок тижня', 'Week result', 'Resultado de la semana', 'Resultado da semana', 'Kết quả tuần', 'Hasil minggu', 'Hafta sonucu', 'Wynik tygodnia'],
   weekUp: ['Ты поднимаешься в {league}', 'Ти піднімаєшся в {league}', 'You move up to {league}', 'Subes a {league}', 'Você sobe para {league}', 'Bạn thăng lên {league}', 'Kamu naik ke {league}', '{league} ligine yükseliyorsun', 'Awansujesz do {league}'],

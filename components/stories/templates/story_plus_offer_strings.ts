@@ -20,7 +20,7 @@ const S = {
   streakText: [
     'С Plus серия не сгорит, если пропустишь день: три защиты в месяц.',
     'З Plus серія не згорить, якщо пропустиш день: три захисти на місяць.',
-    'With Plus your streak survives a missed day: 3 shields a month.',
+    'With Plus, a missed day won’t break your streak: 3 shields a month.',
     'Con Plus tu racha no se pierde si faltas un día: 3 protecciones al mes.',
     'Com Plus sua sequência não se perde se você faltar um dia: 3 proteções por mês.',
     'Với Plus, chuỗi không mất khi bạn bỏ lỡ một ngày: 3 lần bảo vệ mỗi tháng.',

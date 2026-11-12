@@ -3,6 +3,7 @@
  * Фраза появляется по одному слову и исчезает, затем игрок выбирает, что было сказано.
  * Верный ответ поднимает темп на ступень, промах опускает.
  */
+import { FLOW_DISTRACTORS_EN, type FlowDistractorPair } from './bank/flow_en';
 
 export interface FlowItem {
   readonly id: string;
@@ -10,6 +11,30 @@ export interface FlowItem {
   readonly en: string;
   /** Перевод на язык интерфейса. */
   readonly translation: string;
+  /**
+   * Свои неверные варианты: перевод, отличающийся от верного одним словом (банк `bank/flow_<язык>.ts`).
+   * Нет или не годятся — неверными берутся переводы других фраз набора, как раньше.
+   */
+  readonly distractors?: readonly string[];
+}
+
+/** Банки своих неверных вариантов по языку обучения. Ключ внутри — язык интерфейса, затем id фразы урока. */
+const FLOW_DISTRACTOR_BANKS: Readonly<Record<string, Readonly<Record<string, Readonly<Record<string, FlowDistractorPair>>>>>> = {
+  en: FLOW_DISTRACTORS_EN,
+};
+
+/** Свои неверные варианты фразы урока для языка интерфейса; нет набора — undefined (игра берёт прежние варианты). */
+export function flowDistractorsFor(studyTarget: string, phraseId: string, uiLang: string): readonly string[] | undefined {
+  const byUi = Object.prototype.hasOwnProperty.call(FLOW_DISTRACTOR_BANKS, studyTarget) ? FLOW_DISTRACTOR_BANKS[studyTarget] : undefined;
+  const byId = byUi && Object.prototype.hasOwnProperty.call(byUi, uiLang) ? byUi[uiLang] : undefined;
+  return byId && Object.prototype.hasOwnProperty.call(byId, phraseId) ? byId[phraseId] : undefined;
+}
+
+/** Свои варианты годятся, если их ровно столько, сколько неверных, они не пусты, разные и не равны верному. */
+function ownDistractors(item: FlowItem): string[] | null {
+  const own = (item.distractors ?? []).map((d) => (typeof d === 'string' ? d.trim() : ''));
+  const keys = new Set([item.translation.trim().toLowerCase(), ...own.map((d) => d.toLowerCase())]);
+  return own.length === FLOW_OPTIONS - 1 && own.every(Boolean) && keys.size === FLOW_OPTIONS ? own : null;
 }
 
 export interface FlowTempo {
@@ -152,9 +177,17 @@ export function buildFlowRounds(pool: readonly FlowItem[], count: number, rng: (
     const n = splitWords(item.en).length;
     return n >= MIN_WORDS && n <= MAX_WORDS;
   };
-  const order = [...shuffled(items.filter(fits), rng), ...shuffled(items.filter((item) => !fits(item)), rng)];
+  // зачем (макет: неверный вариант отличается одним словом): фразы со своим набором вариантов идут первыми, внутри — те же
+  // правила длины; без набора — как раньше
+  const own = (item: FlowItem) => ownDistractors(item) !== null;
+  const group = (keep: (item: FlowItem) => boolean) => shuffled(items.filter(keep), rng);
+  const order = [
+    ...group((item) => own(item) && fits(item)), ...group((item) => own(item) && !fits(item)),
+    ...group((item) => !own(item) && fits(item)), ...group((item) => !own(item) && !fits(item)),
+  ];
   return order.slice(0, Math.max(0, Math.floor(count))).map((item) => {
-    const distractors = shuffled(items.filter((other) => other.id !== item.id), rng).slice(0, FLOW_OPTIONS - 1).map((other) => other.translation.trim());
+    const distractors = ownDistractors(item)
+      ?? shuffled(items.filter((other) => other.id !== item.id), rng).slice(0, FLOW_OPTIONS - 1).map((other) => other.translation.trim());
     const options = shuffled([item.translation.trim(), ...distractors], rng);
     return { item, words: splitWords(item.en), options, correctIndex: options.indexOf(item.translation.trim()) };
   });

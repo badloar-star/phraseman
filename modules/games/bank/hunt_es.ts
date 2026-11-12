@@ -1,5 +1,5 @@
 /**
- * Банк игры «Охота на ошибку» — испанский классический курс, уроки 1–8 (D207). 2 мини-диалога на урок.
+ * Банк игры «Охота на ошибку» — испанский классический курс, уроки 1–12 (D207). 2 мини-диалога на урок.
  * зачем: владелец 11.11.2026 — «оно должно работать на всех языках», «без багов».
  * Правила вычитки: три реплики из фраз урока (или из слов этого и прошлых уроков); ровно одно слово
  * неверное — `{неверно>верно}`; в другой реплике одно слово-обманка — `*слово`: оно нажимается, но верное.
@@ -43,5 +43,21 @@ export const HUNT_BANK_ES: Readonly<Record<number, readonly HuntTask[]>> = {
   8: [
     task(8, 1, ['¿Dónde están *mis llaves?', 'Tus llaves están en la mesa.', '{Mis>Mi} pasaporte está en casa.'], 'Паспорт один — значит mi.'),
     task(8, 2, ['¿Está *tu hermana en casa?', 'Mi hermana {están>está} en clase.', 'Mi hermano está en casa.'], 'Сестра одна — значит está.'),
+  ],
+  9: [
+    task(9, 1, ['¿Trabajas hoy?', 'Hoy no *trabajo.', 'Mi madre {trabajo>trabaja} hoy.'], 'Про маму говорят trabaja. Trabajo — про себя.'),
+    task(9, 2, ['¿Hablas inglés?', 'No *hablo inglés.', 'Mis hermanos {habla>hablan} inglés.'], 'Братьев несколько — значит hablan.'),
+  ],
+  10: [
+    task(10, 1, ['¿Lees el libro?', 'No *leo el libro.', 'Mis hermanos {lee>leen} el libro.'], 'Братьев несколько — значит leen.'),
+    task(10, 2, ['*Bebo café con leche.', 'Ella no {bebo>bebe} café.', '¿Bebes agua?'], 'Про неё говорят bebe. Bebo — про себя.'),
+  ],
+  11: [
+    task(11, 1, ['¿Tienes un minuto?', 'No *tengo tiempo.', 'Mi hermana {tengo>tiene} una cita.'], 'Про сестру говорят tiene. Tengo — про себя.'),
+    task(11, 2, ['¿Tenemos una reserva?', 'Tenemos {un>una} reserva.', 'Ana *tiene mi número.'], 'Reserva — «она», поэтому una.'),
+  ],
+  12: [
+    task(12, 1, ['¿Son grandes las mesas?', 'Las mesas son {pequeños>pequeñas}.', 'La cocina *es grande.'], 'Mesa — «она», поэтому pequeñas.'),
+    task(12, 2, ['*Busco una mochila roja.', 'Mi mochila es {rojo>roja}.', '¿Es nueva?'], 'Mochila — «она», поэтому roja.'),
   ],
 };

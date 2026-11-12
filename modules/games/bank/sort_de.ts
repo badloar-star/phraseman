@@ -13,7 +13,7 @@ import { sortDeck, type SortCard } from './make_de_fr';
 const d = (lesson: number, left: SortBin, right: SortBin, cards: readonly SortCard[]): SortDeck => sortDeck('de', lesson, left, right, cards);
 
 export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
-  1: d(1, { title: 'ist', example: 'Anna, die Tür' }, { title: 'sind', example: 'wir, die Kinder' }, [
+  1: d(1, { title: 'ist', example: 'один: er, sie, es' }, { title: 'sind', example: 'несколько: wir, sie' }, [
     ['Die Tür ___ offen', 'left', 'die Tür — дверь одна'],
     ['Die Fenster ___ offen', 'right', 'die Fenster — окон несколько'],
     ['Das Fenster ___ zu', 'left', 'das Fenster — окно одно'],
@@ -23,7 +23,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Tom ___ allein', 'left', 'Tom — он один'],
     ['Anna und Tom ___ hier', 'right', 'Anna und Tom — их двое'],
   ]),
-  2: d(2, { title: 'der', example: 'der Bus' }, { title: 'die', example: 'die Bahn' }, [
+  2: d(2, { title: 'der', example: 'der Zug, der Stuhl' }, { title: 'die', example: 'die Tür, die Karte' }, [
     ['___ Bus ist da', 'left', 'автобус — der Bus'],
     ['___ Bahn ist da', 'right', 'поезд — die Bahn'],
     ['Das ist ___ Schlüssel', 'left', 'ключ — der Schlüssel'],
@@ -33,7 +33,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Dort ist ___ Aufzug', 'left', 'лифт — der Aufzug'],
     ['Dort ist ___ Treppe', 'right', 'лестница — die Treppe'],
   ]),
-  3: d(3, { title: 'Ich', example: 'wohne, lerne' }, { title: 'Du', example: 'wohnst, lernst' }, [
+  3: d(3, { title: 'Ich', example: 'ich trinke, ich gehe' }, { title: 'Du', example: 'du trinkst, du gehst' }, [
     ['___ wohne hier', 'left', 'wohne на -e — это про себя'],
     ['___ lernst Deutsch', 'right', 'lernst на -st — это про «ты»'],
     ['___ kaufe Brot', 'left', 'kaufe на -e — это про себя'],
@@ -63,7 +63,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Arbeitest ___ morgen?', 'left', 'arbeitest на -st — так спрашивают на «ты»'],
     ['Brauchen ___ Hilfe?', 'right', 'brauchen на -en — так спрашивают на «вы»'],
   ]),
-  6: d(6, { title: 'Про место', example: 'Wo…?  Woher…?  Wohin…?' }, { title: 'Про время', example: 'Wann…?  Wie lange…?' }, [
+  6: d(6, { title: 'Про место', example: 'где, откуда, куда' }, { title: 'Про время', example: 'когда, как долго' }, [
     ['Wo ist die Kasse?', 'left', 'wo — «где»'],
     ['Wann kommt der Bus?', 'right', 'wann — «когда»'],
     ['Woher kommst du?', 'left', 'woher — «откуда»'],
@@ -73,7 +73,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Wo wohnst du?', 'left', 'wo — «где»'],
     ['Wann schließt das Büro?', 'right', 'wann — «когда»'],
   ]),
-  7: d(7, { title: 'einen', example: 'der Stift' }, { title: 'eine', example: 'die Tasche' }, [
+  7: d(7, { title: 'einen', example: 'der Zug, der Plan' }, { title: 'eine', example: 'die Karte, die Lampe' }, [
     ['Ich habe ___ Schlüssel', 'left', 'ключ — der Schlüssel, поэтому einen'],
     ['Wir haben ___ Tasche', 'right', 'сумка — die Tasche, поэтому eine'],
     ['Tom hat ___ Stift', 'left', 'ручка — der Stift, поэтому einen'],
@@ -83,7 +83,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Ich bestelle ___ Tee', 'left', 'чай — der Tee, поэтому einen'],
     ['Du bestellst ___ Suppe', 'right', 'суп — die Suppe, поэтому eine'],
   ]),
-  8: d(8, { title: 'nicht', example: 'nicht müde, nicht hier' }, { title: 'kein', example: 'kein Handy, kein Taxi' }, [
+  8: d(8, { title: 'nicht', example: 'nicht gut, nicht da' }, { title: 'kein', example: 'kein Brot, kein Auto' }, [
     ['Ich bin ___ müde', 'left', 'müde — «не устал» говорят с nicht'],
     ['Anna hat ___ Handy', 'right', 'Handy — «нет телефона» говорят с kein'],
     ['Die Tür ist ___ zu', 'left', 'zu — «не закрыта» говорят с nicht'],
@@ -93,7 +93,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Tom ist ___ im Büro', 'left', 'im Büro — «не в офисе» говорят с nicht'],
     ['Die Küche hat ___ Fenster', 'right', 'Fenster — «нет окна» говорят с kein'],
   ]),
-  9: d(9, { title: 'mein', example: 'der Pass, das Fahrrad' }, { title: 'meine', example: 'die Jacke, die Schuhe' }, [
+  9: d(9, { title: 'mein', example: 'der Schlüssel, das Ticket' }, { title: 'meine', example: 'die Tasche, die Brille' }, [
     ['Das ist ___ Pass', 'left', 'Pass — der Pass, поэтому mein'],
     ['Das ist ___ Jacke', 'right', 'Jacke — die Jacke, поэтому meine'],
     ['Das ist ___ Fahrrad', 'left', 'Fahrrad — das Fahrrad, поэтому mein'],
@@ -103,7 +103,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Wo ist ___ Ladegerät?', 'left', 'Ladegerät — das Ladegerät, поэтому mein'],
     ['Ich zeige ___ Karte', 'right', 'Karte — die Karte, поэтому meine'],
   ]),
-  10: d(10, { title: 'zum', example: 'der Arzt, das Taxi' }, { title: 'zur', example: 'die Schule, die Kasse' }, [
+  10: d(10, { title: 'zum', example: 'der Markt, das Hotel' }, { title: 'zur', example: 'die Post, die Bank' }, [
     ['Tom geht ___ Arzt', 'left', 'Arzt — der Arzt, поэтому zum'],
     ['Ich fahre ___ Arbeit', 'right', 'Arbeit — die Arbeit, поэтому zur'],
     ['Anna fährt ___ Bahnhof', 'left', 'Bahnhof — der Bahnhof, поэтому zum'],
@@ -113,7 +113,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Wie komme ich ___ Bahnhof?', 'left', 'Bahnhof — der Bahnhof, поэтому zum'],
     ['Sie geht ___ Apotheke', 'right', 'Apotheke — die Apotheke, поэтому zur'],
   ]),
-  11: d(11, { title: 'im', example: 'der Flur, das Bad' }, { title: 'in der', example: 'die Küche, die Tasche' }, [
+  11: d(11, { title: 'im', example: 'der Keller, das Auto' }, { title: 'in der', example: 'die Stadt, die Halle' }, [
     ['Die Jacke hängt ___ Flur', 'left', 'Flur — der Flur, поэтому im'],
     ['Ich bin ___ Küche', 'right', 'Küche — die Küche, поэтому in der'],
     ['Du bist ___ Bad', 'left', 'Bad — das Bad, поэтому im'],
@@ -123,7 +123,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Wir sind ___ Zimmer', 'left', 'Zimmer — das Zimmer, поэтому im'],
     ['Der Löffel liegt ___ Schublade', 'right', 'Schublade — die Schublade, поэтому in der'],
   ]),
-  12: d(12, { title: 'in den', example: 'der Garten, der Bus' }, { title: 'in die', example: 'die Küche, die Tasche' }, [
+  12: d(12, { title: 'in den', example: 'der Hof, der Zug' }, { title: 'in die', example: 'die Halle, die Stadt' }, [
     ['Du gehst ___ Garten', 'left', 'Garten — der Garten, поэтому in den'],
     ['Ich gehe ___ Küche', 'right', 'Küche — die Küche, поэтому in die'],
     ['Anna steigt ___ Bus', 'left', 'Bus — der Bus, поэтому in den'],
@@ -143,7 +143,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Ich räume den Tisch ___', 'left', 'Убираю со стола — räume … ab'],
     ['Wir bringen unsere Ausweise ___', 'right', 'Берём с собой — bringen … mit'],
   ]),
-  14: d(14, { title: 'muss', example: 'ich muss, er muss' }, { title: 'müssen', example: 'wir müssen, die Kinder müssen' }, [
+  14: d(14, { title: 'muss', example: 'ich, er, sie' }, { title: 'müssen', example: 'wir, sie (несколько)' }, [
     ['Ich ___ zur Arbeit gehen', 'left', 'С ich — muss'],
     ['Wir ___ hier aussteigen', 'right', 'С wir — müssen'],
     ['Tom ___ sein Ticket zeigen', 'left', 'Том один — muss'],
@@ -153,7 +153,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Der Arzt ___ kurz telefonieren', 'left', 'Врач один — muss'],
     ['Die Kinder ___ heute helfen', 'right', 'Детей несколько — müssen'],
   ]),
-  15: d(15, { title: 'Одному на «ты»', example: 'Warte! Komm!' }, { title: 'Нескольким на «ты»', example: 'Wartet! Kommt!' }, [
+  15: d(15, { title: 'Одному на «ты»', example: 'Geh! Sag!' }, { title: 'Нескольким на «ты»', example: 'Geht! Sagt!' }, [
     ['Warte kurz!', 'left', 'Warte — просьба к одному'],
     ['Wartet am Eingang!', 'right', 'Wartet — просьба к нескольким'],
     ['Komm bitte mit!', 'left', 'Komm — просьба к одному'],
@@ -163,7 +163,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Nimm den Schlüssel!', 'left', 'Nimm — просьба к одному'],
     ['Nehmt eure Jacken mit!', 'right', 'Nehmt и eure — просьба к нескольким'],
   ]),
-  16: d(16, { title: 'habe', example: 'ich habe' }, { title: 'hat', example: 'Anna hat, er hat' }, [
+  16: d(16, { title: 'habe', example: 'ich' }, { title: 'hat', example: 'er, sie, es' }, [
     ['Ich ___ heute gekocht', 'left', 'С ich — habe'],
     ['Anna ___ Kaffee gemacht', 'right', 'Анна одна — hat'],
     ['Ich ___ den Schlüssel gesucht', 'left', 'С ich — habe'],
@@ -173,7 +173,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Ich ___ bar bezahlt', 'left', 'С ich — habe'],
     ['Anna ___ das Radio repariert', 'right', 'Анна одна — hat'],
   ]),
-  17: d(17, { title: 'ist', example: 'ist angekommen, ist gefahren' }, { title: 'hat', example: 'hat gemacht, hat gekauft' }, [
+  17: d(17, { title: 'ist', example: 'ist gekommen, ist gegangen' }, { title: 'hat', example: 'hat gelernt, hat gekocht' }, [
     ['Anna ___ angekommen', 'left', 'Приехала — ist angekommen'],
     ['Anna ___ Kaffee gemacht', 'right', 'Приготовила — hat gemacht'],
     ['Tom ___ spät aufgestanden', 'left', 'Встал — ist aufgestanden'],
@@ -183,7 +183,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Anna ___ mit dem Bus gefahren', 'left', 'Поехала — ist gefahren'],
     ['Anna ___ das Radio repariert', 'right', 'Починила — hat repariert'],
   ]),
-  18: d(18, { title: 'war', example: 'ich war, Anna war' }, { title: 'waren', example: 'wir waren, die Gäste waren' }, [
+  18: d(18, { title: 'war', example: 'ich, er, sie, es' }, { title: 'waren', example: 'wir, sie (несколько)' }, [
     ['Ich ___ müde', 'left', 'С ich — war'],
     ['Wir ___ zu Hause', 'right', 'С wir — waren'],
     ['Anna ___ krank', 'left', 'Анна одна — war'],
@@ -193,7 +193,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Der Parkplatz ___ frei', 'left', 'Место одно — war'],
     ['Die Kinder ___ leise', 'right', 'Детей несколько — waren'],
   ]),
-  19: d(19, { title: 'sich', example: 'Anna freut sich' }, { title: 'uns', example: 'wir freuen uns' }, [
+  19: d(19, { title: 'sich', example: 'er, sie, es' }, { title: 'uns', example: 'wir' }, [
     ['Anna verspätet ___', 'left', 'Анна — sich'],
     ['Wir müssen ___ beeilen', 'right', 'С wir — uns'],
     ['Tom freut ___ auf die Fahrt', 'left', 'Том — sich'],
@@ -203,7 +203,7 @@ export const SORT_BANK_DE: Readonly<Record<number, SortDeck>> = {
     ['Tom und Anna verabschieden ___', 'left', 'Том и Анна — sich'],
     ['Wir entschuldigen ___ für die Verspätung', 'right', 'С wir — uns'],
   ]),
-  20: d(20, { title: 'als', example: 'schneller als, älter als' }, { title: 'wie', example: 'so voll wie, genauso müde wie' }, [
+  20: d(20, { title: 'als', example: 'больше, чем' }, { title: 'wie', example: 'так же, как' }, [
     ['Der Zug ist schneller ___ der Bus', 'left', 'Быстрее чем — schneller als'],
     ['Der Bus ist so voll ___ gestern', 'right', 'Так же, как — so … wie'],
     ['Anna ist älter ___ Tom', 'left', 'Старше чем — älter als'],

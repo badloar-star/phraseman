@@ -178,6 +178,28 @@ describe.each(['de', 'fr'] as const)('банк заданий игр: %s', (lang
       }
     });
 
+    it('пример под названием корзины не повторяет слов карт своей колоды', () => {
+      // зачем (12.11, обход экранов): пример «Anna, die Tür» при карте «Die Tür ___ offen» выдавал ответ — человек искал
+      // то же слово, а не правило. Служебные слова (артикли, предлоги) и местоимения не считаются: «er, sie, es» — это само правило
+      // (слово сессии Elevate); слова названия корзины тоже — они подставляются в каждую карту своей корзины.
+      const SERVICE = new Set([
+        'der', 'die', 'das', 'den', 'dem', 'des', 'ein', 'eine', 'einen', 'einem', 'im', 'am', 'zu',
+        'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr',
+        'le', 'la', 'les', 'l’', 'un', 'une', 'des', 'du', 'de', 'à', 'au', 'en',
+        'je', 'tu', 'il', 'elle', 'on', 'nous', 'vous', 'ils', 'elles',
+      ]);
+      for (const lesson of LESSONS) {
+        const deck = bank.sort?.[lesson];
+        if (!deck) throw new Error(`нет колоды урока ${lesson}`);
+        const cardWords = new Set(deck.tasks.flatMap((t) => tokens(t.text)).filter((w) => !SERVICE.has(w)));
+        for (const side of ['left', 'right'] as const) {
+          const own = new Set(tokens(deck[side].title));
+          const leaked = tokens(deck[side].example).filter((w) => !SERVICE.has(w) && !own.has(w) && cardWords.has(w));
+          expect([deck.id, side, leaked]).toEqual([deck.id, side, []]);
+        }
+      }
+    });
+
     it('текст каждой карты — только пройденные слова, у карты есть подсказка', () => {
       for (const lesson of LESSONS) {
         for (const card of bank.sort?.[lesson]?.tasks ?? []) {

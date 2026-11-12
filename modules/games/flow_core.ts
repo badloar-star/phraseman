@@ -3,7 +3,11 @@
  * Фраза появляется по одному слову и исчезает, затем игрок выбирает, что было сказано.
  * Верный ответ поднимает темп на ступень, промах опускает.
  */
+import { FLOW_DISTRACTORS_DE } from './bank/flow_de';
 import { FLOW_DISTRACTORS_EN, type FlowDistractorPair } from './bank/flow_en';
+import { FLOW_DISTRACTORS_ES } from './bank/flow_es';
+import { FLOW_DISTRACTORS_FR } from './bank/flow_fr';
+import { FLOW_DISTRACTORS_IT } from './bank/flow_it';
 
 export interface FlowItem {
   readonly id: string;
@@ -21,6 +25,10 @@ export interface FlowItem {
 /** Банки своих неверных вариантов по языку обучения. Ключ внутри — язык интерфейса, затем id фразы урока. */
 const FLOW_DISTRACTOR_BANKS: Readonly<Record<string, Readonly<Record<string, Readonly<Record<string, FlowDistractorPair>>>>>> = {
   en: FLOW_DISTRACTORS_EN,
+  de: FLOW_DISTRACTORS_DE,
+  fr: FLOW_DISTRACTORS_FR,
+  es: FLOW_DISTRACTORS_ES,
+  it: FLOW_DISTRACTORS_IT,
 };
 
 /** Свои неверные варианты фразы урока для языка интерфейса; нет набора — undefined (игра берёт прежние варианты). */

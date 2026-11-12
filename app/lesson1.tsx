@@ -76,6 +76,7 @@ import { beginLessonRunErrors, collectLessonRunMistakeId, rememberLessonRunError
 import type { PhraseMistakeInput } from './phrase_analytics';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
 import { noteSkillAction } from '../modules/skills/skill_store';
+import { useSkillSession } from '../modules/skills/use_skill_session';
 import {
   createLessonAnalyticsAttempt,
   lessonAttemptElapsedMs,
@@ -1794,6 +1795,7 @@ function pronunciationOverrideForLessonPhrase(line: string): string | undefined 
 }
 
 function LessonScreen() {
+  useSkillSession(); // зачем (D207): урок объявляет занятие — итог урока покажет «Навыки растут» только по его очкам
   const lessonRuntimeActive = useRuntimeActive();
   const router = useRouter();
   const { speak: speakAudio, stop: stopAudio } = useAudio();

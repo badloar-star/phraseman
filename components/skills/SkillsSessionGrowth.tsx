@@ -9,12 +9,21 @@ import React, { memo, useState, useSyncExternalStore } from 'react';
 import { View, type StyleProp, type ViewStyle } from 'react-native';
 
 import { peekSkills, subscribeSkills, takeSkillSessionBase } from '../../modules/skills/skill_store';
+import type { SkillTotals } from '../../modules/skills/skill_levels';
 import SkillsGrowthPanel from './SkillsGrowthPanel';
 
-type Props = Readonly<{ style?: StyleProp<ViewStyle>; testID?: string }>;
+type Props = Readonly<{
+  style?: StyleProp<ViewStyle>;
+  testID?: string;
+  /**
+   * Снимок «до», уже забранный экраном итога. Нужен, когда экран сам решает, показывать ли место под блок
+   * (итог урока: пустая вставка дала бы лишний отступ). Не передан — блок забирает снимок сам.
+   */
+  base?: SkillTotals | null;
+}>;
 
-function SkillsSessionGrowth({ style, testID }: Props) {
-  const [before] = useState(() => takeSkillSessionBase());
+function SkillsSessionGrowth({ style, testID, base }: Props) {
+  const [before] = useState(() => (base !== undefined ? base : takeSkillSessionBase()));
   const state = useSyncExternalStore(subscribeSkills, peekSkills, peekSkills);
   if (!before || !state) return null;
   return (

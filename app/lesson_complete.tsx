@@ -135,6 +135,8 @@ import {
 } from './target_storage_keys';
 import { DebugLogger } from './debug-logger';
 import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
+import { takeSkillSessionBase } from '../modules/skills/skill_store';
+import SkillsSessionGrowth from '../components/skills/SkillsSessionGrowth';
 
 const EXEMPT_COLOR_1 = 'rgba(0,0,0,0.5)'; // theme-exempt: затемнение под окном — тёмный скрим в любой теме
 import { noteSwallowedAs, noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
@@ -555,6 +557,8 @@ function AchievementNotifModal({ notif, lang, f, lessonId, lessonScore, lessonCe
 }
 
 export default function LessonComplete() {
+  // снимок навыков «до урока» забирается один раз на первом кадре итога: по нему решается, есть ли что показать
+  const [skillSessionBase] = useState(() => takeSkillSessionBase());
   const lessonCompleteRuntimeActive = useRuntimeActive();
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
@@ -1602,8 +1606,10 @@ export default function LessonComplete() {
                 title: triLang(lang, { ru: 'Следующий урок входит в Plus', en: 'The next lesson is part of Plus', uk: 'Наступний урок входить у Plus', es: 'La siguiente lección es de Plus', 'pt-BR': 'A próxima lição faz parte do Plus', vi: 'Bài tiếp theo thuộc gói Plus', id: 'Pelajaran berikutnya termasuk Plus', tr: 'Sonraki ders Plus kapsamında', pl: 'Następna lekcja jest w Plus' }),
                 body: triLang(lang, { ru: 'Три урока — бесплатно. Дальше — с Plus.', en: 'Three lessons are free. The rest come with Plus.', uk: 'Три уроки — безкоштовно. Далі — з Plus.', es: 'Tres lecciones gratis. Después, con Plus.', 'pt-BR': 'Três lições grátis. Depois, com Plus.', vi: 'Ba bài miễn phí. Sau đó cần Plus.', id: 'Tiga pelajaran gratis. Selanjutnya dengan Plus.', tr: 'Üç ders ücretsiz. Sonrası Plus ile.', pl: 'Trzy lekcje za darmo. Dalej — z Plus.' }),
               } : undefined}
-              feedbackSlot={lessonSoftUpsellVisible || (isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback ? (
+              feedbackSlot={lessonSoftUpsellVisible || (isComboCompletion && comboBreakdown.length > 0) || showLessonFeedback || skillSessionBase ? (
                 <View style={{ width: '100%', gap: 12 }}>
+                {/* зачем (D207; владелец 12.11 «все подключи»): урок начисляет очки навыков — итог показывает их рост, как у карточек и игр */}
+                {skillSessionBase ? <SkillsSessionGrowth base={skillSessionBase} /> : null}
                 {lessonSoftUpsellVisible && upsellOpportunity ? (
                   <SoftContextualUpsellCard
                     title={softUpsellCopy.title}

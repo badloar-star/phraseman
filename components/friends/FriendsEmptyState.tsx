@@ -21,7 +21,7 @@ export default function FriendsEmptyState({
 }: {
   onAdd: () => void;
   error?: boolean;
-  /** «Лесенка приглашений» (владелец 29.10): если передана — стоит на месте значка, заголовка и подсказки; «Добавить друга» остаётся под ней. */
+  /** «Лесенка приглашений» (владелец 29.10): если передана — стоит на месте значка, заголовка, подсказки и кнопки (решение 05.11: ввод кода — в «Как это работает»). */
   ladder?: React.ReactNode;
 }) {
   const { lang } = useLang();
@@ -56,19 +56,10 @@ export default function FriendsEmptyState({
   if (ladder) {
     return (
       <View testID="friends-list-empty" style={{ paddingTop: 12, paddingBottom: 8, paddingHorizontal: 24 }}>
+        {/* зачем (решение 05.11 07:16, b9f898423, сторож friends_ladder_empty: «без отдельной кнопки „Добавить друга“ — ввод кода
+            переехал в „Как это работает“»): тогда убрали из теста, но не из экрана — серая капсула осталась и на обходе 12.11 читалась
+            как выключенная кнопка. Вход «добавить друга» под лесенкой — кнопка «Ввести код друга» в шторке «Как это работает». */}
         {ladder}
-        <FriendsGlassButton
-          glass={glass}
-          textScale={textScale}
-          compact
-          hug
-          variant="ghost"
-          label={add}
-          onPress={onAdd}
-          testID="friends-empty-add"
-          accessibilityLabel={add}
-          style={{ marginTop: 14, alignSelf: 'center' }}
-        />
       </View>
     );
   }

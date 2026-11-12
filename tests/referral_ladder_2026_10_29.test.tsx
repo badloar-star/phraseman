@@ -25,7 +25,7 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 import { deriveReferralLadder, referralRouletteVisibleWithLadder } from '../app/referral_ladder_model';
 import { REFERRAL_LADDER_TEXTS, referralLadderText } from '../components/referral_ladder_strings';
-import ReferralLadder from '../components/referral_ladder';
+import ReferralLadder, { ladderTitleLines } from '../components/referral_ladder';
 import ReferralLadderHowSheet from '../components/referral_ladder_how_sheet';
 import type { Lang } from '../constants/i18n';
 
@@ -100,6 +100,19 @@ describe('тексты лесенки', () => {
   });
 });
 
+describe('перенос заголовка по смыслу (обход экранов 12.11: рвалось «награда за / каждого»)', () => {
+  it('на всех 9 языках вторая половина фразы целиком на второй строке, разделитель в конце первой', () => {
+    for (const lang of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as Lang[]) {
+      const lines = ladderTitleLines(referralLadderText(lang, 'title')).split('\n');
+      expect(lines).toHaveLength(2);
+      expect(lines[0]).toMatch(/[—:]$/);
+      expect(lines[1].length).toBeGreaterThan(0);
+    }
+    expect(ladderTitleLines('Зови друзей — награда за каждого')).toBe('Зови друзей —\nнаграда за каждого');
+    expect(ladderTitleLines('Без разделителя')).toBe('Без разделителя');
+  });
+});
+
 describe('разметка', () => {
   beforeEach(() => { mockLang = 'ru'; });
   const noop = () => undefined;
@@ -108,7 +121,7 @@ describe('разметка', () => {
   it('0 друзей: две ступени, полоса, код, «Поделиться кодом», «Как это работает»; нет кнопок «забрать»', async () => {
     const view = await render(<ReferralLadder {...props(0)} />);
     const all = textsOf(view.toJSON());
-    expect(all).toContain('Зови друзей — награда за каждого');
+    expect(all).toContain('Зови друзей —\\nнаграда за каждого'); // заголовок переносится по смыслу (обход экранов 12.11); \\n — так перевод строки выглядит в JSON дерева
     expect(all).toContain('Друг прошёл первый урок — 500 монет тебе и 500 другу');
     expect(all).toContain('Трое друзей прошли первый урок — Plus на 14 дней');
     expect(all).toContain('0 из 3');
@@ -127,7 +140,7 @@ describe('разметка', () => {
       />,
     );
     const all = textsOf(view.toJSON());
-    expect(all).toContain('Зови друзей — награда за каждого');
+    expect(all).toContain('Зови друзей —\\nнаграда за каждого'); // заголовок переносится по смыслу (обход экранов 12.11); \\n — так перевод строки выглядит в JSON дерева
     expect(all).toContain('PHRASE-7K2Q');
     expect(all).toContain('Поделиться кодом');
     expect(all).toContain('Как это работает');

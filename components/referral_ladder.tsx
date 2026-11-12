@@ -48,6 +48,18 @@ function Step({ done, num, text, right, testID }: Readonly<{ done: boolean; num:
   );
 }
 
+// зачем (обход экранов 12.11, заход 3): заголовок рвался «награда за / каждого» — перенос падал внутрь второй половины фразы.
+// Делим по смыслу: первая часть с тире/двоеточием остаётся в конце первой строки, «награда за каждого» — целиком во второй.
+// Шрифт не ужимаем (adjustsFontSizeToFit запрещён владельцем); при крупном шрифте строки дальше переносятся по пробелам как обычно.
+const TITLE_SEPARATORS = [' — ', ': '] as const;
+export function ladderTitleLines(title: string): string {
+  for (const sep of TITLE_SEPARATORS) {
+    const at = title.indexOf(sep);
+    if (at > 0) return `${title.slice(0, at + sep.length).trimEnd()}\n${title.slice(at + sep.length)}`;
+  }
+  return title;
+}
+
 function ReferralLadder({ view, compactFriends = false, code, codeCopied, shareBusy, onCopy, onShare, onHow }: ReferralLadderProps) {
   const { liquidGlassThemeId } = useTheme();
   const { lang } = useLang();
@@ -71,7 +83,7 @@ function ReferralLadder({ view, compactFriends = false, code, codeCopied, shareB
           </View>
         )}
         <Text accessibilityRole="header" style={{ color: glass.text, fontSize: 20, lineHeight: 25, fontWeight: '700', textAlign: 'center' }}>
-          {referralLadderText(L, 'title')}
+          {ladderTitleLines(referralLadderText(L, 'title'))}
         </Text>
       </View>
       {compactFriends ? null : (

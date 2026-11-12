@@ -15,8 +15,10 @@ function deck(lesson: number, left: SortBin, right: SortBin, cards: readonly Car
   return { id, left, right, tasks: cards.map(([text, side, hint], i) => ({ id: `${id}-${i + 1}`, text, side, hint })) };
 }
 
+// зачем (сессия Elevate 12.11): пример корзины — правило словами, а не слова карт; иначе пример («she, the door»)
+// совпадает с картой («The door is open») и выдаёт ответ. Сторож проверяет, что слов карт в примерах нет.
 export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
-  1: deck(1, { title: 'Один', example: 'she, it, the door' }, { title: 'Несколько', example: 'we, they, the doors' }, [
+  1: deck(1, { title: 'Один', example: 'одна вещь или человек' }, { title: 'Несколько', example: 'больше одного' }, [
     ['The door is open', 'left', 'door — дверь одна, поэтому is'],
     ['The doors are closed', 'right', 'doors — дверей несколько, поэтому are'],
     ['She is busy', 'left', 'she — она одна'],
@@ -26,7 +28,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['The bus is late', 'left', 'bus — автобус один'],
     ['We are at home', 'right', 'we — нас несколько'],
   ]),
-  2: deck(2, { title: 'Спрашивают', example: 'Is she…  Are you…' }, { title: 'Утверждают', example: 'Yes…  No…  She is not…' }, [
+  2: deck(2, { title: 'Спрашивают', example: 'порядок слов вопроса' }, { title: 'Утверждают', example: 'обычный порядок или ответ' }, [
     ['Is she ready', 'left', 'is стоит первым — это вопрос'],
     ['She is not ready', 'right', 'she стоит первой — это не вопрос'],
     ['Are they at home', 'left', 'are стоит первым — это вопрос'],
@@ -36,7 +38,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['Are these seats free', 'left', 'are стоит первым — это вопрос'],
     ['No, it is not', 'right', 'no — так отвечают'],
   ]),
-  3: deck(3, { title: 'He · She', example: 'works, lives' }, { title: 'I · You · We · They', example: 'work, live' }, [
+  3: deck(3, { title: 'He · She', example: 'окончание -s' }, { title: 'I · You · We · They', example: 'без -s' }, [
     ['___ works nearby', 'left', 'works с -s — это про него или про неё'],
     ['___ live alone', 'right', 'live без -s — это я, мы или они'],
     ['___ starts early', 'left', 'starts с -s — это про него или про неё'],
@@ -46,7 +48,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['___ takes the train', 'left', 'takes с -s — это про него или про неё'],
     ['___ share a kitchen', 'right', 'share без -s — это я, мы или они'],
   ]),
-  4: deck(4, { title: 'do not', example: 'I, we, they' }, { title: 'does not', example: 'he, she, it' }, [
+  4: deck(4, { title: 'do not', example: 'я, мы, они, вещей много' }, { title: 'does not', example: 'он, она, вещь одна' }, [
     ['I ___ drive', 'left', 'с I идёт do not'],
     ['He ___ drive', 'right', 'с he идёт does not'],
     ['The lights ___ work', 'left', 'lights — их несколько, как they'],
@@ -56,7 +58,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['They ___ accept cards', 'left', 'с they идёт do not'],
     ['This machine ___ accept coins', 'right', 'machine — автомат один, как it'],
   ]),
-  5: deck(5, { title: 'Do', example: 'we, they, the windows' }, { title: 'Does', example: 'he, she, the door' }, [
+  5: deck(5, { title: 'Do', example: 'мы, они, вещей много' }, { title: 'Does', example: 'он, она, вещь одна' }, [
     ['___ these windows open?', 'left', 'windows — окон несколько, как they'],
     ['___ the key fit?', 'right', 'key — ключ один, как it'],
     ['___ the buses run on Sundays?', 'left', 'buses — автобусов несколько, как they'],
@@ -66,7 +68,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['___ we need tickets?', 'left', 'с we идёт do'],
     ['___ the oven work?', 'right', 'oven — духовка одна, как it'],
   ]),
-  6: deck(6, { title: 'Про место', example: 'Where…?' }, { title: 'Про время', example: 'When…?  What time…?' }, [
+  6: deck(6, { title: 'Про место', example: '«где?»' }, { title: 'Про время', example: '«когда?», «во сколько?»' }, [
     ['Where do you work?', 'left', 'where — «где»'],
     ['When do we start?', 'right', 'when — «когда»'],
     ['Where does she live?', 'left', 'where — «где»'],
@@ -76,7 +78,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['Where do you keep the batteries?', 'left', 'where — «где»'],
     ['What time do you finish work?', 'right', 'what time — «во сколько»'],
   ]),
-  7: deck(7, { title: 'Самочувствие', example: 'a cough, a cold' }, { title: 'Вещи', example: 'a car, a key' }, [
+  7: deck(7, { title: 'Самочувствие', example: 'то, что болит' }, { title: 'Вещи', example: 'то, что есть у человека' }, [
     ['I have a sore throat', 'left', 'sore throat — болит горло'],
     ['They have a car', 'right', 'car — машина'],
     ['He has a cough', 'left', 'cough — кашель'],
@@ -97,7 +99,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['The market opens ___ Saturdays', 'right', 'Saturdays — день недели, значит on'],
   ]),
   // зачем (сессия макетов 12.11): уроки 9–12; каждая карта подходит ровно к одной корзине
-  9: deck(9, { title: 'is', example: 'один: a lift, milk' }, { title: 'are', example: 'несколько: stairs, eggs' }, [
+  9: deck(9, { title: 'is', example: 'одна штука или нельзя посчитать' }, { title: 'are', example: 'много штук' }, [
     ['There ___ a lift', 'left', 'a lift — лифт один'],
     ['There ___ stairs', 'right', 'stairs — ступеней много'],
     ['There ___ a queue', 'left', 'a queue — очередь одна'],
@@ -107,7 +109,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['There ___ soup on the stove', 'left', 'soup не считают штуками — is'],
     ['There ___ spoons in the drawer', 'right', 'spoons — ложек несколько'],
   ]),
-  10: deck(10, { title: 'Можно мне?', example: 'Can I…? Can we…?' }, { title: 'Сделаете?', example: 'Can you…?' }, [
+  10: deck(10, { title: 'Можно мне?', example: 'просим разрешения' }, { title: 'Сделаете?', example: 'просим другого сделать' }, [
     ['Can I sit here?', 'left', 'can I — прошу разрешения'],
     ['Can you say that again?', 'right', 'can you — прошу сделать'],
     ['Can I pay by card?', 'left', 'can I — прошу разрешения'],
@@ -117,7 +119,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['Can I bring a friend?', 'left', 'can I — прошу разрешения'],
     ['Can you write it down?', 'right', 'can you — прошу сделать'],
   ]),
-  11: deck(11, { title: 'Сделал', example: 'checked, cancelled' }, { title: 'Не сделал', example: 'did not check' }, [
+  11: deck(11, { title: 'Сделал', example: 'окончание -ed' }, { title: 'Не сделал', example: 'не сделал — без -ed' }, [
     ['I checked the address', 'left', 'checked — проверил'],
     ['I did not check the label', 'right', 'did not check — не проверил'],
     ['She cancelled the appointment', 'left', 'cancelled — отменила'],
@@ -127,7 +129,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['We changed our booking', 'left', 'changed — изменили'],
     ['We did not stay long', 'right', 'did not stay — не остались'],
   ]),
-  12: deck(12, { title: 'Сделал', example: 'found, took, broke' }, { title: 'Не сделал', example: 'did not find' }, [
+  12: deck(12, { title: 'Сделал', example: 'особая форма прошлого' }, { title: 'Не сделал', example: 'не сделал — обычная форма' }, [
     ['We found a quiet cafe', 'left', 'found — нашли'],
     ['We did not find a parking space', 'right', 'did not find — не нашли'],
     ['She took my coat', 'left', 'took — взяла'],
@@ -139,7 +141,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
   ]),
   // зачем (координатор 12.11): уроки 13–16; каждая карта подходит ровно к одной корзине. Для урока 16 не взяты
   // корзины on / off с пропуском: «Turn off the lamp» тоже верная фраза, карта была бы с двумя ответами
-  13: deck(13, { title: 'Сделает', example: 'will call, will bring' }, { title: 'Не сделает', example: 'will not need' }, [
+  13: deck(13, { title: 'Сделает', example: 'в будущем — да' }, { title: 'Не сделает', example: 'в будущем — нет' }, [
     ['She will call later', 'left', 'will call — позвонит'],
     ['We will not need a taxi', 'right', 'will not need — не понадобится'],
     ['We will bring the cups', 'left', 'will bring — принесём'],
@@ -149,7 +151,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['I will answer the phone', 'left', 'will answer — возьму трубку'],
     ['The shop will not open tomorrow', 'right', 'will not open — не откроется'],
   ]),
-  14: deck(14, { title: 'Сравнивают', example: 'lighter, more comfortable' }, { title: 'Самый', example: 'the quietest, the most useful' }, [
+  14: deck(14, { title: 'Сравнивают', example: 'окончание -er или «более»' }, { title: 'Самый', example: 'окончание -est или «самый»' }, [
     ['This bag is lighter', 'left', 'lighter — легче'],
     ['Which room is the quietest?', 'right', 'the quietest — самая тихая'],
     ['The bus is cheaper', 'left', 'cheaper — дешевле'],
@@ -159,7 +161,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['This chair is more comfortable', 'left', 'more comfortable — удобнее'],
     ['This is the most useful page', 'right', 'the most useful — самая полезная'],
   ]),
-  15: deck(15, { title: 'my · your · her', example: 'my coat, your bag' }, { title: 'mine · yours · hers', example: 'is mine, is yours' }, [
+  15: deck(15, { title: 'my · your · her', example: 'перед вещью' }, { title: 'mine · yours · hers', example: 'вместо вещи' }, [
     ['This is my coat', 'left', 'my coat — моё пальто'],
     ['This coat is mine', 'right', 'is mine — моё'],
     ['That is your bag', 'left', 'your bag — твоя сумка'],
@@ -169,7 +171,7 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['These are their tickets', 'left', 'their tickets — их билеты'],
     ['These tickets are theirs', 'right', 'are theirs — их'],
   ]),
-  16: deck(16, { title: 'Обычно', example: 'get up, looks after' }, { title: 'Уже было', example: 'wrote down, filled in' }, [
+  16: deck(16, { title: 'Обычно', example: 'как обычно бывает' }, { title: 'Уже было', example: 'что уже случилось' }, [
     ['I get up at seven', 'left', 'get up — встаю'],
     ['I wrote down the number', 'right', 'wrote down — записал'],
     ['She gets off at the next stop', 'left', 'gets off — выходит'],
@@ -178,5 +180,47 @@ export const SORT_BANK_EN: Readonly<Record<number, SortDeck>> = {
     ['They filled in the form', 'right', 'filled in — заполнили'],
     ['She looks after the children', 'left', 'looks after — присматривает'],
     ['She handed in the keys', 'right', 'handed in — сдала'],
+  ]),
+  // зачем (сессия Elevate 12.11): уроки 17–20; каждая карта подходит ровно к одной корзине. В уроке 20 корзины
+  // названы самими словами a / an, карта с пропуском — как в уроке 9
+  17: deck(17, { title: 'Делает', example: 'прямо сейчас — да' }, { title: 'Не делает', example: 'прямо сейчас — нет' }, [
+    ['She is waiting', 'left', 'is waiting — ждёт'],
+    ['The printer is not responding', 'right', 'is not responding — не отвечает'],
+    ['He is cooking', 'left', 'is cooking — готовит'],
+    ['The battery is not charging', 'right', 'is not charging — не заряжается'],
+    ['The phone is ringing', 'left', 'is ringing — звонит'],
+    ['The bus is not moving', 'right', 'is not moving — не едет'],
+    ['The bus is coming', 'left', 'is coming — подъезжает'],
+    ['I am not taking the car', 'right', 'am not taking — не беру'],
+  ]),
+  18: deck(18, { title: 'Делайте', example: 'просьба сделать' }, { title: 'Не делайте', example: 'просьба не делать' }, [
+    ['Hold the handrail', 'left', 'hold — держитесь'],
+    ['Do not touch the oven', 'right', 'do not touch — не прикасайтесь'],
+    ['Watch your step', 'left', 'watch — смотрите'],
+    ['Do not block the stairs', 'right', 'do not block — не загораживайте'],
+    ['Leave the key on the desk', 'left', 'leave — оставьте'],
+    ['Do not feed the dog', 'right', 'do not feed — не кормите'],
+    ['Keep the door closed', 'left', 'keep — держите'],
+    ['Do not share the code', 'right', 'do not share — не сообщайте'],
+  ]),
+  19: deck(19, { title: 'Где лежит', example: 'где находится' }, { title: 'Куда положить', example: 'что сделать с вещью' }, [
+    ['The keys are on the shelf', 'left', 'are on — лежат на'],
+    ['Put the form in the folder', 'right', 'put — положите'],
+    ['The label is on the box', 'left', 'is on — на'],
+    ['Hang the towel on the hook', 'right', 'hang — повесьте'],
+    ['The bill is under the menu', 'left', 'is under — лежит под'],
+    ['Slide the note under the door', 'right', 'slide — подсуньте'],
+    ['My coat is behind the door', 'left', 'is behind — за'],
+    ['Leave the suitcase by the counter', 'right', 'leave — оставьте'],
+  ]),
+  20: deck(20, { title: 'a', example: 'слово начинается не с гласного звука' }, { title: 'an', example: 'слово начинается с гласного звука' }, [
+    ['I need ___ pen', 'left', 'перед pen — a'],
+    ['I need ___ envelope', 'right', 'перед envelope — an'],
+    ['She wants ___ sandwich', 'left', 'перед sandwich — a'],
+    ['He has ___ appointment', 'right', 'перед appointment — an'],
+    ['We need ___ taxi', 'left', 'перед taxi — a'],
+    ['I have ___ idea', 'right', 'перед idea — an'],
+    ['They rented ___ flat', 'left', 'перед flat — a'],
+    ['He ordered ___ omelette', 'right', 'перед omelette — an'],
   ]),
 };

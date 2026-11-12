@@ -121,4 +121,21 @@ export const HUNT_BANK_EN: Readonly<Record<number, readonly HuntTask[]>> = {
     hunt(16, 1, ['Did you look for it downstairs?', 'Yes, I [looks|looked] for it downstairs.', 'Can you {pick} me up at six?'], 'Это уже было — looked.'),
     hunt(16, 2, ['Can you look after my bag?', 'Yes, I can [looks|look] after it.', 'Please {put} the milk away.'], 'После can — look, без -s.'),
   ],
+  // зачем (сессия Elevate 12.11): уроки 17–20; неверное слово ломает фразу при любом прочтении
+  17: [
+    hunt(17, 1, ['Is she coming with us?', 'Yes, she [are|is] coming.', 'We {are} leaving now.'], 'С she — is.'),
+    hunt(17, 2, ['What are you cooking?', 'I am [cook|cooking] soup.', 'It {is} getting cold.'], 'Готовлю прямо сейчас — am cooking.'),
+  ],
+  18: [
+    hunt(18, 1, ['Can I sit here?', 'Yes, please [sits|sit] down.', 'Do not {block} the stairs.'], 'После please — sit, без -s.'),
+    hunt(18, 2, ['Is the pharmacy near?', 'Yes, [turns|turn] left at the bank.', 'Follow the {blue} signs.'], 'Просьба — turn, без -s.'),
+  ],
+  19: [
+    hunt(19, 1, ['Where are the keys?', 'The keys [is|are] in the drawer.', 'The bill is {under} the menu.'], 'Ключей несколько — are.'),
+    hunt(19, 2, ['Where is the bakery?', 'It is next [of|to] the library.', 'The cafe is {across} the road.'], 'Рядом с — next to.'),
+  ],
+  20: [
+    hunt(20, 1, ['What do you need?', 'I need [a|an] envelope.', 'She has {a} receipt.'], 'Перед envelope — an.'),
+    hunt(20, 2, ['What did he buy?', 'He bought [a|an] umbrella.', 'She wants {a} sandwich.'], 'Перед umbrella — an.'),
+  ],
 };

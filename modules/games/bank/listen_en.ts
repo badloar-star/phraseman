@@ -148,4 +148,37 @@ export const LISTEN_BANK_EN: Readonly<Record<number, readonly QuizRound[]>> = {
     round(16, 5, 'She gets off at the next stop', ['She gets on at the next stop', 'She gets off at the last stop'], 1, 'Она выходит на следующей остановке'),
     round(16, 6, 'The alarm went off at five', ['The alarm went off at six', 'The alarm went off at seven'], 2, 'Будильник зазвонил в пять'),
   ],
+  // зачем (сессия Elevate 12.11): уроки 17–20; звучат только фразы урока — у них уже есть запись курса
+  17: [
+    round(17, 1, 'I am waiting', ['I am listening', 'I am leaving'], 0, 'Я жду'),
+    round(17, 2, 'The phone is ringing', ['The phone is charging', 'The phone is working'], 1, 'Телефон звонит'),
+    round(17, 3, 'The bus is coming', ['The bus is moving', 'The taxi is coming'], 2, 'Автобус подъезжает'),
+    round(17, 4, 'Are you listening?', ['Are you leaving?', 'Are they listening?'], 0, 'Ты слушаешь?'),
+    round(17, 5, 'Is the kettle boiling?', ['Is the water boiling?', 'Is the kettle working?'], 1, 'Чайник кипит?'),
+    round(17, 6, 'It is not raining now', ['It is not raining today', 'It is not working now'], 2, 'Сейчас не идёт дождь'),
+  ],
+  18: [
+    round(18, 1, 'Wait by the gate', ['Wait by the door', 'Wait by the lift'], 0, 'Подождите у ворот'),
+    round(18, 2, 'Hold the handrail', ['Hold the door', 'Hold the handle'], 1, 'Держитесь за поручень'),
+    round(18, 3, 'Do not touch the oven', ['Do not touch the kettle', 'Do not open the oven'], 2, 'Не прикасайтесь к духовке'),
+    round(18, 4, 'Turn left at the bank', ['Turn right at the bank', 'Turn left at the pharmacy'], 0, 'Поверните налево у банка'),
+    round(18, 5, 'Take the second exit', ['Take the first exit', 'Take the second bus'], 1, 'Сверните на втором съезде'),
+    round(18, 6, "Let's share a taxi", ["Let's book a taxi", "Let's share a table"], 2, 'Давай поедем на одном такси'),
+  ],
+  19: [
+    round(19, 1, 'The keys are on the shelf', ['The keys are on the desk', 'The keys are under the shelf'], 0, 'Ключи лежат на полке'),
+    round(19, 2, 'The keys are in the drawer', ['The keys are in the folder', 'The bags are in the drawer'], 1, 'Ключи лежат в ящике'),
+    round(19, 3, 'My coat is behind the door', ['My coat is behind the chair', 'My coat is by the door'], 2, 'Моё пальто за дверью'),
+    round(19, 4, 'She is on the bus', ['She is on the train', 'He is on the bus'], 0, 'Она в автобусе'),
+    round(19, 5, 'The pharmacy is opposite the bank', ['The pharmacy is opposite the hotel', 'The bakery is opposite the bank'], 1, 'Аптека напротив банка'),
+    round(19, 6, 'Is the room on the ground floor?', ['Is the lift on the ground floor?', 'Is the room on the top floor?'], 2, 'Комната на первом этаже?'),
+  ],
+  20: [
+    round(20, 1, 'I need a pen', ['I need a key', 'I need a map'], 0, 'Мне нужна ручка'),
+    round(20, 2, 'She has a receipt', ['She has a ticket', 'He has a receipt'], 1, 'У неё есть чек'),
+    round(20, 3, 'We need a taxi', ['We need a table', 'We want a taxi'], 2, 'Нам нужно такси'),
+    round(20, 4, 'He walks to work', ['She walks to work', 'He goes to work'], 0, 'Он ходит на работу пешком'),
+    round(20, 5, 'I buy fruit at the market', ['I buy bread at the market', 'I buy fruit at the shop'], 1, 'Я покупаю фрукты на рынке'),
+    round(20, 6, 'The bread on the table is fresh', ['The bread on the shelf is fresh', 'The bread on the table is cold'], 2, 'Хлеб на столе свежий'),
+  ],
 };

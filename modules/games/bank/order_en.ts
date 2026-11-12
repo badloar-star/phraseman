@@ -79,4 +79,21 @@ export const ORDER_BANK_EN: Readonly<Record<number, readonly OrderTask[]>> = {
     order(16, 1, ['Can your brother pick me up at six?', 'Yes, he can pick you up at six.', 'Will he drop me off outside?', 'Yes, he will drop you off outside.']),
     order(16, 2, ['Did the children wake up early?', 'Yes, they got up at six.', 'Did they put their shoes on?', 'Yes, they put their shoes on.']),
   ],
+  // зачем (сессия Elevate 12.11): уроки 17–20 по той же схеме: вопрос о названном предмете → ответ → вопрос с it/he/she/they
+  17: [
+    order(17, 1, ['Is your sister coming with us?', 'Yes, she is coming.', 'Is she waiting outside?', 'No, she is waiting upstairs.']),
+    order(17, 2, ['Is the kettle boiling?', 'Yes, the kettle is boiling.', 'Is it working?', 'Yes, it is working well.']),
+  ],
+  18: [
+    order(18, 1, ['Is the pharmacy near the bank?', 'Yes, the pharmacy is near the bank.', 'Is it open now?', 'Yes, it is open until six.']),
+    order(18, 2, ['Can I leave my bag here?', 'Yes, put your bag under the seat.', 'Is it safe there?', 'Yes, it is safe.']),
+  ],
+  19: [
+    order(19, 1, ['Is the lift at the end of the hall?', 'Yes, the lift is at the end of the hall.', 'Is it working?', 'No, it is not working today.']),
+    order(19, 2, ['Is the pharmacy opposite the bank?', 'Yes, the pharmacy is opposite the bank.', 'Is it open today?', 'Yes, it is open until six.']),
+  ],
+  20: [
+    order(20, 1, ['Is the hotel near the station?', 'Yes, the hotel is near the station.', 'Is it expensive?', 'No, it is not expensive.']),
+    order(20, 2, ['Is the seat by the door free?', 'Yes, the seat by the door is free.', 'Is it comfortable?', 'Yes, it is comfortable.']),
+  ],
 };

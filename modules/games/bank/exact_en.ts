@@ -152,4 +152,38 @@ export const EXACT_BANK_EN: Readonly<Record<number, readonly QuizRound[]>> = {
     round(16, 5, 'He handed ___ in', 'them', ['they'], 0, 'Сдал их — them.'),
     round(16, 6, 'Can you pick ___ up at six?', 'me', ['I'], 1, 'Забрать меня — me.'),
   ],
+  // зачем (сессия Elevate 12.11): уроки 17–20; отброшены пары, где неверный вариант тоже даёт живую фразу
+  // («The doors are close», «Turn up at the bank», «She is at the bus», «speak a little loud»)
+  17: [
+    round(17, 1, 'I ___ waiting', 'am', ['is'], 0, 'С I — am.'),
+    round(17, 2, 'They ___ leaving', 'are', ['is'], 1, 'С they — are.'),
+    round(17, 3, 'The phone ___ ringing', 'is', ['are'], 0, 'Телефон один — is.'),
+    round(17, 4, '___ she coming with us?', 'Is', ['Are'], 1, 'С she — is.'),
+    round(17, 5, 'The bus is not ___', 'moving', ['move'], 0, 'Не едет сейчас — is not moving.'),
+    round(17, 6, 'I am not ___ the car', 'taking', ['take'], 1, 'После am not — taking.'),
+  ],
+  18: [
+    round(18, 1, '___ not touch the oven', 'Do', ['Does'], 0, 'Просьба «не делайте» начинается с do not.'),
+    round(18, 2, 'Please ___ your phone off', 'switch', ['to switch'], 1, 'После please сразу идёт switch.'),
+    round(18, 3, "Let's ___ the early train", 'take', ['to take'], 0, "После let's сразу идёт take."),
+    round(18, 4, "Let's ___ rush", 'not', ['no'], 1, "«Не будем» — let's not."),
+    round(18, 5, 'Pull the handle ___ you', 'towards', ['at'], 0, 'На себя — towards you.'),
+    round(18, 6, 'Take the ___ exit', 'second', ['two'], 1, 'Второй по счёту — second.'),
+  ],
+  19: [
+    round(19, 1, 'The keys ___ in the drawer', 'are', ['is'], 0, 'Ключей несколько — are.'),
+    round(19, 2, 'The bakery is next ___ the library', 'to', ['of'], 1, 'Рядом с — next to.'),
+    round(19, 3, 'The taxi rank is in front ___ the station', 'of', ['at'], 0, 'Перед — in front of.'),
+    round(19, 4, 'The mirror is ___ the sink', 'above', ['above of'], 1, 'Above обходится без of.'),
+    round(19, 5, 'There ___ a stain on the sleeve', 'is', ['are'], 0, 'Пятно одно — is.'),
+    round(19, 6, 'Our bags ___ by the stairs', 'are', ['is'], 1, 'Сумок несколько — are.'),
+  ],
+  20: [
+    round(20, 1, 'I need ___ pen', 'a', ['an'], 0, 'Перед pen — a.'),
+    round(20, 2, 'I need ___ envelope', 'an', ['a'], 1, 'Перед envelope — an, так легче произнести.'),
+    round(20, 3, 'I have ___ idea', 'an', ['a'], 0, 'Перед idea — an, так легче произнести.'),
+    round(20, 4, 'She wants ___ sandwich', 'a', ['an'], 1, 'Перед sandwich — a.'),
+    round(20, 5, 'They have breakfast at ___', 'home', ['the home'], 0, 'At home — без the.'),
+    round(20, 6, 'He walks to ___', 'work', ['the work'], 1, 'To work — без the.'),
+  ],
 };
